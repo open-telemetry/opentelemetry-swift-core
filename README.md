@@ -66,49 +66,9 @@ Official documentation for the library can be found in the official opentelemetr
 
 Tracing and Baggage are considered stable
 
-Logs are considered beta quality
+Logs are considered stable. 
 
-Metrics is implemented using an outdated spec, is fully functional but will change in the future
-
-### Supported exporters and importers
-
-#### Traces
-
-* Exporters: Stdout, Jaeger, Zipkin, Datadog and OpenTelemetry (OTLP) collector
-* Importers: OpenTracingShim
-
-#### Metrics
-
-* Exporters: Prometheus, Datadog, and OpenTelemetry (OTLP) collector
-* Importers: SwiftMetricsShim
-
-#### Logs
-
-* Exporters: OpenTelemetry (OTLP) collector
-
-> **_NOTE:_** OTLP exporters are supported both in GRPC and HTTP, only GRPC is production ready, HTTP is still experimental
-
-### Instrumentation libraries
-
-* `URLSession`
-* `NetworkStatus`
-* `SDKResourceExtension`
-* `SignPostIntegration`
-
-### Third-party exporters
-In addition to the specified OpenTelemetry exporters, some third-party exporters have been contributed and can be found in the following repos: 
-* [Grafana/faro](https://github.com/grafana/faro-otel-swift-exporter)
-
-## Examples
-
-The package includes some example projects with basic functionality:
-
-* `Datadog Sample` -  Shows the Datadog exporter used with a Simple Exporter, showing how to configure for sending.
-* `Logging Tracer` -  Simple api implementation of a Tracer that logs every api call
-* `Network Tracer` -  Shows how to use the `URLSessionInstrumentation` instrumentation in your application
-* `Simple Exporter` - Shows the Jaeger an Stdout exporters in action using a MultiSpanExporter. Can be easily modified for other exporters
-* `Prometheus Sample` - Shows the Prometheus exporter reporting metrics to a Prometheus instance
-* `OTLP Exporter` - Shows the OTLP exporter reporting traces to Zipkin and metrics to a Prometheus via the otel-collector
+Metrics is considered stable.
 
 ## Contributing
 We'd love your help! Use labels [![help wanted](https://img.shields.io/github/issues-search/open-telemetry/opentelemetry-swift?query=is%3Aissue%20is%3Aopen%20label%3A%22help%20wanted%22&label=help%20wanted&color=rgb(0%2C%20134%2C%20114)&logo=opentelemetry)](https://github.com/open-telemetry/opentelemetry-swift/issues?q=state%3Aopen%20label%3A%22help%20wanted%22) and [![good first issue](https://img.shields.io/github/issues-search/open-telemetry/opentelemetry-swift?query=is%3Aissue%20is%3Aopen%20label%3A%22good%20first%20issue%22&label=good%20first%20issue&color=rgb(112%2C%2087%2C%20255)&logo=opentelemetry)](https://github.com/open-telemetry/opentelemetry-swift/issues?q=state%3Aopen%20label%3A%22good%20first%20issue%22) 
@@ -119,7 +79,7 @@ We have a weekly SIG meeting! See the [community page](https://github.com/open-t
 
 We are also available in the [#otel-swift](https://cloud-native.slack.com/archives/C01NCHR19SB) channel in the [CNCF slack](https://slack.cncf.io/). Please join us there for OTel Swift discussions.
 
-### Maintainers
+### Maintainers ([@open-telemetry/swift-core-maintainers](https://github.com/orgs/open-telemetry/teams/swift-core-maintainers))
 
 - [Ariel Demarco](https://github.com/arieldemarco), Embrace
 - [Bryce Buchanan](https://github.com/bryce-b), Elastic
@@ -127,7 +87,7 @@ We are also available in the [#otel-swift](https://cloud-native.slack.com/archiv
 
 For more information about the maintainer role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#maintainer).
 
-### Approvers
+### Approvers ([@open-telemetry/swift-core-approvers](https://github.com/orgs/open-telemetry/teams/swift-core-approvers))
 
 - [Austin Emmons](https://github.com/atreat), Embrace
 - [Vinod Vydier](https://github.com/vvydier), Independent
