@@ -134,7 +134,7 @@ For more information about the maintainer role, see the [community repository](h
 
 For more information about the approver role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#approver).
 
-### Triager ([@open-telemetry/swift-triagers](https://github.com/orgs/open-telemetry/teams/swift-triagers))
+### Triager ([@open-telemetry/swift-core-triagers](https://github.com/orgs/open-telemetry/teams/swift-core-triagers))
 
 - [Alolita Sharma](https://github.com/alolita), Apple
 

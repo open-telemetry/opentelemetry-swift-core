@@ -1,4 +1,4 @@
-PROJECT_NAME="opentelemetry-swift-Package"
+PROJECT_NAME="opentelemetry-swift-core-Package"
 
 XCODEBUILD_OPTIONS_IOS=\
 	-configuration Debug \
