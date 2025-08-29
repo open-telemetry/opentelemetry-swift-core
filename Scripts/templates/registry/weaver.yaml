@@ -1,0 +1,19 @@
+params:
+  excluded_namespaces: [aws, artifact, azure, cassandra, cloudevents, gen_ai, cloudfoundry, db, aspnetcore, cicd, signalr, gcp, android, dotnet, jvm, kestrel, browser, cloud, container, deployment, faas, feature_flag]
+comment_formats:
+  default:
+    format: markdown
+    prefix: "/// "
+templates:
+  - pattern: SemanticAttributes.swift.j2
+    filter: >
+      semconv_grouped_attributes({
+        "exclude_deprecated": true,
+        "exclude_experimental": true,
+        "exclude_root_namespace": $excluded_namespaces,
+      })
+      | map({
+        root_namespace: .root_namespace,
+        attributes: .attributes,
+      })
+    application_mode: single
