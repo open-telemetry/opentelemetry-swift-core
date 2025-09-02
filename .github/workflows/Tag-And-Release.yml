@@ -45,7 +45,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check if tag exists remotely
-        id: tagcheck
+        id: check-tag
         run: |
           set -euo pipefail
           VERSION="${{ steps.parse.outputs.version }}"
@@ -57,14 +57,14 @@ jobs:
           fi
 
       - name: Create and push tag
-        if: steps.tagcheck.outputs.exists != 'true'
+        if: steps.check-tag.outputs.exists != 'true'
         uses: stefanzweifel/git-auto-commit-action@778341af668090896ca464160c2def5d1d1a3eb0
         with:
           commit_message: version bump to ${{ steps.parse.outputs.version }}
           tagging_message: '${{ steps.parse.outputs.version }}'
 
       - name: Create GitHub Release
-        if: steps.tagcheck.outputs.exists != 'true'
+        if: steps.check-tag.outputs.exists != 'true'
         uses: ncipollo/release-action@bcfe5470707e8832e12347755757cec0eb3c22af # v1.18.0
         with: 
           tag: ${{ steps.check-release.outputs.version }}
