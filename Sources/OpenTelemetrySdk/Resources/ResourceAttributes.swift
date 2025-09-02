@@ -12,9 +12,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.AppBuildId] = "6cff0a7e-cefc-4668-96f5-1273d8b334d0"
+        
+    attributes[.AppBuildId] = "9f2b833506aa6973a92fde9733e6271f"
+        
+    attributes[.AppBuildId] = "my-app-1.0.0-code-123"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case appBuildId = "app.build_id"
     /**
@@ -22,7 +28,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.AppInstallationId] = "2ab2916d-a51f-4ac8-80ee-45ac31a28092"
     ~~~
 
     - Note: /// Its value SHOULD persist across launches of the same application installation, including through application upgrades.
@@ -42,7 +49,8 @@ public enum ResourceAttributes: String {
       /// - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
       ///
       /// More information about Android identifier best practices can be found in the [Android user data IDs guide](https://developer.android.com/training/articles/user-data-ids)..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case appInstallationId = "app.installation.id"
     /**
@@ -50,11 +58,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.AppJankFrameCount] = 9
+        attributes[.AppJankFrameCount] = 42
     ~~~
 
     - Note: /// Depending on platform limitations, the value provided MAY be approximation..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case appJankFrameCount = "app.jank.frame_count"
     /**
@@ -62,9 +72,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.AppJankPeriod] = 1.0
+        attributes[.AppJankPeriod] = 5.0
+        attributes[.AppJankPeriod] = 10.24
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `double`
     */
     case appJankPeriod = "app.jank.period"
     /**
@@ -72,9 +85,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.AppJankThreshold] = 0.016
+        attributes[.AppJankThreshold] = 0.7
+        attributes[.AppJankThreshold] = 1.024
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `double`
     */
     case appJankThreshold = "app.jank.threshold"
     /**
@@ -82,9 +98,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.AppScreenCoordinateX] = 0
+        attributes[.AppScreenCoordinateX] = 131
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case appScreenCoordinateX = "app.screen.coordinate.x"
     /**
@@ -92,9 +110,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.AppScreenCoordinateY] = 12
+        attributes[.AppScreenCoordinateY] = 99
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case appScreenCoordinateY = "app.screen.coordinate.y"
     /**
@@ -102,11 +122,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.AppWidgetId] = "f9bc787d-ff05-48ad-90e1-fca1d46130b3"
+        
+    attributes[.AppWidgetId] = "submit_order_1829"
     ~~~
 
     - Note: /// A widget is an application component, typically an on-screen visual GUI element..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case appWidgetId = "app.widget.id"
     /**
@@ -114,16 +138,23 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.AppWidgetName] = "submit"
+        
+    attributes[.AppWidgetName] = "attack"
+        
+    attributes[.AppWidgetName] = "Clear Cart"
     ~~~
 
     - Note: /// A widget is an application component, typically an on-screen visual GUI element..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case appWidgetName = "app.widget.name"
     /**
     /// The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html)..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "all", "id": "all", "stability": "development", "value": "all"}, {"brief": "each quorum", "id": "each_quorum", "stability": "development", "value": "each_quorum"}, {"brief": "quorum", "id": "quorum", "stability": "development", "value": "quorum"}, {"brief": "local quorum", "id": "local_quorum", "stability": "development", "value": "local_quorum"}, {"brief": "one", "id": "one", "stability": "development", "value": "one"}, {"brief": "two", "id": "two", "stability": "development", "value": "two"}, {"brief": "three", "id": "three", "stability": "development", "value": "three"}, {"brief": "local one", "id": "local_one", "stability": "development", "value": "local_one"}, {"brief": "any", "id": "any", "stability": "development", "value": "any"}, {"brief": "serial", "id": "serial", "stability": "development", "value": "serial"}, {"brief": "local serial", "id": "local_serial", "stability": "development", "value": "local_serial"}]}`
     */
     case cassandraConsistencyLevel = "cassandra.consistency.level"
     /**
@@ -131,9 +162,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.CassandraCoordinatorDc] = "us-west-2"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case cassandraCoordinatorDc = "cassandra.coordinator.dc"
     /**
@@ -141,9 +173,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.CassandraCoordinatorId] = "be13faa2-8574-4d71-926d-27f16cf8a7af"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case cassandraCoordinatorId = "cassandra.coordinator.id"
     /**
@@ -151,14 +184,16 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.CassandraPageSize] = 5000
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case cassandraPageSize = "cassandra.page.size"
     /**
     /// Whether or not the query is idempotent..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Bool`
     */
     case cassandraQueryIdempotent = "cassandra.query.idempotent"
     /**
@@ -166,9 +201,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.CassandraSpeculativeExecutionCount] = 0
+        attributes[.CassandraSpeculativeExecutionCount] = 2
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case cassandraSpeculativeExecutionCount = "cassandra.speculative_execution.count"
     /**
@@ -176,11 +213,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ClientAddress] = "client.example.com"
+        
+    attributes[.ClientAddress] = "10.1.2.80"
+        
+    attributes[.ClientAddress] = "/tmp/my.sock"
     ~~~
 
     - Note: /// When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case clientAddress = "client.address"
     /**
@@ -188,21 +231,22 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ClientPort] = 65123
     ~~~
 
     - Note: /// When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case clientPort = "client.port"
     /**
     /// The column number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Line'. This constraint is imposed to prevent redundancy and maintain data integrity..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.CodeColumnNumber] = 16
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case codeColumnNumber = "code.column.number"
     /**
@@ -210,9 +254,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.CodeFilePath] = "/usr/local/MyApplication/content_root/app/index.php"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case codeFilePath = "code.file.path"
     /**
@@ -220,7 +265,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.CodeFunctionName] = "com.example.MyHttpService.serveRequest"
+        
+    attributes[.CodeFunctionName] = "GuzzleHttp\Client::transfer"
+        
+    attributes[.CodeFunctionName] = "fopen"
     ~~~
 
     - Note: /// Values and format depends on each language runtime, thus it is impossible to provide an exhaustive list of examples.
@@ -238,17 +288,18 @@ public enum ResourceAttributes: String {
       /// - Erlang: `opentelemetry_ctx:new`
       /// - Rust: `playground::my_module::my_cool_func`
       /// - C function: `fopen`.
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case codeFunctionName = "code.function.name"
     /**
     /// The line number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Line'. This constraint is imposed to prevent redundancy and maintain data integrity..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.CodeLineNumber] = 42
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case codeLineNumber = "code.line.number"
     /**
@@ -256,9 +307,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.CodeStacktrace] = "at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)
+"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case codeStacktrace = "code.stacktrace"
     /**
@@ -266,9 +319,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.CpuLogicalNumber] = 1
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case cpuLogicalNumber = "cpu.logical_number"
     /**
@@ -276,9 +330,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.CpuMode] = user
+        attributes[.CpuMode] = system
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "user", "id": "user", "stability": "development", "value": "user"}, {"brief": "system", "id": "system", "stability": "development", "value": "system"}, {"brief": "nice", "id": "nice", "stability": "development", "value": "nice"}, {"brief": "idle", "id": "idle", "stability": "development", "value": "idle"}, {"brief": "io wait", "id": "iowait", "stability": "development", "value": "iowait"}, {"brief": "interrupt", "id": "interrupt", "stability": "development", "value": "interrupt"}, {"brief": "steal", "id": "steal", "stability": "development", "value": "steal"}, {"brief": "kernel", "id": "kernel", "stability": "development", "value": "kernel"}]}`
     */
     case cpuMode = "cpu.mode"
     /**
@@ -286,9 +342,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.CpythonGcGeneration] = 0
+        attributes[.CpythonGcGeneration] = 1
+        attributes[.CpythonGcGeneration] = 2
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "generation 0", "id": "generation_0", "stability": "development", "value": 0}, {"brief": "generation 1", "id": "generation_1", "stability": "development", "value": 1}, {"brief": "generation 2", "id": "generation_2", "stability": "development", "value": 2}]}`
     */
     case cpythonGcGeneration = "cpython.gc.generation"
     /**
@@ -296,9 +355,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DbClientConnectionPoolName] = "myDataSource"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case dbClientConnectionPoolName = "db.client.connection.pool.name"
     /**
@@ -306,9 +367,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.DbClientConnectionState] = idle
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "idle", "stability": "development", "value": "idle"}, {"id": "used", "stability": "development", "value": "used"}]}`
     */
     case dbClientConnectionState = "db.client.connection.state"
     /**
@@ -316,7 +378,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DbCollectionName] = "public.users"
+        
+    attributes[.DbCollectionName] = "customers"
     ~~~
 
     - Note: /// It is RECOMMENDED to capture the value as provided by the application
@@ -328,7 +393,8 @@ public enum ResourceAttributes: String {
       ///
       /// For batch operations, if the individual operations are known to have the same
       /// collection name then that collection name SHOULD be used..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case dbCollectionName = "db.collection.name"
     /**
@@ -336,13 +402,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DbNamespace] = "customers"
+        
+    attributes[.DbNamespace] = "test.users"
     ~~~
 
     - Note: /// If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
       /// Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
       /// It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case dbNamespace = "db.namespace"
     /**
@@ -350,11 +420,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.DbOperationBatchSize] = 2
+        attributes[.DbOperationBatchSize] = 3
+        attributes[.DbOperationBatchSize] = 4
     ~~~
 
     - Note: /// Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case dbOperationBatchSize = "db.operation.batch.size"
     /**
@@ -362,7 +435,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DbOperationName] = "findAndModify"
+        
+    attributes[.DbOperationName] = "HMSET"
+        
+    attributes[.DbOperationName] = "SELECT"
     ~~~
 
     - Note: /// It is RECOMMENDED to capture the value as provided by the application
@@ -379,7 +457,8 @@ public enum ResourceAttributes: String {
       /// then that operation name SHOULD be used prepended by `BATCH `,
       /// otherwise `db.operation.name` SHOULD be `BATCH` or some other database
       /// system specific term if more applicable..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case dbOperationName = "db.operation.name"
     /**
@@ -387,7 +466,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.DbOperationParameter] = someval
+        attributes[.DbOperationParameter] = 55
     ~~~
 
     - Note: /// For example, a client-side maximum number of rows to read from the database
@@ -395,7 +475,8 @@ public enum ResourceAttributes: String {
       ///
       /// `db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>`
       /// instead of `db.operation.parameter.<key>`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case dbOperationParameter = "db.operation.parameter"
     /**
@@ -403,7 +484,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.DbQueryParameter] = someval
+        attributes[.DbQueryParameter] = 55
     ~~~
 
     - Note: /// If a query parameter has no name and instead is referenced only by index,
@@ -420,7 +502,8 @@ public enum ResourceAttributes: String {
       ///   the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
       /// - For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
       ///   `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case dbQueryParameter = "db.query.parameter"
     /**
@@ -428,7 +511,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DbQuerySummary] = "SELECT wuser_table"
+        
+    attributes[.DbQuerySummary] = "INSERT shipping_details SELECT orders"
+        
+    attributes[.DbQuerySummary] = "get user by id"
     ~~~
 
     - Note: /// The query summary describes a class of database queries and is useful
@@ -440,7 +528,8 @@ public enum ResourceAttributes: String {
       /// that support query parsing SHOULD generate a summary following
       /// [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
       /// section..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case dbQuerySummary = "db.query.summary"
     /**
@@ -448,13 +537,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DbQueryText] = "SELECT * FROM wuser_table where username = ?"
+        
+    attributes[.DbQueryText] = "SET mykey ?"
     ~~~
 
     - Note: /// For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
       /// For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
       /// Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case dbQueryText = "db.query.text"
     /**
@@ -462,9 +555,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.DbResponseReturnedRows] = 10
+        attributes[.DbResponseReturnedRows] = 30
+        attributes[.DbResponseReturnedRows] = 1000
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case dbResponseReturnedRows = "db.response.returned_rows"
     /**
@@ -472,12 +568,20 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DbResponseStatusCode] = "102"
+        
+    attributes[.DbResponseStatusCode] = "ORA-17002"
+        
+    attributes[.DbResponseStatusCode] = "08P01"
+        
+    attributes[.DbResponseStatusCode] = "404"
     ~~~
 
     - Note: /// The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
       /// Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case dbResponseStatusCode = "db.response.status_code"
     /**
@@ -485,7 +589,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DbStoredProcedureName] = "GetCustomer"
     ~~~
 
     - Note: /// It is RECOMMENDED to capture the value as provided by the application
@@ -493,14 +598,16 @@ public enum ResourceAttributes: String {
       ///
       /// For batch operations, if the individual operations are known to have the same
       /// stored procedure name then that stored procedure name SHOULD be used..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case dbStoredProcedureName = "db.stored_procedure.name"
     /**
     /// The database management system (DBMS) product as identified by the client instrumentation..
 
     - Note: /// The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "some other sql database. fallback only.", "id": "other_sql", "stability": "development", "value": "other_sql"}, {"brief": "[adabas (adaptable database system)](https://documentation.softwareag.com/?pf=adabas)", "id": "softwareag.adabas", "stability": "development", "value": "softwareag.adabas"}, {"brief": "[actian ingres](https://www.actian.com/databases/ingres/)", "id": "actian.ingres", "stability": "development", "value": "actian.ingres"}, {"brief": "[amazon dynamodb](https://aws.amazon.com/pm/dynamodb/)", "id": "aws.dynamodb", "stability": "development", "value": "aws.dynamodb"}, {"brief": "[amazon redshift](https://aws.amazon.com/redshift/)", "id": "aws.redshift", "stability": "development", "value": "aws.redshift"}, {"brief": "[azure cosmos db](https://learn.microsoft.com/azure/cosmos-db)", "id": "azure.cosmosdb", "stability": "development", "value": "azure.cosmosdb"}, {"brief": "[intersystems caché](https://www.intersystems.com/products/cache/)", "id": "intersystems.cache", "stability": "development", "value": "intersystems.cache"}, {"brief": "[apache cassandra](https://cassandra.apache.org/)", "id": "cassandra", "stability": "development", "value": "cassandra"}, {"brief": "[clickhouse](https://clickhouse.com/)", "id": "clickhouse", "stability": "development", "value": "clickhouse"}, {"brief": "[cockroachdb](https://www.cockroachlabs.com/)", "id": "cockroachdb", "stability": "development", "value": "cockroachdb"}, {"brief": "[couchbase](https://www.couchbase.com/)", "id": "couchbase", "stability": "development", "value": "couchbase"}, {"brief": "[apache couchdb](https://couchdb.apache.org/)", "id": "couchdb", "stability": "development", "value": "couchdb"}, {"brief": "[apache derby](https://db.apache.org/derby/)", "id": "derby", "stability": "development", "value": "derby"}, {"brief": "[elasticsearch](https://www.elastic.co/elasticsearch)", "id": "elasticsearch", "stability": "development", "value": "elasticsearch"}, {"brief": "[firebird](https://www.firebirdsql.org/)", "id": "firebirdsql", "stability": "development", "value": "firebirdsql"}, {"brief": "[google cloud spanner](https://cloud.google.com/spanner)", "id": "gcp.spanner", "stability": "development", "value": "gcp.spanner"}, {"brief": "[apache geode](https://geode.apache.org/)", "id": "geode", "stability": "development", "value": "geode"}, {"brief": "[h2 database](https://h2database.com/)", "id": "h2database", "stability": "development", "value": "h2database"}, {"brief": "[apache hbase](https://hbase.apache.org/)", "id": "hbase", "stability": "development", "value": "hbase"}, {"brief": "[apache hive](https://hive.apache.org/)", "id": "hive", "stability": "development", "value": "hive"}, {"brief": "[hypersql database](https://hsqldb.org/)", "id": "hsqldb", "stability": "development", "value": "hsqldb"}, {"brief": "[ibm db2](https://www.ibm.com/db2)", "id": "ibm.db2", "stability": "development", "value": "ibm.db2"}, {"brief": "[ibm informix](https://www.ibm.com/products/informix)", "id": "ibm.informix", "stability": "development", "value": "ibm.informix"}, {"brief": "[ibm netezza](https://www.ibm.com/products/netezza)", "id": "ibm.netezza", "stability": "development", "value": "ibm.netezza"}, {"brief": "[influxdb](https://www.influxdata.com/)", "id": "influxdb", "stability": "development", "value": "influxdb"}, {"brief": "[instant](https://www.instantdb.com/)", "id": "instantdb", "stability": "development", "value": "instantdb"}, {"brief": "[mariadb](https://mariadb.org/)", "id": "mariadb", "stability": "stable", "value": "mariadb"}, {"brief": "[memcached](https://memcached.org/)", "id": "memcached", "stability": "development", "value": "memcached"}, {"brief": "[mongodb](https://www.mongodb.com/)", "id": "mongodb", "stability": "development", "value": "mongodb"}, {"brief": "[microsoft sql server](https://www.microsoft.com/sql-server)", "id": "microsoft.sql_server", "stability": "stable", "value": "microsoft.sql_server"}, {"brief": "[mysql](https://www.mysql.com/)", "id": "mysql", "stability": "stable", "value": "mysql"}, {"brief": "[neo4j](https://neo4j.com/)", "id": "neo4j", "stability": "development", "value": "neo4j"}, {"brief": "[opensearch](https://opensearch.org/)", "id": "opensearch", "stability": "development", "value": "opensearch"}, {"brief": "[oracle database](https://www.oracle.com/database/)", "id": "oracle.db", "stability": "development", "value": "oracle.db"}, {"brief": "[postgresql](https://www.postgresql.org/)", "id": "postgresql", "stability": "stable", "value": "postgresql"}, {"brief": "[redis](https://redis.io/)", "id": "redis", "stability": "development", "value": "redis"}, {"brief": "[sap hana](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html)", "id": "sap.hana", "stability": "development", "value": "sap.hana"}, {"brief": "[sap maxdb](https://maxdb.sap.com/)", "id": "sap.maxdb", "stability": "development", "value": "sap.maxdb"}, {"brief": "[sqlite](https://www.sqlite.org/)", "id": "sqlite", "stability": "development", "value": "sqlite"}, {"brief": "[teradata](https://www.teradata.com/)", "id": "teradata", "stability": "development", "value": "teradata"}, {"brief": "[trino](https://trino.io/)", "id": "trino", "stability": "development", "value": "trino"}]}`
     */
     case dbSystemName = "db.system.name"
     /**
@@ -508,11 +615,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DestinationAddress] = "destination.example.com"
+        
+    attributes[.DestinationAddress] = "10.1.2.80"
+        
+    attributes[.DestinationAddress] = "/tmp/my.sock"
     ~~~
 
     - Note: /// When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case destinationAddress = "destination.address"
     /**
@@ -520,9 +633,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.DestinationPort] = 3389
+        attributes[.DestinationPort] = 2888
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case destinationPort = "destination.port"
     /**
@@ -530,7 +645,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DeviceId] = "123456789012345"
+        
+    attributes[.DeviceId] = "01:23:45:67:89:AB"
     ~~~
 
     - Note: /// Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
@@ -543,7 +661,8 @@ public enum ResourceAttributes: String {
       /// > ensure you do your own due diligence.> Due to these reasons, this identifier is not recommended for consumer applications and will likely result in rejection from both Google Play and App Store.
       /// > However, it may be appropriate for specific enterprise scenarios, such as kiosk devices or enterprise-managed devices, with appropriate compliance clearance.
       /// > Any instrumentation providing this identifier MUST implement it as an opt-in feature.> See [`app.installation.id`](/docs/registry/attributes/app.md#app-installation-id)>  for a more privacy-preserving alternative..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case deviceId = "device.id"
     /**
@@ -551,11 +670,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DeviceManufacturer] = "Apple"
+        
+    attributes[.DeviceManufacturer] = "Samsung"
     ~~~
 
     - Note: /// The Android OS provides this field via [Build](https://developer.android.com/reference/android/os/Build#MANUFACTURER). iOS apps SHOULD hardcode the value `Apple`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case deviceManufacturer = "device.manufacturer"
     /**
@@ -563,11 +686,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DeviceModelIdentifier] = "iPhone3,4"
+        
+    attributes[.DeviceModelIdentifier] = "SM-G920F"
     ~~~
 
     - Note: /// It's recommended this value represents a machine-readable version of the model identifier rather than the market or consumer-friendly name of the device..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case deviceModelIdentifier = "device.model.identifier"
     /**
@@ -575,11 +702,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DeviceModelName] = "iPhone 6s Plus"
+        
+    attributes[.DeviceModelName] = "Samsung Galaxy S6"
     ~~~
 
     - Note: /// It's recommended this value represents a human-readable version of the device model rather than a machine-readable alternative..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case deviceModelName = "device.model.name"
     /**
@@ -587,9 +718,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.DiskIoDirection] = read
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "read", "stability": "development", "value": "read"}, {"id": "write", "stability": "development", "value": "write"}]}`
     */
     case diskIoDirection = "disk.io.direction"
     /**
@@ -597,9 +729,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.DnsAnswers] = ["10.0.0.1", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"]
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `[String]`
     */
     case dnsAnswers = "dns.answers"
     /**
@@ -607,11 +740,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.DnsQuestionName] = "www.example.com"
+        
+    attributes[.DnsQuestionName] = "opentelemetry.io"
     ~~~
 
     - Note: /// If the name field contains non-printable characters (below 32 or above 126), those characters should be represented as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped. Tabs, carriage returns, and line feeds should be converted to \t, \r, and \n respectively..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case dnsQuestionName = "dns.question.name"
     /**
@@ -619,9 +756,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ElasticsearchNodeName] = "instance-0000000001"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case elasticsearchNodeName = "elasticsearch.node.name"
     /**
@@ -629,14 +768,16 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.EnduserId] = "username"
     ~~~
 
     - Note: /// Unique identifier of an end user in the system.
       ///
       /// > [!Warning]
       /// > This field contains sensitive (PII) information..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case enduserId = "enduser.id"
     /**
@@ -644,14 +785,16 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.EnduserPseudoId] = "QdH5CAWJgqVT4rOr0qtumf"
     ~~~
 
     - Note: /// Pseudonymous identifier of an end user.
       ///
       /// > [!Warning]
       /// > This field contains sensitive (linkable PII) information..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case enduserPseudoId = "enduser.pseudo.id"
     /**
@@ -659,7 +802,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ErrorMessage] = "Unexpected input type: string"
+        
+    attributes[.ErrorMessage] = "The user has exceeded their storage quota"
     ~~~
 
     - Note: /// `error.message` should provide additional context and detail about an error.
@@ -667,7 +813,8 @@ public enum ResourceAttributes: String {
       /// It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
       ///
       /// `error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case errorMessage = "error.message"
     /**
@@ -675,7 +822,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ErrorType] = timeout
+        attributes[.ErrorType] = java.net.UnknownHostException
+        attributes[.ErrorType] = server_certificate_invalid
+        attributes[.ErrorType] = 500
     ~~~
 
     - Note: /// The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
@@ -697,7 +847,8 @@ public enum ResourceAttributes: String {
       ///
       /// - Use a domain-specific attribute
       /// - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "a fallback error value to be used when the instrumentation doesn't define a custom value.\n", "id": "other", "stability": "stable", "value": "_other"}]}`
     */
     case errorType = "error.type"
     /**
@@ -705,9 +856,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ExceptionMessage] = "Division by zero"
+        
+    attributes[.ExceptionMessage] = "Can't convert 'int' object to str implicitly"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case exceptionMessage = "exception.message"
     /**
@@ -715,9 +870,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.ExceptionStacktrace] = "Exception in thread \"main\" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)
+"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case exceptionStacktrace = "exception.stacktrace"
     /**
@@ -725,9 +882,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ExceptionType] = "java.net.ConnectException"
+        
+    attributes[.ExceptionType] = "OSError"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case exceptionType = "exception.type"
     /**
@@ -735,11 +896,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileAccessed] = "2021-01-01T12:00:00Z"
     ~~~
 
     - Note: /// This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileAccessed = "file.accessed"
     /**
@@ -747,11 +910,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.FileAttributes] = ["readonly", "hidden"]
     ~~~
 
     - Note: /// Attributes names depend on the OS or file system. Here’s a non-exhaustive list of values expected for this attribute: `archive`, `compressed`, `directory`, `encrypted`, `execute`, `hidden`, `immutable`, `journaled`, `read`, `readonly`, `symbolic link`, `system`, `temporary`, `write`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `[String]`
     */
     case fileAttributes = "file.attributes"
     /**
@@ -759,11 +923,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileChanged] = "2021-01-01T12:00:00Z"
     ~~~
 
     - Note: /// `file.changed` captures the time when any of the file's properties or attributes (including the content) are changed, while `file.modified` captures the timestamp when the file content is modified..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileChanged = "file.changed"
     /**
@@ -771,11 +937,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileCreated] = "2021-01-01T12:00:00Z"
     ~~~
 
     - Note: /// This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileCreated = "file.created"
     /**
@@ -783,9 +951,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileDirectory] = "/home/user"
+        
+    attributes[.FileDirectory] = "C:\Program Files\MyApp"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileDirectory = "file.directory"
     /**
@@ -793,11 +965,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileExtension] = "png"
+        
+    attributes[.FileExtension] = "gz"
     ~~~
 
     - Note: /// When the file name has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz")..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileExtension = "file.extension"
     /**
@@ -805,12 +981,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileForkName] = "Zone.Identifier"
     ~~~
 
     - Note: /// On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist.
       /// On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileForkName = "file.fork_name"
     /**
@@ -818,9 +996,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileGroupId] = "1000"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileGroupId = "file.group.id"
     /**
@@ -828,9 +1008,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileGroupName] = "users"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileGroupName = "file.group.name"
     /**
@@ -838,9 +1020,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileInode] = "256383"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileInode = "file.inode"
     /**
@@ -848,9 +1032,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileMode] = "0640"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileMode = "file.mode"
     /**
@@ -858,9 +1044,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileModified] = "2021-01-01T12:00:00Z"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileModified = "file.modified"
     /**
@@ -868,9 +1056,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileName] = "example.png"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileName = "file.name"
     /**
@@ -878,9 +1068,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileOwnerId] = "1000"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileOwnerId = "file.owner.id"
     /**
@@ -888,9 +1080,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileOwnerName] = "root"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileOwnerName = "file.owner.name"
     /**
@@ -898,14 +1092,19 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FilePath] = "/home/alice/example.png"
+        
+    attributes[.FilePath] = "C:\Program Files\MyApp\myapp.exe"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case filePath = "file.path"
     /**
     /// File size in bytes..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case fileSize = "file.size"
     /**
@@ -913,16 +1112,19 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.FileSymbolicLinkTargetPath] = "/usr/bin/python3"
     ~~~
 
     - Note: /// This attribute is only applicable to symbolic links..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case fileSymbolicLinkTargetPath = "file.symbolic_link.target_path"
     /**
     /// Two-letter code representing continent’s name..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "africa", "id": "af", "stability": "development", "value": "af"}, {"brief": "antarctica", "id": "an", "stability": "development", "value": "an"}, {"brief": "asia", "id": "as", "stability": "development", "value": "as"}, {"brief": "europe", "id": "eu", "stability": "development", "value": "eu"}, {"brief": "north america", "id": "na", "stability": "development", "value": "na"}, {"brief": "oceania", "id": "oc", "stability": "development", "value": "oc"}, {"brief": "south america", "id": "sa", "stability": "development", "value": "sa"}]}`
     */
     case geoContinentCode = "geo.continent.code"
     /**
@@ -930,9 +1132,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.GeoCountryIsoCode] = "CA"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case geoCountryIsoCode = "geo.country.iso_code"
     /**
@@ -940,9 +1144,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.GeoLocalityName] = "Montreal"
+        
+    attributes[.GeoLocalityName] = "Berlin"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case geoLocalityName = "geo.locality.name"
     /**
@@ -950,9 +1158,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.GeoLocationLat] = 45.505918
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `double`
     */
     case geoLocationLat = "geo.location.lat"
     /**
@@ -960,9 +1169,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.GeoLocationLon] = -73.61483
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `double`
     */
     case geoLocationLon = "geo.location.lon"
     /**
@@ -970,9 +1180,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.GeoPostalCode] = "94040"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case geoPostalCode = "geo.postal_code"
     /**
@@ -980,9 +1192,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.GeoRegionIsoCode] = "CA-QC"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case geoRegionIsoCode = "geo.region.iso_code"
     /**
@@ -990,9 +1204,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.GoMemoryType] = other
+        attributes[.GoMemoryType] = stack
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.", "id": "stack", "note": "computed from `/memory/classes/heap/stacks:bytes`.\n", "stability": "development", "value": "stack"}, {"brief": "memory used by the go runtime, excluding other categories of memory usage described in this enumeration.", "id": "other", "stability": "development", "value": "other"}]}`
     */
     case goMemoryType = "go.memory.type"
     /**
@@ -1000,11 +1216,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.GraphqlDocument] = "query findBookById { bookById(id: ?) { name } }"
     ~~~
 
     - Note: /// The value may be sanitized to exclude sensitive information..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case graphqlDocument = "graphql.document"
     /**
@@ -1012,9 +1229,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.GraphqlOperationName] = "findBookById"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case graphqlOperationName = "graphql.operation.name"
     /**
@@ -1022,9 +1240,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.GraphqlOperationType] = query
+        attributes[.GraphqlOperationType] = mutation
+        attributes[.GraphqlOperationType] = subscription
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "graphql query", "id": "query", "stability": "development", "value": "query"}, {"brief": "graphql mutation", "id": "mutation", "stability": "development", "value": "mutation"}, {"brief": "graphql subscription", "id": "subscription", "stability": "development", "value": "subscription"}]}`
     */
     case graphqlOperationType = "graphql.operation.type"
     /**
@@ -1032,9 +1253,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HerokuAppId] = "2daa2797-e42b-4624-9322-ec3f968df4da"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case herokuAppId = "heroku.app.id"
     /**
@@ -1042,9 +1265,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HerokuReleaseCommit] = "e6134959463efd8966b20e75b913cafe3f5ec"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case herokuReleaseCommit = "heroku.release.commit"
     /**
@@ -1052,14 +1277,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HerokuReleaseCreationTimestamp] = "2022-10-23T18:00:42Z"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case herokuReleaseCreationTimestamp = "heroku.release.creation_timestamp"
     /**
     /// The CPU architecture the host system is running on..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "amd64", "id": "amd64", "stability": "development", "value": "amd64"}, {"brief": "arm32", "id": "arm32", "stability": "development", "value": "arm32"}, {"brief": "arm64", "id": "arm64", "stability": "development", "value": "arm64"}, {"brief": "itanium", "id": "ia64", "stability": "development", "value": "ia64"}, {"brief": "32-bit powerpc", "id": "ppc32", "stability": "development", "value": "ppc32"}, {"brief": "64-bit powerpc", "id": "ppc64", "stability": "development", "value": "ppc64"}, {"brief": "ibm z/architecture", "id": "s390x", "stability": "development", "value": "s390x"}, {"brief": "32-bit x86", "id": "x86", "stability": "development", "value": "x86"}]}`
     */
     case hostArch = "host.arch"
     /**
@@ -1067,9 +1295,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.HostCpuCacheL2Size] = 12288000
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case hostCpuCacheL2Size = "host.cpu.cache.l2.size"
     /**
@@ -1077,9 +1306,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HostCpuFamily] = "6"
+        
+    attributes[.HostCpuFamily] = "PA-RISC 1.1e"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hostCpuFamily = "host.cpu.family"
     /**
@@ -1087,9 +1320,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HostCpuModelId] = "6"
+        
+    attributes[.HostCpuModelId] = "9000/778/B180L"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hostCpuModelId = "host.cpu.model.id"
     /**
@@ -1097,9 +1334,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HostCpuModelName] = "11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hostCpuModelName = "host.cpu.model.name"
     /**
@@ -1107,9 +1346,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HostCpuStepping] = "1"
+        
+    attributes[.HostCpuStepping] = "r1p1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hostCpuStepping = "host.cpu.stepping"
     /**
@@ -1117,11 +1360,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HostCpuVendorId] = "GenuineIntel"
     ~~~
 
     - Note: /// [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hostCpuVendorId = "host.cpu.vendor.id"
     /**
@@ -1129,9 +1374,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HostId] = "fdbf79e8af94cb7f9e8df36789187052"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hostId = "host.id"
     /**
@@ -1139,9 +1386,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HostImageId] = "ami-07b06b442921831e5"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hostImageId = "host.image.id"
     /**
@@ -1149,9 +1398,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HostImageName] = "infra-ami-eks-worker-node-7d4ec78312"
+        
+    attributes[.HostImageName] = "CentOS-8-x86_64-1905"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hostImageName = "host.image.name"
     /**
@@ -1159,9 +1412,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HostImageVersion] = "0.1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hostImageVersion = "host.image.version"
     /**
@@ -1169,11 +1424,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.HostIp] = ["192.168.1.140", "fe80::abc2:4a28:737a:609e"]
     ~~~
 
     - Note: /// IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `[String]`
     */
     case hostIp = "host.ip"
     /**
@@ -1181,11 +1437,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.HostMac] = ["AC-DE-48-23-45-67", "AC-DE-48-23-45-67-01-9F"]
     ~~~
 
     - Note: /// MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `[String]`
     */
     case hostMac = "host.mac"
     /**
@@ -1193,9 +1450,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HostName] = "opentelemetry-test"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hostName = "host.name"
     /**
@@ -1203,9 +1462,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HostType] = "n1-standard-1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hostType = "host.type"
     /**
@@ -1213,19 +1474,21 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.HttpConnectionState] = active
+        attributes[.HttpConnectionState] = idle
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "active state.", "id": "active", "stability": "development", "value": "active"}, {"brief": "idle state.", "id": "idle", "stability": "development", "value": "idle"}]}`
     */
     case httpConnectionState = "http.connection.state"
     /**
     /// The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.HttpRequestBodySize] = 3495
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case httpRequestBodySize = "http.request.body.size"
     /**
@@ -1233,7 +1496,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.HttpRequestHeader] = ["application/json"]
+        attributes[.HttpRequestHeader] = ["1.2.3.4", "1.2.3.5"]
     ~~~
 
     - Note: /// Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
@@ -1252,7 +1516,8 @@ public enum ResourceAttributes: String {
       ///   attribute with value `["application/json"]`.
       /// - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
       ///   attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string[]]`
     */
     case httpRequestHeader = "http.request.header"
     /**
@@ -1260,7 +1525,9 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.HttpRequestMethod] = GET
+        attributes[.HttpRequestMethod] = POST
+        attributes[.HttpRequestMethod] = HEAD
     ~~~
 
     - Note: /// HTTP request method value SHOULD be "known" to the instrumentation.
@@ -1277,7 +1544,8 @@ public enum ResourceAttributes: String {
       /// HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
       /// Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
       /// Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "connect method.", "id": "connect", "stability": "stable", "value": "connect"}, {"brief": "delete method.", "id": "delete", "stability": "stable", "value": "delete"}, {"brief": "get method.", "id": "get", "stability": "stable", "value": "get"}, {"brief": "head method.", "id": "head", "stability": "stable", "value": "head"}, {"brief": "options method.", "id": "options", "stability": "stable", "value": "options"}, {"brief": "patch method.", "id": "patch", "stability": "stable", "value": "patch"}, {"brief": "post method.", "id": "post", "stability": "stable", "value": "post"}, {"brief": "put method.", "id": "put", "stability": "stable", "value": "put"}, {"brief": "trace method.", "id": "trace", "stability": "stable", "value": "trace"}, {"brief": "any http method that the instrumentation has no prior knowledge of.", "id": "other", "stability": "stable", "value": "_other"}]}`
     */
     case httpRequestMethod = "http.request.method"
     /**
@@ -1285,41 +1553,47 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HttpRequestMethodOriginal] = "GeT"
+        
+    attributes[.HttpRequestMethodOriginal] = "ACL"
+        
+    attributes[.HttpRequestMethodOriginal] = "foo"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case httpRequestMethodOriginal = "http.request.method_original"
     /**
     /// The ordinal number of request resending attempt (for any reason, including redirects)..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.HttpRequestResendCount] = 3
     ~~~
 
     - Note: /// The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other)..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case httpRequestResendCount = "http.request.resend_count"
     /**
     /// The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.HttpRequestSize] = 1437
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case httpRequestSize = "http.request.size"
     /**
     /// The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.HttpResponseBodySize] = 3495
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case httpResponseBodySize = "http.response.body.size"
     /**
@@ -1327,7 +1601,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.HttpResponseHeader] = ["application/json"]
+        attributes[.HttpResponseHeader] = ["abc", "def"]
     ~~~
 
     - Note: /// Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
@@ -1345,17 +1620,18 @@ public enum ResourceAttributes: String {
       ///   attribute with value `["application/json"]`.
       /// - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
       ///   attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string[]]`
     */
     case httpResponseHeader = "http.response.header"
     /**
     /// The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.HttpResponseSize] = 1437
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case httpResponseSize = "http.response.size"
     /**
@@ -1363,9 +1639,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.HttpResponseStatusCode] = 200
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case httpResponseStatusCode = "http.response.status_code"
     /**
@@ -1373,12 +1650,16 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HttpRoute] = "/users/:userID?"
+        
+    attributes[.HttpRoute] = "{controller}/{action}/{id?}"
     ~~~
 
     - Note: /// MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
       /// SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case httpRoute = "http.route"
     /**
@@ -1386,9 +1667,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwBatteryCapacity] = "9.3Ah"
+        
+    attributes[.HwBatteryCapacity] = "50Wh"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwBatteryCapacity = "hw.battery.capacity"
     /**
@@ -1396,14 +1681,19 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwBatteryChemistry] = "Li-ion"
+        
+    attributes[.HwBatteryChemistry] = "NiMH"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwBatteryChemistry = "hw.battery.chemistry"
     /**
     /// The current state of the battery.
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "charging", "id": "charging", "stability": "development", "value": "charging"}, {"brief": "discharging", "id": "discharging", "stability": "development", "value": "discharging"}]}`
     */
     case hwBatteryState = "hw.battery.state"
     /**
@@ -1411,9 +1701,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwBiosVersion] = "1.2.3"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwBiosVersion = "hw.bios_version"
     /**
@@ -1421,9 +1713,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwDriverVersion] = "10.2.1-3"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwDriverVersion = "hw.driver_version"
     /**
@@ -1431,9 +1725,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwEnclosureType] = "Computer"
+        
+    attributes[.HwEnclosureType] = "Storage"
+        
+    attributes[.HwEnclosureType] = "Switch"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwEnclosureType = "hw.enclosure.type"
     /**
@@ -1441,14 +1741,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwFirmwareVersion] = "2.0.1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwFirmwareVersion = "hw.firmware_version"
     /**
     /// Type of task the GPU is performing.
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "decoder", "id": "decoder", "stability": "development", "value": "decoder"}, {"brief": "encoder", "id": "encoder", "stability": "development", "value": "encoder"}, {"brief": "general", "id": "general", "stability": "development", "value": "general"}]}`
     */
     case hwGpuTask = "hw.gpu.task"
     /**
@@ -1456,14 +1759,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwId] = "win32battery_battery_testsysa33_1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwId = "hw.id"
     /**
     /// Type of limit for hardware components.
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "critical", "id": "critical", "stability": "development", "value": "critical"}, {"brief": "degraded", "id": "degraded", "stability": "development", "value": "degraded"}, {"brief": "high critical", "id": "high_critical", "stability": "development", "value": "high.critical"}, {"brief": "high degraded", "id": "high_degraded", "stability": "development", "value": "high.degraded"}, {"brief": "low critical", "id": "low_critical", "stability": "development", "value": "low.critical"}, {"brief": "low degraded", "id": "low_degraded", "stability": "development", "value": "low.degraded"}, {"brief": "maximum", "id": "max", "stability": "development", "value": "max"}, {"brief": "throttled", "id": "throttled", "stability": "development", "value": "throttled"}, {"brief": "turbo", "id": "turbo", "stability": "development", "value": "turbo"}]}`
     */
     case hwLimitType = "hw.limit_type"
     /**
@@ -1471,14 +1777,21 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwLogicalDiskRaidLevel] = "RAID0+1"
+        
+    attributes[.HwLogicalDiskRaidLevel] = "RAID5"
+        
+    attributes[.HwLogicalDiskRaidLevel] = "RAID10"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwLogicalDiskRaidLevel = "hw.logical_disk.raid_level"
     /**
     /// State of the logical disk space usage.
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "used", "id": "used", "stability": "development", "value": "used"}, {"brief": "free", "id": "free", "stability": "development", "value": "free"}]}`
     */
     case hwLogicalDiskState = "hw.logical_disk.state"
     /**
@@ -1486,9 +1799,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwMemoryType] = "DDR4"
+        
+    attributes[.HwMemoryType] = "DDR5"
+        
+    attributes[.HwMemoryType] = "LPDDR5"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwMemoryType = "hw.memory.type"
     /**
@@ -1496,9 +1815,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwModel] = "PERC H740P"
+        
+    attributes[.HwModel] = "Intel(R) Core(TM) i7-10700K"
+        
+    attributes[.HwModel] = "Dell XPS 15 Battery"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwModel = "hw.model"
     /**
@@ -1506,9 +1831,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwName] = "eth0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwName = "hw.name"
     /**
@@ -1516,9 +1843,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.HwNetworkLogicalAddresses] = ["172.16.8.21", "57.11.193.42"]
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `[String]`
     */
     case hwNetworkLogicalAddresses = "hw.network.logical_addresses"
     /**
@@ -1526,9 +1854,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwNetworkPhysicalAddress] = "00-90-F5-E9-7B-36"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwNetworkPhysicalAddress = "hw.network.physical_address"
     /**
@@ -1536,9 +1866,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwParent] = "dellStorage_perc_0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwParent = "hw.parent"
     /**
@@ -1546,14 +1878,21 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwPhysicalDiskSmartAttribute] = "Spin Retry Count"
+        
+    attributes[.HwPhysicalDiskSmartAttribute] = "Seek Error Rate"
+        
+    attributes[.HwPhysicalDiskSmartAttribute] = "Raw Read Error Rate"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwPhysicalDiskSmartAttribute = "hw.physical_disk.smart_attribute"
     /**
     /// State of the physical disk endurance utilization.
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "remaining", "id": "remaining", "stability": "development", "value": "remaining"}]}`
     */
     case hwPhysicalDiskState = "hw.physical_disk.state"
     /**
@@ -1561,9 +1900,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwPhysicalDiskType] = "HDD"
+        
+    attributes[.HwPhysicalDiskType] = "SSD"
+        
+    attributes[.HwPhysicalDiskType] = "10K"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwPhysicalDiskType = "hw.physical_disk.type"
     /**
@@ -1571,9 +1916,27 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwSensorLocation] = "cpu0"
+        
+    attributes[.HwSensorLocation] = "ps1"
+        
+    attributes[.HwSensorLocation] = "INLET"
+        
+    attributes[.HwSensorLocation] = "CPU0_DIE"
+        
+    attributes[.HwSensorLocation] = "AMBIENT"
+        
+    attributes[.HwSensorLocation] = "MOTHERBOARD"
+        
+    attributes[.HwSensorLocation] = "PS0 V3_3"
+        
+    attributes[.HwSensorLocation] = "MAIN_12V"
+        
+    attributes[.HwSensorLocation] = "CPU_VCORE"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwSensorLocation = "hw.sensor_location"
     /**
@@ -1581,26 +1944,31 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwSerialNumber] = "CNFCP0123456789"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwSerialNumber = "hw.serial_number"
     /**
     /// The current state of the component.
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "degraded", "id": "degraded", "stability": "development", "value": "degraded"}, {"brief": "failed", "id": "failed", "stability": "development", "value": "failed"}, {"brief": "needs cleaning", "id": "needs_cleaning", "stability": "development", "value": "needs_cleaning"}, {"brief": "ok", "id": "ok", "stability": "development", "value": "ok"}, {"brief": "predicted failure", "id": "predicted_failure", "stability": "development", "value": "predicted_failure"}]}`
     */
     case hwState = "hw.state"
     /**
     /// Type of tape drive operation.
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "mount", "id": "mount", "stability": "development", "value": "mount"}, {"brief": "unmount", "id": "unmount", "stability": "development", "value": "unmount"}, {"brief": "clean", "id": "clean", "stability": "development", "value": "clean"}]}`
     */
     case hwTapeDriveOperationType = "hw.tape_drive.operation_type"
     /**
     /// Type of the component.
 
     - Note: /// Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "battery", "id": "battery", "stability": "development", "value": "battery"}, {"brief": "cpu", "id": "cpu", "stability": "development", "value": "cpu"}, {"brief": "disk controller", "id": "disk_controller", "stability": "development", "value": "disk_controller"}, {"brief": "enclosure", "id": "enclosure", "stability": "development", "value": "enclosure"}, {"brief": "fan", "id": "fan", "stability": "development", "value": "fan"}, {"brief": "gpu", "id": "gpu", "stability": "development", "value": "gpu"}, {"brief": "logical disk", "id": "logical_disk", "stability": "development", "value": "logical_disk"}, {"brief": "memory", "id": "memory", "stability": "development", "value": "memory"}, {"brief": "network", "id": "network", "stability": "development", "value": "network"}, {"brief": "physical disk", "id": "physical_disk", "stability": "development", "value": "physical_disk"}, {"brief": "power supply", "id": "power_supply", "stability": "development", "value": "power_supply"}, {"brief": "tape drive", "id": "tape_drive", "stability": "development", "value": "tape_drive"}, {"brief": "temperature", "id": "temperature", "stability": "development", "value": "temperature"}, {"brief": "voltage", "id": "voltage", "stability": "development", "value": "voltage"}]}`
     */
     case hwType = "hw.type"
     /**
@@ -1608,16 +1976,29 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.HwVendor] = "Dell"
+        
+    attributes[.HwVendor] = "HP"
+        
+    attributes[.HwVendor] = "Intel"
+        
+    attributes[.HwVendor] = "AMD"
+        
+    attributes[.HwVendor] = "LSI"
+        
+    attributes[.HwVendor] = "Lenovo"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case hwVendor = "hw.vendor"
     /**
     /// This attribute represents the state of the application..
 
     - Note: /// The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "the app has become `active`. associated with uikit notification `applicationdidbecomeactive`.\n", "id": "active", "stability": "development", "value": "active"}, {"brief": "the app is now `inactive`. associated with uikit notification `applicationwillresignactive`.\n", "id": "inactive", "stability": "development", "value": "inactive"}, {"brief": "the app is now in the background. this value is associated with uikit notification `applicationdidenterbackground`.\n", "id": "background", "stability": "development", "value": "background"}, {"brief": "the app is now in the foreground. this value is associated with uikit notification `applicationwillenterforeground`.\n", "id": "foreground", "stability": "development", "value": "foreground"}, {"brief": "the app is about to terminate. associated with uikit notification `applicationwillterminate`.\n", "id": "terminate", "stability": "development", "value": "terminate"}]}`
     */
     case iosAppState = "ios.app.state"
     /**
@@ -1625,9 +2006,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sClusterName] = "opentelemetry-cluster"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sClusterName = "k8s.cluster.name"
     /**
@@ -1635,7 +2018,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sClusterUid] = "218fc5a9-a5f1-4b54-aa05-46717d0ab26d"
     ~~~
 
     - Note: /// K8s doesn't have support for obtaining a cluster ID. If this is ever
@@ -1660,7 +2044,8 @@ public enum ResourceAttributes: String {
       ///
       /// Therefore, UIDs between clusters should be extremely unlikely to
       /// conflict..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sClusterUid = "k8s.cluster.uid"
     /**
@@ -1668,14 +2053,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sContainerName] = "redis"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sContainerName = "k8s.container.name"
     /**
     /// Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case k8sContainerRestartCount = "k8s.container.restart_count"
     /**
@@ -1683,9 +2071,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sContainerStatusLastTerminatedReason] = "Evicted"
+        
+    attributes[.K8sContainerStatusLastTerminatedReason] = "Error"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sContainerStatusLastTerminatedReason = "k8s.container.status.last_terminated_reason"
     /**
@@ -1693,9 +2085,18 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sContainerStatusReason] = ContainerCreating
+        attributes[.K8sContainerStatusReason] = CrashLoopBackOff
+        attributes[.K8sContainerStatusReason] = CreateContainerConfigError
+        attributes[.K8sContainerStatusReason] = ErrImagePull
+        attributes[.K8sContainerStatusReason] = ImagePullBackOff
+        attributes[.K8sContainerStatusReason] = OOMKilled
+        attributes[.K8sContainerStatusReason] = Completed
+        attributes[.K8sContainerStatusReason] = Error
+        attributes[.K8sContainerStatusReason] = ContainerCannotRun
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "the container is being created.", "id": "container_creating", "stability": "development", "value": "containercreating"}, {"brief": "the container is in a crash loop back off state.", "id": "crash_loop_back_off", "stability": "development", "value": "crashloopbackoff"}, {"brief": "there was an error creating the container configuration.", "id": "create_container_config_error", "stability": "development", "value": "createcontainerconfigerror"}, {"brief": "there was an error pulling the container image.", "id": "err_image_pull", "stability": "development", "value": "errimagepull"}, {"brief": "the container image pull is in back off state.", "id": "image_pull_back_off", "stability": "development", "value": "imagepullbackoff"}, {"brief": "the container was killed due to out of memory.", "id": "oom_killed", "stability": "development", "value": "oomkilled"}, {"brief": "the container has completed execution.", "id": "completed", "stability": "development", "value": "completed"}, {"brief": "there was an error with the container.", "id": "error", "stability": "development", "value": "error"}, {"brief": "the container cannot run.", "id": "container_cannot_run", "stability": "development", "value": "containercannotrun"}]}`
     */
     case k8sContainerStatusReason = "k8s.container.status.reason"
     /**
@@ -1703,9 +2104,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sContainerStatusState] = terminated
+        attributes[.K8sContainerStatusState] = running
+        attributes[.K8sContainerStatusState] = waiting
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "the container has terminated.", "id": "terminated", "stability": "development", "value": "terminated"}, {"brief": "the container is running.", "id": "running", "stability": "development", "value": "running"}, {"brief": "the container is waiting.", "id": "waiting", "stability": "development", "value": "waiting"}]}`
     */
     case k8sContainerStatusState = "k8s.container.status.state"
     /**
@@ -1713,7 +2117,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sCronjobAnnotation] = 4
+        attributes[.K8sCronjobAnnotation] = 
     ~~~
 
     - Note: /// Examples:
@@ -1722,7 +2127,8 @@ public enum ResourceAttributes: String {
       ///   `k8s.cronjob.annotation.retries` attribute with value `"4"`.
       /// - An annotation `data` with empty string value SHOULD be recorded as
       ///   the `k8s.cronjob.annotation.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sCronjobAnnotation = "k8s.cronjob.annotation"
     /**
@@ -1730,7 +2136,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sCronjobLabel] = weekly
+        attributes[.K8sCronjobLabel] = 
     ~~~
 
     - Note: /// Examples:
@@ -1739,7 +2146,8 @@ public enum ResourceAttributes: String {
       ///   `k8s.cronjob.label.type` attribute with value `"weekly"`.
       /// - A label `automated` with empty string value SHOULD be recorded as
       ///   the `k8s.cronjob.label.automated` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sCronjobLabel = "k8s.cronjob.label"
     /**
@@ -1747,9 +2155,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sCronjobName] = "opentelemetry"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sCronjobName = "k8s.cronjob.name"
     /**
@@ -1757,9 +2167,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sCronjobUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sCronjobUid = "k8s.cronjob.uid"
     /**
@@ -1767,7 +2179,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sDaemonsetAnnotation] = 1
+        attributes[.K8sDaemonsetAnnotation] = 
     ~~~
 
     - Note: /// Examples:
@@ -1776,7 +2189,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.daemonset.annotation.replicas` attribute with value `"1"`.
       /// - A label `data` with empty string value SHOULD be recorded as
       ///   the `k8s.daemonset.annotation.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sDaemonsetAnnotation = "k8s.daemonset.annotation"
     /**
@@ -1784,7 +2198,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sDaemonsetLabel] = guestbook
+        attributes[.K8sDaemonsetLabel] = 
     ~~~
 
     - Note: /// Examples:
@@ -1793,7 +2208,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.daemonset.label.app` attribute with value `"guestbook"`.
       /// - A label `data` with empty string value SHOULD be recorded as
       ///   the `k8s.daemonset.label.injected` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sDaemonsetLabel = "k8s.daemonset.label"
     /**
@@ -1801,9 +2217,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sDaemonsetName] = "opentelemetry"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sDaemonsetName = "k8s.daemonset.name"
     /**
@@ -1811,9 +2229,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sDaemonsetUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sDaemonsetUid = "k8s.daemonset.uid"
     /**
@@ -1821,7 +2241,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sDeploymentAnnotation] = 1
+        attributes[.K8sDeploymentAnnotation] = 
     ~~~
 
     - Note: /// Examples:
@@ -1830,7 +2251,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.deployment.annotation.replicas` attribute with value `"1"`.
       /// - A label `data` with empty string value SHOULD be recorded as
       ///   the `k8s.deployment.annotation.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sDeploymentAnnotation = "k8s.deployment.annotation"
     /**
@@ -1838,7 +2260,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sDeploymentLabel] = guestbook
+        attributes[.K8sDeploymentLabel] = 
     ~~~
 
     - Note: /// Examples:
@@ -1847,7 +2270,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.deployment.label.app` attribute with value `"guestbook"`.
       /// - A label `injected` with empty string value SHOULD be recorded as
       ///   the `k8s.deployment.label.injected` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sDeploymentLabel = "k8s.deployment.label"
     /**
@@ -1855,9 +2279,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sDeploymentName] = "opentelemetry"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sDeploymentName = "k8s.deployment.name"
     /**
@@ -1865,9 +2291,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sDeploymentUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sDeploymentUid = "k8s.deployment.uid"
     /**
@@ -1875,11 +2303,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sHpaMetricType] = "Resource"
+        
+    attributes[.K8sHpaMetricType] = "ContainerResource"
     ~~~
 
     - Note: /// This attribute reflects the `type` field of spec.metrics[] in the HPA..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sHpaMetricType = "k8s.hpa.metric.type"
     /**
@@ -1887,9 +2319,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sHpaName] = "opentelemetry"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sHpaName = "k8s.hpa.name"
     /**
@@ -1897,11 +2331,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sHpaScaletargetrefApiVersion] = "apps/v1"
+        
+    attributes[.K8sHpaScaletargetrefApiVersion] = "autoscaling/v2"
     ~~~
 
     - Note: /// This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sHpaScaletargetrefApiVersion = "k8s.hpa.scaletargetref.api_version"
     /**
@@ -1909,11 +2347,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sHpaScaletargetrefKind] = "Deployment"
+        
+    attributes[.K8sHpaScaletargetrefKind] = "StatefulSet"
     ~~~
 
     - Note: /// This maps to the `kind` field in the `scaleTargetRef` of the HPA spec..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sHpaScaletargetrefKind = "k8s.hpa.scaletargetref.kind"
     /**
@@ -1921,11 +2363,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sHpaScaletargetrefName] = "my-deployment"
+        
+    attributes[.K8sHpaScaletargetrefName] = "my-statefulset"
     ~~~
 
     - Note: /// This maps to the `name` field in the `scaleTargetRef` of the HPA spec..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sHpaScaletargetrefName = "k8s.hpa.scaletargetref.name"
     /**
@@ -1933,9 +2379,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sHpaUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sHpaUid = "k8s.hpa.uid"
     /**
@@ -1943,9 +2391,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sHugepageSize] = "2Mi"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sHugepageSize = "k8s.hugepage.size"
     /**
@@ -1953,7 +2403,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sJobAnnotation] = 1
+        attributes[.K8sJobAnnotation] = 
     ~~~
 
     - Note: /// Examples:
@@ -1962,7 +2413,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.job.annotation.number` attribute with value `"1"`.
       /// - A label `data` with empty string value SHOULD be recorded as
       ///   the `k8s.job.annotation.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sJobAnnotation = "k8s.job.annotation"
     /**
@@ -1970,7 +2422,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sJobLabel] = ci
+        attributes[.K8sJobLabel] = 
     ~~~
 
     - Note: /// Examples:
@@ -1979,7 +2432,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.job.label.jobtype` attribute with value `"ci"`.
       /// - A label `data` with empty string value SHOULD be recorded as
       ///   the `k8s.job.label.automated` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sJobLabel = "k8s.job.label"
     /**
@@ -1987,9 +2441,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sJobName] = "opentelemetry"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sJobName = "k8s.job.name"
     /**
@@ -1997,9 +2453,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sJobUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sJobUid = "k8s.job.uid"
     /**
@@ -2007,7 +2465,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sNamespaceAnnotation] = 0
+        attributes[.K8sNamespaceAnnotation] = 
     ~~~
 
     - Note: /// Examples:
@@ -2016,7 +2475,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.namespace.annotation.ttl` attribute with value `"0"`.
       /// - A label `data` with empty string value SHOULD be recorded as
       ///   the `k8s.namespace.annotation.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sNamespaceAnnotation = "k8s.namespace.annotation"
     /**
@@ -2024,7 +2484,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sNamespaceLabel] = default
+        attributes[.K8sNamespaceLabel] = 
     ~~~
 
     - Note: /// Examples:
@@ -2033,7 +2494,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.namespace.label.kubernetes.io/metadata.name` attribute with value `"default"`.
       /// - A label `data` with empty string value SHOULD be recorded as
       ///   the `k8s.namespace.label.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sNamespaceLabel = "k8s.namespace.label"
     /**
@@ -2041,9 +2503,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sNamespaceName] = "default"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sNamespaceName = "k8s.namespace.name"
     /**
@@ -2051,12 +2515,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sNamespacePhase] = active
+        attributes[.K8sNamespacePhase] = terminating
     ~~~
 
     - Note: /// This attribute aligns with the `phase` field of the
       /// [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core).
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "active namespace phase as described by [k8s api](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#namespacephase)", "id": "active", "stability": "development", "value": "active"}, {"brief": "terminating namespace phase as described by [k8s api](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#namespacephase)", "id": "terminating", "stability": "development", "value": "terminating"}]}`
     */
     case k8sNamespacePhase = "k8s.namespace.phase"
     /**
@@ -2064,7 +2530,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sNodeAnnotation] = 0
+        attributes[.K8sNodeAnnotation] = 
     ~~~
 
     - Note: /// Examples:
@@ -2073,7 +2540,8 @@ public enum ResourceAttributes: String {
       ///   the `k8s.node.annotation.node.alpha.kubernetes.io/ttl` attribute with value `"0"`.
       /// - An annotation `data` with empty string value SHOULD be recorded as
       ///   the `k8s.node.annotation.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sNodeAnnotation = "k8s.node.annotation"
     /**
@@ -2081,12 +2549,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sNodeConditionStatus] = true
+        attributes[.K8sNodeConditionStatus] = false
+        attributes[.K8sNodeConditionStatus] = unknown
     ~~~
 
     - Note: /// This attribute aligns with the `status` field of the
       /// [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core).
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "condition_true", "stability": "development", "value": "true"}, {"id": "condition_false", "stability": "development", "value": "false"}, {"id": "condition_unknown", "stability": "development", "value": "unknown"}]}`
     */
     case k8sNodeConditionStatus = "k8s.node.condition.status"
     /**
@@ -2094,7 +2565,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sNodeConditionType] = Ready
+        attributes[.K8sNodeConditionType] = DiskPressure
     ~~~
 
     - Note: /// K8s Node conditions as described
@@ -2106,7 +2578,8 @@ public enum ResourceAttributes: String {
       /// The set of possible values is not limited to those listed here. Managed Kubernetes environments,
       /// or custom controllers MAY introduce additional node condition types.
       /// When this occurs, the exact value as reported by the Kubernetes API SHOULD be used..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "the node is healthy and ready to accept pods", "id": "ready", "stability": "development", "value": "ready"}, {"brief": "pressure exists on the disk size—that is, if the disk capacity is low", "id": "disk_pressure", "stability": "development", "value": "diskpressure"}, {"brief": "pressure exists on the node memory—that is, if the node memory is low", "id": "memory_pressure", "stability": "development", "value": "memorypressure"}, {"brief": "pressure exists on the processes—that is, if there are too many processes on the node", "id": "pid_pressure", "stability": "development", "value": "pidpressure"}, {"brief": "the network for the node is not correctly configured", "id": "network_unavailable", "stability": "development", "value": "networkunavailable"}]}`
     */
     case k8sNodeConditionType = "k8s.node.condition.type"
     /**
@@ -2114,7 +2587,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sNodeLabel] = arm64
+        attributes[.K8sNodeLabel] = 
     ~~~
 
     - Note: /// Examples:
@@ -2123,7 +2597,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
       /// - A label `data` with empty string value SHOULD be recorded as
       ///   the `k8s.node.label.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sNodeLabel = "k8s.node.label"
     /**
@@ -2131,9 +2606,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sNodeName] = "node-1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sNodeName = "k8s.node.name"
     /**
@@ -2141,9 +2618,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sNodeUid] = "1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sNodeUid = "k8s.node.uid"
     /**
@@ -2151,7 +2630,9 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sPodAnnotation] = true
+        attributes[.K8sPodAnnotation] = x64
+        attributes[.K8sPodAnnotation] = 
     ~~~
 
     - Note: /// Examples:
@@ -2162,7 +2643,8 @@ public enum ResourceAttributes: String {
       ///   the `k8s.pod.annotation.mycompany.io/arch` attribute with value `"x64"`.
       /// - An annotation `data` with empty string value SHOULD be recorded as
       ///   the `k8s.pod.annotation.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sPodAnnotation = "k8s.pod.annotation"
     /**
@@ -2170,7 +2652,9 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sPodLabel] = my-app
+        attributes[.K8sPodLabel] = x64
+        attributes[.K8sPodLabel] = 
     ~~~
 
     - Note: /// Examples:
@@ -2181,7 +2665,8 @@ public enum ResourceAttributes: String {
       ///   the `k8s.pod.label.mycompany.io/arch` attribute with value `"x64"`.
       /// - A label `data` with empty string value SHOULD be recorded as
       ///   the `k8s.pod.label.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sPodLabel = "k8s.pod.label"
     /**
@@ -2189,9 +2674,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sPodName] = "opentelemetry-pod-autoconf"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sPodName = "k8s.pod.name"
     /**
@@ -2199,9 +2686,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sPodUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sPodUid = "k8s.pod.uid"
     /**
@@ -2209,7 +2698,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sReplicasetAnnotation] = 0
+        attributes[.K8sReplicasetAnnotation] = 
     ~~~
 
     - Note: /// Examples:
@@ -2218,7 +2708,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.replicaset.annotation.replicas` attribute with value `"0"`.
       /// - A label `data` with empty string value SHOULD be recorded as
       ///   the `k8s.replicaset.annotation.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sReplicasetAnnotation = "k8s.replicaset.annotation"
     /**
@@ -2226,7 +2717,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sReplicasetLabel] = guestbook
+        attributes[.K8sReplicasetLabel] = 
     ~~~
 
     - Note: /// Examples:
@@ -2235,7 +2727,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.replicaset.label.app` attribute with value `"guestbook"`.
       /// - A label `injected` with empty string value SHOULD be recorded as
       ///   the `k8s.replicaset.label.injected` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sReplicasetLabel = "k8s.replicaset.label"
     /**
@@ -2243,9 +2736,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sReplicasetName] = "opentelemetry"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sReplicasetName = "k8s.replicaset.name"
     /**
@@ -2253,9 +2748,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sReplicasetUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sReplicasetUid = "k8s.replicaset.uid"
     /**
@@ -2263,9 +2760,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sReplicationcontrollerName] = "opentelemetry"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sReplicationcontrollerName = "k8s.replicationcontroller.name"
     /**
@@ -2273,9 +2772,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sReplicationcontrollerUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sReplicationcontrollerUid = "k8s.replicationcontroller.uid"
     /**
@@ -2283,9 +2784,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sResourcequotaName] = "opentelemetry"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sResourcequotaName = "k8s.resourcequota.name"
     /**
@@ -2293,11 +2796,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sResourcequotaResourceName] = "count/replicationcontrollers"
     ~~~
 
     - Note: /// The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota) for more details..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sResourcequotaResourceName = "k8s.resourcequota.resource_name"
     /**
@@ -2305,9 +2810,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sResourcequotaUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sResourcequotaUid = "k8s.resourcequota.uid"
     /**
@@ -2315,7 +2822,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sStatefulsetAnnotation] = 1
+        attributes[.K8sStatefulsetAnnotation] = 
     ~~~
 
     - Note: /// Examples:
@@ -2324,7 +2832,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.statefulset.annotation.replicas` attribute with value `"1"`.
       /// - A label `data` with empty string value SHOULD be recorded as
       ///   the `k8s.statefulset.annotation.data` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sStatefulsetAnnotation = "k8s.statefulset.annotation"
     /**
@@ -2332,7 +2841,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sStatefulsetLabel] = guestbook
+        attributes[.K8sStatefulsetLabel] = 
     ~~~
 
     - Note: /// Examples:
@@ -2341,7 +2851,8 @@ public enum ResourceAttributes: String {
       ///   as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
       /// - A label `injected` with empty string value SHOULD be recorded as
       ///   the `k8s.statefulset.label.injected` attribute with value `""`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case k8sStatefulsetLabel = "k8s.statefulset.label"
     /**
@@ -2349,9 +2860,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sStatefulsetName] = "opentelemetry"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sStatefulsetName = "k8s.statefulset.name"
     /**
@@ -2359,9 +2872,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sStatefulsetUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sStatefulsetUid = "k8s.statefulset.uid"
     /**
@@ -2369,9 +2884,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sStorageclassName] = "gold.storageclass.storage.k8s.io"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sStorageclassName = "k8s.storageclass.name"
     /**
@@ -2379,9 +2896,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.K8sVolumeName] = "volume0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case k8sVolumeName = "k8s.volume.name"
     /**
@@ -2389,9 +2908,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.K8sVolumeType] = emptyDir
+        attributes[.K8sVolumeType] = persistentVolumeClaim
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "a [persistentvolumeclaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume", "id": "persistent_volume_claim", "stability": "development", "value": "persistentvolumeclaim"}, {"brief": "a [configmap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume", "id": "config_map", "stability": "development", "value": "configmap"}, {"brief": "a [downwardapi](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume", "id": "downward_api", "stability": "development", "value": "downwardapi"}, {"brief": "an [emptydir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume", "id": "empty_dir", "stability": "development", "value": "emptydir"}, {"brief": "a [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume", "id": "secret", "stability": "development", "value": "secret"}, {"brief": "a [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume", "id": "local", "stability": "development", "value": "local"}]}`
     */
     case k8sVolumeType = "k8s.volume.type"
     /**
@@ -2399,9 +2920,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.LinuxMemorySlabState] = reclaimable
+        attributes[.LinuxMemorySlabState] = unreclaimable
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "reclaimable", "stability": "development", "value": "reclaimable"}, {"id": "unreclaimable", "stability": "development", "value": "unreclaimable"}]}`
     */
     case linuxMemorySlabState = "linux.memory.slab.state"
     /**
@@ -2409,9 +2932,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.LogFileName] = "audit.log"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case logFileName = "log.file.name"
     /**
@@ -2419,9 +2944,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.LogFileNameResolved] = "uuid.log"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case logFileNameResolved = "log.file.name_resolved"
     /**
@@ -2429,9 +2956,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.LogFilePath] = "/var/log/mysql/audit.log"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case logFilePath = "log.file.path"
     /**
@@ -2439,14 +2968,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.LogFilePathResolved] = "/var/lib/docker/uuid.log"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case logFilePathResolved = "log.file.path_resolved"
     /**
     /// The stream associated with the log. See below for a list of well-known values..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "logs from stdout stream", "id": "stdout", "stability": "development", "value": "stdout"}, {"brief": "events from stderr stream", "id": "stderr", "stability": "development", "value": "stderr"}]}`
     */
     case logIostream = "log.iostream"
     /**
@@ -2454,11 +2986,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.LogRecordOriginal] = "77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened"
+        
+    attributes[.LogRecordOriginal] = "[INFO] 8/3/24 12:34:56 Something happened"
     ~~~
 
     - Note: /// This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.).
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case logRecordOriginal = "log.record.original"
     /**
@@ -2466,12 +3002,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.LogRecordUid] = "01ARZ3NDEKTSV4RRFFQ69G5FAV"
     ~~~
 
     - Note: /// If an id is provided, other log records with the same id will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
       /// The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case logRecordUid = "log.record.uid"
     /**
@@ -2479,9 +3017,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.MainframeLparName] = "LPAR01"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case mainframeLparName = "mainframe.lpar.name"
     /**
@@ -2489,11 +3029,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.MessagingBatchMessageCount] = 0
+        attributes[.MessagingBatchMessageCount] = 1
+        attributes[.MessagingBatchMessageCount] = 2
     ~~~
 
     - Note: /// Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingBatchMessageCount = "messaging.batch.message_count"
     /**
@@ -2501,9 +3044,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.MessagingClientId] = "client-5"
+        
+    attributes[.MessagingClientId] = "myhost@8742@s8083jm"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingClientId = "messaging.client.id"
     /**
@@ -2511,16 +3058,21 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.MessagingConsumerGroupName] = "my-group"
+        
+    attributes[.MessagingConsumerGroupName] = "indexer"
     ~~~
 
     - Note: /// Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingConsumerGroupName = "messaging.consumer.group.name"
     /**
     /// A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name)..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Bool`
     */
     case messagingDestinationAnonymous = "messaging.destination.anonymous"
     /**
@@ -2528,12 +3080,16 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.MessagingDestinationName] = "MyQueue"
+        
+    attributes[.MessagingDestinationName] = "MyTopic"
     ~~~
 
     - Note: /// Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
       /// the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingDestinationName = "messaging.destination.name"
     /**
@@ -2541,9 +3097,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.MessagingDestinationPartitionId] = "1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingDestinationPartitionId = "messaging.destination.partition.id"
     /**
@@ -2551,11 +3108,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.MessagingDestinationSubscriptionName] = "subscription-a"
     ~~~
 
     - Note: /// Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name` is applicable and what it means in the context of that system..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingDestinationSubscriptionName = "messaging.destination.subscription.name"
     /**
@@ -2563,36 +3122,39 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.MessagingDestinationTemplate] = "/customers/{customerId}"
     ~~~
 
     - Note: /// Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingDestinationTemplate = "messaging.destination.template"
     /**
     /// A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Bool`
     */
     case messagingDestinationTemporary = "messaging.destination.temporary"
     /**
     /// The UTC epoch seconds at which the message has been accepted and stored in the entity..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.MessagingEventhubsMessageEnqueuedTime] = 1701393730
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingEventhubsMessageEnqueuedTime = "messaging.eventhubs.message.enqueued_time"
     /**
     /// The ack deadline in seconds set for the modify ack deadline request..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.MessagingGcpPubsubMessageAckDeadline] = 10
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingGcpPubsubMessageAckDeadline = "messaging.gcp_pubsub.message.ack_deadline"
     /**
@@ -2600,19 +3162,20 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.MessagingGcpPubsubMessageAckId] = "ack_id"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingGcpPubsubMessageAckId = "messaging.gcp_pubsub.message.ack_id"
     /**
     /// The delivery attempt for a given message..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.MessagingGcpPubsubMessageDeliveryAttempt] = 2
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingGcpPubsubMessageDeliveryAttempt = "messaging.gcp_pubsub.message.delivery_attempt"
     /**
@@ -2620,9 +3183,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.MessagingGcpPubsubMessageOrderingKey] = "ordering_key"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingGcpPubsubMessageOrderingKey = "messaging.gcp_pubsub.message.ordering_key"
     /**
@@ -2630,39 +3194,41 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.MessagingKafkaMessageKey] = "myKey"
     ~~~
 
     - Note: /// If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingKafkaMessageKey = "messaging.kafka.message.key"
     /**
     /// A boolean that is true if the message is a tombstone..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Bool`
     */
     case messagingKafkaMessageTombstone = "messaging.kafka.message.tombstone"
     /**
     /// The offset of a record in the corresponding Kafka partition..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.MessagingKafkaOffset] = 42
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingKafkaOffset = "messaging.kafka.offset"
     /**
     /// The size of the message body in bytes..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.MessagingMessageBodySize] = 1439
     ~~~
 
     - Note: /// This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
       /// body size should be used..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingMessageBodySize = "messaging.message.body.size"
     /**
@@ -2670,22 +3236,23 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.MessagingMessageConversationId] = "MyConversationId"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingMessageConversationId = "messaging.message.conversation_id"
     /**
     /// The size of the message body and metadata in bytes..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.MessagingMessageEnvelopeSize] = 2738
     ~~~
 
     - Note: /// This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
       /// size should be used..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingMessageEnvelopeSize = "messaging.message.envelope.size"
     /**
@@ -2693,9 +3260,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.MessagingMessageId] = "452a7c7c7c7048c2f887f61572b18fc2"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingMessageId = "messaging.message.id"
     /**
@@ -2703,16 +3271,23 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.MessagingOperationName] = "ack"
+        
+    attributes[.MessagingOperationName] = "nack"
+        
+    attributes[.MessagingOperationName] = "send"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingOperationName = "messaging.operation.name"
     /**
     /// A string identifying the type of the messaging operation..
 
     - Note: /// If a custom value is used, it MUST be of low cardinality..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "a message is created. \"create\" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios.\n", "id": "create", "stability": "development", "value": "create"}, {"brief": "one or more messages are provided for sending to an intermediary. if a single message is sent, the context of the \"send\" span can be used as the creation context and no \"create\" span needs to be created.\n", "id": "send", "stability": "development", "value": "send"}, {"brief": "one or more messages are requested by a consumer. this operation refers to pull-based scenarios, where consumers explicitly call methods of messaging sdks to receive messages.\n", "id": "receive", "stability": "development", "value": "receive"}, {"brief": "one or more messages are processed by a consumer.\n", "id": "process", "stability": "development", "value": "process"}, {"brief": "one or more messages are settled.\n", "id": "settle", "stability": "development", "value": "settle"}]}`
     */
     case messagingOperationType = "messaging.operation.type"
     /**
@@ -2720,44 +3295,46 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.MessagingRabbitmqDestinationRoutingKey] = "myKey"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingRabbitmqDestinationRoutingKey = "messaging.rabbitmq.destination.routing_key"
     /**
     /// RabbitMQ message delivery tag.
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.MessagingRabbitmqMessageDeliveryTag] = 123
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingRabbitmqMessageDeliveryTag = "messaging.rabbitmq.message.delivery_tag"
     /**
     /// Model of message consumption. This only applies to consumer spans..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "clustering consumption model", "id": "clustering", "stability": "development", "value": "clustering"}, {"brief": "broadcasting consumption model", "id": "broadcasting", "stability": "development", "value": "broadcasting"}]}`
     */
     case messagingRocketmqConsumptionModel = "messaging.rocketmq.consumption_model"
     /**
     /// The delay time level for delay message, which determines the message delay time..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.MessagingRocketmqMessageDelayTimeLevel] = 3
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingRocketmqMessageDelayTimeLevel = "messaging.rocketmq.message.delay_time_level"
     /**
     /// The timestamp in milliseconds that the delay message is expected to be delivered to consumer..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.MessagingRocketmqMessageDeliveryTimestamp] = 1665987217045
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingRocketmqMessageDeliveryTimestamp = "messaging.rocketmq.message.delivery_timestamp"
     /**
@@ -2765,9 +3342,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.MessagingRocketmqMessageGroup] = "myMessageGroup"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingRocketmqMessageGroup = "messaging.rocketmq.message.group"
     /**
@@ -2775,9 +3353,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.MessagingRocketmqMessageKeys] = ["keyA", "keyB"]
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `[String]`
     */
     case messagingRocketmqMessageKeys = "messaging.rocketmq.message.keys"
     /**
@@ -2785,14 +3364,16 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.MessagingRocketmqMessageTag] = "tagA"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingRocketmqMessageTag = "messaging.rocketmq.message.tag"
     /**
     /// Type of message..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "normal message", "id": "normal", "stability": "development", "value": "normal"}, {"brief": "fifo message", "id": "fifo", "stability": "development", "value": "fifo"}, {"brief": "delay message", "id": "delay", "stability": "development", "value": "delay"}, {"brief": "transaction message", "id": "transaction", "stability": "development", "value": "transaction"}]}`
     */
     case messagingRocketmqMessageType = "messaging.rocketmq.message.type"
     /**
@@ -2800,41 +3381,44 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.MessagingRocketmqNamespace] = "myNamespace"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case messagingRocketmqNamespace = "messaging.rocketmq.namespace"
     /**
     /// Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock)..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "message is completed", "id": "complete", "stability": "development", "value": "complete"}, {"brief": "message is abandoned", "id": "abandon", "stability": "development", "value": "abandon"}, {"brief": "message is sent to dead letter queue", "id": "dead_letter", "stability": "development", "value": "dead_letter"}, {"brief": "message is deferred", "id": "defer", "stability": "development", "value": "defer"}]}`
     */
     case messagingServicebusDispositionStatus = "messaging.servicebus.disposition_status"
     /**
     /// Number of deliveries that have been attempted for this message..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.MessagingServicebusMessageDeliveryCount] = 2
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingServicebusMessageDeliveryCount = "messaging.servicebus.message.delivery_count"
     /**
     /// The UTC epoch seconds at which the message has been accepted and stored in the entity..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.MessagingServicebusMessageEnqueuedTime] = 1701393730
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case messagingServicebusMessageEnqueuedTime = "messaging.servicebus.message.enqueued_time"
     /**
     /// The messaging system as identified by the client instrumentation..
 
     - Note: /// The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "apache activemq", "id": "activemq", "stability": "development", "value": "activemq"}, {"brief": "amazon simple notification service (sns)", "id": "aws.sns", "stability": "development", "value": "aws.sns"}, {"brief": "amazon simple queue service (sqs)", "id": "aws_sqs", "stability": "development", "value": "aws_sqs"}, {"brief": "azure event grid", "id": "eventgrid", "stability": "development", "value": "eventgrid"}, {"brief": "azure event hubs", "id": "eventhubs", "stability": "development", "value": "eventhubs"}, {"brief": "azure service bus", "id": "servicebus", "stability": "development", "value": "servicebus"}, {"brief": "google cloud pub/sub", "id": "gcp_pubsub", "stability": "development", "value": "gcp_pubsub"}, {"brief": "java message service", "id": "jms", "stability": "development", "value": "jms"}, {"brief": "apache kafka", "id": "kafka", "stability": "development", "value": "kafka"}, {"brief": "rabbitmq", "id": "rabbitmq", "stability": "development", "value": "rabbitmq"}, {"brief": "apache rocketmq", "id": "rocketmq", "stability": "development", "value": "rocketmq"}, {"brief": "apache pulsar", "id": "pulsar", "stability": "development", "value": "pulsar"}]}`
     */
     case messagingSystem = "messaging.system"
     /**
@@ -2842,9 +3426,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.NetworkCarrierIcc] = "DE"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case networkCarrierIcc = "network.carrier.icc"
     /**
@@ -2852,9 +3437,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.NetworkCarrierMcc] = "310"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case networkCarrierMcc = "network.carrier.mcc"
     /**
@@ -2862,9 +3448,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.NetworkCarrierMnc] = "001"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case networkCarrierMnc = "network.carrier.mnc"
     /**
@@ -2872,9 +3459,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.NetworkCarrierName] = "sprint"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case networkCarrierName = "network.carrier.name"
     /**
@@ -2882,31 +3470,32 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.NetworkConnectionState] = close_wait
     ~~~
 
     - Note: /// Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2).
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "closed", "stability": "development", "value": "closed"}, {"id": "close_wait", "stability": "development", "value": "close_wait"}, {"id": "closing", "stability": "development", "value": "closing"}, {"id": "established", "stability": "development", "value": "established"}, {"id": "fin_wait_1", "stability": "development", "value": "fin_wait_1"}, {"id": "fin_wait_2", "stability": "development", "value": "fin_wait_2"}, {"id": "last_ack", "stability": "development", "value": "last_ack"}, {"id": "listen", "stability": "development", "value": "listen"}, {"id": "syn_received", "stability": "development", "value": "syn_received"}, {"id": "syn_sent", "stability": "development", "value": "syn_sent"}, {"id": "time_wait", "stability": "development", "value": "time_wait"}]}`
     */
     case networkConnectionState = "network.connection.state"
     /**
     /// This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.NetworkConnectionSubtype] = LTE
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "gprs", "id": "gprs", "stability": "development", "value": "gprs"}, {"brief": "edge", "id": "edge", "stability": "development", "value": "edge"}, {"brief": "umts", "id": "umts", "stability": "development", "value": "umts"}, {"brief": "cdma", "id": "cdma", "stability": "development", "value": "cdma"}, {"brief": "evdo rel. 0", "id": "evdo_0", "stability": "development", "value": "evdo_0"}, {"brief": "evdo rev. a", "id": "evdo_a", "stability": "development", "value": "evdo_a"}, {"brief": "cdma2000 1xrtt", "id": "cdma2000_1xrtt", "stability": "development", "value": "cdma2000_1xrtt"}, {"brief": "hsdpa", "id": "hsdpa", "stability": "development", "value": "hsdpa"}, {"brief": "hsupa", "id": "hsupa", "stability": "development", "value": "hsupa"}, {"brief": "hspa", "id": "hspa", "stability": "development", "value": "hspa"}, {"brief": "iden", "id": "iden", "stability": "development", "value": "iden"}, {"brief": "evdo rev. b", "id": "evdo_b", "stability": "development", "value": "evdo_b"}, {"brief": "lte", "id": "lte", "stability": "development", "value": "lte"}, {"brief": "ehrpd", "id": "ehrpd", "stability": "development", "value": "ehrpd"}, {"brief": "hspap", "id": "hspap", "stability": "development", "value": "hspap"}, {"brief": "gsm", "id": "gsm", "stability": "development", "value": "gsm"}, {"brief": "td-scdma", "id": "td_scdma", "stability": "development", "value": "td_scdma"}, {"brief": "iwlan", "id": "iwlan", "stability": "development", "value": "iwlan"}, {"brief": "5g nr (new radio)", "id": "nr", "stability": "development", "value": "nr"}, {"brief": "5g nrnsa (new radio non-standalone)", "id": "nrnsa", "stability": "development", "value": "nrnsa"}, {"brief": "lte ca", "id": "lte_ca", "stability": "development", "value": "lte_ca"}]}`
     */
     case networkConnectionSubtype = "network.connection.subtype"
     /**
     /// The internet connection type..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.NetworkConnectionType] = wifi
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "wifi", "stability": "development", "value": "wifi"}, {"id": "wired", "stability": "development", "value": "wired"}, {"id": "cell", "stability": "development", "value": "cell"}, {"id": "unavailable", "stability": "development", "value": "unavailable"}, {"id": "unknown", "stability": "development", "value": "unknown"}]}`
     */
     case networkConnectionType = "network.connection.type"
     /**
@@ -2914,9 +3503,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.NetworkInterfaceName] = "lo"
+        
+    attributes[.NetworkInterfaceName] = "eth0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case networkInterfaceName = "network.interface.name"
     /**
@@ -2924,9 +3517,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.NetworkIoDirection] = transmit
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "transmit", "stability": "development", "value": "transmit"}, {"id": "receive", "stability": "development", "value": "receive"}]}`
     */
     case networkIoDirection = "network.io.direction"
     /**
@@ -2934,9 +3528,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.NetworkLocalAddress] = "10.1.2.80"
+        
+    attributes[.NetworkLocalAddress] = "/tmp/my.sock"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case networkLocalAddress = "network.local.address"
     /**
@@ -2944,9 +3542,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.NetworkLocalPort] = 65123
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case networkLocalPort = "network.local.port"
     /**
@@ -2954,9 +3553,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.NetworkPeerAddress] = "10.1.2.80"
+        
+    attributes[.NetworkPeerAddress] = "/tmp/my.sock"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case networkPeerAddress = "network.peer.address"
     /**
@@ -2964,9 +3567,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.NetworkPeerPort] = 65123
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case networkPeerPort = "network.peer.port"
     /**
@@ -2974,11 +3578,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.NetworkProtocolName] = "amqp"
+        
+    attributes[.NetworkProtocolName] = "http"
+        
+    attributes[.NetworkProtocolName] = "mqtt"
     ~~~
 
     - Note: /// The value SHOULD be normalized to lowercase..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case networkProtocolName = "network.protocol.name"
     /**
@@ -2986,11 +3596,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.NetworkProtocolVersion] = "1.1"
+        
+    attributes[.NetworkProtocolVersion] = "2"
     ~~~
 
     - Note: /// If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case networkProtocolVersion = "network.protocol.version"
     /**
@@ -2998,7 +3612,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.NetworkTransport] = tcp
+        attributes[.NetworkTransport] = udp
     ~~~
 
     - Note: /// The value SHOULD be normalized to lowercase.
@@ -3006,7 +3621,8 @@ public enum ResourceAttributes: String {
       /// Consider always setting the transport when setting a port number, since
       /// a port number is ambiguous without knowing the transport. For example
       /// different processes could be listening on TCP port 12345 and UDP port 12345..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "tcp", "id": "tcp", "stability": "stable", "value": "tcp"}, {"brief": "udp", "id": "udp", "stability": "stable", "value": "udp"}, {"brief": "named or anonymous pipe.", "id": "pipe", "stability": "stable", "value": "pipe"}, {"brief": "unix domain socket", "id": "unix", "stability": "stable", "value": "unix"}, {"brief": "quic", "id": "quic", "stability": "stable", "value": "quic"}]}`
     */
     case networkTransport = "network.transport"
     /**
@@ -3014,16 +3630,19 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.NetworkType] = ipv4
+        attributes[.NetworkType] = ipv6
     ~~~
 
     - Note: /// The value SHOULD be normalized to lowercase..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "ipv4", "id": "ipv4", "stability": "stable", "value": "ipv4"}, {"brief": "ipv6", "id": "ipv6", "stability": "stable", "value": "ipv6"}]}`
     */
     case networkType = "network.type"
     /**
     /// The state of event loop time..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "active time.", "id": "active", "stability": "development", "value": "active"}, {"brief": "idle time.", "id": "idle", "stability": "development", "value": "idle"}]}`
     */
     case nodejsEventloopState = "nodejs.eventloop.state"
     /**
@@ -3031,12 +3650,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OciManifestDigest] = "sha256:e4ca62c0d62f3e886e684806dfe9d4e0cda60d54986898173c1083856cfda0f4"
     ~~~
 
     - Note: /// Follows [OCI Image Manifest Specification](https://github.com/opencontainers/image-spec/blob/main/manifest.md), and specifically the [Digest property](https://github.com/opencontainers/image-spec/blob/main/descriptor.md#digests).
       /// An example can be found in [Example Image Manifest](https://github.com/opencontainers/image-spec/blob/main/manifest.md#example-image-manifest)..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case ociManifestDigest = "oci.manifest.digest"
     /**
@@ -3044,9 +3665,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.OpenaiRequestServiceTier] = auto
+        attributes[.OpenaiRequestServiceTier] = default
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "the system will utilize scale tier credits until they are exhausted.", "id": "auto", "stability": "development", "value": "auto"}, {"brief": "the system will utilize the default scale tier.", "id": "default", "stability": "development", "value": "default"}]}`
     */
     case openaiRequestServiceTier = "openai.request.service_tier"
     /**
@@ -3054,9 +3677,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OpenaiResponseServiceTier] = "scale"
+        
+    attributes[.OpenaiResponseServiceTier] = "default"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case openaiResponseServiceTier = "openai.response.service_tier"
     /**
@@ -3064,16 +3691,19 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OpenaiResponseSystemFingerprint] = "fp_44709d6fcb"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case openaiResponseSystemFingerprint = "openai.response.system_fingerprint"
     /**
     /// Parent-child Reference type.
 
     - Note: /// The causal relationship between a child Span and a parent Span..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "the parent span depends on the child span in some capacity", "id": "child_of", "stability": "development", "value": "child_of"}, {"brief": "the parent span doesn't depend in any way on the result of the child span", "id": "follows_from", "stability": "development", "value": "follows_from"}]}`
     */
     case opentracingRefType = "opentracing.ref_type"
     /**
@@ -3081,9 +3711,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OsBuildId] = "TQ3C.230805.001.B2"
+        
+    attributes[.OsBuildId] = "20E247"
+        
+    attributes[.OsBuildId] = "22621"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case osBuildId = "os.build_id"
     /**
@@ -3091,9 +3727,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OsDescription] = "Microsoft Windows [Version 10.0.18363.778]"
+        
+    attributes[.OsDescription] = "Ubuntu 18.04.1 LTS"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case osDescription = "os.description"
     /**
@@ -3101,14 +3741,21 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OsName] = "iOS"
+        
+    attributes[.OsName] = "Android"
+        
+    attributes[.OsName] = "Ubuntu"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case osName = "os.name"
     /**
     /// The operating system type..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "microsoft windows", "id": "windows", "stability": "development", "value": "windows"}, {"brief": "linux", "id": "linux", "stability": "development", "value": "linux"}, {"brief": "apple darwin", "id": "darwin", "stability": "development", "value": "darwin"}, {"brief": "freebsd", "id": "freebsd", "stability": "development", "value": "freebsd"}, {"brief": "netbsd", "id": "netbsd", "stability": "development", "value": "netbsd"}, {"brief": "openbsd", "id": "openbsd", "stability": "development", "value": "openbsd"}, {"brief": "dragonfly bsd", "id": "dragonflybsd", "stability": "development", "value": "dragonflybsd"}, {"brief": "hp-ux (hewlett packard unix)", "id": "hpux", "stability": "development", "value": "hpux"}, {"brief": "aix (advanced interactive executive)", "id": "aix", "stability": "development", "value": "aix"}, {"brief": "sunos, oracle solaris", "id": "solaris", "stability": "development", "value": "solaris"}, {"brief": "ibm z/os", "id": "zos", "stability": "development", "value": "zos"}]}`
     */
     case osType = "os.type"
     /**
@@ -3116,9 +3763,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OsVersion] = "14.2.1"
+        
+    attributes[.OsVersion] = "18.04.1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case osVersion = "os.version"
     /**
@@ -3126,7 +3777,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OtelComponentName] = "otlp_grpc_span_exporter/0"
+        
+    attributes[.OtelComponentName] = "custom-name"
     ~~~
 
     - Note: /// Implementations SHOULD ensure a low cardinality for this attribute, even across application or SDK restarts.
@@ -3142,7 +3796,8 @@ public enum ResourceAttributes: String {
       /// With this implementation, for example the first Batching Span Processor would have `batching_span_processor/0`
       /// as `otel.component.name`, the second one `batching_span_processor/1` and so on.
       /// These values will therefore be reused in the case of an application restart..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case otelComponentName = "otel.component.name"
     /**
@@ -3150,12 +3805,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.OtelComponentType] = batching_span_processor
+        attributes[.OtelComponentType] = com.example.MySpanExporter
     ~~~
 
     - Note: /// If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
       /// E.g. for Java the fully qualified classname SHOULD be used in this case..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "the builtin sdk batching span processor\n", "id": "batching_span_processor", "stability": "development", "value": "batching_span_processor"}, {"brief": "the builtin sdk simple span processor\n", "id": "simple_span_processor", "stability": "development", "value": "simple_span_processor"}, {"brief": "the builtin sdk batching log record processor\n", "id": "batching_log_processor", "stability": "development", "value": "batching_log_processor"}, {"brief": "the builtin sdk simple log record processor\n", "id": "simple_log_processor", "stability": "development", "value": "simple_log_processor"}, {"brief": "otlp span exporter over grpc with protobuf serialization\n", "id": "otlp_grpc_span_exporter", "stability": "development", "value": "otlp_grpc_span_exporter"}, {"brief": "otlp span exporter over http with protobuf serialization\n", "id": "otlp_http_span_exporter", "stability": "development", "value": "otlp_http_span_exporter"}, {"brief": "otlp span exporter over http with json serialization\n", "id": "otlp_http_json_span_exporter", "stability": "development", "value": "otlp_http_json_span_exporter"}, {"brief": "zipkin span exporter over http\n", "id": "zipkin_http_span_exporter", "stability": "development", "value": "zipkin_http_span_exporter"}, {"brief": "otlp log record exporter over grpc with protobuf serialization\n", "id": "otlp_grpc_log_exporter", "stability": "development", "value": "otlp_grpc_log_exporter"}, {"brief": "otlp log record exporter over http with protobuf serialization\n", "id": "otlp_http_log_exporter", "stability": "development", "value": "otlp_http_log_exporter"}, {"brief": "otlp log record exporter over http with json serialization\n", "id": "otlp_http_json_log_exporter", "stability": "development", "value": "otlp_http_json_log_exporter"}, {"brief": "the builtin sdk periodically exporting metric reader\n", "id": "periodic_metric_reader", "stability": "development", "value": "periodic_metric_reader"}, {"brief": "otlp metric exporter over grpc with protobuf serialization\n", "id": "otlp_grpc_metric_exporter", "stability": "development", "value": "otlp_grpc_metric_exporter"}, {"brief": "otlp metric exporter over http with protobuf serialization\n", "id": "otlp_http_metric_exporter", "stability": "development", "value": "otlp_http_metric_exporter"}, {"brief": "otlp metric exporter over http with json serialization\n", "id": "otlp_http_json_metric_exporter", "stability": "development", "value": "otlp_http_json_metric_exporter"}, {"brief": "prometheus metric exporter over http with the default text-based format\n", "id": "prometheus_http_text_metric_exporter", "stability": "development", "value": "prometheus_http_text_metric_exporter"}]}`
     */
     case otelComponentType = "otel.component.type"
     /**
@@ -3163,9 +3820,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OtelScopeName] = "io.opentelemetry.contrib.mongodb"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case otelScopeName = "otel.scope.name"
     /**
@@ -3173,9 +3832,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OtelScopeSchemaUrl] = "https://opentelemetry.io/schemas/1.31.0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case otelScopeSchemaUrl = "otel.scope.schema_url"
     /**
@@ -3183,24 +3844,29 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OtelScopeVersion] = "1.0.0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case otelScopeVersion = "otel.scope.version"
     /**
     /// Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote).
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "the span does not have a parent, it is a root span", "id": "none", "stability": "development", "value": "none"}, {"brief": "the span has a parent and the parent's span context [isremote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is false", "id": "local", "stability": "development", "value": "local"}, {"brief": "the span has a parent and the parent's span context [isremote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is true", "id": "remote", "stability": "development", "value": "remote"}]}`
     */
     case otelSpanParentOrigin = "otel.span.parent.origin"
     /**
     /// The result value of the sampler for this span.
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "the span is not sampled and not recording", "id": "drop", "stability": "development", "value": "drop"}, {"brief": "the span is not sampled, but recording", "id": "record_only", "stability": "development", "value": "record_only"}, {"brief": "the span is sampled and recording", "id": "record_and_sample", "stability": "development", "value": "record_and_sample"}]}`
     */
     case otelSpanSamplingResult = "otel.span.sampling_result"
     /**
     /// Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "the operation has been validated by an application developer or operator to have completed successfully.", "id": "ok", "stability": "stable", "value": "ok"}, {"brief": "the operation contains an error.", "id": "error", "stability": "stable", "value": "error"}]}`
     */
     case otelStatusCode = "otel.status_code"
     /**
@@ -3208,9 +3874,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.OtelStatusDescription] = "resource not found"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case otelStatusDescription = "otel.status_description"
     /**
@@ -3218,9 +3886,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.PeerService] = "AuthTokenCache"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case peerService = "peer.service"
     /**
@@ -3228,11 +3897,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessArgsCount] = 4
     ~~~
 
     - Note: /// This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case processArgsCount = "process.args_count"
     /**
@@ -3240,9 +3910,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessCommand] = "cmd/otelcol"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processCommand = "process.command"
     /**
@@ -3250,9 +3922,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessCommandArgs] = ["cmd/otecol", "--config=config.yaml"]
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `[String]`
     */
     case processCommandArgs = "process.command_args"
     /**
@@ -3260,14 +3933,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessCommandLine] = "C:\cmd\otecol --config=\"my directory\config.yaml\""
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processCommandLine = "process.command_line"
     /**
     /// Specifies whether the context switches for this data point were voluntary or involuntary..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "voluntary", "stability": "development", "value": "voluntary"}, {"id": "involuntary", "stability": "development", "value": "involuntary"}]}`
     */
     case processContextSwitchType = "process.context_switch_type"
     /**
@@ -3275,9 +3951,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessCreationTime] = "2023-11-21T09:25:34.853Z"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processCreationTime = "process.creation.time"
     /**
@@ -3285,7 +3963,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessEnvironmentVariable] = ubuntu
+        attributes[.ProcessEnvironmentVariable] = /usr/local/bin:/usr/bin
     ~~~
 
     - Note: /// Examples:
@@ -3295,7 +3974,8 @@ public enum ResourceAttributes: String {
       /// - an environment variable `PATH` with value `"/usr/local/bin:/usr/bin"`
       ///   SHOULD be recorded as the `process.environment_variable.PATH` attribute
       ///   with value `"/usr/local/bin:/usr/bin"`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `template[string]`
     */
     case processEnvironmentVariable = "process.environment_variable"
     /**
@@ -3303,9 +3983,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessExecutableBuildIdGnu] = "c89b11207f6479603b0d49bf291c092c2b719293"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processExecutableBuildIdGnu = "process.executable.build_id.gnu"
     /**
@@ -3313,9 +3995,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessExecutableBuildIdGo] = "foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processExecutableBuildIdGo = "process.executable.build_id.go"
     /**
@@ -3323,9 +4007,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessExecutableBuildIdHtlhash] = "600DCAFE4A110000F2BF38C493F5FB92"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processExecutableBuildIdHtlhash = "process.executable.build_id.htlhash"
     /**
@@ -3333,9 +4019,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessExecutableName] = "otelcol"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processExecutableName = "process.executable.name"
     /**
@@ -3343,9 +4031,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessExecutablePath] = "/usr/bin/cmd/otelcol"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processExecutablePath = "process.executable.path"
     /**
@@ -3353,9 +4043,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessExitCode] = 127
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case processExitCode = "process.exit.code"
     /**
@@ -3363,9 +4054,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessExitTime] = "2023-11-21T09:26:12.315Z"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processExitTime = "process.exit.time"
     /**
@@ -3373,14 +4066,16 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessGroupLeaderPid] = 23
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case processGroupLeaderPid = "process.group_leader.pid"
     /**
     /// Whether the process is connected to an interactive shell..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Bool`
     */
     case processInteractive = "process.interactive"
     /**
@@ -3388,11 +4083,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessLinuxCgroup] = "1:name=systemd:/user.slice/user-1000.slice/session-3.scope"
+        
+    attributes[.ProcessLinuxCgroup] = "0::/user.slice/user-1000.slice/user@1000.service/tmux-spawn-0267755b-4639-4a27-90ed-f19f88e53748.scope"
     ~~~
 
     - Note: /// Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/[PID]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processLinuxCgroup = "process.linux.cgroup"
     /**
@@ -3400,14 +4099,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessOwner] = "root"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processOwner = "process.owner"
     /**
     /// The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "major", "stability": "development", "value": "major"}, {"id": "minor", "stability": "development", "value": "minor"}]}`
     */
     case processPagingFaultType = "process.paging.fault_type"
     /**
@@ -3415,9 +4117,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessParentPid] = 111
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case processParentPid = "process.parent_pid"
     /**
@@ -3425,9 +4128,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessPid] = 1234
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case processPid = "process.pid"
     /**
@@ -3435,9 +4139,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessRealUserId] = 1000
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case processRealUserId = "process.real_user.id"
     /**
@@ -3445,9 +4150,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessRealUserName] = "operator"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processRealUserName = "process.real_user.name"
     /**
@@ -3455,9 +4162,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.ProcessRuntimeDescription] = "Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processRuntimeDescription = "process.runtime.description"
     /**
@@ -3465,9 +4173,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessRuntimeName] = "OpenJDK Runtime Environment"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processRuntimeName = "process.runtime.name"
     /**
@@ -3475,9 +4185,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.ProcessRuntimeVersion] = "14.0.2"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processRuntimeVersion = "process.runtime.version"
     /**
@@ -3485,9 +4196,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessSavedUserId] = 1002
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case processSavedUserId = "process.saved_user.id"
     /**
@@ -3495,9 +4207,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessSavedUserName] = "operator"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processSavedUserName = "process.saved_user.name"
     /**
@@ -3505,9 +4219,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessSessionLeaderPid] = 14
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case processSessionLeaderPid = "process.session_leader.pid"
     /**
@@ -3515,11 +4230,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessTitle] = "cat /etc/hostname"
+        
+    attributes[.ProcessTitle] = "xfce4-session"
+        
+    attributes[.ProcessTitle] = "bash"
     ~~~
 
     - Note: /// In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processTitle = "process.title"
     /**
@@ -3527,9 +4248,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessUserId] = 1001
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case processUserId = "process.user.id"
     /**
@@ -3537,9 +4259,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessUserName] = "root"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processUserName = "process.user.name"
     /**
@@ -3547,11 +4271,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProcessVpid] = 12
     ~~~
 
     - Note: /// The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case processVpid = "process.vpid"
     /**
@@ -3559,9 +4284,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ProcessWorkingDirectory] = "/root"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case processWorkingDirectory = "process.working_directory"
     /**
@@ -3569,9 +4296,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ProfileFrameType] = cpython
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "[.net](https://wikipedia.org/wiki/.net)\n", "id": "dotnet", "stability": "development", "value": "dotnet"}, {"brief": "[jvm](https://wikipedia.org/wiki/java_virtual_machine)\n", "id": "jvm", "stability": "development", "value": "jvm"}, {"brief": "[kernel](https://wikipedia.org/wiki/kernel_(operating_system))\n", "id": "kernel", "stability": "development", "value": "kernel"}, {"brief": "can be one of but not limited to [c](https://wikipedia.org/wiki/c_(programming_language)), [c++](https://wikipedia.org/wiki/c%2b%2b), [go](https://wikipedia.org/wiki/go_(programming_language)) or [rust](https://wikipedia.org/wiki/rust_(programming_language)). if possible, a more precise value must be used.\n", "id": "native", "stability": "development", "value": "native"}, {"brief": "[perl](https://wikipedia.org/wiki/perl)\n", "id": "perl", "stability": "development", "value": "perl"}, {"brief": "[php](https://wikipedia.org/wiki/php)\n", "id": "php", "stability": "development", "value": "php"}, {"brief": "[python](https://wikipedia.org/wiki/python_(programming_language))\n", "id": "cpython", "stability": "development", "value": "cpython"}, {"brief": "[ruby](https://wikipedia.org/wiki/ruby_(programming_language))\n", "id": "ruby", "stability": "development", "value": "ruby"}, {"brief": "[v8js](https://wikipedia.org/wiki/v8_(javascript_engine))\n", "id": "v8js", "stability": "development", "value": "v8js"}, {"brief": "[erlang](https://en.wikipedia.org/wiki/beam_(erlang_virtual_machine))\n", "id": "beam", "stability": "development", "value": "beam"}, {"brief": "[go](https://wikipedia.org/wiki/go_(programming_language)),\n", "id": "go", "stability": "development", "value": "go"}, {"brief": "[rust](https://wikipedia.org/wiki/rust_(programming_language))\n", "id": "rust", "stability": "development", "value": "rust"}]}`
     */
     case profileFrameType = "profile.frame.type"
     /**
@@ -3579,9 +4307,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SecurityRuleCategory] = "Attempted Information Leak"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case securityRuleCategory = "security_rule.category"
     /**
@@ -3589,9 +4319,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SecurityRuleDescription] = "Block requests to public DNS over HTTPS / TLS protocols"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case securityRuleDescription = "security_rule.description"
     /**
@@ -3599,9 +4331,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SecurityRuleLicense] = "Apache 2.0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case securityRuleLicense = "security_rule.license"
     /**
@@ -3609,9 +4343,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SecurityRuleName] = "BLOCK_DNS_over_TLS"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case securityRuleName = "security_rule.name"
     /**
@@ -3619,11 +4355,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SecurityRuleReference] = "https://en.wikipedia.org/wiki/DNS_over_TLS"
     ~~~
 
     - Note: /// The URL can point to the vendor’s documentation about the rule. If that’s not available, it can also be a link to a more general page describing this type of alert..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case securityRuleReference = "security_rule.reference"
     /**
@@ -3631,9 +4369,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SecurityRuleRulesetName] = "Standard_Protocol_Filters"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case securityRuleRulesetName = "security_rule.ruleset.name"
     /**
@@ -3641,9 +4381,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SecurityRuleUuid] = "550e8400-e29b-41d4-a716-446655440000"
+        
+    attributes[.SecurityRuleUuid] = "1100110011"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case securityRuleUuid = "security_rule.uuid"
     /**
@@ -3651,9 +4395,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SecurityRuleVersion] = "1.0.0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case securityRuleVersion = "security_rule.version"
     /**
@@ -3661,11 +4407,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ServerAddress] = "example.com"
+        
+    attributes[.ServerAddress] = "10.1.2.80"
+        
+    attributes[.ServerAddress] = "/tmp/my.sock"
     ~~~
 
     - Note: /// When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case serverAddress = "server.address"
     /**
@@ -3673,11 +4425,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.ServerPort] = 80
+        attributes[.ServerPort] = 8080
+        attributes[.ServerPort] = 443
     ~~~
 
     - Note: /// When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case serverPort = "server.port"
     /**
@@ -3685,7 +4440,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ServiceInstanceId] = "627cc493-f310-47de-96bd-71410b7dec09"
     ~~~
 
     - Note: /// MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
@@ -3714,7 +4470,8 @@ public enum ResourceAttributes: String {
       /// However, Collectors can set the `service.instance.id` if they can unambiguously determine the service instance
       /// for that telemetry. This is typically the case for scraping receivers, as they know the target address and
       /// port..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case serviceInstanceId = "service.instance.id"
     /**
@@ -3722,11 +4479,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ServiceName] = "shoppingcart"
     ~~~
 
     - Note: /// MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case serviceName = "service.name"
     /**
@@ -3734,11 +4493,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ServiceNamespace] = "Shop"
     ~~~
 
     - Note: /// A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case serviceNamespace = "service.namespace"
     /**
@@ -3746,9 +4507,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ServiceVersion] = "2.0.0"
+        
+    attributes[.ServiceVersion] = "a01dbef8a"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case serviceVersion = "service.version"
     /**
@@ -3756,9 +4521,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.SessionId] = "00112233-4455-6677-8899-aabbccddeeff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case sessionId = "session.id"
     /**
@@ -3766,9 +4532,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.SessionPreviousId] = "00112233-4455-6677-8899-aabbccddeeff"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case sessionPreviousId = "session.previous_id"
     /**
@@ -3776,11 +4543,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SourceAddress] = "source.example.com"
+        
+    attributes[.SourceAddress] = "10.1.2.80"
+        
+    attributes[.SourceAddress] = "/tmp/my.sock"
     ~~~
 
     - Note: /// When observed from the destination side, and when communicating through an intermediary, `source.address` SHOULD represent the source address behind any intermediaries, for example proxies, if it's available..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case sourceAddress = "source.address"
     /**
@@ -3788,9 +4561,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.SourcePort] = 3389
+        attributes[.SourcePort] = 2888
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case sourcePort = "source.port"
     /**
@@ -3798,9 +4573,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.SystemCpuLogicalNumber] = 1
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case systemCpuLogicalNumber = "system.cpu.logical_number"
     /**
@@ -3808,9 +4584,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SystemDevice] = "(identifier)"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case systemDevice = "system.device"
     /**
@@ -3818,9 +4596,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SystemFilesystemMode] = "rw, ro"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case systemFilesystemMode = "system.filesystem.mode"
     /**
@@ -3828,9 +4608,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.SystemFilesystemMountpoint] = "/mnt/data"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case systemFilesystemMountpoint = "system.filesystem.mountpoint"
     /**
@@ -3838,9 +4620,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.SystemFilesystemState] = used
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "used", "stability": "development", "value": "used"}, {"id": "free", "stability": "development", "value": "free"}, {"id": "reserved", "stability": "development", "value": "reserved"}]}`
     */
     case systemFilesystemState = "system.filesystem.state"
     /**
@@ -3848,9 +4631,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.SystemFilesystemType] = ext4
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "fat32", "stability": "development", "value": "fat32"}, {"id": "exfat", "stability": "development", "value": "exfat"}, {"id": "ntfs", "stability": "development", "value": "ntfs"}, {"id": "refs", "stability": "development", "value": "refs"}, {"id": "hfsplus", "stability": "development", "value": "hfsplus"}, {"id": "ext4", "stability": "development", "value": "ext4"}]}`
     */
     case systemFilesystemType = "system.filesystem.type"
     /**
@@ -3858,9 +4642,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.SystemMemoryState] = free
+        attributes[.SystemMemoryState] = cached
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "actual used virtual memory in bytes.", "id": "used", "note": "calculation based on the operating system metrics. on linux, this corresponds to \"memtotal - memavailable\" from /proc/meminfo, which more accurately reflects memory in active use by applications compared to older formulas based on free, cached, and buffers. if memavailable is not available, a fallback to those older formulas may be used.\n", "stability": "development", "value": "used"}, {"id": "free", "stability": "development", "value": "free"}, {"id": "buffers", "stability": "development", "value": "buffers"}, {"id": "cached", "stability": "development", "value": "cached"}]}`
     */
     case systemMemoryState = "system.memory.state"
     /**
@@ -3868,9 +4654,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.SystemPagingDirection] = in
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "in", "stability": "development", "value": "in"}, {"id": "out", "stability": "development", "value": "out"}]}`
     */
     case systemPagingDirection = "system.paging.direction"
     /**
@@ -3878,9 +4665,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.SystemPagingState] = free
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "used", "stability": "development", "value": "used"}, {"id": "free", "stability": "development", "value": "free"}]}`
     */
     case systemPagingState = "system.paging.state"
     /**
@@ -3888,9 +4676,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.SystemPagingType] = minor
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "major", "stability": "development", "value": "major"}, {"id": "minor", "stability": "development", "value": "minor"}]}`
     */
     case systemPagingType = "system.paging.type"
     /**
@@ -3898,9 +4687,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.SystemProcessStatus] = running
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "running", "stability": "development", "value": "running"}, {"id": "sleeping", "stability": "development", "value": "sleeping"}, {"id": "stopped", "stability": "development", "value": "stopped"}, {"id": "defunct", "stability": "development", "value": "defunct"}]}`
     */
     case systemProcessStatus = "system.process.status"
     /**
@@ -3908,12 +4698,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TelemetryDistroName] = "parts-unlimited-java"
     ~~~
 
     - Note: /// Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
       /// a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case telemetryDistroName = "telemetry.distro.name"
     /**
@@ -3921,14 +4713,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TelemetryDistroVersion] = "1.2.3"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case telemetryDistroVersion = "telemetry.distro.version"
     /**
     /// The language of the telemetry SDK..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "cpp", "stability": "stable", "value": "cpp"}, {"id": "dotnet", "stability": "stable", "value": "dotnet"}, {"id": "erlang", "stability": "stable", "value": "erlang"}, {"id": "go", "stability": "stable", "value": "go"}, {"id": "java", "stability": "stable", "value": "java"}, {"id": "nodejs", "stability": "stable", "value": "nodejs"}, {"id": "php", "stability": "stable", "value": "php"}, {"id": "python", "stability": "stable", "value": "python"}, {"id": "ruby", "stability": "stable", "value": "ruby"}, {"id": "rust", "stability": "stable", "value": "rust"}, {"id": "swift", "stability": "stable", "value": "swift"}, {"id": "webjs", "stability": "stable", "value": "webjs"}]}`
     */
     case telemetrySdkLanguage = "telemetry.sdk.language"
     /**
@@ -3936,7 +4731,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TelemetrySdkName] = "opentelemetry"
     ~~~
 
     - Note: /// The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
@@ -3945,7 +4741,8 @@ public enum ResourceAttributes: String {
       /// or another suitable identifier depending on the language.
       /// The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
       /// All custom identifiers SHOULD be stable across different versions of an implementation..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case telemetrySdkName = "telemetry.sdk.name"
     /**
@@ -3953,9 +4750,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TelemetrySdkVersion] = "1.2.3"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case telemetrySdkVersion = "telemetry.sdk.version"
     /**
@@ -3963,9 +4762,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TestCaseName] = "org.example.TestCase1.test1"
+        
+    attributes[.TestCaseName] = "example/tests/TestCase1.test1"
+        
+    attributes[.TestCaseName] = "ExampleTestCase1_test1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case testCaseName = "test.case.name"
     /**
@@ -3973,9 +4778,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.TestCaseResultStatus] = pass
+        attributes[.TestCaseResultStatus] = fail
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "pass", "id": "pass", "stability": "development", "value": "pass"}, {"brief": "fail", "id": "fail", "stability": "development", "value": "fail"}]}`
     */
     case testCaseResultStatus = "test.case.result.status"
     /**
@@ -3983,9 +4790,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TestSuiteName] = "TestSuite1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case testSuiteName = "test.suite.name"
     /**
@@ -3993,19 +4802,25 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.TestSuiteRunStatus] = success
+        attributes[.TestSuiteRunStatus] = failure
+        attributes[.TestSuiteRunStatus] = skipped
+        attributes[.TestSuiteRunStatus] = aborted
+        attributes[.TestSuiteRunStatus] = timed_out
+        attributes[.TestSuiteRunStatus] = in_progress
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "success", "id": "success", "stability": "development", "value": "success"}, {"brief": "failure", "id": "failure", "stability": "development", "value": "failure"}, {"brief": "skipped", "id": "skipped", "stability": "development", "value": "skipped"}, {"brief": "aborted", "id": "aborted", "stability": "development", "value": "aborted"}, {"brief": "timed_out", "id": "timed_out", "stability": "development", "value": "timed_out"}, {"brief": "in_progress", "id": "in_progress", "stability": "development", "value": "in_progress"}]}`
     */
     case testSuiteRunStatus = "test.suite.run.status"
     /**
     /// Current "managed" thread ID (as opposed to OS thread ID)..
 
     ~~~
-    // Examples
-
+    // Examplesattributes[.ThreadId] = 42
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case threadId = "thread.id"
     /**
@@ -4013,9 +4828,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+    attributes[.ThreadName] = "main"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case threadName = "thread.name"
     /**
@@ -4023,11 +4839,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsCipher] = "TLS_RSA_WITH_3DES_EDE_CBC_SHA"
+        
+    attributes[.TlsCipher] = "TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256"
     ~~~
 
     - Note: /// The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4)..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsCipher = "tls.cipher"
     /**
@@ -4035,9 +4855,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsClientCertificate] = "MII..."
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsClientCertificate = "tls.client.certificate"
     /**
@@ -4045,9 +4867,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.TlsClientCertificateChain] = ["MII...", "MI..."]
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `[String]`
     */
     case tlsClientCertificateChain = "tls.client.certificate_chain"
     /**
@@ -4055,9 +4878,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsClientHashMd5] = "0F76C7F2C55BFD7D8E8B8F4BFBF0C9EC"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsClientHashMd5 = "tls.client.hash.md5"
     /**
@@ -4065,9 +4890,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsClientHashSha1] = "9E393D93138888D288266C2D915214D1D1CCEB2A"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsClientHashSha1 = "tls.client.hash.sha1"
     /**
@@ -4075,9 +4902,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsClientHashSha256] = "0687F666A054EF17A08E2F2162EAB4CBC0D265E1D7875BE74BF3C712CA92DAF0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsClientHashSha256 = "tls.client.hash.sha256"
     /**
@@ -4085,9 +4914,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsClientIssuer] = "CN=Example Root CA, OU=Infrastructure Team, DC=example, DC=com"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsClientIssuer = "tls.client.issuer"
     /**
@@ -4095,9 +4926,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsClientJa3] = "d4e5b18d6b55c71272893221c96ba240"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsClientJa3 = "tls.client.ja3"
     /**
@@ -4105,9 +4938,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsClientNotAfter] = "2021-01-01T00:00:00.000Z"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsClientNotAfter = "tls.client.not_after"
     /**
@@ -4115,9 +4950,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsClientNotBefore] = "1970-01-01T00:00:00.000Z"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsClientNotBefore = "tls.client.not_before"
     /**
@@ -4125,9 +4962,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsClientSubject] = "CN=myclient, OU=Documentation Team, DC=example, DC=com"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsClientSubject = "tls.client.subject"
     /**
@@ -4135,9 +4974,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.TlsClientSupportedCiphers] = ["TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"]
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `[String]`
     */
     case tlsClientSupportedCiphers = "tls.client.supported_ciphers"
     /**
@@ -4145,9 +4985,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsCurve] = "secp256r1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsCurve = "tls.curve"
     /**
@@ -4155,9 +4997,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.TlsEstablished] = true
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Bool`
     */
     case tlsEstablished = "tls.established"
     /**
@@ -4165,14 +5008,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsNextProtocol] = "http/1.1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsNextProtocol = "tls.next_protocol"
     /**
     /// Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values).
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"id": "ssl", "stability": "development", "value": "ssl"}, {"id": "tls", "stability": "development", "value": "tls"}]}`
     */
     case tlsProtocolName = "tls.protocol.name"
     /**
@@ -4180,9 +5026,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsProtocolVersion] = "1.2"
+        
+    attributes[.TlsProtocolVersion] = "3"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsProtocolVersion = "tls.protocol.version"
     /**
@@ -4190,9 +5040,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.TlsResumed] = true
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Bool`
     */
     case tlsResumed = "tls.resumed"
     /**
@@ -4200,9 +5051,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsServerCertificate] = "MII..."
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsServerCertificate = "tls.server.certificate"
     /**
@@ -4210,9 +5063,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.TlsServerCertificateChain] = ["MII...", "MI..."]
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `[String]`
     */
     case tlsServerCertificateChain = "tls.server.certificate_chain"
     /**
@@ -4220,9 +5074,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsServerHashMd5] = "0F76C7F2C55BFD7D8E8B8F4BFBF0C9EC"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsServerHashMd5 = "tls.server.hash.md5"
     /**
@@ -4230,9 +5086,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsServerHashSha1] = "9E393D93138888D288266C2D915214D1D1CCEB2A"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsServerHashSha1 = "tls.server.hash.sha1"
     /**
@@ -4240,9 +5098,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsServerHashSha256] = "0687F666A054EF17A08E2F2162EAB4CBC0D265E1D7875BE74BF3C712CA92DAF0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsServerHashSha256 = "tls.server.hash.sha256"
     /**
@@ -4250,9 +5110,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsServerIssuer] = "CN=Example Root CA, OU=Infrastructure Team, DC=example, DC=com"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsServerIssuer = "tls.server.issuer"
     /**
@@ -4260,9 +5122,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsServerJa3s] = "d4e5b18d6b55c71272893221c96ba240"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsServerJa3s = "tls.server.ja3s"
     /**
@@ -4270,9 +5134,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsServerNotAfter] = "2021-01-01T00:00:00.000Z"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsServerNotAfter = "tls.server.not_after"
     /**
@@ -4280,9 +5146,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsServerNotBefore] = "1970-01-01T00:00:00.000Z"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsServerNotBefore = "tls.server.not_before"
     /**
@@ -4290,9 +5158,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.TlsServerSubject] = "CN=myserver, OU=Documentation Team, DC=example, DC=com"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case tlsServerSubject = "tls.server.subject"
     /**
@@ -4300,11 +5170,19 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlDomain] = "www.foo.bar"
+        
+    attributes[.UrlDomain] = "opentelemetry.io"
+        
+    attributes[.UrlDomain] = "3.12.167.2"
+        
+    attributes[.UrlDomain] = "[1080:0:0:0:8:800:200C:417A]"
     ~~~
 
     - Note: /// In some cases a URL may refer to an IP and/or port directly, without a domain name. In this case, the IP address would go to the domain field. If the URL contains a [literal IPv6 address](https://www.rfc-editor.org/rfc/rfc2732#section-2) enclosed by `[` and `]`, the `[` and `]` characters should also be captured in the domain field..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlDomain = "url.domain"
     /**
@@ -4312,11 +5190,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlExtension] = "png"
+        
+    attributes[.UrlExtension] = "gz"
     ~~~
 
     - Note: /// The file extension is only set if it exists, as not every url has a file extension. When the file name has multiple extensions `example.tar.gz`, only the last one should be captured `gz`, not `tar.gz`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlExtension = "url.extension"
     /**
@@ -4324,9 +5206,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlFragment] = "SemConv"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlFragment = "url.fragment"
     /**
@@ -4334,7 +5218,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlFull] = "https://www.foo.bar/search?q=OpenTelemetry#SemConv"
+        
+    attributes[.UrlFull] = "//localhost"
     ~~~
 
     - Note: /// For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment
@@ -4360,7 +5247,8 @@ public enum ResourceAttributes: String {
       ///
       /// When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
       /// `https://www.example.com/path?color=blue&sig=REDACTED`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlFull = "url.full"
     /**
@@ -4368,12 +5256,16 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlOriginal] = "https://www.foo.bar/search?q=OpenTelemetry#SemConv"
+        
+    attributes[.UrlOriginal] = "search?q=OpenTelemetry"
     ~~~
 
     - Note: /// In network monitoring, the observed URL may be a full URL, whereas in access logs, the URL is often just represented as a path. This field is meant to represent the URL as it was observed, complete or not.
       /// `url.original` might contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case password and username SHOULD NOT be redacted and attribute's value SHOULD remain the same..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlOriginal = "url.original"
     /**
@@ -4381,11 +5273,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlPath] = "/search"
     ~~~
 
     - Note: /// Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlPath = "url.path"
     /**
@@ -4393,9 +5287,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.UrlPort] = 443
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `Int`
     */
     case urlPort = "url.port"
     /**
@@ -4403,7 +5298,8 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlQuery] = "q=OpenTelemetry"
     ~~~
 
     - Note: /// Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
@@ -4420,7 +5316,8 @@ public enum ResourceAttributes: String {
       ///
       /// When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
       /// `q=OpenTelemetry&sig=REDACTED`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlQuery = "url.query"
     /**
@@ -4428,11 +5325,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlRegisteredDomain] = "example.com"
+        
+    attributes[.UrlRegisteredDomain] = "foo.co.uk"
     ~~~
 
     - Note: /// This value can be determined precisely with the [public suffix list](https://publicsuffix.org/). For example, the registered domain for `foo.example.com` is `example.com`. Trying to approximate this by simply taking the last two labels will not work well for TLDs such as `co.uk`..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlRegisteredDomain = "url.registered_domain"
     /**
@@ -4440,9 +5341,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlScheme] = "https"
+        
+    attributes[.UrlScheme] = "ftp"
+        
+    attributes[.UrlScheme] = "telnet"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlScheme = "url.scheme"
     /**
@@ -4450,11 +5357,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlSubdomain] = "east"
+        
+    attributes[.UrlSubdomain] = "sub2.sub1"
     ~~~
 
     - Note: /// The subdomain portion of `www.east.mydomain.co.uk` is `east`. If the domain has multiple levels of subdomain, such as `sub2.sub1.example.com`, the subdomain field should contain `sub2.sub1`, with no trailing period..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlSubdomain = "url.subdomain"
     /**
@@ -4462,9 +5373,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlTemplate] = "/users/{id}"
+        
+    attributes[.UrlTemplate] = "/users/:id"
+        
+    attributes[.UrlTemplate] = "/users?id={id}"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlTemplate = "url.template"
     /**
@@ -4472,11 +5389,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UrlTopLevelDomain] = "com"
+        
+    attributes[.UrlTopLevelDomain] = "co.uk"
     ~~~
 
     - Note: /// This value can be determined precisely with the [public suffix list](https://publicsuffix.org/)..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case urlTopLevelDomain = "url.top_level_domain"
     /**
@@ -4484,9 +5405,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UserEmail] = "a.einstein@example.com"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case userEmail = "user.email"
     /**
@@ -4494,9 +5417,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UserFullName] = "Albert Einstein"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case userFullName = "user.full_name"
     /**
@@ -4504,11 +5429,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UserHash] = "364fc68eaf4c8acec74a4e52d7d1feaa"
     ~~~
 
     - Note: /// Useful if `user.id` or `user.name` contain confidential information and cannot be used..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case userHash = "user.hash"
     /**
@@ -4516,9 +5443,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UserId] = "S-1-5-21-202424912787-2692429404-2351956786-1000"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case userId = "user.id"
     /**
@@ -4526,9 +5455,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UserName] = "a.einstein"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case userName = "user.name"
     /**
@@ -4536,9 +5467,10 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.UserRoles] = ["admin", "reporting_user"]
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `[String]`
     */
     case userRoles = "user.roles"
     /**
@@ -4546,11 +5478,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UserAgentName] = "Safari"
+        
+    attributes[.UserAgentName] = "YourApp"
     ~~~
 
     - Note: /// [Example](https://www.whatsmyua.info) of extracting browser's name from original string. In the case of using a user-agent for non-browser products, such as microservices with multiple names/versions inside the `user_agent.original`, the most significant name SHOULD be selected. In such a scenario it should align with `user_agent.version`.
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case userAgentName = "user_agent.name"
     /**
@@ -4558,9 +5494,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UserAgentOriginal] = "CERN-LineMode/2.15 libwww/2.17b3"
+        
+    attributes[.UserAgentOriginal] = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1"
+        
+    attributes[.UserAgentOriginal] = "YourApp/1.0.0 grpc-java-okhttp/1.27.2"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case userAgentOriginal = "user_agent.original"
     /**
@@ -4568,11 +5510,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UserAgentOsName] = "iOS"
+        
+    attributes[.UserAgentOsName] = "Android"
+        
+    attributes[.UserAgentOsName] = "Ubuntu"
     ~~~
 
     - Note: /// For mapping user agent strings to OS names, libraries such as [ua-parser](https://github.com/ua-parser) can be utilized..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case userAgentOsName = "user_agent.os.name"
     /**
@@ -4580,18 +5528,23 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UserAgentOsVersion] = "14.2.1"
+        
+    attributes[.UserAgentOsVersion] = "18.04.1"
     ~~~
 
     - Note: /// For mapping user agent strings to OS versions, libraries such as [ua-parser](https://github.com/ua-parser) can be utilized..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case userAgentOsVersion = "user_agent.os.version"
     /**
     /// Specifies the category of synthetic traffic, such as tests or bots..
 
     - Note: /// This attribute MAY be derived from the contents of the `user_agent.original` attribute. Components that populate the attribute are responsible for determining what they consider to be synthetic bot or test traffic. This attribute can either be set for self-identification purposes, or on telemetry detected to be generated as a result of a synthetic request. This attribute is useful for distinguishing between genuine client traffic and synthetic traffic generated by bots or tests..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "bot source.", "id": "bot", "stability": "development", "value": "bot"}, {"brief": "synthetic test source.", "id": "test", "stability": "development", "value": "test"}]}`
     */
     case userAgentSyntheticType = "user_agent.synthetic.type"
     /**
@@ -4599,23 +5552,29 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.UserAgentVersion] = "14.1.2"
+        
+    attributes[.UserAgentVersion] = "1.0.0"
     ~~~
 
     - Note: /// [Example](https://www.whatsmyua.info) of extracting browser's version from original string. In the case of using a user-agent for non-browser products, such as microservices with multiple names/versions inside the `user_agent.original`, the most significant version SHOULD be selected. In such a scenario it should align with `user_agent.name`.
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case userAgentVersion = "user_agent.version"
     /**
     /// The type of garbage collection..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "major (mark sweep compact).", "id": "major", "stability": "development", "value": "major"}, {"brief": "minor (scavenge).", "id": "minor", "stability": "development", "value": "minor"}, {"brief": "incremental (incremental marking).", "id": "incremental", "stability": "development", "value": "incremental"}, {"brief": "weak callbacks (process weak callbacks).", "id": "weakcb", "stability": "development", "value": "weakcb"}]}`
     */
     case v8jsGcType = "v8js.gc.type"
     /**
     /// The name of the space type of heap memory..
 
     - Note: /// Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics).
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "new memory space.", "id": "new_space", "stability": "development", "value": "new_space"}, {"brief": "old memory space.", "id": "old_space", "stability": "development", "value": "old_space"}, {"brief": "code memory space.", "id": "code_space", "stability": "development", "value": "code_space"}, {"brief": "map memory space.", "id": "map_space", "stability": "development", "value": "map_space"}, {"brief": "large object memory space.", "id": "large_object_space", "stability": "development", "value": "large_object_space"}]}`
     */
     case v8jsHeapSpaceName = "v8js.heap.space.name"
     /**
@@ -4623,9 +5582,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.VcsChangeId] = "123"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case vcsChangeId = "vcs.change.id"
     /**
@@ -4633,9 +5594,12 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.VcsChangeState] = open
+        attributes[.VcsChangeState] = closed
+        attributes[.VcsChangeState] = merged
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "open means the change is currently active and under review. it hasn't been merged into the target branch yet, and it's still possible to make changes or add comments.", "id": "open", "stability": "development", "value": "open"}, {"brief": "wip (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. it might still undergo significant changes.", "id": "wip", "stability": "development", "value": "wip"}, {"brief": "closed means the merge request has been closed without merging. this can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request.", "id": "closed", "stability": "development", "value": "closed"}, {"brief": "merged indicates that the change has been successfully integrated into the target codebase.", "id": "merged", "stability": "development", "value": "merged"}]}`
     */
     case vcsChangeState = "vcs.change.state"
     /**
@@ -4643,9 +5607,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.VcsChangeTitle] = "Fixes broken thing"
+        
+    attributes[.VcsChangeTitle] = "feat: add my new feature"
+        
+    attributes[.VcsChangeTitle] = "[chore] update dependency"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case vcsChangeTitle = "vcs.change.title"
     /**
@@ -4653,9 +5623,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.VcsLineChangeType] = added
+        attributes[.VcsLineChangeType] = removed
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "how many lines were added.", "id": "added", "stability": "development", "value": "added"}, {"brief": "how many lines were removed.", "id": "removed", "stability": "development", "value": "removed"}]}`
     */
     case vcsLineChangeType = "vcs.line_change.type"
     /**
@@ -4663,9 +5635,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.VcsOwnerName] = "my-org"
+        
+    attributes[.VcsOwnerName] = "myteam"
+        
+    attributes[.VcsOwnerName] = "business-unit"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case vcsOwnerName = "vcs.owner.name"
     /**
@@ -4673,9 +5651,13 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.VcsProviderName] = github
+        attributes[.VcsProviderName] = gitlab
+        attributes[.VcsProviderName] = gitea
+        attributes[.VcsProviderName] = bitbucket
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "[github](https://github.com)", "id": "github", "stability": "development", "value": "github"}, {"brief": "[gitlab](https://gitlab.com)", "id": "gitlab", "stability": "development", "value": "gitlab"}, {"brief": "[gitea](https://gitea.io)", "id": "gitea", "stability": "development", "value": "gitea"}, {"brief": "[bitbucket](https://bitbucket.org)", "id": "bitbucket", "stability": "development", "value": "bitbucket"}]}`
     */
     case vcsProviderName = "vcs.provider.name"
     /**
@@ -4683,13 +5665,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.VcsRefBaseName] = "my-feature-branch"
+        
+    attributes[.VcsRefBaseName] = "tag-1-test"
     ~~~
 
     - Note: /// `base` refers to the starting point of a change. For example, `main`
       /// would be the base reference of type branch if you've created a new
       /// reference of type branch from it and created new commits..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case vcsRefBaseName = "vcs.ref.base.name"
     /**
@@ -4697,7 +5683,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.VcsRefBaseRevision] = "9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc"
+        
+    attributes[.VcsRefBaseRevision] = "main"
+        
+    attributes[.VcsRefBaseRevision] = "123"
+        
+    attributes[.VcsRefBaseRevision] = "HEAD"
     ~~~
 
     - Note: /// `base` refers to the starting point of a change. For example, `main`
@@ -4713,7 +5706,8 @@ public enum ResourceAttributes: String {
       /// it is identical to the `ref.base.name`, it SHOULD still be included.
       /// It is up to the implementer to decide which value to set as the
       /// revision based on the VCS system and situational context..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case vcsRefBaseRevision = "vcs.ref.base.revision"
     /**
@@ -4721,13 +5715,15 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.VcsRefBaseType] = branch
+        attributes[.VcsRefBaseType] = tag
     ~~~
 
     - Note: /// `base` refers to the starting point of a change. For example, `main`
       /// would be the base reference of type branch if you've created a new
       /// reference of type branch from it and created new commits..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "[branch](https://git-scm.com/docs/gitglossary#documentation/gitglossary.txt-aiddefbranchabranch)", "id": "branch", "stability": "development", "value": "branch"}, {"brief": "[tag](https://git-scm.com/docs/gitglossary#documentation/gitglossary.txt-aiddeftagatag)", "id": "tag", "stability": "development", "value": "tag"}]}`
     */
     case vcsRefBaseType = "vcs.ref.base.type"
     /**
@@ -4735,12 +5731,16 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.VcsRefHeadName] = "my-feature-branch"
+        
+    attributes[.VcsRefHeadName] = "tag-1-test"
     ~~~
 
     - Note: /// `head` refers to where you are right now; the current reference at a
       /// given time..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case vcsRefHeadName = "vcs.ref.head.name"
     /**
@@ -4748,7 +5748,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.VcsRefHeadRevision] = "9d59409acf479dfa0df1aa568182e43e43df8bbe28d60fcf2bc52e30068802cc"
+        
+    attributes[.VcsRefHeadRevision] = "main"
+        
+    attributes[.VcsRefHeadRevision] = "123"
+        
+    attributes[.VcsRefHeadRevision] = "HEAD"
     ~~~
 
     - Note: /// `head` refers to where you are right now; the current reference at a
@@ -4762,7 +5769,8 @@ public enum ResourceAttributes: String {
       /// it is identical to the `ref.head.name`, it SHOULD still be included.
       /// It is up to the implementer to decide which value to set as the
       /// revision based on the VCS system and situational context..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case vcsRefHeadRevision = "vcs.ref.head.revision"
     /**
@@ -4770,12 +5778,14 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.VcsRefHeadType] = branch
+        attributes[.VcsRefHeadType] = tag
     ~~~
 
     - Note: /// `head` refers to where you are right now; the current reference at a
       /// given time..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "[branch](https://git-scm.com/docs/gitglossary#documentation/gitglossary.txt-aiddefbranchabranch)", "id": "branch", "stability": "development", "value": "branch"}, {"brief": "[tag](https://git-scm.com/docs/gitglossary#documentation/gitglossary.txt-aiddeftagatag)", "id": "tag", "stability": "development", "value": "tag"}]}`
     */
     case vcsRefHeadType = "vcs.ref.head.type"
     /**
@@ -4783,9 +5793,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.VcsRefType] = branch
+        attributes[.VcsRefType] = tag
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "[branch](https://git-scm.com/docs/gitglossary#documentation/gitglossary.txt-aiddefbranchabranch)", "id": "branch", "stability": "development", "value": "branch"}, {"brief": "[tag](https://git-scm.com/docs/gitglossary#documentation/gitglossary.txt-aiddeftagatag)", "id": "tag", "stability": "development", "value": "tag"}]}`
     */
     case vcsRefType = "vcs.ref.type"
     /**
@@ -4793,13 +5805,17 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.VcsRepositoryName] = "semantic-conventions"
+        
+    attributes[.VcsRepositoryName] = "my-cool-repo"
     ~~~
 
     - Note: /// Due to it only being the name, it can clash with forks of the same
       /// repository if collecting telemetry across multiple orgs or groups in
       /// the same backends..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case vcsRepositoryName = "vcs.repository.name"
     /**
@@ -4807,12 +5823,16 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.VcsRepositoryUrlFull] = "https://github.com/opentelemetry/open-telemetry-collector-contrib"
+        
+    attributes[.VcsRepositoryUrlFull] = "https://gitlab.com/my-org/my-project/my-projects-project/repo"
     ~~~
 
     - Note: /// In Git Version Control Systems, the canonical URL SHOULD NOT include
       /// the `.git` extension..
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case vcsRepositoryUrlFull = "vcs.repository.url.full"
     /**
@@ -4820,9 +5840,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        attributes[.VcsRevisionDeltaDirection] = ahead
+        attributes[.VcsRevisionDeltaDirection] = behind
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `{"members": [{"brief": "how many revisions the change is behind the target ref.", "id": "behind", "stability": "development", "value": "behind"}, {"brief": "how many revisions the change is ahead of the target ref.", "id": "ahead", "stability": "development", "value": "ahead"}]}`
     */
     case vcsRevisionDeltaDirection = "vcs.revision_delta.direction"
     /**
@@ -4830,9 +5852,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.WebengineDescription] = "WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case webengineDescription = "webengine.description"
     /**
@@ -4840,9 +5864,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.WebengineName] = "WildFly"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case webengineName = "webengine.name"
     /**
@@ -4850,9 +5876,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.WebengineVersion] = "21.0.0"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case webengineVersion = "webengine.version"
     /**
@@ -4860,9 +5888,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ZosSmfId] = "SYS1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case zosSmfId = "zos.smf.id"
     /**
@@ -4870,9 +5900,11 @@ public enum ResourceAttributes: String {
 
     ~~~
     // Examples
-
+        
+    attributes[.ZosSysplexName] = "SYSPLEX1"
     ~~~
-    - Requires: Value type should be ``
+
+    - Requires: Value type should be `String`
     */
     case zosSysplexName = "zos.sysplex.name"
 }

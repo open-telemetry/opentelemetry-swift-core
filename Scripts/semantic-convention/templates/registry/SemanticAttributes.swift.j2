@@ -26,6 +26,14 @@
 
 {%- set enum = params.enum -%}
 
+{%- macro print_example(attribute, example) -%}
+  {%- if attribute.type|lower == "string" %}
+    attributes[.{{attribute.name | pascal_case}}] = "{{example | replace("\"", "\\\"")}}"
+  {%- else -%}
+    attributes[.{{attribute.name | pascal_case}}] = {{example}}
+  {%- endif -%}
+{%- endmacro -%}
+
 import Foundation
 
 public enum {{ enum }}: String {
@@ -38,7 +46,13 @@ public enum {{ enum }}: String {
 
     ~~~
     // Examples
-
+    {%- if attribute.examples is sequence %}
+      {%- for example in attribute.examples %}
+        {{ print_example(attribute, example) }} 
+      {%- endfor %}
+    {%- else -%}
+      {{ print_example(attribute, attribute.examples) }}
+    {%- endif %}
     ~~~
     {%- endif %}
     {%- if attribute.note %}
@@ -53,7 +67,8 @@ public enum {{ enum }}: String {
     {%- if attribute.is_enum %}
     - Requires: Value should be one of [`{{enum}}.{{class_name}}`](x-source-tag://otel{{class_name}}) (of type `{{to_swift_return_type(attribute.attr_type|lower)}}`)
     {% else %}
-    - Requires: Value type should be `{{to_swift_return_type(attribute.attr_type|lower)}}`
+
+    - Requires: Value type should be `{{to_swift_return_type(attribute.type|lower)}}`
     {% endif -%}
     */
     {%- if attribute.deprecated %}
