@@ -1,5 +1,5 @@
 params:
-  excluded_namespaces: [aws, artifact, azure, cassandra, cloudevents, gen_ai, cloudfoundry, db, aspnetcore, cicd, signalr, gcp, android, dotnet, jvm, kestrel, browser, cloud, container, deployment, faas, feature_flag]
+  excluded_namespaces: [aws, artifact, azure, rpc, cloudevents, gen_ai, cloudfoundry, aspnetcore, cicd, signalr, gcp, android, dotnet, jvm, kestrel, browser, cloud, container, deployment, faas, feature_flag]
 comment_formats:
   default:
     format: markdown
@@ -16,4 +16,5 @@ templates:
         root_namespace: .root_namespace,
         attributes: .attributes,
       })
+    file_name: "{{ params.enum }}.swift"
     application_mode: single
