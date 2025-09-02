@@ -1,9 +1,11 @@
 params:
-  excluded_namespaces: [aws, artifact, azure, rpc, cloudevents, gen_ai, cloudfoundry, aspnetcore, cicd, signalr, gcp, android, dotnet, jvm, kestrel, browser, cloud, container, deployment, faas, feature_flag]
+  excluded_namespaces: [aws, artifact, azure, rpc, cloudevents, gen_ai, cloudfoundry, aspnetcore, cicd, signalr, gcp, android, dotnet, k8s, jvm, kestrel, browser, cloud, container, deployment, faas, feature_flag]
 comment_formats:
   default:
     format: markdown
-    prefix: "/// "
+whitespace_control:
+  trim_blocks: true
+  lstrip_blocks: true
 templates:
   - pattern: SemanticAttributes.swift.j2
     filter: >
