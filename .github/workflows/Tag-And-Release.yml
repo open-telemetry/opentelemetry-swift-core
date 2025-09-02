@@ -67,7 +67,7 @@ jobs:
         if: steps.check-tag.outputs.exists != 'true'
         uses: ncipollo/release-action@bcfe5470707e8832e12347755757cec0eb3c22af # v1.18.0
         with: 
-          tag: ${{ steps.check-release.outputs.version }}
+          tag: ${{ steps.parse.outputs.version }}
           prerelease: true
           generateReleaseNotes: true
 
