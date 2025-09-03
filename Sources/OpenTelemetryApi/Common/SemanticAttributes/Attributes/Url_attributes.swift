@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Url: String {
 
-
     /**
      Domain extracted from the `url.full`, such as "opentelemetry.io".
 
@@ -28,7 +27,6 @@ extension SemanticConventions {
     */
     case domain = "url.domain"
 
-
     /**
      The file extension extracted from the `url.full`, excluding the leading dot.
 
@@ -44,7 +42,6 @@ extension SemanticConventions {
     */
     case _extension = "url.extension"
 
-
     /**
      The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component
 
@@ -57,7 +54,6 @@ extension SemanticConventions {
     */
     case fragment = "url.fragment"
 
-
     /**
      Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986)
 
@@ -68,33 +64,32 @@ extension SemanticConventions {
       ```
 
      - Note: For network calls, URL usually has `scheme://host[:port][path][?query][#fragment]` format, where the fragment
-     is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
+       is not transmitted over HTTP, but if it is known, it SHOULD be included nevertheless.
 
-     `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`.
-     In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
+       `url.full` MUST NOT contain credentials passed via URL in form of `https://username:password@www.example.com/`.
+       In such case username and password SHOULD be redacted and attribute's value SHOULD be `https://REDACTED:REDACTED@www.example.com/`.
 
-     `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
+       `url.full` SHOULD capture the absolute URL when it is available (or can be reconstructed).
 
-     Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
+       Sensitive content provided in `url.full` SHOULD be scrubbed when instrumentations can identify it.
 
 
-     Query string values for the following keys SHOULD be redacted by default and replaced by the
-     value `REDACTED`:
+       Query string values for the following keys SHOULD be redacted by default and replaced by the
+       value `REDACTED`:
 
-     - [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
-     - [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
-     - [`sig`](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token)
-     - [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
+       - [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+       - [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+       - [`sig`](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token)
+       - [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
-     This list is subject to change over time.
+       This list is subject to change over time.
 
-     When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
-     `https://www.example.com/path?color=blue&sig=REDACTED`.
+       When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
+       `https://www.example.com/path?color=blue&sig=REDACTED`.
 
      - Requires: Value type should be `String`
     */
     case full = "url.full"
-
 
     /**
      Unmodified original URL as seen in the event source.
@@ -106,12 +101,11 @@ extension SemanticConventions {
       ```
 
      - Note: In network monitoring, the observed URL may be a full URL, whereas in access logs, the URL is often just represented as a path. This field is meant to represent the URL as it was observed, complete or not.
-     `url.original` might contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case password and username SHOULD NOT be redacted and attribute's value SHOULD remain the same.
+       `url.original` might contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case password and username SHOULD NOT be redacted and attribute's value SHOULD remain the same.
 
      - Requires: Value type should be `String`
     */
     case original = "url.original"
-
 
     /**
      The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component
@@ -127,7 +121,6 @@ extension SemanticConventions {
     */
     case path = "url.path"
 
-
     /**
      Port extracted from the `url.full`
 
@@ -140,7 +133,6 @@ extension SemanticConventions {
     */
     case port = "url.port"
 
-
     /**
      The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component
 
@@ -152,22 +144,21 @@ extension SemanticConventions {
      - Note: Sensitive content provided in `url.query` SHOULD be scrubbed when instrumentations can identify it.
 
 
-     Query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
+       Query string values for the following keys SHOULD be redacted by default and replaced by the value `REDACTED`:
 
-     - [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
-     - [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
-     - [`sig`](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token)
-     - [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
+       - [`AWSAccessKeyId`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+       - [`Signature`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RESTAuthentication.html#RESTAuthenticationQueryStringAuth)
+       - [`sig`](https://learn.microsoft.com/azure/storage/common/storage-sas-overview#sas-token)
+       - [`X-Goog-Signature`](https://cloud.google.com/storage/docs/access-control/signed-urls)
 
-     This list is subject to change over time.
+       This list is subject to change over time.
 
-     When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
-     `q=OpenTelemetry&sig=REDACTED`.
+       When a query string value is redacted, the query string key SHOULD still be preserved, e.g.
+       `q=OpenTelemetry&sig=REDACTED`.
 
      - Requires: Value type should be `String`
     */
     case query = "url.query"
-
 
     /**
      The highest registered url domain, stripped of the subdomain.
@@ -184,7 +175,6 @@ extension SemanticConventions {
     */
     case registeredDomain = "url.registered_domain"
 
-
     /**
      The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol.
 
@@ -198,7 +188,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case scheme = "url.scheme"
-
 
     /**
      The subdomain portion of a fully qualified domain name includes all of the names except the host name under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain.
@@ -215,7 +204,6 @@ extension SemanticConventions {
     */
     case subdomain = "url.subdomain"
 
-
     /**
      The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
 
@@ -229,7 +217,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case template = "url.template"
-
 
     /**
      The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name. For example, the top level domain for example.com is `com`.
@@ -245,19 +232,5 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case topLevelDomain = "url.top_level_domain"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
 }

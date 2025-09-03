@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Exception: String {
 
-
     /**
      The exception message.
 
@@ -24,21 +23,18 @@ extension SemanticConventions {
     */
     case message = "exception.message"
 
-
     /**
      A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Exception.stacktrace.rawValue] = "Exception in thread \"main\" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)
-   "
+      attributes[SemanticConventions.Exception.stacktrace.rawValue] = "Exception in thread \"main\" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)
+      "
       ```
 
      - Requires: Value type should be `String`
     */
     case stacktrace = "exception.stacktrace"
-
 
     /**
      The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it.
@@ -52,9 +48,5 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case type = "exception.type"
-
-
-
-
   }
 }

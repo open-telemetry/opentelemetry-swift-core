@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Profile: String {
 
-
     /**
      Describes the interpreter or compiler of a single frame.
 
@@ -23,59 +22,45 @@ extension SemanticConventions {
     */
     case frameType = "profile.frame.type"
 
-
-
     /** 
       Describes the interpreter or compiler of a single frame.
     */
     public struct FrameTypeValues: CustomStringConvertible {
-      /**
-      [.NET](https://wikipedia.org/wiki/.NET)
-      */
+      
+      /// [.NET](https://wikipedia.org/wiki/.NET)
       public static let dotnet = FrameTypeValues("dotnet") 
-      /**
-      [JVM](https://wikipedia.org/wiki/Java_virtual_machine)
-      */
+      
+      /// [JVM](https://wikipedia.org/wiki/Java_virtual_machine)
       public static let jvm = FrameTypeValues("jvm") 
-      /**
-      [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system))
-      */
+      
+      /// [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system))
       public static let kernel = FrameTypeValues("kernel") 
-      /**
-      Can be one of but not limited to [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)) or [Rust](https://wikipedia.org/wiki/Rust_(programming_language)). If possible, a more precise value MUST be used.
-      */
+      
+      /// Can be one of but not limited to [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)) or [Rust](https://wikipedia.org/wiki/Rust_(programming_language)). If possible, a more precise value MUST be used.
       public static let native = FrameTypeValues("native") 
-      /**
-      [Perl](https://wikipedia.org/wiki/Perl)
-      */
+      
+      /// [Perl](https://wikipedia.org/wiki/Perl)
       public static let perl = FrameTypeValues("perl") 
-      /**
-      [PHP](https://wikipedia.org/wiki/PHP)
-      */
+      
+      /// [PHP](https://wikipedia.org/wiki/PHP)
       public static let php = FrameTypeValues("php") 
-      /**
-      [Python](https://wikipedia.org/wiki/Python_(programming_language))
-      */
+      
+      /// [Python](https://wikipedia.org/wiki/Python_(programming_language))
       public static let cpython = FrameTypeValues("cpython") 
-      /**
-      [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language))
-      */
+      
+      /// [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language))
       public static let ruby = FrameTypeValues("ruby") 
-      /**
-      [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine))
-      */
+      
+      /// [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine))
       public static let v8js = FrameTypeValues("v8js") 
-      /**
-      [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine))
-      */
+      
+      /// [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine))
       public static let beam = FrameTypeValues("beam") 
-      /**
-      [Go](https://wikipedia.org/wiki/Go_(programming_language)),
-      */
+      
+      /// [Go](https://wikipedia.org/wiki/Go_(programming_language)),
       public static let go = FrameTypeValues("go") 
-      /**
-      [Rust](https://wikipedia.org/wiki/Rust_(programming_language))
-      */
+      
+      /// [Rust](https://wikipedia.org/wiki/Rust_(programming_language))
       public static let rust = FrameTypeValues("rust") 
 
       internal let value: String 

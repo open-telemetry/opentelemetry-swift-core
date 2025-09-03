@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum App: String {
 
-
     /**
      Unique identifier for a particular build or compilation of the application.
 
@@ -25,7 +24,6 @@ extension SemanticConventions {
     */
     case buildId = "app.build_id"
 
-
     /**
      A unique identifier representing the installation of an application on a specific device
 
@@ -35,27 +33,26 @@ extension SemanticConventions {
       ```
 
      - Note: Its value SHOULD persist across launches of the same application installation, including through application upgrades.
-     It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
-     Additionally, users might be able to reset this value (e.g. by clearing application data).
-     If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.
-     If multiple OpenTelemetry SDKs are used within the same application, they SHOULD use the same value for `app.installation.id`.
-     Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the `app.installation.id`.
+       It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
+       Additionally, users might be able to reset this value (e.g. by clearing application data).
+       If an app is installed multiple times on the same device (e.g. in different accounts on Android), each `app.installation.id` SHOULD have a different value.
+       If multiple OpenTelemetry SDKs are used within the same application, they SHOULD use the same value for `app.installation.id`.
+       Hardware IDs (e.g. serial number, IMEI, MAC address) MUST NOT be used as the `app.installation.id`.
 
-     For iOS, this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
+       For iOS, this value SHOULD be equal to the [vendor identifier](https://developer.apple.com/documentation/uikit/uidevice/identifierforvendor).
 
-     For Android, examples of `app.installation.id` implementations include:
+       For Android, examples of `app.installation.id` implementations include:
 
-     - [Firebase Installation ID](https://firebase.google.com/docs/projects/manage-installations).
-     - A globally unique UUID which is persisted across sessions in your application.
-     - [App set ID](https://developer.android.com/identity/app-set-id).
-     - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
+       - [Firebase Installation ID](https://firebase.google.com/docs/projects/manage-installations).
+       - A globally unique UUID which is persisted across sessions in your application.
+       - [App set ID](https://developer.android.com/identity/app-set-id).
+       - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
 
-     More information about Android identifier best practices can be found in the [Android user data IDs guide](https://developer.android.com/training/articles/user-data-ids).
+       More information about Android identifier best practices can be found in the [Android user data IDs guide](https://developer.android.com/training/articles/user-data-ids).
 
      - Requires: Value type should be `String`
     */
     case installationId = "app.installation.id"
-
 
     /**
      A number of frame renders that experienced jank.
@@ -72,7 +69,6 @@ extension SemanticConventions {
     */
     case jankFrameCount = "app.jank.frame_count"
 
-
     /**
      The time period, in seconds, for which this jank is being reported.
 
@@ -86,7 +82,6 @@ extension SemanticConventions {
      - Requires: Value type should be `Double`
     */
     case jankPeriod = "app.jank.period"
-
 
     /**
      The minimum rendering threshold for this jank, in seconds.
@@ -102,7 +97,6 @@ extension SemanticConventions {
     */
     case jankThreshold = "app.jank.threshold"
 
-
     /**
      The x (horizontal) coordinate of a screen coordinate, in screen pixels.
 
@@ -116,7 +110,6 @@ extension SemanticConventions {
     */
     case screenCoordinateX = "app.screen.coordinate.x"
 
-
     /**
      The y (vertical) component of a screen coordinate, in screen pixels.
 
@@ -129,7 +122,6 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case screenCoordinateY = "app.screen.coordinate.y"
-
 
     /**
      An identifier that uniquely differentiates this widget from other widgets in the same application.
@@ -146,7 +138,6 @@ extension SemanticConventions {
     */
     case widgetId = "app.widget.id"
 
-
     /**
      The name of an application widget.
 
@@ -162,15 +153,5 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case widgetName = "app.widget.name"
-
-
-
-
-
-
-
-
-
-
   }
 }

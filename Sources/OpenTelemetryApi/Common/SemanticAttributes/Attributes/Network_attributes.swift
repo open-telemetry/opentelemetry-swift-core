@@ -10,62 +10,53 @@ import Foundation
 extension SemanticConventions {
   public enum Network: String {
 
-
     /**
      The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Network.carrierIcc.rawValue] = "DE"
+      attributes[SemanticConventions.Network.carrierIcc.rawValue] = "DE"
       ```
 
      - Requires: Value type should be `String`
     */
     case carrierIcc = "network.carrier.icc"
 
-
     /**
      The mobile carrier country code.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Network.carrierMcc.rawValue] = "310"
+      attributes[SemanticConventions.Network.carrierMcc.rawValue] = "310"
       ```
 
      - Requires: Value type should be `String`
     */
     case carrierMcc = "network.carrier.mcc"
 
-
     /**
      The mobile carrier network code.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Network.carrierMnc.rawValue] = "001"
+      attributes[SemanticConventions.Network.carrierMnc.rawValue] = "001"
       ```
 
      - Requires: Value type should be `String`
     */
     case carrierMnc = "network.carrier.mnc"
 
-
     /**
      The name of the mobile carrier.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Network.carrierName.rawValue] = "sprint"
+      attributes[SemanticConventions.Network.carrierName.rawValue] = "sprint"
       ```
 
      - Requires: Value type should be `String`
     */
     case carrierName = "network.carrier.name"
-
 
     /**
      The state of network connection
@@ -81,34 +72,29 @@ extension SemanticConventions {
     */
     case connectionState = "network.connection.state"
 
-
     /**
      This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Network.connectionSubtype.rawValue] = .LTE
+      attributes[SemanticConventions.Network.connectionSubtype.rawValue] = .LTE
       ```
 
      - Requires: Value should be one of ``ConnectionSubtypeValues`` (of type `String`)
     */
     case connectionSubtype = "network.connection.subtype"
 
-
     /**
      The internet connection type.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Network.connectionType.rawValue] = .wifi
+      attributes[SemanticConventions.Network.connectionType.rawValue] = .wifi
       ```
 
      - Requires: Value should be one of ``ConnectionTypeValues`` (of type `String`)
     */
     case connectionType = "network.connection.type"
-
 
     /**
      The network interface name.
@@ -123,7 +109,6 @@ extension SemanticConventions {
     */
     case interfaceName = "network.interface.name"
 
-
     /**
      The network IO operation direction.
 
@@ -135,7 +120,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``IoDirectionValues`` (of type `String`)
     */
     case ioDirection = "network.io.direction"
-
 
     /**
      Local address of the network connection - IP address or Unix domain socket name.
@@ -150,7 +134,6 @@ extension SemanticConventions {
     */
     case localAddress = "network.local.address"
 
-
     /**
      Local port number of the network connection.
 
@@ -162,7 +145,6 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case localPort = "network.local.port"
-
 
     /**
      Peer address of the network connection - IP address or Unix domain socket name.
@@ -177,7 +159,6 @@ extension SemanticConventions {
     */
     case peerAddress = "network.peer.address"
 
-
     /**
      Peer port number of the network connection.
 
@@ -189,7 +170,6 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case peerPort = "network.peer.port"
-
 
     /**
      [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent.
@@ -207,7 +187,6 @@ extension SemanticConventions {
     */
     case protocolName = "network.protocol.name"
 
-
     /**
      The actual version of the protocol used for network communication.
 
@@ -223,7 +202,6 @@ extension SemanticConventions {
     */
     case protocolVersion = "network.protocol.version"
 
-
     /**
      [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
 
@@ -235,14 +213,13 @@ extension SemanticConventions {
 
      - Note: The value SHOULD be normalized to lowercase.
 
-     Consider always setting the transport when setting a port number, since
-     a port number is ambiguous without knowing the transport. For example
-     different processes could be listening on TCP port 12345 and UDP port 12345.
+       Consider always setting the transport when setting a port number, since
+       a port number is ambiguous without knowing the transport. For example
+       different processes could be listening on TCP port 12345 and UDP port 12345.
 
      - Requires: Value should be one of ``TransportValues`` (of type `String`)
     */
     case transport = "network.transport"
-
 
     /**
      [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.
@@ -258,12 +235,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``TypeValues`` (of type `String`)
     */
     case type = "network.type"
-
-
-
-
-
-
 
     /** 
       The state of network connection
@@ -292,94 +263,72 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
     */
     public struct ConnectionSubtypeValues: CustomStringConvertible {
-      /**
-      GPRS
-      */
+      
+      /// GPRS
       public static let gprs = ConnectionSubtypeValues("gprs") 
-      /**
-      EDGE
-      */
+      
+      /// EDGE
       public static let edge = ConnectionSubtypeValues("edge") 
-      /**
-      UMTS
-      */
+      
+      /// UMTS
       public static let umts = ConnectionSubtypeValues("umts") 
-      /**
-      CDMA
-      */
+      
+      /// CDMA
       public static let cdma = ConnectionSubtypeValues("cdma") 
-      /**
-      EVDO Rel. 0
-      */
+      
+      /// EVDO Rel. 0
       public static let evdo0 = ConnectionSubtypeValues("evdo_0") 
-      /**
-      EVDO Rev. A
-      */
+      
+      /// EVDO Rev. A
       public static let evdoA = ConnectionSubtypeValues("evdo_a") 
-      /**
-      CDMA2000 1XRTT
-      */
+      
+      /// CDMA2000 1XRTT
       public static let cdma20001xrtt = ConnectionSubtypeValues("cdma2000_1xrtt") 
-      /**
-      HSDPA
-      */
+      
+      /// HSDPA
       public static let hsdpa = ConnectionSubtypeValues("hsdpa") 
-      /**
-      HSUPA
-      */
+      
+      /// HSUPA
       public static let hsupa = ConnectionSubtypeValues("hsupa") 
-      /**
-      HSPA
-      */
+      
+      /// HSPA
       public static let hspa = ConnectionSubtypeValues("hspa") 
-      /**
-      IDEN
-      */
+      
+      /// IDEN
       public static let iden = ConnectionSubtypeValues("iden") 
-      /**
-      EVDO Rev. B
-      */
+      
+      /// EVDO Rev. B
       public static let evdoB = ConnectionSubtypeValues("evdo_b") 
-      /**
-      LTE
-      */
+      
+      /// LTE
       public static let lte = ConnectionSubtypeValues("lte") 
-      /**
-      EHRPD
-      */
+      
+      /// EHRPD
       public static let ehrpd = ConnectionSubtypeValues("ehrpd") 
-      /**
-      HSPAP
-      */
+      
+      /// HSPAP
       public static let hspap = ConnectionSubtypeValues("hspap") 
-      /**
-      GSM
-      */
+      
+      /// GSM
       public static let gsm = ConnectionSubtypeValues("gsm") 
-      /**
-      TD-SCDMA
-      */
+      
+      /// TD-SCDMA
       public static let tdScdma = ConnectionSubtypeValues("td_scdma") 
-      /**
-      IWLAN
-      */
+      
+      /// IWLAN
       public static let iwlan = ConnectionSubtypeValues("iwlan") 
-      /**
-      5G NR (New Radio)
-      */
+      
+      /// 5G NR (New Radio)
       public static let nr = ConnectionSubtypeValues("nr") 
-      /**
-      5G NRNSA (New Radio Non-Standalone)
-      */
+      
+      /// 5G NRNSA (New Radio Non-Standalone)
       public static let nrnsa = ConnectionSubtypeValues("nrnsa") 
-      /**
-      LTE CA
-      */
+      
+      /// LTE CA
       public static let lteCa = ConnectionSubtypeValues("lte_ca") 
 
       internal let value: String 
@@ -392,7 +341,6 @@ extension SemanticConventions {
         return value
       }
     }
-
 
     /** 
       The internet connection type.
@@ -415,8 +363,6 @@ extension SemanticConventions {
       }
     }
 
-
-
     /** 
       The network IO operation direction.
     */
@@ -435,36 +381,24 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
-
-
-
     /** 
       [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
     */
     public struct TransportValues: CustomStringConvertible {
-      /**
-      TCP
-      */
+      
+      /// TCP
       public static let tcp = TransportValues("tcp") 
-      /**
-      UDP
-      */
+      
+      /// UDP
       public static let udp = TransportValues("udp") 
-      /**
-      Named or anonymous pipe.
-      */
+      
+      /// Named or anonymous pipe.
       public static let pipe = TransportValues("pipe") 
-      /**
-      Unix domain socket
-      */
+      
+      /// Unix domain socket
       public static let unix = TransportValues("unix") 
-      /**
-      QUIC
-      */
+      
+      /// QUIC
       public static let quic = TransportValues("quic") 
 
       internal let value: String 
@@ -478,18 +412,15 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.
     */
     public struct TypeValues: CustomStringConvertible {
-      /**
-      IPv4
-      */
+      
+      /// IPv4
       public static let ipv4 = TypeValues("ipv4") 
-      /**
-      IPv6
-      */
+      
+      /// IPv6
       public static let ipv6 = TypeValues("ipv6") 
 
       internal let value: String 

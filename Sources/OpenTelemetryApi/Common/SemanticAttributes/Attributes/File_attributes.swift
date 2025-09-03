@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum File: String {
 
-
     /**
      Time when the file was last accessed, in ISO 8601 format.
 
@@ -24,7 +23,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case accessed = "file.accessed"
-
 
     /**
      Array of file attributes.
@@ -40,7 +38,6 @@ extension SemanticConventions {
     */
     case attributes = "file.attributes"
 
-
     /**
      Time when the file attributes or metadata was last changed, in ISO 8601 format.
 
@@ -54,7 +51,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case changed = "file.changed"
-
 
     /**
      Time when the file was created, in ISO 8601 format.
@@ -70,7 +66,6 @@ extension SemanticConventions {
     */
     case created = "file.created"
 
-
     /**
      Directory where the file is located. It should include the drive letter, when appropriate.
 
@@ -83,7 +78,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case directory = "file.directory"
-
 
     /**
      File extension, excluding the leading dot.
@@ -100,7 +94,6 @@ extension SemanticConventions {
     */
     case _extension = "file.extension"
 
-
     /**
      Name of the fork. A fork is additional data associated with a filesystem object.
 
@@ -110,12 +103,11 @@ extension SemanticConventions {
       ```
 
      - Note: On Linux, a resource fork is used to store additional data with a filesystem object. A file always has at least one fork for the data portion, and additional forks may exist.
-     On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
+       On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
 
      - Requires: Value type should be `String`
     */
     case forkName = "file.fork_name"
-
 
     /**
      Primary Group ID (GID) of the file.
@@ -129,7 +121,6 @@ extension SemanticConventions {
     */
     case groupId = "file.group.id"
 
-
     /**
      Primary group name of the file.
 
@@ -141,7 +132,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case groupName = "file.group.name"
-
 
     /**
      Inode representing the file in the filesystem.
@@ -155,7 +145,6 @@ extension SemanticConventions {
     */
     case inode = "file.inode"
 
-
     /**
      Mode of the file in octal representation.
 
@@ -167,7 +156,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case mode = "file.mode"
-
 
     /**
      Time when the file content was last modified, in ISO 8601 format.
@@ -181,7 +169,6 @@ extension SemanticConventions {
     */
     case modified = "file.modified"
 
-
     /**
      Name of the file including the extension, without the directory.
 
@@ -193,7 +180,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case name = "file.name"
-
 
     /**
      The user ID (UID) or security identifier (SID) of the file owner.
@@ -207,7 +193,6 @@ extension SemanticConventions {
     */
     case ownerId = "file.owner.id"
 
-
     /**
      Username of the file owner.
 
@@ -219,7 +204,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case ownerName = "file.owner.name"
-
 
     /**
      Full path to the file, including the file name. It should include the drive letter, when appropriate.
@@ -234,15 +218,12 @@ extension SemanticConventions {
     */
     case path = "file.path"
 
-
     /**
      File size in bytes.
-      ```
 
      - Requires: Value type should be `Int`
     */
     case size = "file.size"
-
 
     /**
      Path to the target of a symbolic link.
@@ -257,24 +238,5 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case symbolicLinkTargetPath = "file.symbolic_link.target_path"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
 }

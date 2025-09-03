@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Telemetry: String {
 
-
     /**
      The name of the auto instrumentation agent or distribution, if used.
 
@@ -20,12 +19,11 @@ extension SemanticConventions {
       ```
 
      - Note: Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
-     a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
+       a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
 
      - Requires: Value type should be `String`
     */
     case distroName = "telemetry.distro.name"
-
 
     /**
      The version string of the auto instrumentation agent or distribution, if used.
@@ -39,15 +37,12 @@ extension SemanticConventions {
     */
     case distroVersion = "telemetry.distro.version"
 
-
     /**
      The language of the telemetry SDK.
-      ```
 
      - Requires: Value should be one of ``SdkLanguageValues`` (of type `String`)
     */
     case sdkLanguage = "telemetry.sdk.language"
-
 
     /**
      The name of the telemetry SDK as defined above.
@@ -58,16 +53,15 @@ extension SemanticConventions {
       ```
 
      - Note: The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
-     If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
-     `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point
-     or another suitable identifier depending on the language.
-     The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
-     All custom identifiers SHOULD be stable across different versions of an implementation.
+       If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
+       `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point
+       or another suitable identifier depending on the language.
+       The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
+       All custom identifiers SHOULD be stable across different versions of an implementation.
 
      - Requires: Value type should be `String`
     */
     case sdkName = "telemetry.sdk.name"
-
 
     /**
      The version string of the telemetry SDK.
@@ -80,10 +74,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case sdkVersion = "telemetry.sdk.version"
-
-
-
-
 
     /** 
       The language of the telemetry SDK.
@@ -112,7 +102,5 @@ extension SemanticConventions {
         return value
       }
     }
-
-
   }
 }

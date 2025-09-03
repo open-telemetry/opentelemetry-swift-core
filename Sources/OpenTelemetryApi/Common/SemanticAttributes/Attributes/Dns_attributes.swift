@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Dns: String {
 
-
     /**
      The list of IPv4 or IPv6 addresses resolved during DNS lookup.
 
@@ -22,7 +21,6 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case answers = "dns.answers"
-
 
     /**
      The name being queried.
@@ -38,8 +36,5 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case questionName = "dns.question.name"
-
-
-
   }
 }

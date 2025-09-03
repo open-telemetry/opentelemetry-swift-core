@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum System: String {
 
-
     /**
      Deprecated, use `cpu.logical_number` instead.
 
@@ -22,7 +21,6 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case cpuLogicalNumber = "system.cpu.logical_number"
-
 
     /**
      The device identifier
@@ -36,7 +34,6 @@ extension SemanticConventions {
     */
     case device = "system.device"
 
-
     /**
      The filesystem mode
 
@@ -48,7 +45,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case fileMode = "system.filesystem.mode"
-
 
     /**
      The filesystem mount path
@@ -62,7 +58,6 @@ extension SemanticConventions {
     */
     case fileMountpoint = "system.filesystem.mountpoint"
 
-
     /**
      The filesystem state
 
@@ -75,7 +70,6 @@ extension SemanticConventions {
     */
     case fileState = "system.filesystem.state"
 
-
     /**
      The filesystem type
 
@@ -87,7 +81,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``FileTypeValues`` (of type `String`)
     */
     case fileType = "system.filesystem.type"
-
 
     /**
      The memory state
@@ -102,7 +95,6 @@ extension SemanticConventions {
     */
     case memoryState = "system.memory.state"
 
-
     /**
      The paging access direction
 
@@ -114,7 +106,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``PagingDirectionValues`` (of type `String`)
     */
     case pagingDirection = "system.paging.direction"
-
 
     /**
      The memory paging state
@@ -128,7 +119,6 @@ extension SemanticConventions {
     */
     case pagingState = "system.paging.state"
 
-
     /**
      The memory paging type
 
@@ -141,7 +131,6 @@ extension SemanticConventions {
     */
     case pagingType = "system.paging.type"
 
-
     /**
      The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
 
@@ -153,12 +142,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``ProcessStatusValues`` (of type `String`)
     */
     case processStatus = "system.process.status"
-
-
-
-
-
-
 
     /** 
       The filesystem state
@@ -178,7 +161,6 @@ extension SemanticConventions {
         return value
       }
     }
-
 
     /** 
       The filesystem type
@@ -202,14 +184,12 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       The memory state
     */
     public struct MemoryStateValues: CustomStringConvertible {
-      /**
-      Actual used virtual memory in bytes.
-      */
+      
+      /// Actual used virtual memory in bytes.
       public static let used = MemoryStateValues("used") 
       public static let free = MemoryStateValues("free") 
       public static let buffers = MemoryStateValues("buffers") 
@@ -225,7 +205,6 @@ extension SemanticConventions {
         return value
       }
     }
-
 
     /** 
       The paging access direction
@@ -245,7 +224,6 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       The memory paging state
     */
@@ -264,7 +242,6 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       The memory paging type
     */
@@ -282,7 +259,6 @@ extension SemanticConventions {
         return value
       }
     }
-
 
     /** 
       The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)

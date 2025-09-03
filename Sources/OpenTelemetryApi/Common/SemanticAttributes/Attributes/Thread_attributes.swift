@@ -10,35 +10,28 @@ import Foundation
 extension SemanticConventions {
   public enum Thread: String {
 
-
     /**
      Current "managed" thread ID (as opposed to OS thread ID).
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Thread.id.rawValue] = 42
+      attributes[SemanticConventions.Thread.id.rawValue] = 42
       ```
 
      - Requires: Value type should be `Int`
     */
     case id = "thread.id"
 
-
     /**
      Current thread name.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Thread.name.rawValue] = "main"
+      attributes[SemanticConventions.Thread.name.rawValue] = "main"
       ```
 
      - Requires: Value type should be `String`
     */
     case name = "thread.name"
-
-
-
   }
 }

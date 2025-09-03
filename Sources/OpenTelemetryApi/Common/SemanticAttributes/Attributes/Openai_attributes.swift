@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Openai: String {
 
-
     /**
      The service tier requested. May be a specific tier, default, or auto.
 
@@ -23,7 +22,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``RequestServiceTierValues`` (of type `String`)
     */
     case requestServiceTier = "openai.request.service_tier"
-
 
     /**
      The service tier used for the response.
@@ -38,7 +36,6 @@ extension SemanticConventions {
     */
     case responseServiceTier = "openai.response.service_tier"
 
-
     /**
      A fingerprint to track any eventual change in the Generative AI environment.
 
@@ -51,19 +48,15 @@ extension SemanticConventions {
     */
     case responseSystemFingerprint = "openai.response.system_fingerprint"
 
-
-
     /** 
       The service tier requested. May be a specific tier, default, or auto.
     */
     public struct RequestServiceTierValues: CustomStringConvertible {
-      /**
-      The system will utilize scale tier credits until they are exhausted.
-      */
+      
+      /// The system will utilize scale tier credits until they are exhausted.
       public static let auto = RequestServiceTierValues("auto") 
-      /**
-      The system will utilize the default scale tier.
-      */
+      
+      /// The system will utilize the default scale tier.
       public static let _default = RequestServiceTierValues("default") 
 
       internal let value: String 
@@ -76,7 +69,5 @@ extension SemanticConventions {
         return value
       }
     }
-
-
   }
 }

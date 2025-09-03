@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Signalr: String {
 
-
     /**
      SignalR HTTP connection closure status.
 
@@ -23,7 +22,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``ConnectionStatusValues`` (of type `String`)
     */
     case connectionStatus = "signalr.connection.status"
-
 
     /**
      [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md)
@@ -38,23 +36,18 @@ extension SemanticConventions {
     */
     case transport = "signalr.transport"
 
-
-
     /** 
       SignalR HTTP connection closure status.
     */
     public struct ConnectionStatusValues: CustomStringConvertible {
-      /**
-      The connection was closed normally.
-      */
+      
+      /// The connection was closed normally.
       public static let normalClosure = ConnectionStatusValues("normal_closure") 
-      /**
-      The connection was closed due to a timeout.
-      */
+      
+      /// The connection was closed due to a timeout.
       public static let timeout = ConnectionStatusValues("timeout") 
-      /**
-      The connection was closed because the app is shutting down.
-      */
+      
+      /// The connection was closed because the app is shutting down.
       public static let appShutdown = ConnectionStatusValues("app_shutdown") 
 
       internal let value: String 
@@ -68,22 +61,18 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md)
     */
     public struct TransportValues: CustomStringConvertible {
-      /**
-      ServerSentEvents protocol
-      */
+      
+      /// ServerSentEvents protocol
       public static let serverSentEvents = TransportValues("server_sent_events") 
-      /**
-      LongPolling protocol
-      */
+      
+      /// LongPolling protocol
       public static let longPolling = TransportValues("long_polling") 
-      /**
-      WebSockets protocol
-      */
+      
+      /// WebSockets protocol
       public static let webSockets = TransportValues("web_sockets") 
 
       internal let value: String 

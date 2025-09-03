@@ -10,10 +10,8 @@ import Foundation
 extension SemanticConventions {
   public enum Ios: String {
 
-
     /**
      This attribute represents the state of the application.
-      ```
 
      - Note: The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
 
@@ -21,31 +19,24 @@ extension SemanticConventions {
     */
     case appState = "ios.app.state"
 
-
-
     /** 
       This attribute represents the state of the application.
     */
     public struct AppStateValues: CustomStringConvertible {
-      /**
-      The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`.
-      */
+      
+      /// The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`.
       public static let active = AppStateValues("active") 
-      /**
-      The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`.
-      */
+      
+      /// The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`.
       public static let inactive = AppStateValues("inactive") 
-      /**
-      The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`.
-      */
+      
+      /// The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`.
       public static let background = AppStateValues("background") 
-      /**
-      The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`.
-      */
+      
+      /// The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`.
       public static let foreground = AppStateValues("foreground") 
-      /**
-      The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
-      */
+      
+      /// The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
       public static let terminate = AppStateValues("terminate") 
 
       internal let value: String 

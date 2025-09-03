@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Http: String {
 
-
     /**
      State of the HTTP connection in the HTTP connection pool.
 
@@ -24,20 +23,17 @@ extension SemanticConventions {
     */
     case connectionState = "http.connection.state"
 
-
     /**
      The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Http.requestBodySize.rawValue] = 3495
+      attributes[SemanticConventions.Http.requestBodySize.rawValue] = 3495
       ```
 
      - Requires: Value type should be `Int`
     */
     case requestBodySize = "http.request.body.size"
-
 
     /**
      HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
@@ -49,26 +45,25 @@ extension SemanticConventions {
       ```
 
      - Note: Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
-     Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+       Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-     The `User-Agent` header is already captured in the `user_agent.original` attribute.
-     Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
+       The `User-Agent` header is already captured in the `user_agent.original` attribute.
+       Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
 
-     The attribute value MUST consist of either multiple header values as an array of strings
-     or a single-item array containing a possibly comma-concatenated string, depending on the way
-     the HTTP library provides access to headers.
+       The attribute value MUST consist of either multiple header values as an array of strings
+       or a single-item array containing a possibly comma-concatenated string, depending on the way
+       the HTTP library provides access to headers.
 
-     Examples:
+       Examples:
 
-     - A header `Content-Type: application/json` SHOULD be recorded as the `http.request.header.content-type`
-       attribute with value `["application/json"]`.
-     - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
-       attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
+       - A header `Content-Type: application/json` SHOULD be recorded as the `http.request.header.content-type`
+         attribute with value `["application/json"]`.
+       - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
+         attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
 
      - Requires: Value type should be `template[string[]]`
     */
     case requestHeader = "http.request.header"
-
 
     /**
      HTTP request method.
@@ -81,24 +76,23 @@ extension SemanticConventions {
       ```
 
      - Note: HTTP request method value SHOULD be "known" to the instrumentation.
-     By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
-     and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
+       By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+       and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
-     If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
+       If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
-     If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
-     the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
-     OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
-     (this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
+       If the HTTP instrumentation could end up converting valid HTTP request methods to `_OTHER`, then it MUST provide a way to override
+       the list of known HTTP methods. If this override is done via environment variable, then the environment variable MUST be named
+       OTEL_INSTRUMENTATION_HTTP_KNOWN_METHODS and support a comma-separated list of case-sensitive known HTTP methods
+       (this list MUST be a full override of the default known method, it is not a list of known methods in addition to the defaults).
 
-     HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
-     Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
-     Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
+       HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
+       Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
+       Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
      - Requires: Value should be one of ``RequestMethodValues`` (of type `String`)
     */
     case requestMethod = "http.request.method"
-
 
     /**
      Original HTTP method sent by the client in the request line.
@@ -114,14 +108,12 @@ extension SemanticConventions {
     */
     case requestMethodOriginal = "http.request.method_original"
 
-
     /**
      The ordinal number of request resending attempt (for any reason, including redirects).
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Http.requestResendCount.rawValue] = 3
+      attributes[SemanticConventions.Http.requestResendCount.rawValue] = 3
       ```
 
      - Note: The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
@@ -130,34 +122,29 @@ extension SemanticConventions {
     */
     case requestResendCount = "http.request.resend_count"
 
-
     /**
      The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Http.requestSize.rawValue] = 1437
+      attributes[SemanticConventions.Http.requestSize.rawValue] = 1437
       ```
 
      - Requires: Value type should be `Int`
     */
     case requestSize = "http.request.size"
 
-
     /**
      The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Http.responseBodySize.rawValue] = 3495
+      attributes[SemanticConventions.Http.responseBodySize.rawValue] = 3495
       ```
 
      - Requires: Value type should be `Int`
     */
     case responseBodySize = "http.response.body.size"
-
 
     /**
      HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
@@ -169,39 +156,36 @@ extension SemanticConventions {
       ```
 
      - Note: Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
-     Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
+       Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-     Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
+       Users MAY explicitly configure instrumentations to capture them even though it is not recommended.
 
-     The attribute value MUST consist of either multiple header values as an array of strings
-     or a single-item array containing a possibly comma-concatenated string, depending on the way
-     the HTTP library provides access to headers.
+       The attribute value MUST consist of either multiple header values as an array of strings
+       or a single-item array containing a possibly comma-concatenated string, depending on the way
+       the HTTP library provides access to headers.
 
-     Examples:
+       Examples:
 
-     - A header `Content-Type: application/json` header SHOULD be recorded as the `http.request.response.content-type`
-       attribute with value `["application/json"]`.
-     - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
-       attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
+       - A header `Content-Type: application/json` header SHOULD be recorded as the `http.request.response.content-type`
+         attribute with value `["application/json"]`.
+       - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
+         attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
 
      - Requires: Value type should be `template[string[]]`
     */
     case responseHeader = "http.response.header"
-
 
     /**
      The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Http.responseSize.rawValue] = 1437
+      attributes[SemanticConventions.Http.responseSize.rawValue] = 1437
       ```
 
      - Requires: Value type should be `Int`
     */
     case responseSize = "http.response.size"
-
 
     /**
      [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).
@@ -215,7 +199,6 @@ extension SemanticConventions {
     */
     case responseStatusCode = "http.response.status_code"
 
-
     /**
      The matched route, that is, the path template in the format used by the respective server framework.
 
@@ -226,25 +209,21 @@ extension SemanticConventions {
       ```
 
      - Note: MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
-     SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
+       SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
 
      - Requires: Value type should be `String`
     */
     case route = "http.route"
 
-
-
     /** 
       State of the HTTP connection in the HTTP connection pool.
     */
     public struct ConnectionStateValues: CustomStringConvertible {
-      /**
-      active state.
-      */
+      
+      /// active state.
       public static let active = ConnectionStateValues("active") 
-      /**
-      idle state.
-      */
+      
+      /// idle state.
       public static let idle = ConnectionStateValues("idle") 
 
       internal let value: String 
@@ -258,52 +237,39 @@ extension SemanticConventions {
       }
     }
 
-
-
-
     /** 
       HTTP request method.
     */
     public struct RequestMethodValues: CustomStringConvertible {
-      /**
-      CONNECT method.
-      */
+      
+      /// CONNECT method.
       public static let connect = RequestMethodValues("CONNECT") 
-      /**
-      DELETE method.
-      */
+      
+      /// DELETE method.
       public static let delete = RequestMethodValues("DELETE") 
-      /**
-      GET method.
-      */
+      
+      /// GET method.
       public static let get = RequestMethodValues("GET") 
-      /**
-      HEAD method.
-      */
+      
+      /// HEAD method.
       public static let head = RequestMethodValues("HEAD") 
-      /**
-      OPTIONS method.
-      */
+      
+      /// OPTIONS method.
       public static let options = RequestMethodValues("OPTIONS") 
-      /**
-      PATCH method.
-      */
+      
+      /// PATCH method.
       public static let patch = RequestMethodValues("PATCH") 
-      /**
-      POST method.
-      */
+      
+      /// POST method.
       public static let post = RequestMethodValues("POST") 
-      /**
-      PUT method.
-      */
+      
+      /// PUT method.
       public static let put = RequestMethodValues("PUT") 
-      /**
-      TRACE method.
-      */
+      
+      /// TRACE method.
       public static let trace = RequestMethodValues("TRACE") 
-      /**
-      Any HTTP method that the instrumentation has no prior knowledge of.
-      */
+      
+      /// Any HTTP method that the instrumentation has no prior knowledge of.
       public static let other = RequestMethodValues("_OTHER") 
 
       internal let value: String 
@@ -316,13 +282,5 @@ extension SemanticConventions {
         return value
       }
     }
-
-
-
-
-
-
-
-
   }
 }

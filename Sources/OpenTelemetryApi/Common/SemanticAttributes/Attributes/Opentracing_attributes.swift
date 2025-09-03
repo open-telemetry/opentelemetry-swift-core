@@ -10,10 +10,8 @@ import Foundation
 extension SemanticConventions {
   public enum Opentracing: String {
 
-
     /**
      Parent-child Reference type
-      ```
 
      - Note: The causal relationship between a child Span and a parent Span.
 
@@ -21,19 +19,15 @@ extension SemanticConventions {
     */
     case refType = "opentracing.ref_type"
 
-
-
     /** 
       Parent-child Reference type
     */
     public struct RefTypeValues: CustomStringConvertible {
-      /**
-      The parent Span depends on the child Span in some capacity
-      */
+      
+      /// The parent Span depends on the child Span in some capacity
       public static let childOf = RefTypeValues("child_of") 
-      /**
-      The parent Span doesn't depend in any way on the result of the child Span
-      */
+      
+      /// The parent Span doesn't depend in any way on the result of the child Span
       public static let followsFrom = RefTypeValues("follows_from") 
 
       internal let value: String 

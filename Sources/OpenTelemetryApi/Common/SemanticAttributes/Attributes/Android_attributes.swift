@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Android: String {
 
-
     /**
      This attribute represents the state of the application.
 
@@ -25,7 +24,6 @@ extension SemanticConventions {
     */
     case appState = "android.app.state"
 
-
     /**
      Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).
 
@@ -39,23 +37,18 @@ extension SemanticConventions {
     */
     case osApiLevel = "android.os.api_level"
 
-
-
     /** 
       This attribute represents the state of the application.
     */
     public struct AppStateValues: CustomStringConvertible {
-      /**
-      Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time.
-      */
+      
+      /// Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time.
       public static let created = AppStateValues("created") 
-      /**
-      Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state.
-      */
+      
+      /// Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state.
       public static let background = AppStateValues("background") 
-      /**
-      Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states.
-      */
+      
+      /// Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states.
       public static let foreground = AppStateValues("foreground") 
 
       internal let value: String 
@@ -68,6 +61,5 @@ extension SemanticConventions {
         return value
       }
     }
-
   }
 }

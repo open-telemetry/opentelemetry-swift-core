@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Disk: String {
 
-
     /**
      The disk IO operation direction.
 
@@ -22,8 +21,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``IoDirectionValues`` (of type `String`)
     */
     case ioDirection = "disk.io.direction"
-
-
 
     /** 
       The disk IO operation direction.

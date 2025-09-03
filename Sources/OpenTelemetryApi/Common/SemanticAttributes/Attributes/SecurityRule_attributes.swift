@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum SecurityRule: String {
 
-
     /**
      A categorization value keyword used by the entity using the rule for detection of this event
 
@@ -22,7 +21,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case category = "security_rule.category"
-
 
     /**
      The description of the rule generating the event.
@@ -36,7 +34,6 @@ extension SemanticConventions {
     */
     case description = "security_rule.description"
 
-
     /**
      Name of the license under which the rule used to generate this event is made available.
 
@@ -49,7 +46,6 @@ extension SemanticConventions {
     */
     case license = "security_rule.license"
 
-
     /**
      The name of the rule or signature generating the event.
 
@@ -61,7 +57,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case name = "security_rule.name"
-
 
     /**
      Reference URL to additional information about the rule used to generate this event.
@@ -77,7 +72,6 @@ extension SemanticConventions {
     */
     case reference = "security_rule.reference"
 
-
     /**
      Name of the ruleset, policy, group, or parent category in which the rule used to generate this event is a member.
 
@@ -89,7 +83,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case rulesetName = "security_rule.ruleset.name"
-
 
     /**
      A rule ID that is unique within the scope of a set or group of agents, observers, or other entities using the rule for detection of this event.
@@ -104,7 +97,6 @@ extension SemanticConventions {
     */
     case uuid = "security_rule.uuid"
 
-
     /**
      The version / revision of the rule being used for analysis.
 
@@ -116,14 +108,5 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case version = "security_rule.version"
-
-
-
-
-
-
-
-
-
   }
 }

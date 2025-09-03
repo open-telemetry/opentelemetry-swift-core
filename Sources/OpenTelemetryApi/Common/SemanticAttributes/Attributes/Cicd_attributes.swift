@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Cicd: String {
 
-
     /**
      The kind of action a pipeline run is performing.
 
@@ -24,7 +23,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``PipelineActionNameValues`` (of type `String`)
     */
     case pipelineActionName = "cicd.pipeline.action.name"
-
 
     /**
      The human readable name of the pipeline within a CI/CD system.
@@ -41,7 +39,6 @@ extension SemanticConventions {
     */
     case pipelineName = "cicd.pipeline.name"
 
-
     /**
      The result of a pipeline run.
 
@@ -57,7 +54,6 @@ extension SemanticConventions {
     */
     case pipelineResult = "cicd.pipeline.result"
 
-
     /**
      The unique identifier of a pipeline run within a CI/CD system.
 
@@ -69,7 +65,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case pipelineRunId = "cicd.pipeline.run.id"
-
 
     /**
      The pipeline run goes through these states during its lifecycle.
@@ -85,7 +80,6 @@ extension SemanticConventions {
     */
     case pipelineRunState = "cicd.pipeline.run.state"
 
-
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run.
 
@@ -97,7 +91,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case pipelineRunUrlFull = "cicd.pipeline.run.url.full"
-
 
     /**
      The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures.
@@ -114,7 +107,6 @@ extension SemanticConventions {
     */
     case pipelineTaskName = "cicd.pipeline.task.name"
 
-
     /**
      The unique identifier of a task run within a pipeline.
 
@@ -126,7 +118,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case pipelineTaskRunId = "cicd.pipeline.task.run.id"
-
 
     /**
      The result of a task run.
@@ -143,7 +134,6 @@ extension SemanticConventions {
     */
     case pipelineTaskRunResult = "cicd.pipeline.task.run.result"
 
-
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run.
 
@@ -155,7 +145,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case pipelineTaskRunUrlFull = "cicd.pipeline.task.run.url.full"
-
 
     /**
      The type of the task within a pipeline.
@@ -171,7 +160,6 @@ extension SemanticConventions {
     */
     case pipelineTaskType = "cicd.pipeline.task.type"
 
-
     /**
      The name of a component of the CICD system.
 
@@ -185,7 +173,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case systemComponent = "cicd.system.component"
-
 
     /**
      The unique identifier of a worker within a CICD system.
@@ -201,7 +188,6 @@ extension SemanticConventions {
     */
     case workerId = "cicd.worker.id"
 
-
     /**
      The name of a worker within a CICD system.
 
@@ -215,7 +201,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case workerName = "cicd.worker.name"
-
 
     /**
      The state of a CICD worker / agent.
@@ -231,7 +216,6 @@ extension SemanticConventions {
     */
     case workerState = "cicd.worker.state"
 
-
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker.
 
@@ -244,23 +228,18 @@ extension SemanticConventions {
     */
     case workerUrlFull = "cicd.worker.url.full"
 
-
-
     /** 
       The kind of action a pipeline run is performing.
     */
     public struct PipelineActionNameValues: CustomStringConvertible {
-      /**
-      The pipeline run is executing a build.
-      */
+      
+      /// The pipeline run is executing a build.
       public static let build = PipelineActionNameValues("BUILD") 
-      /**
-      The pipeline run is executing.
-      */
+      
+      /// The pipeline run is executing.
       public static let run = PipelineActionNameValues("RUN") 
-      /**
-      The pipeline run is executing a sync.
-      */
+      
+      /// The pipeline run is executing a sync.
       public static let sync = PipelineActionNameValues("SYNC") 
 
       internal let value: String 
@@ -274,35 +253,27 @@ extension SemanticConventions {
       }
     }
 
-
-
     /** 
       The result of a pipeline run.
     */
     public struct PipelineResultValues: CustomStringConvertible {
-      /**
-      The pipeline run finished successfully.
-      */
+      
+      /// The pipeline run finished successfully.
       public static let success = PipelineResultValues("success") 
-      /**
-      The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run.
-      */
+      
+      /// The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run.
       public static let failure = PipelineResultValues("failure") 
-      /**
-      The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed.
-      */
+      
+      /// The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed.
       public static let error = PipelineResultValues("error") 
-      /**
-      A timeout caused the pipeline run to be interrupted.
-      */
+      
+      /// A timeout caused the pipeline run to be interrupted.
       public static let timeout = PipelineResultValues("timeout") 
-      /**
-      The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run.
-      */
+      
+      /// The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run.
       public static let cancellation = PipelineResultValues("cancellation") 
-      /**
-      The pipeline run was skipped, eg. due to a precondition not being met.
-      */
+      
+      /// The pipeline run was skipped, eg. due to a precondition not being met.
       public static let skip = PipelineResultValues("skip") 
 
       internal let value: String 
@@ -316,23 +287,18 @@ extension SemanticConventions {
       }
     }
 
-
-
     /** 
       The pipeline run goes through these states during its lifecycle.
     */
     public struct PipelineRunStateValues: CustomStringConvertible {
-      /**
-      The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
-      */
+      
+      /// The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
       public static let pending = PipelineRunStateValues("pending") 
-      /**
-      The executing state spans the execution of any run tasks (eg. build, test).
-      */
+      
+      /// The executing state spans the execution of any run tasks (eg. build, test).
       public static let executing = PipelineRunStateValues("executing") 
-      /**
-      The finalizing state spans from when the run has finished executing (eg. cleanup of run resources).
-      */
+      
+      /// The finalizing state spans from when the run has finished executing (eg. cleanup of run resources).
       public static let finalizing = PipelineRunStateValues("finalizing") 
 
       internal let value: String 
@@ -346,37 +312,27 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
     /** 
       The result of a task run.
     */
     public struct PipelineTaskRunResultValues: CustomStringConvertible {
-      /**
-      The task run finished successfully.
-      */
+      
+      /// The task run finished successfully.
       public static let success = PipelineTaskRunResultValues("success") 
-      /**
-      The task run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the task run.
-      */
+      
+      /// The task run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the task run.
       public static let failure = PipelineTaskRunResultValues("failure") 
-      /**
-      The task run failed due to an error in the CICD system, eg. due to the worker being killed.
-      */
+      
+      /// The task run failed due to an error in the CICD system, eg. due to the worker being killed.
       public static let error = PipelineTaskRunResultValues("error") 
-      /**
-      A timeout caused the task run to be interrupted.
-      */
+      
+      /// A timeout caused the task run to be interrupted.
       public static let timeout = PipelineTaskRunResultValues("timeout") 
-      /**
-      The task run was cancelled, eg. by a user manually cancelling the task run.
-      */
+      
+      /// The task run was cancelled, eg. by a user manually cancelling the task run.
       public static let cancellation = PipelineTaskRunResultValues("cancellation") 
-      /**
-      The task run was skipped, eg. due to a precondition not being met.
-      */
+      
+      /// The task run was skipped, eg. due to a precondition not being met.
       public static let skip = PipelineTaskRunResultValues("skip") 
 
       internal let value: String 
@@ -390,23 +346,18 @@ extension SemanticConventions {
       }
     }
 
-
-
     /** 
       The type of the task within a pipeline.
     */
     public struct PipelineTaskTypeValues: CustomStringConvertible {
-      /**
-      build
-      */
+      
+      /// build
       public static let build = PipelineTaskTypeValues("build") 
-      /**
-      test
-      */
+      
+      /// test
       public static let test = PipelineTaskTypeValues("test") 
-      /**
-      deploy
-      */
+      
+      /// deploy
       public static let deploy = PipelineTaskTypeValues("deploy") 
 
       internal let value: String 
@@ -420,25 +371,18 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
     /** 
       The state of a CICD worker / agent.
     */
     public struct WorkerStateValues: CustomStringConvertible {
-      /**
-      The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle).
-      */
+      
+      /// The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle).
       public static let available = WorkerStateValues("available") 
-      /**
-      The worker is performing work for the CICD system.
-      */
+      
+      /// The worker is performing work for the CICD system.
       public static let busy = WorkerStateValues("busy") 
-      /**
-      The worker is not available to the CICD system (disconnected / down).
-      */
+      
+      /// The worker is not available to the CICD system (disconnected / down).
       public static let offline = WorkerStateValues("offline") 
 
       internal let value: String 
@@ -451,6 +395,5 @@ extension SemanticConventions {
         return value
       }
     }
-
   }
 }

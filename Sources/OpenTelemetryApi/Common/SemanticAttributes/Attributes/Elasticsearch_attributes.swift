@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Elasticsearch: String {
 
-
     /**
      Represents the human-readable identifier of the node/instance to which a request was routed.
 
@@ -22,7 +21,5 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case nodeName = "elasticsearch.node.name"
-
-
   }
 }

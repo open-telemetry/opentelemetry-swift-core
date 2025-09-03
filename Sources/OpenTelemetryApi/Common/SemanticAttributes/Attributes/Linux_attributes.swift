@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Linux: String {
 
-
     /**
      The Linux Slab memory state
 
@@ -23,8 +22,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``MemorySlabStateValues`` (of type `String`)
     */
     case memorySlabState = "linux.memory.slab.state"
-
-
 
     /** 
       The Linux Slab memory state

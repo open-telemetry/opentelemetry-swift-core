@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum FeatureFlag: String {
 
-
     /**
      The unique identifier for the flag evaluation context. For example, the targeting key.
 
@@ -22,7 +21,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case contextId = "feature_flag.context.id"
-
 
     /**
      The lookup key of the feature flag.
@@ -36,7 +34,6 @@ extension SemanticConventions {
     */
     case key = "feature_flag.key"
 
-
     /**
      Identifies the feature flag provider.
 
@@ -48,7 +45,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case providerName = "feature_flag.provider.name"
-
 
     /**
      The reason code which shows how a feature flag value was determined.
@@ -65,7 +61,6 @@ extension SemanticConventions {
     */
     case resultReason = "feature_flag.result.reason"
 
-
     /**
      The evaluated value of the feature flag.
 
@@ -77,15 +72,14 @@ extension SemanticConventions {
       ```
 
      - Note: With some feature flag providers, feature flag results can be quite large or contain private or sensitive details.
-     Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
+       Because of this, `feature_flag.result.variant` is often the preferred attribute if it is available.
 
-     It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
-     Because the evaluated flag value is unstructured and may be any type, it is left to the instrumentation author to determine how best to achieve this.
+       It may be desirable to redact or otherwise limit the size and scope of `feature_flag.result.value` if possible.
+       Because the evaluated flag value is unstructured and may be any type, it is left to the instrumentation author to determine how best to achieve this.
 
      - Requires: Value type should be `any`
     */
     case resultValue = "feature_flag.result.value"
-
 
     /**
      A semantic identifier for an evaluated flag value.
@@ -98,14 +92,13 @@ extension SemanticConventions {
       ```
 
      - Note: A semantic identifier, commonly referred to as a variant, provides a means
-     for referring to a value without including the value itself. This can
-     provide additional context for understanding the meaning behind a value.
-     For example, the variant `red` maybe be used for the value `#c05543`.
+       for referring to a value without including the value itself. This can
+       provide additional context for understanding the meaning behind a value.
+       For example, the variant `red` maybe be used for the value `#c05543`.
 
      - Requires: Value type should be `String`
     */
     case resultVariant = "feature_flag.result.variant"
-
 
     /**
      The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs.
@@ -121,7 +114,6 @@ extension SemanticConventions {
     */
     case setId = "feature_flag.set.id"
 
-
     /**
      The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset.
 
@@ -135,50 +127,36 @@ extension SemanticConventions {
     */
     case version = "feature_flag.version"
 
-
-
-
-
-
     /** 
       The reason code which shows how a feature flag value was determined.
     */
     public struct ResultReasonValues: CustomStringConvertible {
-      /**
-      The resolved value is static (no dynamic evaluation).
-      */
+      
+      /// The resolved value is static (no dynamic evaluation).
       public static let _static = ResultReasonValues("static") 
-      /**
-      The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result).
-      */
+      
+      /// The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result).
       public static let _default = ResultReasonValues("default") 
-      /**
-      The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting.
-      */
+      
+      /// The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting.
       public static let targetingMatch = ResultReasonValues("targeting_match") 
-      /**
-      The resolved value was the result of pseudorandom assignment.
-      */
+      
+      /// The resolved value was the result of pseudorandom assignment.
       public static let split = ResultReasonValues("split") 
-      /**
-      The resolved value was retrieved from cache.
-      */
+      
+      /// The resolved value was retrieved from cache.
       public static let cached = ResultReasonValues("cached") 
-      /**
-      The resolved value was the result of the flag being disabled in the management system.
-      */
+      
+      /// The resolved value was the result of the flag being disabled in the management system.
       public static let disabled = ResultReasonValues("disabled") 
-      /**
-      The reason for the resolved value could not be determined.
-      */
+      
+      /// The reason for the resolved value could not be determined.
       public static let unknown = ResultReasonValues("unknown") 
-      /**
-      The resolved value is non-authoritative or possibly out of date
-      */
+      
+      /// The resolved value is non-authoritative or possibly out of date
       public static let stale = ResultReasonValues("stale") 
-      /**
-      The resolved value was the result of an error.
-      */
+      
+      /// The resolved value was the result of an error.
       public static let error = ResultReasonValues("error") 
 
       internal let value: String 
@@ -191,9 +169,5 @@ extension SemanticConventions {
         return value
       }
     }
-
-
-
-
   }
 }

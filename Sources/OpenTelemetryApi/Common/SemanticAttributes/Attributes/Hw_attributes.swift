@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Hw: String {
 
-
     /**
      Design capacity in Watts-hours or Amper-hours
 
@@ -23,7 +22,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case batteryCapacity = "hw.battery.capacity"
-
 
     /**
      Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc.
@@ -38,15 +36,12 @@ extension SemanticConventions {
     */
     case batteryChemistry = "hw.battery.chemistry"
 
-
     /**
      The current state of the battery
-      ```
 
      - Requires: Value should be one of ``BatteryStateValues`` (of type `String`)
     */
     case batteryState = "hw.battery.state"
-
 
     /**
      BIOS version of the hardware component
@@ -60,7 +55,6 @@ extension SemanticConventions {
     */
     case biosVersion = "hw.bios_version"
 
-
     /**
      Driver version for the hardware component
 
@@ -72,7 +66,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case driverVersion = "hw.driver_version"
-
 
     /**
      Type of the enclosure (useful for modular systems)
@@ -88,7 +81,6 @@ extension SemanticConventions {
     */
     case enclosureType = "hw.enclosure.type"
 
-
     /**
      Firmware version of the hardware component
 
@@ -101,15 +93,12 @@ extension SemanticConventions {
     */
     case firmwareVersion = "hw.firmware_version"
 
-
     /**
      Type of task the GPU is performing
-      ```
 
      - Requires: Value should be one of ``GpuTaskValues`` (of type `String`)
     */
     case gpuTask = "hw.gpu.task"
-
 
     /**
      An identifier for the hardware component, unique within the monitored host
@@ -123,15 +112,12 @@ extension SemanticConventions {
     */
     case id = "hw.id"
 
-
     /**
      Type of limit for hardware components
-      ```
 
      - Requires: Value should be one of ``LimitTypeValues`` (of type `String`)
     */
     case limitType = "hw.limit_type"
-
 
     /**
      RAID Level of the logical disk
@@ -147,15 +133,12 @@ extension SemanticConventions {
     */
     case logicalDiskRaidLevel = "hw.logical_disk.raid_level"
 
-
     /**
      State of the logical disk space usage
-      ```
 
      - Requires: Value should be one of ``LogicalDiskStateValues`` (of type `String`)
     */
     case logicalDiskState = "hw.logical_disk.state"
-
 
     /**
      Type of the memory module
@@ -171,7 +154,6 @@ extension SemanticConventions {
     */
     case memoryType = "hw.memory.type"
 
-
     /**
      Descriptive model name of the hardware component
 
@@ -186,7 +168,6 @@ extension SemanticConventions {
     */
     case model = "hw.model"
 
-
     /**
      An easily-recognizable name for the hardware component
 
@@ -198,7 +179,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case name = "hw.name"
-
 
     /**
      Logical addresses of the adapter (e.g. IP address, or WWPN)
@@ -212,7 +192,6 @@ extension SemanticConventions {
     */
     case networkLogicalAddresses = "hw.network.logical_addresses"
 
-
     /**
      Physical address of the adapter (e.g. MAC address, or WWNN)
 
@@ -225,7 +204,6 @@ extension SemanticConventions {
     */
     case networkPhysicalAddress = "hw.network.physical_address"
 
-
     /**
      Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller)
 
@@ -237,7 +215,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case parent = "hw.parent"
-
 
     /**
      [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
@@ -253,15 +230,12 @@ extension SemanticConventions {
     */
     case physicalDiskSmartAttribute = "hw.physical_disk.smart_attribute"
 
-
     /**
      State of the physical disk endurance utilization
-      ```
 
      - Requires: Value should be one of ``PhysicalDiskStateValues`` (of type `String`)
     */
     case physicalDiskState = "hw.physical_disk.state"
-
 
     /**
      Type of the physical disk
@@ -276,7 +250,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case physicalDiskType = "hw.physical_disk.type"
-
 
     /**
      Location of the sensor
@@ -298,7 +271,6 @@ extension SemanticConventions {
     */
     case sensorLocation = "hw.sensor_location"
 
-
     /**
      Serial number of the hardware component
 
@@ -311,35 +283,28 @@ extension SemanticConventions {
     */
     case serialNumber = "hw.serial_number"
 
-
     /**
      The current state of the component
-      ```
 
      - Requires: Value should be one of ``StateValues`` (of type `String`)
     */
     case state = "hw.state"
 
-
     /**
      Type of tape drive operation
-      ```
 
      - Requires: Value should be one of ``TapeDriveOperationTypeValues`` (of type `String`)
     */
     case tapeDriveOperationType = "hw.tape_drive.operation_type"
 
-
     /**
      Type of the component
-      ```
 
      - Note: Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
      - Requires: Value should be one of ``TypeValues`` (of type `String`)
     */
     case type = "hw.type"
-
 
     /**
      Vendor name of the hardware component
@@ -358,21 +323,15 @@ extension SemanticConventions {
     */
     case vendor = "hw.vendor"
 
-
-
-
-
     /** 
       The current state of the battery
     */
     public struct BatteryStateValues: CustomStringConvertible {
-      /**
-      Charging
-      */
+      
+      /// Charging
       public static let charging = BatteryStateValues("charging") 
-      /**
-      Discharging
-      */
+      
+      /// Discharging
       public static let discharging = BatteryStateValues("discharging") 
 
       internal let value: String 
@@ -386,26 +345,18 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
-
     /** 
       Type of task the GPU is performing
     */
     public struct GpuTaskValues: CustomStringConvertible {
-      /**
-      Decoder
-      */
+      
+      /// Decoder
       public static let decoder = GpuTaskValues("decoder") 
-      /**
-      Encoder
-      */
+      
+      /// Encoder
       public static let encoder = GpuTaskValues("encoder") 
-      /**
-      General
-      */
+      
+      /// General
       public static let general = GpuTaskValues("general") 
 
       internal let value: String 
@@ -419,47 +370,36 @@ extension SemanticConventions {
       }
     }
 
-
-
     /** 
       Type of limit for hardware components
     */
     public struct LimitTypeValues: CustomStringConvertible {
-      /**
-      Critical
-      */
+      
+      /// Critical
       public static let critical = LimitTypeValues("critical") 
-      /**
-      Degraded
-      */
+      
+      /// Degraded
       public static let degraded = LimitTypeValues("degraded") 
-      /**
-      High Critical
-      */
+      
+      /// High Critical
       public static let highCritical = LimitTypeValues("high.critical") 
-      /**
-      High Degraded
-      */
+      
+      /// High Degraded
       public static let highDegraded = LimitTypeValues("high.degraded") 
-      /**
-      Low Critical
-      */
+      
+      /// Low Critical
       public static let lowCritical = LimitTypeValues("low.critical") 
-      /**
-      Low Degraded
-      */
+      
+      /// Low Degraded
       public static let lowDegraded = LimitTypeValues("low.degraded") 
-      /**
-      Maximum
-      */
+      
+      /// Maximum
       public static let max = LimitTypeValues("max") 
-      /**
-      Throttled
-      */
+      
+      /// Throttled
       public static let throttled = LimitTypeValues("throttled") 
-      /**
-      Turbo
-      */
+      
+      /// Turbo
       public static let turbo = LimitTypeValues("turbo") 
 
       internal let value: String 
@@ -473,19 +413,15 @@ extension SemanticConventions {
       }
     }
 
-
-
     /** 
       State of the logical disk space usage
     */
     public struct LogicalDiskStateValues: CustomStringConvertible {
-      /**
-      Used
-      */
+      
+      /// Used
       public static let used = LogicalDiskStateValues("used") 
-      /**
-      Free
-      */
+      
+      /// Free
       public static let free = LogicalDiskStateValues("free") 
 
       internal let value: String 
@@ -499,21 +435,12 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
-
-
-
-
     /** 
       State of the physical disk endurance utilization
     */
     public struct PhysicalDiskStateValues: CustomStringConvertible {
-      /**
-      Remaining
-      */
+      
+      /// Remaining
       public static let remaining = PhysicalDiskStateValues("remaining") 
 
       internal let value: String 
@@ -527,33 +454,24 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
     /** 
       The current state of the component
     */
     public struct StateValues: CustomStringConvertible {
-      /**
-      Degraded
-      */
+      
+      /// Degraded
       public static let degraded = StateValues("degraded") 
-      /**
-      Failed
-      */
+      
+      /// Failed
       public static let failed = StateValues("failed") 
-      /**
-      Needs Cleaning
-      */
+      
+      /// Needs Cleaning
       public static let needsCleaning = StateValues("needs_cleaning") 
-      /**
-      OK
-      */
+      
+      /// OK
       public static let ok = StateValues("ok") 
-      /**
-      Predicted Failure
-      */
+      
+      /// Predicted Failure
       public static let predictedFailure = StateValues("predicted_failure") 
 
       internal let value: String 
@@ -567,22 +485,18 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       Type of tape drive operation
     */
     public struct TapeDriveOperationTypeValues: CustomStringConvertible {
-      /**
-      Mount
-      */
+      
+      /// Mount
       public static let mount = TapeDriveOperationTypeValues("mount") 
-      /**
-      Unmount
-      */
+      
+      /// Unmount
       public static let unmount = TapeDriveOperationTypeValues("unmount") 
-      /**
-      Clean
-      */
+      
+      /// Clean
       public static let clean = TapeDriveOperationTypeValues("clean") 
 
       internal let value: String 
@@ -596,66 +510,51 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       Type of the component
     */
     public struct TypeValues: CustomStringConvertible {
-      /**
-      Battery
-      */
+      
+      /// Battery
       public static let battery = TypeValues("battery") 
-      /**
-      CPU
-      */
+      
+      /// CPU
       public static let cpu = TypeValues("cpu") 
-      /**
-      Disk controller
-      */
+      
+      /// Disk controller
       public static let diskController = TypeValues("disk_controller") 
-      /**
-      Enclosure
-      */
+      
+      /// Enclosure
       public static let enclosure = TypeValues("enclosure") 
-      /**
-      Fan
-      */
+      
+      /// Fan
       public static let fan = TypeValues("fan") 
-      /**
-      GPU
-      */
+      
+      /// GPU
       public static let gpu = TypeValues("gpu") 
-      /**
-      Logical disk
-      */
+      
+      /// Logical disk
       public static let logicalDisk = TypeValues("logical_disk") 
-      /**
-      Memory
-      */
+      
+      /// Memory
       public static let memory = TypeValues("memory") 
-      /**
-      Network
-      */
+      
+      /// Network
       public static let network = TypeValues("network") 
-      /**
-      Physical disk
-      */
+      
+      /// Physical disk
       public static let physicalDisk = TypeValues("physical_disk") 
-      /**
-      Power supply
-      */
+      
+      /// Power supply
       public static let powerSupply = TypeValues("power_supply") 
-      /**
-      Tape drive
-      */
+      
+      /// Tape drive
       public static let tapeDrive = TypeValues("tape_drive") 
-      /**
-      Temperature
-      */
+      
+      /// Temperature
       public static let temperature = TypeValues("temperature") 
-      /**
-      Voltage
-      */
+      
+      /// Voltage
       public static let voltage = TypeValues("voltage") 
 
       internal let value: String 
@@ -668,6 +567,5 @@ extension SemanticConventions {
         return value
       }
     }
-
   }
 }

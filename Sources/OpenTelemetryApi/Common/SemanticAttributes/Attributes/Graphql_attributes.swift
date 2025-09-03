@@ -10,14 +10,12 @@ import Foundation
 extension SemanticConventions {
   public enum Graphql: String {
 
-
     /**
      The GraphQL document being executed.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Graphql.document.rawValue] = "query findBookById { bookById(id: ?) { name } }"
+      attributes[SemanticConventions.Graphql.document.rawValue] = "query findBookById { bookById(id: ?) { name } }"
       ```
 
      - Note: The value may be sanitized to exclude sensitive information.
@@ -26,20 +24,17 @@ extension SemanticConventions {
     */
     case document = "graphql.document"
 
-
     /**
      The name of the operation being executed.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Graphql.operationName.rawValue] = "findBookById"
+      attributes[SemanticConventions.Graphql.operationName.rawValue] = "findBookById"
       ```
 
      - Requires: Value type should be `String`
     */
     case operationName = "graphql.operation.name"
-
 
     /**
      The type of the operation being executed.
@@ -55,25 +50,18 @@ extension SemanticConventions {
     */
     case operationType = "graphql.operation.type"
 
-
-
-
-
     /** 
       The type of the operation being executed.
     */
     public struct OperationTypeValues: CustomStringConvertible {
-      /**
-      GraphQL query
-      */
+      
+      /// GraphQL query
       public static let query = OperationTypeValues("query") 
-      /**
-      GraphQL mutation
-      */
+      
+      /// GraphQL mutation
       public static let mutation = OperationTypeValues("mutation") 
-      /**
-      GraphQL subscription
-      */
+      
+      /// GraphQL subscription
       public static let subscription = OperationTypeValues("subscription") 
 
       internal let value: String 

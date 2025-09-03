@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum K8s: String {
 
-
     /**
      The name of the cluster.
 
@@ -23,7 +22,6 @@ extension SemanticConventions {
     */
     case clusterName = "k8s.cluster.name"
 
-
     /**
      A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace.
 
@@ -33,32 +31,31 @@ extension SemanticConventions {
       ```
 
      - Note: K8s doesn't have support for obtaining a cluster ID. If this is ever
-     added, we will recommend collecting the `k8s.cluster.uid` through the
-     official APIs. In the meantime, we are able to use the `uid` of the
-     `kube-system` namespace as a proxy for cluster ID. Read on for the
-     rationale.
+       added, we will recommend collecting the `k8s.cluster.uid` through the
+       official APIs. In the meantime, we are able to use the `uid` of the
+       `kube-system` namespace as a proxy for cluster ID. Read on for the
+       rationale.
 
-     Every object created in a K8s cluster is assigned a distinct UID. The
-     `kube-system` namespace is used by Kubernetes itself and will exist
-     for the lifetime of the cluster. Using the `uid` of the `kube-system`
-     namespace is a reasonable proxy for the K8s ClusterID as it will only
-     change if the cluster is rebuilt. Furthermore, Kubernetes UIDs are
-     UUIDs as standardized by
-     [ISO/IEC 9834-8 and ITU-T X.667](https://www.itu.int/ITU-T/studygroups/com17/oid.html).
-     Which states:
+       Every object created in a K8s cluster is assigned a distinct UID. The
+       `kube-system` namespace is used by Kubernetes itself and will exist
+       for the lifetime of the cluster. Using the `uid` of the `kube-system`
+       namespace is a reasonable proxy for the K8s ClusterID as it will only
+       change if the cluster is rebuilt. Furthermore, Kubernetes UIDs are
+       UUIDs as standardized by
+       [ISO/IEC 9834-8 and ITU-T X.667](https://www.itu.int/ITU-T/studygroups/com17/oid.html).
+       Which states:
 
-     > If generated according to one of the mechanisms defined in Rec.
-     > ITU-T X.667 | ISO/IEC 9834-8, a UUID is either guaranteed to be
-     > different from all other UUIDs generated before 3603 A.D., or is
-     > extremely likely to be different (depending on the mechanism chosen).
+       > If generated according to one of the mechanisms defined in Rec.
+       > ITU-T X.667 | ISO/IEC 9834-8, a UUID is either guaranteed to be
+       > different from all other UUIDs generated before 3603 A.D., or is
+       > extremely likely to be different (depending on the mechanism chosen).
 
-     Therefore, UIDs between clusters should be extremely unlikely to
-     conflict.
+       Therefore, UIDs between clusters should be extremely unlikely to
+       conflict.
 
      - Requires: Value type should be `String`
     */
     case clusterUid = "k8s.cluster.uid"
-
 
     /**
      The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`).
@@ -72,15 +69,12 @@ extension SemanticConventions {
     */
     case containerName = "k8s.container.name"
 
-
     /**
      Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec.
-      ```
 
      - Requires: Value type should be `Int`
     */
     case containerRestartCount = "k8s.container.restart_count"
-
 
     /**
      Last terminated reason of the Container.
@@ -94,7 +88,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case containerStatusLastTerminatedReason = "k8s.container.status.last_terminated_reason"
-
 
     /**
      The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
@@ -116,7 +109,6 @@ extension SemanticConventions {
     */
     case containerStatusReason = "k8s.container.status.reason"
 
-
     /**
      The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
 
@@ -131,7 +123,6 @@ extension SemanticConventions {
     */
     case containerStatusState = "k8s.container.status.state"
 
-
     /**
      The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value.
 
@@ -143,15 +134,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - An annotation `retries` with value `4` SHOULD be recorded as the
-       `k8s.cronjob.annotation.retries` attribute with value `"4"`.
-     - An annotation `data` with empty string value SHOULD be recorded as
-       the `k8s.cronjob.annotation.data` attribute with value `""`.
+       - An annotation `retries` with value `4` SHOULD be recorded as the
+         `k8s.cronjob.annotation.retries` attribute with value `"4"`.
+       - An annotation `data` with empty string value SHOULD be recorded as
+         the `k8s.cronjob.annotation.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case cronjobAnnotation = "k8s.cronjob.annotation"
-
 
     /**
      The label placed on the CronJob, the `<key>` being the label name, the value being the label value.
@@ -164,15 +154,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `type` with value `weekly` SHOULD be recorded as the
-       `k8s.cronjob.label.type` attribute with value `"weekly"`.
-     - A label `automated` with empty string value SHOULD be recorded as
-       the `k8s.cronjob.label.automated` attribute with value `""`.
+       - A label `type` with value `weekly` SHOULD be recorded as the
+         `k8s.cronjob.label.type` attribute with value `"weekly"`.
+       - A label `automated` with empty string value SHOULD be recorded as
+         the `k8s.cronjob.label.automated` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case cronjobLabel = "k8s.cronjob.label"
-
 
     /**
      The name of the CronJob.
@@ -186,7 +175,6 @@ extension SemanticConventions {
     */
     case cronjobName = "k8s.cronjob.name"
 
-
     /**
      The UID of the CronJob.
 
@@ -199,7 +187,6 @@ extension SemanticConventions {
     */
     case cronjobUid = "k8s.cronjob.uid"
 
-
     /**
      The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
@@ -211,15 +198,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `replicas` with value `1` SHOULD be recorded
-       as the `k8s.daemonset.annotation.replicas` attribute with value `"1"`.
-     - A label `data` with empty string value SHOULD be recorded as
-       the `k8s.daemonset.annotation.data` attribute with value `""`.
+       - A label `replicas` with value `1` SHOULD be recorded
+         as the `k8s.daemonset.annotation.replicas` attribute with value `"1"`.
+       - A label `data` with empty string value SHOULD be recorded as
+         the `k8s.daemonset.annotation.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case daemonsetAnnotation = "k8s.daemonset.annotation"
-
 
     /**
      The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -232,15 +218,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `app` with value `guestbook` SHOULD be recorded
-       as the `k8s.daemonset.label.app` attribute with value `"guestbook"`.
-     - A label `data` with empty string value SHOULD be recorded as
-       the `k8s.daemonset.label.injected` attribute with value `""`.
+       - A label `app` with value `guestbook` SHOULD be recorded
+         as the `k8s.daemonset.label.app` attribute with value `"guestbook"`.
+       - A label `data` with empty string value SHOULD be recorded as
+         the `k8s.daemonset.label.injected` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case daemonsetLabel = "k8s.daemonset.label"
-
 
     /**
      The name of the DaemonSet.
@@ -254,7 +239,6 @@ extension SemanticConventions {
     */
     case daemonsetName = "k8s.daemonset.name"
 
-
     /**
      The UID of the DaemonSet.
 
@@ -267,7 +251,6 @@ extension SemanticConventions {
     */
     case daemonsetUid = "k8s.daemonset.uid"
 
-
     /**
      The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
@@ -279,15 +262,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `replicas` with value `1` SHOULD be recorded
-       as the `k8s.deployment.annotation.replicas` attribute with value `"1"`.
-     - A label `data` with empty string value SHOULD be recorded as
-       the `k8s.deployment.annotation.data` attribute with value `""`.
+       - A label `replicas` with value `1` SHOULD be recorded
+         as the `k8s.deployment.annotation.replicas` attribute with value `"1"`.
+       - A label `data` with empty string value SHOULD be recorded as
+         the `k8s.deployment.annotation.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case deploymentAnnotation = "k8s.deployment.annotation"
-
 
     /**
      The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -300,15 +282,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `replicas` with value `0` SHOULD be recorded
-       as the `k8s.deployment.label.app` attribute with value `"guestbook"`.
-     - A label `injected` with empty string value SHOULD be recorded as
-       the `k8s.deployment.label.injected` attribute with value `""`.
+       - A label `replicas` with value `0` SHOULD be recorded
+         as the `k8s.deployment.label.app` attribute with value `"guestbook"`.
+       - A label `injected` with empty string value SHOULD be recorded as
+         the `k8s.deployment.label.injected` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case deploymentLabel = "k8s.deployment.label"
-
 
     /**
      The name of the Deployment.
@@ -322,7 +303,6 @@ extension SemanticConventions {
     */
     case deploymentName = "k8s.deployment.name"
 
-
     /**
      The UID of the Deployment.
 
@@ -334,7 +314,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case deploymentUid = "k8s.deployment.uid"
-
 
     /**
      The type of metric source for the horizontal pod autoscaler.
@@ -351,7 +330,6 @@ extension SemanticConventions {
     */
     case hpaMetricType = "k8s.hpa.metric.type"
 
-
     /**
      The name of the horizontal pod autoscaler.
 
@@ -363,7 +341,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case hpaName = "k8s.hpa.name"
-
 
     /**
      The API version of the target resource to scale for the HorizontalPodAutoscaler.
@@ -380,7 +357,6 @@ extension SemanticConventions {
     */
     case hpaScaletargetrefApiVersion = "k8s.hpa.scaletargetref.api_version"
 
-
     /**
      The kind of the target resource to scale for the HorizontalPodAutoscaler.
 
@@ -395,7 +371,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case hpaScaletargetrefKind = "k8s.hpa.scaletargetref.kind"
-
 
     /**
      The name of the target resource to scale for the HorizontalPodAutoscaler.
@@ -412,7 +387,6 @@ extension SemanticConventions {
     */
     case hpaScaletargetrefName = "k8s.hpa.scaletargetref.name"
 
-
     /**
      The UID of the horizontal pod autoscaler.
 
@@ -424,7 +398,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case hpaUid = "k8s.hpa.uid"
-
 
     /**
      The size (identifier) of the K8s huge page.
@@ -438,7 +411,6 @@ extension SemanticConventions {
     */
     case hugepageSize = "k8s.hugepage.size"
 
-
     /**
      The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
@@ -450,15 +422,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `number` with value `1` SHOULD be recorded
-       as the `k8s.job.annotation.number` attribute with value `"1"`.
-     - A label `data` with empty string value SHOULD be recorded as
-       the `k8s.job.annotation.data` attribute with value `""`.
+       - A label `number` with value `1` SHOULD be recorded
+         as the `k8s.job.annotation.number` attribute with value `"1"`.
+       - A label `data` with empty string value SHOULD be recorded as
+         the `k8s.job.annotation.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case jobAnnotation = "k8s.job.annotation"
-
 
     /**
      The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -471,15 +442,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `jobtype` with value `ci` SHOULD be recorded
-       as the `k8s.job.label.jobtype` attribute with value `"ci"`.
-     - A label `data` with empty string value SHOULD be recorded as
-       the `k8s.job.label.automated` attribute with value `""`.
+       - A label `jobtype` with value `ci` SHOULD be recorded
+         as the `k8s.job.label.jobtype` attribute with value `"ci"`.
+       - A label `data` with empty string value SHOULD be recorded as
+         the `k8s.job.label.automated` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case jobLabel = "k8s.job.label"
-
 
     /**
      The name of the Job.
@@ -493,7 +463,6 @@ extension SemanticConventions {
     */
     case jobName = "k8s.job.name"
 
-
     /**
      The UID of the Job.
 
@@ -506,7 +475,6 @@ extension SemanticConventions {
     */
     case jobUid = "k8s.job.uid"
 
-
     /**
      The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
@@ -518,15 +486,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `ttl` with value `0` SHOULD be recorded
-       as the `k8s.namespace.annotation.ttl` attribute with value `"0"`.
-     - A label `data` with empty string value SHOULD be recorded as
-       the `k8s.namespace.annotation.data` attribute with value `""`.
+       - A label `ttl` with value `0` SHOULD be recorded
+         as the `k8s.namespace.annotation.ttl` attribute with value `"0"`.
+       - A label `data` with empty string value SHOULD be recorded as
+         the `k8s.namespace.annotation.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case namespaceAnnotation = "k8s.namespace.annotation"
-
 
     /**
      The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -539,15 +506,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `kubernetes.io/metadata.name` with value `default` SHOULD be recorded
-       as the `k8s.namespace.label.kubernetes.io/metadata.name` attribute with value `"default"`.
-     - A label `data` with empty string value SHOULD be recorded as
-       the `k8s.namespace.label.data` attribute with value `""`.
+       - A label `kubernetes.io/metadata.name` with value `default` SHOULD be recorded
+         as the `k8s.namespace.label.kubernetes.io/metadata.name` attribute with value `"default"`.
+       - A label `data` with empty string value SHOULD be recorded as
+         the `k8s.namespace.label.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case namespaceLabel = "k8s.namespace.label"
-
 
     /**
      The name of the namespace that the pod is running in.
@@ -561,7 +527,6 @@ extension SemanticConventions {
     */
     case namespaceName = "k8s.namespace.name"
 
-
     /**
      The phase of the K8s namespace.
 
@@ -572,12 +537,11 @@ extension SemanticConventions {
       ```
 
      - Note: This attribute aligns with the `phase` field of the
-     [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
+       [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
 
      - Requires: Value should be one of ``NamespacePhaseValues`` (of type `String`)
     */
     case namespacePhase = "k8s.namespace.phase"
-
 
     /**
      The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -590,15 +554,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - An annotation `node.alpha.kubernetes.io/ttl` with value `0` SHOULD be recorded as
-       the `k8s.node.annotation.node.alpha.kubernetes.io/ttl` attribute with value `"0"`.
-     - An annotation `data` with empty string value SHOULD be recorded as
-       the `k8s.node.annotation.data` attribute with value `""`.
+       - An annotation `node.alpha.kubernetes.io/ttl` with value `0` SHOULD be recorded as
+         the `k8s.node.annotation.node.alpha.kubernetes.io/ttl` attribute with value `"0"`.
+       - An annotation `data` with empty string value SHOULD be recorded as
+         the `k8s.node.annotation.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case nodeAnnotation = "k8s.node.annotation"
-
 
     /**
      The status of the condition, one of True, False, Unknown.
@@ -611,12 +574,11 @@ extension SemanticConventions {
       ```
 
      - Note: This attribute aligns with the `status` field of the
-     [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+       [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
 
      - Requires: Value should be one of ``NodeConditionStatusValues`` (of type `String`)
     */
     case nodeConditionStatus = "k8s.node.condition.status"
-
 
     /**
      The condition type of a K8s Node.
@@ -628,19 +590,18 @@ extension SemanticConventions {
       ```
 
      - Note: K8s Node conditions as described
-     by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
+       by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
 
-     This attribute aligns with the `type` field of the
-     [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
+       This attribute aligns with the `type` field of the
+       [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
 
-     The set of possible values is not limited to those listed here. Managed Kubernetes environments,
-     or custom controllers MAY introduce additional node condition types.
-     When this occurs, the exact value as reported by the Kubernetes API SHOULD be used.
+       The set of possible values is not limited to those listed here. Managed Kubernetes environments,
+       or custom controllers MAY introduce additional node condition types.
+       When this occurs, the exact value as reported by the Kubernetes API SHOULD be used.
 
      - Requires: Value should be one of ``NodeConditionTypeValues`` (of type `String`)
     */
     case nodeConditionType = "k8s.node.condition.type"
-
 
     /**
      The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -653,15 +614,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `kubernetes.io/arch` with value `arm64` SHOULD be recorded
-       as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
-     - A label `data` with empty string value SHOULD be recorded as
-       the `k8s.node.label.data` attribute with value `""`.
+       - A label `kubernetes.io/arch` with value `arm64` SHOULD be recorded
+         as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
+       - A label `data` with empty string value SHOULD be recorded as
+         the `k8s.node.label.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case nodeLabel = "k8s.node.label"
-
 
     /**
      The name of the Node.
@@ -675,7 +635,6 @@ extension SemanticConventions {
     */
     case nodeName = "k8s.node.name"
 
-
     /**
      The UID of the Node.
 
@@ -687,7 +646,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case nodeUid = "k8s.node.uid"
-
 
     /**
      The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
@@ -701,17 +659,16 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` SHOULD be recorded as
-       the `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets` attribute with value `"true"`.
-     - An annotation `mycompany.io/arch` with value `x64` SHOULD be recorded as
-       the `k8s.pod.annotation.mycompany.io/arch` attribute with value `"x64"`.
-     - An annotation `data` with empty string value SHOULD be recorded as
-       the `k8s.pod.annotation.data` attribute with value `""`.
+       - An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` SHOULD be recorded as
+         the `k8s.pod.annotation.kubernetes.io/enforce-mountable-secrets` attribute with value `"true"`.
+       - An annotation `mycompany.io/arch` with value `x64` SHOULD be recorded as
+         the `k8s.pod.annotation.mycompany.io/arch` attribute with value `"x64"`.
+       - An annotation `data` with empty string value SHOULD be recorded as
+         the `k8s.pod.annotation.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case podAnnotation = "k8s.pod.annotation"
-
 
     /**
      The label placed on the Pod, the `<key>` being the label name, the value being the label value.
@@ -725,17 +682,16 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `app` with value `my-app` SHOULD be recorded as
-       the `k8s.pod.label.app` attribute with value `"my-app"`.
-     - A label `mycompany.io/arch` with value `x64` SHOULD be recorded as
-       the `k8s.pod.label.mycompany.io/arch` attribute with value `"x64"`.
-     - A label `data` with empty string value SHOULD be recorded as
-       the `k8s.pod.label.data` attribute with value `""`.
+       - A label `app` with value `my-app` SHOULD be recorded as
+         the `k8s.pod.label.app` attribute with value `"my-app"`.
+       - A label `mycompany.io/arch` with value `x64` SHOULD be recorded as
+         the `k8s.pod.label.mycompany.io/arch` attribute with value `"x64"`.
+       - A label `data` with empty string value SHOULD be recorded as
+         the `k8s.pod.label.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case podLabel = "k8s.pod.label"
-
 
     /**
      The name of the Pod.
@@ -749,7 +705,6 @@ extension SemanticConventions {
     */
     case podName = "k8s.pod.name"
 
-
     /**
      The UID of the Pod.
 
@@ -762,7 +717,6 @@ extension SemanticConventions {
     */
     case podUid = "k8s.pod.uid"
 
-
     /**
      The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
@@ -774,15 +728,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `replicas` with value `0` SHOULD be recorded
-       as the `k8s.replicaset.annotation.replicas` attribute with value `"0"`.
-     - A label `data` with empty string value SHOULD be recorded as
-       the `k8s.replicaset.annotation.data` attribute with value `""`.
+       - A label `replicas` with value `0` SHOULD be recorded
+         as the `k8s.replicaset.annotation.replicas` attribute with value `"0"`.
+       - A label `data` with empty string value SHOULD be recorded as
+         the `k8s.replicaset.annotation.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case replicasetAnnotation = "k8s.replicaset.annotation"
-
 
     /**
      The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -795,15 +748,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `app` with value `guestbook` SHOULD be recorded
-       as the `k8s.replicaset.label.app` attribute with value `"guestbook"`.
-     - A label `injected` with empty string value SHOULD be recorded as
-       the `k8s.replicaset.label.injected` attribute with value `""`.
+       - A label `app` with value `guestbook` SHOULD be recorded
+         as the `k8s.replicaset.label.app` attribute with value `"guestbook"`.
+       - A label `injected` with empty string value SHOULD be recorded as
+         the `k8s.replicaset.label.injected` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case replicasetLabel = "k8s.replicaset.label"
-
 
     /**
      The name of the ReplicaSet.
@@ -817,7 +769,6 @@ extension SemanticConventions {
     */
     case replicasetName = "k8s.replicaset.name"
 
-
     /**
      The UID of the ReplicaSet.
 
@@ -829,7 +780,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case replicasetUid = "k8s.replicaset.uid"
-
 
     /**
      The name of the replication controller.
@@ -843,7 +793,6 @@ extension SemanticConventions {
     */
     case replicationcontrollerName = "k8s.replicationcontroller.name"
 
-
     /**
      The UID of the replication controller.
 
@@ -856,7 +805,6 @@ extension SemanticConventions {
     */
     case replicationcontrollerUid = "k8s.replicationcontroller.uid"
 
-
     /**
      The name of the resource quota.
 
@@ -868,7 +816,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case resourcequotaName = "k8s.resourcequota.name"
-
 
     /**
      The name of the K8s resource a resource quota defines.
@@ -884,7 +831,6 @@ extension SemanticConventions {
     */
     case resourcequotaResourceName = "k8s.resourcequota.resource_name"
 
-
     /**
      The UID of the resource quota.
 
@@ -897,7 +843,6 @@ extension SemanticConventions {
     */
     case resourcequotaUid = "k8s.resourcequota.uid"
 
-
     /**
      The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
 
@@ -909,15 +854,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `replicas` with value `1` SHOULD be recorded
-       as the `k8s.statefulset.annotation.replicas` attribute with value `"1"`.
-     - A label `data` with empty string value SHOULD be recorded as
-       the `k8s.statefulset.annotation.data` attribute with value `""`.
+       - A label `replicas` with value `1` SHOULD be recorded
+         as the `k8s.statefulset.annotation.replicas` attribute with value `"1"`.
+       - A label `data` with empty string value SHOULD be recorded as
+         the `k8s.statefulset.annotation.data` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case statefulsetAnnotation = "k8s.statefulset.annotation"
-
 
     /**
      The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -930,15 +874,14 @@ extension SemanticConventions {
 
      - Note: Examples:
 
-     - A label `replicas` with value `0` SHOULD be recorded
-       as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
-     - A label `injected` with empty string value SHOULD be recorded as
-       the `k8s.statefulset.label.injected` attribute with value `""`.
+       - A label `replicas` with value `0` SHOULD be recorded
+         as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
+       - A label `injected` with empty string value SHOULD be recorded as
+         the `k8s.statefulset.label.injected` attribute with value `""`.
 
      - Requires: Value type should be `template[string]`
     */
     case statefulsetLabel = "k8s.statefulset.label"
-
 
     /**
      The name of the StatefulSet.
@@ -952,7 +895,6 @@ extension SemanticConventions {
     */
     case statefulsetName = "k8s.statefulset.name"
 
-
     /**
      The UID of the StatefulSet.
 
@@ -964,7 +906,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case statefulsetUid = "k8s.statefulset.uid"
-
 
     /**
      The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object.
@@ -978,7 +919,6 @@ extension SemanticConventions {
     */
     case storageclassName = "k8s.storageclass.name"
 
-
     /**
      The name of the K8s volume.
 
@@ -990,7 +930,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case volumeName = "k8s.volume.name"
-
 
     /**
      The type of the K8s volume.
@@ -1005,52 +944,36 @@ extension SemanticConventions {
     */
     case volumeType = "k8s.volume.type"
 
-
-
-
-
-
-
-
     /** 
       The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
     */
     public struct ContainerStatusReasonValues: CustomStringConvertible {
-      /**
-      The container is being created.
-      */
+      
+      /// The container is being created.
       public static let containerCreating = ContainerStatusReasonValues("ContainerCreating") 
-      /**
-      The container is in a crash loop back off state.
-      */
+      
+      /// The container is in a crash loop back off state.
       public static let crashLoopBackOff = ContainerStatusReasonValues("CrashLoopBackOff") 
-      /**
-      There was an error creating the container configuration.
-      */
+      
+      /// There was an error creating the container configuration.
       public static let createContainerConfigError = ContainerStatusReasonValues("CreateContainerConfigError") 
-      /**
-      There was an error pulling the container image.
-      */
+      
+      /// There was an error pulling the container image.
       public static let errImagePull = ContainerStatusReasonValues("ErrImagePull") 
-      /**
-      The container image pull is in back off state.
-      */
+      
+      /// The container image pull is in back off state.
       public static let imagePullBackOff = ContainerStatusReasonValues("ImagePullBackOff") 
-      /**
-      The container was killed due to out of memory.
-      */
+      
+      /// The container was killed due to out of memory.
       public static let oomKilled = ContainerStatusReasonValues("OOMKilled") 
-      /**
-      The container has completed execution.
-      */
+      
+      /// The container has completed execution.
       public static let completed = ContainerStatusReasonValues("Completed") 
-      /**
-      There was an error with the container.
-      */
+      
+      /// There was an error with the container.
       public static let error = ContainerStatusReasonValues("Error") 
-      /**
-      The container cannot run.
-      */
+      
+      /// The container cannot run.
       public static let containerCannotRun = ContainerStatusReasonValues("ContainerCannotRun") 
 
       internal let value: String 
@@ -1064,22 +987,18 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
     */
     public struct ContainerStatusStateValues: CustomStringConvertible {
-      /**
-      The container has terminated.
-      */
+      
+      /// The container has terminated.
       public static let terminated = ContainerStatusStateValues("terminated") 
-      /**
-      The container is running.
-      */
+      
+      /// The container is running.
       public static let running = ContainerStatusStateValues("running") 
-      /**
-      The container is waiting.
-      */
+      
+      /// The container is waiting.
       public static let waiting = ContainerStatusStateValues("waiting") 
 
       internal let value: String 
@@ -1093,44 +1012,15 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /** 
       The phase of the K8s namespace.
     */
     public struct NamespacePhaseValues: CustomStringConvertible {
-      /**
-      Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)
-      */
+      
+      /// Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)
       public static let active = NamespacePhaseValues("active") 
-      /**
-      Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)
-      */
+      
+      /// Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)
       public static let terminating = NamespacePhaseValues("terminating") 
 
       internal let value: String 
@@ -1143,8 +1033,6 @@ extension SemanticConventions {
         return value
       }
     }
-
-
 
     /** 
       The status of the condition, one of True, False, Unknown.
@@ -1165,30 +1053,24 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       The condition type of a K8s Node.
     */
     public struct NodeConditionTypeValues: CustomStringConvertible {
-      /**
-      The node is healthy and ready to accept pods
-      */
+      
+      /// The node is healthy and ready to accept pods
       public static let ready = NodeConditionTypeValues("Ready") 
-      /**
-      Pressure exists on the disk size—that is, if the disk capacity is low
-      */
+      
+      /// Pressure exists on the disk size—that is, if the disk capacity is low
       public static let diskPressure = NodeConditionTypeValues("DiskPressure") 
-      /**
-      Pressure exists on the node memory—that is, if the node memory is low
-      */
+      
+      /// Pressure exists on the node memory—that is, if the node memory is low
       public static let memoryPressure = NodeConditionTypeValues("MemoryPressure") 
-      /**
-      Pressure exists on the processes—that is, if there are too many processes on the node
-      */
+      
+      /// Pressure exists on the processes—that is, if there are too many processes on the node
       public static let pidPressure = NodeConditionTypeValues("PIDPressure") 
-      /**
-      The network for the node is not correctly configured
-      */
+      
+      /// The network for the node is not correctly configured
       public static let networkUnavailable = NodeConditionTypeValues("NetworkUnavailable") 
 
       internal let value: String 
@@ -1202,56 +1084,27 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /** 
       The type of the K8s volume.
     */
     public struct VolumeTypeValues: CustomStringConvertible {
-      /**
-      A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume
-      */
+      
+      /// A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume
       public static let persistentVolumeClaim = VolumeTypeValues("persistentVolumeClaim") 
-      /**
-      A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume
-      */
+      
+      /// A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume
       public static let configMap = VolumeTypeValues("configMap") 
-      /**
-      A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume
-      */
+      
+      /// A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume
       public static let downwardApi = VolumeTypeValues("downwardAPI") 
-      /**
-      An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume
-      */
+      
+      /// An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume
       public static let emptyDir = VolumeTypeValues("emptyDir") 
-      /**
-      A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume
-      */
+      
+      /// A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume
       public static let secret = VolumeTypeValues("secret") 
-      /**
-      A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume
-      */
+      
+      /// A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume
       public static let local = VolumeTypeValues("local") 
 
       internal let value: String 

@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Cpu: String {
 
-
     /**
      The logical CPU number [0..n-1]
 
@@ -22,7 +21,6 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case logicalNumber = "cpu.logical_number"
-
 
     /**
      The mode of the CPU
@@ -37,44 +35,33 @@ extension SemanticConventions {
     */
     case mode = "cpu.mode"
 
-
-
-
     /** 
       The mode of the CPU
     */
     public struct ModeValues: CustomStringConvertible {
-      /**
-      User
-      */
+      
+      /// User
       public static let user = ModeValues("user") 
-      /**
-      System
-      */
+      
+      /// System
       public static let system = ModeValues("system") 
-      /**
-      Nice
-      */
+      
+      /// Nice
       public static let nice = ModeValues("nice") 
-      /**
-      Idle
-      */
+      
+      /// Idle
       public static let idle = ModeValues("idle") 
-      /**
-      IO Wait
-      */
+      
+      /// IO Wait
       public static let iowait = ModeValues("iowait") 
-      /**
-      Interrupt
-      */
+      
+      /// Interrupt
       public static let interrupt = ModeValues("interrupt") 
-      /**
-      Steal
-      */
+      
+      /// Steal
       public static let steal = ModeValues("steal") 
-      /**
-      Kernel
-      */
+      
+      /// Kernel
       public static let kernel = ModeValues("kernel") 
 
       internal let value: String 

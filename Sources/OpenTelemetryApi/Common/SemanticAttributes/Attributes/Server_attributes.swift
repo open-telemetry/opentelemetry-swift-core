@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Server: String {
 
-
     /**
      Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
@@ -27,7 +26,6 @@ extension SemanticConventions {
     */
     case address = "server.address"
 
-
     /**
      Server port number.
 
@@ -43,8 +41,5 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case port = "server.port"
-
-
-
   }
 }

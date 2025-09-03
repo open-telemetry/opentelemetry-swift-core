@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Container: String {
 
-
     /**
      The command used to run the container (i.e. the command name).
 
@@ -25,7 +24,6 @@ extension SemanticConventions {
     */
     case command = "container.command"
 
-
     /**
      All the command arguments (including the command/executable itself) run by the container.
 
@@ -38,7 +36,6 @@ extension SemanticConventions {
     */
     case commandArgs = "container.command_args"
 
-
     /**
      The full command run by the container as a single string representing the full command.
 
@@ -50,7 +47,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case commandLine = "container.command_line"
-
 
     /**
      The name of the CSI ([Container Storage Interface](https://github.com/container-storage-interface/spec)) plugin used by the volume.
@@ -66,7 +62,6 @@ extension SemanticConventions {
     */
     case csiPluginName = "container.csi.plugin.name"
 
-
     /**
      The unique volume ID returned by the CSI ([Container Storage Interface](https://github.com/container-storage-interface/spec)) plugin.
 
@@ -81,7 +76,6 @@ extension SemanticConventions {
     */
     case csiVolumeId = "container.csi.volume.id"
 
-
     /**
      Container ID. Usually a UUID, as for example used to [identify Docker containers](https://docs.docker.com/engine/containers/run/#container-identification). The UUID might be abbreviated.
 
@@ -94,7 +88,6 @@ extension SemanticConventions {
     */
     case id = "container.id"
 
-
     /**
      Runtime specific image identifier. Usually a hash algorithm followed by a UUID.
 
@@ -104,13 +97,12 @@ extension SemanticConventions {
       ```
 
      - Note: Docker defines a sha256 of the image id; `container.image.id` corresponds to the `Image` field from the Docker container inspect [API](https://docs.docker.com/engine/api/v1.43/#tag/Container/operation/ContainerInspect) endpoint.
-     K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
-     The ID is assigned by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
+       K8s defines a link to the container registry repository with digest `"imageID": "registry.azurecr.io /namespace/service/dockerfile@sha256:bdeabd40c3a8a492eaf9e8e44d0ebbb84bac7ee25ac0cf8a7159d25f62555625"`.
+       The ID is assigned by the container runtime and can vary in different environments. Consider using `oci.manifest.digest` if it is important to identify the same image in different environments/runtimes.
 
      - Requires: Value type should be `String`
     */
     case imageId = "container.image.id"
-
 
     /**
      Name of the image the container was built on.
@@ -123,7 +115,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case imageName = "container.image.name"
-
 
     /**
      Repo digests of the container image as provided by the container runtime.
@@ -139,7 +130,6 @@ extension SemanticConventions {
     */
     case imageRepoDigests = "container.image.repo_digests"
 
-
     /**
      Container image tags. An example can be found in [Docker Image Inspect](https://docs.docker.com/engine/api/v1.43/#tag/Image/operation/ImageInspect). Should be only the `<tag>` section of the full name for example from `registry.example.com/my-org/my-image:<tag>`.
 
@@ -151,7 +141,6 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case imageTags = "container.image.tags"
-
 
     /**
      Container labels, `<key>` being the label name, the value being the label value.
@@ -167,7 +156,6 @@ extension SemanticConventions {
     */
     case label = "container.label"
 
-
     /**
      Container name used by container runtime.
 
@@ -180,7 +168,6 @@ extension SemanticConventions {
     */
     case name = "container.name"
 
-
     /**
      A description about the runtime which could include, for example details about the CRI/API version being used or other customisations.
 
@@ -192,7 +179,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case runtimeDescription = "container.runtime.description"
-
 
     /**
      The container runtime managing this container.
@@ -208,34 +194,16 @@ extension SemanticConventions {
     */
     case runtimeName = "container.runtime.name"
 
-
     /**
      The version of the runtime of this process, as returned by the runtime without modification.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Container.runtimeVersion.rawValue] = "1.0.0"
+      attributes[SemanticConventions.Container.runtimeVersion.rawValue] = "1.0.0"
       ```
 
      - Requires: Value type should be `String`
     */
     case runtimeVersion = "container.runtime.version"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
 }

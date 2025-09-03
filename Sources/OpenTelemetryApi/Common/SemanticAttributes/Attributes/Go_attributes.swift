@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Go: String {
 
-
     /**
      The type of memory.
 
@@ -24,19 +23,15 @@ extension SemanticConventions {
     */
     case memoryType = "go.memory.type"
 
-
-
     /** 
       The type of memory.
     */
     public struct MemoryTypeValues: CustomStringConvertible {
-      /**
-      Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.
-      */
+      
+      /// Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.
       public static let stack = MemoryTypeValues("stack") 
-      /**
-      Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration.
-      */
+      
+      /// Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration.
       public static let other = MemoryTypeValues("other") 
 
       internal let value: String 

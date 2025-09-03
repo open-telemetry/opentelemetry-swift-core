@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Test: String {
 
-
     /**
      The fully qualified human readable name of the [test case](https://wikipedia.org/wiki/Test_case).
 
@@ -25,7 +24,6 @@ extension SemanticConventions {
     */
     case caseName = "test.case.name"
 
-
     /**
      The status of the actual test case result from test execution.
 
@@ -39,7 +37,6 @@ extension SemanticConventions {
     */
     case caseResultStatus = "test.case.result.status"
 
-
     /**
      The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite).
 
@@ -51,7 +48,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case suiteName = "test.suite.name"
-
 
     /**
      The status of the test suite run.
@@ -70,20 +66,15 @@ extension SemanticConventions {
     */
     case suiteRunStatus = "test.suite.run.status"
 
-
-
-
     /** 
       The status of the actual test case result from test execution.
     */
     public struct CaseResultStatusValues: CustomStringConvertible {
-      /**
-      pass
-      */
+      
+      /// pass
       public static let pass = CaseResultStatusValues("pass") 
-      /**
-      fail
-      */
+      
+      /// fail
       public static let fail = CaseResultStatusValues("fail") 
 
       internal let value: String 
@@ -97,35 +88,27 @@ extension SemanticConventions {
       }
     }
 
-
-
     /** 
       The status of the test suite run.
     */
     public struct SuiteRunStatusValues: CustomStringConvertible {
-      /**
-      success
-      */
+      
+      /// success
       public static let success = SuiteRunStatusValues("success") 
-      /**
-      failure
-      */
+      
+      /// failure
       public static let failure = SuiteRunStatusValues("failure") 
-      /**
-      skipped
-      */
+      
+      /// skipped
       public static let skipped = SuiteRunStatusValues("skipped") 
-      /**
-      aborted
-      */
+      
+      /// aborted
       public static let aborted = SuiteRunStatusValues("aborted") 
-      /**
-      timed_out
-      */
+      
+      /// timed_out
       public static let timedOut = SuiteRunStatusValues("timed_out") 
-      /**
-      in_progress
-      */
+      
+      /// in_progress
       public static let inProgress = SuiteRunStatusValues("in_progress") 
 
       internal let value: String 

@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Cloud: String {
 
-
     /**
      The cloud account ID the resource is assigned to.
 
@@ -23,7 +22,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case accountId = "cloud.account.id"
-
 
     /**
      Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running.
@@ -39,10 +37,8 @@ extension SemanticConventions {
     */
     case availabilityZone = "cloud.availability_zone"
 
-
     /**
      The cloud platform in use.
-      ```
 
      - Note: The prefix of the service SHOULD match the one specified in `cloud.provider`.
 
@@ -50,15 +46,12 @@ extension SemanticConventions {
     */
     case platform = "cloud.platform"
 
-
     /**
      Name of the cloud provider.
-      ```
 
      - Requires: Value should be one of ``ProviderValues`` (of type `String`)
     */
     case provider = "cloud.provider"
-
 
     /**
      The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed.
@@ -75,7 +68,6 @@ extension SemanticConventions {
     */
     case region = "cloud.region"
 
-
     /**
      Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP)
 
@@ -87,154 +79,120 @@ extension SemanticConventions {
       ```
 
      - Note: On some cloud providers, it may not be possible to determine the full ID at startup,
-     so it may be necessary to set `cloud.resource_id` as a span attribute instead.
+       so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 
-     The exact value to use for `cloud.resource_id` depends on the cloud provider.
-     The following well-known definitions MUST be used if you set this attribute and they apply:
+       The exact value to use for `cloud.resource_id` depends on the cloud provider.
+       The following well-known definitions MUST be used if you set this attribute and they apply:
 
-     - **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
-       Take care not to use the "invoked ARN" directly but replace any
-       [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
-       with the resolved function version, as the same runtime instance may be invocable with
-       multiple different aliases.
-     - **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
-     - **Azure:** The [Fully Qualified Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
-       *not* the function app, having the form
-       `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
-       This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
-       a TracerProvider.
+       - **AWS Lambda:** The function [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+         Take care not to use the "invoked ARN" directly but replace any
+         [alias suffix](https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html)
+         with the resolved function version, as the same runtime instance may be invocable with
+         multiple different aliases.
+       - **GCP:** The [URI of the resource](https://cloud.google.com/iam/docs/full-resource-names)
+       - **Azure:** The [Fully Qualified Resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) of the invoked function,
+         *not* the function app, having the form
+         `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
+         This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
+         a TracerProvider.
 
      - Requires: Value type should be `String`
     */
     case resourceId = "cloud.resource_id"
 
-
-
-
-
     /** 
       The cloud platform in use.
     */
     public struct PlatformValues: CustomStringConvertible {
-      /**
-      Alibaba Cloud Elastic Compute Service
-      */
+      
+      /// Alibaba Cloud Elastic Compute Service
       public static let alibabaCloudEcs = PlatformValues("alibaba_cloud_ecs") 
-      /**
-      Alibaba Cloud Function Compute
-      */
+      
+      /// Alibaba Cloud Function Compute
       public static let alibabaCloudFc = PlatformValues("alibaba_cloud_fc") 
-      /**
-      Red Hat OpenShift on Alibaba Cloud
-      */
+      
+      /// Red Hat OpenShift on Alibaba Cloud
       public static let alibabaCloudOpenshift = PlatformValues("alibaba_cloud_openshift") 
-      /**
-      AWS Elastic Compute Cloud
-      */
+      
+      /// AWS Elastic Compute Cloud
       public static let awsEc2 = PlatformValues("aws_ec2") 
-      /**
-      AWS Elastic Container Service
-      */
+      
+      /// AWS Elastic Container Service
       public static let awsEcs = PlatformValues("aws_ecs") 
-      /**
-      AWS Elastic Kubernetes Service
-      */
+      
+      /// AWS Elastic Kubernetes Service
       public static let awsEks = PlatformValues("aws_eks") 
-      /**
-      AWS Lambda
-      */
+      
+      /// AWS Lambda
       public static let awsLambda = PlatformValues("aws_lambda") 
-      /**
-      AWS Elastic Beanstalk
-      */
+      
+      /// AWS Elastic Beanstalk
       public static let awsElasticBeanstalk = PlatformValues("aws_elastic_beanstalk") 
-      /**
-      AWS App Runner
-      */
+      
+      /// AWS App Runner
       public static let awsAppRunner = PlatformValues("aws_app_runner") 
-      /**
-      Red Hat OpenShift on AWS (ROSA)
-      */
+      
+      /// Red Hat OpenShift on AWS (ROSA)
       public static let awsOpenshift = PlatformValues("aws_openshift") 
-      /**
-      Azure Virtual Machines
-      */
+      
+      /// Azure Virtual Machines
       public static let azureVm = PlatformValues("azure.vm") 
-      /**
-      Azure Container Apps
-      */
+      
+      /// Azure Container Apps
       public static let azureContainerApps = PlatformValues("azure.container_apps") 
-      /**
-      Azure Container Instances
-      */
+      
+      /// Azure Container Instances
       public static let azureContainerInstances = PlatformValues("azure.container_instances") 
-      /**
-      Azure Kubernetes Service
-      */
+      
+      /// Azure Kubernetes Service
       public static let azureAks = PlatformValues("azure.aks") 
-      /**
-      Azure Functions
-      */
+      
+      /// Azure Functions
       public static let azureFunctions = PlatformValues("azure.functions") 
-      /**
-      Azure App Service
-      */
+      
+      /// Azure App Service
       public static let azureAppService = PlatformValues("azure.app_service") 
-      /**
-      Azure Red Hat OpenShift
-      */
+      
+      /// Azure Red Hat OpenShift
       public static let azureOpenshift = PlatformValues("azure.openshift") 
-      /**
-      Google Bare Metal Solution (BMS)
-      */
+      
+      /// Google Bare Metal Solution (BMS)
       public static let gcpBareMetalSolution = PlatformValues("gcp_bare_metal_solution") 
-      /**
-      Google Cloud Compute Engine (GCE)
-      */
+      
+      /// Google Cloud Compute Engine (GCE)
       public static let gcpComputeEngine = PlatformValues("gcp_compute_engine") 
-      /**
-      Google Cloud Run
-      */
+      
+      /// Google Cloud Run
       public static let gcpCloudRun = PlatformValues("gcp_cloud_run") 
-      /**
-      Google Cloud Kubernetes Engine (GKE)
-      */
+      
+      /// Google Cloud Kubernetes Engine (GKE)
       public static let gcpKubernetesEngine = PlatformValues("gcp_kubernetes_engine") 
-      /**
-      Google Cloud Functions (GCF)
-      */
+      
+      /// Google Cloud Functions (GCF)
       public static let gcpCloudFunctions = PlatformValues("gcp_cloud_functions") 
-      /**
-      Google Cloud App Engine (GAE)
-      */
+      
+      /// Google Cloud App Engine (GAE)
       public static let gcpAppEngine = PlatformValues("gcp_app_engine") 
-      /**
-      Red Hat OpenShift on Google Cloud
-      */
+      
+      /// Red Hat OpenShift on Google Cloud
       public static let gcpOpenshift = PlatformValues("gcp_openshift") 
-      /**
-      Red Hat OpenShift on IBM Cloud
-      */
+      
+      /// Red Hat OpenShift on IBM Cloud
       public static let ibmCloudOpenshift = PlatformValues("ibm_cloud_openshift") 
-      /**
-      Compute on Oracle Cloud Infrastructure (OCI)
-      */
+      
+      /// Compute on Oracle Cloud Infrastructure (OCI)
       public static let oracleCloudCompute = PlatformValues("oracle_cloud_compute") 
-      /**
-      Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI)
-      */
+      
+      /// Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI)
       public static let oracleCloudOke = PlatformValues("oracle_cloud_oke") 
-      /**
-      Tencent Cloud Cloud Virtual Machine (CVM)
-      */
+      
+      /// Tencent Cloud Cloud Virtual Machine (CVM)
       public static let tencentCloudCvm = PlatformValues("tencent_cloud_cvm") 
-      /**
-      Tencent Cloud Elastic Kubernetes Service (EKS)
-      */
+      
+      /// Tencent Cloud Elastic Kubernetes Service (EKS)
       public static let tencentCloudEks = PlatformValues("tencent_cloud_eks") 
-      /**
-      Tencent Cloud Serverless Cloud Function (SCF)
-      */
+      
+      /// Tencent Cloud Serverless Cloud Function (SCF)
       public static let tencentCloudScf = PlatformValues("tencent_cloud_scf") 
 
       internal let value: String 
@@ -248,42 +206,33 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       Name of the cloud provider.
     */
     public struct ProviderValues: CustomStringConvertible {
-      /**
-      Alibaba Cloud
-      */
+      
+      /// Alibaba Cloud
       public static let alibabaCloud = ProviderValues("alibaba_cloud") 
-      /**
-      Amazon Web Services
-      */
+      
+      /// Amazon Web Services
       public static let aws = ProviderValues("aws") 
-      /**
-      Microsoft Azure
-      */
+      
+      /// Microsoft Azure
       public static let azure = ProviderValues("azure") 
-      /**
-      Google Cloud Platform
-      */
+      
+      /// Google Cloud Platform
       public static let gcp = ProviderValues("gcp") 
-      /**
-      Heroku Platform as a Service
-      */
+      
+      /// Heroku Platform as a Service
       public static let heroku = ProviderValues("heroku") 
-      /**
-      IBM Cloud
-      */
+      
+      /// IBM Cloud
       public static let ibmCloud = ProviderValues("ibm_cloud") 
-      /**
-      Oracle Cloud Infrastructure (OCI)
-      */
+      
+      /// Oracle Cloud Infrastructure (OCI)
       public static let oracleCloud = ProviderValues("oracle_cloud") 
-      /**
-      Tencent Cloud
-      */
+      
+      /// Tencent Cloud
       public static let tencentCloud = ProviderValues("tencent_cloud") 
 
       internal let value: String 
@@ -296,7 +245,5 @@ extension SemanticConventions {
         return value
       }
     }
-
-
   }
 }

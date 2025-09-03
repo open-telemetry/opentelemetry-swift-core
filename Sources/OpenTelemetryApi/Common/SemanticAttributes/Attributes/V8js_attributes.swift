@@ -10,19 +10,15 @@ import Foundation
 extension SemanticConventions {
   public enum V8js: String {
 
-
     /**
      The type of garbage collection.
-      ```
 
      - Requires: Value should be one of ``GcTypeValues`` (of type `String`)
     */
     case gcType = "v8js.gc.type"
 
-
     /**
      The name of the space type of heap memory.
-      ```
 
      - Note: Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
@@ -30,27 +26,21 @@ extension SemanticConventions {
     */
     case heapSpaceName = "v8js.heap.space.name"
 
-
-
     /** 
       The type of garbage collection.
     */
     public struct GcTypeValues: CustomStringConvertible {
-      /**
-      Major (Mark Sweep Compact).
-      */
+      
+      /// Major (Mark Sweep Compact).
       public static let major = GcTypeValues("major") 
-      /**
-      Minor (Scavenge).
-      */
+      
+      /// Minor (Scavenge).
       public static let minor = GcTypeValues("minor") 
-      /**
-      Incremental (Incremental Marking).
-      */
+      
+      /// Incremental (Incremental Marking).
       public static let incremental = GcTypeValues("incremental") 
-      /**
-      Weak Callbacks (Process Weak Callbacks).
-      */
+      
+      /// Weak Callbacks (Process Weak Callbacks).
       public static let weakcb = GcTypeValues("weakcb") 
 
       internal let value: String 
@@ -64,30 +54,24 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       The name of the space type of heap memory.
     */
     public struct HeapSpaceNameValues: CustomStringConvertible {
-      /**
-      New memory space.
-      */
+      
+      /// New memory space.
       public static let newSpace = HeapSpaceNameValues("new_space") 
-      /**
-      Old memory space.
-      */
+      
+      /// Old memory space.
       public static let oldSpace = HeapSpaceNameValues("old_space") 
-      /**
-      Code memory space.
-      */
+      
+      /// Code memory space.
       public static let codeSpace = HeapSpaceNameValues("code_space") 
-      /**
-      Map memory space.
-      */
+      
+      /// Map memory space.
       public static let mapSpace = HeapSpaceNameValues("map_space") 
-      /**
-      Large object memory space.
-      */
+      
+      /// Large object memory space.
       public static let largeObjectSpace = HeapSpaceNameValues("large_object_space") 
 
       internal let value: String 

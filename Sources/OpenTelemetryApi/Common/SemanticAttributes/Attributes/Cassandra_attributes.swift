@@ -10,43 +10,36 @@ import Foundation
 extension SemanticConventions {
   public enum Cassandra: String {
 
-
     /**
      The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
-      ```
 
      - Requires: Value should be one of ``ConsistencyLevelValues`` (of type `String`)
     */
     case consistencyLevel = "cassandra.consistency.level"
-
 
     /**
      The data center of the coordinating node for a query.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Cassandra.coordinatorDc.rawValue] = "us-west-2"
+      attributes[SemanticConventions.Cassandra.coordinatorDc.rawValue] = "us-west-2"
       ```
 
      - Requires: Value type should be `String`
     */
     case coordinatorDc = "cassandra.coordinator.dc"
 
-
     /**
      The ID of the coordinating node for a query.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Cassandra.coordinatorId.rawValue] = "be13faa2-8574-4d71-926d-27f16cf8a7af"
+      attributes[SemanticConventions.Cassandra.coordinatorId.rawValue] = "be13faa2-8574-4d71-926d-27f16cf8a7af"
       ```
 
      - Requires: Value type should be `String`
     */
     case coordinatorId = "cassandra.coordinator.id"
-
 
     /**
      The fetch size used for paging, i.e. how many rows will be returned at once.
@@ -60,15 +53,12 @@ extension SemanticConventions {
     */
     case pageSize = "cassandra.page.size"
 
-
     /**
      Whether or not the query is idempotent.
-      ```
 
      - Requires: Value type should be `Bool`
     */
     case queryIdempotent = "cassandra.query.idempotent"
-
 
     /**
      The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
@@ -83,55 +73,42 @@ extension SemanticConventions {
     */
     case speculativeExecutionCount = "cassandra.speculative_execution.count"
 
-
-
     /** 
       The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
     */
     public struct ConsistencyLevelValues: CustomStringConvertible {
-      /**
-      All
-      */
+      
+      /// All
       public static let all = ConsistencyLevelValues("all") 
-      /**
-      Each Quorum
-      */
+      
+      /// Each Quorum
       public static let eachQuorum = ConsistencyLevelValues("each_quorum") 
-      /**
-      Quorum
-      */
+      
+      /// Quorum
       public static let quorum = ConsistencyLevelValues("quorum") 
-      /**
-      Local Quorum
-      */
+      
+      /// Local Quorum
       public static let localQuorum = ConsistencyLevelValues("local_quorum") 
-      /**
-      One
-      */
+      
+      /// One
       public static let one = ConsistencyLevelValues("one") 
-      /**
-      Two
-      */
+      
+      /// Two
       public static let two = ConsistencyLevelValues("two") 
-      /**
-      Three
-      */
+      
+      /// Three
       public static let three = ConsistencyLevelValues("three") 
-      /**
-      Local One
-      */
+      
+      /// Local One
       public static let localOne = ConsistencyLevelValues("local_one") 
-      /**
-      Any
-      */
+      
+      /// Any
       public static let any = ConsistencyLevelValues("any") 
-      /**
-      Serial
-      */
+      
+      /// Serial
       public static let serial = ConsistencyLevelValues("serial") 
-      /**
-      Local Serial
-      */
+      
+      /// Local Serial
       public static let localSerial = ConsistencyLevelValues("local_serial") 
 
       internal let value: String 
@@ -144,10 +121,5 @@ extension SemanticConventions {
         return value
       }
     }
-
-
-
-
-
   }
 }

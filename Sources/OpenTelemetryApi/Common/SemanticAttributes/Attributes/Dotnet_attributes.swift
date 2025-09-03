@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Dotnet: String {
 
-
     /**
      Name of the garbage collector managed heap generation.
 
@@ -25,31 +24,24 @@ extension SemanticConventions {
     */
     case gcHeapGeneration = "dotnet.gc.heap.generation"
 
-
-
     /** 
       Name of the garbage collector managed heap generation.
     */
     public struct GcHeapGenerationValues: CustomStringConvertible {
-      /**
-      Generation 0
-      */
+      
+      /// Generation 0
       public static let gen0 = GcHeapGenerationValues("gen0") 
-      /**
-      Generation 1
-      */
+      
+      /// Generation 1
       public static let gen1 = GcHeapGenerationValues("gen1") 
-      /**
-      Generation 2
-      */
+      
+      /// Generation 2
       public static let gen2 = GcHeapGenerationValues("gen2") 
-      /**
-      Large Object Heap
-      */
+      
+      /// Large Object Heap
       public static let loh = GcHeapGenerationValues("loh") 
-      /**
-      Pinned Object Heap
-      */
+      
+      /// Pinned Object Heap
       public static let poh = GcHeapGenerationValues("poh") 
 
       internal let value: String 

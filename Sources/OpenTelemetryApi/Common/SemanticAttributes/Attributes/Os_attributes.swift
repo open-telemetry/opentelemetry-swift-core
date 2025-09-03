@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Os: String {
 
-
     /**
      Unique identifier for a particular build or compilation of the operating system.
 
@@ -25,7 +24,6 @@ extension SemanticConventions {
     */
     case buildId = "os.build_id"
 
-
     /**
      Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands.
 
@@ -38,7 +36,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case description = "os.description"
-
 
     /**
      Human readable operating system name.
@@ -54,15 +51,12 @@ extension SemanticConventions {
     */
     case name = "os.name"
 
-
     /**
      The operating system type.
-      ```
 
      - Requires: Value should be one of ``TypeValues`` (of type `String`)
     */
     case type = "os.type"
-
 
     /**
      The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
@@ -77,58 +71,42 @@ extension SemanticConventions {
     */
     case version = "os.version"
 
-
-
-
-
-
     /** 
       The operating system type.
     */
     public struct TypeValues: CustomStringConvertible {
-      /**
-      Microsoft Windows
-      */
+      
+      /// Microsoft Windows
       public static let windows = TypeValues("windows") 
-      /**
-      Linux
-      */
+      
+      /// Linux
       public static let linux = TypeValues("linux") 
-      /**
-      Apple Darwin
-      */
+      
+      /// Apple Darwin
       public static let darwin = TypeValues("darwin") 
-      /**
-      FreeBSD
-      */
+      
+      /// FreeBSD
       public static let freebsd = TypeValues("freebsd") 
-      /**
-      NetBSD
-      */
+      
+      /// NetBSD
       public static let netbsd = TypeValues("netbsd") 
-      /**
-      OpenBSD
-      */
+      
+      /// OpenBSD
       public static let openbsd = TypeValues("openbsd") 
-      /**
-      DragonFly BSD
-      */
+      
+      /// DragonFly BSD
       public static let dragonflybsd = TypeValues("dragonflybsd") 
-      /**
-      HP-UX (Hewlett Packard Unix)
-      */
+      
+      /// HP-UX (Hewlett Packard Unix)
       public static let hpux = TypeValues("hpux") 
-      /**
-      AIX (Advanced Interactive eXecutive)
-      */
+      
+      /// AIX (Advanced Interactive eXecutive)
       public static let aix = TypeValues("aix") 
-      /**
-      SunOS, Oracle Solaris
-      */
+      
+      /// SunOS, Oracle Solaris
       public static let solaris = TypeValues("solaris") 
-      /**
-      IBM z/OS
-      */
+      
+      /// IBM z/OS
       public static let zos = TypeValues("zos") 
 
       internal let value: String 
@@ -141,6 +119,5 @@ extension SemanticConventions {
         return value
       }
     }
-
   }
 }

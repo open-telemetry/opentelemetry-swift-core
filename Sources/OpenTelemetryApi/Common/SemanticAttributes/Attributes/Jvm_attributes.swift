@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Jvm: String {
 
-
     /**
      Name of the buffer pool.
 
@@ -25,7 +24,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case bufferPoolName = "jvm.buffer.pool.name"
-
 
     /**
      Name of the garbage collector action.
@@ -42,7 +40,6 @@ extension SemanticConventions {
     */
     case gcAction = "jvm.gc.action"
 
-
     /**
      Name of the garbage collector cause.
 
@@ -58,7 +55,6 @@ extension SemanticConventions {
     */
     case gcCause = "jvm.gc.cause"
 
-
     /**
      Name of the garbage collector.
 
@@ -73,7 +69,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case gcName = "jvm.gc.name"
-
 
     /**
      Name of the memory pool.
@@ -91,7 +86,6 @@ extension SemanticConventions {
     */
     case memoryPoolName = "jvm.memory.pool.name"
 
-
     /**
      The type of memory.
 
@@ -105,15 +99,12 @@ extension SemanticConventions {
     */
     case memoryType = "jvm.memory.type"
 
-
     /**
      Whether the thread is daemon or not.
-      ```
 
      - Requires: Value type should be `Bool`
     */
     case threadDaemon = "jvm.thread.daemon"
-
 
     /**
      State of the thread.
@@ -128,24 +119,15 @@ extension SemanticConventions {
     */
     case threadState = "jvm.thread.state"
 
-
-
-
-
-
-
-
     /** 
       The type of memory.
     */
     public struct MemoryTypeValues: CustomStringConvertible {
-      /**
-      Heap memory.
-      */
+      
+      /// Heap memory.
       public static let heap = MemoryTypeValues("heap") 
-      /**
-      Non-heap memory
-      */
+      
+      /// Non-heap memory
       public static let nonHeap = MemoryTypeValues("non_heap") 
 
       internal let value: String 
@@ -159,35 +141,27 @@ extension SemanticConventions {
       }
     }
 
-
-
     /** 
       State of the thread.
     */
     public struct ThreadStateValues: CustomStringConvertible {
-      /**
-      A thread that has not yet started is in this state.
-      */
+      
+      /// A thread that has not yet started is in this state.
       public static let new = ThreadStateValues("new") 
-      /**
-      A thread executing in the Java virtual machine is in this state.
-      */
+      
+      /// A thread executing in the Java virtual machine is in this state.
       public static let runnable = ThreadStateValues("runnable") 
-      /**
-      A thread that is blocked waiting for a monitor lock is in this state.
-      */
+      
+      /// A thread that is blocked waiting for a monitor lock is in this state.
       public static let blocked = ThreadStateValues("blocked") 
-      /**
-      A thread that is waiting indefinitely for another thread to perform a particular action is in this state.
-      */
+      
+      /// A thread that is waiting indefinitely for another thread to perform a particular action is in this state.
       public static let waiting = ThreadStateValues("waiting") 
-      /**
-      A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.
-      */
+      
+      /// A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.
       public static let timedWaiting = ThreadStateValues("timed_waiting") 
-      /**
-      A thread that has exited is in this state.
-      */
+      
+      /// A thread that has exited is in this state.
       public static let terminated = ThreadStateValues("terminated") 
 
       internal let value: String 

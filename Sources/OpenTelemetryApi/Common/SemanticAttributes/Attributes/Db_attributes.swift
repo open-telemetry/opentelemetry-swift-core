@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Db: String {
 
-
     /**
      The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it.
 
@@ -22,7 +21,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case clientConnectionPoolName = "db.client.connection.pool.name"
-
 
     /**
      The state of a connection in the pool
@@ -36,7 +34,6 @@ extension SemanticConventions {
     */
     case clientConnectionState = "db.client.connection.state"
 
-
     /**
      The name of a collection (table, container) within the database.
 
@@ -47,19 +44,18 @@ extension SemanticConventions {
       ```
 
      - Note: It is RECOMMENDED to capture the value as provided by the application
-     without attempting to do any case normalization.
+       without attempting to do any case normalization.
 
-     The collection name SHOULD NOT be extracted from `db.query.text`,
-     when the database system supports query text with multiple collections
-     in non-batch operations.
+       The collection name SHOULD NOT be extracted from `db.query.text`,
+       when the database system supports query text with multiple collections
+       in non-batch operations.
 
-     For batch operations, if the individual operations are known to have the same
-     collection name then that collection name SHOULD be used.
+       For batch operations, if the individual operations are known to have the same
+       collection name then that collection name SHOULD be used.
 
      - Requires: Value type should be `String`
     */
     case collectionName = "db.collection.name"
-
 
     /**
      The name of the database, fully qualified within the server address and port.
@@ -71,13 +67,12 @@ extension SemanticConventions {
       ```
 
      - Note: If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
-     Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
-     It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+       Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
+       It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
 
      - Requires: Value type should be `String`
     */
     case namespace = "db.namespace"
-
 
     /**
      The number of queries included in a batch operation.
@@ -95,7 +90,6 @@ extension SemanticConventions {
     */
     case operationBatchSize = "db.operation.batch.size"
 
-
     /**
      The name of the operation or command being executed.
 
@@ -107,24 +101,23 @@ extension SemanticConventions {
       ```
 
      - Note: It is RECOMMENDED to capture the value as provided by the application
-     without attempting to do any case normalization.
+       without attempting to do any case normalization.
 
-     The operation name SHOULD NOT be extracted from `db.query.text`,
-     when the database system supports query text with multiple operations
-     in non-batch operations.
+       The operation name SHOULD NOT be extracted from `db.query.text`,
+       when the database system supports query text with multiple operations
+       in non-batch operations.
 
-     If spaces can occur in the operation name, multiple consecutive spaces
-     SHOULD be normalized to a single space.
+       If spaces can occur in the operation name, multiple consecutive spaces
+       SHOULD be normalized to a single space.
 
-     For batch operations, if the individual operations are known to have the same operation name
-     then that operation name SHOULD be used prepended by `BATCH `,
-     otherwise `db.operation.name` SHOULD be `BATCH` or some other database
-     system specific term if more applicable.
+       For batch operations, if the individual operations are known to have the same operation name
+       then that operation name SHOULD be used prepended by `BATCH `,
+       otherwise `db.operation.name` SHOULD be `BATCH` or some other database
+       system specific term if more applicable.
 
      - Requires: Value type should be `String`
     */
     case operationName = "db.operation.name"
-
 
     /**
      A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
@@ -136,15 +129,14 @@ extension SemanticConventions {
       ```
 
      - Note: For example, a client-side maximum number of rows to read from the database
-     MAY be recorded as the `db.operation.parameter.max_rows` attribute.
+       MAY be recorded as the `db.operation.parameter.max_rows` attribute.
 
-     `db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>`
-     instead of `db.operation.parameter.<key>`.
+       `db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>`
+       instead of `db.operation.parameter.<key>`.
 
      - Requires: Value type should be `template[string]`
     */
     case operationParameter = "db.operation.parameter"
-
 
     /**
      A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
@@ -156,24 +148,23 @@ extension SemanticConventions {
       ```
 
      - Note: If a query parameter has no name and instead is referenced only by index,
-     then `<key>` SHOULD be the 0-based index.
+       then `<key>` SHOULD be the 0-based index.
 
-     `db.query.parameter.<key>` SHOULD match
-     up with the parameterized placeholders present in `db.query.text`.
+       `db.query.parameter.<key>` SHOULD match
+       up with the parameterized placeholders present in `db.query.text`.
 
-     `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
+       `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
 
-     Examples:
+       Examples:
 
-     - For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
-       the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
-     - For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
-       `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
+       - For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
+         the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
+       - For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
+         `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
 
      - Requires: Value type should be `template[string]`
     */
     case queryParameter = "db.query.parameter"
-
 
     /**
      Low cardinality summary of a database query.
@@ -186,19 +177,18 @@ extension SemanticConventions {
       ```
 
      - Note: The query summary describes a class of database queries and is useful
-     as a grouping key, especially when analyzing telemetry for database
-     calls involving complex queries.
+       as a grouping key, especially when analyzing telemetry for database
+       calls involving complex queries.
 
-     Summary may be available to the instrumentation through
-     instrumentation hooks or other means. If it is not available, instrumentations
-     that support query parsing SHOULD generate a summary following
-     [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
-     section.
+       Summary may be available to the instrumentation through
+       instrumentation hooks or other means. If it is not available, instrumentations
+       that support query parsing SHOULD generate a summary following
+       [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
+       section.
 
      - Requires: Value type should be `String`
     */
     case querySummary = "db.query.summary"
-
 
     /**
      The database query being executed.
@@ -210,13 +200,12 @@ extension SemanticConventions {
       ```
 
      - Note: For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
-     For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
-     Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
+       For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
+       Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
 
      - Requires: Value type should be `String`
     */
     case queryText = "db.query.text"
-
 
     /**
      Number of rows returned by the operation.
@@ -232,7 +221,6 @@ extension SemanticConventions {
     */
     case responseReturnedRows = "db.response.returned_rows"
 
-
     /**
      Database response status code.
 
@@ -245,12 +233,11 @@ extension SemanticConventions {
       ```
 
      - Note: The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
-     Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+       Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
 
      - Requires: Value type should be `String`
     */
     case responseStatusCode = "db.response.status_code"
-
 
     /**
      The name of a stored procedure within the database.
@@ -261,28 +248,23 @@ extension SemanticConventions {
       ```
 
      - Note: It is RECOMMENDED to capture the value as provided by the application
-     without attempting to do any case normalization.
+       without attempting to do any case normalization.
 
-     For batch operations, if the individual operations are known to have the same
-     stored procedure name then that stored procedure name SHOULD be used.
+       For batch operations, if the individual operations are known to have the same
+       stored procedure name then that stored procedure name SHOULD be used.
 
      - Requires: Value type should be `String`
     */
     case storedProcedureName = "db.stored_procedure.name"
 
-
     /**
      The database management system (DBMS) product as identified by the client instrumentation.
-      ```
 
      - Note: The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
      - Requires: Value should be one of ``SystemNameValues`` (of type `String`)
     */
     case systemName = "db.system.name"
-
-
-
 
     /** 
       The state of a connection in the pool
@@ -302,185 +284,132 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     /** 
       The database management system (DBMS) product as identified by the client instrumentation.
     */
     public struct SystemNameValues: CustomStringConvertible {
-      /**
-      Some other SQL database. Fallback only.
-      */
+      
+      /// Some other SQL database. Fallback only.
       public static let otherSql = SystemNameValues("other_sql") 
-      /**
-      [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas)
-      */
+      
+      /// [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas)
       public static let softwareagAdabas = SystemNameValues("softwareag.adabas") 
-      /**
-      [Actian Ingres](https://www.actian.com/databases/ingres/)
-      */
+      
+      /// [Actian Ingres](https://www.actian.com/databases/ingres/)
       public static let actianIngres = SystemNameValues("actian.ingres") 
-      /**
-      [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/)
-      */
+      
+      /// [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/)
       public static let awsDynamodb = SystemNameValues("aws.dynamodb") 
-      /**
-      [Amazon Redshift](https://aws.amazon.com/redshift/)
-      */
+      
+      /// [Amazon Redshift](https://aws.amazon.com/redshift/)
       public static let awsRedshift = SystemNameValues("aws.redshift") 
-      /**
-      [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db)
-      */
+      
+      /// [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db)
       public static let azureCosmosdb = SystemNameValues("azure.cosmosdb") 
-      /**
-      [InterSystems Caché](https://www.intersystems.com/products/cache/)
-      */
+      
+      /// [InterSystems Caché](https://www.intersystems.com/products/cache/)
       public static let intersystemsCache = SystemNameValues("intersystems.cache") 
-      /**
-      [Apache Cassandra](https://cassandra.apache.org/)
-      */
+      
+      /// [Apache Cassandra](https://cassandra.apache.org/)
       public static let cassandra = SystemNameValues("cassandra") 
-      /**
-      [ClickHouse](https://clickhouse.com/)
-      */
+      
+      /// [ClickHouse](https://clickhouse.com/)
       public static let clickhouse = SystemNameValues("clickhouse") 
-      /**
-      [CockroachDB](https://www.cockroachlabs.com/)
-      */
+      
+      /// [CockroachDB](https://www.cockroachlabs.com/)
       public static let cockroachdb = SystemNameValues("cockroachdb") 
-      /**
-      [Couchbase](https://www.couchbase.com/)
-      */
+      
+      /// [Couchbase](https://www.couchbase.com/)
       public static let couchbase = SystemNameValues("couchbase") 
-      /**
-      [Apache CouchDB](https://couchdb.apache.org/)
-      */
+      
+      /// [Apache CouchDB](https://couchdb.apache.org/)
       public static let couchdb = SystemNameValues("couchdb") 
-      /**
-      [Apache Derby](https://db.apache.org/derby/)
-      */
+      
+      /// [Apache Derby](https://db.apache.org/derby/)
       public static let derby = SystemNameValues("derby") 
-      /**
-      [Elasticsearch](https://www.elastic.co/elasticsearch)
-      */
+      
+      /// [Elasticsearch](https://www.elastic.co/elasticsearch)
       public static let elasticsearch = SystemNameValues("elasticsearch") 
-      /**
-      [Firebird](https://www.firebirdsql.org/)
-      */
+      
+      /// [Firebird](https://www.firebirdsql.org/)
       public static let firebirdsql = SystemNameValues("firebirdsql") 
-      /**
-      [Google Cloud Spanner](https://cloud.google.com/spanner)
-      */
+      
+      /// [Google Cloud Spanner](https://cloud.google.com/spanner)
       public static let gcpSpanner = SystemNameValues("gcp.spanner") 
-      /**
-      [Apache Geode](https://geode.apache.org/)
-      */
+      
+      /// [Apache Geode](https://geode.apache.org/)
       public static let geode = SystemNameValues("geode") 
-      /**
-      [H2 Database](https://h2database.com/)
-      */
+      
+      /// [H2 Database](https://h2database.com/)
       public static let h2database = SystemNameValues("h2database") 
-      /**
-      [Apache HBase](https://hbase.apache.org/)
-      */
+      
+      /// [Apache HBase](https://hbase.apache.org/)
       public static let hbase = SystemNameValues("hbase") 
-      /**
-      [Apache Hive](https://hive.apache.org/)
-      */
+      
+      /// [Apache Hive](https://hive.apache.org/)
       public static let hive = SystemNameValues("hive") 
-      /**
-      [HyperSQL Database](https://hsqldb.org/)
-      */
+      
+      /// [HyperSQL Database](https://hsqldb.org/)
       public static let hsqldb = SystemNameValues("hsqldb") 
-      /**
-      [IBM Db2](https://www.ibm.com/db2)
-      */
+      
+      /// [IBM Db2](https://www.ibm.com/db2)
       public static let ibmDb2 = SystemNameValues("ibm.db2") 
-      /**
-      [IBM Informix](https://www.ibm.com/products/informix)
-      */
+      
+      /// [IBM Informix](https://www.ibm.com/products/informix)
       public static let ibmInformix = SystemNameValues("ibm.informix") 
-      /**
-      [IBM Netezza](https://www.ibm.com/products/netezza)
-      */
+      
+      /// [IBM Netezza](https://www.ibm.com/products/netezza)
       public static let ibmNetezza = SystemNameValues("ibm.netezza") 
-      /**
-      [InfluxDB](https://www.influxdata.com/)
-      */
+      
+      /// [InfluxDB](https://www.influxdata.com/)
       public static let influxdb = SystemNameValues("influxdb") 
-      /**
-      [Instant](https://www.instantdb.com/)
-      */
+      
+      /// [Instant](https://www.instantdb.com/)
       public static let instantdb = SystemNameValues("instantdb") 
-      /**
-      [MariaDB](https://mariadb.org/)
-      */
+      
+      /// [MariaDB](https://mariadb.org/)
       public static let mariadb = SystemNameValues("mariadb") 
-      /**
-      [Memcached](https://memcached.org/)
-      */
+      
+      /// [Memcached](https://memcached.org/)
       public static let memcached = SystemNameValues("memcached") 
-      /**
-      [MongoDB](https://www.mongodb.com/)
-      */
+      
+      /// [MongoDB](https://www.mongodb.com/)
       public static let mongodb = SystemNameValues("mongodb") 
-      /**
-      [Microsoft SQL Server](https://www.microsoft.com/sql-server)
-      */
+      
+      /// [Microsoft SQL Server](https://www.microsoft.com/sql-server)
       public static let microsoftSqlServer = SystemNameValues("microsoft.sql_server") 
-      /**
-      [MySQL](https://www.mysql.com/)
-      */
+      
+      /// [MySQL](https://www.mysql.com/)
       public static let mysql = SystemNameValues("mysql") 
-      /**
-      [Neo4j](https://neo4j.com/)
-      */
+      
+      /// [Neo4j](https://neo4j.com/)
       public static let neo4j = SystemNameValues("neo4j") 
-      /**
-      [OpenSearch](https://opensearch.org/)
-      */
+      
+      /// [OpenSearch](https://opensearch.org/)
       public static let opensearch = SystemNameValues("opensearch") 
-      /**
-      [Oracle Database](https://www.oracle.com/database/)
-      */
+      
+      /// [Oracle Database](https://www.oracle.com/database/)
       public static let oracleDb = SystemNameValues("oracle.db") 
-      /**
-      [PostgreSQL](https://www.postgresql.org/)
-      */
+      
+      /// [PostgreSQL](https://www.postgresql.org/)
       public static let postgresql = SystemNameValues("postgresql") 
-      /**
-      [Redis](https://redis.io/)
-      */
+      
+      /// [Redis](https://redis.io/)
       public static let redis = SystemNameValues("redis") 
-      /**
-      [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html)
-      */
+      
+      /// [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html)
       public static let sapHana = SystemNameValues("sap.hana") 
-      /**
-      [SAP MaxDB](https://maxdb.sap.com/)
-      */
+      
+      /// [SAP MaxDB](https://maxdb.sap.com/)
       public static let sapMaxdb = SystemNameValues("sap.maxdb") 
-      /**
-      [SQLite](https://www.sqlite.org/)
-      */
+      
+      /// [SQLite](https://www.sqlite.org/)
       public static let sqlite = SystemNameValues("sqlite") 
-      /**
-      [Teradata](https://www.teradata.com/)
-      */
+      
+      /// [Teradata](https://www.teradata.com/)
       public static let teradata = SystemNameValues("teradata") 
-      /**
-      [Trino](https://trino.io/)
-      */
+      
+      /// [Trino](https://trino.io/)
       public static let trino = SystemNameValues("trino") 
 
       internal let value: String 

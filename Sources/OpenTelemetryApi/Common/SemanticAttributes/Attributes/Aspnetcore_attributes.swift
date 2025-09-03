@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Aspnetcore: String {
 
-
     /**
      The result of the authentication operation.
 
@@ -23,7 +22,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``AuthenticationResultValues`` (of type `String`)
     */
     case authenticationResult = "aspnetcore.authentication.result"
-
 
     /**
      The identifier that names a particular authentication handler.
@@ -39,7 +37,6 @@ extension SemanticConventions {
     */
     case authenticationScheme = "aspnetcore.authentication.scheme"
 
-
     /**
      The name of the authorization policy.
 
@@ -51,7 +48,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case authorizationPolicy = "aspnetcore.authorization.policy"
-
 
     /**
      The result of calling the authorization service.
@@ -66,7 +62,6 @@ extension SemanticConventions {
     */
     case authorizationResult = "aspnetcore.authorization.result"
 
-
     /**
      ASP.NET Core exception middleware handling result.
 
@@ -80,7 +75,6 @@ extension SemanticConventions {
     */
     case diagnosticsExceptionResult = "aspnetcore.diagnostics.exception.result"
 
-
     /**
      Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception.
 
@@ -92,7 +86,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case diagnosticsHandlerType = "aspnetcore.diagnostics.handler.type"
-
 
     /**
      The error code for a failed identity operation.
@@ -107,7 +100,6 @@ extension SemanticConventions {
     */
     case identityErrorCode = "aspnetcore.identity.error_code"
 
-
     /**
      The result from checking the password.
 
@@ -120,7 +112,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``IdentityPasswordCheckResultValues`` (of type `String`)
     */
     case identityPasswordCheckResult = "aspnetcore.identity.password_check_result"
-
 
     /**
      The result of the identity operation.
@@ -135,7 +126,6 @@ extension SemanticConventions {
     */
     case identityResult = "aspnetcore.identity.result"
 
-
     /**
      Whether the sign in result was success or failure.
 
@@ -148,7 +138,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``IdentitySignInResultValues`` (of type `String`)
     */
     case identitySignInResult = "aspnetcore.identity.sign_in.result"
-
 
     /**
      The authentication type.
@@ -163,7 +152,6 @@ extension SemanticConventions {
     */
     case identitySignInType = "aspnetcore.identity.sign_in.type"
 
-
     /**
      What the token will be used for.
 
@@ -177,7 +165,6 @@ extension SemanticConventions {
     */
     case identityTokenPurpose = "aspnetcore.identity.token_purpose"
 
-
     /**
      The result of token verification.
 
@@ -190,7 +177,6 @@ extension SemanticConventions {
      - Requires: Value should be one of ``IdentityTokenVerifiedValues`` (of type `String`)
     */
     case identityTokenVerified = "aspnetcore.identity.token_verified"
-
 
     /**
      The user update type.
@@ -206,7 +192,6 @@ extension SemanticConventions {
     */
     case identityUserUpdateType = "aspnetcore.identity.user.update_type"
 
-
     /**
      The full name of the identity user type.
 
@@ -218,7 +203,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case identityUserType = "aspnetcore.identity.user_type"
-
 
     /**
      The name of the library or subsystem using the memory pool instance.
@@ -232,7 +216,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case memoryPoolOwner = "aspnetcore.memory_pool.owner"
-
 
     /**
      Rate limiting policy name.
@@ -248,7 +231,6 @@ extension SemanticConventions {
     */
     case rateLimitingPolicy = "aspnetcore.rate_limiting.policy"
 
-
     /**
      Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
 
@@ -262,7 +244,6 @@ extension SemanticConventions {
     */
     case rateLimitingResult = "aspnetcore.rate_limiting.result"
 
-
     /**
      Flag indicating if request was handled by the application pipeline.
 
@@ -275,7 +256,6 @@ extension SemanticConventions {
     */
     case requestIsUnhandled = "aspnetcore.request.is_unhandled"
 
-
     /**
      A value that indicates whether the matched route is a fallback route.
 
@@ -287,7 +267,6 @@ extension SemanticConventions {
      - Requires: Value type should be `Bool`
     */
     case routingIsFallback = "aspnetcore.routing.is_fallback"
-
 
     /**
      Match result - success or failure
@@ -302,15 +281,12 @@ extension SemanticConventions {
     */
     case routingMatchStatus = "aspnetcore.routing.match_status"
 
-
     /**
      A flag indicating whether the sign in is persistent.
-      ```
 
      - Requires: Value type should be `Bool`
     */
     case signInIsPersistent = "aspnetcore.sign_in.is_persistent"
-
 
     /**
      A value that indicates whether the user is authenticated.
@@ -324,23 +300,18 @@ extension SemanticConventions {
     */
     case userIsAuthenticated = "aspnetcore.user.is_authenticated"
 
-
-
     /** 
       The result of the authentication operation.
     */
     public struct AuthenticationResultValues: CustomStringConvertible {
-      /**
-      Authentication was successful.
-      */
+      
+      /// Authentication was successful.
       public static let success = AuthenticationResultValues("success") 
-      /**
-      Authentication failed.
-      */
+      
+      /// Authentication failed.
       public static let failure = AuthenticationResultValues("failure") 
-      /**
-      No authentication information returned.
-      */
+      
+      /// No authentication information returned.
       public static let none = AuthenticationResultValues("none") 
 
       internal let value: String 
@@ -354,20 +325,15 @@ extension SemanticConventions {
       }
     }
 
-
-
-
     /** 
       The result of calling the authorization service.
     */
     public struct AuthorizationResultValues: CustomStringConvertible {
-      /**
-      Authorization was successful.
-      */
+      
+      /// Authorization was successful.
       public static let success = AuthorizationResultValues("success") 
-      /**
-      Authorization failed.
-      */
+      
+      /// Authorization failed.
       public static let failure = AuthorizationResultValues("failure") 
 
       internal let value: String 
@@ -381,26 +347,21 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       ASP.NET Core exception middleware handling result.
     */
     public struct DiagnosticsExceptionResultValues: CustomStringConvertible {
-      /**
-      Exception was handled by the exception handling middleware.
-      */
+      
+      /// Exception was handled by the exception handling middleware.
       public static let handled = DiagnosticsExceptionResultValues("handled") 
-      /**
-      Exception was not handled by the exception handling middleware.
-      */
+      
+      /// Exception was not handled by the exception handling middleware.
       public static let unhandled = DiagnosticsExceptionResultValues("unhandled") 
-      /**
-      Exception handling was skipped because the response had started.
-      */
+      
+      /// Exception handling was skipped because the response had started.
       public static let skipped = DiagnosticsExceptionResultValues("skipped") 
-      /**
-      Exception handling didn't run because the request was aborted.
-      */
+      
+      /// Exception handling didn't run because the request was aborted.
       public static let aborted = DiagnosticsExceptionResultValues("aborted") 
 
       internal let value: String 
@@ -414,32 +375,24 @@ extension SemanticConventions {
       }
     }
 
-
-
-
     /** 
       The result from checking the password.
     */
     public struct IdentityPasswordCheckResultValues: CustomStringConvertible {
-      /**
-      Password check was successful.
-      */
+      
+      /// Password check was successful.
       public static let success = IdentityPasswordCheckResultValues("success") 
-      /**
-      Password check was successful however the password was encoded using a deprecated algorithm and should be rehashed and updated.
-      */
+      
+      /// Password check was successful however the password was encoded using a deprecated algorithm and should be rehashed and updated.
       public static let successRehashNeeded = IdentityPasswordCheckResultValues("success_rehash_needed") 
-      /**
-      Password check failed.
-      */
+      
+      /// Password check failed.
       public static let failure = IdentityPasswordCheckResultValues("failure") 
-      /**
-      Password check couldn't proceed because the password was missing from the user.
-      */
+      
+      /// Password check couldn't proceed because the password was missing from the user.
       public static let passwordMissing = IdentityPasswordCheckResultValues("password_missing") 
-      /**
-      Password check couldn't proceed because the user was missing.
-      */
+      
+      /// Password check couldn't proceed because the user was missing.
       public static let userMissing = IdentityPasswordCheckResultValues("user_missing") 
 
       internal let value: String 
@@ -453,18 +406,15 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       The result of the identity operation.
     */
     public struct IdentityResultValues: CustomStringConvertible {
-      /**
-      Identity operation was successful.
-      */
+      
+      /// Identity operation was successful.
       public static let success = IdentityResultValues("success") 
-      /**
-      Identity operation failed.
-      */
+      
+      /// Identity operation failed.
       public static let failure = IdentityResultValues("failure") 
 
       internal let value: String 
@@ -478,30 +428,24 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       Whether the sign in result was success or failure.
     */
     public struct IdentitySignInResultValues: CustomStringConvertible {
-      /**
-      Sign in was successful.
-      */
+      
+      /// Sign in was successful.
       public static let success = IdentitySignInResultValues("success") 
-      /**
-      User is locked out.
-      */
+      
+      /// User is locked out.
       public static let lockedOut = IdentitySignInResultValues("locked_out") 
-      /**
-      User is not allowed to sign in.
-      */
+      
+      /// User is not allowed to sign in.
       public static let notAllowed = IdentitySignInResultValues("not_allowed") 
-      /**
-      User requires two factory authentication to sign in.
-      */
+      
+      /// User requires two factory authentication to sign in.
       public static let requiresTwoFactor = IdentitySignInResultValues("requires_two_factor") 
-      /**
-      Sign in failed.
-      */
+      
+      /// Sign in failed.
       public static let failure = IdentitySignInResultValues("failure") 
 
       internal let value: String 
@@ -515,34 +459,27 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       The authentication type.
     */
     public struct IdentitySignInTypeValues: CustomStringConvertible {
-      /**
-      Sign in with password.
-      */
+      
+      /// Sign in with password.
       public static let password = IdentitySignInTypeValues("password") 
-      /**
-      Sign in with two factory recovery code.
-      */
+      
+      /// Sign in with two factory recovery code.
       public static let twoFactorRecoveryCode = IdentitySignInTypeValues("two_factor_recovery_code") 
-      /**
-      Sign in with two factor authenticator app.
-      */
+      
+      /// Sign in with two factor authenticator app.
       public static let twoFactorAuthenticator = IdentitySignInTypeValues("two_factor_authenticator") 
-      /**
-      Sign in with a two factor provider.
-      */
+      
+      /// Sign in with a two factor provider.
       public static let twoFactor = IdentitySignInTypeValues("two_factor") 
-      /**
-      Sign in with a previously registered third-party login.
-      */
+      
+      /// Sign in with a previously registered third-party login.
       public static let external = IdentitySignInTypeValues("external") 
-      /**
-      Sign in with passkey.
-      */
+      
+      /// Sign in with passkey.
       public static let passkey = IdentitySignInTypeValues("passkey") 
 
       internal let value: String 
@@ -556,34 +493,27 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       What the token will be used for.
     */
     public struct IdentityTokenPurposeValues: CustomStringConvertible {
-      /**
-      The token is for resetting a user password.
-      */
+      
+      /// The token is for resetting a user password.
       public static let resetPassword = IdentityTokenPurposeValues("reset_password") 
-      /**
-      The token is for changing a user phone number.
-      */
+      
+      /// The token is for changing a user phone number.
       public static let changePhoneNumber = IdentityTokenPurposeValues("change_phone_number") 
-      /**
-      The token is for confirming user email address.
-      */
+      
+      /// The token is for confirming user email address.
       public static let emailConfirmation = IdentityTokenPurposeValues("email_confirmation") 
-      /**
-      The token is for changing the user email address.
-      */
+      
+      /// The token is for changing the user email address.
       public static let changeEmail = IdentityTokenPurposeValues("change_email") 
-      /**
-      The token is for changing user two factor settings.
-      */
+      
+      /// The token is for changing user two factor settings.
       public static let twoFactor = IdentityTokenPurposeValues("two_factor") 
-      /**
-      Any token purpose that the instrumentation has no prior knowledge of.
-      */
+      
+      /// Any token purpose that the instrumentation has no prior knowledge of.
       public static let other = IdentityTokenPurposeValues("_OTHER") 
 
       internal let value: String 
@@ -597,18 +527,15 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       The result of token verification.
     */
     public struct IdentityTokenVerifiedValues: CustomStringConvertible {
-      /**
-      Token verification was successful.
-      */
+      
+      /// Token verification was successful.
       public static let success = IdentityTokenVerifiedValues("success") 
-      /**
-      Token verification failed.
-      */
+      
+      /// Token verification failed.
       public static let failure = IdentityTokenVerifiedValues("failure") 
 
       internal let value: String 
@@ -622,142 +549,108 @@ extension SemanticConventions {
       }
     }
 
-
     /** 
       The user update type.
     */
     public struct IdentityUserUpdateTypeValues: CustomStringConvertible {
-      /**
-      Identity user updated.
-      */
+      
+      /// Identity user updated.
       public static let update = IdentityUserUpdateTypeValues("update") 
-      /**
-      Identity user name updated.
-      */
+      
+      /// Identity user name updated.
       public static let userName = IdentityUserUpdateTypeValues("user_name") 
-      /**
-      Identity user password added.
-      */
+      
+      /// Identity user password added.
       public static let addPassword = IdentityUserUpdateTypeValues("add_password") 
-      /**
-      Identity user password changed.
-      */
+      
+      /// Identity user password changed.
       public static let changePassword = IdentityUserUpdateTypeValues("change_password") 
-      /**
-      Identity user security stamp updated.
-      */
+      
+      /// Identity user security stamp updated.
       public static let securityStamp = IdentityUserUpdateTypeValues("security_stamp") 
-      /**
-      Identity user password reset.
-      */
+      
+      /// Identity user password reset.
       public static let resetPassword = IdentityUserUpdateTypeValues("reset_password") 
-      /**
-      Identity user login removed.
-      */
+      
+      /// Identity user login removed.
       public static let removeLogin = IdentityUserUpdateTypeValues("remove_login") 
-      /**
-      Identity user login added.
-      */
+      
+      /// Identity user login added.
       public static let addLogin = IdentityUserUpdateTypeValues("add_login") 
-      /**
-      Identity user claims added.
-      */
+      
+      /// Identity user claims added.
       public static let addClaims = IdentityUserUpdateTypeValues("add_claims") 
-      /**
-      Identity user claim replaced.
-      */
+      
+      /// Identity user claim replaced.
       public static let replaceClaim = IdentityUserUpdateTypeValues("replace_claim") 
-      /**
-      Identity user claims removed.
-      */
+      
+      /// Identity user claims removed.
       public static let removeClaims = IdentityUserUpdateTypeValues("remove_claims") 
-      /**
-      Identity user added to roles.
-      */
+      
+      /// Identity user added to roles.
       public static let addToRoles = IdentityUserUpdateTypeValues("add_to_roles") 
-      /**
-      Identity user removed from roles.
-      */
+      
+      /// Identity user removed from roles.
       public static let removeFromRoles = IdentityUserUpdateTypeValues("remove_from_roles") 
-      /**
-      Identity user email set.
-      */
+      
+      /// Identity user email set.
       public static let setEmail = IdentityUserUpdateTypeValues("set_email") 
-      /**
-      Identity user email confirmed.
-      */
+      
+      /// Identity user email confirmed.
       public static let confirmEmail = IdentityUserUpdateTypeValues("confirm_email") 
-      /**
-      Identity user password rehashed.
-      */
+      
+      /// Identity user password rehashed.
       public static let passwordRehash = IdentityUserUpdateTypeValues("password_rehash") 
-      /**
-      Identity user password removed.
-      */
+      
+      /// Identity user password removed.
       public static let removePassword = IdentityUserUpdateTypeValues("remove_password") 
-      /**
-      Identity user email changed.
-      */
+      
+      /// Identity user email changed.
       public static let changeEmail = IdentityUserUpdateTypeValues("change_email") 
-      /**
-      Identity user phone number set.
-      */
+      
+      /// Identity user phone number set.
       public static let setPhoneNumber = IdentityUserUpdateTypeValues("set_phone_number") 
-      /**
-      Identity user phone number changed.
-      */
+      
+      /// Identity user phone number changed.
       public static let changePhoneNumber = IdentityUserUpdateTypeValues("change_phone_number") 
-      /**
-      Identity user two-factor authentication enabled or disabled.
-      */
+      
+      /// Identity user two-factor authentication enabled or disabled.
       public static let setTwoFactorEnabled = IdentityUserUpdateTypeValues("set_two_factor_enabled") 
-      /**
-      Identity user lockout enabled or disabled.
-      */
+      
+      /// Identity user lockout enabled or disabled.
       public static let setLockoutEnabled = IdentityUserUpdateTypeValues("set_lockout_enabled") 
-      /**
-      Identity user lockout end date set.
-      */
+      
+      /// Identity user lockout end date set.
       public static let setLockoutEndDate = IdentityUserUpdateTypeValues("set_lockout_end_date") 
-      /**
-      Identity user access failure recorded.
-      */
+      
+      /// Identity user access failure recorded.
       public static let accessFailed = IdentityUserUpdateTypeValues("access_failed") 
-      /**
-      Identity user access failure count reset.
-      */
+      
+      /// Identity user access failure count reset.
       public static let resetAccessFailedCount = IdentityUserUpdateTypeValues("reset_access_failed_count") 
-      /**
-      Identity user authentication token set.
-      */
+      
+      /// Identity user authentication token set.
       public static let setAuthenticationToken = IdentityUserUpdateTypeValues("set_authentication_token") 
-      /**
-      Identity user authentication token removed.
-      */
+      
+      /// Identity user authentication token removed.
       public static let removeAuthenticationToken = IdentityUserUpdateTypeValues("remove_authentication_token") 
-      /**
-      Identity user authenticator key reset.
-      */
+      
+      /// Identity user authenticator key reset.
       public static let resetAuthenticatorKey = IdentityUserUpdateTypeValues("reset_authenticator_key") 
-      /**
-      Identity user new two-factor recovery codes generated.
-      */
+      
+      /// Identity user new two-factor recovery codes generated.
       public static let generateNewTwoFactorRecoveryCodes = IdentityUserUpdateTypeValues("generate_new_two_factor_recovery_codes") 
-      /**
-      Identity user two-factor recovery code redeemed.
-      */
+      
+      /// Identity user two-factor recovery code redeemed.
       public static let redeemTwoFactorRecoveryCode = IdentityUserUpdateTypeValues("redeem_two_factor_recovery_code") 
-      /**
-      Identity user passkey set.
-      */
+      
+      /// Identity user passkey set.
       public static let setPasskey = IdentityUserUpdateTypeValues("set_passkey") 
-      /**
-      Identity user passkey removed.
-      */
+      
+      /// Identity user passkey removed.
       public static let removePasskey = IdentityUserUpdateTypeValues("remove_passkey") 
-      /**
-      Any update type that the instrumentation has no prior knowledge of.
-      */
+      
+      /// Any update type that the instrumentation has no prior knowledge of.
       public static let other = IdentityUserUpdateTypeValues("_OTHER") 
 
       internal let value: String 
@@ -771,29 +664,21 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
     /** 
       Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
     */
     public struct RateLimitingResultValues: CustomStringConvertible {
-      /**
-      Lease was acquired
-      */
+      
+      /// Lease was acquired
       public static let acquired = RateLimitingResultValues("acquired") 
-      /**
-      Lease request was rejected by the endpoint limiter
-      */
+      
+      /// Lease request was rejected by the endpoint limiter
       public static let endpointLimiter = RateLimitingResultValues("endpoint_limiter") 
-      /**
-      Lease request was rejected by the global limiter
-      */
+      
+      /// Lease request was rejected by the global limiter
       public static let globalLimiter = RateLimitingResultValues("global_limiter") 
-      /**
-      Lease request was canceled
-      */
+      
+      /// Lease request was canceled
       public static let requestCanceled = RateLimitingResultValues("request_canceled") 
 
       internal let value: String 
@@ -807,20 +692,15 @@ extension SemanticConventions {
       }
     }
 
-
-
-
     /** 
       Match result - success or failure
     */
     public struct RoutingMatchStatusValues: CustomStringConvertible {
-      /**
-      Match succeeded
-      */
+      
+      /// Match succeeded
       public static let success = RoutingMatchStatusValues("success") 
-      /**
-      Match failed
-      */
+      
+      /// Match failed
       public static let failure = RoutingMatchStatusValues("failure") 
 
       internal let value: String 
@@ -833,7 +713,5 @@ extension SemanticConventions {
         return value
       }
     }
-
-
   }
 }

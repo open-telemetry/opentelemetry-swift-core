@@ -10,15 +10,12 @@ import Foundation
 extension SemanticConventions {
   public enum Rpc: String {
 
-
     /**
      The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
-      ```
 
      - Requires: Value should be one of ``ConnectErrorCodeValues`` (of type `String`)
     */
     case connectErrorCode = "rpc.connect_rpc.error_code"
-
 
     /**
      Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
@@ -29,15 +26,14 @@ extension SemanticConventions {
       ```
 
      - Note: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-     Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+       Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-     For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-     the `rpc.connect_rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+       For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
+       the `rpc.connect_rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
 
      - Requires: Value type should be `template[string[]]`
     */
     case connectRequestMetadata = "rpc.connect_rpc.request.metadata"
-
 
     /**
      Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
@@ -48,15 +44,14 @@ extension SemanticConventions {
       ```
 
      - Note: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-     Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+       Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-     For example, a property `my-custom-key` with value `"attribute_value"` SHOULD be recorded as
-     the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+       For example, a property `my-custom-key` with value `"attribute_value"` SHOULD be recorded as
+       the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
 
      - Requires: Value type should be `template[string[]]`
     */
     case connectResponseMetadata = "rpc.connect_rpc.response.metadata"
-
 
     /**
      gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
@@ -67,15 +62,14 @@ extension SemanticConventions {
       ```
 
      - Note: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-     Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+       Including all request metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-     For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
-     `rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
+       For example, a property `my-custom-key` with value `["1.2.3.4", "1.2.3.5"]` SHOULD be recorded as
+       `rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
 
      - Requires: Value type should be `template[string[]]`
     */
     case gRequestMetadata = "rpc.grpc.request.metadata"
-
 
     /**
      gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
@@ -86,24 +80,21 @@ extension SemanticConventions {
       ```
 
      - Note: Instrumentations SHOULD require an explicit configuration of which metadata values are to be captured.
-     Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
+       Including all response metadata values can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
-     For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
-     the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
+       For example, a property `my-custom-key` with value `["attribute_value"]` SHOULD be recorded as
+       the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
 
      - Requires: Value type should be `template[string[]]`
     */
     case gResponseMetadata = "rpc.grpc.response.metadata"
 
-
     /**
      The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
-      ```
 
      - Requires: Value should be one of ``GStatusCodeValues`` (of type `Int`)
     */
     case gStatusCode = "rpc.grpc.status_code"
-
 
     /**
      `error.code` property of response if it is an error response.
@@ -118,7 +109,6 @@ extension SemanticConventions {
     */
     case jsonErrorCode = "rpc.jsonrpc.error_code"
 
-
     /**
      `error.message` property of response if it is an error response.
 
@@ -131,7 +121,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case jsonErrorMessage = "rpc.jsonrpc.error_message"
-
 
     /**
      `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification.
@@ -147,7 +136,6 @@ extension SemanticConventions {
     */
     case jsonRequestId = "rpc.jsonrpc.request_id"
 
-
     /**
      Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
 
@@ -161,19 +149,15 @@ extension SemanticConventions {
     */
     case jsonVersion = "rpc.jsonrpc.version"
 
-
     /**
      Compressed size of the message in bytes.
-      ```
 
      - Requires: Value type should be `Int`
     */
     case messageCompressedSize = "rpc.message.compressed_size"
 
-
     /**
      MUST be calculated as two different counters starting from `1` one for sent messages and one for received message.
-      ```
 
      - Note: This way we guarantee that the values will be consistent between different implementations.
 
@@ -181,32 +165,26 @@ extension SemanticConventions {
     */
     case messageId = "rpc.message.id"
 
-
     /**
      Whether this is a received or sent message.
-      ```
 
      - Requires: Value should be one of ``MessageTypeValues`` (of type `String`)
     */
     case messageType = "rpc.message.type"
 
-
     /**
      Uncompressed size of the message in bytes.
-      ```
 
      - Requires: Value type should be `Int`
     */
     case messageUncompressedSize = "rpc.message.uncompressed_size"
-
 
     /**
      The name of the (logical) method being called, must be equal to the $method part in the span name.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Rpc.method.rawValue] = "exampleMethod"
+      attributes[SemanticConventions.Rpc.method.rawValue] = "exampleMethod"
       ```
 
      - Note: This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
@@ -215,14 +193,12 @@ extension SemanticConventions {
     */
     case method = "rpc.method"
 
-
     /**
      The full (logical) name of the service being called, including its package name, if applicable.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Rpc.service.rawValue] = "myservice.EchoService"
+      attributes[SemanticConventions.Rpc.service.rawValue] = "myservice.EchoService"
       ```
 
      - Note: This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
@@ -231,16 +207,12 @@ extension SemanticConventions {
     */
     case service = "rpc.service"
 
-
     /**
      A string identifying the remoting system. See below for a list of well-known identifiers.
-      ```
 
      - Requires: Value should be one of ``SystemValues`` (of type `String`)
     */
     case system = "rpc.system"
-
-
 
     /** 
       The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
@@ -274,82 +246,60 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
-
     /** 
       The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
     */
     public struct GStatusCodeValues: CustomStringConvertible {
-      /**
-      OK
-      */
+      
+      /// OK
       public static let ok = GStatusCodeValues(0) 
-      /**
-      CANCELLED
-      */
+      
+      /// CANCELLED
       public static let cancelled = GStatusCodeValues(1) 
-      /**
-      UNKNOWN
-      */
+      
+      /// UNKNOWN
       public static let unknown = GStatusCodeValues(2) 
-      /**
-      INVALID_ARGUMENT
-      */
+      
+      /// INVALID_ARGUMENT
       public static let invalidArgument = GStatusCodeValues(3) 
-      /**
-      DEADLINE_EXCEEDED
-      */
+      
+      /// DEADLINE_EXCEEDED
       public static let deadlineExceeded = GStatusCodeValues(4) 
-      /**
-      NOT_FOUND
-      */
+      
+      /// NOT_FOUND
       public static let notFound = GStatusCodeValues(5) 
-      /**
-      ALREADY_EXISTS
-      */
+      
+      /// ALREADY_EXISTS
       public static let alreadyExists = GStatusCodeValues(6) 
-      /**
-      PERMISSION_DENIED
-      */
+      
+      /// PERMISSION_DENIED
       public static let permissionDenied = GStatusCodeValues(7) 
-      /**
-      RESOURCE_EXHAUSTED
-      */
+      
+      /// RESOURCE_EXHAUSTED
       public static let resourceExhausted = GStatusCodeValues(8) 
-      /**
-      FAILED_PRECONDITION
-      */
+      
+      /// FAILED_PRECONDITION
       public static let failedPrecondition = GStatusCodeValues(9) 
-      /**
-      ABORTED
-      */
+      
+      /// ABORTED
       public static let aborted = GStatusCodeValues(10) 
-      /**
-      OUT_OF_RANGE
-      */
+      
+      /// OUT_OF_RANGE
       public static let outOfRange = GStatusCodeValues(11) 
-      /**
-      UNIMPLEMENTED
-      */
+      
+      /// UNIMPLEMENTED
       public static let unimplemented = GStatusCodeValues(12) 
-      /**
-      INTERNAL
-      */
+      
+      /// INTERNAL
       public static let _internal = GStatusCodeValues(13) 
-      /**
-      UNAVAILABLE
-      */
+      
+      /// UNAVAILABLE
       public static let unavailable = GStatusCodeValues(14) 
-      /**
-      DATA_LOSS
-      */
+      
+      /// DATA_LOSS
       public static let dataLoss = GStatusCodeValues(15) 
-      /**
-      UNAUTHENTICATED
-      */
+      
+      /// UNAUTHENTICATED
       public static let unauthenticated = GStatusCodeValues(16) 
 
       internal let value: Int 
@@ -362,13 +312,6 @@ extension SemanticConventions {
         return "\(value)" 
       }
     }
-
-
-
-
-
-
-
 
     /** 
       Whether this is a received or sent message.
@@ -388,33 +331,24 @@ extension SemanticConventions {
       }
     }
 
-
-
-
-
     /** 
       A string identifying the remoting system. See below for a list of well-known identifiers.
     */
     public struct SystemValues: CustomStringConvertible {
-      /**
-      gRPC
-      */
+      
+      /// gRPC
       public static let grpc = SystemValues("grpc") 
-      /**
-      Java RMI
-      */
+      
+      /// Java RMI
       public static let javaRmi = SystemValues("java_rmi") 
-      /**
-      .NET WCF
-      */
+      
+      /// .NET WCF
       public static let dotnetWcf = SystemValues("dotnet_wcf") 
-      /**
-      Apache Dubbo
-      */
+      
+      /// Apache Dubbo
       public static let apacheDubbo = SystemValues("apache_dubbo") 
-      /**
-      Connect RPC
-      */
+      
+      /// Connect RPC
       public static let connectRpc = SystemValues("connect_rpc") 
 
       internal let value: String 

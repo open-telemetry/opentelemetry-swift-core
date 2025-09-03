@@ -10,15 +10,12 @@ import Foundation
 extension SemanticConventions {
   public enum Host: String {
 
-
     /**
      The CPU architecture the host system is running on.
-      ```
 
      - Requires: Value should be one of ``ArchValues`` (of type `String`)
     */
     case arch = "host.arch"
-
 
     /**
      The amount of level 2 memory cache available to the processor (in Bytes).
@@ -31,7 +28,6 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case cpuCacheL2Size = "host.cpu.cache.l2.size"
-
 
     /**
      Family or generation of the CPU.
@@ -46,7 +42,6 @@ extension SemanticConventions {
     */
     case cpuFamily = "host.cpu.family"
 
-
     /**
      Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family.
 
@@ -60,7 +55,6 @@ extension SemanticConventions {
     */
     case cpuModelId = "host.cpu.model.id"
 
-
     /**
      Model designation of the processor.
 
@@ -72,7 +66,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case cpuModelName = "host.cpu.model.name"
-
 
     /**
      Stepping or core revisions.
@@ -86,7 +79,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case cpuStepping = "host.cpu.stepping"
-
 
     /**
      Processor manufacturer identifier. A maximum 12-character string.
@@ -102,7 +94,6 @@ extension SemanticConventions {
     */
     case cpuVendorId = "host.cpu.vendor.id"
 
-
     /**
      Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system.
 
@@ -115,7 +106,6 @@ extension SemanticConventions {
     */
     case id = "host.id"
 
-
     /**
      VM image ID or host OS image ID. For Cloud, this value is from the provider.
 
@@ -127,7 +117,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case imageId = "host.image.id"
-
 
     /**
      Name of the VM image or OS install the host was instantiated from.
@@ -142,7 +131,6 @@ extension SemanticConventions {
     */
     case imageName = "host.image.name"
 
-
     /**
      The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
 
@@ -154,7 +142,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case imageVersion = "host.image.version"
-
 
     /**
      Available IP addresses of the host, excluding loopback interfaces.
@@ -170,7 +157,6 @@ extension SemanticConventions {
     */
     case ip = "host.ip"
 
-
     /**
      Available MAC addresses of the host, excluding loopback interfaces.
 
@@ -185,7 +171,6 @@ extension SemanticConventions {
     */
     case mac = "host.mac"
 
-
     /**
      Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user.
 
@@ -197,7 +182,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case name = "host.name"
-
 
     /**
      Type of host. For Cloud, this must be the machine type.
@@ -211,43 +195,33 @@ extension SemanticConventions {
     */
     case type = "host.type"
 
-
-
     /** 
       The CPU architecture the host system is running on.
     */
     public struct ArchValues: CustomStringConvertible {
-      /**
-      AMD64
-      */
+      
+      /// AMD64
       public static let amd64 = ArchValues("amd64") 
-      /**
-      ARM32
-      */
+      
+      /// ARM32
       public static let arm32 = ArchValues("arm32") 
-      /**
-      ARM64
-      */
+      
+      /// ARM64
       public static let arm64 = ArchValues("arm64") 
-      /**
-      Itanium
-      */
+      
+      /// Itanium
       public static let ia64 = ArchValues("ia64") 
-      /**
-      32-bit PowerPC
-      */
+      
+      /// 32-bit PowerPC
       public static let ppc32 = ArchValues("ppc32") 
-      /**
-      64-bit PowerPC
-      */
+      
+      /// 64-bit PowerPC
       public static let ppc64 = ArchValues("ppc64") 
-      /**
-      IBM z/Architecture
-      */
+      
+      /// IBM z/Architecture
       public static let s390x = ArchValues("s390x") 
-      /**
-      32-bit x86
-      */
+      
+      /// 32-bit x86
       public static let x86 = ArchValues("x86") 
 
       internal let value: String 
@@ -260,19 +234,5 @@ extension SemanticConventions {
         return value
       }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
 }

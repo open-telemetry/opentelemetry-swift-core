@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Cpython: String {
 
-
     /**
      Value of the garbage collector collection generation.
 
@@ -25,23 +24,18 @@ extension SemanticConventions {
     */
     case gcGeneration = "cpython.gc.generation"
 
-
-
     /** 
       Value of the garbage collector collection generation.
     */
     public struct GcGenerationValues: CustomStringConvertible {
-      /**
-      Generation 0
-      */
+      
+      /// Generation 0
       public static let generation0 = GcGenerationValues(0) 
-      /**
-      Generation 1
-      */
+      
+      /// Generation 1
       public static let generation1 = GcGenerationValues(1) 
-      /**
-      Generation 2
-      */
+      
+      /// Generation 2
       public static let generation2 = GcGenerationValues(2) 
 
       internal let value: Int 

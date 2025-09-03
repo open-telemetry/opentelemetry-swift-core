@@ -10,35 +10,28 @@ import Foundation
 extension SemanticConventions {
   public enum Session: String {
 
-
     /**
      A unique id to identify a session.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Session.id.rawValue] = "00112233-4455-6677-8899-aabbccddeeff"
+      attributes[SemanticConventions.Session.id.rawValue] = "00112233-4455-6677-8899-aabbccddeeff"
       ```
 
      - Requires: Value type should be `String`
     */
     case id = "session.id"
 
-
     /**
      The previous `session.id` for this user, when known.
 
       - Examples:
       ```
-  
-   attributes[SemanticConventions.Session.previousId.rawValue] = "00112233-4455-6677-8899-aabbccddeeff"
+      attributes[SemanticConventions.Session.previousId.rawValue] = "00112233-4455-6677-8899-aabbccddeeff"
       ```
 
      - Requires: Value type should be `String`
     */
     case previousId = "session.previous_id"
-
-
-
   }
 }

@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Deployment: String {
 
-
     /**
      Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier).
 
@@ -21,17 +20,16 @@ extension SemanticConventions {
       ```
 
      - Note: `deployment.environment.name` does not affect the uniqueness constraints defined through
-     the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
-     This implies that resources carrying the following attribute combinations MUST be
-     considered to be identifying the same service:
+       the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
+       This implies that resources carrying the following attribute combinations MUST be
+       considered to be identifying the same service:
 
-     - `service.name=frontend`, `deployment.environment.name=production`
-     - `service.name=frontend`, `deployment.environment.name=staging`.
+       - `service.name=frontend`, `deployment.environment.name=production`
+       - `service.name=frontend`, `deployment.environment.name=staging`.
 
      - Requires: Value type should be `String`
     */
     case environmentName = "deployment.environment.name"
-
 
     /**
      The id of the deployment.
@@ -44,7 +42,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case id = "deployment.id"
-
 
     /**
      The name of the deployment.
@@ -59,31 +56,22 @@ extension SemanticConventions {
     */
     case name = "deployment.name"
 
-
     /**
      The status of the deployment.
-      ```
 
      - Requires: Value should be one of ``StatusValues`` (of type `String`)
     */
     case status = "deployment.status"
 
-
-
-
-
-
     /** 
       The status of the deployment.
     */
     public struct StatusValues: CustomStringConvertible {
-      /**
-      failed
-      */
+      
+      /// failed
       public static let failed = StatusValues("failed") 
-      /**
-      succeeded
-      */
+      
+      /// succeeded
       public static let succeeded = StatusValues("succeeded") 
 
       internal let value: String 

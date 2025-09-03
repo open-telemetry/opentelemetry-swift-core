@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Enduser: String {
 
-
     /**
      Unique identifier of an end user in the system. It maybe a username, email address, or other identifier.
 
@@ -21,13 +20,12 @@ extension SemanticConventions {
 
      - Note: Unique identifier of an end user in the system.
 
-     > [!Warning]
-     > This field contains sensitive (PII) information.
+       > [!Warning]
+       > This field contains sensitive (PII) information.
 
      - Requires: Value type should be `String`
     */
     case id = "enduser.id"
-
 
     /**
      Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity.
@@ -39,14 +37,11 @@ extension SemanticConventions {
 
      - Note: Pseudonymous identifier of an end user.
 
-     > [!Warning]
-     > This field contains sensitive (linkable PII) information.
+       > [!Warning]
+       > This field contains sensitive (linkable PII) information.
 
      - Requires: Value type should be `String`
     */
     case pseudoId = "enduser.pseudo.id"
-
-
-
   }
 }

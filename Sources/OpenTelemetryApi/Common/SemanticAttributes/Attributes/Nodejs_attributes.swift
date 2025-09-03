@@ -10,28 +10,22 @@ import Foundation
 extension SemanticConventions {
   public enum Nodejs: String {
 
-
     /**
      The state of event loop time.
-      ```
 
      - Requires: Value should be one of ``EventloopStateValues`` (of type `String`)
     */
     case eventloopState = "nodejs.eventloop.state"
 
-
-
     /** 
       The state of event loop time.
     */
     public struct EventloopStateValues: CustomStringConvertible {
-      /**
-      Active time.
-      */
+      
+      /// Active time.
       public static let active = EventloopStateValues("active") 
-      /**
-      Idle time.
-      */
+      
+      /// Idle time.
       public static let idle = EventloopStateValues("idle") 
 
       internal let value: String 

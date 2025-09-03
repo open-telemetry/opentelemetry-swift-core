@@ -10,7 +10,6 @@ import Foundation
 extension SemanticConventions {
   public enum Artifact: String {
 
-
     /**
      The provenance filename of the built attestation which directly relates to the build artifact filename. This filename SHOULD accompany the artifact at publish time. See the [SLSA Relationship](https://slsa.dev/spec/v1.0/distributing-provenance#relationship-between-artifacts-and-attestations) specification for more information.
 
@@ -26,7 +25,6 @@ extension SemanticConventions {
     */
     case attestationFilename = "artifact.attestation.filename"
 
-
     /**
      The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf), of the built attestation. Some envelopes in the [software attestation space](https://github.com/in-toto/attestation/tree/main/spec) also refer to this as the **digest**.
 
@@ -38,7 +36,6 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case attestationHash = "artifact.attestation.hash"
-
 
     /**
      The id of the build [software attestation](https://slsa.dev/attestation-model).
@@ -52,7 +49,6 @@ extension SemanticConventions {
     */
     case attestationId = "artifact.attestation.id"
 
-
     /**
      The human readable file name of the artifact, typically generated during build and release processes. Often includes the package name and version in the file name.
 
@@ -65,14 +61,13 @@ extension SemanticConventions {
       ```
 
      - Note: This file name can also act as the [Package Name](https://slsa.dev/spec/v1.0/terminology#package-model)
-     in cases where the package ecosystem maps accordingly.
-     Additionally, the artifact [can be published](https://slsa.dev/spec/v1.0/terminology#software-supply-chain)
-     for others, but that is not a guarantee.
+       in cases where the package ecosystem maps accordingly.
+       Additionally, the artifact [can be published](https://slsa.dev/spec/v1.0/terminology#software-supply-chain)
+       for others, but that is not a guarantee.
 
      - Requires: Value type should be `String`
     */
     case filename = "artifact.filename"
-
 
     /**
      The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf), often found in checksum.txt on a release of the artifact and used to verify package integrity.
@@ -83,18 +78,17 @@ extension SemanticConventions {
       ```
 
      - Note: The specific algorithm used to create the cryptographic hash value is
-     not defined. In situations where an artifact has multiple
-     cryptographic hashes, it is up to the implementer to choose which
-     hash value to set here; this should be the most secure hash algorithm
-     that is suitable for the situation and consistent with the
-     corresponding attestation. The implementer can then provide the other
-     hash values through an additional set of attribute extensions as they
-     deem necessary.
+       not defined. In situations where an artifact has multiple
+       cryptographic hashes, it is up to the implementer to choose which
+       hash value to set here; this should be the most secure hash algorithm
+       that is suitable for the situation and consistent with the
+       corresponding attestation. The implementer can then provide the other
+       hash values through an additional set of attribute extensions as they
+       deem necessary.
 
      - Requires: Value type should be `String`
     */
     case hash = "artifact.hash"
-
 
     /**
      The [Package URL](https://github.com/package-url/purl-spec) of the [package artifact](https://slsa.dev/spec/v1.0/terminology#package-model) provides a standard way to identify and locate the packaged artifact.
@@ -109,7 +103,6 @@ extension SemanticConventions {
     */
     case purl = "artifact.purl"
 
-
     /**
      The version of the artifact.
 
@@ -123,13 +116,5 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case version = "artifact.version"
-
-
-
-
-
-
-
-
   }
 }
