@@ -2,7 +2,7 @@
 set -e -x
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-ROOT_DIR="${SCRIPT_DIR}/../../"
+ROOT_DIR="${SCRIPT_DIR}/../.."
 
 # freeze the spec & generator tools versions to make SemanticAttributes generation reproducible
 
@@ -25,12 +25,10 @@ git fetch origin "$SPEC_VERSION"
 git reset --hard FETCH_HEAD
 cd ${SCRIPT_DIR}
 
-rm ${ROOT_DIR}/Sources/OpenTelemetryApi/Trace/SemanticAttributes.swift || true
-
 docker run --rm \
   -v ${SCRIPT_DIR}/semantic-conventions/model:/source \
   -v ${SCRIPT_DIR}/templates:/templates \
-  -v ${ROOT_DIR}/Sources/OpenTelemetryApi/Trace:/output \
+  -v ${ROOT_DIR}/Sources/OpenTelemetryApi/Common/SemanticAttributes:/output \
   otel/weaver:v$GENERATOR_VERSION \
   registry \
   generate \
@@ -38,23 +36,7 @@ docker run --rm \
   --templates=/templates \
   ./ \
   /output \
-  -Denum=SemanticAttributes
-
-
-rm ${ROOT_DIR}/Sources/OpenTelemetrySdk/Resources/ResourceAttributes.swift || true
-
-docker run --rm \
-  -v ${SCRIPT_DIR}/semantic-conventions/model:/source \
-  -v ${SCRIPT_DIR}/templates:/templates \
-  -v ${ROOT_DIR}/Sources/OpenTelemetrySdk/Resources:/output \
-  otel/weaver \
-  registry \
-  generate \
-  --registry=/source \
-  --templates=/templates \
-  ./ \
-  /output \
-  -Denum=ResourceAttributes
+  -Doutput=/output/ \
 
 cd "$ROOT_DIR"
 

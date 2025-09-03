@@ -1,5 +1,6 @@
 params:
-  excluded_namespaces: [artifact, hw, cloudevents, gen_ai, cloudfoundry, aspnetcore, cicd, signalr, android, dotnet, k8s, jvm, kestrel, browser, cloud, container, faas, feature_flag]
+  excluded_namespaces: []
+  stable_package_name: opentelemetry.semconv
 comment_formats:
   default:
     format: markdown
@@ -17,6 +18,7 @@ templates:
       | map({
         root_namespace: .root_namespace,
         attributes: .attributes,
+        output: $output + "Attributes/",
       })
     file_name: "{{ params.enum }}.swift"
-    application_mode: single
+    application_mode: each
