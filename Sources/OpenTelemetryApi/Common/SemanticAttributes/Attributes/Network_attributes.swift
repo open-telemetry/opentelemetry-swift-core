@@ -16,7 +16,7 @@ extension SemanticConventions {
    attributes[.networkCarrierIcc] = "DE"
      - Requires: Value type should be `String`
     */
-    case networkCarrierIcc = "network.carrier.icc"
+    case carrierIcc = "network.carrier.icc"
 
     /**
      The mobile carrier country code.
@@ -25,7 +25,7 @@ extension SemanticConventions {
    attributes[.networkCarrierMcc] = "310"
      - Requires: Value type should be `String`
     */
-    case networkCarrierMcc = "network.carrier.mcc"
+    case carrierMcc = "network.carrier.mcc"
 
     /**
      The mobile carrier network code.
@@ -34,7 +34,7 @@ extension SemanticConventions {
    attributes[.networkCarrierMnc] = "001"
      - Requires: Value type should be `String`
     */
-    case networkCarrierMnc = "network.carrier.mnc"
+    case carrierMnc = "network.carrier.mnc"
 
     /**
      The name of the mobile carrier.
@@ -43,34 +43,34 @@ extension SemanticConventions {
    attributes[.networkCarrierName] = "sprint"
      - Requires: Value type should be `String`
     */
-    case networkCarrierName = "network.carrier.name"
+    case carrierName = "network.carrier.name"
 
     /**
      The state of network connection
       // Examples
       attributes[.networkConnectionState] = close_wait
      - Note: Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.NetworkConnectionStateValues`](x-source-tag://otelNetworkConnectionStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.ConnectionStateValues`](x-source-tag://otelConnectionStateValues) (of type `String`)
     */
-    case networkConnectionState = "network.connection.state"
+    case connectionState = "network.connection.state"
 
     /**
      This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
       // Examples
   
    attributes[.networkConnectionSubtype] = LTE
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.NetworkConnectionSubtypeValues`](x-source-tag://otelNetworkConnectionSubtypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.ConnectionSubtypeValues`](x-source-tag://otelConnectionSubtypeValues) (of type `String`)
     */
-    case networkConnectionSubtype = "network.connection.subtype"
+    case connectionSubtype = "network.connection.subtype"
 
     /**
      The internet connection type.
       // Examples
   
    attributes[.networkConnectionType] = wifi
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.NetworkConnectionTypeValues`](x-source-tag://otelNetworkConnectionTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.ConnectionTypeValues`](x-source-tag://otelConnectionTypeValues) (of type `String`)
     */
-    case networkConnectionType = "network.connection.type"
+    case connectionType = "network.connection.type"
 
     /**
      The network interface name.
@@ -79,15 +79,15 @@ extension SemanticConventions {
       attributes[.networkInterfaceName] = "eth0"
      - Requires: Value type should be `String`
     */
-    case networkInterfaceName = "network.interface.name"
+    case interfaceName = "network.interface.name"
 
     /**
      The network IO operation direction.
       // Examples
       attributes[.networkIoDirection] = transmit
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.NetworkIoDirectionValues`](x-source-tag://otelNetworkIoDirectionValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.IoDirectionValues`](x-source-tag://otelIoDirectionValues) (of type `String`)
     */
-    case networkIoDirection = "network.io.direction"
+    case ioDirection = "network.io.direction"
 
     /**
      Local address of the network connection - IP address or Unix domain socket name.
@@ -96,7 +96,7 @@ extension SemanticConventions {
       attributes[.networkLocalAddress] = "/tmp/my.sock"
      - Requires: Value type should be `String`
     */
-    case networkLocalAddress = "network.local.address"
+    case localAddress = "network.local.address"
 
     /**
      Local port number of the network connection.
@@ -104,7 +104,7 @@ extension SemanticConventions {
       attributes[.networkLocalPort] = 65123
      - Requires: Value type should be `Int`
     */
-    case networkLocalPort = "network.local.port"
+    case localPort = "network.local.port"
 
     /**
      Peer address of the network connection - IP address or Unix domain socket name.
@@ -113,7 +113,7 @@ extension SemanticConventions {
       attributes[.networkPeerAddress] = "/tmp/my.sock"
      - Requires: Value type should be `String`
     */
-    case networkPeerAddress = "network.peer.address"
+    case peerAddress = "network.peer.address"
 
     /**
      Peer port number of the network connection.
@@ -121,7 +121,7 @@ extension SemanticConventions {
       attributes[.networkPeerPort] = 65123
      - Requires: Value type should be `Int`
     */
-    case networkPeerPort = "network.peer.port"
+    case peerPort = "network.peer.port"
 
     /**
      [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent.
@@ -132,7 +132,7 @@ extension SemanticConventions {
      - Note: The value SHOULD be normalized to lowercase.
      - Requires: Value type should be `String`
     */
-    case networkProtocolName = "network.protocol.name"
+    case protocolName = "network.protocol.name"
 
     /**
      The actual version of the protocol used for network communication.
@@ -142,7 +142,7 @@ extension SemanticConventions {
      - Note: If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
      - Requires: Value type should be `String`
     */
-    case networkProtocolVersion = "network.protocol.version"
+    case protocolVersion = "network.protocol.version"
 
     /**
      [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
@@ -154,9 +154,9 @@ extension SemanticConventions {
      Consider always setting the transport when setting a port number, since
      a port number is ambiguous without knowing the transport. For example
      different processes could be listening on TCP port 12345 and UDP port 12345.
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.NetworkTransportValues`](x-source-tag://otelNetworkTransportValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.TransportValues`](x-source-tag://otelTransportValues) (of type `String`)
     */
-    case networkTransport = "network.transport"
+    case transport = "network.transport"
 
     /**
      [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.
@@ -164,27 +164,27 @@ extension SemanticConventions {
       attributes[.networkType] = ipv4
       attributes[.networkType] = ipv6
      - Note: The value SHOULD be normalized to lowercase.
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.NetworkTypeValues`](x-source-tag://otelNetworkTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.TypeValues`](x-source-tag://otelTypeValues) (of type `String`)
     */
-    case networkType = "network.type"
+    case type = "network.type"
 
 
     /** 
       The state of network connection
     */
-    /// - Tag: otelNetworkConnectionStateValues
-    public struct NetworkConnectionStateValues: CustomStringConvertible {
-      public static let closed = NetworkConnectionStateValues("closed") 
-      public static let closeWait = NetworkConnectionStateValues("close_wait") 
-      public static let closing = NetworkConnectionStateValues("closing") 
-      public static let established = NetworkConnectionStateValues("established") 
-      public static let finWait1 = NetworkConnectionStateValues("fin_wait_1") 
-      public static let finWait2 = NetworkConnectionStateValues("fin_wait_2") 
-      public static let lastAck = NetworkConnectionStateValues("last_ack") 
-      public static let listen = NetworkConnectionStateValues("listen") 
-      public static let synReceived = NetworkConnectionStateValues("syn_received") 
-      public static let synSent = NetworkConnectionStateValues("syn_sent") 
-      public static let timeWait = NetworkConnectionStateValues("time_wait") 
+    /// - Tag: otelConnectionStateValues
+    public struct ConnectionStateValues: CustomStringConvertible {
+      public static let closed = ConnectionStateValues("closed") 
+      public static let closeWait = ConnectionStateValues("close_wait") 
+      public static let closing = ConnectionStateValues("closing") 
+      public static let established = ConnectionStateValues("established") 
+      public static let finWait1 = ConnectionStateValues("fin_wait_1") 
+      public static let finWait2 = ConnectionStateValues("fin_wait_2") 
+      public static let lastAck = ConnectionStateValues("last_ack") 
+      public static let listen = ConnectionStateValues("listen") 
+      public static let synReceived = ConnectionStateValues("syn_received") 
+      public static let synSent = ConnectionStateValues("syn_sent") 
+      public static let timeWait = ConnectionStateValues("time_wait") 
 
       internal let value: String 
 
@@ -200,92 +200,92 @@ extension SemanticConventions {
     /** 
       This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
     */
-    /// - Tag: otelNetworkConnectionSubtypeValues
-    public struct NetworkConnectionSubtypeValues: CustomStringConvertible {
+    /// - Tag: otelConnectionSubtypeValues
+    public struct ConnectionSubtypeValues: CustomStringConvertible {
       /**
       GPRS
       */
-      public static let gprs = NetworkConnectionSubtypeValues("gprs") 
+      public static let gprs = ConnectionSubtypeValues("gprs") 
       /**
       EDGE
       */
-      public static let edge = NetworkConnectionSubtypeValues("edge") 
+      public static let edge = ConnectionSubtypeValues("edge") 
       /**
       UMTS
       */
-      public static let umts = NetworkConnectionSubtypeValues("umts") 
+      public static let umts = ConnectionSubtypeValues("umts") 
       /**
       CDMA
       */
-      public static let cdma = NetworkConnectionSubtypeValues("cdma") 
+      public static let cdma = ConnectionSubtypeValues("cdma") 
       /**
       EVDO Rel. 0
       */
-      public static let evdo0 = NetworkConnectionSubtypeValues("evdo_0") 
+      public static let evdo0 = ConnectionSubtypeValues("evdo_0") 
       /**
       EVDO Rev. A
       */
-      public static let evdoA = NetworkConnectionSubtypeValues("evdo_a") 
+      public static let evdoA = ConnectionSubtypeValues("evdo_a") 
       /**
       CDMA2000 1XRTT
       */
-      public static let cdma20001xrtt = NetworkConnectionSubtypeValues("cdma2000_1xrtt") 
+      public static let cdma20001xrtt = ConnectionSubtypeValues("cdma2000_1xrtt") 
       /**
       HSDPA
       */
-      public static let hsdpa = NetworkConnectionSubtypeValues("hsdpa") 
+      public static let hsdpa = ConnectionSubtypeValues("hsdpa") 
       /**
       HSUPA
       */
-      public static let hsupa = NetworkConnectionSubtypeValues("hsupa") 
+      public static let hsupa = ConnectionSubtypeValues("hsupa") 
       /**
       HSPA
       */
-      public static let hspa = NetworkConnectionSubtypeValues("hspa") 
+      public static let hspa = ConnectionSubtypeValues("hspa") 
       /**
       IDEN
       */
-      public static let iden = NetworkConnectionSubtypeValues("iden") 
+      public static let iden = ConnectionSubtypeValues("iden") 
       /**
       EVDO Rev. B
       */
-      public static let evdoB = NetworkConnectionSubtypeValues("evdo_b") 
+      public static let evdoB = ConnectionSubtypeValues("evdo_b") 
       /**
       LTE
       */
-      public static let lte = NetworkConnectionSubtypeValues("lte") 
+      public static let lte = ConnectionSubtypeValues("lte") 
       /**
       EHRPD
       */
-      public static let ehrpd = NetworkConnectionSubtypeValues("ehrpd") 
+      public static let ehrpd = ConnectionSubtypeValues("ehrpd") 
       /**
       HSPAP
       */
-      public static let hspap = NetworkConnectionSubtypeValues("hspap") 
+      public static let hspap = ConnectionSubtypeValues("hspap") 
       /**
       GSM
       */
-      public static let gsm = NetworkConnectionSubtypeValues("gsm") 
+      public static let gsm = ConnectionSubtypeValues("gsm") 
       /**
       TD-SCDMA
       */
-      public static let tdScdma = NetworkConnectionSubtypeValues("td_scdma") 
+      public static let tdScdma = ConnectionSubtypeValues("td_scdma") 
       /**
       IWLAN
       */
-      public static let iwlan = NetworkConnectionSubtypeValues("iwlan") 
+      public static let iwlan = ConnectionSubtypeValues("iwlan") 
       /**
       5G NR (New Radio)
       */
-      public static let nr = NetworkConnectionSubtypeValues("nr") 
+      public static let nr = ConnectionSubtypeValues("nr") 
       /**
       5G NRNSA (New Radio Non-Standalone)
       */
-      public static let nrnsa = NetworkConnectionSubtypeValues("nrnsa") 
+      public static let nrnsa = ConnectionSubtypeValues("nrnsa") 
       /**
       LTE CA
       */
-      public static let lteCa = NetworkConnectionSubtypeValues("lte_ca") 
+      public static let lteCa = ConnectionSubtypeValues("lte_ca") 
 
       internal let value: String 
 
@@ -301,13 +301,13 @@ extension SemanticConventions {
     /** 
       The internet connection type.
     */
-    /// - Tag: otelNetworkConnectionTypeValues
-    public struct NetworkConnectionTypeValues: CustomStringConvertible {
-      public static let wifi = NetworkConnectionTypeValues("wifi") 
-      public static let wired = NetworkConnectionTypeValues("wired") 
-      public static let cell = NetworkConnectionTypeValues("cell") 
-      public static let unavailable = NetworkConnectionTypeValues("unavailable") 
-      public static let unknown = NetworkConnectionTypeValues("unknown") 
+    /// - Tag: otelConnectionTypeValues
+    public struct ConnectionTypeValues: CustomStringConvertible {
+      public static let wifi = ConnectionTypeValues("wifi") 
+      public static let wired = ConnectionTypeValues("wired") 
+      public static let cell = ConnectionTypeValues("cell") 
+      public static let unavailable = ConnectionTypeValues("unavailable") 
+      public static let unknown = ConnectionTypeValues("unknown") 
 
       internal let value: String 
 
@@ -323,10 +323,10 @@ extension SemanticConventions {
     /** 
       The network IO operation direction.
     */
-    /// - Tag: otelNetworkIoDirectionValues
-    public struct NetworkIoDirectionValues: CustomStringConvertible {
-      public static let transmit = NetworkIoDirectionValues("transmit") 
-      public static let receive = NetworkIoDirectionValues("receive") 
+    /// - Tag: otelIoDirectionValues
+    public struct IoDirectionValues: CustomStringConvertible {
+      public static let transmit = IoDirectionValues("transmit") 
+      public static let receive = IoDirectionValues("receive") 
 
       internal let value: String 
 
@@ -342,28 +342,28 @@ extension SemanticConventions {
     /** 
       [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
     */
-    /// - Tag: otelNetworkTransportValues
-    public struct NetworkTransportValues: CustomStringConvertible {
+    /// - Tag: otelTransportValues
+    public struct TransportValues: CustomStringConvertible {
       /**
       TCP
       */
-      public static let tcp = NetworkTransportValues("tcp") 
+      public static let tcp = TransportValues("tcp") 
       /**
       UDP
       */
-      public static let udp = NetworkTransportValues("udp") 
+      public static let udp = TransportValues("udp") 
       /**
       Named or anonymous pipe.
       */
-      public static let pipe = NetworkTransportValues("pipe") 
+      public static let pipe = TransportValues("pipe") 
       /**
       Unix domain socket
       */
-      public static let unix = NetworkTransportValues("unix") 
+      public static let unix = TransportValues("unix") 
       /**
       QUIC
       */
-      public static let quic = NetworkTransportValues("quic") 
+      public static let quic = TransportValues("quic") 
 
       internal let value: String 
 
@@ -379,16 +379,16 @@ extension SemanticConventions {
     /** 
       [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.
     */
-    /// - Tag: otelNetworkTypeValues
-    public struct NetworkTypeValues: CustomStringConvertible {
+    /// - Tag: otelTypeValues
+    public struct TypeValues: CustomStringConvertible {
       /**
       IPv4
       */
-      public static let ipv4 = NetworkTypeValues("ipv4") 
+      public static let ipv4 = TypeValues("ipv4") 
       /**
       IPv6
       */
-      public static let ipv6 = NetworkTypeValues("ipv6") 
+      public static let ipv6 = TypeValues("ipv6") 
 
       internal let value: String 
 

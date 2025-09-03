@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.vcsChangeId] = "123"
      - Requires: Value type should be `String`
     */
-    case vcsChangeId = "vcs.change.id"
+    case changeId = "vcs.change.id"
 
     /**
      The state of the change (pull request/merge request/changelist).
@@ -23,9 +23,9 @@ extension SemanticConventions {
       attributes[.vcsChangeState] = open
       attributes[.vcsChangeState] = closed
       attributes[.vcsChangeState] = merged
-     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.VcsChangeStateValues`](x-source-tag://otelVcsChangeStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.ChangeStateValues`](x-source-tag://otelChangeStateValues) (of type `String`)
     */
-    case vcsChangeState = "vcs.change.state"
+    case changeState = "vcs.change.state"
 
     /**
      The human readable title of the change (pull request/merge request/changelist). This title is often a brief summary of the change and may get merged in to a ref as the commit summary.
@@ -35,16 +35,16 @@ extension SemanticConventions {
       attributes[.vcsChangeTitle] = "[chore] update dependency"
      - Requires: Value type should be `String`
     */
-    case vcsChangeTitle = "vcs.change.title"
+    case changeTitle = "vcs.change.title"
 
     /**
      The type of line change being measured on a branch or change.
       // Examples
       attributes[.vcsLineChangeType] = added
       attributes[.vcsLineChangeType] = removed
-     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.VcsLineChangeTypeValues`](x-source-tag://otelVcsLineChangeTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.LineChangeTypeValues`](x-source-tag://otelLineChangeTypeValues) (of type `String`)
     */
-    case vcsLineChangeType = "vcs.line_change.type"
+    case lineChangeType = "vcs.line_change.type"
 
     /**
      The group owner within the version control system.
@@ -54,7 +54,7 @@ extension SemanticConventions {
       attributes[.vcsOwnerName] = "business-unit"
      - Requires: Value type should be `String`
     */
-    case vcsOwnerName = "vcs.owner.name"
+    case ownerName = "vcs.owner.name"
 
     /**
      The name of the version control system provider.
@@ -63,9 +63,9 @@ extension SemanticConventions {
       attributes[.vcsProviderName] = gitlab
       attributes[.vcsProviderName] = gitea
       attributes[.vcsProviderName] = bitbucket
-     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.VcsProviderNameValues`](x-source-tag://otelVcsProviderNameValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.ProviderNameValues`](x-source-tag://otelProviderNameValues) (of type `String`)
     */
-    case vcsProviderName = "vcs.provider.name"
+    case providerName = "vcs.provider.name"
 
     /**
      The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository.
@@ -77,7 +77,7 @@ extension SemanticConventions {
      reference of type branch from it and created new commits.
      - Requires: Value type should be `String`
     */
-    case vcsRefBaseName = "vcs.ref.base.name"
+    case refBaseName = "vcs.ref.base.name"
 
     /**
      The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN.
@@ -101,7 +101,7 @@ extension SemanticConventions {
      revision based on the VCS system and situational context.
      - Requires: Value type should be `String`
     */
-    case vcsRefBaseRevision = "vcs.ref.base.revision"
+    case refBaseRevision = "vcs.ref.base.revision"
 
     /**
      The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
@@ -111,9 +111,9 @@ extension SemanticConventions {
      - Note: `base` refers to the starting point of a change. For example, `main`
      would be the base reference of type branch if you've created a new
      reference of type branch from it and created new commits.
-     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.VcsRefBaseTypeValues`](x-source-tag://otelVcsRefBaseTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.RefBaseTypeValues`](x-source-tag://otelRefBaseTypeValues) (of type `String`)
     */
-    case vcsRefBaseType = "vcs.ref.base.type"
+    case refBaseType = "vcs.ref.base.type"
 
     /**
      The name of the [reference](https://git-scm.com/docs/gitglossary#def_ref) such as **branch** or **tag** in the repository.
@@ -124,7 +124,7 @@ extension SemanticConventions {
      given time.
      - Requires: Value type should be `String`
     */
-    case vcsRefHeadName = "vcs.ref.head.name"
+    case refHeadName = "vcs.ref.head.name"
 
     /**
      The revision, literally [revised version](https://www.merriam-webster.com/dictionary/revision), The revision most often refers to a commit object in Git, or a revision number in SVN.
@@ -146,7 +146,7 @@ extension SemanticConventions {
      revision based on the VCS system and situational context.
      - Requires: Value type should be `String`
     */
-    case vcsRefHeadRevision = "vcs.ref.head.revision"
+    case refHeadRevision = "vcs.ref.head.revision"
 
     /**
      The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
@@ -155,18 +155,18 @@ extension SemanticConventions {
       attributes[.vcsRefHeadType] = tag
      - Note: `head` refers to where you are right now; the current reference at a
      given time.
-     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.VcsRefHeadTypeValues`](x-source-tag://otelVcsRefHeadTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.RefHeadTypeValues`](x-source-tag://otelRefHeadTypeValues) (of type `String`)
     */
-    case vcsRefHeadType = "vcs.ref.head.type"
+    case refHeadType = "vcs.ref.head.type"
 
     /**
      The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
       // Examples
       attributes[.vcsRefType] = branch
       attributes[.vcsRefType] = tag
-     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.VcsRefTypeValues`](x-source-tag://otelVcsRefTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.RefTypeValues`](x-source-tag://otelRefTypeValues) (of type `String`)
     */
-    case vcsRefType = "vcs.ref.type"
+    case refType = "vcs.ref.type"
 
     /**
      The human readable name of the repository. It SHOULD NOT include any additional identifier like Group/SubGroup in GitLab or organization in GitHub.
@@ -178,7 +178,7 @@ extension SemanticConventions {
      the same backends.
      - Requires: Value type should be `String`
     */
-    case vcsRepositoryName = "vcs.repository.name"
+    case repositoryName = "vcs.repository.name"
 
     /**
      The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser.
@@ -189,39 +189,39 @@ extension SemanticConventions {
      the `.git` extension.
      - Requires: Value type should be `String`
     */
-    case vcsRepositoryUrlFull = "vcs.repository.url.full"
+    case repositoryUrlFull = "vcs.repository.url.full"
 
     /**
      The type of revision comparison.
       // Examples
       attributes[.vcsRevisionDeltaDirection] = ahead
       attributes[.vcsRevisionDeltaDirection] = behind
-     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.VcsRevisionDeltaDirectionValues`](x-source-tag://otelVcsRevisionDeltaDirectionValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Vcs_attributes.swift.RevisionDeltaDirectionValues`](x-source-tag://otelRevisionDeltaDirectionValues) (of type `String`)
     */
-    case vcsRevisionDeltaDirection = "vcs.revision_delta.direction"
+    case revisionDeltaDirection = "vcs.revision_delta.direction"
 
 
     /** 
       The state of the change (pull request/merge request/changelist).
     */
-    /// - Tag: otelVcsChangeStateValues
-    public struct VcsChangeStateValues: CustomStringConvertible {
+    /// - Tag: otelChangeStateValues
+    public struct ChangeStateValues: CustomStringConvertible {
       /**
       Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments.
       */
-      public static let open = VcsChangeStateValues("open") 
+      public static let open = ChangeStateValues("open") 
       /**
       WIP (work-in-progress, draft) means the change is still in progress and not yet ready for a full review. It might still undergo significant changes.
       */
-      public static let wip = VcsChangeStateValues("wip") 
+      public static let wip = ChangeStateValues("wip") 
       /**
       Closed means the merge request has been closed without merging. This can happen for various reasons, such as the changes being deemed unnecessary, the issue being resolved in another way, or the author deciding to withdraw the request.
       */
-      public static let closed = VcsChangeStateValues("closed") 
+      public static let closed = ChangeStateValues("closed") 
       /**
       Merged indicates that the change has been successfully integrated into the target codebase.
       */
-      public static let merged = VcsChangeStateValues("merged") 
+      public static let merged = ChangeStateValues("merged") 
 
       internal let value: String 
 
@@ -237,16 +237,16 @@ extension SemanticConventions {
     /** 
       The type of line change being measured on a branch or change.
     */
-    /// - Tag: otelVcsLineChangeTypeValues
-    public struct VcsLineChangeTypeValues: CustomStringConvertible {
+    /// - Tag: otelLineChangeTypeValues
+    public struct LineChangeTypeValues: CustomStringConvertible {
       /**
       How many lines were added.
       */
-      public static let added = VcsLineChangeTypeValues("added") 
+      public static let added = LineChangeTypeValues("added") 
       /**
       How many lines were removed.
       */
-      public static let removed = VcsLineChangeTypeValues("removed") 
+      public static let removed = LineChangeTypeValues("removed") 
 
       internal let value: String 
 
@@ -262,24 +262,24 @@ extension SemanticConventions {
     /** 
       The name of the version control system provider.
     */
-    /// - Tag: otelVcsProviderNameValues
-    public struct VcsProviderNameValues: CustomStringConvertible {
+    /// - Tag: otelProviderNameValues
+    public struct ProviderNameValues: CustomStringConvertible {
       /**
       [GitHub](https://github.com)
       */
-      public static let github = VcsProviderNameValues("github") 
+      public static let github = ProviderNameValues("github") 
       /**
       [GitLab](https://gitlab.com)
       */
-      public static let gitlab = VcsProviderNameValues("gitlab") 
+      public static let gitlab = ProviderNameValues("gitlab") 
       /**
       [Gitea](https://gitea.io)
       */
-      public static let gitea = VcsProviderNameValues("gitea") 
+      public static let gitea = ProviderNameValues("gitea") 
       /**
       [Bitbucket](https://bitbucket.org)
       */
-      public static let bitbucket = VcsProviderNameValues("bitbucket") 
+      public static let bitbucket = ProviderNameValues("bitbucket") 
 
       internal let value: String 
 
@@ -295,16 +295,16 @@ extension SemanticConventions {
     /** 
       The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
     */
-    /// - Tag: otelVcsRefBaseTypeValues
-    public struct VcsRefBaseTypeValues: CustomStringConvertible {
+    /// - Tag: otelRefBaseTypeValues
+    public struct RefBaseTypeValues: CustomStringConvertible {
       /**
       [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)
       */
-      public static let branch = VcsRefBaseTypeValues("branch") 
+      public static let branch = RefBaseTypeValues("branch") 
       /**
       [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)
       */
-      public static let tag = VcsRefBaseTypeValues("tag") 
+      public static let tag = RefBaseTypeValues("tag") 
 
       internal let value: String 
 
@@ -320,16 +320,16 @@ extension SemanticConventions {
     /** 
       The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
     */
-    /// - Tag: otelVcsRefHeadTypeValues
-    public struct VcsRefHeadTypeValues: CustomStringConvertible {
+    /// - Tag: otelRefHeadTypeValues
+    public struct RefHeadTypeValues: CustomStringConvertible {
       /**
       [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)
       */
-      public static let branch = VcsRefHeadTypeValues("branch") 
+      public static let branch = RefHeadTypeValues("branch") 
       /**
       [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)
       */
-      public static let tag = VcsRefHeadTypeValues("tag") 
+      public static let tag = RefHeadTypeValues("tag") 
 
       internal let value: String 
 
@@ -345,16 +345,16 @@ extension SemanticConventions {
     /** 
       The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
     */
-    /// - Tag: otelVcsRefTypeValues
-    public struct VcsRefTypeValues: CustomStringConvertible {
+    /// - Tag: otelRefTypeValues
+    public struct RefTypeValues: CustomStringConvertible {
       /**
       [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)
       */
-      public static let branch = VcsRefTypeValues("branch") 
+      public static let branch = RefTypeValues("branch") 
       /**
       [tag](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddeftagatag)
       */
-      public static let tag = VcsRefTypeValues("tag") 
+      public static let tag = RefTypeValues("tag") 
 
       internal let value: String 
 
@@ -370,16 +370,16 @@ extension SemanticConventions {
     /** 
       The type of revision comparison.
     */
-    /// - Tag: otelVcsRevisionDeltaDirectionValues
-    public struct VcsRevisionDeltaDirectionValues: CustomStringConvertible {
+    /// - Tag: otelRevisionDeltaDirectionValues
+    public struct RevisionDeltaDirectionValues: CustomStringConvertible {
       /**
       How many revisions the change is behind the target ref.
       */
-      public static let behind = VcsRevisionDeltaDirectionValues("behind") 
+      public static let behind = RevisionDeltaDirectionValues("behind") 
       /**
       How many revisions the change is ahead of the target ref.
       */
-      public static let ahead = VcsRevisionDeltaDirectionValues("ahead") 
+      public static let ahead = RevisionDeltaDirectionValues("ahead") 
 
       internal let value: String 
 

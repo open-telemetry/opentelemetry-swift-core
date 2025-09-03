@@ -15,9 +15,9 @@ extension SemanticConventions {
       attributes[.cicdPipelineActionName] = BUILD
       attributes[.cicdPipelineActionName] = RUN
       attributes[.cicdPipelineActionName] = SYNC
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.CicdPipelineActionNameValues`](x-source-tag://otelCicdPipelineActionNameValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.PipelineActionNameValues`](x-source-tag://otelPipelineActionNameValues) (of type `String`)
     */
-    case cicdPipelineActionName = "cicd.pipeline.action.name"
+    case pipelineActionName = "cicd.pipeline.action.name"
 
     /**
      The human readable name of the pipeline within a CI/CD system.
@@ -28,7 +28,7 @@ extension SemanticConventions {
       attributes[.cicdPipelineName] = "deploy_to_environment"
      - Requires: Value type should be `String`
     */
-    case cicdPipelineName = "cicd.pipeline.name"
+    case pipelineName = "cicd.pipeline.name"
 
     /**
      The result of a pipeline run.
@@ -37,9 +37,9 @@ extension SemanticConventions {
       attributes[.cicdPipelineResult] = failure
       attributes[.cicdPipelineResult] = timeout
       attributes[.cicdPipelineResult] = skipped
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.CicdPipelineResultValues`](x-source-tag://otelCicdPipelineResultValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.PipelineResultValues`](x-source-tag://otelPipelineResultValues) (of type `String`)
     */
-    case cicdPipelineResult = "cicd.pipeline.result"
+    case pipelineResult = "cicd.pipeline.result"
 
     /**
      The unique identifier of a pipeline run within a CI/CD system.
@@ -47,7 +47,7 @@ extension SemanticConventions {
       attributes[.cicdPipelineRunId] = "120912"
      - Requires: Value type should be `String`
     */
-    case cicdPipelineRunId = "cicd.pipeline.run.id"
+    case pipelineRunId = "cicd.pipeline.run.id"
 
     /**
      The pipeline run goes through these states during its lifecycle.
@@ -55,9 +55,9 @@ extension SemanticConventions {
       attributes[.cicdPipelineRunState] = pending
       attributes[.cicdPipelineRunState] = executing
       attributes[.cicdPipelineRunState] = finalizing
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.CicdPipelineRunStateValues`](x-source-tag://otelCicdPipelineRunStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.PipelineRunStateValues`](x-source-tag://otelPipelineRunStateValues) (of type `String`)
     */
-    case cicdPipelineRunState = "cicd.pipeline.run.state"
+    case pipelineRunState = "cicd.pipeline.run.state"
 
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run.
@@ -65,7 +65,7 @@ extension SemanticConventions {
       attributes[.cicdPipelineRunUrlFull] = "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075"
      - Requires: Value type should be `String`
     */
-    case cicdPipelineRunUrlFull = "cicd.pipeline.run.url.full"
+    case pipelineRunUrlFull = "cicd.pipeline.run.url.full"
 
     /**
      The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures.
@@ -76,7 +76,7 @@ extension SemanticConventions {
       attributes[.cicdPipelineTaskName] = "deploy_binary"
      - Requires: Value type should be `String`
     */
-    case cicdPipelineTaskName = "cicd.pipeline.task.name"
+    case pipelineTaskName = "cicd.pipeline.task.name"
 
     /**
      The unique identifier of a task run within a pipeline.
@@ -84,7 +84,7 @@ extension SemanticConventions {
       attributes[.cicdPipelineTaskRunId] = "12097"
      - Requires: Value type should be `String`
     */
-    case cicdPipelineTaskRunId = "cicd.pipeline.task.run.id"
+    case pipelineTaskRunId = "cicd.pipeline.task.run.id"
 
     /**
      The result of a task run.
@@ -93,9 +93,9 @@ extension SemanticConventions {
       attributes[.cicdPipelineTaskRunResult] = failure
       attributes[.cicdPipelineTaskRunResult] = timeout
       attributes[.cicdPipelineTaskRunResult] = skipped
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.CicdPipelineTaskRunResultValues`](x-source-tag://otelCicdPipelineTaskRunResultValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.PipelineTaskRunResultValues`](x-source-tag://otelPipelineTaskRunResultValues) (of type `String`)
     */
-    case cicdPipelineTaskRunResult = "cicd.pipeline.task.run.result"
+    case pipelineTaskRunResult = "cicd.pipeline.task.run.result"
 
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run.
@@ -103,7 +103,7 @@ extension SemanticConventions {
       attributes[.cicdPipelineTaskRunUrlFull] = "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075"
      - Requires: Value type should be `String`
     */
-    case cicdPipelineTaskRunUrlFull = "cicd.pipeline.task.run.url.full"
+    case pipelineTaskRunUrlFull = "cicd.pipeline.task.run.url.full"
 
     /**
      The type of the task within a pipeline.
@@ -111,9 +111,9 @@ extension SemanticConventions {
       attributes[.cicdPipelineTaskType] = build
       attributes[.cicdPipelineTaskType] = test
       attributes[.cicdPipelineTaskType] = deploy
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.CicdPipelineTaskTypeValues`](x-source-tag://otelCicdPipelineTaskTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.PipelineTaskTypeValues`](x-source-tag://otelPipelineTaskTypeValues) (of type `String`)
     */
-    case cicdPipelineTaskType = "cicd.pipeline.task.type"
+    case pipelineTaskType = "cicd.pipeline.task.type"
 
     /**
      The name of a component of the CICD system.
@@ -123,7 +123,7 @@ extension SemanticConventions {
       attributes[.cicdSystemComponent] = "agent"
      - Requires: Value type should be `String`
     */
-    case cicdSystemComponent = "cicd.system.component"
+    case systemComponent = "cicd.system.component"
 
     /**
      The unique identifier of a worker within a CICD system.
@@ -133,7 +133,7 @@ extension SemanticConventions {
       attributes[.cicdWorkerId] = "controller"
      - Requires: Value type should be `String`
     */
-    case cicdWorkerId = "cicd.worker.id"
+    case workerId = "cicd.worker.id"
 
     /**
      The name of a worker within a CICD system.
@@ -143,7 +143,7 @@ extension SemanticConventions {
       attributes[.cicdWorkerName] = "Ubuntu LTS"
      - Requires: Value type should be `String`
     */
-    case cicdWorkerName = "cicd.worker.name"
+    case workerName = "cicd.worker.name"
 
     /**
      The state of a CICD worker / agent.
@@ -151,9 +151,9 @@ extension SemanticConventions {
       attributes[.cicdWorkerState] = idle
       attributes[.cicdWorkerState] = busy
       attributes[.cicdWorkerState] = down
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.CicdWorkerStateValues`](x-source-tag://otelCicdWorkerStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.WorkerStateValues`](x-source-tag://otelWorkerStateValues) (of type `String`)
     */
-    case cicdWorkerState = "cicd.worker.state"
+    case workerState = "cicd.worker.state"
 
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker.
@@ -161,26 +161,26 @@ extension SemanticConventions {
       attributes[.cicdWorkerUrlFull] = "https://cicd.example.org/worker/abc123"
      - Requires: Value type should be `String`
     */
-    case cicdWorkerUrlFull = "cicd.worker.url.full"
+    case workerUrlFull = "cicd.worker.url.full"
 
 
     /** 
       The kind of action a pipeline run is performing.
     */
-    /// - Tag: otelCicdPipelineActionNameValues
-    public struct CicdPipelineActionNameValues: CustomStringConvertible {
+    /// - Tag: otelPipelineActionNameValues
+    public struct PipelineActionNameValues: CustomStringConvertible {
       /**
       The pipeline run is executing a build.
       */
-      public static let build = CicdPipelineActionNameValues("BUILD") 
+      public static let build = PipelineActionNameValues("BUILD") 
       /**
       The pipeline run is executing.
       */
-      public static let run = CicdPipelineActionNameValues("RUN") 
+      public static let run = PipelineActionNameValues("RUN") 
       /**
       The pipeline run is executing a sync.
       */
-      public static let sync = CicdPipelineActionNameValues("SYNC") 
+      public static let sync = PipelineActionNameValues("SYNC") 
 
       internal let value: String 
 
@@ -196,32 +196,32 @@ extension SemanticConventions {
     /** 
       The result of a pipeline run.
     */
-    /// - Tag: otelCicdPipelineResultValues
-    public struct CicdPipelineResultValues: CustomStringConvertible {
+    /// - Tag: otelPipelineResultValues
+    public struct PipelineResultValues: CustomStringConvertible {
       /**
       The pipeline run finished successfully.
       */
-      public static let success = CicdPipelineResultValues("success") 
+      public static let success = PipelineResultValues("success") 
       /**
       The pipeline run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the pipeline run.
       */
-      public static let failure = CicdPipelineResultValues("failure") 
+      public static let failure = PipelineResultValues("failure") 
       /**
       The pipeline run failed due to an error in the CICD system, eg. due to the worker being killed.
       */
-      public static let error = CicdPipelineResultValues("error") 
+      public static let error = PipelineResultValues("error") 
       /**
       A timeout caused the pipeline run to be interrupted.
       */
-      public static let timeout = CicdPipelineResultValues("timeout") 
+      public static let timeout = PipelineResultValues("timeout") 
       /**
       The pipeline run was cancelled, eg. by a user manually cancelling the pipeline run.
       */
-      public static let cancellation = CicdPipelineResultValues("cancellation") 
+      public static let cancellation = PipelineResultValues("cancellation") 
       /**
       The pipeline run was skipped, eg. due to a precondition not being met.
       */
-      public static let skip = CicdPipelineResultValues("skip") 
+      public static let skip = PipelineResultValues("skip") 
 
       internal let value: String 
 
@@ -237,20 +237,20 @@ extension SemanticConventions {
     /** 
       The pipeline run goes through these states during its lifecycle.
     */
-    /// - Tag: otelCicdPipelineRunStateValues
-    public struct CicdPipelineRunStateValues: CustomStringConvertible {
+    /// - Tag: otelPipelineRunStateValues
+    public struct PipelineRunStateValues: CustomStringConvertible {
       /**
       The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
       */
-      public static let pending = CicdPipelineRunStateValues("pending") 
+      public static let pending = PipelineRunStateValues("pending") 
       /**
       The executing state spans the execution of any run tasks (eg. build, test).
       */
-      public static let executing = CicdPipelineRunStateValues("executing") 
+      public static let executing = PipelineRunStateValues("executing") 
       /**
       The finalizing state spans from when the run has finished executing (eg. cleanup of run resources).
       */
-      public static let finalizing = CicdPipelineRunStateValues("finalizing") 
+      public static let finalizing = PipelineRunStateValues("finalizing") 
 
       internal let value: String 
 
@@ -266,32 +266,32 @@ extension SemanticConventions {
     /** 
       The result of a task run.
     */
-    /// - Tag: otelCicdPipelineTaskRunResultValues
-    public struct CicdPipelineTaskRunResultValues: CustomStringConvertible {
+    /// - Tag: otelPipelineTaskRunResultValues
+    public struct PipelineTaskRunResultValues: CustomStringConvertible {
       /**
       The task run finished successfully.
       */
-      public static let success = CicdPipelineTaskRunResultValues("success") 
+      public static let success = PipelineTaskRunResultValues("success") 
       /**
       The task run did not finish successfully, eg. due to a compile error or a failing test. Such failures are usually detected by non-zero exit codes of the tools executed in the task run.
       */
-      public static let failure = CicdPipelineTaskRunResultValues("failure") 
+      public static let failure = PipelineTaskRunResultValues("failure") 
       /**
       The task run failed due to an error in the CICD system, eg. due to the worker being killed.
       */
-      public static let error = CicdPipelineTaskRunResultValues("error") 
+      public static let error = PipelineTaskRunResultValues("error") 
       /**
       A timeout caused the task run to be interrupted.
       */
-      public static let timeout = CicdPipelineTaskRunResultValues("timeout") 
+      public static let timeout = PipelineTaskRunResultValues("timeout") 
       /**
       The task run was cancelled, eg. by a user manually cancelling the task run.
       */
-      public static let cancellation = CicdPipelineTaskRunResultValues("cancellation") 
+      public static let cancellation = PipelineTaskRunResultValues("cancellation") 
       /**
       The task run was skipped, eg. due to a precondition not being met.
       */
-      public static let skip = CicdPipelineTaskRunResultValues("skip") 
+      public static let skip = PipelineTaskRunResultValues("skip") 
 
       internal let value: String 
 
@@ -307,20 +307,20 @@ extension SemanticConventions {
     /** 
       The type of the task within a pipeline.
     */
-    /// - Tag: otelCicdPipelineTaskTypeValues
-    public struct CicdPipelineTaskTypeValues: CustomStringConvertible {
+    /// - Tag: otelPipelineTaskTypeValues
+    public struct PipelineTaskTypeValues: CustomStringConvertible {
       /**
       build
       */
-      public static let build = CicdPipelineTaskTypeValues("build") 
+      public static let build = PipelineTaskTypeValues("build") 
       /**
       test
       */
-      public static let test = CicdPipelineTaskTypeValues("test") 
+      public static let test = PipelineTaskTypeValues("test") 
       /**
       deploy
       */
-      public static let deploy = CicdPipelineTaskTypeValues("deploy") 
+      public static let deploy = PipelineTaskTypeValues("deploy") 
 
       internal let value: String 
 
@@ -336,20 +336,20 @@ extension SemanticConventions {
     /** 
       The state of a CICD worker / agent.
     */
-    /// - Tag: otelCicdWorkerStateValues
-    public struct CicdWorkerStateValues: CustomStringConvertible {
+    /// - Tag: otelWorkerStateValues
+    public struct WorkerStateValues: CustomStringConvertible {
       /**
       The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle).
       */
-      public static let available = CicdWorkerStateValues("available") 
+      public static let available = WorkerStateValues("available") 
       /**
       The worker is performing work for the CICD system.
       */
-      public static let busy = CicdWorkerStateValues("busy") 
+      public static let busy = WorkerStateValues("busy") 
       /**
       The worker is not available to the CICD system (disconnected / down).
       */
-      public static let offline = CicdWorkerStateValues("offline") 
+      public static let offline = WorkerStateValues("offline") 
 
       internal let value: String 
 

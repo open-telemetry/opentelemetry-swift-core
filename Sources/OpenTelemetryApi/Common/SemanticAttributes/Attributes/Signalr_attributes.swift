@@ -14,37 +14,37 @@ extension SemanticConventions {
       // Examples
       attributes[.signalrConnectionStatus] = app_shutdown
       attributes[.signalrConnectionStatus] = timeout
-     - Requires: Value should be one of [`/output/Attributes/Signalr_attributes.swift.SignalrConnectionStatusValues`](x-source-tag://otelSignalrConnectionStatusValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Signalr_attributes.swift.ConnectionStatusValues`](x-source-tag://otelConnectionStatusValues) (of type `String`)
     */
-    case signalrConnectionStatus = "signalr.connection.status"
+    case connectionStatus = "signalr.connection.status"
 
     /**
      [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md)
       // Examples
       attributes[.signalrTransport] = web_sockets
       attributes[.signalrTransport] = long_polling
-     - Requires: Value should be one of [`/output/Attributes/Signalr_attributes.swift.SignalrTransportValues`](x-source-tag://otelSignalrTransportValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Signalr_attributes.swift.TransportValues`](x-source-tag://otelTransportValues) (of type `String`)
     */
-    case signalrTransport = "signalr.transport"
+    case transport = "signalr.transport"
 
 
     /** 
       SignalR HTTP connection closure status.
     */
-    /// - Tag: otelSignalrConnectionStatusValues
-    public struct SignalrConnectionStatusValues: CustomStringConvertible {
+    /// - Tag: otelConnectionStatusValues
+    public struct ConnectionStatusValues: CustomStringConvertible {
       /**
       The connection was closed normally.
       */
-      public static let normalClosure = SignalrConnectionStatusValues("normal_closure") 
+      public static let normalClosure = ConnectionStatusValues("normal_closure") 
       /**
       The connection was closed due to a timeout.
       */
-      public static let timeout = SignalrConnectionStatusValues("timeout") 
+      public static let timeout = ConnectionStatusValues("timeout") 
       /**
       The connection was closed because the app is shutting down.
       */
-      public static let appShutdown = SignalrConnectionStatusValues("app_shutdown") 
+      public static let appShutdown = ConnectionStatusValues("app_shutdown") 
 
       internal let value: String 
 
@@ -60,20 +60,20 @@ extension SemanticConventions {
     /** 
       [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md)
     */
-    /// - Tag: otelSignalrTransportValues
-    public struct SignalrTransportValues: CustomStringConvertible {
+    /// - Tag: otelTransportValues
+    public struct TransportValues: CustomStringConvertible {
       /**
       ServerSentEvents protocol
       */
-      public static let serverSentEvents = SignalrTransportValues("server_sent_events") 
+      public static let serverSentEvents = TransportValues("server_sent_events") 
       /**
       LongPolling protocol
       */
-      public static let longPolling = SignalrTransportValues("long_polling") 
+      public static let longPolling = TransportValues("long_polling") 
       /**
       WebSockets protocol
       */
-      public static let webSockets = SignalrTransportValues("web_sockets") 
+      public static let webSockets = TransportValues("web_sockets") 
 
       internal let value: String 
 

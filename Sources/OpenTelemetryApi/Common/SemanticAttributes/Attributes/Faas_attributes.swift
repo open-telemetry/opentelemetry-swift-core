@@ -13,7 +13,7 @@ extension SemanticConventions {
      A boolean that is true if the serverless function is executed for the first time (aka cold-start).
      - Requires: Value type should be `Bool`
     */
-    case faasColdstart = "faas.coldstart"
+    case coldstart = "faas.coldstart"
 
     /**
      A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
@@ -22,7 +22,7 @@ extension SemanticConventions {
    attributes[.faasCron] = "0/5 * * * ? *"
      - Requires: Value type should be `String`
     */
-    case faasCron = "faas.cron"
+    case cron = "faas.cron"
 
     /**
      The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name.
@@ -31,7 +31,7 @@ extension SemanticConventions {
       attributes[.faasDocumentCollection] = "myDbName"
      - Requires: Value type should be `String`
     */
-    case faasDocumentCollection = "faas.document.collection"
+    case documentCollection = "faas.document.collection"
 
     /**
      The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name.
@@ -40,13 +40,13 @@ extension SemanticConventions {
       attributes[.faasDocumentName] = "myTableName"
      - Requires: Value type should be `String`
     */
-    case faasDocumentName = "faas.document.name"
+    case documentName = "faas.document.name"
 
     /**
      Describes the type of the operation that was performed on the data.
-     - Requires: Value should be one of [`/output/Attributes/Faas_attributes.swift.FaasDocumentOperationValues`](x-source-tag://otelFaasDocumentOperationValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Faas_attributes.swift.DocumentOperationValues`](x-source-tag://otelDocumentOperationValues) (of type `String`)
     */
-    case faasDocumentOperation = "faas.document.operation"
+    case documentOperation = "faas.document.operation"
 
     /**
      A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
@@ -55,7 +55,7 @@ extension SemanticConventions {
    attributes[.faasDocumentTime] = "2020-01-23T13:47:06Z"
      - Requires: Value type should be `String`
     */
-    case faasDocumentTime = "faas.document.time"
+    case documentTime = "faas.document.time"
 
     /**
      The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version.
@@ -64,7 +64,7 @@ extension SemanticConventions {
      - Note: - **AWS Lambda:** Use the (full) log stream name.
      - Requires: Value type should be `String`
     */
-    case faasInstance = "faas.instance"
+    case instance = "faas.instance"
 
     /**
      The invocation ID of the current function invocation.
@@ -73,7 +73,7 @@ extension SemanticConventions {
    attributes[.faasInvocationId] = "af9d5aa4-a685-4c5f-a22b-444f80b3cc28"
      - Requires: Value type should be `String`
     */
-    case faasInvocationId = "faas.invocation_id"
+    case invocationId = "faas.invocation_id"
 
     /**
      The name of the invoked function.
@@ -83,14 +83,14 @@ extension SemanticConventions {
      - Note: SHOULD be equal to the `faas.name` resource attribute of the invoked function.
      - Requires: Value type should be `String`
     */
-    case faasInvokedName = "faas.invoked_name"
+    case invokedName = "faas.invoked_name"
 
     /**
      The cloud provider of the invoked function.
      - Note: SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
-     - Requires: Value should be one of [`/output/Attributes/Faas_attributes.swift.FaasInvokedProviderValues`](x-source-tag://otelFaasInvokedProviderValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Faas_attributes.swift.InvokedProviderValues`](x-source-tag://otelInvokedProviderValues) (of type `String`)
     */
-    case faasInvokedProvider = "faas.invoked_provider"
+    case invokedProvider = "faas.invoked_provider"
 
     /**
      The cloud region of the invoked function.
@@ -100,7 +100,7 @@ extension SemanticConventions {
      - Note: SHOULD be equal to the `cloud.region` resource attribute of the invoked function.
      - Requires: Value type should be `String`
     */
-    case faasInvokedRegion = "faas.invoked_region"
+    case invokedRegion = "faas.invoked_region"
 
     /**
      The amount of memory available to the serverless function converted to Bytes.
@@ -110,7 +110,7 @@ extension SemanticConventions {
      - Note: It's recommended to set this attribute since e.g. too little memory can easily stop a Java AWS Lambda function from working correctly. On AWS Lambda, the environment variable `AWS_LAMBDA_FUNCTION_MEMORY_SIZE` provides this information (which must be multiplied by 1,048,576).
      - Requires: Value type should be `Int`
     */
-    case faasMaxMemory = "faas.max_memory"
+    case maxMemory = "faas.max_memory"
 
     /**
      The name of the single function that this runtime instance executes.
@@ -135,7 +135,7 @@ extension SemanticConventions {
        a TracerProvider (see also the `cloud.resource_id` attribute).
      - Requires: Value type should be `String`
     */
-    case faasName = "faas.name"
+    case name = "faas.name"
 
     /**
      A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
@@ -144,13 +144,13 @@ extension SemanticConventions {
    attributes[.faasTime] = "2020-01-23T13:47:06Z"
      - Requires: Value type should be `String`
     */
-    case faasTime = "faas.time"
+    case time = "faas.time"
 
     /**
      Type of the trigger which caused this function invocation.
-     - Requires: Value should be one of [`/output/Attributes/Faas_attributes.swift.FaasTriggerValues`](x-source-tag://otelFaasTriggerValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Faas_attributes.swift.TriggerValues`](x-source-tag://otelTriggerValues) (of type `String`)
     */
-    case faasTrigger = "faas.trigger"
+    case trigger = "faas.trigger"
 
     /**
      The immutable version of the function being executed.
@@ -168,26 +168,26 @@ extension SemanticConventions {
      - **Azure Functions:** Not applicable. Do not set this attribute.
      - Requires: Value type should be `String`
     */
-    case faasVersion = "faas.version"
+    case version = "faas.version"
 
 
     /** 
       Describes the type of the operation that was performed on the data.
     */
-    /// - Tag: otelFaasDocumentOperationValues
-    public struct FaasDocumentOperationValues: CustomStringConvertible {
+    /// - Tag: otelDocumentOperationValues
+    public struct DocumentOperationValues: CustomStringConvertible {
       /**
       When a new object is created.
       */
-      public static let insert = FaasDocumentOperationValues("insert") 
+      public static let insert = DocumentOperationValues("insert") 
       /**
       When an object is modified.
       */
-      public static let edit = FaasDocumentOperationValues("edit") 
+      public static let edit = DocumentOperationValues("edit") 
       /**
       When an object is deleted.
       */
-      public static let delete = FaasDocumentOperationValues("delete") 
+      public static let delete = DocumentOperationValues("delete") 
 
       internal let value: String 
 
@@ -203,28 +203,28 @@ extension SemanticConventions {
     /** 
       The cloud provider of the invoked function.
     */
-    /// - Tag: otelFaasInvokedProviderValues
-    public struct FaasInvokedProviderValues: CustomStringConvertible {
+    /// - Tag: otelInvokedProviderValues
+    public struct InvokedProviderValues: CustomStringConvertible {
       /**
       Alibaba Cloud
       */
-      public static let alibabaCloud = FaasInvokedProviderValues("alibaba_cloud") 
+      public static let alibabaCloud = InvokedProviderValues("alibaba_cloud") 
       /**
       Amazon Web Services
       */
-      public static let aws = FaasInvokedProviderValues("aws") 
+      public static let aws = InvokedProviderValues("aws") 
       /**
       Microsoft Azure
       */
-      public static let azure = FaasInvokedProviderValues("azure") 
+      public static let azure = InvokedProviderValues("azure") 
       /**
       Google Cloud Platform
       */
-      public static let gcp = FaasInvokedProviderValues("gcp") 
+      public static let gcp = InvokedProviderValues("gcp") 
       /**
       Tencent Cloud
       */
-      public static let tencentCloud = FaasInvokedProviderValues("tencent_cloud") 
+      public static let tencentCloud = InvokedProviderValues("tencent_cloud") 
 
       internal let value: String 
 
@@ -240,28 +240,28 @@ extension SemanticConventions {
     /** 
       Type of the trigger which caused this function invocation.
     */
-    /// - Tag: otelFaasTriggerValues
-    public struct FaasTriggerValues: CustomStringConvertible {
+    /// - Tag: otelTriggerValues
+    public struct TriggerValues: CustomStringConvertible {
       /**
       A response to some data source operation such as a database or filesystem read/write
       */
-      public static let datasource = FaasTriggerValues("datasource") 
+      public static let datasource = TriggerValues("datasource") 
       /**
       To provide an answer to an inbound HTTP request
       */
-      public static let http = FaasTriggerValues("http") 
+      public static let http = TriggerValues("http") 
       /**
       A function is set to be executed when messages are sent to a messaging system
       */
-      public static let pubsub = FaasTriggerValues("pubsub") 
+      public static let pubsub = TriggerValues("pubsub") 
       /**
       A function is scheduled to be executed regularly
       */
-      public static let timer = FaasTriggerValues("timer") 
+      public static let timer = TriggerValues("timer") 
       /**
       If none of the others apply
       */
-      public static let other = FaasTriggerValues("other") 
+      public static let other = TriggerValues("other") 
 
       internal let value: String 
 

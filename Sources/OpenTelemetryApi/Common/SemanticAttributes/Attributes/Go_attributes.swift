@@ -14,24 +14,24 @@ extension SemanticConventions {
       // Examples
       attributes[.goMemoryType] = other
       attributes[.goMemoryType] = stack
-     - Requires: Value should be one of [`/output/Attributes/Go_attributes.swift.GoMemoryTypeValues`](x-source-tag://otelGoMemoryTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Go_attributes.swift.MemoryTypeValues`](x-source-tag://otelMemoryTypeValues) (of type `String`)
     */
-    case goMemoryType = "go.memory.type"
+    case memoryType = "go.memory.type"
 
 
     /** 
       The type of memory.
     */
-    /// - Tag: otelGoMemoryTypeValues
-    public struct GoMemoryTypeValues: CustomStringConvertible {
+    /// - Tag: otelMemoryTypeValues
+    public struct MemoryTypeValues: CustomStringConvertible {
       /**
       Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.
       */
-      public static let stack = GoMemoryTypeValues("stack") 
+      public static let stack = MemoryTypeValues("stack") 
       /**
       Memory used by the Go runtime, excluding other categories of memory usage described in this enumeration.
       */
-      public static let other = GoMemoryTypeValues("other") 
+      public static let other = MemoryTypeValues("other") 
 
       internal let value: String 
 

@@ -13,18 +13,18 @@ extension SemanticConventions {
      The disk IO operation direction.
       // Examples
       attributes[.diskIoDirection] = read
-     - Requires: Value should be one of [`/output/Attributes/Disk_attributes.swift.DiskIoDirectionValues`](x-source-tag://otelDiskIoDirectionValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Disk_attributes.swift.IoDirectionValues`](x-source-tag://otelIoDirectionValues) (of type `String`)
     */
-    case diskIoDirection = "disk.io.direction"
+    case ioDirection = "disk.io.direction"
 
 
     /** 
       The disk IO operation direction.
     */
-    /// - Tag: otelDiskIoDirectionValues
-    public struct DiskIoDirectionValues: CustomStringConvertible {
-      public static let read = DiskIoDirectionValues("read") 
-      public static let write = DiskIoDirectionValues("write") 
+    /// - Tag: otelIoDirectionValues
+    public struct IoDirectionValues: CustomStringConvertible {
+      public static let read = IoDirectionValues("read") 
+      public static let write = IoDirectionValues("write") 
 
       internal let value: String 
 

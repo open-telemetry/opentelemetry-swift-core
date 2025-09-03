@@ -17,7 +17,7 @@ extension SemanticConventions {
      - Note: Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
      - Requires: Value type should be `String`
     */
-    case jvmBufferPoolName = "jvm.buffer.pool.name"
+    case bufferPoolName = "jvm.buffer.pool.name"
 
     /**
      Name of the garbage collector action.
@@ -27,7 +27,7 @@ extension SemanticConventions {
      - Note: Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
      - Requires: Value type should be `String`
     */
-    case jvmGcAction = "jvm.gc.action"
+    case gcAction = "jvm.gc.action"
 
     /**
      Name of the garbage collector cause.
@@ -37,7 +37,7 @@ extension SemanticConventions {
      - Note: Garbage collector cause is generally obtained via [GarbageCollectionNotificationInfo#getGcCause()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcCause()).
      - Requires: Value type should be `String`
     */
-    case jvmGcCause = "jvm.gc.cause"
+    case gcCause = "jvm.gc.cause"
 
     /**
      Name of the garbage collector.
@@ -47,7 +47,7 @@ extension SemanticConventions {
      - Note: Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
      - Requires: Value type should be `String`
     */
-    case jvmGcName = "jvm.gc.name"
+    case gcName = "jvm.gc.name"
 
     /**
      Name of the memory pool.
@@ -58,46 +58,46 @@ extension SemanticConventions {
      - Note: Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
      - Requires: Value type should be `String`
     */
-    case jvmMemoryPoolName = "jvm.memory.pool.name"
+    case memoryPoolName = "jvm.memory.pool.name"
 
     /**
      The type of memory.
       // Examples
       attributes[.jvmMemoryType] = heap
       attributes[.jvmMemoryType] = non_heap
-     - Requires: Value should be one of [`/output/Attributes/Jvm_attributes.swift.JvmMemoryTypeValues`](x-source-tag://otelJvmMemoryTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Jvm_attributes.swift.MemoryTypeValues`](x-source-tag://otelMemoryTypeValues) (of type `String`)
     */
-    case jvmMemoryType = "jvm.memory.type"
+    case memoryType = "jvm.memory.type"
 
     /**
      Whether the thread is daemon or not.
      - Requires: Value type should be `Bool`
     */
-    case jvmThreadDaemon = "jvm.thread.daemon"
+    case threadDaemon = "jvm.thread.daemon"
 
     /**
      State of the thread.
       // Examples
       attributes[.jvmThreadState] = runnable
       attributes[.jvmThreadState] = blocked
-     - Requires: Value should be one of [`/output/Attributes/Jvm_attributes.swift.JvmThreadStateValues`](x-source-tag://otelJvmThreadStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Jvm_attributes.swift.ThreadStateValues`](x-source-tag://otelThreadStateValues) (of type `String`)
     */
-    case jvmThreadState = "jvm.thread.state"
+    case threadState = "jvm.thread.state"
 
 
     /** 
       The type of memory.
     */
-    /// - Tag: otelJvmMemoryTypeValues
-    public struct JvmMemoryTypeValues: CustomStringConvertible {
+    /// - Tag: otelMemoryTypeValues
+    public struct MemoryTypeValues: CustomStringConvertible {
       /**
       Heap memory.
       */
-      public static let heap = JvmMemoryTypeValues("heap") 
+      public static let heap = MemoryTypeValues("heap") 
       /**
       Non-heap memory
       */
-      public static let nonHeap = JvmMemoryTypeValues("non_heap") 
+      public static let nonHeap = MemoryTypeValues("non_heap") 
 
       internal let value: String 
 
@@ -113,32 +113,32 @@ extension SemanticConventions {
     /** 
       State of the thread.
     */
-    /// - Tag: otelJvmThreadStateValues
-    public struct JvmThreadStateValues: CustomStringConvertible {
+    /// - Tag: otelThreadStateValues
+    public struct ThreadStateValues: CustomStringConvertible {
       /**
       A thread that has not yet started is in this state.
       */
-      public static let new = JvmThreadStateValues("new") 
+      public static let new = ThreadStateValues("new") 
       /**
       A thread executing in the Java virtual machine is in this state.
       */
-      public static let runnable = JvmThreadStateValues("runnable") 
+      public static let runnable = ThreadStateValues("runnable") 
       /**
       A thread that is blocked waiting for a monitor lock is in this state.
       */
-      public static let blocked = JvmThreadStateValues("blocked") 
+      public static let blocked = ThreadStateValues("blocked") 
       /**
       A thread that is waiting indefinitely for another thread to perform a particular action is in this state.
       */
-      public static let waiting = JvmThreadStateValues("waiting") 
+      public static let waiting = ThreadStateValues("waiting") 
       /**
       A thread that is waiting for another thread to perform an action for up to a specified waiting time is in this state.
       */
-      public static let timedWaiting = JvmThreadStateValues("timed_waiting") 
+      public static let timedWaiting = ThreadStateValues("timed_waiting") 
       /**
       A thread that has exited is in this state.
       */
-      public static let terminated = JvmThreadStateValues("terminated") 
+      public static let terminated = ThreadStateValues("terminated") 
 
       internal let value: String 
 

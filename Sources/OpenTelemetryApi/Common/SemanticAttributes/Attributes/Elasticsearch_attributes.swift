@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.elasticsearchNodeName] = "instance-0000000001"
      - Requires: Value type should be `String`
     */
-    case elasticsearchNodeName = "elasticsearch.node.name"
+    case nodeName = "elasticsearch.node.name"
 
   }
 }

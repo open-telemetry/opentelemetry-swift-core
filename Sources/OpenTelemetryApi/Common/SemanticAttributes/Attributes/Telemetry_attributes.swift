@@ -17,7 +17,7 @@ extension SemanticConventions {
      a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
      - Requires: Value type should be `String`
     */
-    case telemetryDistroName = "telemetry.distro.name"
+    case distroName = "telemetry.distro.name"
 
     /**
      The version string of the auto instrumentation agent or distribution, if used.
@@ -25,13 +25,13 @@ extension SemanticConventions {
       attributes[.telemetryDistroVersion] = "1.2.3"
      - Requires: Value type should be `String`
     */
-    case telemetryDistroVersion = "telemetry.distro.version"
+    case distroVersion = "telemetry.distro.version"
 
     /**
      The language of the telemetry SDK.
-     - Requires: Value should be one of [`/output/Attributes/Telemetry_attributes.swift.TelemetrySdkLanguageValues`](x-source-tag://otelTelemetrySdkLanguageValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Telemetry_attributes.swift.SdkLanguageValues`](x-source-tag://otelSdkLanguageValues) (of type `String`)
     */
-    case telemetrySdkLanguage = "telemetry.sdk.language"
+    case sdkLanguage = "telemetry.sdk.language"
 
     /**
      The name of the telemetry SDK as defined above.
@@ -45,7 +45,7 @@ extension SemanticConventions {
      All custom identifiers SHOULD be stable across different versions of an implementation.
      - Requires: Value type should be `String`
     */
-    case telemetrySdkName = "telemetry.sdk.name"
+    case sdkName = "telemetry.sdk.name"
 
     /**
      The version string of the telemetry SDK.
@@ -53,26 +53,26 @@ extension SemanticConventions {
       attributes[.telemetrySdkVersion] = "1.2.3"
      - Requires: Value type should be `String`
     */
-    case telemetrySdkVersion = "telemetry.sdk.version"
+    case sdkVersion = "telemetry.sdk.version"
 
 
     /** 
       The language of the telemetry SDK.
     */
-    /// - Tag: otelTelemetrySdkLanguageValues
-    public struct TelemetrySdkLanguageValues: CustomStringConvertible {
-      public static let cpp = TelemetrySdkLanguageValues("cpp") 
-      public static let dotnet = TelemetrySdkLanguageValues("dotnet") 
-      public static let erlang = TelemetrySdkLanguageValues("erlang") 
-      public static let go = TelemetrySdkLanguageValues("go") 
-      public static let java = TelemetrySdkLanguageValues("java") 
-      public static let nodejs = TelemetrySdkLanguageValues("nodejs") 
-      public static let php = TelemetrySdkLanguageValues("php") 
-      public static let python = TelemetrySdkLanguageValues("python") 
-      public static let ruby = TelemetrySdkLanguageValues("ruby") 
-      public static let rust = TelemetrySdkLanguageValues("rust") 
-      public static let swift = TelemetrySdkLanguageValues("swift") 
-      public static let webjs = TelemetrySdkLanguageValues("webjs") 
+    /// - Tag: otelSdkLanguageValues
+    public struct SdkLanguageValues: CustomStringConvertible {
+      public static let cpp = SdkLanguageValues("cpp") 
+      public static let dotnet = SdkLanguageValues("dotnet") 
+      public static let erlang = SdkLanguageValues("erlang") 
+      public static let go = SdkLanguageValues("go") 
+      public static let java = SdkLanguageValues("java") 
+      public static let nodejs = SdkLanguageValues("nodejs") 
+      public static let php = SdkLanguageValues("php") 
+      public static let python = SdkLanguageValues("python") 
+      public static let ruby = SdkLanguageValues("ruby") 
+      public static let rust = SdkLanguageValues("rust") 
+      public static let swift = SdkLanguageValues("swift") 
+      public static let webjs = SdkLanguageValues("webjs") 
 
       internal let value: String 
 

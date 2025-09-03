@@ -11,9 +11,9 @@ extension SemanticConventions {
   enum Geo: String {
     /**
      Two-letter code representing continent’s name.
-     - Requires: Value should be one of [`/output/Attributes/Geo_attributes.swift.GeoContinentCodeValues`](x-source-tag://otelGeoContinentCodeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Geo_attributes.swift.ContinentCodeValues`](x-source-tag://otelContinentCodeValues) (of type `String`)
     */
-    case geoContinentCode = "geo.continent.code"
+    case continentCode = "geo.continent.code"
 
     /**
      Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)).
@@ -21,7 +21,7 @@ extension SemanticConventions {
       attributes[.geoCountryIsoCode] = "CA"
      - Requires: Value type should be `String`
     */
-    case geoCountryIsoCode = "geo.country.iso_code"
+    case countryIsoCode = "geo.country.iso_code"
 
     /**
      Locality name. Represents the name of a city, town, village, or similar populated place.
@@ -30,7 +30,7 @@ extension SemanticConventions {
       attributes[.geoLocalityName] = "Berlin"
      - Requires: Value type should be `String`
     */
-    case geoLocalityName = "geo.locality.name"
+    case localityName = "geo.locality.name"
 
     /**
      Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
@@ -38,7 +38,7 @@ extension SemanticConventions {
       attributes[.geoLocationLat] = 45.505918
      - Requires: Value type should be `Double`
     */
-    case geoLocationLat = "geo.location.lat"
+    case locationLat = "geo.location.lat"
 
     /**
      Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
@@ -46,7 +46,7 @@ extension SemanticConventions {
       attributes[.geoLocationLon] = -73.61483
      - Requires: Value type should be `Double`
     */
-    case geoLocationLon = "geo.location.lon"
+    case locationLon = "geo.location.lon"
 
     /**
      Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country.
@@ -54,7 +54,7 @@ extension SemanticConventions {
       attributes[.geoPostalCode] = "94040"
      - Requires: Value type should be `String`
     */
-    case geoPostalCode = "geo.postal_code"
+    case postalCode = "geo.postal_code"
 
     /**
      Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)).
@@ -62,42 +62,42 @@ extension SemanticConventions {
       attributes[.geoRegionIsoCode] = "CA-QC"
      - Requires: Value type should be `String`
     */
-    case geoRegionIsoCode = "geo.region.iso_code"
+    case regionIsoCode = "geo.region.iso_code"
 
 
     /** 
       Two-letter code representing continent’s name.
     */
-    /// - Tag: otelGeoContinentCodeValues
-    public struct GeoContinentCodeValues: CustomStringConvertible {
+    /// - Tag: otelContinentCodeValues
+    public struct ContinentCodeValues: CustomStringConvertible {
       /**
       Africa
       */
-      public static let af = GeoContinentCodeValues("AF") 
+      public static let af = ContinentCodeValues("AF") 
       /**
       Antarctica
       */
-      public static let an = GeoContinentCodeValues("AN") 
+      public static let an = ContinentCodeValues("AN") 
       /**
       Asia
       */
-      public static let _as = GeoContinentCodeValues("AS") 
+      public static let _as = ContinentCodeValues("AS") 
       /**
       Europe
       */
-      public static let eu = GeoContinentCodeValues("EU") 
+      public static let eu = ContinentCodeValues("EU") 
       /**
       North America
       */
-      public static let na = GeoContinentCodeValues("NA") 
+      public static let na = ContinentCodeValues("NA") 
       /**
       Oceania
       */
-      public static let oc = GeoContinentCodeValues("OC") 
+      public static let oc = ContinentCodeValues("OC") 
       /**
       South America
       */
-      public static let sa = GeoContinentCodeValues("SA") 
+      public static let sa = ContinentCodeValues("SA") 
 
       internal let value: String 
 

@@ -12,36 +12,36 @@ extension SemanticConventions {
     /**
      This attribute represents the state of the application.
      - Note: The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
-     - Requires: Value should be one of [`/output/Attributes/Ios_attributes.swift.IosAppStateValues`](x-source-tag://otelIosAppStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Ios_attributes.swift.AppStateValues`](x-source-tag://otelAppStateValues) (of type `String`)
     */
-    case iosAppState = "ios.app.state"
+    case appState = "ios.app.state"
 
 
     /** 
       This attribute represents the state of the application.
     */
-    /// - Tag: otelIosAppStateValues
-    public struct IosAppStateValues: CustomStringConvertible {
+    /// - Tag: otelAppStateValues
+    public struct AppStateValues: CustomStringConvertible {
       /**
       The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`.
       */
-      public static let active = IosAppStateValues("active") 
+      public static let active = AppStateValues("active") 
       /**
       The app is now `inactive`. Associated with UIKit notification `applicationWillResignActive`.
       */
-      public static let inactive = IosAppStateValues("inactive") 
+      public static let inactive = AppStateValues("inactive") 
       /**
       The app is now in the background. This value is associated with UIKit notification `applicationDidEnterBackground`.
       */
-      public static let background = IosAppStateValues("background") 
+      public static let background = AppStateValues("background") 
       /**
       The app is now in the foreground. This value is associated with UIKit notification `applicationWillEnterForeground`.
       */
-      public static let foreground = IosAppStateValues("foreground") 
+      public static let foreground = AppStateValues("foreground") 
       /**
       The app is about to terminate. Associated with UIKit notification `applicationWillTerminate`.
       */
-      public static let terminate = IosAppStateValues("terminate") 
+      public static let terminate = AppStateValues("terminate") 
 
       internal let value: String 
 

@@ -17,7 +17,7 @@ extension SemanticConventions {
      - Note: The values allowed for `tls.cipher` MUST be one of the `Descriptions` of the [registered TLS Cipher Suits](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml#table-tls-parameters-4).
      - Requires: Value type should be `String`
     */
-    case tlsCipher = "tls.cipher"
+    case cipher = "tls.cipher"
 
     /**
      PEM-encoded stand-alone certificate offered by the client. This is usually mutually-exclusive of `client.certificate_chain` since this value also exists in that list.
@@ -25,7 +25,7 @@ extension SemanticConventions {
       attributes[.tlsClientCertificate] = "MII..."
      - Requires: Value type should be `String`
     */
-    case tlsClientCertificate = "tls.client.certificate"
+    case clientCertificate = "tls.client.certificate"
 
     /**
      Array of PEM-encoded certificates that make up the certificate chain offered by the client. This is usually mutually-exclusive of `client.certificate` since that value should be the first certificate in the chain.
@@ -33,7 +33,7 @@ extension SemanticConventions {
       attributes[.tlsClientCertificateChain] = ["MII...", "MI..."]
      - Requires: Value type should be `[String]`
     */
-    case tlsClientCertificateChain = "tls.client.certificate_chain"
+    case clientCertificateChain = "tls.client.certificate_chain"
 
     /**
      Certificate fingerprint using the MD5 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
@@ -41,7 +41,7 @@ extension SemanticConventions {
       attributes[.tlsClientHashMd5] = "0F76C7F2C55BFD7D8E8B8F4BFBF0C9EC"
      - Requires: Value type should be `String`
     */
-    case tlsClientHashMd5 = "tls.client.hash.md5"
+    case clientHashMd5 = "tls.client.hash.md5"
 
     /**
      Certificate fingerprint using the SHA1 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
@@ -49,7 +49,7 @@ extension SemanticConventions {
       attributes[.tlsClientHashSha1] = "9E393D93138888D288266C2D915214D1D1CCEB2A"
      - Requires: Value type should be `String`
     */
-    case tlsClientHashSha1 = "tls.client.hash.sha1"
+    case clientHashSha1 = "tls.client.hash.sha1"
 
     /**
      Certificate fingerprint using the SHA256 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
@@ -57,7 +57,7 @@ extension SemanticConventions {
       attributes[.tlsClientHashSha256] = "0687F666A054EF17A08E2F2162EAB4CBC0D265E1D7875BE74BF3C712CA92DAF0"
      - Requires: Value type should be `String`
     */
-    case tlsClientHashSha256 = "tls.client.hash.sha256"
+    case clientHashSha256 = "tls.client.hash.sha256"
 
     /**
      Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
@@ -65,7 +65,7 @@ extension SemanticConventions {
       attributes[.tlsClientIssuer] = "CN=Example Root CA, OU=Infrastructure Team, DC=example, DC=com"
      - Requires: Value type should be `String`
     */
-    case tlsClientIssuer = "tls.client.issuer"
+    case clientIssuer = "tls.client.issuer"
 
     /**
      A hash that identifies clients based on how they perform an SSL/TLS handshake.
@@ -73,7 +73,7 @@ extension SemanticConventions {
       attributes[.tlsClientJa3] = "d4e5b18d6b55c71272893221c96ba240"
      - Requires: Value type should be `String`
     */
-    case tlsClientJa3 = "tls.client.ja3"
+    case clientJa3 = "tls.client.ja3"
 
     /**
      Date/Time indicating when client certificate is no longer considered valid.
@@ -81,7 +81,7 @@ extension SemanticConventions {
       attributes[.tlsClientNotAfter] = "2021-01-01T00:00:00.000Z"
      - Requires: Value type should be `String`
     */
-    case tlsClientNotAfter = "tls.client.not_after"
+    case clientNotAfter = "tls.client.not_after"
 
     /**
      Date/Time indicating when client certificate is first considered valid.
@@ -89,7 +89,7 @@ extension SemanticConventions {
       attributes[.tlsClientNotBefore] = "1970-01-01T00:00:00.000Z"
      - Requires: Value type should be `String`
     */
-    case tlsClientNotBefore = "tls.client.not_before"
+    case clientNotBefore = "tls.client.not_before"
 
     /**
      Distinguished name of subject of the x.509 certificate presented by the client.
@@ -97,7 +97,7 @@ extension SemanticConventions {
       attributes[.tlsClientSubject] = "CN=myclient, OU=Documentation Team, DC=example, DC=com"
      - Requires: Value type should be `String`
     */
-    case tlsClientSubject = "tls.client.subject"
+    case clientSubject = "tls.client.subject"
 
     /**
      Array of ciphers offered by the client during the client hello.
@@ -105,7 +105,7 @@ extension SemanticConventions {
       attributes[.tlsClientSupportedCiphers] = ["TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384"]
      - Requires: Value type should be `[String]`
     */
-    case tlsClientSupportedCiphers = "tls.client.supported_ciphers"
+    case clientSupportedCiphers = "tls.client.supported_ciphers"
 
     /**
      String indicating the curve used for the given cipher, when applicable
@@ -113,7 +113,7 @@ extension SemanticConventions {
       attributes[.tlsCurve] = "secp256r1"
      - Requires: Value type should be `String`
     */
-    case tlsCurve = "tls.curve"
+    case curve = "tls.curve"
 
     /**
      Boolean flag indicating if the TLS negotiation was successful and transitioned to an encrypted tunnel.
@@ -121,7 +121,7 @@ extension SemanticConventions {
       attributes[.tlsEstablished] = true
      - Requires: Value type should be `Bool`
     */
-    case tlsEstablished = "tls.established"
+    case established = "tls.established"
 
     /**
      String indicating the protocol being tunneled. Per the values in the [IANA registry](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids), this string should be lower case.
@@ -129,13 +129,13 @@ extension SemanticConventions {
       attributes[.tlsNextProtocol] = "http/1.1"
      - Requires: Value type should be `String`
     */
-    case tlsNextProtocol = "tls.next_protocol"
+    case nextProtocol = "tls.next_protocol"
 
     /**
      Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
-     - Requires: Value should be one of [`/output/Attributes/Tls_attributes.swift.TlsProtocolNameValues`](x-source-tag://otelTlsProtocolNameValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Tls_attributes.swift.ProtocolNameValues`](x-source-tag://otelProtocolNameValues) (of type `String`)
     */
-    case tlsProtocolName = "tls.protocol.name"
+    case protocolName = "tls.protocol.name"
 
     /**
      Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
@@ -144,7 +144,7 @@ extension SemanticConventions {
       attributes[.tlsProtocolVersion] = "3"
      - Requires: Value type should be `String`
     */
-    case tlsProtocolVersion = "tls.protocol.version"
+    case protocolVersion = "tls.protocol.version"
 
     /**
      Boolean flag indicating if this TLS connection was resumed from an existing TLS negotiation.
@@ -152,7 +152,7 @@ extension SemanticConventions {
       attributes[.tlsResumed] = true
      - Requires: Value type should be `Bool`
     */
-    case tlsResumed = "tls.resumed"
+    case resumed = "tls.resumed"
 
     /**
      PEM-encoded stand-alone certificate offered by the server. This is usually mutually-exclusive of `server.certificate_chain` since this value also exists in that list.
@@ -160,7 +160,7 @@ extension SemanticConventions {
       attributes[.tlsServerCertificate] = "MII..."
      - Requires: Value type should be `String`
     */
-    case tlsServerCertificate = "tls.server.certificate"
+    case serverCertificate = "tls.server.certificate"
 
     /**
      Array of PEM-encoded certificates that make up the certificate chain offered by the server. This is usually mutually-exclusive of `server.certificate` since that value should be the first certificate in the chain.
@@ -168,7 +168,7 @@ extension SemanticConventions {
       attributes[.tlsServerCertificateChain] = ["MII...", "MI..."]
      - Requires: Value type should be `[String]`
     */
-    case tlsServerCertificateChain = "tls.server.certificate_chain"
+    case serverCertificateChain = "tls.server.certificate_chain"
 
     /**
      Certificate fingerprint using the MD5 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
@@ -176,7 +176,7 @@ extension SemanticConventions {
       attributes[.tlsServerHashMd5] = "0F76C7F2C55BFD7D8E8B8F4BFBF0C9EC"
      - Requires: Value type should be `String`
     */
-    case tlsServerHashMd5 = "tls.server.hash.md5"
+    case serverHashMd5 = "tls.server.hash.md5"
 
     /**
      Certificate fingerprint using the SHA1 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
@@ -184,7 +184,7 @@ extension SemanticConventions {
       attributes[.tlsServerHashSha1] = "9E393D93138888D288266C2D915214D1D1CCEB2A"
      - Requires: Value type should be `String`
     */
-    case tlsServerHashSha1 = "tls.server.hash.sha1"
+    case serverHashSha1 = "tls.server.hash.sha1"
 
     /**
      Certificate fingerprint using the SHA256 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
@@ -192,7 +192,7 @@ extension SemanticConventions {
       attributes[.tlsServerHashSha256] = "0687F666A054EF17A08E2F2162EAB4CBC0D265E1D7875BE74BF3C712CA92DAF0"
      - Requires: Value type should be `String`
     */
-    case tlsServerHashSha256 = "tls.server.hash.sha256"
+    case serverHashSha256 = "tls.server.hash.sha256"
 
     /**
      Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
@@ -200,7 +200,7 @@ extension SemanticConventions {
       attributes[.tlsServerIssuer] = "CN=Example Root CA, OU=Infrastructure Team, DC=example, DC=com"
      - Requires: Value type should be `String`
     */
-    case tlsServerIssuer = "tls.server.issuer"
+    case serverIssuer = "tls.server.issuer"
 
     /**
      A hash that identifies servers based on how they perform an SSL/TLS handshake.
@@ -208,7 +208,7 @@ extension SemanticConventions {
       attributes[.tlsServerJa3s] = "d4e5b18d6b55c71272893221c96ba240"
      - Requires: Value type should be `String`
     */
-    case tlsServerJa3s = "tls.server.ja3s"
+    case serverJa3s = "tls.server.ja3s"
 
     /**
      Date/Time indicating when server certificate is no longer considered valid.
@@ -216,7 +216,7 @@ extension SemanticConventions {
       attributes[.tlsServerNotAfter] = "2021-01-01T00:00:00.000Z"
      - Requires: Value type should be `String`
     */
-    case tlsServerNotAfter = "tls.server.not_after"
+    case serverNotAfter = "tls.server.not_after"
 
     /**
      Date/Time indicating when server certificate is first considered valid.
@@ -224,7 +224,7 @@ extension SemanticConventions {
       attributes[.tlsServerNotBefore] = "1970-01-01T00:00:00.000Z"
      - Requires: Value type should be `String`
     */
-    case tlsServerNotBefore = "tls.server.not_before"
+    case serverNotBefore = "tls.server.not_before"
 
     /**
      Distinguished name of subject of the x.509 certificate presented by the server.
@@ -232,16 +232,16 @@ extension SemanticConventions {
       attributes[.tlsServerSubject] = "CN=myserver, OU=Documentation Team, DC=example, DC=com"
      - Requires: Value type should be `String`
     */
-    case tlsServerSubject = "tls.server.subject"
+    case serverSubject = "tls.server.subject"
 
 
     /** 
       Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
     */
-    /// - Tag: otelTlsProtocolNameValues
-    public struct TlsProtocolNameValues: CustomStringConvertible {
-      public static let ssl = TlsProtocolNameValues("ssl") 
-      public static let tls = TlsProtocolNameValues("tls") 
+    /// - Tag: otelProtocolNameValues
+    public struct ProtocolNameValues: CustomStringConvertible {
+      public static let ssl = ProtocolNameValues("ssl") 
+      public static let tls = ProtocolNameValues("tls") 
 
       internal let value: String 
 

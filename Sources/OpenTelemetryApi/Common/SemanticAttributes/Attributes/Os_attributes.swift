@@ -17,7 +17,7 @@ extension SemanticConventions {
       attributes[.osBuildId] = "22621"
      - Requires: Value type should be `String`
     */
-    case osBuildId = "os.build_id"
+    case buildId = "os.build_id"
 
     /**
      Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands.
@@ -26,7 +26,7 @@ extension SemanticConventions {
       attributes[.osDescription] = "Ubuntu 18.04.1 LTS"
      - Requires: Value type should be `String`
     */
-    case osDescription = "os.description"
+    case description = "os.description"
 
     /**
      Human readable operating system name.
@@ -36,13 +36,13 @@ extension SemanticConventions {
       attributes[.osName] = "Ubuntu"
      - Requires: Value type should be `String`
     */
-    case osName = "os.name"
+    case name = "os.name"
 
     /**
      The operating system type.
-     - Requires: Value should be one of [`/output/Attributes/Os_attributes.swift.OsTypeValues`](x-source-tag://otelOsTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Os_attributes.swift.TypeValues`](x-source-tag://otelTypeValues) (of type `String`)
     */
-    case osType = "os.type"
+    case type = "os.type"
 
     /**
      The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
@@ -51,58 +51,58 @@ extension SemanticConventions {
       attributes[.osVersion] = "18.04.1"
      - Requires: Value type should be `String`
     */
-    case osVersion = "os.version"
+    case version = "os.version"
 
 
     /** 
       The operating system type.
     */
-    /// - Tag: otelOsTypeValues
-    public struct OsTypeValues: CustomStringConvertible {
+    /// - Tag: otelTypeValues
+    public struct TypeValues: CustomStringConvertible {
       /**
       Microsoft Windows
       */
-      public static let windows = OsTypeValues("windows") 
+      public static let windows = TypeValues("windows") 
       /**
       Linux
       */
-      public static let linux = OsTypeValues("linux") 
+      public static let linux = TypeValues("linux") 
       /**
       Apple Darwin
       */
-      public static let darwin = OsTypeValues("darwin") 
+      public static let darwin = TypeValues("darwin") 
       /**
       FreeBSD
       */
-      public static let freebsd = OsTypeValues("freebsd") 
+      public static let freebsd = TypeValues("freebsd") 
       /**
       NetBSD
       */
-      public static let netbsd = OsTypeValues("netbsd") 
+      public static let netbsd = TypeValues("netbsd") 
       /**
       OpenBSD
       */
-      public static let openbsd = OsTypeValues("openbsd") 
+      public static let openbsd = TypeValues("openbsd") 
       /**
       DragonFly BSD
       */
-      public static let dragonflybsd = OsTypeValues("dragonflybsd") 
+      public static let dragonflybsd = TypeValues("dragonflybsd") 
       /**
       HP-UX (Hewlett Packard Unix)
       */
-      public static let hpux = OsTypeValues("hpux") 
+      public static let hpux = TypeValues("hpux") 
       /**
       AIX (Advanced Interactive eXecutive)
       */
-      public static let aix = OsTypeValues("aix") 
+      public static let aix = TypeValues("aix") 
       /**
       SunOS, Oracle Solaris
       */
-      public static let solaris = OsTypeValues("solaris") 
+      public static let solaris = TypeValues("solaris") 
       /**
       IBM z/OS
       */
-      public static let zos = OsTypeValues("zos") 
+      public static let zos = TypeValues("zos") 
 
       internal let value: String 
 

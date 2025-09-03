@@ -11,24 +11,24 @@ extension SemanticConventions {
   enum Nodejs: String {
     /**
      The state of event loop time.
-     - Requires: Value should be one of [`/output/Attributes/Nodejs_attributes.swift.NodejsEventloopStateValues`](x-source-tag://otelNodejsEventloopStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Nodejs_attributes.swift.EventloopStateValues`](x-source-tag://otelEventloopStateValues) (of type `String`)
     */
-    case nodejsEventloopState = "nodejs.eventloop.state"
+    case eventloopState = "nodejs.eventloop.state"
 
 
     /** 
       The state of event loop time.
     */
-    /// - Tag: otelNodejsEventloopStateValues
-    public struct NodejsEventloopStateValues: CustomStringConvertible {
+    /// - Tag: otelEventloopStateValues
+    public struct EventloopStateValues: CustomStringConvertible {
       /**
       Active time.
       */
-      public static let active = NodejsEventloopStateValues("active") 
+      public static let active = EventloopStateValues("active") 
       /**
       Idle time.
       */
-      public static let idle = NodejsEventloopStateValues("idle") 
+      public static let idle = EventloopStateValues("idle") 
 
       internal let value: String 
 

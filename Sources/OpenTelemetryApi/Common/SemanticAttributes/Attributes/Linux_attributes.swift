@@ -14,18 +14,18 @@ extension SemanticConventions {
       // Examples
       attributes[.linuxMemorySlabState] = reclaimable
       attributes[.linuxMemorySlabState] = unreclaimable
-     - Requires: Value should be one of [`/output/Attributes/Linux_attributes.swift.LinuxMemorySlabStateValues`](x-source-tag://otelLinuxMemorySlabStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Linux_attributes.swift.MemorySlabStateValues`](x-source-tag://otelMemorySlabStateValues) (of type `String`)
     */
-    case linuxMemorySlabState = "linux.memory.slab.state"
+    case memorySlabState = "linux.memory.slab.state"
 
 
     /** 
       The Linux Slab memory state
     */
-    /// - Tag: otelLinuxMemorySlabStateValues
-    public struct LinuxMemorySlabStateValues: CustomStringConvertible {
-      public static let reclaimable = LinuxMemorySlabStateValues("reclaimable") 
-      public static let unreclaimable = LinuxMemorySlabStateValues("unreclaimable") 
+    /// - Tag: otelMemorySlabStateValues
+    public struct MemorySlabStateValues: CustomStringConvertible {
+      public static let reclaimable = MemorySlabStateValues("reclaimable") 
+      public static let unreclaimable = MemorySlabStateValues("unreclaimable") 
 
       internal let value: String 
 

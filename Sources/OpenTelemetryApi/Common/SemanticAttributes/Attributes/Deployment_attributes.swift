@@ -23,7 +23,7 @@ extension SemanticConventions {
      - `service.name=frontend`, `deployment.environment.name=staging`.
      - Requires: Value type should be `String`
     */
-    case deploymentEnvironmentName = "deployment.environment.name"
+    case environmentName = "deployment.environment.name"
 
     /**
      The id of the deployment.
@@ -31,7 +31,7 @@ extension SemanticConventions {
       attributes[.deploymentId] = "1208"
      - Requires: Value type should be `String`
     */
-    case deploymentId = "deployment.id"
+    case id = "deployment.id"
 
     /**
      The name of the deployment.
@@ -40,28 +40,28 @@ extension SemanticConventions {
       attributes[.deploymentName] = "deploy-frontend"
      - Requires: Value type should be `String`
     */
-    case deploymentName = "deployment.name"
+    case name = "deployment.name"
 
     /**
      The status of the deployment.
-     - Requires: Value should be one of [`/output/Attributes/Deployment_attributes.swift.DeploymentStatusValues`](x-source-tag://otelDeploymentStatusValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Deployment_attributes.swift.StatusValues`](x-source-tag://otelStatusValues) (of type `String`)
     */
-    case deploymentStatus = "deployment.status"
+    case status = "deployment.status"
 
 
     /** 
       The status of the deployment.
     */
-    /// - Tag: otelDeploymentStatusValues
-    public struct DeploymentStatusValues: CustomStringConvertible {
+    /// - Tag: otelStatusValues
+    public struct StatusValues: CustomStringConvertible {
       /**
       failed
       */
-      public static let failed = DeploymentStatusValues("failed") 
+      public static let failed = StatusValues("failed") 
       /**
       succeeded
       */
-      public static let succeeded = DeploymentStatusValues("succeeded") 
+      public static let succeeded = StatusValues("succeeded") 
 
       internal let value: String 
 

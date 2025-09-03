@@ -17,7 +17,7 @@ extension SemanticConventions {
      An example can be found in [Example Image Manifest](https://github.com/opencontainers/image-spec/blob/main/manifest.md#example-image-manifest).
      - Requires: Value type should be `String`
     */
-    case ociManifestDigest = "oci.manifest.digest"
+    case manifestDigest = "oci.manifest.digest"
 
   }
 }

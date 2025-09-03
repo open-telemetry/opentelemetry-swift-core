@@ -18,7 +18,7 @@ extension SemanticConventions {
      - Note: When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
      - Requires: Value type should be `String`
     */
-    case destinationAddress = "destination.address"
+    case address = "destination.address"
 
     /**
      Destination port number
@@ -27,7 +27,7 @@ extension SemanticConventions {
       attributes[.destinationPort] = 2888
      - Requires: Value type should be `Int`
     */
-    case destinationPort = "destination.port"
+    case port = "destination.port"
 
   }
 }

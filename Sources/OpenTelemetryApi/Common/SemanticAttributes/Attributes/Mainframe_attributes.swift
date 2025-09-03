@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.mainframeLparName] = "LPAR01"
      - Requires: Value type should be `String`
     */
-    case mainframeLparName = "mainframe.lpar.name"
+    case lparName = "mainframe.lpar.name"
 
   }
 }

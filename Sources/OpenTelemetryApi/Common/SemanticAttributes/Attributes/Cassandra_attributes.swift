@@ -11,9 +11,9 @@ extension SemanticConventions {
   enum Cassandra: String {
     /**
      The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
-     - Requires: Value should be one of [`/output/Attributes/Cassandra_attributes.swift.CassandraConsistencyLevelValues`](x-source-tag://otelCassandraConsistencyLevelValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Cassandra_attributes.swift.ConsistencyLevelValues`](x-source-tag://otelConsistencyLevelValues) (of type `String`)
     */
-    case cassandraConsistencyLevel = "cassandra.consistency.level"
+    case consistencyLevel = "cassandra.consistency.level"
 
     /**
      The data center of the coordinating node for a query.
@@ -22,7 +22,7 @@ extension SemanticConventions {
    attributes[.cassandraCoordinatorDc] = "us-west-2"
      - Requires: Value type should be `String`
     */
-    case cassandraCoordinatorDc = "cassandra.coordinator.dc"
+    case coordinatorDc = "cassandra.coordinator.dc"
 
     /**
      The ID of the coordinating node for a query.
@@ -31,7 +31,7 @@ extension SemanticConventions {
    attributes[.cassandraCoordinatorId] = "be13faa2-8574-4d71-926d-27f16cf8a7af"
      - Requires: Value type should be `String`
     */
-    case cassandraCoordinatorId = "cassandra.coordinator.id"
+    case coordinatorId = "cassandra.coordinator.id"
 
     /**
      The fetch size used for paging, i.e. how many rows will be returned at once.
@@ -39,13 +39,13 @@ extension SemanticConventions {
       attributes[.cassandraPageSize] = 5000
      - Requires: Value type should be `Int`
     */
-    case cassandraPageSize = "cassandra.page.size"
+    case pageSize = "cassandra.page.size"
 
     /**
      Whether or not the query is idempotent.
      - Requires: Value type should be `Bool`
     */
-    case cassandraQueryIdempotent = "cassandra.query.idempotent"
+    case queryIdempotent = "cassandra.query.idempotent"
 
     /**
      The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
@@ -54,58 +54,58 @@ extension SemanticConventions {
       attributes[.cassandraSpeculativeExecutionCount] = 2
      - Requires: Value type should be `Int`
     */
-    case cassandraSpeculativeExecutionCount = "cassandra.speculative_execution.count"
+    case speculativeExecutionCount = "cassandra.speculative_execution.count"
 
 
     /** 
       The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
     */
-    /// - Tag: otelCassandraConsistencyLevelValues
-    public struct CassandraConsistencyLevelValues: CustomStringConvertible {
+    /// - Tag: otelConsistencyLevelValues
+    public struct ConsistencyLevelValues: CustomStringConvertible {
       /**
       All
       */
-      public static let all = CassandraConsistencyLevelValues("all") 
+      public static let all = ConsistencyLevelValues("all") 
       /**
       Each Quorum
       */
-      public static let eachQuorum = CassandraConsistencyLevelValues("each_quorum") 
+      public static let eachQuorum = ConsistencyLevelValues("each_quorum") 
       /**
       Quorum
       */
-      public static let quorum = CassandraConsistencyLevelValues("quorum") 
+      public static let quorum = ConsistencyLevelValues("quorum") 
       /**
       Local Quorum
       */
-      public static let localQuorum = CassandraConsistencyLevelValues("local_quorum") 
+      public static let localQuorum = ConsistencyLevelValues("local_quorum") 
       /**
       One
       */
-      public static let one = CassandraConsistencyLevelValues("one") 
+      public static let one = ConsistencyLevelValues("one") 
       /**
       Two
       */
-      public static let two = CassandraConsistencyLevelValues("two") 
+      public static let two = ConsistencyLevelValues("two") 
       /**
       Three
       */
-      public static let three = CassandraConsistencyLevelValues("three") 
+      public static let three = ConsistencyLevelValues("three") 
       /**
       Local One
       */
-      public static let localOne = CassandraConsistencyLevelValues("local_one") 
+      public static let localOne = ConsistencyLevelValues("local_one") 
       /**
       Any
       */
-      public static let any = CassandraConsistencyLevelValues("any") 
+      public static let any = ConsistencyLevelValues("any") 
       /**
       Serial
       */
-      public static let serial = CassandraConsistencyLevelValues("serial") 
+      public static let serial = ConsistencyLevelValues("serial") 
       /**
       Local Serial
       */
-      public static let localSerial = CassandraConsistencyLevelValues("local_serial") 
+      public static let localSerial = ConsistencyLevelValues("local_serial") 
 
       internal let value: String 
 

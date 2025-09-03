@@ -26,7 +26,7 @@ extension SemanticConventions {
      > Any instrumentation providing this identifier MUST implement it as an opt-in feature.> See [`app.installation.id`](/docs/registry/attributes/app.md#app-installation-id)>  for a more privacy-preserving alternative.
      - Requires: Value type should be `String`
     */
-    case deviceId = "device.id"
+    case id = "device.id"
 
     /**
      The name of the device manufacturer
@@ -36,7 +36,7 @@ extension SemanticConventions {
      - Note: The Android OS provides this field via [Build](https://developer.android.com/reference/android/os/Build#MANUFACTURER). iOS apps SHOULD hardcode the value `Apple`.
      - Requires: Value type should be `String`
     */
-    case deviceManufacturer = "device.manufacturer"
+    case manufacturer = "device.manufacturer"
 
     /**
      The model identifier for the device
@@ -46,7 +46,7 @@ extension SemanticConventions {
      - Note: It's recommended this value represents a machine-readable version of the model identifier rather than the market or consumer-friendly name of the device.
      - Requires: Value type should be `String`
     */
-    case deviceModelIdentifier = "device.model.identifier"
+    case modelIdentifier = "device.model.identifier"
 
     /**
      The marketing name for the device model
@@ -56,7 +56,7 @@ extension SemanticConventions {
      - Note: It's recommended this value represents a human-readable version of the device model rather than a machine-readable alternative.
      - Requires: Value type should be `String`
     */
-    case deviceModelName = "device.model.name"
+    case modelName = "device.model.name"
 
   }
 }

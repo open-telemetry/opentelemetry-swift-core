@@ -11,9 +11,9 @@ extension SemanticConventions {
   enum Host: String {
     /**
      The CPU architecture the host system is running on.
-     - Requires: Value should be one of [`/output/Attributes/Host_attributes.swift.HostArchValues`](x-source-tag://otelHostArchValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Host_attributes.swift.ArchValues`](x-source-tag://otelArchValues) (of type `String`)
     */
-    case hostArch = "host.arch"
+    case arch = "host.arch"
 
     /**
      The amount of level 2 memory cache available to the processor (in Bytes).
@@ -21,7 +21,7 @@ extension SemanticConventions {
       attributes[.hostCpuCacheL2Size] = 12288000
      - Requires: Value type should be `Int`
     */
-    case hostCpuCacheL2Size = "host.cpu.cache.l2.size"
+    case cpuCacheL2Size = "host.cpu.cache.l2.size"
 
     /**
      Family or generation of the CPU.
@@ -30,7 +30,7 @@ extension SemanticConventions {
       attributes[.hostCpuFamily] = "PA-RISC 1.1e"
      - Requires: Value type should be `String`
     */
-    case hostCpuFamily = "host.cpu.family"
+    case cpuFamily = "host.cpu.family"
 
     /**
      Model identifier. It provides more granular information about the CPU, distinguishing it from other CPUs within the same family.
@@ -39,7 +39,7 @@ extension SemanticConventions {
       attributes[.hostCpuModelId] = "9000/778/B180L"
      - Requires: Value type should be `String`
     */
-    case hostCpuModelId = "host.cpu.model.id"
+    case cpuModelId = "host.cpu.model.id"
 
     /**
      Model designation of the processor.
@@ -47,7 +47,7 @@ extension SemanticConventions {
       attributes[.hostCpuModelName] = "11th Gen Intel(R) Core(TM) i7-1185G7 @ 3.00GHz"
      - Requires: Value type should be `String`
     */
-    case hostCpuModelName = "host.cpu.model.name"
+    case cpuModelName = "host.cpu.model.name"
 
     /**
      Stepping or core revisions.
@@ -56,7 +56,7 @@ extension SemanticConventions {
       attributes[.hostCpuStepping] = "r1p1"
      - Requires: Value type should be `String`
     */
-    case hostCpuStepping = "host.cpu.stepping"
+    case cpuStepping = "host.cpu.stepping"
 
     /**
      Processor manufacturer identifier. A maximum 12-character string.
@@ -65,7 +65,7 @@ extension SemanticConventions {
      - Note: [CPUID](https://wiki.osdev.org/CPUID) command returns the vendor ID string in EBX, EDX and ECX registers. Writing these to memory in this order results in a 12-character string.
      - Requires: Value type should be `String`
     */
-    case hostCpuVendorId = "host.cpu.vendor.id"
+    case cpuVendorId = "host.cpu.vendor.id"
 
     /**
      Unique host ID. For Cloud, this must be the instance_id assigned by the cloud provider. For non-containerized systems, this should be the `machine-id`. See the table below for the sources to use to determine the `machine-id` based on operating system.
@@ -73,7 +73,7 @@ extension SemanticConventions {
       attributes[.hostId] = "fdbf79e8af94cb7f9e8df36789187052"
      - Requires: Value type should be `String`
     */
-    case hostId = "host.id"
+    case id = "host.id"
 
     /**
      VM image ID or host OS image ID. For Cloud, this value is from the provider.
@@ -81,7 +81,7 @@ extension SemanticConventions {
       attributes[.hostImageId] = "ami-07b06b442921831e5"
      - Requires: Value type should be `String`
     */
-    case hostImageId = "host.image.id"
+    case imageId = "host.image.id"
 
     /**
      Name of the VM image or OS install the host was instantiated from.
@@ -90,7 +90,7 @@ extension SemanticConventions {
       attributes[.hostImageName] = "CentOS-8-x86_64-1905"
      - Requires: Value type should be `String`
     */
-    case hostImageName = "host.image.name"
+    case imageName = "host.image.name"
 
     /**
      The version string of the VM image or host OS as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
@@ -98,7 +98,7 @@ extension SemanticConventions {
       attributes[.hostImageVersion] = "0.1"
      - Requires: Value type should be `String`
     */
-    case hostImageVersion = "host.image.version"
+    case imageVersion = "host.image.version"
 
     /**
      Available IP addresses of the host, excluding loopback interfaces.
@@ -107,7 +107,7 @@ extension SemanticConventions {
      - Note: IPv4 Addresses MUST be specified in dotted-quad notation. IPv6 addresses MUST be specified in the [RFC 5952](https://www.rfc-editor.org/rfc/rfc5952.html) format.
      - Requires: Value type should be `[String]`
     */
-    case hostIp = "host.ip"
+    case ip = "host.ip"
 
     /**
      Available MAC addresses of the host, excluding loopback interfaces.
@@ -116,7 +116,7 @@ extension SemanticConventions {
      - Note: MAC Addresses MUST be represented in [IEEE RA hexadecimal form](https://standards.ieee.org/wp-content/uploads/import/documents/tutorials/eui.pdf): as hyphen-separated octets in uppercase hexadecimal form from most to least significant.
      - Requires: Value type should be `[String]`
     */
-    case hostMac = "host.mac"
+    case mac = "host.mac"
 
     /**
      Name of the host. On Unix systems, it may contain what the hostname command returns, or the fully qualified hostname, or another name specified by the user.
@@ -124,7 +124,7 @@ extension SemanticConventions {
       attributes[.hostName] = "opentelemetry-test"
      - Requires: Value type should be `String`
     */
-    case hostName = "host.name"
+    case name = "host.name"
 
     /**
      Type of host. For Cloud, this must be the machine type.
@@ -132,46 +132,46 @@ extension SemanticConventions {
       attributes[.hostType] = "n1-standard-1"
      - Requires: Value type should be `String`
     */
-    case hostType = "host.type"
+    case type = "host.type"
 
 
     /** 
       The CPU architecture the host system is running on.
     */
-    /// - Tag: otelHostArchValues
-    public struct HostArchValues: CustomStringConvertible {
+    /// - Tag: otelArchValues
+    public struct ArchValues: CustomStringConvertible {
       /**
       AMD64
       */
-      public static let amd64 = HostArchValues("amd64") 
+      public static let amd64 = ArchValues("amd64") 
       /**
       ARM32
       */
-      public static let arm32 = HostArchValues("arm32") 
+      public static let arm32 = ArchValues("arm32") 
       /**
       ARM64
       */
-      public static let arm64 = HostArchValues("arm64") 
+      public static let arm64 = ArchValues("arm64") 
       /**
       Itanium
       */
-      public static let ia64 = HostArchValues("ia64") 
+      public static let ia64 = ArchValues("ia64") 
       /**
       32-bit PowerPC
       */
-      public static let ppc32 = HostArchValues("ppc32") 
+      public static let ppc32 = ArchValues("ppc32") 
       /**
       64-bit PowerPC
       */
-      public static let ppc64 = HostArchValues("ppc64") 
+      public static let ppc64 = ArchValues("ppc64") 
       /**
       IBM z/Architecture
       */
-      public static let s390x = HostArchValues("s390x") 
+      public static let s390x = ArchValues("s390x") 
       /**
       32-bit x86
       */
-      public static let x86 = HostArchValues("x86") 
+      public static let x86 = ArchValues("x86") 
 
       internal let value: String 
 

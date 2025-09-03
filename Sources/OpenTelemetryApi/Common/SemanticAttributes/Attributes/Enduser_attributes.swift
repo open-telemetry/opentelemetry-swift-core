@@ -19,7 +19,7 @@ extension SemanticConventions {
      > This field contains sensitive (PII) information.
      - Requires: Value type should be `String`
     */
-    case enduserId = "enduser.id"
+    case id = "enduser.id"
 
     /**
      Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity.
@@ -31,7 +31,7 @@ extension SemanticConventions {
      > This field contains sensitive (linkable PII) information.
      - Requires: Value type should be `String`
     */
-    case enduserPseudoId = "enduser.pseudo.id"
+    case pseudoId = "enduser.pseudo.id"
 
   }
 }

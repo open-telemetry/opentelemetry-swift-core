@@ -12,24 +12,24 @@ extension SemanticConventions {
     /**
      Parent-child Reference type
      - Note: The causal relationship between a child Span and a parent Span.
-     - Requires: Value should be one of [`/output/Attributes/Opentracing_attributes.swift.OpentracingRefTypeValues`](x-source-tag://otelOpentracingRefTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Opentracing_attributes.swift.RefTypeValues`](x-source-tag://otelRefTypeValues) (of type `String`)
     */
-    case opentracingRefType = "opentracing.ref_type"
+    case refType = "opentracing.ref_type"
 
 
     /** 
       Parent-child Reference type
     */
-    /// - Tag: otelOpentracingRefTypeValues
-    public struct OpentracingRefTypeValues: CustomStringConvertible {
+    /// - Tag: otelRefTypeValues
+    public struct RefTypeValues: CustomStringConvertible {
       /**
       The parent Span depends on the child Span in some capacity
       */
-      public static let childOf = OpentracingRefTypeValues("child_of") 
+      public static let childOf = RefTypeValues("child_of") 
       /**
       The parent Span doesn't depend in any way on the result of the child Span
       */
-      public static let followsFrom = OpentracingRefTypeValues("follows_from") 
+      public static let followsFrom = RefTypeValues("follows_from") 
 
       internal let value: String 
 

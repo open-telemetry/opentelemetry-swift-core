@@ -18,7 +18,7 @@ extension SemanticConventions {
      reported by `cf app <app-name> --guid`.
      - Requires: Value type should be `String`
     */
-    case cloudfoundryAppId = "cloudfoundry.app.id"
+    case appId = "cloudfoundry.app.id"
 
     /**
      The index of the application instance. 0 when just one instance is active.
@@ -34,7 +34,7 @@ extension SemanticConventions {
      variable `CF_INSTANCE_INDEX`.
      - Requires: Value type should be `String`
     */
-    case cloudfoundryAppInstanceId = "cloudfoundry.app.instance.id"
+    case appInstanceId = "cloudfoundry.app.instance.id"
 
     /**
      The name of the application.
@@ -45,7 +45,7 @@ extension SemanticConventions {
      as reported by `cf apps`.
      - Requires: Value type should be `String`
     */
-    case cloudfoundryAppName = "cloudfoundry.app.name"
+    case appName = "cloudfoundry.app.name"
 
     /**
      The guid of the CloudFoundry org the application is running in.
@@ -56,7 +56,7 @@ extension SemanticConventions {
      reported by `cf org <org-name> --guid`.
      - Requires: Value type should be `String`
     */
-    case cloudfoundryOrgId = "cloudfoundry.org.id"
+    case orgId = "cloudfoundry.org.id"
 
     /**
      The name of the CloudFoundry organization the app is running in.
@@ -67,7 +67,7 @@ extension SemanticConventions {
      reported by `cf orgs`.
      - Requires: Value type should be `String`
     */
-    case cloudfoundryOrgName = "cloudfoundry.org.name"
+    case orgName = "cloudfoundry.org.name"
 
     /**
      The UID identifying the process.
@@ -79,7 +79,7 @@ extension SemanticConventions {
      For system components, this could be the actual PID.
      - Requires: Value type should be `String`
     */
-    case cloudfoundryProcessId = "cloudfoundry.process.id"
+    case processId = "cloudfoundry.process.id"
 
     /**
      The type of process.
@@ -90,7 +90,7 @@ extension SemanticConventions {
      tasks or side-cars with different process types.
      - Requires: Value type should be `String`
     */
-    case cloudfoundryProcessType = "cloudfoundry.process.type"
+    case processType = "cloudfoundry.process.type"
 
     /**
      The guid of the CloudFoundry space the application is running in.
@@ -101,7 +101,7 @@ extension SemanticConventions {
      reported by `cf space <space-name> --guid`.
      - Requires: Value type should be `String`
     */
-    case cloudfoundrySpaceId = "cloudfoundry.space.id"
+    case spaceId = "cloudfoundry.space.id"
 
     /**
      The name of the CloudFoundry space the application is running in.
@@ -112,7 +112,7 @@ extension SemanticConventions {
      reported by `cf spaces`.
      - Requires: Value type should be `String`
     */
-    case cloudfoundrySpaceName = "cloudfoundry.space.name"
+    case spaceName = "cloudfoundry.space.name"
 
     /**
      A guid or another name describing the event source.
@@ -129,7 +129,7 @@ extension SemanticConventions {
      `spec.deployment/spec.name`.
      - Requires: Value type should be `String`
     */
-    case cloudfoundrySystemId = "cloudfoundry.system.id"
+    case systemId = "cloudfoundry.system.id"
 
     /**
      A guid describing the concrete instance of the event source.
@@ -144,7 +144,7 @@ extension SemanticConventions {
      should be used. The `system.instance.id` should be set to `spec.id`.
      - Requires: Value type should be `String`
     */
-    case cloudfoundrySystemInstanceId = "cloudfoundry.system.instance.id"
+    case systemInstanceId = "cloudfoundry.system.instance.id"
 
   }
 }

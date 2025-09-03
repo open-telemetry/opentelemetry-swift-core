@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.k8sClusterName] = "opentelemetry-cluster"
      - Requires: Value type should be `String`
     */
-    case k8sClusterName = "k8s.cluster.name"
+    case clusterName = "k8s.cluster.name"
 
     /**
      A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace.
@@ -45,7 +45,7 @@ extension SemanticConventions {
      conflict.
      - Requires: Value type should be `String`
     */
-    case k8sClusterUid = "k8s.cluster.uid"
+    case clusterUid = "k8s.cluster.uid"
 
     /**
      The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`).
@@ -53,13 +53,13 @@ extension SemanticConventions {
       attributes[.k8sContainerName] = "redis"
      - Requires: Value type should be `String`
     */
-    case k8sContainerName = "k8s.container.name"
+    case containerName = "k8s.container.name"
 
     /**
      Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec.
      - Requires: Value type should be `Int`
     */
-    case k8sContainerRestartCount = "k8s.container.restart_count"
+    case containerRestartCount = "k8s.container.restart_count"
 
     /**
      Last terminated reason of the Container.
@@ -68,7 +68,7 @@ extension SemanticConventions {
       attributes[.k8sContainerStatusLastTerminatedReason] = "Error"
      - Requires: Value type should be `String`
     */
-    case k8sContainerStatusLastTerminatedReason = "k8s.container.status.last_terminated_reason"
+    case containerStatusLastTerminatedReason = "k8s.container.status.last_terminated_reason"
 
     /**
      The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
@@ -82,9 +82,9 @@ extension SemanticConventions {
       attributes[.k8sContainerStatusReason] = Completed
       attributes[.k8sContainerStatusReason] = Error
       attributes[.k8sContainerStatusReason] = ContainerCannotRun
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.K8sContainerStatusReasonValues`](x-source-tag://otelK8sContainerStatusReasonValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.ContainerStatusReasonValues`](x-source-tag://otelContainerStatusReasonValues) (of type `String`)
     */
-    case k8sContainerStatusReason = "k8s.container.status.reason"
+    case containerStatusReason = "k8s.container.status.reason"
 
     /**
      The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
@@ -92,9 +92,9 @@ extension SemanticConventions {
       attributes[.k8sContainerStatusState] = terminated
       attributes[.k8sContainerStatusState] = running
       attributes[.k8sContainerStatusState] = waiting
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.K8sContainerStatusStateValues`](x-source-tag://otelK8sContainerStatusStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.ContainerStatusStateValues`](x-source-tag://otelContainerStatusStateValues) (of type `String`)
     */
-    case k8sContainerStatusState = "k8s.container.status.state"
+    case containerStatusState = "k8s.container.status.state"
 
     /**
      The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value.
@@ -109,7 +109,7 @@ extension SemanticConventions {
        the `k8s.cronjob.annotation.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sCronjobAnnotation = "k8s.cronjob.annotation"
+    case cronjobAnnotation = "k8s.cronjob.annotation"
 
     /**
      The label placed on the CronJob, the `<key>` being the label name, the value being the label value.
@@ -124,7 +124,7 @@ extension SemanticConventions {
        the `k8s.cronjob.label.automated` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sCronjobLabel = "k8s.cronjob.label"
+    case cronjobLabel = "k8s.cronjob.label"
 
     /**
      The name of the CronJob.
@@ -132,7 +132,7 @@ extension SemanticConventions {
       attributes[.k8sCronjobName] = "opentelemetry"
      - Requires: Value type should be `String`
     */
-    case k8sCronjobName = "k8s.cronjob.name"
+    case cronjobName = "k8s.cronjob.name"
 
     /**
      The UID of the CronJob.
@@ -140,7 +140,7 @@ extension SemanticConventions {
       attributes[.k8sCronjobUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
      - Requires: Value type should be `String`
     */
-    case k8sCronjobUid = "k8s.cronjob.uid"
+    case cronjobUid = "k8s.cronjob.uid"
 
     /**
      The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -155,7 +155,7 @@ extension SemanticConventions {
        the `k8s.daemonset.annotation.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sDaemonsetAnnotation = "k8s.daemonset.annotation"
+    case daemonsetAnnotation = "k8s.daemonset.annotation"
 
     /**
      The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -170,7 +170,7 @@ extension SemanticConventions {
        the `k8s.daemonset.label.injected` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sDaemonsetLabel = "k8s.daemonset.label"
+    case daemonsetLabel = "k8s.daemonset.label"
 
     /**
      The name of the DaemonSet.
@@ -178,7 +178,7 @@ extension SemanticConventions {
       attributes[.k8sDaemonsetName] = "opentelemetry"
      - Requires: Value type should be `String`
     */
-    case k8sDaemonsetName = "k8s.daemonset.name"
+    case daemonsetName = "k8s.daemonset.name"
 
     /**
      The UID of the DaemonSet.
@@ -186,7 +186,7 @@ extension SemanticConventions {
       attributes[.k8sDaemonsetUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
      - Requires: Value type should be `String`
     */
-    case k8sDaemonsetUid = "k8s.daemonset.uid"
+    case daemonsetUid = "k8s.daemonset.uid"
 
     /**
      The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -201,7 +201,7 @@ extension SemanticConventions {
        the `k8s.deployment.annotation.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sDeploymentAnnotation = "k8s.deployment.annotation"
+    case deploymentAnnotation = "k8s.deployment.annotation"
 
     /**
      The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -216,7 +216,7 @@ extension SemanticConventions {
        the `k8s.deployment.label.injected` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sDeploymentLabel = "k8s.deployment.label"
+    case deploymentLabel = "k8s.deployment.label"
 
     /**
      The name of the Deployment.
@@ -224,7 +224,7 @@ extension SemanticConventions {
       attributes[.k8sDeploymentName] = "opentelemetry"
      - Requires: Value type should be `String`
     */
-    case k8sDeploymentName = "k8s.deployment.name"
+    case deploymentName = "k8s.deployment.name"
 
     /**
      The UID of the Deployment.
@@ -232,7 +232,7 @@ extension SemanticConventions {
       attributes[.k8sDeploymentUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
      - Requires: Value type should be `String`
     */
-    case k8sDeploymentUid = "k8s.deployment.uid"
+    case deploymentUid = "k8s.deployment.uid"
 
     /**
      The type of metric source for the horizontal pod autoscaler.
@@ -242,7 +242,7 @@ extension SemanticConventions {
      - Note: This attribute reflects the `type` field of spec.metrics[] in the HPA.
      - Requires: Value type should be `String`
     */
-    case k8sHpaMetricType = "k8s.hpa.metric.type"
+    case hpaMetricType = "k8s.hpa.metric.type"
 
     /**
      The name of the horizontal pod autoscaler.
@@ -250,7 +250,7 @@ extension SemanticConventions {
       attributes[.k8sHpaName] = "opentelemetry"
      - Requires: Value type should be `String`
     */
-    case k8sHpaName = "k8s.hpa.name"
+    case hpaName = "k8s.hpa.name"
 
     /**
      The API version of the target resource to scale for the HorizontalPodAutoscaler.
@@ -260,7 +260,7 @@ extension SemanticConventions {
      - Note: This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
      - Requires: Value type should be `String`
     */
-    case k8sHpaScaletargetrefApiVersion = "k8s.hpa.scaletargetref.api_version"
+    case hpaScaletargetrefApiVersion = "k8s.hpa.scaletargetref.api_version"
 
     /**
      The kind of the target resource to scale for the HorizontalPodAutoscaler.
@@ -270,7 +270,7 @@ extension SemanticConventions {
      - Note: This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
      - Requires: Value type should be `String`
     */
-    case k8sHpaScaletargetrefKind = "k8s.hpa.scaletargetref.kind"
+    case hpaScaletargetrefKind = "k8s.hpa.scaletargetref.kind"
 
     /**
      The name of the target resource to scale for the HorizontalPodAutoscaler.
@@ -280,7 +280,7 @@ extension SemanticConventions {
      - Note: This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
      - Requires: Value type should be `String`
     */
-    case k8sHpaScaletargetrefName = "k8s.hpa.scaletargetref.name"
+    case hpaScaletargetrefName = "k8s.hpa.scaletargetref.name"
 
     /**
      The UID of the horizontal pod autoscaler.
@@ -288,7 +288,7 @@ extension SemanticConventions {
       attributes[.k8sHpaUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
      - Requires: Value type should be `String`
     */
-    case k8sHpaUid = "k8s.hpa.uid"
+    case hpaUid = "k8s.hpa.uid"
 
     /**
      The size (identifier) of the K8s huge page.
@@ -296,7 +296,7 @@ extension SemanticConventions {
       attributes[.k8sHugepageSize] = "2Mi"
      - Requires: Value type should be `String`
     */
-    case k8sHugepageSize = "k8s.hugepage.size"
+    case hugepageSize = "k8s.hugepage.size"
 
     /**
      The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -311,7 +311,7 @@ extension SemanticConventions {
        the `k8s.job.annotation.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sJobAnnotation = "k8s.job.annotation"
+    case jobAnnotation = "k8s.job.annotation"
 
     /**
      The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -326,7 +326,7 @@ extension SemanticConventions {
        the `k8s.job.label.automated` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sJobLabel = "k8s.job.label"
+    case jobLabel = "k8s.job.label"
 
     /**
      The name of the Job.
@@ -334,7 +334,7 @@ extension SemanticConventions {
       attributes[.k8sJobName] = "opentelemetry"
      - Requires: Value type should be `String`
     */
-    case k8sJobName = "k8s.job.name"
+    case jobName = "k8s.job.name"
 
     /**
      The UID of the Job.
@@ -342,7 +342,7 @@ extension SemanticConventions {
       attributes[.k8sJobUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
      - Requires: Value type should be `String`
     */
-    case k8sJobUid = "k8s.job.uid"
+    case jobUid = "k8s.job.uid"
 
     /**
      The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -357,7 +357,7 @@ extension SemanticConventions {
        the `k8s.namespace.annotation.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sNamespaceAnnotation = "k8s.namespace.annotation"
+    case namespaceAnnotation = "k8s.namespace.annotation"
 
     /**
      The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -372,7 +372,7 @@ extension SemanticConventions {
        the `k8s.namespace.label.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sNamespaceLabel = "k8s.namespace.label"
+    case namespaceLabel = "k8s.namespace.label"
 
     /**
      The name of the namespace that the pod is running in.
@@ -380,7 +380,7 @@ extension SemanticConventions {
       attributes[.k8sNamespaceName] = "default"
      - Requires: Value type should be `String`
     */
-    case k8sNamespaceName = "k8s.namespace.name"
+    case namespaceName = "k8s.namespace.name"
 
     /**
      The phase of the K8s namespace.
@@ -389,9 +389,9 @@ extension SemanticConventions {
       attributes[.k8sNamespacePhase] = terminating
      - Note: This attribute aligns with the `phase` field of the
      [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.K8sNamespacePhaseValues`](x-source-tag://otelK8sNamespacePhaseValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.NamespacePhaseValues`](x-source-tag://otelNamespacePhaseValues) (of type `String`)
     */
-    case k8sNamespacePhase = "k8s.namespace.phase"
+    case namespacePhase = "k8s.namespace.phase"
 
     /**
      The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -406,7 +406,7 @@ extension SemanticConventions {
        the `k8s.node.annotation.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sNodeAnnotation = "k8s.node.annotation"
+    case nodeAnnotation = "k8s.node.annotation"
 
     /**
      The status of the condition, one of True, False, Unknown.
@@ -416,9 +416,9 @@ extension SemanticConventions {
       attributes[.k8sNodeConditionStatus] = unknown
      - Note: This attribute aligns with the `status` field of the
      [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.K8sNodeConditionStatusValues`](x-source-tag://otelK8sNodeConditionStatusValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.NodeConditionStatusValues`](x-source-tag://otelNodeConditionStatusValues) (of type `String`)
     */
-    case k8sNodeConditionStatus = "k8s.node.condition.status"
+    case nodeConditionStatus = "k8s.node.condition.status"
 
     /**
      The condition type of a K8s Node.
@@ -434,9 +434,9 @@ extension SemanticConventions {
      The set of possible values is not limited to those listed here. Managed Kubernetes environments,
      or custom controllers MAY introduce additional node condition types.
      When this occurs, the exact value as reported by the Kubernetes API SHOULD be used.
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.K8sNodeConditionTypeValues`](x-source-tag://otelK8sNodeConditionTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.NodeConditionTypeValues`](x-source-tag://otelNodeConditionTypeValues) (of type `String`)
     */
-    case k8sNodeConditionType = "k8s.node.condition.type"
+    case nodeConditionType = "k8s.node.condition.type"
 
     /**
      The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -451,7 +451,7 @@ extension SemanticConventions {
        the `k8s.node.label.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sNodeLabel = "k8s.node.label"
+    case nodeLabel = "k8s.node.label"
 
     /**
      The name of the Node.
@@ -459,7 +459,7 @@ extension SemanticConventions {
       attributes[.k8sNodeName] = "node-1"
      - Requires: Value type should be `String`
     */
-    case k8sNodeName = "k8s.node.name"
+    case nodeName = "k8s.node.name"
 
     /**
      The UID of the Node.
@@ -467,7 +467,7 @@ extension SemanticConventions {
       attributes[.k8sNodeUid] = "1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2"
      - Requires: Value type should be `String`
     */
-    case k8sNodeUid = "k8s.node.uid"
+    case nodeUid = "k8s.node.uid"
 
     /**
      The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
@@ -485,7 +485,7 @@ extension SemanticConventions {
        the `k8s.pod.annotation.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sPodAnnotation = "k8s.pod.annotation"
+    case podAnnotation = "k8s.pod.annotation"
 
     /**
      The label placed on the Pod, the `<key>` being the label name, the value being the label value.
@@ -503,7 +503,7 @@ extension SemanticConventions {
        the `k8s.pod.label.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sPodLabel = "k8s.pod.label"
+    case podLabel = "k8s.pod.label"
 
     /**
      The name of the Pod.
@@ -511,7 +511,7 @@ extension SemanticConventions {
       attributes[.k8sPodName] = "opentelemetry-pod-autoconf"
      - Requires: Value type should be `String`
     */
-    case k8sPodName = "k8s.pod.name"
+    case podName = "k8s.pod.name"
 
     /**
      The UID of the Pod.
@@ -519,7 +519,7 @@ extension SemanticConventions {
       attributes[.k8sPodUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
      - Requires: Value type should be `String`
     */
-    case k8sPodUid = "k8s.pod.uid"
+    case podUid = "k8s.pod.uid"
 
     /**
      The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -534,7 +534,7 @@ extension SemanticConventions {
        the `k8s.replicaset.annotation.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sReplicasetAnnotation = "k8s.replicaset.annotation"
+    case replicasetAnnotation = "k8s.replicaset.annotation"
 
     /**
      The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -549,7 +549,7 @@ extension SemanticConventions {
        the `k8s.replicaset.label.injected` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sReplicasetLabel = "k8s.replicaset.label"
+    case replicasetLabel = "k8s.replicaset.label"
 
     /**
      The name of the ReplicaSet.
@@ -557,7 +557,7 @@ extension SemanticConventions {
       attributes[.k8sReplicasetName] = "opentelemetry"
      - Requires: Value type should be `String`
     */
-    case k8sReplicasetName = "k8s.replicaset.name"
+    case replicasetName = "k8s.replicaset.name"
 
     /**
      The UID of the ReplicaSet.
@@ -565,7 +565,7 @@ extension SemanticConventions {
       attributes[.k8sReplicasetUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
      - Requires: Value type should be `String`
     */
-    case k8sReplicasetUid = "k8s.replicaset.uid"
+    case replicasetUid = "k8s.replicaset.uid"
 
     /**
      The name of the replication controller.
@@ -573,7 +573,7 @@ extension SemanticConventions {
       attributes[.k8sReplicationcontrollerName] = "opentelemetry"
      - Requires: Value type should be `String`
     */
-    case k8sReplicationcontrollerName = "k8s.replicationcontroller.name"
+    case replicationcontrollerName = "k8s.replicationcontroller.name"
 
     /**
      The UID of the replication controller.
@@ -581,7 +581,7 @@ extension SemanticConventions {
       attributes[.k8sReplicationcontrollerUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
      - Requires: Value type should be `String`
     */
-    case k8sReplicationcontrollerUid = "k8s.replicationcontroller.uid"
+    case replicationcontrollerUid = "k8s.replicationcontroller.uid"
 
     /**
      The name of the resource quota.
@@ -589,7 +589,7 @@ extension SemanticConventions {
       attributes[.k8sResourcequotaName] = "opentelemetry"
      - Requires: Value type should be `String`
     */
-    case k8sResourcequotaName = "k8s.resourcequota.name"
+    case resourcequotaName = "k8s.resourcequota.name"
 
     /**
      The name of the K8s resource a resource quota defines.
@@ -598,7 +598,7 @@ extension SemanticConventions {
      - Note: The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota) for more details.
      - Requires: Value type should be `String`
     */
-    case k8sResourcequotaResourceName = "k8s.resourcequota.resource_name"
+    case resourcequotaResourceName = "k8s.resourcequota.resource_name"
 
     /**
      The UID of the resource quota.
@@ -606,7 +606,7 @@ extension SemanticConventions {
       attributes[.k8sResourcequotaUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
      - Requires: Value type should be `String`
     */
-    case k8sResourcequotaUid = "k8s.resourcequota.uid"
+    case resourcequotaUid = "k8s.resourcequota.uid"
 
     /**
      The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -621,7 +621,7 @@ extension SemanticConventions {
        the `k8s.statefulset.annotation.data` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sStatefulsetAnnotation = "k8s.statefulset.annotation"
+    case statefulsetAnnotation = "k8s.statefulset.annotation"
 
     /**
      The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -636,7 +636,7 @@ extension SemanticConventions {
        the `k8s.statefulset.label.injected` attribute with value `""`.
      - Requires: Value type should be `template[string]`
     */
-    case k8sStatefulsetLabel = "k8s.statefulset.label"
+    case statefulsetLabel = "k8s.statefulset.label"
 
     /**
      The name of the StatefulSet.
@@ -644,7 +644,7 @@ extension SemanticConventions {
       attributes[.k8sStatefulsetName] = "opentelemetry"
      - Requires: Value type should be `String`
     */
-    case k8sStatefulsetName = "k8s.statefulset.name"
+    case statefulsetName = "k8s.statefulset.name"
 
     /**
      The UID of the StatefulSet.
@@ -652,7 +652,7 @@ extension SemanticConventions {
       attributes[.k8sStatefulsetUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
      - Requires: Value type should be `String`
     */
-    case k8sStatefulsetUid = "k8s.statefulset.uid"
+    case statefulsetUid = "k8s.statefulset.uid"
 
     /**
      The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object.
@@ -660,7 +660,7 @@ extension SemanticConventions {
       attributes[.k8sStorageclassName] = "gold.storageclass.storage.k8s.io"
      - Requires: Value type should be `String`
     */
-    case k8sStorageclassName = "k8s.storageclass.name"
+    case storageclassName = "k8s.storageclass.name"
 
     /**
      The name of the K8s volume.
@@ -668,59 +668,59 @@ extension SemanticConventions {
       attributes[.k8sVolumeName] = "volume0"
      - Requires: Value type should be `String`
     */
-    case k8sVolumeName = "k8s.volume.name"
+    case volumeName = "k8s.volume.name"
 
     /**
      The type of the K8s volume.
       // Examples
       attributes[.k8sVolumeType] = emptyDir
       attributes[.k8sVolumeType] = persistentVolumeClaim
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.K8sVolumeTypeValues`](x-source-tag://otelK8sVolumeTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.VolumeTypeValues`](x-source-tag://otelVolumeTypeValues) (of type `String`)
     */
-    case k8sVolumeType = "k8s.volume.type"
+    case volumeType = "k8s.volume.type"
 
 
     /** 
       The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
     */
-    /// - Tag: otelK8sContainerStatusReasonValues
-    public struct K8sContainerStatusReasonValues: CustomStringConvertible {
+    /// - Tag: otelContainerStatusReasonValues
+    public struct ContainerStatusReasonValues: CustomStringConvertible {
       /**
       The container is being created.
       */
-      public static let containerCreating = K8sContainerStatusReasonValues("ContainerCreating") 
+      public static let containerCreating = ContainerStatusReasonValues("ContainerCreating") 
       /**
       The container is in a crash loop back off state.
       */
-      public static let crashLoopBackOff = K8sContainerStatusReasonValues("CrashLoopBackOff") 
+      public static let crashLoopBackOff = ContainerStatusReasonValues("CrashLoopBackOff") 
       /**
       There was an error creating the container configuration.
       */
-      public static let createContainerConfigError = K8sContainerStatusReasonValues("CreateContainerConfigError") 
+      public static let createContainerConfigError = ContainerStatusReasonValues("CreateContainerConfigError") 
       /**
       There was an error pulling the container image.
       */
-      public static let errImagePull = K8sContainerStatusReasonValues("ErrImagePull") 
+      public static let errImagePull = ContainerStatusReasonValues("ErrImagePull") 
       /**
       The container image pull is in back off state.
       */
-      public static let imagePullBackOff = K8sContainerStatusReasonValues("ImagePullBackOff") 
+      public static let imagePullBackOff = ContainerStatusReasonValues("ImagePullBackOff") 
       /**
       The container was killed due to out of memory.
       */
-      public static let oomKilled = K8sContainerStatusReasonValues("OOMKilled") 
+      public static let oomKilled = ContainerStatusReasonValues("OOMKilled") 
       /**
       The container has completed execution.
       */
-      public static let completed = K8sContainerStatusReasonValues("Completed") 
+      public static let completed = ContainerStatusReasonValues("Completed") 
       /**
       There was an error with the container.
       */
-      public static let error = K8sContainerStatusReasonValues("Error") 
+      public static let error = ContainerStatusReasonValues("Error") 
       /**
       The container cannot run.
       */
-      public static let containerCannotRun = K8sContainerStatusReasonValues("ContainerCannotRun") 
+      public static let containerCannotRun = ContainerStatusReasonValues("ContainerCannotRun") 
 
       internal let value: String 
 
@@ -736,20 +736,20 @@ extension SemanticConventions {
     /** 
       The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
     */
-    /// - Tag: otelK8sContainerStatusStateValues
-    public struct K8sContainerStatusStateValues: CustomStringConvertible {
+    /// - Tag: otelContainerStatusStateValues
+    public struct ContainerStatusStateValues: CustomStringConvertible {
       /**
       The container has terminated.
       */
-      public static let terminated = K8sContainerStatusStateValues("terminated") 
+      public static let terminated = ContainerStatusStateValues("terminated") 
       /**
       The container is running.
       */
-      public static let running = K8sContainerStatusStateValues("running") 
+      public static let running = ContainerStatusStateValues("running") 
       /**
       The container is waiting.
       */
-      public static let waiting = K8sContainerStatusStateValues("waiting") 
+      public static let waiting = ContainerStatusStateValues("waiting") 
 
       internal let value: String 
 
@@ -765,16 +765,16 @@ extension SemanticConventions {
     /** 
       The phase of the K8s namespace.
     */
-    /// - Tag: otelK8sNamespacePhaseValues
-    public struct K8sNamespacePhaseValues: CustomStringConvertible {
+    /// - Tag: otelNamespacePhaseValues
+    public struct NamespacePhaseValues: CustomStringConvertible {
       /**
       Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)
       */
-      public static let active = K8sNamespacePhaseValues("active") 
+      public static let active = NamespacePhaseValues("active") 
       /**
       Terminating namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)
       */
-      public static let terminating = K8sNamespacePhaseValues("terminating") 
+      public static let terminating = NamespacePhaseValues("terminating") 
 
       internal let value: String 
 
@@ -790,11 +790,11 @@ extension SemanticConventions {
     /** 
       The status of the condition, one of True, False, Unknown.
     */
-    /// - Tag: otelK8sNodeConditionStatusValues
-    public struct K8sNodeConditionStatusValues: CustomStringConvertible {
-      public static let conditionTrue = K8sNodeConditionStatusValues("true") 
-      public static let conditionFalse = K8sNodeConditionStatusValues("false") 
-      public static let conditionUnknown = K8sNodeConditionStatusValues("unknown") 
+    /// - Tag: otelNodeConditionStatusValues
+    public struct NodeConditionStatusValues: CustomStringConvertible {
+      public static let conditionTrue = NodeConditionStatusValues("true") 
+      public static let conditionFalse = NodeConditionStatusValues("false") 
+      public static let conditionUnknown = NodeConditionStatusValues("unknown") 
 
       internal let value: String 
 
@@ -810,28 +810,28 @@ extension SemanticConventions {
     /** 
       The condition type of a K8s Node.
     */
-    /// - Tag: otelK8sNodeConditionTypeValues
-    public struct K8sNodeConditionTypeValues: CustomStringConvertible {
+    /// - Tag: otelNodeConditionTypeValues
+    public struct NodeConditionTypeValues: CustomStringConvertible {
       /**
       The node is healthy and ready to accept pods
       */
-      public static let ready = K8sNodeConditionTypeValues("Ready") 
+      public static let ready = NodeConditionTypeValues("Ready") 
       /**
       Pressure exists on the disk size—that is, if the disk capacity is low
       */
-      public static let diskPressure = K8sNodeConditionTypeValues("DiskPressure") 
+      public static let diskPressure = NodeConditionTypeValues("DiskPressure") 
       /**
       Pressure exists on the node memory—that is, if the node memory is low
       */
-      public static let memoryPressure = K8sNodeConditionTypeValues("MemoryPressure") 
+      public static let memoryPressure = NodeConditionTypeValues("MemoryPressure") 
       /**
       Pressure exists on the processes—that is, if there are too many processes on the node
       */
-      public static let pidPressure = K8sNodeConditionTypeValues("PIDPressure") 
+      public static let pidPressure = NodeConditionTypeValues("PIDPressure") 
       /**
       The network for the node is not correctly configured
       */
-      public static let networkUnavailable = K8sNodeConditionTypeValues("NetworkUnavailable") 
+      public static let networkUnavailable = NodeConditionTypeValues("NetworkUnavailable") 
 
       internal let value: String 
 
@@ -847,32 +847,32 @@ extension SemanticConventions {
     /** 
       The type of the K8s volume.
     */
-    /// - Tag: otelK8sVolumeTypeValues
-    public struct K8sVolumeTypeValues: CustomStringConvertible {
+    /// - Tag: otelVolumeTypeValues
+    public struct VolumeTypeValues: CustomStringConvertible {
       /**
       A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume
       */
-      public static let persistentVolumeClaim = K8sVolumeTypeValues("persistentVolumeClaim") 
+      public static let persistentVolumeClaim = VolumeTypeValues("persistentVolumeClaim") 
       /**
       A [configMap](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#configmap) volume
       */
-      public static let configMap = K8sVolumeTypeValues("configMap") 
+      public static let configMap = VolumeTypeValues("configMap") 
       /**
       A [downwardAPI](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#downwardapi) volume
       */
-      public static let downwardApi = K8sVolumeTypeValues("downwardAPI") 
+      public static let downwardApi = VolumeTypeValues("downwardAPI") 
       /**
       An [emptyDir](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#emptydir) volume
       */
-      public static let emptyDir = K8sVolumeTypeValues("emptyDir") 
+      public static let emptyDir = VolumeTypeValues("emptyDir") 
       /**
       A [secret](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#secret) volume
       */
-      public static let secret = K8sVolumeTypeValues("secret") 
+      public static let secret = VolumeTypeValues("secret") 
       /**
       A [local](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#local) volume
       */
-      public static let local = K8sVolumeTypeValues("local") 
+      public static let local = VolumeTypeValues("local") 
 
       internal let value: String 
 

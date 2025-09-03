@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.featureFlagContextId] = "5157782b-2203-4c80-a857-dbbd5e7761db"
      - Requires: Value type should be `String`
     */
-    case featureFlagContextId = "feature_flag.context.id"
+    case contextId = "feature_flag.context.id"
 
     /**
      The lookup key of the feature flag.
@@ -23,7 +23,7 @@ extension SemanticConventions {
       attributes[.featureFlagKey] = "logo-color"
      - Requires: Value type should be `String`
     */
-    case featureFlagKey = "feature_flag.key"
+    case key = "feature_flag.key"
 
     /**
      Identifies the feature flag provider.
@@ -31,7 +31,7 @@ extension SemanticConventions {
       attributes[.featureFlagProviderName] = "Flag Manager"
      - Requires: Value type should be `String`
     */
-    case featureFlagProviderName = "feature_flag.provider.name"
+    case providerName = "feature_flag.provider.name"
 
     /**
      The reason code which shows how a feature flag value was determined.
@@ -40,9 +40,9 @@ extension SemanticConventions {
       attributes[.featureFlagResultReason] = targeting_match
       attributes[.featureFlagResultReason] = error
       attributes[.featureFlagResultReason] = default
-     - Requires: Value should be one of [`/output/Attributes/FeatureFlag_attributes.swift.FeatureFlagResultReasonValues`](x-source-tag://otelFeatureFlagResultReasonValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/FeatureFlag_attributes.swift.ResultReasonValues`](x-source-tag://otelResultReasonValues) (of type `String`)
     */
-    case featureFlagResultReason = "feature_flag.result.reason"
+    case resultReason = "feature_flag.result.reason"
 
     /**
      The evaluated value of the feature flag.
@@ -57,7 +57,7 @@ extension SemanticConventions {
      Because the evaluated flag value is unstructured and may be any type, it is left to the instrumentation author to determine how best to achieve this.
      - Requires: Value type should be `any`
     */
-    case featureFlagResultValue = "feature_flag.result.value"
+    case resultValue = "feature_flag.result.value"
 
     /**
      A semantic identifier for an evaluated flag value.
@@ -71,7 +71,7 @@ extension SemanticConventions {
      For example, the variant `red` maybe be used for the value `#c05543`.
      - Requires: Value type should be `String`
     */
-    case featureFlagResultVariant = "feature_flag.result.variant"
+    case resultVariant = "feature_flag.result.variant"
 
     /**
      The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs.
@@ -81,7 +81,7 @@ extension SemanticConventions {
       attributes[.featureFlagSetId] = "service1/dev"
      - Requires: Value type should be `String`
     */
-    case featureFlagSetId = "feature_flag.set.id"
+    case setId = "feature_flag.set.id"
 
     /**
      The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset.
@@ -90,50 +90,50 @@ extension SemanticConventions {
       attributes[.featureFlagVersion] = "01ABCDEF"
      - Requires: Value type should be `String`
     */
-    case featureFlagVersion = "feature_flag.version"
+    case version = "feature_flag.version"
 
 
     /** 
       The reason code which shows how a feature flag value was determined.
     */
-    /// - Tag: otelFeatureFlagResultReasonValues
-    public struct FeatureFlagResultReasonValues: CustomStringConvertible {
+    /// - Tag: otelResultReasonValues
+    public struct ResultReasonValues: CustomStringConvertible {
       /**
       The resolved value is static (no dynamic evaluation).
       */
-      public static let _static = FeatureFlagResultReasonValues("static") 
+      public static let _static = ResultReasonValues("static") 
       /**
       The resolved value fell back to a pre-configured value (no dynamic evaluation occurred or dynamic evaluation yielded no result).
       */
-      public static let _default = FeatureFlagResultReasonValues("default") 
+      public static let _default = ResultReasonValues("default") 
       /**
       The resolved value was the result of a dynamic evaluation, such as a rule or specific user-targeting.
       */
-      public static let targetingMatch = FeatureFlagResultReasonValues("targeting_match") 
+      public static let targetingMatch = ResultReasonValues("targeting_match") 
       /**
       The resolved value was the result of pseudorandom assignment.
       */
-      public static let split = FeatureFlagResultReasonValues("split") 
+      public static let split = ResultReasonValues("split") 
       /**
       The resolved value was retrieved from cache.
       */
-      public static let cached = FeatureFlagResultReasonValues("cached") 
+      public static let cached = ResultReasonValues("cached") 
       /**
       The resolved value was the result of the flag being disabled in the management system.
       */
-      public static let disabled = FeatureFlagResultReasonValues("disabled") 
+      public static let disabled = ResultReasonValues("disabled") 
       /**
       The reason for the resolved value could not be determined.
       */
-      public static let unknown = FeatureFlagResultReasonValues("unknown") 
+      public static let unknown = ResultReasonValues("unknown") 
       /**
       The resolved value is non-authoritative or possibly out of date
       */
-      public static let stale = FeatureFlagResultReasonValues("stale") 
+      public static let stale = ResultReasonValues("stale") 
       /**
       The resolved value was the result of an error.
       */
-      public static let error = FeatureFlagResultReasonValues("error") 
+      public static let error = ResultReasonValues("error") 
 
       internal let value: String 
 

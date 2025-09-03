@@ -6,6 +6,7 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "SemanticConventions")
 public enum ResourceAttributes: String {
   /**
    Array of brand name and version separated by a space.

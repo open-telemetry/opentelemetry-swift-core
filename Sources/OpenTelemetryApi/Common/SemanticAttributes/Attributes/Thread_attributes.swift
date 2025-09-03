@@ -16,7 +16,7 @@ extension SemanticConventions {
    attributes[.threadId] = 42
      - Requires: Value type should be `Int`
     */
-    case threadId = "thread.id"
+    case id = "thread.id"
 
     /**
      Current thread name.
@@ -25,7 +25,7 @@ extension SemanticConventions {
    attributes[.threadName] = "main"
      - Requires: Value type should be `String`
     */
-    case threadName = "thread.name"
+    case name = "thread.name"
 
   }
 }

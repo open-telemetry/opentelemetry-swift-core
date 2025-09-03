@@ -11,9 +11,9 @@ extension SemanticConventions {
   enum Rpc: String {
     /**
      The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
-     - Requires: Value should be one of [`/output/Attributes/Rpc_attributes.swift.RpcConnectRpcErrorCodeValues`](x-source-tag://otelRpcConnectRpcErrorCodeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Rpc_attributes.swift.ConnectErrorCodeValues`](x-source-tag://otelConnectErrorCodeValues) (of type `String`)
     */
-    case rpcConnectRpcErrorCode = "rpc.connect_rpc.error_code"
+    case connectErrorCode = "rpc.connect_rpc.error_code"
 
     /**
      Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
@@ -26,7 +26,7 @@ extension SemanticConventions {
      the `rpc.connect_rpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
      - Requires: Value type should be `template[string[]]`
     */
-    case rpcConnectRpcRequestMetadata = "rpc.connect_rpc.request.metadata"
+    case connectRequestMetadata = "rpc.connect_rpc.request.metadata"
 
     /**
      Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
@@ -39,7 +39,7 @@ extension SemanticConventions {
      the `rpc.connect_rpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
      - Requires: Value type should be `template[string[]]`
     */
-    case rpcConnectRpcResponseMetadata = "rpc.connect_rpc.response.metadata"
+    case connectResponseMetadata = "rpc.connect_rpc.response.metadata"
 
     /**
      gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
@@ -52,7 +52,7 @@ extension SemanticConventions {
      `rpc.grpc.request.metadata.my-custom-key` attribute with value `["1.2.3.4", "1.2.3.5"]`
      - Requires: Value type should be `template[string[]]`
     */
-    case rpcGrpcRequestMetadata = "rpc.grpc.request.metadata"
+    case gRequestMetadata = "rpc.grpc.request.metadata"
 
     /**
      gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
@@ -65,13 +65,13 @@ extension SemanticConventions {
      the `rpc.grpc.response.metadata.my-custom-key` attribute with value `["attribute_value"]`
      - Requires: Value type should be `template[string[]]`
     */
-    case rpcGrpcResponseMetadata = "rpc.grpc.response.metadata"
+    case gResponseMetadata = "rpc.grpc.response.metadata"
 
     /**
      The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
-     - Requires: Value should be one of [`/output/Attributes/Rpc_attributes.swift.RpcGrpcStatusCodeValues`](x-source-tag://otelRpcGrpcStatusCodeValues) (of type `Int`)
+     - Requires: Value should be one of [`/output/Attributes/Rpc_attributes.swift.GStatusCodeValues`](x-source-tag://otelGStatusCodeValues) (of type `Int`)
     */
-    case rpcGrpcStatusCode = "rpc.grpc.status_code"
+    case gStatusCode = "rpc.grpc.status_code"
 
     /**
      `error.code` property of response if it is an error response.
@@ -80,7 +80,7 @@ extension SemanticConventions {
       attributes[.rpcJsonrpcErrorCode] = 100
      - Requires: Value type should be `Int`
     */
-    case rpcJsonrpcErrorCode = "rpc.jsonrpc.error_code"
+    case jsonErrorCode = "rpc.jsonrpc.error_code"
 
     /**
      `error.message` property of response if it is an error response.
@@ -89,7 +89,7 @@ extension SemanticConventions {
       attributes[.rpcJsonrpcErrorMessage] = "User already exists"
      - Requires: Value type should be `String`
     */
-    case rpcJsonrpcErrorMessage = "rpc.jsonrpc.error_message"
+    case jsonErrorMessage = "rpc.jsonrpc.error_message"
 
     /**
      `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification.
@@ -99,7 +99,7 @@ extension SemanticConventions {
       attributes[.rpcJsonrpcRequestId] = ""
      - Requires: Value type should be `String`
     */
-    case rpcJsonrpcRequestId = "rpc.jsonrpc.request_id"
+    case jsonRequestId = "rpc.jsonrpc.request_id"
 
     /**
      Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
@@ -108,32 +108,32 @@ extension SemanticConventions {
       attributes[.rpcJsonrpcVersion] = "1.0"
      - Requires: Value type should be `String`
     */
-    case rpcJsonrpcVersion = "rpc.jsonrpc.version"
+    case jsonVersion = "rpc.jsonrpc.version"
 
     /**
      Compressed size of the message in bytes.
      - Requires: Value type should be `Int`
     */
-    case rpcMessageCompressedSize = "rpc.message.compressed_size"
+    case messageCompressedSize = "rpc.message.compressed_size"
 
     /**
      MUST be calculated as two different counters starting from `1` one for sent messages and one for received message.
      - Note: This way we guarantee that the values will be consistent between different implementations.
      - Requires: Value type should be `Int`
     */
-    case rpcMessageId = "rpc.message.id"
+    case messageId = "rpc.message.id"
 
     /**
      Whether this is a received or sent message.
-     - Requires: Value should be one of [`/output/Attributes/Rpc_attributes.swift.RpcMessageTypeValues`](x-source-tag://otelRpcMessageTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Rpc_attributes.swift.MessageTypeValues`](x-source-tag://otelMessageTypeValues) (of type `String`)
     */
-    case rpcMessageType = "rpc.message.type"
+    case messageType = "rpc.message.type"
 
     /**
      Uncompressed size of the message in bytes.
      - Requires: Value type should be `Int`
     */
-    case rpcMessageUncompressedSize = "rpc.message.uncompressed_size"
+    case messageUncompressedSize = "rpc.message.uncompressed_size"
 
     /**
      The name of the (logical) method being called, must be equal to the $method part in the span name.
@@ -143,7 +143,7 @@ extension SemanticConventions {
      - Note: This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
      - Requires: Value type should be `String`
     */
-    case rpcMethod = "rpc.method"
+    case method = "rpc.method"
 
     /**
      The full (logical) name of the service being called, including its package name, if applicable.
@@ -153,36 +153,36 @@ extension SemanticConventions {
      - Note: This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
      - Requires: Value type should be `String`
     */
-    case rpcService = "rpc.service"
+    case service = "rpc.service"
 
     /**
      A string identifying the remoting system. See below for a list of well-known identifiers.
-     - Requires: Value should be one of [`/output/Attributes/Rpc_attributes.swift.RpcSystemValues`](x-source-tag://otelRpcSystemValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Rpc_attributes.swift.SystemValues`](x-source-tag://otelSystemValues) (of type `String`)
     */
-    case rpcSystem = "rpc.system"
+    case system = "rpc.system"
 
 
     /** 
       The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
     */
-    /// - Tag: otelRpcConnectRpcErrorCodeValues
-    public struct RpcConnectRpcErrorCodeValues: CustomStringConvertible {
-      public static let cancelled = RpcConnectRpcErrorCodeValues("cancelled") 
-      public static let unknown = RpcConnectRpcErrorCodeValues("unknown") 
-      public static let invalidArgument = RpcConnectRpcErrorCodeValues("invalid_argument") 
-      public static let deadlineExceeded = RpcConnectRpcErrorCodeValues("deadline_exceeded") 
-      public static let notFound = RpcConnectRpcErrorCodeValues("not_found") 
-      public static let alreadyExists = RpcConnectRpcErrorCodeValues("already_exists") 
-      public static let permissionDenied = RpcConnectRpcErrorCodeValues("permission_denied") 
-      public static let resourceExhausted = RpcConnectRpcErrorCodeValues("resource_exhausted") 
-      public static let failedPrecondition = RpcConnectRpcErrorCodeValues("failed_precondition") 
-      public static let aborted = RpcConnectRpcErrorCodeValues("aborted") 
-      public static let outOfRange = RpcConnectRpcErrorCodeValues("out_of_range") 
-      public static let unimplemented = RpcConnectRpcErrorCodeValues("unimplemented") 
-      public static let _internal = RpcConnectRpcErrorCodeValues("internal") 
-      public static let unavailable = RpcConnectRpcErrorCodeValues("unavailable") 
-      public static let dataLoss = RpcConnectRpcErrorCodeValues("data_loss") 
-      public static let unauthenticated = RpcConnectRpcErrorCodeValues("unauthenticated") 
+    /// - Tag: otelConnectErrorCodeValues
+    public struct ConnectErrorCodeValues: CustomStringConvertible {
+      public static let cancelled = ConnectErrorCodeValues("cancelled") 
+      public static let unknown = ConnectErrorCodeValues("unknown") 
+      public static let invalidArgument = ConnectErrorCodeValues("invalid_argument") 
+      public static let deadlineExceeded = ConnectErrorCodeValues("deadline_exceeded") 
+      public static let notFound = ConnectErrorCodeValues("not_found") 
+      public static let alreadyExists = ConnectErrorCodeValues("already_exists") 
+      public static let permissionDenied = ConnectErrorCodeValues("permission_denied") 
+      public static let resourceExhausted = ConnectErrorCodeValues("resource_exhausted") 
+      public static let failedPrecondition = ConnectErrorCodeValues("failed_precondition") 
+      public static let aborted = ConnectErrorCodeValues("aborted") 
+      public static let outOfRange = ConnectErrorCodeValues("out_of_range") 
+      public static let unimplemented = ConnectErrorCodeValues("unimplemented") 
+      public static let _internal = ConnectErrorCodeValues("internal") 
+      public static let unavailable = ConnectErrorCodeValues("unavailable") 
+      public static let dataLoss = ConnectErrorCodeValues("data_loss") 
+      public static let unauthenticated = ConnectErrorCodeValues("unauthenticated") 
 
       internal let value: String 
 
@@ -198,76 +198,76 @@ extension SemanticConventions {
     /** 
       The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
     */
-    /// - Tag: otelRpcGrpcStatusCodeValues
-    public struct RpcGrpcStatusCodeValues: CustomStringConvertible {
+    /// - Tag: otelGStatusCodeValues
+    public struct GStatusCodeValues: CustomStringConvertible {
       /**
       OK
       */
-      public static let ok = RpcGrpcStatusCodeValues(0) 
+      public static let ok = GStatusCodeValues(0) 
       /**
       CANCELLED
       */
-      public static let cancelled = RpcGrpcStatusCodeValues(1) 
+      public static let cancelled = GStatusCodeValues(1) 
       /**
       UNKNOWN
       */
-      public static let unknown = RpcGrpcStatusCodeValues(2) 
+      public static let unknown = GStatusCodeValues(2) 
       /**
       INVALID_ARGUMENT
       */
-      public static let invalidArgument = RpcGrpcStatusCodeValues(3) 
+      public static let invalidArgument = GStatusCodeValues(3) 
       /**
       DEADLINE_EXCEEDED
       */
-      public static let deadlineExceeded = RpcGrpcStatusCodeValues(4) 
+      public static let deadlineExceeded = GStatusCodeValues(4) 
       /**
       NOT_FOUND
       */
-      public static let notFound = RpcGrpcStatusCodeValues(5) 
+      public static let notFound = GStatusCodeValues(5) 
       /**
       ALREADY_EXISTS
       */
-      public static let alreadyExists = RpcGrpcStatusCodeValues(6) 
+      public static let alreadyExists = GStatusCodeValues(6) 
       /**
       PERMISSION_DENIED
       */
-      public static let permissionDenied = RpcGrpcStatusCodeValues(7) 
+      public static let permissionDenied = GStatusCodeValues(7) 
       /**
       RESOURCE_EXHAUSTED
       */
-      public static let resourceExhausted = RpcGrpcStatusCodeValues(8) 
+      public static let resourceExhausted = GStatusCodeValues(8) 
       /**
       FAILED_PRECONDITION
       */
-      public static let failedPrecondition = RpcGrpcStatusCodeValues(9) 
+      public static let failedPrecondition = GStatusCodeValues(9) 
       /**
       ABORTED
       */
-      public static let aborted = RpcGrpcStatusCodeValues(10) 
+      public static let aborted = GStatusCodeValues(10) 
       /**
       OUT_OF_RANGE
       */
-      public static let outOfRange = RpcGrpcStatusCodeValues(11) 
+      public static let outOfRange = GStatusCodeValues(11) 
       /**
       UNIMPLEMENTED
       */
-      public static let unimplemented = RpcGrpcStatusCodeValues(12) 
+      public static let unimplemented = GStatusCodeValues(12) 
       /**
       INTERNAL
       */
-      public static let _internal = RpcGrpcStatusCodeValues(13) 
+      public static let _internal = GStatusCodeValues(13) 
       /**
       UNAVAILABLE
       */
-      public static let unavailable = RpcGrpcStatusCodeValues(14) 
+      public static let unavailable = GStatusCodeValues(14) 
       /**
       DATA_LOSS
       */
-      public static let dataLoss = RpcGrpcStatusCodeValues(15) 
+      public static let dataLoss = GStatusCodeValues(15) 
       /**
       UNAUTHENTICATED
       */
-      public static let unauthenticated = RpcGrpcStatusCodeValues(16) 
+      public static let unauthenticated = GStatusCodeValues(16) 
 
       internal let value: Int 
 
@@ -283,10 +283,10 @@ extension SemanticConventions {
     /** 
       Whether this is a received or sent message.
     */
-    /// - Tag: otelRpcMessageTypeValues
-    public struct RpcMessageTypeValues: CustomStringConvertible {
-      public static let sent = RpcMessageTypeValues("SENT") 
-      public static let received = RpcMessageTypeValues("RECEIVED") 
+    /// - Tag: otelMessageTypeValues
+    public struct MessageTypeValues: CustomStringConvertible {
+      public static let sent = MessageTypeValues("SENT") 
+      public static let received = MessageTypeValues("RECEIVED") 
 
       internal let value: String 
 
@@ -302,28 +302,28 @@ extension SemanticConventions {
     /** 
       A string identifying the remoting system. See below for a list of well-known identifiers.
     */
-    /// - Tag: otelRpcSystemValues
-    public struct RpcSystemValues: CustomStringConvertible {
+    /// - Tag: otelSystemValues
+    public struct SystemValues: CustomStringConvertible {
       /**
       gRPC
       */
-      public static let grpc = RpcSystemValues("grpc") 
+      public static let grpc = SystemValues("grpc") 
       /**
       Java RMI
       */
-      public static let javaRmi = RpcSystemValues("java_rmi") 
+      public static let javaRmi = SystemValues("java_rmi") 
       /**
       .NET WCF
       */
-      public static let dotnetWcf = RpcSystemValues("dotnet_wcf") 
+      public static let dotnetWcf = SystemValues("dotnet_wcf") 
       /**
       Apache Dubbo
       */
-      public static let apacheDubbo = RpcSystemValues("apache_dubbo") 
+      public static let apacheDubbo = SystemValues("apache_dubbo") 
       /**
       Connect RPC
       */
-      public static let connectRpc = RpcSystemValues("connect_rpc") 
+      public static let connectRpc = SystemValues("connect_rpc") 
 
       internal let value: String 
 

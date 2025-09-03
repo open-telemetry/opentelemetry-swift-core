@@ -15,15 +15,15 @@ extension SemanticConventions {
       attributes[.dbClientConnectionPoolName] = "myDataSource"
      - Requires: Value type should be `String`
     */
-    case dbClientConnectionPoolName = "db.client.connection.pool.name"
+    case clientConnectionPoolName = "db.client.connection.pool.name"
 
     /**
      The state of a connection in the pool
       // Examples
       attributes[.dbClientConnectionState] = idle
-     - Requires: Value should be one of [`/output/Attributes/Db_attributes.swift.DbClientConnectionStateValues`](x-source-tag://otelDbClientConnectionStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Db_attributes.swift.ClientConnectionStateValues`](x-source-tag://otelClientConnectionStateValues) (of type `String`)
     */
-    case dbClientConnectionState = "db.client.connection.state"
+    case clientConnectionState = "db.client.connection.state"
 
     /**
      The name of a collection (table, container) within the database.
@@ -41,7 +41,7 @@ extension SemanticConventions {
      collection name then that collection name SHOULD be used.
      - Requires: Value type should be `String`
     */
-    case dbCollectionName = "db.collection.name"
+    case collectionName = "db.collection.name"
 
     /**
      The name of the database, fully qualified within the server address and port.
@@ -53,7 +53,7 @@ extension SemanticConventions {
      It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
      - Requires: Value type should be `String`
     */
-    case dbNamespace = "db.namespace"
+    case namespace = "db.namespace"
 
     /**
      The number of queries included in a batch operation.
@@ -64,7 +64,7 @@ extension SemanticConventions {
      - Note: Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
      - Requires: Value type should be `Int`
     */
-    case dbOperationBatchSize = "db.operation.batch.size"
+    case operationBatchSize = "db.operation.batch.size"
 
     /**
      The name of the operation or command being executed.
@@ -88,7 +88,7 @@ extension SemanticConventions {
      system specific term if more applicable.
      - Requires: Value type should be `String`
     */
-    case dbOperationName = "db.operation.name"
+    case operationName = "db.operation.name"
 
     /**
      A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
@@ -102,7 +102,7 @@ extension SemanticConventions {
      instead of `db.operation.parameter.<key>`.
      - Requires: Value type should be `template[string]`
     */
-    case dbOperationParameter = "db.operation.parameter"
+    case operationParameter = "db.operation.parameter"
 
     /**
      A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
@@ -125,7 +125,7 @@ extension SemanticConventions {
        `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
      - Requires: Value type should be `template[string]`
     */
-    case dbQueryParameter = "db.query.parameter"
+    case queryParameter = "db.query.parameter"
 
     /**
      Low cardinality summary of a database query.
@@ -144,7 +144,7 @@ extension SemanticConventions {
      section.
      - Requires: Value type should be `String`
     */
-    case dbQuerySummary = "db.query.summary"
+    case querySummary = "db.query.summary"
 
     /**
      The database query being executed.
@@ -156,7 +156,7 @@ extension SemanticConventions {
      Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
      - Requires: Value type should be `String`
     */
-    case dbQueryText = "db.query.text"
+    case queryText = "db.query.text"
 
     /**
      Number of rows returned by the operation.
@@ -166,7 +166,7 @@ extension SemanticConventions {
       attributes[.dbResponseReturnedRows] = 1000
      - Requires: Value type should be `Int`
     */
-    case dbResponseReturnedRows = "db.response.returned_rows"
+    case responseReturnedRows = "db.response.returned_rows"
 
     /**
      Database response status code.
@@ -179,7 +179,7 @@ extension SemanticConventions {
      Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
      - Requires: Value type should be `String`
     */
-    case dbResponseStatusCode = "db.response.status_code"
+    case responseStatusCode = "db.response.status_code"
 
     /**
      The name of a stored procedure within the database.
@@ -192,23 +192,23 @@ extension SemanticConventions {
      stored procedure name then that stored procedure name SHOULD be used.
      - Requires: Value type should be `String`
     */
-    case dbStoredProcedureName = "db.stored_procedure.name"
+    case storedProcedureName = "db.stored_procedure.name"
 
     /**
      The database management system (DBMS) product as identified by the client instrumentation.
      - Note: The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-     - Requires: Value should be one of [`/output/Attributes/Db_attributes.swift.DbSystemNameValues`](x-source-tag://otelDbSystemNameValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Db_attributes.swift.SystemNameValues`](x-source-tag://otelSystemNameValues) (of type `String`)
     */
-    case dbSystemName = "db.system.name"
+    case systemName = "db.system.name"
 
 
     /** 
       The state of a connection in the pool
     */
-    /// - Tag: otelDbClientConnectionStateValues
-    public struct DbClientConnectionStateValues: CustomStringConvertible {
-      public static let idle = DbClientConnectionStateValues("idle") 
-      public static let used = DbClientConnectionStateValues("used") 
+    /// - Tag: otelClientConnectionStateValues
+    public struct ClientConnectionStateValues: CustomStringConvertible {
+      public static let idle = ClientConnectionStateValues("idle") 
+      public static let used = ClientConnectionStateValues("used") 
 
       internal let value: String 
 
@@ -224,172 +224,172 @@ extension SemanticConventions {
     /** 
       The database management system (DBMS) product as identified by the client instrumentation.
     */
-    /// - Tag: otelDbSystemNameValues
-    public struct DbSystemNameValues: CustomStringConvertible {
+    /// - Tag: otelSystemNameValues
+    public struct SystemNameValues: CustomStringConvertible {
       /**
       Some other SQL database. Fallback only.
       */
-      public static let otherSql = DbSystemNameValues("other_sql") 
+      public static let otherSql = SystemNameValues("other_sql") 
       /**
       [Adabas (Adaptable Database System)](https://documentation.softwareag.com/?pf=adabas)
       */
-      public static let softwareagAdabas = DbSystemNameValues("softwareag.adabas") 
+      public static let softwareagAdabas = SystemNameValues("softwareag.adabas") 
       /**
       [Actian Ingres](https://www.actian.com/databases/ingres/)
       */
-      public static let actianIngres = DbSystemNameValues("actian.ingres") 
+      public static let actianIngres = SystemNameValues("actian.ingres") 
       /**
       [Amazon DynamoDB](https://aws.amazon.com/pm/dynamodb/)
       */
-      public static let awsDynamodb = DbSystemNameValues("aws.dynamodb") 
+      public static let awsDynamodb = SystemNameValues("aws.dynamodb") 
       /**
       [Amazon Redshift](https://aws.amazon.com/redshift/)
       */
-      public static let awsRedshift = DbSystemNameValues("aws.redshift") 
+      public static let awsRedshift = SystemNameValues("aws.redshift") 
       /**
       [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db)
       */
-      public static let azureCosmosdb = DbSystemNameValues("azure.cosmosdb") 
+      public static let azureCosmosdb = SystemNameValues("azure.cosmosdb") 
       /**
       [InterSystems Caché](https://www.intersystems.com/products/cache/)
       */
-      public static let intersystemsCache = DbSystemNameValues("intersystems.cache") 
+      public static let intersystemsCache = SystemNameValues("intersystems.cache") 
       /**
       [Apache Cassandra](https://cassandra.apache.org/)
       */
-      public static let cassandra = DbSystemNameValues("cassandra") 
+      public static let cassandra = SystemNameValues("cassandra") 
       /**
       [ClickHouse](https://clickhouse.com/)
       */
-      public static let clickhouse = DbSystemNameValues("clickhouse") 
+      public static let clickhouse = SystemNameValues("clickhouse") 
       /**
       [CockroachDB](https://www.cockroachlabs.com/)
       */
-      public static let cockroachdb = DbSystemNameValues("cockroachdb") 
+      public static let cockroachdb = SystemNameValues("cockroachdb") 
       /**
       [Couchbase](https://www.couchbase.com/)
       */
-      public static let couchbase = DbSystemNameValues("couchbase") 
+      public static let couchbase = SystemNameValues("couchbase") 
       /**
       [Apache CouchDB](https://couchdb.apache.org/)
       */
-      public static let couchdb = DbSystemNameValues("couchdb") 
+      public static let couchdb = SystemNameValues("couchdb") 
       /**
       [Apache Derby](https://db.apache.org/derby/)
       */
-      public static let derby = DbSystemNameValues("derby") 
+      public static let derby = SystemNameValues("derby") 
       /**
       [Elasticsearch](https://www.elastic.co/elasticsearch)
       */
-      public static let elasticsearch = DbSystemNameValues("elasticsearch") 
+      public static let elasticsearch = SystemNameValues("elasticsearch") 
       /**
       [Firebird](https://www.firebirdsql.org/)
       */
-      public static let firebirdsql = DbSystemNameValues("firebirdsql") 
+      public static let firebirdsql = SystemNameValues("firebirdsql") 
       /**
       [Google Cloud Spanner](https://cloud.google.com/spanner)
       */
-      public static let gcpSpanner = DbSystemNameValues("gcp.spanner") 
+      public static let gcpSpanner = SystemNameValues("gcp.spanner") 
       /**
       [Apache Geode](https://geode.apache.org/)
       */
-      public static let geode = DbSystemNameValues("geode") 
+      public static let geode = SystemNameValues("geode") 
       /**
       [H2 Database](https://h2database.com/)
       */
-      public static let h2database = DbSystemNameValues("h2database") 
+      public static let h2database = SystemNameValues("h2database") 
       /**
       [Apache HBase](https://hbase.apache.org/)
       */
-      public static let hbase = DbSystemNameValues("hbase") 
+      public static let hbase = SystemNameValues("hbase") 
       /**
       [Apache Hive](https://hive.apache.org/)
       */
-      public static let hive = DbSystemNameValues("hive") 
+      public static let hive = SystemNameValues("hive") 
       /**
       [HyperSQL Database](https://hsqldb.org/)
       */
-      public static let hsqldb = DbSystemNameValues("hsqldb") 
+      public static let hsqldb = SystemNameValues("hsqldb") 
       /**
       [IBM Db2](https://www.ibm.com/db2)
       */
-      public static let ibmDb2 = DbSystemNameValues("ibm.db2") 
+      public static let ibmDb2 = SystemNameValues("ibm.db2") 
       /**
       [IBM Informix](https://www.ibm.com/products/informix)
       */
-      public static let ibmInformix = DbSystemNameValues("ibm.informix") 
+      public static let ibmInformix = SystemNameValues("ibm.informix") 
       /**
       [IBM Netezza](https://www.ibm.com/products/netezza)
       */
-      public static let ibmNetezza = DbSystemNameValues("ibm.netezza") 
+      public static let ibmNetezza = SystemNameValues("ibm.netezza") 
       /**
       [InfluxDB](https://www.influxdata.com/)
       */
-      public static let influxdb = DbSystemNameValues("influxdb") 
+      public static let influxdb = SystemNameValues("influxdb") 
       /**
       [Instant](https://www.instantdb.com/)
       */
-      public static let instantdb = DbSystemNameValues("instantdb") 
+      public static let instantdb = SystemNameValues("instantdb") 
       /**
       [MariaDB](https://mariadb.org/)
       */
-      public static let mariadb = DbSystemNameValues("mariadb") 
+      public static let mariadb = SystemNameValues("mariadb") 
       /**
       [Memcached](https://memcached.org/)
       */
-      public static let memcached = DbSystemNameValues("memcached") 
+      public static let memcached = SystemNameValues("memcached") 
       /**
       [MongoDB](https://www.mongodb.com/)
       */
-      public static let mongodb = DbSystemNameValues("mongodb") 
+      public static let mongodb = SystemNameValues("mongodb") 
       /**
       [Microsoft SQL Server](https://www.microsoft.com/sql-server)
       */
-      public static let microsoftSqlServer = DbSystemNameValues("microsoft.sql_server") 
+      public static let microsoftSqlServer = SystemNameValues("microsoft.sql_server") 
       /**
       [MySQL](https://www.mysql.com/)
       */
-      public static let mysql = DbSystemNameValues("mysql") 
+      public static let mysql = SystemNameValues("mysql") 
       /**
       [Neo4j](https://neo4j.com/)
       */
-      public static let neo4j = DbSystemNameValues("neo4j") 
+      public static let neo4j = SystemNameValues("neo4j") 
       /**
       [OpenSearch](https://opensearch.org/)
       */
-      public static let opensearch = DbSystemNameValues("opensearch") 
+      public static let opensearch = SystemNameValues("opensearch") 
       /**
       [Oracle Database](https://www.oracle.com/database/)
       */
-      public static let oracleDb = DbSystemNameValues("oracle.db") 
+      public static let oracleDb = SystemNameValues("oracle.db") 
       /**
       [PostgreSQL](https://www.postgresql.org/)
       */
-      public static let postgresql = DbSystemNameValues("postgresql") 
+      public static let postgresql = SystemNameValues("postgresql") 
       /**
       [Redis](https://redis.io/)
       */
-      public static let redis = DbSystemNameValues("redis") 
+      public static let redis = SystemNameValues("redis") 
       /**
       [SAP HANA](https://www.sap.com/products/technology-platform/hana/what-is-sap-hana.html)
       */
-      public static let sapHana = DbSystemNameValues("sap.hana") 
+      public static let sapHana = SystemNameValues("sap.hana") 
       /**
       [SAP MaxDB](https://maxdb.sap.com/)
       */
-      public static let sapMaxdb = DbSystemNameValues("sap.maxdb") 
+      public static let sapMaxdb = SystemNameValues("sap.maxdb") 
       /**
       [SQLite](https://www.sqlite.org/)
       */
-      public static let sqlite = DbSystemNameValues("sqlite") 
+      public static let sqlite = SystemNameValues("sqlite") 
       /**
       [Teradata](https://www.teradata.com/)
       */
-      public static let teradata = DbSystemNameValues("teradata") 
+      public static let teradata = SystemNameValues("teradata") 
       /**
       [Trino](https://trino.io/)
       */
-      public static let trino = DbSystemNameValues("trino") 
+      public static let trino = SystemNameValues("trino") 
 
       internal let value: String 
 

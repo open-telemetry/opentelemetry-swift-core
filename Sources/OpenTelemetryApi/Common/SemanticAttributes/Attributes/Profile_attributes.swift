@@ -13,64 +13,64 @@ extension SemanticConventions {
      Describes the interpreter or compiler of a single frame.
       // Examples
       attributes[.profileFrameType] = cpython
-     - Requires: Value should be one of [`/output/Attributes/Profile_attributes.swift.ProfileFrameTypeValues`](x-source-tag://otelProfileFrameTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Profile_attributes.swift.FrameTypeValues`](x-source-tag://otelFrameTypeValues) (of type `String`)
     */
-    case profileFrameType = "profile.frame.type"
+    case frameType = "profile.frame.type"
 
 
     /** 
       Describes the interpreter or compiler of a single frame.
     */
-    /// - Tag: otelProfileFrameTypeValues
-    public struct ProfileFrameTypeValues: CustomStringConvertible {
+    /// - Tag: otelFrameTypeValues
+    public struct FrameTypeValues: CustomStringConvertible {
       /**
       [.NET](https://wikipedia.org/wiki/.NET)
       */
-      public static let dotnet = ProfileFrameTypeValues("dotnet") 
+      public static let dotnet = FrameTypeValues("dotnet") 
       /**
       [JVM](https://wikipedia.org/wiki/Java_virtual_machine)
       */
-      public static let jvm = ProfileFrameTypeValues("jvm") 
+      public static let jvm = FrameTypeValues("jvm") 
       /**
       [Kernel](https://wikipedia.org/wiki/Kernel_(operating_system))
       */
-      public static let kernel = ProfileFrameTypeValues("kernel") 
+      public static let kernel = FrameTypeValues("kernel") 
       /**
       Can be one of but not limited to [C](https://wikipedia.org/wiki/C_(programming_language)), [C++](https://wikipedia.org/wiki/C%2B%2B), [Go](https://wikipedia.org/wiki/Go_(programming_language)) or [Rust](https://wikipedia.org/wiki/Rust_(programming_language)). If possible, a more precise value MUST be used.
       */
-      public static let native = ProfileFrameTypeValues("native") 
+      public static let native = FrameTypeValues("native") 
       /**
       [Perl](https://wikipedia.org/wiki/Perl)
       */
-      public static let perl = ProfileFrameTypeValues("perl") 
+      public static let perl = FrameTypeValues("perl") 
       /**
       [PHP](https://wikipedia.org/wiki/PHP)
       */
-      public static let php = ProfileFrameTypeValues("php") 
+      public static let php = FrameTypeValues("php") 
       /**
       [Python](https://wikipedia.org/wiki/Python_(programming_language))
       */
-      public static let cpython = ProfileFrameTypeValues("cpython") 
+      public static let cpython = FrameTypeValues("cpython") 
       /**
       [Ruby](https://wikipedia.org/wiki/Ruby_(programming_language))
       */
-      public static let ruby = ProfileFrameTypeValues("ruby") 
+      public static let ruby = FrameTypeValues("ruby") 
       /**
       [V8JS](https://wikipedia.org/wiki/V8_(JavaScript_engine))
       */
-      public static let v8js = ProfileFrameTypeValues("v8js") 
+      public static let v8js = FrameTypeValues("v8js") 
       /**
       [Erlang](https://en.wikipedia.org/wiki/BEAM_(Erlang_virtual_machine))
       */
-      public static let beam = ProfileFrameTypeValues("beam") 
+      public static let beam = FrameTypeValues("beam") 
       /**
       [Go](https://wikipedia.org/wiki/Go_(programming_language)),
       */
-      public static let go = ProfileFrameTypeValues("go") 
+      public static let go = FrameTypeValues("go") 
       /**
       [Rust](https://wikipedia.org/wiki/Rust_(programming_language))
       */
-      public static let rust = ProfileFrameTypeValues("rust") 
+      public static let rust = FrameTypeValues("rust") 
 
       internal let value: String 
 

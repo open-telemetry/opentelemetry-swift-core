@@ -16,7 +16,7 @@ extension SemanticConventions {
       attributes[.cloudAccountId] = "opentelemetry"
      - Requires: Value type should be `String`
     */
-    case cloudAccountId = "cloud.account.id"
+    case accountId = "cloud.account.id"
 
     /**
      Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running.
@@ -25,20 +25,20 @@ extension SemanticConventions {
      - Note: Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
      - Requires: Value type should be `String`
     */
-    case cloudAvailabilityZone = "cloud.availability_zone"
+    case availabilityZone = "cloud.availability_zone"
 
     /**
      The cloud platform in use.
      - Note: The prefix of the service SHOULD match the one specified in `cloud.provider`.
-     - Requires: Value should be one of [`/output/Attributes/Cloud_attributes.swift.CloudPlatformValues`](x-source-tag://otelCloudPlatformValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Cloud_attributes.swift.PlatformValues`](x-source-tag://otelPlatformValues) (of type `String`)
     */
-    case cloudPlatform = "cloud.platform"
+    case platform = "cloud.platform"
 
     /**
      Name of the cloud provider.
-     - Requires: Value should be one of [`/output/Attributes/Cloud_attributes.swift.CloudProviderValues`](x-source-tag://otelCloudProviderValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Cloud_attributes.swift.ProviderValues`](x-source-tag://otelProviderValues) (of type `String`)
     */
-    case cloudProvider = "cloud.provider"
+    case provider = "cloud.provider"
 
     /**
      The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed.
@@ -48,7 +48,7 @@ extension SemanticConventions {
      - Note: Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
      - Requires: Value type should be `String`
     */
-    case cloudRegion = "cloud.region"
+    case region = "cloud.region"
 
     /**
      Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP)
@@ -75,134 +75,134 @@ extension SemanticConventions {
        a TracerProvider.
      - Requires: Value type should be `String`
     */
-    case cloudResourceId = "cloud.resource_id"
+    case resourceId = "cloud.resource_id"
 
 
     /** 
       The cloud platform in use.
     */
-    /// - Tag: otelCloudPlatformValues
-    public struct CloudPlatformValues: CustomStringConvertible {
+    /// - Tag: otelPlatformValues
+    public struct PlatformValues: CustomStringConvertible {
       /**
       Alibaba Cloud Elastic Compute Service
       */
-      public static let alibabaCloudEcs = CloudPlatformValues("alibaba_cloud_ecs") 
+      public static let alibabaCloudEcs = PlatformValues("alibaba_cloud_ecs") 
       /**
       Alibaba Cloud Function Compute
       */
-      public static let alibabaCloudFc = CloudPlatformValues("alibaba_cloud_fc") 
+      public static let alibabaCloudFc = PlatformValues("alibaba_cloud_fc") 
       /**
       Red Hat OpenShift on Alibaba Cloud
       */
-      public static let alibabaCloudOpenshift = CloudPlatformValues("alibaba_cloud_openshift") 
+      public static let alibabaCloudOpenshift = PlatformValues("alibaba_cloud_openshift") 
       /**
       AWS Elastic Compute Cloud
       */
-      public static let awsEc2 = CloudPlatformValues("aws_ec2") 
+      public static let awsEc2 = PlatformValues("aws_ec2") 
       /**
       AWS Elastic Container Service
       */
-      public static let awsEcs = CloudPlatformValues("aws_ecs") 
+      public static let awsEcs = PlatformValues("aws_ecs") 
       /**
       AWS Elastic Kubernetes Service
       */
-      public static let awsEks = CloudPlatformValues("aws_eks") 
+      public static let awsEks = PlatformValues("aws_eks") 
       /**
       AWS Lambda
       */
-      public static let awsLambda = CloudPlatformValues("aws_lambda") 
+      public static let awsLambda = PlatformValues("aws_lambda") 
       /**
       AWS Elastic Beanstalk
       */
-      public static let awsElasticBeanstalk = CloudPlatformValues("aws_elastic_beanstalk") 
+      public static let awsElasticBeanstalk = PlatformValues("aws_elastic_beanstalk") 
       /**
       AWS App Runner
       */
-      public static let awsAppRunner = CloudPlatformValues("aws_app_runner") 
+      public static let awsAppRunner = PlatformValues("aws_app_runner") 
       /**
       Red Hat OpenShift on AWS (ROSA)
       */
-      public static let awsOpenshift = CloudPlatformValues("aws_openshift") 
+      public static let awsOpenshift = PlatformValues("aws_openshift") 
       /**
       Azure Virtual Machines
       */
-      public static let azureVm = CloudPlatformValues("azure.vm") 
+      public static let azureVm = PlatformValues("azure.vm") 
       /**
       Azure Container Apps
       */
-      public static let azureContainerApps = CloudPlatformValues("azure.container_apps") 
+      public static let azureContainerApps = PlatformValues("azure.container_apps") 
       /**
       Azure Container Instances
       */
-      public static let azureContainerInstances = CloudPlatformValues("azure.container_instances") 
+      public static let azureContainerInstances = PlatformValues("azure.container_instances") 
       /**
       Azure Kubernetes Service
       */
-      public static let azureAks = CloudPlatformValues("azure.aks") 
+      public static let azureAks = PlatformValues("azure.aks") 
       /**
       Azure Functions
       */
-      public static let azureFunctions = CloudPlatformValues("azure.functions") 
+      public static let azureFunctions = PlatformValues("azure.functions") 
       /**
       Azure App Service
       */
-      public static let azureAppService = CloudPlatformValues("azure.app_service") 
+      public static let azureAppService = PlatformValues("azure.app_service") 
       /**
       Azure Red Hat OpenShift
       */
-      public static let azureOpenshift = CloudPlatformValues("azure.openshift") 
+      public static let azureOpenshift = PlatformValues("azure.openshift") 
       /**
       Google Bare Metal Solution (BMS)
       */
-      public static let gcpBareMetalSolution = CloudPlatformValues("gcp_bare_metal_solution") 
+      public static let gcpBareMetalSolution = PlatformValues("gcp_bare_metal_solution") 
       /**
       Google Cloud Compute Engine (GCE)
       */
-      public static let gcpComputeEngine = CloudPlatformValues("gcp_compute_engine") 
+      public static let gcpComputeEngine = PlatformValues("gcp_compute_engine") 
       /**
       Google Cloud Run
       */
-      public static let gcpCloudRun = CloudPlatformValues("gcp_cloud_run") 
+      public static let gcpCloudRun = PlatformValues("gcp_cloud_run") 
       /**
       Google Cloud Kubernetes Engine (GKE)
       */
-      public static let gcpKubernetesEngine = CloudPlatformValues("gcp_kubernetes_engine") 
+      public static let gcpKubernetesEngine = PlatformValues("gcp_kubernetes_engine") 
       /**
       Google Cloud Functions (GCF)
       */
-      public static let gcpCloudFunctions = CloudPlatformValues("gcp_cloud_functions") 
+      public static let gcpCloudFunctions = PlatformValues("gcp_cloud_functions") 
       /**
       Google Cloud App Engine (GAE)
       */
-      public static let gcpAppEngine = CloudPlatformValues("gcp_app_engine") 
+      public static let gcpAppEngine = PlatformValues("gcp_app_engine") 
       /**
       Red Hat OpenShift on Google Cloud
       */
-      public static let gcpOpenshift = CloudPlatformValues("gcp_openshift") 
+      public static let gcpOpenshift = PlatformValues("gcp_openshift") 
       /**
       Red Hat OpenShift on IBM Cloud
       */
-      public static let ibmCloudOpenshift = CloudPlatformValues("ibm_cloud_openshift") 
+      public static let ibmCloudOpenshift = PlatformValues("ibm_cloud_openshift") 
       /**
       Compute on Oracle Cloud Infrastructure (OCI)
       */
-      public static let oracleCloudCompute = CloudPlatformValues("oracle_cloud_compute") 
+      public static let oracleCloudCompute = PlatformValues("oracle_cloud_compute") 
       /**
       Kubernetes Engine (OKE) on Oracle Cloud Infrastructure (OCI)
       */
-      public static let oracleCloudOke = CloudPlatformValues("oracle_cloud_oke") 
+      public static let oracleCloudOke = PlatformValues("oracle_cloud_oke") 
       /**
       Tencent Cloud Cloud Virtual Machine (CVM)
       */
-      public static let tencentCloudCvm = CloudPlatformValues("tencent_cloud_cvm") 
+      public static let tencentCloudCvm = PlatformValues("tencent_cloud_cvm") 
       /**
       Tencent Cloud Elastic Kubernetes Service (EKS)
       */
-      public static let tencentCloudEks = CloudPlatformValues("tencent_cloud_eks") 
+      public static let tencentCloudEks = PlatformValues("tencent_cloud_eks") 
       /**
       Tencent Cloud Serverless Cloud Function (SCF)
       */
-      public static let tencentCloudScf = CloudPlatformValues("tencent_cloud_scf") 
+      public static let tencentCloudScf = PlatformValues("tencent_cloud_scf") 
 
       internal let value: String 
 
@@ -218,40 +218,40 @@ extension SemanticConventions {
     /** 
       Name of the cloud provider.
     */
-    /// - Tag: otelCloudProviderValues
-    public struct CloudProviderValues: CustomStringConvertible {
+    /// - Tag: otelProviderValues
+    public struct ProviderValues: CustomStringConvertible {
       /**
       Alibaba Cloud
       */
-      public static let alibabaCloud = CloudProviderValues("alibaba_cloud") 
+      public static let alibabaCloud = ProviderValues("alibaba_cloud") 
       /**
       Amazon Web Services
       */
-      public static let aws = CloudProviderValues("aws") 
+      public static let aws = ProviderValues("aws") 
       /**
       Microsoft Azure
       */
-      public static let azure = CloudProviderValues("azure") 
+      public static let azure = ProviderValues("azure") 
       /**
       Google Cloud Platform
       */
-      public static let gcp = CloudProviderValues("gcp") 
+      public static let gcp = ProviderValues("gcp") 
       /**
       Heroku Platform as a Service
       */
-      public static let heroku = CloudProviderValues("heroku") 
+      public static let heroku = ProviderValues("heroku") 
       /**
       IBM Cloud
       */
-      public static let ibmCloud = CloudProviderValues("ibm_cloud") 
+      public static let ibmCloud = ProviderValues("ibm_cloud") 
       /**
       Oracle Cloud Infrastructure (OCI)
       */
-      public static let oracleCloud = CloudProviderValues("oracle_cloud") 
+      public static let oracleCloud = ProviderValues("oracle_cloud") 
       /**
       Tencent Cloud
       */
-      public static let tencentCloud = CloudProviderValues("tencent_cloud") 
+      public static let tencentCloud = ProviderValues("tencent_cloud") 
 
       internal let value: String 
 

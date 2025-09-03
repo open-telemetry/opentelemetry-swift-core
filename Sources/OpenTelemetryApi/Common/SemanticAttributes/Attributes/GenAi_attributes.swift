@@ -16,7 +16,7 @@ extension SemanticConventions {
       attributes[.genAiAgentDescription] = "Generates fiction stories"
      - Requires: Value type should be `String`
     */
-    case genAiAgentDescription = "gen_ai.agent.description"
+    case agentDescription = "gen_ai.agent.description"
 
     /**
      The unique identifier of the GenAI agent.
@@ -24,7 +24,7 @@ extension SemanticConventions {
       attributes[.genAiAgentId] = "asst_5j66UpCpwteGg4YSxUnt7lPY"
      - Requires: Value type should be `String`
     */
-    case genAiAgentId = "gen_ai.agent.id"
+    case agentId = "gen_ai.agent.id"
 
     /**
      Human-readable name of the GenAI agent provided by the application.
@@ -33,7 +33,7 @@ extension SemanticConventions {
       attributes[.genAiAgentName] = "Fiction Writer"
      - Requires: Value type should be `String`
     */
-    case genAiAgentName = "gen_ai.agent.name"
+    case agentName = "gen_ai.agent.name"
 
     /**
      The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
@@ -41,7 +41,7 @@ extension SemanticConventions {
       attributes[.genAiConversationId] = "conv_5j66UpCpwteGg4YSxUnt7lPY"
      - Requires: Value type should be `String`
     */
-    case genAiConversationId = "gen_ai.conversation.id"
+    case conversationId = "gen_ai.conversation.id"
 
     /**
      The data source identifier.
@@ -50,7 +50,7 @@ extension SemanticConventions {
      - Note: Data sources are used by AI agents and RAG applications to store grounding data. A data source may be an external database, object store, document collection, website, or any other storage system used by the GenAI agent or application. The `gen_ai.data_source.id` SHOULD match the identifier used by the GenAI system rather than a name specific to the external storage, such as a database or object store. Semantic conventions referencing `gen_ai.data_source.id` MAY also leverage additional attributes, such as `db.*`, to further identify and describe the data source.
      - Requires: Value type should be `String`
     */
-    case genAiDataSourceId = "gen_ai.data_source.id"
+    case dataSourceId = "gen_ai.data_source.id"
 
     /**
      The chat history provided to the model as an input.
@@ -105,14 +105,14 @@ extension SemanticConventions {
      section for more details.
      - Requires: Value type should be `any`
     */
-    case genAiInputMessages = "gen_ai.input.messages"
+    case inputMessages = "gen_ai.input.messages"
 
     /**
      The name of the operation being performed.
      - Note: If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
-     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.GenAiOperationNameValues`](x-source-tag://otelGenAiOperationNameValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.OperationNameValues`](x-source-tag://otelOperationNameValues) (of type `String`)
     */
-    case genAiOperationName = "gen_ai.operation.name"
+    case operationName = "gen_ai.operation.name"
 
     /**
      Messages returned by the model where each message represents a specific model response (choice, candidate).
@@ -150,16 +150,16 @@ extension SemanticConventions {
      section for more details.
      - Requires: Value type should be `any`
     */
-    case genAiOutputMessages = "gen_ai.output.messages"
+    case outputMessages = "gen_ai.output.messages"
 
     /**
      Represents the content type requested by the client.
      - Note: This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
      This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
      Additional output format details may be recorded in the future in the `gen_ai.output.{type}.*` attributes.
-     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.GenAiOutputTypeValues`](x-source-tag://otelGenAiOutputTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.OutputTypeValues`](x-source-tag://otelOutputTypeValues) (of type `String`)
     */
-    case genAiOutputType = "gen_ai.output.type"
+    case outputType = "gen_ai.output.type"
 
     /**
      The Generative AI provider as identified by the client or server instrumentation.
@@ -181,9 +181,9 @@ extension SemanticConventions {
      should have the `gen_ai.provider.name` set to `aws.bedrock` and include
      applicable `aws.bedrock.*` attributes and are not expected to include
      `openai.*` attributes.
-     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.GenAiProviderNameValues`](x-source-tag://otelGenAiProviderNameValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.ProviderNameValues`](x-source-tag://otelProviderNameValues) (of type `String`)
     */
-    case genAiProviderName = "gen_ai.provider.name"
+    case providerName = "gen_ai.provider.name"
 
     /**
      The target number of candidate completions to return.
@@ -191,7 +191,7 @@ extension SemanticConventions {
       attributes[.genAiRequestChoiceCount] = 3
      - Requires: Value type should be `Int`
     */
-    case genAiRequestChoiceCount = "gen_ai.request.choice.count"
+    case requestChoiceCount = "gen_ai.request.choice.count"
 
     /**
      The encoding formats requested in an embeddings operation, if specified.
@@ -201,7 +201,7 @@ extension SemanticConventions {
      - Note: In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
      - Requires: Value type should be `[String]`
     */
-    case genAiRequestEncodingFormats = "gen_ai.request.encoding_formats"
+    case requestEncodingFormats = "gen_ai.request.encoding_formats"
 
     /**
      The frequency penalty setting for the GenAI request.
@@ -209,7 +209,7 @@ extension SemanticConventions {
       attributes[.genAiRequestFrequencyPenalty] = 0.1
      - Requires: Value type should be `Double`
     */
-    case genAiRequestFrequencyPenalty = "gen_ai.request.frequency_penalty"
+    case requestFrequencyPenalty = "gen_ai.request.frequency_penalty"
 
     /**
      The maximum number of tokens the model generates for a request.
@@ -217,7 +217,7 @@ extension SemanticConventions {
       attributes[.genAiRequestMaxTokens] = 100
      - Requires: Value type should be `Int`
     */
-    case genAiRequestMaxTokens = "gen_ai.request.max_tokens"
+    case requestMaxTokens = "gen_ai.request.max_tokens"
 
     /**
      The name of the GenAI model a request is being made to.
@@ -226,7 +226,7 @@ extension SemanticConventions {
    attributes[.genAiRequestModel] = "gpt-4"
      - Requires: Value type should be `String`
     */
-    case genAiRequestModel = "gen_ai.request.model"
+    case requestModel = "gen_ai.request.model"
 
     /**
      The presence penalty setting for the GenAI request.
@@ -234,7 +234,7 @@ extension SemanticConventions {
       attributes[.genAiRequestPresencePenalty] = 0.1
      - Requires: Value type should be `Double`
     */
-    case genAiRequestPresencePenalty = "gen_ai.request.presence_penalty"
+    case requestPresencePenalty = "gen_ai.request.presence_penalty"
 
     /**
      Requests with same seed value more likely to return same result.
@@ -242,7 +242,7 @@ extension SemanticConventions {
       attributes[.genAiRequestSeed] = 100
      - Requires: Value type should be `Int`
     */
-    case genAiRequestSeed = "gen_ai.request.seed"
+    case requestSeed = "gen_ai.request.seed"
 
     /**
      List of sequences that the model will use to stop generating further tokens.
@@ -250,7 +250,7 @@ extension SemanticConventions {
       attributes[.genAiRequestStopSequences] = ["forest", "lived"]
      - Requires: Value type should be `[String]`
     */
-    case genAiRequestStopSequences = "gen_ai.request.stop_sequences"
+    case requestStopSequences = "gen_ai.request.stop_sequences"
 
     /**
      The temperature setting for the GenAI request.
@@ -258,7 +258,7 @@ extension SemanticConventions {
       attributes[.genAiRequestTemperature] = 0.0
      - Requires: Value type should be `Double`
     */
-    case genAiRequestTemperature = "gen_ai.request.temperature"
+    case requestTemperature = "gen_ai.request.temperature"
 
     /**
      The top_k sampling setting for the GenAI request.
@@ -266,7 +266,7 @@ extension SemanticConventions {
       attributes[.genAiRequestTopK] = 1.0
      - Requires: Value type should be `Double`
     */
-    case genAiRequestTopK = "gen_ai.request.top_k"
+    case requestTopK = "gen_ai.request.top_k"
 
     /**
      The top_p sampling setting for the GenAI request.
@@ -274,7 +274,7 @@ extension SemanticConventions {
       attributes[.genAiRequestTopP] = 1.0
      - Requires: Value type should be `Double`
     */
-    case genAiRequestTopP = "gen_ai.request.top_p"
+    case requestTopP = "gen_ai.request.top_p"
 
     /**
      Array of reasons the model stopped generating tokens, corresponding to each generation received.
@@ -283,7 +283,7 @@ extension SemanticConventions {
       attributes[.genAiResponseFinishReasons] = ["stop", "length"]
      - Requires: Value type should be `[String]`
     */
-    case genAiResponseFinishReasons = "gen_ai.response.finish_reasons"
+    case responseFinishReasons = "gen_ai.response.finish_reasons"
 
     /**
      The unique identifier for the completion.
@@ -291,7 +291,7 @@ extension SemanticConventions {
       attributes[.genAiResponseId] = "chatcmpl-123"
      - Requires: Value type should be `String`
     */
-    case genAiResponseId = "gen_ai.response.id"
+    case responseId = "gen_ai.response.id"
 
     /**
      The name of the model that generated the response.
@@ -299,7 +299,7 @@ extension SemanticConventions {
       attributes[.genAiResponseModel] = "gpt-4-0613"
      - Requires: Value type should be `String`
     */
-    case genAiResponseModel = "gen_ai.response.model"
+    case responseModel = "gen_ai.response.model"
 
     /**
      The system message or instructions provided to the GenAI model separately from the chat history.
@@ -342,16 +342,16 @@ extension SemanticConventions {
      section for more details.
      - Requires: Value type should be `any`
     */
-    case genAiSystemInstructions = "gen_ai.system_instructions"
+    case systemInstructions = "gen_ai.system_instructions"
 
     /**
      The type of token being counted.
       // Examples
       attributes[.genAiTokenType] = input
       attributes[.genAiTokenType] = output
-     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.GenAiTokenTypeValues`](x-source-tag://otelGenAiTokenTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.TokenTypeValues`](x-source-tag://otelTokenTypeValues) (of type `String`)
     */
-    case genAiTokenType = "gen_ai.token.type"
+    case tokenType = "gen_ai.token.type"
 
     /**
      The tool call identifier.
@@ -359,7 +359,7 @@ extension SemanticConventions {
       attributes[.genAiToolCallId] = "call_mszuSIzqtI65i1wAUOE8w5H4"
      - Requires: Value type should be `String`
     */
-    case genAiToolCallId = "gen_ai.tool.call.id"
+    case toolCallId = "gen_ai.tool.call.id"
 
     /**
      The tool description.
@@ -367,7 +367,7 @@ extension SemanticConventions {
       attributes[.genAiToolDescription] = "Multiply two numbers"
      - Requires: Value type should be `String`
     */
-    case genAiToolDescription = "gen_ai.tool.description"
+    case toolDescription = "gen_ai.tool.description"
 
     /**
      Name of the tool utilized by the agent.
@@ -375,7 +375,7 @@ extension SemanticConventions {
       attributes[.genAiToolName] = "Flights"
      - Requires: Value type should be `String`
     */
-    case genAiToolName = "gen_ai.tool.name"
+    case toolName = "gen_ai.tool.name"
 
     /**
      Type of the tool utilized by the agent
@@ -390,7 +390,7 @@ extension SemanticConventions {
      Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
      - Requires: Value type should be `String`
     */
-    case genAiToolType = "gen_ai.tool.type"
+    case toolType = "gen_ai.tool.type"
 
     /**
      The number of tokens used in the GenAI input (prompt).
@@ -398,7 +398,7 @@ extension SemanticConventions {
       attributes[.genAiUsageInputTokens] = 100
      - Requires: Value type should be `Int`
     */
-    case genAiUsageInputTokens = "gen_ai.usage.input_tokens"
+    case usageInputTokens = "gen_ai.usage.input_tokens"
 
     /**
      The number of tokens used in the GenAI response (completion).
@@ -406,42 +406,42 @@ extension SemanticConventions {
       attributes[.genAiUsageOutputTokens] = 180
      - Requires: Value type should be `Int`
     */
-    case genAiUsageOutputTokens = "gen_ai.usage.output_tokens"
+    case usageOutputTokens = "gen_ai.usage.output_tokens"
 
 
     /** 
       The name of the operation being performed.
     */
-    /// - Tag: otelGenAiOperationNameValues
-    public struct GenAiOperationNameValues: CustomStringConvertible {
+    /// - Tag: otelOperationNameValues
+    public struct OperationNameValues: CustomStringConvertible {
       /**
       Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)
       */
-      public static let chat = GenAiOperationNameValues("chat") 
+      public static let chat = OperationNameValues("chat") 
       /**
       Multimodal content generation operation such as [Gemini Generate Content](https://ai.google.dev/api/generate-content)
       */
-      public static let generateContent = GenAiOperationNameValues("generate_content") 
+      public static let generateContent = OperationNameValues("generate_content") 
       /**
       Text completions operation such as [OpenAI Completions API (Legacy)](https://platform.openai.com/docs/api-reference/completions)
       */
-      public static let textCompletion = GenAiOperationNameValues("text_completion") 
+      public static let textCompletion = OperationNameValues("text_completion") 
       /**
       Embeddings operation such as [OpenAI Create embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)
       */
-      public static let embeddings = GenAiOperationNameValues("embeddings") 
+      public static let embeddings = OperationNameValues("embeddings") 
       /**
       Create GenAI agent
       */
-      public static let createAgent = GenAiOperationNameValues("create_agent") 
+      public static let createAgent = OperationNameValues("create_agent") 
       /**
       Invoke GenAI agent
       */
-      public static let invokeAgent = GenAiOperationNameValues("invoke_agent") 
+      public static let invokeAgent = OperationNameValues("invoke_agent") 
       /**
       Execute a tool
       */
-      public static let executeTool = GenAiOperationNameValues("execute_tool") 
+      public static let executeTool = OperationNameValues("execute_tool") 
 
       internal let value: String 
 
@@ -457,24 +457,24 @@ extension SemanticConventions {
     /** 
       Represents the content type requested by the client.
     */
-    /// - Tag: otelGenAiOutputTypeValues
-    public struct GenAiOutputTypeValues: CustomStringConvertible {
+    /// - Tag: otelOutputTypeValues
+    public struct OutputTypeValues: CustomStringConvertible {
       /**
       Plain text
       */
-      public static let text = GenAiOutputTypeValues("text") 
+      public static let text = OutputTypeValues("text") 
       /**
       JSON object with known or unknown schema
       */
-      public static let json = GenAiOutputTypeValues("json") 
+      public static let json = OutputTypeValues("json") 
       /**
       Image
       */
-      public static let image = GenAiOutputTypeValues("image") 
+      public static let image = OutputTypeValues("image") 
       /**
       Speech
       */
-      public static let speech = GenAiOutputTypeValues("speech") 
+      public static let speech = OutputTypeValues("speech") 
 
       internal let value: String 
 
@@ -490,68 +490,68 @@ extension SemanticConventions {
     /** 
       The Generative AI provider as identified by the client or server instrumentation.
     */
-    /// - Tag: otelGenAiProviderNameValues
-    public struct GenAiProviderNameValues: CustomStringConvertible {
+    /// - Tag: otelProviderNameValues
+    public struct ProviderNameValues: CustomStringConvertible {
       /**
       [OpenAI](https://openai.com/)
       */
-      public static let openai = GenAiProviderNameValues("openai") 
+      public static let openai = ProviderNameValues("openai") 
       /**
       Any Google generative AI endpoint
       */
-      public static let gcpGenAi = GenAiProviderNameValues("gcp.gen_ai") 
+      public static let gcpGenAi = ProviderNameValues("gcp.gen_ai") 
       /**
       [Vertex AI](https://cloud.google.com/vertex-ai)
       */
-      public static let gcpVertexAi = GenAiProviderNameValues("gcp.vertex_ai") 
+      public static let gcpVertexAi = ProviderNameValues("gcp.vertex_ai") 
       /**
       [Gemini](https://cloud.google.com/products/gemini)
       */
-      public static let gcpGemini = GenAiProviderNameValues("gcp.gemini") 
+      public static let gcpGemini = ProviderNameValues("gcp.gemini") 
       /**
       [Anthropic](https://www.anthropic.com/)
       */
-      public static let anthropic = GenAiProviderNameValues("anthropic") 
+      public static let anthropic = ProviderNameValues("anthropic") 
       /**
       [Cohere](https://cohere.com/)
       */
-      public static let cohere = GenAiProviderNameValues("cohere") 
+      public static let cohere = ProviderNameValues("cohere") 
       /**
       Azure AI Inference
       */
-      public static let azureAiInference = GenAiProviderNameValues("azure.ai.inference") 
+      public static let azureAiInference = ProviderNameValues("azure.ai.inference") 
       /**
       [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/)
       */
-      public static let azureAiOpenai = GenAiProviderNameValues("azure.ai.openai") 
+      public static let azureAiOpenai = ProviderNameValues("azure.ai.openai") 
       /**
       [IBM Watsonx AI](https://www.ibm.com/products/watsonx-ai)
       */
-      public static let ibmWatsonxAi = GenAiProviderNameValues("ibm.watsonx.ai") 
+      public static let ibmWatsonxAi = ProviderNameValues("ibm.watsonx.ai") 
       /**
       [AWS Bedrock](https://aws.amazon.com/bedrock)
       */
-      public static let awsBedrock = GenAiProviderNameValues("aws.bedrock") 
+      public static let awsBedrock = ProviderNameValues("aws.bedrock") 
       /**
       [Perplexity](https://www.perplexity.ai/)
       */
-      public static let perplexity = GenAiProviderNameValues("perplexity") 
+      public static let perplexity = ProviderNameValues("perplexity") 
       /**
       [xAI](https://x.ai/)
       */
-      public static let xAi = GenAiProviderNameValues("x_ai") 
+      public static let xAi = ProviderNameValues("x_ai") 
       /**
       [DeepSeek](https://www.deepseek.com/)
       */
-      public static let deepseek = GenAiProviderNameValues("deepseek") 
+      public static let deepseek = ProviderNameValues("deepseek") 
       /**
       [Groq](https://groq.com/)
       */
-      public static let groq = GenAiProviderNameValues("groq") 
+      public static let groq = ProviderNameValues("groq") 
       /**
       [Mistral AI](https://mistral.ai/)
       */
-      public static let mistralAi = GenAiProviderNameValues("mistral_ai") 
+      public static let mistralAi = ProviderNameValues("mistral_ai") 
 
       internal let value: String 
 
@@ -567,16 +567,16 @@ extension SemanticConventions {
     /** 
       The type of token being counted.
     */
-    /// - Tag: otelGenAiTokenTypeValues
-    public struct GenAiTokenTypeValues: CustomStringConvertible {
+    /// - Tag: otelTokenTypeValues
+    public struct TokenTypeValues: CustomStringConvertible {
       /**
       Input tokens (prompt, input, etc.)
       */
-      public static let input = GenAiTokenTypeValues("input") 
+      public static let input = TokenTypeValues("input") 
       /**
       Output tokens (completion, response, etc.)
       */
-      public static let output = GenAiTokenTypeValues("output") 
+      public static let output = TokenTypeValues("output") 
 
       internal let value: String 
 

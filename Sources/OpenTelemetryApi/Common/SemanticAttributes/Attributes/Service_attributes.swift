@@ -41,7 +41,7 @@ extension SemanticConventions {
      port.
      - Requires: Value type should be `String`
     */
-    case serviceInstanceId = "service.instance.id"
+    case instanceId = "service.instance.id"
 
     /**
      Logical name of the service.
@@ -50,7 +50,7 @@ extension SemanticConventions {
      - Note: MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
      - Requires: Value type should be `String`
     */
-    case serviceName = "service.name"
+    case name = "service.name"
 
     /**
      A namespace for `service.name`.
@@ -59,7 +59,7 @@ extension SemanticConventions {
      - Note: A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
      - Requires: Value type should be `String`
     */
-    case serviceNamespace = "service.namespace"
+    case namespace = "service.namespace"
 
     /**
      The version string of the service API or implementation. The format is not defined by these conventions.
@@ -68,7 +68,7 @@ extension SemanticConventions {
       attributes[.serviceVersion] = "a01dbef8a"
      - Requires: Value type should be `String`
     */
-    case serviceVersion = "service.version"
+    case version = "service.version"
 
   }
 }

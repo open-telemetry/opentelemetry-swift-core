@@ -16,7 +16,7 @@ extension SemanticConventions {
      - Note: This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
      - Requires: Value type should be `String`
     */
-    case fileAccessed = "file.accessed"
+    case accessed = "file.accessed"
 
     /**
      Array of file attributes.
@@ -25,7 +25,7 @@ extension SemanticConventions {
      - Note: Attributes names depend on the OS or file system. Here’s a non-exhaustive list of values expected for this attribute: `archive`, `compressed`, `directory`, `encrypted`, `execute`, `hidden`, `immutable`, `journaled`, `read`, `readonly`, `symbolic link`, `system`, `temporary`, `write`.
      - Requires: Value type should be `[String]`
     */
-    case fileAttributes = "file.attributes"
+    case attributes = "file.attributes"
 
     /**
      Time when the file attributes or metadata was last changed, in ISO 8601 format.
@@ -34,7 +34,7 @@ extension SemanticConventions {
      - Note: `file.changed` captures the time when any of the file's properties or attributes (including the content) are changed, while `file.modified` captures the timestamp when the file content is modified.
      - Requires: Value type should be `String`
     */
-    case fileChanged = "file.changed"
+    case changed = "file.changed"
 
     /**
      Time when the file was created, in ISO 8601 format.
@@ -43,7 +43,7 @@ extension SemanticConventions {
      - Note: This attribute might not be supported by some file systems — NFS, FAT32, in embedded OS, etc.
      - Requires: Value type should be `String`
     */
-    case fileCreated = "file.created"
+    case created = "file.created"
 
     /**
      Directory where the file is located. It should include the drive letter, when appropriate.
@@ -52,7 +52,7 @@ extension SemanticConventions {
       attributes[.fileDirectory] = "C:\Program Files\MyApp"
      - Requires: Value type should be `String`
     */
-    case fileDirectory = "file.directory"
+    case directory = "file.directory"
 
     /**
      File extension, excluding the leading dot.
@@ -62,7 +62,7 @@ extension SemanticConventions {
      - Note: When the file name has multiple extensions (example.tar.gz), only the last one should be captured ("gz", not "tar.gz").
      - Requires: Value type should be `String`
     */
-    case fileExtension = "file.extension"
+    case _extension = "file.extension"
 
     /**
      Name of the fork. A fork is additional data associated with a filesystem object.
@@ -72,7 +72,7 @@ extension SemanticConventions {
      On NTFS, this is analogous to an Alternate Data Stream (ADS), and the default data stream for a file is just called $DATA. Zone.Identifier is commonly used by Windows to track contents downloaded from the Internet. An ADS is typically of the form: C:\path\to\filename.extension:some_fork_name, and some_fork_name is the value that should populate `fork_name`. `filename.extension` should populate `file.name`, and `extension` should populate `file.extension`. The full path, `file.path`, will include the fork name.
      - Requires: Value type should be `String`
     */
-    case fileForkName = "file.fork_name"
+    case forkName = "file.fork_name"
 
     /**
      Primary Group ID (GID) of the file.
@@ -80,7 +80,7 @@ extension SemanticConventions {
       attributes[.fileGroupId] = "1000"
      - Requires: Value type should be `String`
     */
-    case fileGroupId = "file.group.id"
+    case groupId = "file.group.id"
 
     /**
      Primary group name of the file.
@@ -88,7 +88,7 @@ extension SemanticConventions {
       attributes[.fileGroupName] = "users"
      - Requires: Value type should be `String`
     */
-    case fileGroupName = "file.group.name"
+    case groupName = "file.group.name"
 
     /**
      Inode representing the file in the filesystem.
@@ -96,7 +96,7 @@ extension SemanticConventions {
       attributes[.fileInode] = "256383"
      - Requires: Value type should be `String`
     */
-    case fileInode = "file.inode"
+    case inode = "file.inode"
 
     /**
      Mode of the file in octal representation.
@@ -104,7 +104,7 @@ extension SemanticConventions {
       attributes[.fileMode] = "0640"
      - Requires: Value type should be `String`
     */
-    case fileMode = "file.mode"
+    case mode = "file.mode"
 
     /**
      Time when the file content was last modified, in ISO 8601 format.
@@ -112,7 +112,7 @@ extension SemanticConventions {
       attributes[.fileModified] = "2021-01-01T12:00:00Z"
      - Requires: Value type should be `String`
     */
-    case fileModified = "file.modified"
+    case modified = "file.modified"
 
     /**
      Name of the file including the extension, without the directory.
@@ -120,7 +120,7 @@ extension SemanticConventions {
       attributes[.fileName] = "example.png"
      - Requires: Value type should be `String`
     */
-    case fileName = "file.name"
+    case name = "file.name"
 
     /**
      The user ID (UID) or security identifier (SID) of the file owner.
@@ -128,7 +128,7 @@ extension SemanticConventions {
       attributes[.fileOwnerId] = "1000"
      - Requires: Value type should be `String`
     */
-    case fileOwnerId = "file.owner.id"
+    case ownerId = "file.owner.id"
 
     /**
      Username of the file owner.
@@ -136,7 +136,7 @@ extension SemanticConventions {
       attributes[.fileOwnerName] = "root"
      - Requires: Value type should be `String`
     */
-    case fileOwnerName = "file.owner.name"
+    case ownerName = "file.owner.name"
 
     /**
      Full path to the file, including the file name. It should include the drive letter, when appropriate.
@@ -145,13 +145,13 @@ extension SemanticConventions {
       attributes[.filePath] = "C:\Program Files\MyApp\myapp.exe"
      - Requires: Value type should be `String`
     */
-    case filePath = "file.path"
+    case path = "file.path"
 
     /**
      File size in bytes.
      - Requires: Value type should be `Int`
     */
-    case fileSize = "file.size"
+    case size = "file.size"
 
     /**
      Path to the target of a symbolic link.
@@ -160,7 +160,7 @@ extension SemanticConventions {
      - Note: This attribute is only applicable to symbolic links.
      - Requires: Value type should be `String`
     */
-    case fileSymbolicLinkTargetPath = "file.symbolic_link.target_path"
+    case symbolicLinkTargetPath = "file.symbolic_link.target_path"
 
   }
 }

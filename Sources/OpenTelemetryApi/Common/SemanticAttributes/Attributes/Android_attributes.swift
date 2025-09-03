@@ -14,9 +14,9 @@ extension SemanticConventions {
       // Examples
       attributes[.androidAppState] = created
      - Note: The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
-     - Requires: Value should be one of [`/output/Attributes/Android_attributes.swift.AndroidAppStateValues`](x-source-tag://otelAndroidAppStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Android_attributes.swift.AppStateValues`](x-source-tag://otelAppStateValues) (of type `String`)
     */
-    case androidAppState = "android.app.state"
+    case appState = "android.app.state"
 
     /**
      Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).
@@ -25,26 +25,26 @@ extension SemanticConventions {
       attributes[.androidOsApiLevel] = "32"
      - Requires: Value type should be `String`
     */
-    case androidOsApiLevel = "android.os.api_level"
+    case osApiLevel = "android.os.api_level"
 
 
     /** 
       This attribute represents the state of the application.
     */
-    /// - Tag: otelAndroidAppStateValues
-    public struct AndroidAppStateValues: CustomStringConvertible {
+    /// - Tag: otelAppStateValues
+    public struct AppStateValues: CustomStringConvertible {
       /**
       Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time.
       */
-      public static let created = AndroidAppStateValues("created") 
+      public static let created = AppStateValues("created") 
       /**
       Any time after Activity.onPause() or, if the app has no Activity, Context.stopService() has been called when the app was in the foreground state.
       */
-      public static let background = AndroidAppStateValues("background") 
+      public static let background = AppStateValues("background") 
       /**
       Any time after Activity.onResume() or, if the app has no Activity, Context.startService() has been called when the app was in either the created or background states.
       */
-      public static let foreground = AndroidAppStateValues("foreground") 
+      public static let foreground = AppStateValues("foreground") 
 
       internal let value: String 
 

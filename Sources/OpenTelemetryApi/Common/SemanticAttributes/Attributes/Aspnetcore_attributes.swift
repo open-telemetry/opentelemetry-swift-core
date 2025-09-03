@@ -14,9 +14,9 @@ extension SemanticConventions {
       // Examples
       attributes[.aspnetcoreAuthenticationResult] = success
       attributes[.aspnetcoreAuthenticationResult] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreAuthenticationResultValues`](x-source-tag://otelAspnetcoreAuthenticationResultValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AuthenticationResultValues`](x-source-tag://otelAuthenticationResultValues) (of type `String`)
     */
-    case aspnetcoreAuthenticationResult = "aspnetcore.authentication.result"
+    case authenticationResult = "aspnetcore.authentication.result"
 
     /**
      The identifier that names a particular authentication handler.
@@ -26,7 +26,7 @@ extension SemanticConventions {
       attributes[.aspnetcoreAuthenticationScheme] = "Identity.Application"
      - Requires: Value type should be `String`
     */
-    case aspnetcoreAuthenticationScheme = "aspnetcore.authentication.scheme"
+    case authenticationScheme = "aspnetcore.authentication.scheme"
 
     /**
      The name of the authorization policy.
@@ -34,25 +34,25 @@ extension SemanticConventions {
       attributes[.aspnetcoreAuthorizationPolicy] = "RequireAdminRole"
      - Requires: Value type should be `String`
     */
-    case aspnetcoreAuthorizationPolicy = "aspnetcore.authorization.policy"
+    case authorizationPolicy = "aspnetcore.authorization.policy"
 
     /**
      The result of calling the authorization service.
       // Examples
       attributes[.aspnetcoreAuthorizationResult] = success
       attributes[.aspnetcoreAuthorizationResult] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreAuthorizationResultValues`](x-source-tag://otelAspnetcoreAuthorizationResultValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AuthorizationResultValues`](x-source-tag://otelAuthorizationResultValues) (of type `String`)
     */
-    case aspnetcoreAuthorizationResult = "aspnetcore.authorization.result"
+    case authorizationResult = "aspnetcore.authorization.result"
 
     /**
      ASP.NET Core exception middleware handling result.
       // Examples
       attributes[.aspnetcoreDiagnosticsExceptionResult] = handled
       attributes[.aspnetcoreDiagnosticsExceptionResult] = unhandled
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreDiagnosticsExceptionResultValues`](x-source-tag://otelAspnetcoreDiagnosticsExceptionResultValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.DiagnosticsExceptionResultValues`](x-source-tag://otelDiagnosticsExceptionResultValues) (of type `String`)
     */
-    case aspnetcoreDiagnosticsExceptionResult = "aspnetcore.diagnostics.exception.result"
+    case diagnosticsExceptionResult = "aspnetcore.diagnostics.exception.result"
 
     /**
      Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception.
@@ -60,7 +60,7 @@ extension SemanticConventions {
       attributes[.aspnetcoreDiagnosticsHandlerType] = "Contoso.MyHandler"
      - Requires: Value type should be `String`
     */
-    case aspnetcoreDiagnosticsHandlerType = "aspnetcore.diagnostics.handler.type"
+    case diagnosticsHandlerType = "aspnetcore.diagnostics.handler.type"
 
     /**
      The error code for a failed identity operation.
@@ -69,61 +69,61 @@ extension SemanticConventions {
       attributes[.aspnetcoreIdentityErrorCode] = "PasswordMismatch"
      - Requires: Value type should be `String`
     */
-    case aspnetcoreIdentityErrorCode = "aspnetcore.identity.error_code"
+    case identityErrorCode = "aspnetcore.identity.error_code"
 
     /**
      The result from checking the password.
       // Examples
       attributes[.aspnetcoreIdentityPasswordCheckResult] = success
       attributes[.aspnetcoreIdentityPasswordCheckResult] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreIdentityPasswordCheckResultValues`](x-source-tag://otelAspnetcoreIdentityPasswordCheckResultValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentityPasswordCheckResultValues`](x-source-tag://otelIdentityPasswordCheckResultValues) (of type `String`)
     */
-    case aspnetcoreIdentityPasswordCheckResult = "aspnetcore.identity.password_check_result"
+    case identityPasswordCheckResult = "aspnetcore.identity.password_check_result"
 
     /**
      The result of the identity operation.
       // Examples
       attributes[.aspnetcoreIdentityResult] = success
       attributes[.aspnetcoreIdentityResult] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreIdentityResultValues`](x-source-tag://otelAspnetcoreIdentityResultValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentityResultValues`](x-source-tag://otelIdentityResultValues) (of type `String`)
     */
-    case aspnetcoreIdentityResult = "aspnetcore.identity.result"
+    case identityResult = "aspnetcore.identity.result"
 
     /**
      Whether the sign in result was success or failure.
       // Examples
       attributes[.aspnetcoreIdentitySignInResult] = password
       attributes[.aspnetcoreIdentitySignInResult] = two_factor
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreIdentitySignInResultValues`](x-source-tag://otelAspnetcoreIdentitySignInResultValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentitySignInResultValues`](x-source-tag://otelIdentitySignInResultValues) (of type `String`)
     */
-    case aspnetcoreIdentitySignInResult = "aspnetcore.identity.sign_in.result"
+    case identitySignInResult = "aspnetcore.identity.sign_in.result"
 
     /**
      The authentication type.
       // Examples
       attributes[.aspnetcoreIdentitySignInType] = password
       attributes[.aspnetcoreIdentitySignInType] = two_factor
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreIdentitySignInTypeValues`](x-source-tag://otelAspnetcoreIdentitySignInTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentitySignInTypeValues`](x-source-tag://otelIdentitySignInTypeValues) (of type `String`)
     */
-    case aspnetcoreIdentitySignInType = "aspnetcore.identity.sign_in.type"
+    case identitySignInType = "aspnetcore.identity.sign_in.type"
 
     /**
      What the token will be used for.
       // Examples
       attributes[.aspnetcoreIdentityTokenPurpose] = success
       attributes[.aspnetcoreIdentityTokenPurpose] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreIdentityTokenPurposeValues`](x-source-tag://otelAspnetcoreIdentityTokenPurposeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentityTokenPurposeValues`](x-source-tag://otelIdentityTokenPurposeValues) (of type `String`)
     */
-    case aspnetcoreIdentityTokenPurpose = "aspnetcore.identity.token_purpose"
+    case identityTokenPurpose = "aspnetcore.identity.token_purpose"
 
     /**
      The result of token verification.
       // Examples
       attributes[.aspnetcoreIdentityTokenVerified] = success
       attributes[.aspnetcoreIdentityTokenVerified] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreIdentityTokenVerifiedValues`](x-source-tag://otelAspnetcoreIdentityTokenVerifiedValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentityTokenVerifiedValues`](x-source-tag://otelIdentityTokenVerifiedValues) (of type `String`)
     */
-    case aspnetcoreIdentityTokenVerified = "aspnetcore.identity.token_verified"
+    case identityTokenVerified = "aspnetcore.identity.token_verified"
 
     /**
      The user update type.
@@ -131,9 +131,9 @@ extension SemanticConventions {
       attributes[.aspnetcoreIdentityUserUpdateType] = update
       attributes[.aspnetcoreIdentityUserUpdateType] = user_name
       attributes[.aspnetcoreIdentityUserUpdateType] = reset_password
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreIdentityUserUpdateTypeValues`](x-source-tag://otelAspnetcoreIdentityUserUpdateTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentityUserUpdateTypeValues`](x-source-tag://otelIdentityUserUpdateTypeValues) (of type `String`)
     */
-    case aspnetcoreIdentityUserUpdateType = "aspnetcore.identity.user.update_type"
+    case identityUserUpdateType = "aspnetcore.identity.user.update_type"
 
     /**
      The full name of the identity user type.
@@ -141,7 +141,7 @@ extension SemanticConventions {
       attributes[.aspnetcoreIdentityUserType] = "Contoso.ContosoUser"
      - Requires: Value type should be `String`
     */
-    case aspnetcoreIdentityUserType = "aspnetcore.identity.user_type"
+    case identityUserType = "aspnetcore.identity.user_type"
 
     /**
      The name of the library or subsystem using the memory pool instance.
@@ -150,7 +150,7 @@ extension SemanticConventions {
       attributes[.aspnetcoreMemoryPoolOwner] = "iis"
      - Requires: Value type should be `String`
     */
-    case aspnetcoreMemoryPoolOwner = "aspnetcore.memory_pool.owner"
+    case memoryPoolOwner = "aspnetcore.memory_pool.owner"
 
     /**
      Rate limiting policy name.
@@ -160,16 +160,16 @@ extension SemanticConventions {
       attributes[.aspnetcoreRateLimitingPolicy] = "token"
      - Requires: Value type should be `String`
     */
-    case aspnetcoreRateLimitingPolicy = "aspnetcore.rate_limiting.policy"
+    case rateLimitingPolicy = "aspnetcore.rate_limiting.policy"
 
     /**
      Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
       // Examples
       attributes[.aspnetcoreRateLimitingResult] = acquired
       attributes[.aspnetcoreRateLimitingResult] = request_canceled
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreRateLimitingResultValues`](x-source-tag://otelAspnetcoreRateLimitingResultValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.RateLimitingResultValues`](x-source-tag://otelRateLimitingResultValues) (of type `String`)
     */
-    case aspnetcoreRateLimitingResult = "aspnetcore.rate_limiting.result"
+    case rateLimitingResult = "aspnetcore.rate_limiting.result"
 
     /**
      Flag indicating if request was handled by the application pipeline.
@@ -177,7 +177,7 @@ extension SemanticConventions {
       attributes[.aspnetcoreRequestIsUnhandled] = true
      - Requires: Value type should be `Bool`
     */
-    case aspnetcoreRequestIsUnhandled = "aspnetcore.request.is_unhandled"
+    case requestIsUnhandled = "aspnetcore.request.is_unhandled"
 
     /**
      A value that indicates whether the matched route is a fallback route.
@@ -185,22 +185,22 @@ extension SemanticConventions {
       attributes[.aspnetcoreRoutingIsFallback] = true
      - Requires: Value type should be `Bool`
     */
-    case aspnetcoreRoutingIsFallback = "aspnetcore.routing.is_fallback"
+    case routingIsFallback = "aspnetcore.routing.is_fallback"
 
     /**
      Match result - success or failure
       // Examples
       attributes[.aspnetcoreRoutingMatchStatus] = success
       attributes[.aspnetcoreRoutingMatchStatus] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AspnetcoreRoutingMatchStatusValues`](x-source-tag://otelAspnetcoreRoutingMatchStatusValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.RoutingMatchStatusValues`](x-source-tag://otelRoutingMatchStatusValues) (of type `String`)
     */
-    case aspnetcoreRoutingMatchStatus = "aspnetcore.routing.match_status"
+    case routingMatchStatus = "aspnetcore.routing.match_status"
 
     /**
      A flag indicating whether the sign in is persistent.
      - Requires: Value type should be `Bool`
     */
-    case aspnetcoreSignInIsPersistent = "aspnetcore.sign_in.is_persistent"
+    case signInIsPersistent = "aspnetcore.sign_in.is_persistent"
 
     /**
      A value that indicates whether the user is authenticated.
@@ -208,26 +208,26 @@ extension SemanticConventions {
       attributes[.aspnetcoreUserIsAuthenticated] = true
      - Requires: Value type should be `Bool`
     */
-    case aspnetcoreUserIsAuthenticated = "aspnetcore.user.is_authenticated"
+    case userIsAuthenticated = "aspnetcore.user.is_authenticated"
 
 
     /** 
       The result of the authentication operation.
     */
-    /// - Tag: otelAspnetcoreAuthenticationResultValues
-    public struct AspnetcoreAuthenticationResultValues: CustomStringConvertible {
+    /// - Tag: otelAuthenticationResultValues
+    public struct AuthenticationResultValues: CustomStringConvertible {
       /**
       Authentication was successful.
       */
-      public static let success = AspnetcoreAuthenticationResultValues("success") 
+      public static let success = AuthenticationResultValues("success") 
       /**
       Authentication failed.
       */
-      public static let failure = AspnetcoreAuthenticationResultValues("failure") 
+      public static let failure = AuthenticationResultValues("failure") 
       /**
       No authentication information returned.
       */
-      public static let none = AspnetcoreAuthenticationResultValues("none") 
+      public static let none = AuthenticationResultValues("none") 
 
       internal let value: String 
 
@@ -243,16 +243,16 @@ extension SemanticConventions {
     /** 
       The result of calling the authorization service.
     */
-    /// - Tag: otelAspnetcoreAuthorizationResultValues
-    public struct AspnetcoreAuthorizationResultValues: CustomStringConvertible {
+    /// - Tag: otelAuthorizationResultValues
+    public struct AuthorizationResultValues: CustomStringConvertible {
       /**
       Authorization was successful.
       */
-      public static let success = AspnetcoreAuthorizationResultValues("success") 
+      public static let success = AuthorizationResultValues("success") 
       /**
       Authorization failed.
       */
-      public static let failure = AspnetcoreAuthorizationResultValues("failure") 
+      public static let failure = AuthorizationResultValues("failure") 
 
       internal let value: String 
 
@@ -268,24 +268,24 @@ extension SemanticConventions {
     /** 
       ASP.NET Core exception middleware handling result.
     */
-    /// - Tag: otelAspnetcoreDiagnosticsExceptionResultValues
-    public struct AspnetcoreDiagnosticsExceptionResultValues: CustomStringConvertible {
+    /// - Tag: otelDiagnosticsExceptionResultValues
+    public struct DiagnosticsExceptionResultValues: CustomStringConvertible {
       /**
       Exception was handled by the exception handling middleware.
       */
-      public static let handled = AspnetcoreDiagnosticsExceptionResultValues("handled") 
+      public static let handled = DiagnosticsExceptionResultValues("handled") 
       /**
       Exception was not handled by the exception handling middleware.
       */
-      public static let unhandled = AspnetcoreDiagnosticsExceptionResultValues("unhandled") 
+      public static let unhandled = DiagnosticsExceptionResultValues("unhandled") 
       /**
       Exception handling was skipped because the response had started.
       */
-      public static let skipped = AspnetcoreDiagnosticsExceptionResultValues("skipped") 
+      public static let skipped = DiagnosticsExceptionResultValues("skipped") 
       /**
       Exception handling didn't run because the request was aborted.
       */
-      public static let aborted = AspnetcoreDiagnosticsExceptionResultValues("aborted") 
+      public static let aborted = DiagnosticsExceptionResultValues("aborted") 
 
       internal let value: String 
 
@@ -301,28 +301,28 @@ extension SemanticConventions {
     /** 
       The result from checking the password.
     */
-    /// - Tag: otelAspnetcoreIdentityPasswordCheckResultValues
-    public struct AspnetcoreIdentityPasswordCheckResultValues: CustomStringConvertible {
+    /// - Tag: otelIdentityPasswordCheckResultValues
+    public struct IdentityPasswordCheckResultValues: CustomStringConvertible {
       /**
       Password check was successful.
       */
-      public static let success = AspnetcoreIdentityPasswordCheckResultValues("success") 
+      public static let success = IdentityPasswordCheckResultValues("success") 
       /**
       Password check was successful however the password was encoded using a deprecated algorithm and should be rehashed and updated.
       */
-      public static let successRehashNeeded = AspnetcoreIdentityPasswordCheckResultValues("success_rehash_needed") 
+      public static let successRehashNeeded = IdentityPasswordCheckResultValues("success_rehash_needed") 
       /**
       Password check failed.
       */
-      public static let failure = AspnetcoreIdentityPasswordCheckResultValues("failure") 
+      public static let failure = IdentityPasswordCheckResultValues("failure") 
       /**
       Password check couldn't proceed because the password was missing from the user.
       */
-      public static let passwordMissing = AspnetcoreIdentityPasswordCheckResultValues("password_missing") 
+      public static let passwordMissing = IdentityPasswordCheckResultValues("password_missing") 
       /**
       Password check couldn't proceed because the user was missing.
       */
-      public static let userMissing = AspnetcoreIdentityPasswordCheckResultValues("user_missing") 
+      public static let userMissing = IdentityPasswordCheckResultValues("user_missing") 
 
       internal let value: String 
 
@@ -338,16 +338,16 @@ extension SemanticConventions {
     /** 
       The result of the identity operation.
     */
-    /// - Tag: otelAspnetcoreIdentityResultValues
-    public struct AspnetcoreIdentityResultValues: CustomStringConvertible {
+    /// - Tag: otelIdentityResultValues
+    public struct IdentityResultValues: CustomStringConvertible {
       /**
       Identity operation was successful.
       */
-      public static let success = AspnetcoreIdentityResultValues("success") 
+      public static let success = IdentityResultValues("success") 
       /**
       Identity operation failed.
       */
-      public static let failure = AspnetcoreIdentityResultValues("failure") 
+      public static let failure = IdentityResultValues("failure") 
 
       internal let value: String 
 
@@ -363,28 +363,28 @@ extension SemanticConventions {
     /** 
       Whether the sign in result was success or failure.
     */
-    /// - Tag: otelAspnetcoreIdentitySignInResultValues
-    public struct AspnetcoreIdentitySignInResultValues: CustomStringConvertible {
+    /// - Tag: otelIdentitySignInResultValues
+    public struct IdentitySignInResultValues: CustomStringConvertible {
       /**
       Sign in was successful.
       */
-      public static let success = AspnetcoreIdentitySignInResultValues("success") 
+      public static let success = IdentitySignInResultValues("success") 
       /**
       User is locked out.
       */
-      public static let lockedOut = AspnetcoreIdentitySignInResultValues("locked_out") 
+      public static let lockedOut = IdentitySignInResultValues("locked_out") 
       /**
       User is not allowed to sign in.
       */
-      public static let notAllowed = AspnetcoreIdentitySignInResultValues("not_allowed") 
+      public static let notAllowed = IdentitySignInResultValues("not_allowed") 
       /**
       User requires two factory authentication to sign in.
       */
-      public static let requiresTwoFactor = AspnetcoreIdentitySignInResultValues("requires_two_factor") 
+      public static let requiresTwoFactor = IdentitySignInResultValues("requires_two_factor") 
       /**
       Sign in failed.
       */
-      public static let failure = AspnetcoreIdentitySignInResultValues("failure") 
+      public static let failure = IdentitySignInResultValues("failure") 
 
       internal let value: String 
 
@@ -400,32 +400,32 @@ extension SemanticConventions {
     /** 
       The authentication type.
     */
-    /// - Tag: otelAspnetcoreIdentitySignInTypeValues
-    public struct AspnetcoreIdentitySignInTypeValues: CustomStringConvertible {
+    /// - Tag: otelIdentitySignInTypeValues
+    public struct IdentitySignInTypeValues: CustomStringConvertible {
       /**
       Sign in with password.
       */
-      public static let password = AspnetcoreIdentitySignInTypeValues("password") 
+      public static let password = IdentitySignInTypeValues("password") 
       /**
       Sign in with two factory recovery code.
       */
-      public static let twoFactorRecoveryCode = AspnetcoreIdentitySignInTypeValues("two_factor_recovery_code") 
+      public static let twoFactorRecoveryCode = IdentitySignInTypeValues("two_factor_recovery_code") 
       /**
       Sign in with two factor authenticator app.
       */
-      public static let twoFactorAuthenticator = AspnetcoreIdentitySignInTypeValues("two_factor_authenticator") 
+      public static let twoFactorAuthenticator = IdentitySignInTypeValues("two_factor_authenticator") 
       /**
       Sign in with a two factor provider.
       */
-      public static let twoFactor = AspnetcoreIdentitySignInTypeValues("two_factor") 
+      public static let twoFactor = IdentitySignInTypeValues("two_factor") 
       /**
       Sign in with a previously registered third-party login.
       */
-      public static let external = AspnetcoreIdentitySignInTypeValues("external") 
+      public static let external = IdentitySignInTypeValues("external") 
       /**
       Sign in with passkey.
       */
-      public static let passkey = AspnetcoreIdentitySignInTypeValues("passkey") 
+      public static let passkey = IdentitySignInTypeValues("passkey") 
 
       internal let value: String 
 
@@ -441,32 +441,32 @@ extension SemanticConventions {
     /** 
       What the token will be used for.
     */
-    /// - Tag: otelAspnetcoreIdentityTokenPurposeValues
-    public struct AspnetcoreIdentityTokenPurposeValues: CustomStringConvertible {
+    /// - Tag: otelIdentityTokenPurposeValues
+    public struct IdentityTokenPurposeValues: CustomStringConvertible {
       /**
       The token is for resetting a user password.
       */
-      public static let resetPassword = AspnetcoreIdentityTokenPurposeValues("reset_password") 
+      public static let resetPassword = IdentityTokenPurposeValues("reset_password") 
       /**
       The token is for changing a user phone number.
       */
-      public static let changePhoneNumber = AspnetcoreIdentityTokenPurposeValues("change_phone_number") 
+      public static let changePhoneNumber = IdentityTokenPurposeValues("change_phone_number") 
       /**
       The token is for confirming user email address.
       */
-      public static let emailConfirmation = AspnetcoreIdentityTokenPurposeValues("email_confirmation") 
+      public static let emailConfirmation = IdentityTokenPurposeValues("email_confirmation") 
       /**
       The token is for changing the user email address.
       */
-      public static let changeEmail = AspnetcoreIdentityTokenPurposeValues("change_email") 
+      public static let changeEmail = IdentityTokenPurposeValues("change_email") 
       /**
       The token is for changing user two factor settings.
       */
-      public static let twoFactor = AspnetcoreIdentityTokenPurposeValues("two_factor") 
+      public static let twoFactor = IdentityTokenPurposeValues("two_factor") 
       /**
       Any token purpose that the instrumentation has no prior knowledge of.
       */
-      public static let other = AspnetcoreIdentityTokenPurposeValues("_OTHER") 
+      public static let other = IdentityTokenPurposeValues("_OTHER") 
 
       internal let value: String 
 
@@ -482,16 +482,16 @@ extension SemanticConventions {
     /** 
       The result of token verification.
     */
-    /// - Tag: otelAspnetcoreIdentityTokenVerifiedValues
-    public struct AspnetcoreIdentityTokenVerifiedValues: CustomStringConvertible {
+    /// - Tag: otelIdentityTokenVerifiedValues
+    public struct IdentityTokenVerifiedValues: CustomStringConvertible {
       /**
       Token verification was successful.
       */
-      public static let success = AspnetcoreIdentityTokenVerifiedValues("success") 
+      public static let success = IdentityTokenVerifiedValues("success") 
       /**
       Token verification failed.
       */
-      public static let failure = AspnetcoreIdentityTokenVerifiedValues("failure") 
+      public static let failure = IdentityTokenVerifiedValues("failure") 
 
       internal let value: String 
 
@@ -507,140 +507,140 @@ extension SemanticConventions {
     /** 
       The user update type.
     */
-    /// - Tag: otelAspnetcoreIdentityUserUpdateTypeValues
-    public struct AspnetcoreIdentityUserUpdateTypeValues: CustomStringConvertible {
+    /// - Tag: otelIdentityUserUpdateTypeValues
+    public struct IdentityUserUpdateTypeValues: CustomStringConvertible {
       /**
       Identity user updated.
       */
-      public static let update = AspnetcoreIdentityUserUpdateTypeValues("update") 
+      public static let update = IdentityUserUpdateTypeValues("update") 
       /**
       Identity user name updated.
       */
-      public static let userName = AspnetcoreIdentityUserUpdateTypeValues("user_name") 
+      public static let userName = IdentityUserUpdateTypeValues("user_name") 
       /**
       Identity user password added.
       */
-      public static let addPassword = AspnetcoreIdentityUserUpdateTypeValues("add_password") 
+      public static let addPassword = IdentityUserUpdateTypeValues("add_password") 
       /**
       Identity user password changed.
       */
-      public static let changePassword = AspnetcoreIdentityUserUpdateTypeValues("change_password") 
+      public static let changePassword = IdentityUserUpdateTypeValues("change_password") 
       /**
       Identity user security stamp updated.
       */
-      public static let securityStamp = AspnetcoreIdentityUserUpdateTypeValues("security_stamp") 
+      public static let securityStamp = IdentityUserUpdateTypeValues("security_stamp") 
       /**
       Identity user password reset.
       */
-      public static let resetPassword = AspnetcoreIdentityUserUpdateTypeValues("reset_password") 
+      public static let resetPassword = IdentityUserUpdateTypeValues("reset_password") 
       /**
       Identity user login removed.
       */
-      public static let removeLogin = AspnetcoreIdentityUserUpdateTypeValues("remove_login") 
+      public static let removeLogin = IdentityUserUpdateTypeValues("remove_login") 
       /**
       Identity user login added.
       */
-      public static let addLogin = AspnetcoreIdentityUserUpdateTypeValues("add_login") 
+      public static let addLogin = IdentityUserUpdateTypeValues("add_login") 
       /**
       Identity user claims added.
       */
-      public static let addClaims = AspnetcoreIdentityUserUpdateTypeValues("add_claims") 
+      public static let addClaims = IdentityUserUpdateTypeValues("add_claims") 
       /**
       Identity user claim replaced.
       */
-      public static let replaceClaim = AspnetcoreIdentityUserUpdateTypeValues("replace_claim") 
+      public static let replaceClaim = IdentityUserUpdateTypeValues("replace_claim") 
       /**
       Identity user claims removed.
       */
-      public static let removeClaims = AspnetcoreIdentityUserUpdateTypeValues("remove_claims") 
+      public static let removeClaims = IdentityUserUpdateTypeValues("remove_claims") 
       /**
       Identity user added to roles.
       */
-      public static let addToRoles = AspnetcoreIdentityUserUpdateTypeValues("add_to_roles") 
+      public static let addToRoles = IdentityUserUpdateTypeValues("add_to_roles") 
       /**
       Identity user removed from roles.
       */
-      public static let removeFromRoles = AspnetcoreIdentityUserUpdateTypeValues("remove_from_roles") 
+      public static let removeFromRoles = IdentityUserUpdateTypeValues("remove_from_roles") 
       /**
       Identity user email set.
       */
-      public static let setEmail = AspnetcoreIdentityUserUpdateTypeValues("set_email") 
+      public static let setEmail = IdentityUserUpdateTypeValues("set_email") 
       /**
       Identity user email confirmed.
       */
-      public static let confirmEmail = AspnetcoreIdentityUserUpdateTypeValues("confirm_email") 
+      public static let confirmEmail = IdentityUserUpdateTypeValues("confirm_email") 
       /**
       Identity user password rehashed.
       */
-      public static let passwordRehash = AspnetcoreIdentityUserUpdateTypeValues("password_rehash") 
+      public static let passwordRehash = IdentityUserUpdateTypeValues("password_rehash") 
       /**
       Identity user password removed.
       */
-      public static let removePassword = AspnetcoreIdentityUserUpdateTypeValues("remove_password") 
+      public static let removePassword = IdentityUserUpdateTypeValues("remove_password") 
       /**
       Identity user email changed.
       */
-      public static let changeEmail = AspnetcoreIdentityUserUpdateTypeValues("change_email") 
+      public static let changeEmail = IdentityUserUpdateTypeValues("change_email") 
       /**
       Identity user phone number set.
       */
-      public static let setPhoneNumber = AspnetcoreIdentityUserUpdateTypeValues("set_phone_number") 
+      public static let setPhoneNumber = IdentityUserUpdateTypeValues("set_phone_number") 
       /**
       Identity user phone number changed.
       */
-      public static let changePhoneNumber = AspnetcoreIdentityUserUpdateTypeValues("change_phone_number") 
+      public static let changePhoneNumber = IdentityUserUpdateTypeValues("change_phone_number") 
       /**
       Identity user two-factor authentication enabled or disabled.
       */
-      public static let setTwoFactorEnabled = AspnetcoreIdentityUserUpdateTypeValues("set_two_factor_enabled") 
+      public static let setTwoFactorEnabled = IdentityUserUpdateTypeValues("set_two_factor_enabled") 
       /**
       Identity user lockout enabled or disabled.
       */
-      public static let setLockoutEnabled = AspnetcoreIdentityUserUpdateTypeValues("set_lockout_enabled") 
+      public static let setLockoutEnabled = IdentityUserUpdateTypeValues("set_lockout_enabled") 
       /**
       Identity user lockout end date set.
       */
-      public static let setLockoutEndDate = AspnetcoreIdentityUserUpdateTypeValues("set_lockout_end_date") 
+      public static let setLockoutEndDate = IdentityUserUpdateTypeValues("set_lockout_end_date") 
       /**
       Identity user access failure recorded.
       */
-      public static let accessFailed = AspnetcoreIdentityUserUpdateTypeValues("access_failed") 
+      public static let accessFailed = IdentityUserUpdateTypeValues("access_failed") 
       /**
       Identity user access failure count reset.
       */
-      public static let resetAccessFailedCount = AspnetcoreIdentityUserUpdateTypeValues("reset_access_failed_count") 
+      public static let resetAccessFailedCount = IdentityUserUpdateTypeValues("reset_access_failed_count") 
       /**
       Identity user authentication token set.
       */
-      public static let setAuthenticationToken = AspnetcoreIdentityUserUpdateTypeValues("set_authentication_token") 
+      public static let setAuthenticationToken = IdentityUserUpdateTypeValues("set_authentication_token") 
       /**
       Identity user authentication token removed.
       */
-      public static let removeAuthenticationToken = AspnetcoreIdentityUserUpdateTypeValues("remove_authentication_token") 
+      public static let removeAuthenticationToken = IdentityUserUpdateTypeValues("remove_authentication_token") 
       /**
       Identity user authenticator key reset.
       */
-      public static let resetAuthenticatorKey = AspnetcoreIdentityUserUpdateTypeValues("reset_authenticator_key") 
+      public static let resetAuthenticatorKey = IdentityUserUpdateTypeValues("reset_authenticator_key") 
       /**
       Identity user new two-factor recovery codes generated.
       */
-      public static let generateNewTwoFactorRecoveryCodes = AspnetcoreIdentityUserUpdateTypeValues("generate_new_two_factor_recovery_codes") 
+      public static let generateNewTwoFactorRecoveryCodes = IdentityUserUpdateTypeValues("generate_new_two_factor_recovery_codes") 
       /**
       Identity user two-factor recovery code redeemed.
       */
-      public static let redeemTwoFactorRecoveryCode = AspnetcoreIdentityUserUpdateTypeValues("redeem_two_factor_recovery_code") 
+      public static let redeemTwoFactorRecoveryCode = IdentityUserUpdateTypeValues("redeem_two_factor_recovery_code") 
       /**
       Identity user passkey set.
       */
-      public static let setPasskey = AspnetcoreIdentityUserUpdateTypeValues("set_passkey") 
+      public static let setPasskey = IdentityUserUpdateTypeValues("set_passkey") 
       /**
       Identity user passkey removed.
       */
-      public static let removePasskey = AspnetcoreIdentityUserUpdateTypeValues("remove_passkey") 
+      public static let removePasskey = IdentityUserUpdateTypeValues("remove_passkey") 
       /**
       Any update type that the instrumentation has no prior knowledge of.
       */
-      public static let other = AspnetcoreIdentityUserUpdateTypeValues("_OTHER") 
+      public static let other = IdentityUserUpdateTypeValues("_OTHER") 
 
       internal let value: String 
 
@@ -656,24 +656,24 @@ extension SemanticConventions {
     /** 
       Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
     */
-    /// - Tag: otelAspnetcoreRateLimitingResultValues
-    public struct AspnetcoreRateLimitingResultValues: CustomStringConvertible {
+    /// - Tag: otelRateLimitingResultValues
+    public struct RateLimitingResultValues: CustomStringConvertible {
       /**
       Lease was acquired
       */
-      public static let acquired = AspnetcoreRateLimitingResultValues("acquired") 
+      public static let acquired = RateLimitingResultValues("acquired") 
       /**
       Lease request was rejected by the endpoint limiter
       */
-      public static let endpointLimiter = AspnetcoreRateLimitingResultValues("endpoint_limiter") 
+      public static let endpointLimiter = RateLimitingResultValues("endpoint_limiter") 
       /**
       Lease request was rejected by the global limiter
       */
-      public static let globalLimiter = AspnetcoreRateLimitingResultValues("global_limiter") 
+      public static let globalLimiter = RateLimitingResultValues("global_limiter") 
       /**
       Lease request was canceled
       */
-      public static let requestCanceled = AspnetcoreRateLimitingResultValues("request_canceled") 
+      public static let requestCanceled = RateLimitingResultValues("request_canceled") 
 
       internal let value: String 
 
@@ -689,16 +689,16 @@ extension SemanticConventions {
     /** 
       Match result - success or failure
     */
-    /// - Tag: otelAspnetcoreRoutingMatchStatusValues
-    public struct AspnetcoreRoutingMatchStatusValues: CustomStringConvertible {
+    /// - Tag: otelRoutingMatchStatusValues
+    public struct RoutingMatchStatusValues: CustomStringConvertible {
       /**
       Match succeeded
       */
-      public static let success = AspnetcoreRoutingMatchStatusValues("success") 
+      public static let success = RoutingMatchStatusValues("success") 
       /**
       Match failed
       */
-      public static let failure = AspnetcoreRoutingMatchStatusValues("failure") 
+      public static let failure = RoutingMatchStatusValues("failure") 
 
       internal let value: String 
 

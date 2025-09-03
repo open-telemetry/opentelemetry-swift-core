@@ -16,7 +16,7 @@ extension SemanticConventions {
      - Note: This field can be useful for querying or performing bucket analysis on how many arguments were provided to start a process. More arguments may be an indication of suspicious activity.
      - Requires: Value type should be `Int`
     */
-    case processArgsCount = "process.args_count"
+    case argsCount = "process.args_count"
 
     /**
      The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`.
@@ -24,7 +24,7 @@ extension SemanticConventions {
       attributes[.processCommand] = "cmd/otelcol"
      - Requires: Value type should be `String`
     */
-    case processCommand = "process.command"
+    case command = "process.command"
 
     /**
      All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
@@ -32,7 +32,7 @@ extension SemanticConventions {
       attributes[.processCommandArgs] = ["cmd/otecol", "--config=config.yaml"]
      - Requires: Value type should be `[String]`
     */
-    case processCommandArgs = "process.command_args"
+    case commandArgs = "process.command_args"
 
     /**
      The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
@@ -40,13 +40,13 @@ extension SemanticConventions {
       attributes[.processCommandLine] = "C:\cmd\otecol --config=\"my directory\config.yaml\""
      - Requires: Value type should be `String`
     */
-    case processCommandLine = "process.command_line"
+    case commandLine = "process.command_line"
 
     /**
      Specifies whether the context switches for this data point were voluntary or involuntary.
-     - Requires: Value should be one of [`/output/Attributes/Process_attributes.swift.ProcessContextSwitchTypeValues`](x-source-tag://otelProcessContextSwitchTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Process_attributes.swift.ContextSwitchTypeValues`](x-source-tag://otelContextSwitchTypeValues) (of type `String`)
     */
-    case processContextSwitchType = "process.context_switch_type"
+    case contextSwitchType = "process.context_switch_type"
 
     /**
      The date and time the process was created, in ISO 8601 format.
@@ -54,7 +54,7 @@ extension SemanticConventions {
       attributes[.processCreationTime] = "2023-11-21T09:25:34.853Z"
      - Requires: Value type should be `String`
     */
-    case processCreationTime = "process.creation.time"
+    case creationTime = "process.creation.time"
 
     /**
      Process environment variables, `<key>` being the environment variable name, the value being the environment variable value.
@@ -70,7 +70,7 @@ extension SemanticConventions {
        with value `"/usr/local/bin:/usr/bin"`.
      - Requires: Value type should be `template[string]`
     */
-    case processEnvironmentVariable = "process.environment_variable"
+    case environmentVariable = "process.environment_variable"
 
     /**
      The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string).
@@ -78,7 +78,7 @@ extension SemanticConventions {
       attributes[.processExecutableBuildIdGnu] = "c89b11207f6479603b0d49bf291c092c2b719293"
      - Requires: Value type should be `String`
     */
-    case processExecutableBuildIdGnu = "process.executable.build_id.gnu"
+    case executableBuildIdGnu = "process.executable.build_id.gnu"
 
     /**
      The Go build ID as retrieved by `go tool buildid <go executable>`.
@@ -86,7 +86,7 @@ extension SemanticConventions {
       attributes[.processExecutableBuildIdGo] = "foh3mEXu7BLZjsN9pOwG/kATcXlYVCDEFouRMQed_/WwRFB1hPo9LBkekthSPG/x8hMC8emW2cCjXD0_1aY"
      - Requires: Value type should be `String`
     */
-    case processExecutableBuildIdGo = "process.executable.build_id.go"
+    case executableBuildIdGo = "process.executable.build_id.go"
 
     /**
      Profiling specific build ID for executables. See the OTel specification for Profiles for more information.
@@ -94,7 +94,7 @@ extension SemanticConventions {
       attributes[.processExecutableBuildIdHtlhash] = "600DCAFE4A110000F2BF38C493F5FB92"
      - Requires: Value type should be `String`
     */
-    case processExecutableBuildIdHtlhash = "process.executable.build_id.htlhash"
+    case executableBuildIdHtlhash = "process.executable.build_id.htlhash"
 
     /**
      The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`.
@@ -102,7 +102,7 @@ extension SemanticConventions {
       attributes[.processExecutableName] = "otelcol"
      - Requires: Value type should be `String`
     */
-    case processExecutableName = "process.executable.name"
+    case executableName = "process.executable.name"
 
     /**
      The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`.
@@ -110,7 +110,7 @@ extension SemanticConventions {
       attributes[.processExecutablePath] = "/usr/bin/cmd/otelcol"
      - Requires: Value type should be `String`
     */
-    case processExecutablePath = "process.executable.path"
+    case executablePath = "process.executable.path"
 
     /**
      The exit code of the process.
@@ -118,7 +118,7 @@ extension SemanticConventions {
       attributes[.processExitCode] = 127
      - Requires: Value type should be `Int`
     */
-    case processExitCode = "process.exit.code"
+    case exitCode = "process.exit.code"
 
     /**
      The date and time the process exited, in ISO 8601 format.
@@ -126,7 +126,7 @@ extension SemanticConventions {
       attributes[.processExitTime] = "2023-11-21T09:26:12.315Z"
      - Requires: Value type should be `String`
     */
-    case processExitTime = "process.exit.time"
+    case exitTime = "process.exit.time"
 
     /**
      The PID of the process's group leader. This is also the process group ID (PGID) of the process.
@@ -134,13 +134,13 @@ extension SemanticConventions {
       attributes[.processGroupLeaderPid] = 23
      - Requires: Value type should be `Int`
     */
-    case processGroupLeaderPid = "process.group_leader.pid"
+    case groupLeaderPid = "process.group_leader.pid"
 
     /**
      Whether the process is connected to an interactive shell.
      - Requires: Value type should be `Bool`
     */
-    case processInteractive = "process.interactive"
+    case interactive = "process.interactive"
 
     /**
      The control group associated with the process.
@@ -150,7 +150,7 @@ extension SemanticConventions {
      - Note: Control groups (cgroups) are a kernel feature used to organize and manage process resources. This attribute provides the path(s) to the cgroup(s) associated with the process, which should match the contents of the [/proc/[PID]/cgroup](https://man7.org/linux/man-pages/man7/cgroups.7.html) file.
      - Requires: Value type should be `String`
     */
-    case processLinuxCgroup = "process.linux.cgroup"
+    case linuxCgroup = "process.linux.cgroup"
 
     /**
      The username of the user that owns the process.
@@ -158,13 +158,13 @@ extension SemanticConventions {
       attributes[.processOwner] = "root"
      - Requires: Value type should be `String`
     */
-    case processOwner = "process.owner"
+    case owner = "process.owner"
 
     /**
      The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.
-     - Requires: Value should be one of [`/output/Attributes/Process_attributes.swift.ProcessPagingFaultTypeValues`](x-source-tag://otelProcessPagingFaultTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Process_attributes.swift.PagingFaultTypeValues`](x-source-tag://otelPagingFaultTypeValues) (of type `String`)
     */
-    case processPagingFaultType = "process.paging.fault_type"
+    case pagingFaultType = "process.paging.fault_type"
 
     /**
      Parent Process identifier (PPID).
@@ -172,7 +172,7 @@ extension SemanticConventions {
       attributes[.processParentPid] = 111
      - Requires: Value type should be `Int`
     */
-    case processParentPid = "process.parent_pid"
+    case parentPid = "process.parent_pid"
 
     /**
      Process identifier (PID).
@@ -180,7 +180,7 @@ extension SemanticConventions {
       attributes[.processPid] = 1234
      - Requires: Value type should be `Int`
     */
-    case processPid = "process.pid"
+    case pid = "process.pid"
 
     /**
      The real user ID (RUID) of the process.
@@ -188,7 +188,7 @@ extension SemanticConventions {
       attributes[.processRealUserId] = 1000
      - Requires: Value type should be `Int`
     */
-    case processRealUserId = "process.real_user.id"
+    case realUserId = "process.real_user.id"
 
     /**
      The username of the real user of the process.
@@ -196,7 +196,7 @@ extension SemanticConventions {
       attributes[.processRealUserName] = "operator"
      - Requires: Value type should be `String`
     */
-    case processRealUserName = "process.real_user.name"
+    case realUserName = "process.real_user.name"
 
     /**
      An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment.
@@ -205,7 +205,7 @@ extension SemanticConventions {
    attributes[.processRuntimeDescription] = "Eclipse OpenJ9 Eclipse OpenJ9 VM openj9-0.21.0"
      - Requires: Value type should be `String`
     */
-    case processRuntimeDescription = "process.runtime.description"
+    case runtimeDescription = "process.runtime.description"
 
     /**
      The name of the runtime of this process.
@@ -213,7 +213,7 @@ extension SemanticConventions {
       attributes[.processRuntimeName] = "OpenJDK Runtime Environment"
      - Requires: Value type should be `String`
     */
-    case processRuntimeName = "process.runtime.name"
+    case runtimeName = "process.runtime.name"
 
     /**
      The version of the runtime of this process, as returned by the runtime without modification.
@@ -222,7 +222,7 @@ extension SemanticConventions {
    attributes[.processRuntimeVersion] = "14.0.2"
      - Requires: Value type should be `String`
     */
-    case processRuntimeVersion = "process.runtime.version"
+    case runtimeVersion = "process.runtime.version"
 
     /**
      The saved user ID (SUID) of the process.
@@ -230,7 +230,7 @@ extension SemanticConventions {
       attributes[.processSavedUserId] = 1002
      - Requires: Value type should be `Int`
     */
-    case processSavedUserId = "process.saved_user.id"
+    case savedUserId = "process.saved_user.id"
 
     /**
      The username of the saved user.
@@ -238,7 +238,7 @@ extension SemanticConventions {
       attributes[.processSavedUserName] = "operator"
      - Requires: Value type should be `String`
     */
-    case processSavedUserName = "process.saved_user.name"
+    case savedUserName = "process.saved_user.name"
 
     /**
      The PID of the process's session leader. This is also the session ID (SID) of the process.
@@ -246,7 +246,7 @@ extension SemanticConventions {
       attributes[.processSessionLeaderPid] = 14
      - Requires: Value type should be `Int`
     */
-    case processSessionLeaderPid = "process.session_leader.pid"
+    case sessionLeaderPid = "process.session_leader.pid"
 
     /**
      Process title (proctitle)
@@ -257,7 +257,7 @@ extension SemanticConventions {
      - Note: In many Unix-like systems, process title (proctitle), is the string that represents the name or command line of a running process, displayed by system monitoring tools like ps, top, and htop.
      - Requires: Value type should be `String`
     */
-    case processTitle = "process.title"
+    case title = "process.title"
 
     /**
      The effective user ID (EUID) of the process.
@@ -265,7 +265,7 @@ extension SemanticConventions {
       attributes[.processUserId] = 1001
      - Requires: Value type should be `Int`
     */
-    case processUserId = "process.user.id"
+    case userId = "process.user.id"
 
     /**
      The username of the effective user of the process.
@@ -273,7 +273,7 @@ extension SemanticConventions {
       attributes[.processUserName] = "root"
      - Requires: Value type should be `String`
     */
-    case processUserName = "process.user.name"
+    case userName = "process.user.name"
 
     /**
      Virtual process identifier.
@@ -282,7 +282,7 @@ extension SemanticConventions {
      - Note: The process ID within a PID namespace. This is not necessarily unique across all processes on the host but it is unique within the process namespace that the process exists within.
      - Requires: Value type should be `Int`
     */
-    case processVpid = "process.vpid"
+    case vpid = "process.vpid"
 
     /**
      The working directory of the process.
@@ -290,16 +290,16 @@ extension SemanticConventions {
       attributes[.processWorkingDirectory] = "/root"
      - Requires: Value type should be `String`
     */
-    case processWorkingDirectory = "process.working_directory"
+    case workingDirectory = "process.working_directory"
 
 
     /** 
       Specifies whether the context switches for this data point were voluntary or involuntary.
     */
-    /// - Tag: otelProcessContextSwitchTypeValues
-    public struct ProcessContextSwitchTypeValues: CustomStringConvertible {
-      public static let voluntary = ProcessContextSwitchTypeValues("voluntary") 
-      public static let involuntary = ProcessContextSwitchTypeValues("involuntary") 
+    /// - Tag: otelContextSwitchTypeValues
+    public struct ContextSwitchTypeValues: CustomStringConvertible {
+      public static let voluntary = ContextSwitchTypeValues("voluntary") 
+      public static let involuntary = ContextSwitchTypeValues("involuntary") 
 
       internal let value: String 
 
@@ -315,10 +315,10 @@ extension SemanticConventions {
     /** 
       The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.
     */
-    /// - Tag: otelProcessPagingFaultTypeValues
-    public struct ProcessPagingFaultTypeValues: CustomStringConvertible {
-      public static let major = ProcessPagingFaultTypeValues("major") 
-      public static let minor = ProcessPagingFaultTypeValues("minor") 
+    /// - Tag: otelPagingFaultTypeValues
+    public struct PagingFaultTypeValues: CustomStringConvertible {
+      public static let major = PagingFaultTypeValues("major") 
+      public static let minor = PagingFaultTypeValues("minor") 
 
       internal let value: String 
 

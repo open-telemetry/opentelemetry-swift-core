@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.herokuAppId] = "2daa2797-e42b-4624-9322-ec3f968df4da"
      - Requires: Value type should be `String`
     */
-    case herokuAppId = "heroku.app.id"
+    case appId = "heroku.app.id"
 
     /**
      Commit hash for the current release
@@ -23,7 +23,7 @@ extension SemanticConventions {
       attributes[.herokuReleaseCommit] = "e6134959463efd8966b20e75b913cafe3f5ec"
      - Requires: Value type should be `String`
     */
-    case herokuReleaseCommit = "heroku.release.commit"
+    case releaseCommit = "heroku.release.commit"
 
     /**
      Time and date the release was created
@@ -31,7 +31,7 @@ extension SemanticConventions {
       attributes[.herokuReleaseCreationTimestamp] = "2022-10-23T18:00:42Z"
      - Requires: Value type should be `String`
     */
-    case herokuReleaseCreationTimestamp = "heroku.release.creation_timestamp"
+    case releaseCreationTimestamp = "heroku.release.creation_timestamp"
 
   }
 }

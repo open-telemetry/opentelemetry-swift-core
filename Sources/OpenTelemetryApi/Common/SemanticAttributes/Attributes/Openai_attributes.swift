@@ -14,9 +14,9 @@ extension SemanticConventions {
       // Examples
       attributes[.openaiRequestServiceTier] = auto
       attributes[.openaiRequestServiceTier] = default
-     - Requires: Value should be one of [`/output/Attributes/Openai_attributes.swift.OpenaiRequestServiceTierValues`](x-source-tag://otelOpenaiRequestServiceTierValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Openai_attributes.swift.RequestServiceTierValues`](x-source-tag://otelRequestServiceTierValues) (of type `String`)
     */
-    case openaiRequestServiceTier = "openai.request.service_tier"
+    case requestServiceTier = "openai.request.service_tier"
 
     /**
      The service tier used for the response.
@@ -25,7 +25,7 @@ extension SemanticConventions {
       attributes[.openaiResponseServiceTier] = "default"
      - Requires: Value type should be `String`
     */
-    case openaiResponseServiceTier = "openai.response.service_tier"
+    case responseServiceTier = "openai.response.service_tier"
 
     /**
      A fingerprint to track any eventual change in the Generative AI environment.
@@ -33,22 +33,22 @@ extension SemanticConventions {
       attributes[.openaiResponseSystemFingerprint] = "fp_44709d6fcb"
      - Requires: Value type should be `String`
     */
-    case openaiResponseSystemFingerprint = "openai.response.system_fingerprint"
+    case responseSystemFingerprint = "openai.response.system_fingerprint"
 
 
     /** 
       The service tier requested. May be a specific tier, default, or auto.
     */
-    /// - Tag: otelOpenaiRequestServiceTierValues
-    public struct OpenaiRequestServiceTierValues: CustomStringConvertible {
+    /// - Tag: otelRequestServiceTierValues
+    public struct RequestServiceTierValues: CustomStringConvertible {
       /**
       The system will utilize scale tier credits until they are exhausted.
       */
-      public static let auto = OpenaiRequestServiceTierValues("auto") 
+      public static let auto = RequestServiceTierValues("auto") 
       /**
       The system will utilize the default scale tier.
       */
-      public static let _default = OpenaiRequestServiceTierValues("default") 
+      public static let _default = RequestServiceTierValues("default") 
 
       internal let value: String 
 

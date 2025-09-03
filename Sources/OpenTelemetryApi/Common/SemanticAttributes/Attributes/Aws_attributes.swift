@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.awsBedrockGuardrailId] = "sgi5gkybzqak"
      - Requires: Value type should be `String`
     */
-    case awsBedrockGuardrailId = "aws.bedrock.guardrail.id"
+    case bedrockGuardrailId = "aws.bedrock.guardrail.id"
 
     /**
      The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts.
@@ -23,7 +23,7 @@ extension SemanticConventions {
       attributes[.awsBedrockKnowledgeBaseId] = "XFWUPB9PAW"
      - Requires: Value type should be `String`
     */
-    case awsBedrockKnowledgeBaseId = "aws.bedrock.knowledge_base.id"
+    case bedrockKnowledgeBaseId = "aws.bedrock.knowledge_base.id"
 
     /**
      The JSON-serialized value of each item in the `AttributeDefinitions` request field.
@@ -31,7 +31,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbAttributeDefinitions] = ["{ \"AttributeName\": \"string\", \"AttributeType\": \"string\" }"]
      - Requires: Value type should be `[String]`
     */
-    case awsDynamodbAttributeDefinitions = "aws.dynamodb.attribute_definitions"
+    case dynamodbAttributeDefinitions = "aws.dynamodb.attribute_definitions"
 
     /**
      The value of the `AttributesToGet` request parameter.
@@ -39,13 +39,13 @@ extension SemanticConventions {
       attributes[.awsDynamodbAttributesToGet] = ["lives", "id"]
      - Requires: Value type should be `[String]`
     */
-    case awsDynamodbAttributesToGet = "aws.dynamodb.attributes_to_get"
+    case dynamodbAttributesToGet = "aws.dynamodb.attributes_to_get"
 
     /**
      The value of the `ConsistentRead` request parameter.
      - Requires: Value type should be `Bool`
     */
-    case awsDynamodbConsistentRead = "aws.dynamodb.consistent_read"
+    case dynamodbConsistentRead = "aws.dynamodb.consistent_read"
 
     /**
      The JSON-serialized value of each item in the `ConsumedCapacity` response field.
@@ -53,7 +53,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbConsumedCapacity] = ["{ \"CapacityUnits\": number, \"GlobalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"LocalSecondaryIndexes\": { \"string\" : { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }, \"ReadCapacityUnits\": number, \"Table\": { \"CapacityUnits\": number, \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number }, \"TableName\": \"string\", \"WriteCapacityUnits\": number }"]
      - Requires: Value type should be `[String]`
     */
-    case awsDynamodbConsumedCapacity = "aws.dynamodb.consumed_capacity"
+    case dynamodbConsumedCapacity = "aws.dynamodb.consumed_capacity"
 
     /**
      The value of the `Count` response parameter.
@@ -61,7 +61,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbCount] = 10
      - Requires: Value type should be `Int`
     */
-    case awsDynamodbCount = "aws.dynamodb.count"
+    case dynamodbCount = "aws.dynamodb.count"
 
     /**
      The value of the `ExclusiveStartTableName` request parameter.
@@ -70,7 +70,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbExclusiveStartTable] = "CatsTable"
      - Requires: Value type should be `String`
     */
-    case awsDynamodbExclusiveStartTable = "aws.dynamodb.exclusive_start_table"
+    case dynamodbExclusiveStartTable = "aws.dynamodb.exclusive_start_table"
 
     /**
      The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field.
@@ -78,7 +78,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbGlobalSecondaryIndexUpdates] = ["{ \"Create\": { \"IndexName\": \"string\", \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" }, \"ProvisionedThroughput\": { \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }"]
      - Requires: Value type should be `[String]`
     */
-    case awsDynamodbGlobalSecondaryIndexUpdates = "aws.dynamodb.global_secondary_index_updates"
+    case dynamodbGlobalSecondaryIndexUpdates = "aws.dynamodb.global_secondary_index_updates"
 
     /**
      The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field
@@ -86,7 +86,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbGlobalSecondaryIndexes] = ["{ \"IndexName\": \"string\", \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" }, \"ProvisionedThroughput\": { \"ReadCapacityUnits\": number, \"WriteCapacityUnits\": number } }"]
      - Requires: Value type should be `[String]`
     */
-    case awsDynamodbGlobalSecondaryIndexes = "aws.dynamodb.global_secondary_indexes"
+    case dynamodbGlobalSecondaryIndexes = "aws.dynamodb.global_secondary_indexes"
 
     /**
      The value of the `IndexName` request parameter.
@@ -94,7 +94,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbIndexName] = "name_to_group"
      - Requires: Value type should be `String`
     */
-    case awsDynamodbIndexName = "aws.dynamodb.index_name"
+    case dynamodbIndexName = "aws.dynamodb.index_name"
 
     /**
      The JSON-serialized value of the `ItemCollectionMetrics` response field.
@@ -102,7 +102,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbItemCollectionMetrics] = "{ \"string\" : [ { \"ItemCollectionKey\": { \"string\" : { \"B\": blob, \"BOOL\": boolean, \"BS\": [ blob ], \"L\": [ \"AttributeValue\" ], \"M\": { \"string\" : \"AttributeValue\" }, \"N\": \"string\", \"NS\": [ \"string\" ], \"NULL\": boolean, \"S\": \"string\", \"SS\": [ \"string\" ] } }, \"SizeEstimateRangeGB\": [ number ] } ] }"
      - Requires: Value type should be `String`
     */
-    case awsDynamodbItemCollectionMetrics = "aws.dynamodb.item_collection_metrics"
+    case dynamodbItemCollectionMetrics = "aws.dynamodb.item_collection_metrics"
 
     /**
      The value of the `Limit` request parameter.
@@ -110,7 +110,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbLimit] = 10
      - Requires: Value type should be `Int`
     */
-    case awsDynamodbLimit = "aws.dynamodb.limit"
+    case dynamodbLimit = "aws.dynamodb.limit"
 
     /**
      The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field.
@@ -118,7 +118,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbLocalSecondaryIndexes] = ["{ \"IndexArn\": \"string\", \"IndexName\": \"string\", \"IndexSizeBytes\": number, \"ItemCount\": number, \"KeySchema\": [ { \"AttributeName\": \"string\", \"KeyType\": \"string\" } ], \"Projection\": { \"NonKeyAttributes\": [ \"string\" ], \"ProjectionType\": \"string\" } }"]
      - Requires: Value type should be `[String]`
     */
-    case awsDynamodbLocalSecondaryIndexes = "aws.dynamodb.local_secondary_indexes"
+    case dynamodbLocalSecondaryIndexes = "aws.dynamodb.local_secondary_indexes"
 
     /**
      The value of the `ProjectionExpression` request parameter.
@@ -128,7 +128,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbProjection] = "Title, Description, RelatedItems, ProductReviews"
      - Requires: Value type should be `String`
     */
-    case awsDynamodbProjection = "aws.dynamodb.projection"
+    case dynamodbProjection = "aws.dynamodb.projection"
 
     /**
      The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter.
@@ -137,7 +137,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbProvisionedReadCapacity] = 2.0
      - Requires: Value type should be `Double`
     */
-    case awsDynamodbProvisionedReadCapacity = "aws.dynamodb.provisioned_read_capacity"
+    case dynamodbProvisionedReadCapacity = "aws.dynamodb.provisioned_read_capacity"
 
     /**
      The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter.
@@ -146,13 +146,13 @@ extension SemanticConventions {
       attributes[.awsDynamodbProvisionedWriteCapacity] = 2.0
      - Requires: Value type should be `Double`
     */
-    case awsDynamodbProvisionedWriteCapacity = "aws.dynamodb.provisioned_write_capacity"
+    case dynamodbProvisionedWriteCapacity = "aws.dynamodb.provisioned_write_capacity"
 
     /**
      The value of the `ScanIndexForward` request parameter.
      - Requires: Value type should be `Bool`
     */
-    case awsDynamodbScanForward = "aws.dynamodb.scan_forward"
+    case dynamodbScanForward = "aws.dynamodb.scan_forward"
 
     /**
      The value of the `ScannedCount` response parameter.
@@ -160,7 +160,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbScannedCount] = 50
      - Requires: Value type should be `Int`
     */
-    case awsDynamodbScannedCount = "aws.dynamodb.scanned_count"
+    case dynamodbScannedCount = "aws.dynamodb.scanned_count"
 
     /**
      The value of the `Segment` request parameter.
@@ -168,7 +168,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbSegment] = 10
      - Requires: Value type should be `Int`
     */
-    case awsDynamodbSegment = "aws.dynamodb.segment"
+    case dynamodbSegment = "aws.dynamodb.segment"
 
     /**
      The value of the `Select` request parameter.
@@ -177,7 +177,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbSelect] = "COUNT"
      - Requires: Value type should be `String`
     */
-    case awsDynamodbSelect = "aws.dynamodb.select"
+    case dynamodbSelect = "aws.dynamodb.select"
 
     /**
      The number of items in the `TableNames` response parameter.
@@ -185,7 +185,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbTableCount] = 20
      - Requires: Value type should be `Int`
     */
-    case awsDynamodbTableCount = "aws.dynamodb.table_count"
+    case dynamodbTableCount = "aws.dynamodb.table_count"
 
     /**
      The keys in the `RequestItems` object field.
@@ -193,7 +193,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbTableNames] = ["Users", "Cats"]
      - Requires: Value type should be `[String]`
     */
-    case awsDynamodbTableNames = "aws.dynamodb.table_names"
+    case dynamodbTableNames = "aws.dynamodb.table_names"
 
     /**
      The value of the `TotalSegments` request parameter.
@@ -201,7 +201,7 @@ extension SemanticConventions {
       attributes[.awsDynamodbTotalSegments] = 100
      - Requires: Value type should be `Int`
     */
-    case awsDynamodbTotalSegments = "aws.dynamodb.total_segments"
+    case dynamodbTotalSegments = "aws.dynamodb.total_segments"
 
     /**
      The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).
@@ -209,7 +209,7 @@ extension SemanticConventions {
       attributes[.awsEcsClusterArn] = "arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster"
      - Requires: Value type should be `String`
     */
-    case awsEcsClusterArn = "aws.ecs.cluster.arn"
+    case ecsClusterArn = "aws.ecs.cluster.arn"
 
     /**
      The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).
@@ -217,13 +217,13 @@ extension SemanticConventions {
       attributes[.awsEcsContainerArn] = "arn:aws:ecs:us-west-1:123456789123:container/32624152-9086-4f0e-acae-1a75b14fe4d9"
      - Requires: Value type should be `String`
     */
-    case awsEcsContainerArn = "aws.ecs.container.arn"
+    case ecsContainerArn = "aws.ecs.container.arn"
 
     /**
      The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
-     - Requires: Value should be one of [`/output/Attributes/Aws_attributes.swift.AwsEcsLaunchtypeValues`](x-source-tag://otelAwsEcsLaunchtypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Aws_attributes.swift.EcsLaunchtypeValues`](x-source-tag://otelEcsLaunchtypeValues) (of type `String`)
     */
-    case awsEcsLaunchtype = "aws.ecs.launchtype"
+    case ecsLaunchtype = "aws.ecs.launchtype"
 
     /**
      The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids).
@@ -232,7 +232,7 @@ extension SemanticConventions {
       attributes[.awsEcsTaskArn] = "arn:aws:ecs:us-west-1:123456789123:task/my-cluster/task-id/23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd"
      - Requires: Value type should be `String`
     */
-    case awsEcsTaskArn = "aws.ecs.task.arn"
+    case ecsTaskArn = "aws.ecs.task.arn"
 
     /**
      The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task.
@@ -240,7 +240,7 @@ extension SemanticConventions {
       attributes[.awsEcsTaskFamily] = "opentelemetry-family"
      - Requires: Value type should be `String`
     */
-    case awsEcsTaskFamily = "aws.ecs.task.family"
+    case ecsTaskFamily = "aws.ecs.task.family"
 
     /**
      The ID of a running ECS task. The ID MUST be extracted from `task.arn`.
@@ -249,7 +249,7 @@ extension SemanticConventions {
       attributes[.awsEcsTaskId] = "23ebb8ac-c18f-46c6-8bbe-d55d0e37cfbd"
      - Requires: Value type should be `String`
     */
-    case awsEcsTaskId = "aws.ecs.task.id"
+    case ecsTaskId = "aws.ecs.task.id"
 
     /**
      The revision for the task definition used to create the ECS task.
@@ -258,7 +258,7 @@ extension SemanticConventions {
       attributes[.awsEcsTaskRevision] = "26"
      - Requires: Value type should be `String`
     */
-    case awsEcsTaskRevision = "aws.ecs.task.revision"
+    case ecsTaskRevision = "aws.ecs.task.revision"
 
     /**
      The ARN of an EKS cluster.
@@ -266,7 +266,7 @@ extension SemanticConventions {
       attributes[.awsEksClusterArn] = "arn:aws:ecs:us-west-2:123456789123:cluster/my-cluster"
      - Requires: Value type should be `String`
     */
-    case awsEksClusterArn = "aws.eks.cluster.arn"
+    case eksClusterArn = "aws.eks.cluster.arn"
 
     /**
      The AWS extended request ID as returned in the response header `x-amz-id-2`.
@@ -274,7 +274,7 @@ extension SemanticConventions {
       attributes[.awsExtendedRequestId] = "wzHcyEWfmOGDIE5QOhTAqFDoDWP3y8IUvpNINCwL9N4TEHbUw0/gZJ+VZTmCNCWR7fezEN3eCiQ="
      - Requires: Value type should be `String`
     */
-    case awsExtendedRequestId = "aws.extended_request_id"
+    case extendedRequestId = "aws.extended_request_id"
 
     /**
      The name of the AWS Kinesis [stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) the request refers to. Corresponds to the `--stream-name` parameter of the Kinesis [describe-stream](https://docs.aws.amazon.com/cli/latest/reference/kinesis/describe-stream.html) operation.
@@ -282,7 +282,7 @@ extension SemanticConventions {
       attributes[.awsKinesisStreamName] = "some-stream-name"
      - Requires: Value type should be `String`
     */
-    case awsKinesisStreamName = "aws.kinesis.stream_name"
+    case kinesisStreamName = "aws.kinesis.stream_name"
 
     /**
      The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable).
@@ -291,7 +291,7 @@ extension SemanticConventions {
      - Note: This may be different from `cloud.resource_id` if an alias is involved.
      - Requires: Value type should be `String`
     */
-    case awsLambdaInvokedArn = "aws.lambda.invoked_arn"
+    case lambdaInvokedArn = "aws.lambda.invoked_arn"
 
     /**
      The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping.
@@ -299,7 +299,7 @@ extension SemanticConventions {
       attributes[.awsLambdaResourceMappingId] = "587ad24b-03b9-4413-8202-bbd56b36e5b7"
      - Requires: Value type should be `String`
     */
-    case awsLambdaResourceMappingId = "aws.lambda.resource_mapping.id"
+    case lambdaResourceMappingId = "aws.lambda.resource_mapping.id"
 
     /**
      The Amazon Resource Name(s) (ARN) of the AWS log group(s).
@@ -308,7 +308,7 @@ extension SemanticConventions {
      - Note: See the [log group ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format).
      - Requires: Value type should be `[String]`
     */
-    case awsLogGroupArns = "aws.log.group.arns"
+    case logGroupArns = "aws.log.group.arns"
 
     /**
      The name(s) of the AWS log group(s) an application is writing to.
@@ -317,7 +317,7 @@ extension SemanticConventions {
      - Note: Multiple log groups must be supported for cases like multi-container applications, where a single application has sidecar containers, and each write to their own log group.
      - Requires: Value type should be `[String]`
     */
-    case awsLogGroupNames = "aws.log.group.names"
+    case logGroupNames = "aws.log.group.names"
 
     /**
      The ARN(s) of the AWS log stream(s).
@@ -326,7 +326,7 @@ extension SemanticConventions {
      - Note: See the [log stream ARN format documentation](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/iam-access-control-overview-cwl.html#CWL_ARN_Format). One log group can contain several log streams, so these ARNs necessarily identify both a log group and a log stream.
      - Requires: Value type should be `[String]`
     */
-    case awsLogStreamArns = "aws.log.stream.arns"
+    case logStreamArns = "aws.log.stream.arns"
 
     /**
      The name(s) of the AWS log stream(s) an application is writing to.
@@ -334,7 +334,7 @@ extension SemanticConventions {
       attributes[.awsLogStreamNames] = ["logs/main/10838bed-421f-43ef-870a-f43feacbbb5b"]
      - Requires: Value type should be `[String]`
     */
-    case awsLogStreamNames = "aws.log.stream.names"
+    case logStreamNames = "aws.log.stream.names"
 
     /**
      The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`.
@@ -343,7 +343,7 @@ extension SemanticConventions {
       attributes[.awsRequestId] = "C9ER4AJX75574TDJ"
      - Requires: Value type should be `String`
     */
-    case awsRequestId = "aws.request_id"
+    case requestId = "aws.request_id"
 
     /**
      The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
@@ -353,7 +353,7 @@ extension SemanticConventions {
      This applies to almost all S3 operations except `list-buckets`.
      - Requires: Value type should be `String`
     */
-    case awsS3Bucket = "aws.s3.bucket"
+    case s3Bucket = "aws.s3.bucket"
 
     /**
      The source object (in the form `bucket`/`key`) for the copy operation.
@@ -367,7 +367,7 @@ extension SemanticConventions {
      - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
      - Requires: Value type should be `String`
     */
-    case awsS3CopySource = "aws.s3.copy_source"
+    case s3CopySource = "aws.s3.copy_source"
 
     /**
      The delete request container that specifies the objects to be deleted.
@@ -378,7 +378,7 @@ extension SemanticConventions {
      [delete-objects operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/delete-objects.html).
      - Requires: Value type should be `String`
     */
-    case awsS3Delete = "aws.s3.delete"
+    case s3Delete = "aws.s3.delete"
 
     /**
      The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
@@ -402,7 +402,7 @@ extension SemanticConventions {
      - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
      - Requires: Value type should be `String`
     */
-    case awsS3Key = "aws.s3.key"
+    case s3Key = "aws.s3.key"
 
     /**
      The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000.
@@ -414,7 +414,7 @@ extension SemanticConventions {
      [upload-part operation within the S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part.html).
      - Requires: Value type should be `Int`
     */
-    case awsS3PartNumber = "aws.s3.part_number"
+    case s3PartNumber = "aws.s3.part_number"
 
     /**
      Upload ID that identifies the multipart upload.
@@ -431,7 +431,7 @@ extension SemanticConventions {
      - [upload-part-copy](https://docs.aws.amazon.com/cli/latest/reference/s3api/upload-part-copy.html)
      - Requires: Value type should be `String`
     */
-    case awsS3UploadId = "aws.s3.upload_id"
+    case s3UploadId = "aws.s3.upload_id"
 
     /**
      The ARN of the Secret stored in the Secrets Mangger
@@ -439,7 +439,7 @@ extension SemanticConventions {
       attributes[.awsSecretsmanagerSecretArn] = "arn:aws:secretsmanager:us-east-1:123456789012:secret:SecretName-6RandomCharacters"
      - Requires: Value type should be `String`
     */
-    case awsSecretsmanagerSecretArn = "aws.secretsmanager.secret.arn"
+    case secretsmanagerSecretArn = "aws.secretsmanager.secret.arn"
 
     /**
      The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel.
@@ -447,7 +447,7 @@ extension SemanticConventions {
       attributes[.awsSnsTopicArn] = "arn:aws:sns:us-east-1:123456789012:mystack-mytopic-NZJ5JSMVGFIE"
      - Requires: Value type should be `String`
     */
-    case awsSnsTopicArn = "aws.sns.topic.arn"
+    case snsTopicArn = "aws.sns.topic.arn"
 
     /**
      The URL of the AWS SQS Queue. It's a unique identifier for a queue in Amazon Simple Queue Service (SQS) and is used to access the queue and perform actions on it.
@@ -455,7 +455,7 @@ extension SemanticConventions {
       attributes[.awsSqsQueueUrl] = "https://sqs.us-east-1.amazonaws.com/123456789012/MyQueue"
      - Requires: Value type should be `String`
     */
-    case awsSqsQueueUrl = "aws.sqs.queue.url"
+    case sqsQueueUrl = "aws.sqs.queue.url"
 
     /**
      The ARN of the AWS Step Functions Activity.
@@ -463,7 +463,7 @@ extension SemanticConventions {
       attributes[.awsStepFunctionsActivityArn] = "arn:aws:states:us-east-1:123456789012:activity:get-greeting"
      - Requires: Value type should be `String`
     */
-    case awsStepFunctionsActivityArn = "aws.step_functions.activity.arn"
+    case stepFunctionsActivityArn = "aws.step_functions.activity.arn"
 
     /**
      The ARN of the AWS Step Functions State Machine.
@@ -471,22 +471,22 @@ extension SemanticConventions {
       attributes[.awsStepFunctionsStateMachineArn] = "arn:aws:states:us-east-1:123456789012:stateMachine:myStateMachine:1"
      - Requires: Value type should be `String`
     */
-    case awsStepFunctionsStateMachineArn = "aws.step_functions.state_machine.arn"
+    case stepFunctionsStateMachineArn = "aws.step_functions.state_machine.arn"
 
 
     /** 
       The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
     */
-    /// - Tag: otelAwsEcsLaunchtypeValues
-    public struct AwsEcsLaunchtypeValues: CustomStringConvertible {
+    /// - Tag: otelEcsLaunchtypeValues
+    public struct EcsLaunchtypeValues: CustomStringConvertible {
       /**
       Amazon EC2
       */
-      public static let ec2 = AwsEcsLaunchtypeValues("ec2") 
+      public static let ec2 = EcsLaunchtypeValues("ec2") 
       /**
       Amazon Fargate
       */
-      public static let fargate = AwsEcsLaunchtypeValues("fargate") 
+      public static let fargate = EcsLaunchtypeValues("fargate") 
 
       internal let value: String 
 

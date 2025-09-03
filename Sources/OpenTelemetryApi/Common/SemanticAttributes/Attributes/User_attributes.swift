@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.userEmail] = "a.einstein@example.com"
      - Requires: Value type should be `String`
     */
-    case userEmail = "user.email"
+    case email = "user.email"
 
     /**
      User's full name
@@ -23,7 +23,7 @@ extension SemanticConventions {
       attributes[.userFullName] = "Albert Einstein"
      - Requires: Value type should be `String`
     */
-    case userFullName = "user.full_name"
+    case fullName = "user.full_name"
 
     /**
      Unique user hash to correlate information for a user in anonymized form.
@@ -32,7 +32,7 @@ extension SemanticConventions {
      - Note: Useful if `user.id` or `user.name` contain confidential information and cannot be used.
      - Requires: Value type should be `String`
     */
-    case userHash = "user.hash"
+    case hash = "user.hash"
 
     /**
      Unique identifier of the user.
@@ -40,7 +40,7 @@ extension SemanticConventions {
       attributes[.userId] = "S-1-5-21-202424912787-2692429404-2351956786-1000"
      - Requires: Value type should be `String`
     */
-    case userId = "user.id"
+    case id = "user.id"
 
     /**
      Short name or login/username of the user.
@@ -48,7 +48,7 @@ extension SemanticConventions {
       attributes[.userName] = "a.einstein"
      - Requires: Value type should be `String`
     */
-    case userName = "user.name"
+    case name = "user.name"
 
     /**
      Array of user roles at the time of the event.
@@ -56,7 +56,7 @@ extension SemanticConventions {
       attributes[.userRoles] = ["admin", "reporting_user"]
      - Requires: Value type should be `[String]`
     */
-    case userRoles = "user.roles"
+    case roles = "user.roles"
 
   }
 }

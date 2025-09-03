@@ -16,7 +16,7 @@ extension SemanticConventions {
    attributes[.sessionId] = "00112233-4455-6677-8899-aabbccddeeff"
      - Requires: Value type should be `String`
     */
-    case sessionId = "session.id"
+    case id = "session.id"
 
     /**
      The previous `session.id` for this user, when known.
@@ -25,7 +25,7 @@ extension SemanticConventions {
    attributes[.sessionPreviousId] = "00112233-4455-6677-8899-aabbccddeeff"
      - Requires: Value type should be `String`
     */
-    case sessionPreviousId = "session.previous_id"
+    case previousId = "session.previous_id"
 
   }
 }

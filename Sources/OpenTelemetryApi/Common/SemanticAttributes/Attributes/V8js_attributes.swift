@@ -11,39 +11,39 @@ extension SemanticConventions {
   enum V8js: String {
     /**
      The type of garbage collection.
-     - Requires: Value should be one of [`/output/Attributes/V8js_attributes.swift.V8jsGcTypeValues`](x-source-tag://otelV8jsGcTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/V8js_attributes.swift.GcTypeValues`](x-source-tag://otelGcTypeValues) (of type `String`)
     */
-    case v8jsGcType = "v8js.gc.type"
+    case gcType = "v8js.gc.type"
 
     /**
      The name of the space type of heap memory.
      - Note: Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
-     - Requires: Value should be one of [`/output/Attributes/V8js_attributes.swift.V8jsHeapSpaceNameValues`](x-source-tag://otelV8jsHeapSpaceNameValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/V8js_attributes.swift.HeapSpaceNameValues`](x-source-tag://otelHeapSpaceNameValues) (of type `String`)
     */
-    case v8jsHeapSpaceName = "v8js.heap.space.name"
+    case heapSpaceName = "v8js.heap.space.name"
 
 
     /** 
       The type of garbage collection.
     */
-    /// - Tag: otelV8jsGcTypeValues
-    public struct V8jsGcTypeValues: CustomStringConvertible {
+    /// - Tag: otelGcTypeValues
+    public struct GcTypeValues: CustomStringConvertible {
       /**
       Major (Mark Sweep Compact).
       */
-      public static let major = V8jsGcTypeValues("major") 
+      public static let major = GcTypeValues("major") 
       /**
       Minor (Scavenge).
       */
-      public static let minor = V8jsGcTypeValues("minor") 
+      public static let minor = GcTypeValues("minor") 
       /**
       Incremental (Incremental Marking).
       */
-      public static let incremental = V8jsGcTypeValues("incremental") 
+      public static let incremental = GcTypeValues("incremental") 
       /**
       Weak Callbacks (Process Weak Callbacks).
       */
-      public static let weakcb = V8jsGcTypeValues("weakcb") 
+      public static let weakcb = GcTypeValues("weakcb") 
 
       internal let value: String 
 
@@ -59,28 +59,28 @@ extension SemanticConventions {
     /** 
       The name of the space type of heap memory.
     */
-    /// - Tag: otelV8jsHeapSpaceNameValues
-    public struct V8jsHeapSpaceNameValues: CustomStringConvertible {
+    /// - Tag: otelHeapSpaceNameValues
+    public struct HeapSpaceNameValues: CustomStringConvertible {
       /**
       New memory space.
       */
-      public static let newSpace = V8jsHeapSpaceNameValues("new_space") 
+      public static let newSpace = HeapSpaceNameValues("new_space") 
       /**
       Old memory space.
       */
-      public static let oldSpace = V8jsHeapSpaceNameValues("old_space") 
+      public static let oldSpace = HeapSpaceNameValues("old_space") 
       /**
       Code memory space.
       */
-      public static let codeSpace = V8jsHeapSpaceNameValues("code_space") 
+      public static let codeSpace = HeapSpaceNameValues("code_space") 
       /**
       Map memory space.
       */
-      public static let mapSpace = V8jsHeapSpaceNameValues("map_space") 
+      public static let mapSpace = HeapSpaceNameValues("map_space") 
       /**
       Large object memory space.
       */
-      public static let largeObjectSpace = V8jsHeapSpaceNameValues("large_object_space") 
+      public static let largeObjectSpace = HeapSpaceNameValues("large_object_space") 
 
       internal let value: String 
 

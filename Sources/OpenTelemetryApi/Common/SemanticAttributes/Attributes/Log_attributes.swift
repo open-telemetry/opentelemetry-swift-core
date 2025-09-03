@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.logFileName] = "audit.log"
      - Requires: Value type should be `String`
     */
-    case logFileName = "log.file.name"
+    case fileName = "log.file.name"
 
     /**
      The basename of the file, with symlinks resolved.
@@ -23,7 +23,7 @@ extension SemanticConventions {
       attributes[.logFileNameResolved] = "uuid.log"
      - Requires: Value type should be `String`
     */
-    case logFileNameResolved = "log.file.name_resolved"
+    case fileNameResolved = "log.file.name_resolved"
 
     /**
      The full path to the file.
@@ -31,7 +31,7 @@ extension SemanticConventions {
       attributes[.logFilePath] = "/var/log/mysql/audit.log"
      - Requires: Value type should be `String`
     */
-    case logFilePath = "log.file.path"
+    case filePath = "log.file.path"
 
     /**
      The full path to the file, with symlinks resolved.
@@ -39,13 +39,13 @@ extension SemanticConventions {
       attributes[.logFilePathResolved] = "/var/lib/docker/uuid.log"
      - Requires: Value type should be `String`
     */
-    case logFilePathResolved = "log.file.path_resolved"
+    case filePathResolved = "log.file.path_resolved"
 
     /**
      The stream associated with the log. See below for a list of well-known values.
-     - Requires: Value should be one of [`/output/Attributes/Log_attributes.swift.LogIostreamValues`](x-source-tag://otelLogIostreamValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Log_attributes.swift.IostreamValues`](x-source-tag://otelIostreamValues) (of type `String`)
     */
-    case logIostream = "log.iostream"
+    case iostream = "log.iostream"
 
     /**
      The complete original Log Record.
@@ -55,7 +55,7 @@ extension SemanticConventions {
      - Note: This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
      - Requires: Value type should be `String`
     */
-    case logRecordOriginal = "log.record.original"
+    case recordOriginal = "log.record.original"
 
     /**
      A unique identifier for the Log Record.
@@ -65,22 +65,22 @@ extension SemanticConventions {
      The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
      - Requires: Value type should be `String`
     */
-    case logRecordUid = "log.record.uid"
+    case recordUid = "log.record.uid"
 
 
     /** 
       The stream associated with the log. See below for a list of well-known values.
     */
-    /// - Tag: otelLogIostreamValues
-    public struct LogIostreamValues: CustomStringConvertible {
+    /// - Tag: otelIostreamValues
+    public struct IostreamValues: CustomStringConvertible {
       /**
       Logs from stdout stream
       */
-      public static let stdout = LogIostreamValues("stdout") 
+      public static let stdout = IostreamValues("stdout") 
       /**
       Events from stderr stream
       */
-      public static let stderr = LogIostreamValues("stderr") 
+      public static let stderr = IostreamValues("stderr") 
 
       internal let value: String 
 

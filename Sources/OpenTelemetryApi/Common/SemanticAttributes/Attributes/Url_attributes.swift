@@ -19,7 +19,7 @@ extension SemanticConventions {
      - Note: In some cases a URL may refer to an IP and/or port directly, without a domain name. In this case, the IP address would go to the domain field. If the URL contains a [literal IPv6 address](https://www.rfc-editor.org/rfc/rfc2732#section-2) enclosed by `[` and `]`, the `[` and `]` characters should also be captured in the domain field.
      - Requires: Value type should be `String`
     */
-    case urlDomain = "url.domain"
+    case domain = "url.domain"
 
     /**
      The file extension extracted from the `url.full`, excluding the leading dot.
@@ -29,7 +29,7 @@ extension SemanticConventions {
      - Note: The file extension is only set if it exists, as not every url has a file extension. When the file name has multiple extensions `example.tar.gz`, only the last one should be captured `gz`, not `tar.gz`.
      - Requires: Value type should be `String`
     */
-    case urlExtension = "url.extension"
+    case _extension = "url.extension"
 
     /**
      The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component
@@ -37,7 +37,7 @@ extension SemanticConventions {
       attributes[.urlFragment] = "SemConv"
      - Requires: Value type should be `String`
     */
-    case urlFragment = "url.fragment"
+    case fragment = "url.fragment"
 
     /**
      Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986)
@@ -69,7 +69,7 @@ extension SemanticConventions {
      `https://www.example.com/path?color=blue&sig=REDACTED`.
      - Requires: Value type should be `String`
     */
-    case urlFull = "url.full"
+    case full = "url.full"
 
     /**
      Unmodified original URL as seen in the event source.
@@ -80,7 +80,7 @@ extension SemanticConventions {
      `url.original` might contain credentials passed via URL in form of `https://username:password@www.example.com/`. In such case password and username SHOULD NOT be redacted and attribute's value SHOULD remain the same.
      - Requires: Value type should be `String`
     */
-    case urlOriginal = "url.original"
+    case original = "url.original"
 
     /**
      The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component
@@ -89,7 +89,7 @@ extension SemanticConventions {
      - Note: Sensitive content provided in `url.path` SHOULD be scrubbed when instrumentations can identify it.
      - Requires: Value type should be `String`
     */
-    case urlPath = "url.path"
+    case path = "url.path"
 
     /**
      Port extracted from the `url.full`
@@ -97,7 +97,7 @@ extension SemanticConventions {
       attributes[.urlPort] = 443
      - Requires: Value type should be `Int`
     */
-    case urlPort = "url.port"
+    case port = "url.port"
 
     /**
      The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component
@@ -119,7 +119,7 @@ extension SemanticConventions {
      `q=OpenTelemetry&sig=REDACTED`.
      - Requires: Value type should be `String`
     */
-    case urlQuery = "url.query"
+    case query = "url.query"
 
     /**
      The highest registered url domain, stripped of the subdomain.
@@ -129,7 +129,7 @@ extension SemanticConventions {
      - Note: This value can be determined precisely with the [public suffix list](https://publicsuffix.org/). For example, the registered domain for `foo.example.com` is `example.com`. Trying to approximate this by simply taking the last two labels will not work well for TLDs such as `co.uk`.
      - Requires: Value type should be `String`
     */
-    case urlRegisteredDomain = "url.registered_domain"
+    case registeredDomain = "url.registered_domain"
 
     /**
      The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol.
@@ -139,7 +139,7 @@ extension SemanticConventions {
       attributes[.urlScheme] = "telnet"
      - Requires: Value type should be `String`
     */
-    case urlScheme = "url.scheme"
+    case scheme = "url.scheme"
 
     /**
      The subdomain portion of a fully qualified domain name includes all of the names except the host name under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain.
@@ -149,7 +149,7 @@ extension SemanticConventions {
      - Note: The subdomain portion of `www.east.mydomain.co.uk` is `east`. If the domain has multiple levels of subdomain, such as `sub2.sub1.example.com`, the subdomain field should contain `sub2.sub1`, with no trailing period.
      - Requires: Value type should be `String`
     */
-    case urlSubdomain = "url.subdomain"
+    case subdomain = "url.subdomain"
 
     /**
      The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
@@ -159,7 +159,7 @@ extension SemanticConventions {
       attributes[.urlTemplate] = "/users?id={id}"
      - Requires: Value type should be `String`
     */
-    case urlTemplate = "url.template"
+    case template = "url.template"
 
     /**
      The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name. For example, the top level domain for example.com is `com`.
@@ -169,7 +169,7 @@ extension SemanticConventions {
      - Note: This value can be determined precisely with the [public suffix list](https://publicsuffix.org/).
      - Requires: Value type should be `String`
     */
-    case urlTopLevelDomain = "url.top_level_domain"
+    case topLevelDomain = "url.top_level_domain"
 
   }
 }

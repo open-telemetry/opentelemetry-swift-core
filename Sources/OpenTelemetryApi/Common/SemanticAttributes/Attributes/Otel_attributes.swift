@@ -29,7 +29,7 @@ extension SemanticConventions {
      These values will therefore be reused in the case of an application restart.
      - Requires: Value type should be `String`
     */
-    case otelComponentName = "otel.component.name"
+    case componentName = "otel.component.name"
 
     /**
      A name identifying the type of the OpenTelemetry component.
@@ -38,9 +38,9 @@ extension SemanticConventions {
       attributes[.otelComponentType] = com.example.MySpanExporter
      - Note: If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
      E.g. for Java the fully qualified classname SHOULD be used in this case.
-     - Requires: Value should be one of [`/output/Attributes/Otel_attributes.swift.OtelComponentTypeValues`](x-source-tag://otelOtelComponentTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Otel_attributes.swift.ComponentTypeValues`](x-source-tag://otelComponentTypeValues) (of type `String`)
     */
-    case otelComponentType = "otel.component.type"
+    case componentType = "otel.component.type"
 
     /**
      The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP).
@@ -48,7 +48,7 @@ extension SemanticConventions {
       attributes[.otelScopeName] = "io.opentelemetry.contrib.mongodb"
      - Requires: Value type should be `String`
     */
-    case otelScopeName = "otel.scope.name"
+    case scopeName = "otel.scope.name"
 
     /**
      The schema URL of the instrumentation scope.
@@ -56,7 +56,7 @@ extension SemanticConventions {
       attributes[.otelScopeSchemaUrl] = "https://opentelemetry.io/schemas/1.31.0"
      - Requires: Value type should be `String`
     */
-    case otelScopeSchemaUrl = "otel.scope.schema_url"
+    case scopeSchemaUrl = "otel.scope.schema_url"
 
     /**
      The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
@@ -64,25 +64,25 @@ extension SemanticConventions {
       attributes[.otelScopeVersion] = "1.0.0"
      - Requires: Value type should be `String`
     */
-    case otelScopeVersion = "otel.scope.version"
+    case scopeVersion = "otel.scope.version"
 
     /**
      Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)
-     - Requires: Value should be one of [`/output/Attributes/Otel_attributes.swift.OtelSpanParentOriginValues`](x-source-tag://otelOtelSpanParentOriginValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Otel_attributes.swift.SpanParentOriginValues`](x-source-tag://otelSpanParentOriginValues) (of type `String`)
     */
-    case otelSpanParentOrigin = "otel.span.parent.origin"
+    case spanParentOrigin = "otel.span.parent.origin"
 
     /**
      The result value of the sampler for this span
-     - Requires: Value should be one of [`/output/Attributes/Otel_attributes.swift.OtelSpanSamplingResultValues`](x-source-tag://otelOtelSpanSamplingResultValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Otel_attributes.swift.SpanSamplingResultValues`](x-source-tag://otelSpanSamplingResultValues) (of type `String`)
     */
-    case otelSpanSamplingResult = "otel.span.sampling_result"
+    case spanSamplingResult = "otel.span.sampling_result"
 
     /**
      Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET.
-     - Requires: Value should be one of [`/output/Attributes/Otel_attributes.swift.OtelStatusCodeValues`](x-source-tag://otelOtelStatusCodeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Otel_attributes.swift.StatusCodeValues`](x-source-tag://otelStatusCodeValues) (of type `String`)
     */
-    case otelStatusCode = "otel.status_code"
+    case statusCode = "otel.status_code"
 
     /**
      Description of the Status if it has a value, otherwise not set.
@@ -90,78 +90,78 @@ extension SemanticConventions {
       attributes[.otelStatusDescription] = "resource not found"
      - Requires: Value type should be `String`
     */
-    case otelStatusDescription = "otel.status_description"
+    case statusDescription = "otel.status_description"
 
 
     /** 
       A name identifying the type of the OpenTelemetry component.
     */
-    /// - Tag: otelOtelComponentTypeValues
-    public struct OtelComponentTypeValues: CustomStringConvertible {
+    /// - Tag: otelComponentTypeValues
+    public struct ComponentTypeValues: CustomStringConvertible {
       /**
       The builtin SDK batching span processor
       */
-      public static let batchingSpanProcessor = OtelComponentTypeValues("batching_span_processor") 
+      public static let batchingSpanProcessor = ComponentTypeValues("batching_span_processor") 
       /**
       The builtin SDK simple span processor
       */
-      public static let simpleSpanProcessor = OtelComponentTypeValues("simple_span_processor") 
+      public static let simpleSpanProcessor = ComponentTypeValues("simple_span_processor") 
       /**
       The builtin SDK batching log record processor
       */
-      public static let batchingLogProcessor = OtelComponentTypeValues("batching_log_processor") 
+      public static let batchingLogProcessor = ComponentTypeValues("batching_log_processor") 
       /**
       The builtin SDK simple log record processor
       */
-      public static let simpleLogProcessor = OtelComponentTypeValues("simple_log_processor") 
+      public static let simpleLogProcessor = ComponentTypeValues("simple_log_processor") 
       /**
       OTLP span exporter over gRPC with protobuf serialization
       */
-      public static let otlpGrpcSpanExporter = OtelComponentTypeValues("otlp_grpc_span_exporter") 
+      public static let otlpGrpcSpanExporter = ComponentTypeValues("otlp_grpc_span_exporter") 
       /**
       OTLP span exporter over HTTP with protobuf serialization
       */
-      public static let otlpHttpSpanExporter = OtelComponentTypeValues("otlp_http_span_exporter") 
+      public static let otlpHttpSpanExporter = ComponentTypeValues("otlp_http_span_exporter") 
       /**
       OTLP span exporter over HTTP with JSON serialization
       */
-      public static let otlpHttpJsonSpanExporter = OtelComponentTypeValues("otlp_http_json_span_exporter") 
+      public static let otlpHttpJsonSpanExporter = ComponentTypeValues("otlp_http_json_span_exporter") 
       /**
       Zipkin span exporter over HTTP
       */
-      public static let zipkinHttpSpanExporter = OtelComponentTypeValues("zipkin_http_span_exporter") 
+      public static let zipkinHttpSpanExporter = ComponentTypeValues("zipkin_http_span_exporter") 
       /**
       OTLP log record exporter over gRPC with protobuf serialization
       */
-      public static let otlpGrpcLogExporter = OtelComponentTypeValues("otlp_grpc_log_exporter") 
+      public static let otlpGrpcLogExporter = ComponentTypeValues("otlp_grpc_log_exporter") 
       /**
       OTLP log record exporter over HTTP with protobuf serialization
       */
-      public static let otlpHttpLogExporter = OtelComponentTypeValues("otlp_http_log_exporter") 
+      public static let otlpHttpLogExporter = ComponentTypeValues("otlp_http_log_exporter") 
       /**
       OTLP log record exporter over HTTP with JSON serialization
       */
-      public static let otlpHttpJsonLogExporter = OtelComponentTypeValues("otlp_http_json_log_exporter") 
+      public static let otlpHttpJsonLogExporter = ComponentTypeValues("otlp_http_json_log_exporter") 
       /**
       The builtin SDK periodically exporting metric reader
       */
-      public static let periodicMetricReader = OtelComponentTypeValues("periodic_metric_reader") 
+      public static let periodicMetricReader = ComponentTypeValues("periodic_metric_reader") 
       /**
       OTLP metric exporter over gRPC with protobuf serialization
       */
-      public static let otlpGrpcMetricExporter = OtelComponentTypeValues("otlp_grpc_metric_exporter") 
+      public static let otlpGrpcMetricExporter = ComponentTypeValues("otlp_grpc_metric_exporter") 
       /**
       OTLP metric exporter over HTTP with protobuf serialization
       */
-      public static let otlpHttpMetricExporter = OtelComponentTypeValues("otlp_http_metric_exporter") 
+      public static let otlpHttpMetricExporter = ComponentTypeValues("otlp_http_metric_exporter") 
       /**
       OTLP metric exporter over HTTP with JSON serialization
       */
-      public static let otlpHttpJsonMetricExporter = OtelComponentTypeValues("otlp_http_json_metric_exporter") 
+      public static let otlpHttpJsonMetricExporter = ComponentTypeValues("otlp_http_json_metric_exporter") 
       /**
       Prometheus metric exporter over HTTP with the default text-based format
       */
-      public static let prometheusHttpTextMetricExporter = OtelComponentTypeValues("prometheus_http_text_metric_exporter") 
+      public static let prometheusHttpTextMetricExporter = ComponentTypeValues("prometheus_http_text_metric_exporter") 
 
       internal let value: String 
 
@@ -177,20 +177,20 @@ extension SemanticConventions {
     /** 
       Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)
     */
-    /// - Tag: otelOtelSpanParentOriginValues
-    public struct OtelSpanParentOriginValues: CustomStringConvertible {
+    /// - Tag: otelSpanParentOriginValues
+    public struct SpanParentOriginValues: CustomStringConvertible {
       /**
       The span does not have a parent, it is a root span
       */
-      public static let none = OtelSpanParentOriginValues("none") 
+      public static let none = SpanParentOriginValues("none") 
       /**
       The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is false
       */
-      public static let local = OtelSpanParentOriginValues("local") 
+      public static let local = SpanParentOriginValues("local") 
       /**
       The span has a parent and the parent's span context [isRemote()](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote) is true
       */
-      public static let remote = OtelSpanParentOriginValues("remote") 
+      public static let remote = SpanParentOriginValues("remote") 
 
       internal let value: String 
 
@@ -206,20 +206,20 @@ extension SemanticConventions {
     /** 
       The result value of the sampler for this span
     */
-    /// - Tag: otelOtelSpanSamplingResultValues
-    public struct OtelSpanSamplingResultValues: CustomStringConvertible {
+    /// - Tag: otelSpanSamplingResultValues
+    public struct SpanSamplingResultValues: CustomStringConvertible {
       /**
       The span is not sampled and not recording
       */
-      public static let drop = OtelSpanSamplingResultValues("DROP") 
+      public static let drop = SpanSamplingResultValues("DROP") 
       /**
       The span is not sampled, but recording
       */
-      public static let recordOnly = OtelSpanSamplingResultValues("RECORD_ONLY") 
+      public static let recordOnly = SpanSamplingResultValues("RECORD_ONLY") 
       /**
       The span is sampled and recording
       */
-      public static let recordAndSample = OtelSpanSamplingResultValues("RECORD_AND_SAMPLE") 
+      public static let recordAndSample = SpanSamplingResultValues("RECORD_AND_SAMPLE") 
 
       internal let value: String 
 
@@ -235,16 +235,16 @@ extension SemanticConventions {
     /** 
       Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET.
     */
-    /// - Tag: otelOtelStatusCodeValues
-    public struct OtelStatusCodeValues: CustomStringConvertible {
+    /// - Tag: otelStatusCodeValues
+    public struct StatusCodeValues: CustomStringConvertible {
       /**
       The operation has been validated by an Application developer or Operator to have completed successfully.
       */
-      public static let ok = OtelStatusCodeValues("OK") 
+      public static let ok = StatusCodeValues("OK") 
       /**
       The operation contains an error.
       */
-      public static let error = OtelStatusCodeValues("ERROR") 
+      public static let error = StatusCodeValues("ERROR") 
 
       internal let value: String 
 

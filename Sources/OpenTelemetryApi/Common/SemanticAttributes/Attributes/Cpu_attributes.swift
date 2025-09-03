@@ -15,55 +15,55 @@ extension SemanticConventions {
       attributes[.cpuLogicalNumber] = 1
      - Requires: Value type should be `Int`
     */
-    case cpuLogicalNumber = "cpu.logical_number"
+    case logicalNumber = "cpu.logical_number"
 
     /**
      The mode of the CPU
       // Examples
       attributes[.cpuMode] = user
       attributes[.cpuMode] = system
-     - Requires: Value should be one of [`/output/Attributes/Cpu_attributes.swift.CpuModeValues`](x-source-tag://otelCpuModeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Cpu_attributes.swift.ModeValues`](x-source-tag://otelModeValues) (of type `String`)
     */
-    case cpuMode = "cpu.mode"
+    case mode = "cpu.mode"
 
 
     /** 
       The mode of the CPU
     */
-    /// - Tag: otelCpuModeValues
-    public struct CpuModeValues: CustomStringConvertible {
+    /// - Tag: otelModeValues
+    public struct ModeValues: CustomStringConvertible {
       /**
       User
       */
-      public static let user = CpuModeValues("user") 
+      public static let user = ModeValues("user") 
       /**
       System
       */
-      public static let system = CpuModeValues("system") 
+      public static let system = ModeValues("system") 
       /**
       Nice
       */
-      public static let nice = CpuModeValues("nice") 
+      public static let nice = ModeValues("nice") 
       /**
       Idle
       */
-      public static let idle = CpuModeValues("idle") 
+      public static let idle = ModeValues("idle") 
       /**
       IO Wait
       */
-      public static let iowait = CpuModeValues("iowait") 
+      public static let iowait = ModeValues("iowait") 
       /**
       Interrupt
       */
-      public static let interrupt = CpuModeValues("interrupt") 
+      public static let interrupt = ModeValues("interrupt") 
       /**
       Steal
       */
-      public static let steal = CpuModeValues("steal") 
+      public static let steal = ModeValues("steal") 
       /**
       Kernel
       */
-      public static let kernel = CpuModeValues("kernel") 
+      public static let kernel = ModeValues("kernel") 
 
       internal let value: String 
 

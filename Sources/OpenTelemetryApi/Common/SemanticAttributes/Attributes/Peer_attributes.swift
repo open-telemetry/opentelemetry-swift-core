@@ -16,7 +16,7 @@ extension SemanticConventions {
    attributes[.peerService] = "AuthTokenCache"
      - Requires: Value type should be `String`
     */
-    case peerService = "peer.service"
+    case service = "peer.service"
 
   }
 }

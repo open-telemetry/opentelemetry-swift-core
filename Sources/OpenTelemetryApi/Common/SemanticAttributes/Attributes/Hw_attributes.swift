@@ -16,7 +16,7 @@ extension SemanticConventions {
       attributes[.hwBatteryCapacity] = "50Wh"
      - Requires: Value type should be `String`
     */
-    case hwBatteryCapacity = "hw.battery.capacity"
+    case batteryCapacity = "hw.battery.capacity"
 
     /**
      Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc.
@@ -25,13 +25,13 @@ extension SemanticConventions {
       attributes[.hwBatteryChemistry] = "NiMH"
      - Requires: Value type should be `String`
     */
-    case hwBatteryChemistry = "hw.battery.chemistry"
+    case batteryChemistry = "hw.battery.chemistry"
 
     /**
      The current state of the battery
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.HwBatteryStateValues`](x-source-tag://otelHwBatteryStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.BatteryStateValues`](x-source-tag://otelBatteryStateValues) (of type `String`)
     */
-    case hwBatteryState = "hw.battery.state"
+    case batteryState = "hw.battery.state"
 
     /**
      BIOS version of the hardware component
@@ -39,7 +39,7 @@ extension SemanticConventions {
       attributes[.hwBiosVersion] = "1.2.3"
      - Requires: Value type should be `String`
     */
-    case hwBiosVersion = "hw.bios_version"
+    case biosVersion = "hw.bios_version"
 
     /**
      Driver version for the hardware component
@@ -47,7 +47,7 @@ extension SemanticConventions {
       attributes[.hwDriverVersion] = "10.2.1-3"
      - Requires: Value type should be `String`
     */
-    case hwDriverVersion = "hw.driver_version"
+    case driverVersion = "hw.driver_version"
 
     /**
      Type of the enclosure (useful for modular systems)
@@ -57,7 +57,7 @@ extension SemanticConventions {
       attributes[.hwEnclosureType] = "Switch"
      - Requires: Value type should be `String`
     */
-    case hwEnclosureType = "hw.enclosure.type"
+    case enclosureType = "hw.enclosure.type"
 
     /**
      Firmware version of the hardware component
@@ -65,13 +65,13 @@ extension SemanticConventions {
       attributes[.hwFirmwareVersion] = "2.0.1"
      - Requires: Value type should be `String`
     */
-    case hwFirmwareVersion = "hw.firmware_version"
+    case firmwareVersion = "hw.firmware_version"
 
     /**
      Type of task the GPU is performing
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.HwGpuTaskValues`](x-source-tag://otelHwGpuTaskValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.GpuTaskValues`](x-source-tag://otelGpuTaskValues) (of type `String`)
     */
-    case hwGpuTask = "hw.gpu.task"
+    case gpuTask = "hw.gpu.task"
 
     /**
      An identifier for the hardware component, unique within the monitored host
@@ -79,13 +79,13 @@ extension SemanticConventions {
       attributes[.hwId] = "win32battery_battery_testsysa33_1"
      - Requires: Value type should be `String`
     */
-    case hwId = "hw.id"
+    case id = "hw.id"
 
     /**
      Type of limit for hardware components
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.HwLimitTypeValues`](x-source-tag://otelHwLimitTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.LimitTypeValues`](x-source-tag://otelLimitTypeValues) (of type `String`)
     */
-    case hwLimitType = "hw.limit_type"
+    case limitType = "hw.limit_type"
 
     /**
      RAID Level of the logical disk
@@ -95,13 +95,13 @@ extension SemanticConventions {
       attributes[.hwLogicalDiskRaidLevel] = "RAID10"
      - Requires: Value type should be `String`
     */
-    case hwLogicalDiskRaidLevel = "hw.logical_disk.raid_level"
+    case logicalDiskRaidLevel = "hw.logical_disk.raid_level"
 
     /**
      State of the logical disk space usage
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.HwLogicalDiskStateValues`](x-source-tag://otelHwLogicalDiskStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.LogicalDiskStateValues`](x-source-tag://otelLogicalDiskStateValues) (of type `String`)
     */
-    case hwLogicalDiskState = "hw.logical_disk.state"
+    case logicalDiskState = "hw.logical_disk.state"
 
     /**
      Type of the memory module
@@ -111,7 +111,7 @@ extension SemanticConventions {
       attributes[.hwMemoryType] = "LPDDR5"
      - Requires: Value type should be `String`
     */
-    case hwMemoryType = "hw.memory.type"
+    case memoryType = "hw.memory.type"
 
     /**
      Descriptive model name of the hardware component
@@ -121,7 +121,7 @@ extension SemanticConventions {
       attributes[.hwModel] = "Dell XPS 15 Battery"
      - Requires: Value type should be `String`
     */
-    case hwModel = "hw.model"
+    case model = "hw.model"
 
     /**
      An easily-recognizable name for the hardware component
@@ -129,7 +129,7 @@ extension SemanticConventions {
       attributes[.hwName] = "eth0"
      - Requires: Value type should be `String`
     */
-    case hwName = "hw.name"
+    case name = "hw.name"
 
     /**
      Logical addresses of the adapter (e.g. IP address, or WWPN)
@@ -137,7 +137,7 @@ extension SemanticConventions {
       attributes[.hwNetworkLogicalAddresses] = ["172.16.8.21", "57.11.193.42"]
      - Requires: Value type should be `[String]`
     */
-    case hwNetworkLogicalAddresses = "hw.network.logical_addresses"
+    case networkLogicalAddresses = "hw.network.logical_addresses"
 
     /**
      Physical address of the adapter (e.g. MAC address, or WWNN)
@@ -145,7 +145,7 @@ extension SemanticConventions {
       attributes[.hwNetworkPhysicalAddress] = "00-90-F5-E9-7B-36"
      - Requires: Value type should be `String`
     */
-    case hwNetworkPhysicalAddress = "hw.network.physical_address"
+    case networkPhysicalAddress = "hw.network.physical_address"
 
     /**
      Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller)
@@ -153,7 +153,7 @@ extension SemanticConventions {
       attributes[.hwParent] = "dellStorage_perc_0"
      - Requires: Value type should be `String`
     */
-    case hwParent = "hw.parent"
+    case parent = "hw.parent"
 
     /**
      [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
@@ -163,13 +163,13 @@ extension SemanticConventions {
       attributes[.hwPhysicalDiskSmartAttribute] = "Raw Read Error Rate"
      - Requires: Value type should be `String`
     */
-    case hwPhysicalDiskSmartAttribute = "hw.physical_disk.smart_attribute"
+    case physicalDiskSmartAttribute = "hw.physical_disk.smart_attribute"
 
     /**
      State of the physical disk endurance utilization
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.HwPhysicalDiskStateValues`](x-source-tag://otelHwPhysicalDiskStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.PhysicalDiskStateValues`](x-source-tag://otelPhysicalDiskStateValues) (of type `String`)
     */
-    case hwPhysicalDiskState = "hw.physical_disk.state"
+    case physicalDiskState = "hw.physical_disk.state"
 
     /**
      Type of the physical disk
@@ -179,7 +179,7 @@ extension SemanticConventions {
       attributes[.hwPhysicalDiskType] = "10K"
      - Requires: Value type should be `String`
     */
-    case hwPhysicalDiskType = "hw.physical_disk.type"
+    case physicalDiskType = "hw.physical_disk.type"
 
     /**
      Location of the sensor
@@ -195,7 +195,7 @@ extension SemanticConventions {
       attributes[.hwSensorLocation] = "CPU_VCORE"
      - Requires: Value type should be `String`
     */
-    case hwSensorLocation = "hw.sensor_location"
+    case sensorLocation = "hw.sensor_location"
 
     /**
      Serial number of the hardware component
@@ -203,26 +203,26 @@ extension SemanticConventions {
       attributes[.hwSerialNumber] = "CNFCP0123456789"
      - Requires: Value type should be `String`
     */
-    case hwSerialNumber = "hw.serial_number"
+    case serialNumber = "hw.serial_number"
 
     /**
      The current state of the component
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.HwStateValues`](x-source-tag://otelHwStateValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.StateValues`](x-source-tag://otelStateValues) (of type `String`)
     */
-    case hwState = "hw.state"
+    case state = "hw.state"
 
     /**
      Type of tape drive operation
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.HwTapeDriveOperationTypeValues`](x-source-tag://otelHwTapeDriveOperationTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.TapeDriveOperationTypeValues`](x-source-tag://otelTapeDriveOperationTypeValues) (of type `String`)
     */
-    case hwTapeDriveOperationType = "hw.tape_drive.operation_type"
+    case tapeDriveOperationType = "hw.tape_drive.operation_type"
 
     /**
      Type of the component
      - Note: Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.HwTypeValues`](x-source-tag://otelHwTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.TypeValues`](x-source-tag://otelTypeValues) (of type `String`)
     */
-    case hwType = "hw.type"
+    case type = "hw.type"
 
     /**
      Vendor name of the hardware component
@@ -235,22 +235,22 @@ extension SemanticConventions {
       attributes[.hwVendor] = "Lenovo"
      - Requires: Value type should be `String`
     */
-    case hwVendor = "hw.vendor"
+    case vendor = "hw.vendor"
 
 
     /** 
       The current state of the battery
     */
-    /// - Tag: otelHwBatteryStateValues
-    public struct HwBatteryStateValues: CustomStringConvertible {
+    /// - Tag: otelBatteryStateValues
+    public struct BatteryStateValues: CustomStringConvertible {
       /**
       Charging
       */
-      public static let charging = HwBatteryStateValues("charging") 
+      public static let charging = BatteryStateValues("charging") 
       /**
       Discharging
       */
-      public static let discharging = HwBatteryStateValues("discharging") 
+      public static let discharging = BatteryStateValues("discharging") 
 
       internal let value: String 
 
@@ -266,20 +266,20 @@ extension SemanticConventions {
     /** 
       Type of task the GPU is performing
     */
-    /// - Tag: otelHwGpuTaskValues
-    public struct HwGpuTaskValues: CustomStringConvertible {
+    /// - Tag: otelGpuTaskValues
+    public struct GpuTaskValues: CustomStringConvertible {
       /**
       Decoder
       */
-      public static let decoder = HwGpuTaskValues("decoder") 
+      public static let decoder = GpuTaskValues("decoder") 
       /**
       Encoder
       */
-      public static let encoder = HwGpuTaskValues("encoder") 
+      public static let encoder = GpuTaskValues("encoder") 
       /**
       General
       */
-      public static let general = HwGpuTaskValues("general") 
+      public static let general = GpuTaskValues("general") 
 
       internal let value: String 
 
@@ -295,44 +295,44 @@ extension SemanticConventions {
     /** 
       Type of limit for hardware components
     */
-    /// - Tag: otelHwLimitTypeValues
-    public struct HwLimitTypeValues: CustomStringConvertible {
+    /// - Tag: otelLimitTypeValues
+    public struct LimitTypeValues: CustomStringConvertible {
       /**
       Critical
       */
-      public static let critical = HwLimitTypeValues("critical") 
+      public static let critical = LimitTypeValues("critical") 
       /**
       Degraded
       */
-      public static let degraded = HwLimitTypeValues("degraded") 
+      public static let degraded = LimitTypeValues("degraded") 
       /**
       High Critical
       */
-      public static let highCritical = HwLimitTypeValues("high.critical") 
+      public static let highCritical = LimitTypeValues("high.critical") 
       /**
       High Degraded
       */
-      public static let highDegraded = HwLimitTypeValues("high.degraded") 
+      public static let highDegraded = LimitTypeValues("high.degraded") 
       /**
       Low Critical
       */
-      public static let lowCritical = HwLimitTypeValues("low.critical") 
+      public static let lowCritical = LimitTypeValues("low.critical") 
       /**
       Low Degraded
       */
-      public static let lowDegraded = HwLimitTypeValues("low.degraded") 
+      public static let lowDegraded = LimitTypeValues("low.degraded") 
       /**
       Maximum
       */
-      public static let max = HwLimitTypeValues("max") 
+      public static let max = LimitTypeValues("max") 
       /**
       Throttled
       */
-      public static let throttled = HwLimitTypeValues("throttled") 
+      public static let throttled = LimitTypeValues("throttled") 
       /**
       Turbo
       */
-      public static let turbo = HwLimitTypeValues("turbo") 
+      public static let turbo = LimitTypeValues("turbo") 
 
       internal let value: String 
 
@@ -348,16 +348,16 @@ extension SemanticConventions {
     /** 
       State of the logical disk space usage
     */
-    /// - Tag: otelHwLogicalDiskStateValues
-    public struct HwLogicalDiskStateValues: CustomStringConvertible {
+    /// - Tag: otelLogicalDiskStateValues
+    public struct LogicalDiskStateValues: CustomStringConvertible {
       /**
       Used
       */
-      public static let used = HwLogicalDiskStateValues("used") 
+      public static let used = LogicalDiskStateValues("used") 
       /**
       Free
       */
-      public static let free = HwLogicalDiskStateValues("free") 
+      public static let free = LogicalDiskStateValues("free") 
 
       internal let value: String 
 
@@ -373,12 +373,12 @@ extension SemanticConventions {
     /** 
       State of the physical disk endurance utilization
     */
-    /// - Tag: otelHwPhysicalDiskStateValues
-    public struct HwPhysicalDiskStateValues: CustomStringConvertible {
+    /// - Tag: otelPhysicalDiskStateValues
+    public struct PhysicalDiskStateValues: CustomStringConvertible {
       /**
       Remaining
       */
-      public static let remaining = HwPhysicalDiskStateValues("remaining") 
+      public static let remaining = PhysicalDiskStateValues("remaining") 
 
       internal let value: String 
 
@@ -394,28 +394,28 @@ extension SemanticConventions {
     /** 
       The current state of the component
     */
-    /// - Tag: otelHwStateValues
-    public struct HwStateValues: CustomStringConvertible {
+    /// - Tag: otelStateValues
+    public struct StateValues: CustomStringConvertible {
       /**
       Degraded
       */
-      public static let degraded = HwStateValues("degraded") 
+      public static let degraded = StateValues("degraded") 
       /**
       Failed
       */
-      public static let failed = HwStateValues("failed") 
+      public static let failed = StateValues("failed") 
       /**
       Needs Cleaning
       */
-      public static let needsCleaning = HwStateValues("needs_cleaning") 
+      public static let needsCleaning = StateValues("needs_cleaning") 
       /**
       OK
       */
-      public static let ok = HwStateValues("ok") 
+      public static let ok = StateValues("ok") 
       /**
       Predicted Failure
       */
-      public static let predictedFailure = HwStateValues("predicted_failure") 
+      public static let predictedFailure = StateValues("predicted_failure") 
 
       internal let value: String 
 
@@ -431,20 +431,20 @@ extension SemanticConventions {
     /** 
       Type of tape drive operation
     */
-    /// - Tag: otelHwTapeDriveOperationTypeValues
-    public struct HwTapeDriveOperationTypeValues: CustomStringConvertible {
+    /// - Tag: otelTapeDriveOperationTypeValues
+    public struct TapeDriveOperationTypeValues: CustomStringConvertible {
       /**
       Mount
       */
-      public static let mount = HwTapeDriveOperationTypeValues("mount") 
+      public static let mount = TapeDriveOperationTypeValues("mount") 
       /**
       Unmount
       */
-      public static let unmount = HwTapeDriveOperationTypeValues("unmount") 
+      public static let unmount = TapeDriveOperationTypeValues("unmount") 
       /**
       Clean
       */
-      public static let clean = HwTapeDriveOperationTypeValues("clean") 
+      public static let clean = TapeDriveOperationTypeValues("clean") 
 
       internal let value: String 
 
@@ -460,64 +460,64 @@ extension SemanticConventions {
     /** 
       Type of the component
     */
-    /// - Tag: otelHwTypeValues
-    public struct HwTypeValues: CustomStringConvertible {
+    /// - Tag: otelTypeValues
+    public struct TypeValues: CustomStringConvertible {
       /**
       Battery
       */
-      public static let battery = HwTypeValues("battery") 
+      public static let battery = TypeValues("battery") 
       /**
       CPU
       */
-      public static let cpu = HwTypeValues("cpu") 
+      public static let cpu = TypeValues("cpu") 
       /**
       Disk controller
       */
-      public static let diskController = HwTypeValues("disk_controller") 
+      public static let diskController = TypeValues("disk_controller") 
       /**
       Enclosure
       */
-      public static let enclosure = HwTypeValues("enclosure") 
+      public static let enclosure = TypeValues("enclosure") 
       /**
       Fan
       */
-      public static let fan = HwTypeValues("fan") 
+      public static let fan = TypeValues("fan") 
       /**
       GPU
       */
-      public static let gpu = HwTypeValues("gpu") 
+      public static let gpu = TypeValues("gpu") 
       /**
       Logical disk
       */
-      public static let logicalDisk = HwTypeValues("logical_disk") 
+      public static let logicalDisk = TypeValues("logical_disk") 
       /**
       Memory
       */
-      public static let memory = HwTypeValues("memory") 
+      public static let memory = TypeValues("memory") 
       /**
       Network
       */
-      public static let network = HwTypeValues("network") 
+      public static let network = TypeValues("network") 
       /**
       Physical disk
       */
-      public static let physicalDisk = HwTypeValues("physical_disk") 
+      public static let physicalDisk = TypeValues("physical_disk") 
       /**
       Power supply
       */
-      public static let powerSupply = HwTypeValues("power_supply") 
+      public static let powerSupply = TypeValues("power_supply") 
       /**
       Tape drive
       */
-      public static let tapeDrive = HwTypeValues("tape_drive") 
+      public static let tapeDrive = TypeValues("tape_drive") 
       /**
       Temperature
       */
-      public static let temperature = HwTypeValues("temperature") 
+      public static let temperature = TypeValues("temperature") 
       /**
       Voltage
       */
-      public static let voltage = HwTypeValues("voltage") 
+      public static let voltage = TypeValues("voltage") 
 
       internal let value: String 
 

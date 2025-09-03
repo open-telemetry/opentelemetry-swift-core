@@ -17,16 +17,16 @@ extension SemanticConventions {
       attributes[.testCaseName] = "ExampleTestCase1_test1"
      - Requires: Value type should be `String`
     */
-    case testCaseName = "test.case.name"
+    case caseName = "test.case.name"
 
     /**
      The status of the actual test case result from test execution.
       // Examples
       attributes[.testCaseResultStatus] = pass
       attributes[.testCaseResultStatus] = fail
-     - Requires: Value should be one of [`/output/Attributes/Test_attributes.swift.TestCaseResultStatusValues`](x-source-tag://otelTestCaseResultStatusValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Test_attributes.swift.CaseResultStatusValues`](x-source-tag://otelCaseResultStatusValues) (of type `String`)
     */
-    case testCaseResultStatus = "test.case.result.status"
+    case caseResultStatus = "test.case.result.status"
 
     /**
      The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite).
@@ -34,7 +34,7 @@ extension SemanticConventions {
       attributes[.testSuiteName] = "TestSuite1"
      - Requires: Value type should be `String`
     */
-    case testSuiteName = "test.suite.name"
+    case suiteName = "test.suite.name"
 
     /**
      The status of the test suite run.
@@ -45,24 +45,24 @@ extension SemanticConventions {
       attributes[.testSuiteRunStatus] = aborted
       attributes[.testSuiteRunStatus] = timed_out
       attributes[.testSuiteRunStatus] = in_progress
-     - Requires: Value should be one of [`/output/Attributes/Test_attributes.swift.TestSuiteRunStatusValues`](x-source-tag://otelTestSuiteRunStatusValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Test_attributes.swift.SuiteRunStatusValues`](x-source-tag://otelSuiteRunStatusValues) (of type `String`)
     */
-    case testSuiteRunStatus = "test.suite.run.status"
+    case suiteRunStatus = "test.suite.run.status"
 
 
     /** 
       The status of the actual test case result from test execution.
     */
-    /// - Tag: otelTestCaseResultStatusValues
-    public struct TestCaseResultStatusValues: CustomStringConvertible {
+    /// - Tag: otelCaseResultStatusValues
+    public struct CaseResultStatusValues: CustomStringConvertible {
       /**
       pass
       */
-      public static let pass = TestCaseResultStatusValues("pass") 
+      public static let pass = CaseResultStatusValues("pass") 
       /**
       fail
       */
-      public static let fail = TestCaseResultStatusValues("fail") 
+      public static let fail = CaseResultStatusValues("fail") 
 
       internal let value: String 
 
@@ -78,32 +78,32 @@ extension SemanticConventions {
     /** 
       The status of the test suite run.
     */
-    /// - Tag: otelTestSuiteRunStatusValues
-    public struct TestSuiteRunStatusValues: CustomStringConvertible {
+    /// - Tag: otelSuiteRunStatusValues
+    public struct SuiteRunStatusValues: CustomStringConvertible {
       /**
       success
       */
-      public static let success = TestSuiteRunStatusValues("success") 
+      public static let success = SuiteRunStatusValues("success") 
       /**
       failure
       */
-      public static let failure = TestSuiteRunStatusValues("failure") 
+      public static let failure = SuiteRunStatusValues("failure") 
       /**
       skipped
       */
-      public static let skipped = TestSuiteRunStatusValues("skipped") 
+      public static let skipped = SuiteRunStatusValues("skipped") 
       /**
       aborted
       */
-      public static let aborted = TestSuiteRunStatusValues("aborted") 
+      public static let aborted = SuiteRunStatusValues("aborted") 
       /**
       timed_out
       */
-      public static let timedOut = TestSuiteRunStatusValues("timed_out") 
+      public static let timedOut = SuiteRunStatusValues("timed_out") 
       /**
       in_progress
       */
-      public static let inProgress = TestSuiteRunStatusValues("in_progress") 
+      public static let inProgress = SuiteRunStatusValues("in_progress") 
 
       internal let value: String 
 

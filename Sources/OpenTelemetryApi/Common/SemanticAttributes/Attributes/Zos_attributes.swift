@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.zosSmfId] = "SYS1"
      - Requires: Value type should be `String`
     */
-    case zosSmfId = "zos.smf.id"
+    case smfId = "zos.smf.id"
 
     /**
      The name of the SYSPLEX to which the z/OS system belongs too.
@@ -23,7 +23,7 @@ extension SemanticConventions {
       attributes[.zosSysplexName] = "SYSPLEX1"
      - Requires: Value type should be `String`
     */
-    case zosSysplexName = "zos.sysplex.name"
+    case sysplexName = "zos.sysplex.name"
 
   }
 }

@@ -18,7 +18,7 @@ extension SemanticConventions {
       attributes[.artifactAttestationFilename] = "file-name-package.tar.gz.intoto.json1"
      - Requires: Value type should be `String`
     */
-    case artifactAttestationFilename = "artifact.attestation.filename"
+    case attestationFilename = "artifact.attestation.filename"
 
     /**
      The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf), of the built attestation. Some envelopes in the [software attestation space](https://github.com/in-toto/attestation/tree/main/spec) also refer to this as the **digest**.
@@ -26,7 +26,7 @@ extension SemanticConventions {
       attributes[.artifactAttestationHash] = "1b31dfcd5b7f9267bf2ff47651df1cfb9147b9e4df1f335accf65b4cda498408"
      - Requires: Value type should be `String`
     */
-    case artifactAttestationHash = "artifact.attestation.hash"
+    case attestationHash = "artifact.attestation.hash"
 
     /**
      The id of the build [software attestation](https://slsa.dev/attestation-model).
@@ -34,7 +34,7 @@ extension SemanticConventions {
       attributes[.artifactAttestationId] = "123"
      - Requires: Value type should be `String`
     */
-    case artifactAttestationId = "artifact.attestation.id"
+    case attestationId = "artifact.attestation.id"
 
     /**
      The human readable file name of the artifact, typically generated during build and release processes. Often includes the package name and version in the file name.
@@ -49,7 +49,7 @@ extension SemanticConventions {
      for others, but that is not a guarantee.
      - Requires: Value type should be `String`
     */
-    case artifactFilename = "artifact.filename"
+    case filename = "artifact.filename"
 
     /**
      The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf), often found in checksum.txt on a release of the artifact and used to verify package integrity.
@@ -65,7 +65,7 @@ extension SemanticConventions {
      deem necessary.
      - Requires: Value type should be `String`
     */
-    case artifactHash = "artifact.hash"
+    case hash = "artifact.hash"
 
     /**
      The [Package URL](https://github.com/package-url/purl-spec) of the [package artifact](https://slsa.dev/spec/v1.0/terminology#package-model) provides a standard way to identify and locate the packaged artifact.
@@ -74,7 +74,7 @@ extension SemanticConventions {
       attributes[.artifactPurl] = "pkg:npm/foo@12.12.3"
      - Requires: Value type should be `String`
     */
-    case artifactPurl = "artifact.purl"
+    case purl = "artifact.purl"
 
     /**
      The version of the artifact.
@@ -84,7 +84,7 @@ extension SemanticConventions {
       attributes[.artifactVersion] = "122691-build"
      - Requires: Value type should be `String`
     */
-    case artifactVersion = "artifact.version"
+    case version = "artifact.version"
 
   }
 }

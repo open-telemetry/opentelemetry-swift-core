@@ -16,7 +16,7 @@ extension SemanticConventions {
       attributes[.cloudeventsEventId] = "0001"
      - Requires: Value type should be `String`
     */
-    case cloudeventsEventId = "cloudevents.event_id"
+    case eventId = "cloudevents.event_id"
 
     /**
      The [source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) identifies the context in which an event happened.
@@ -26,7 +26,7 @@ extension SemanticConventions {
       attributes[.cloudeventsEventSource] = "my-service"
      - Requires: Value type should be `String`
     */
-    case cloudeventsEventSource = "cloudevents.event_source"
+    case eventSource = "cloudevents.event_source"
 
     /**
      The [version of the CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) which the event uses.
@@ -35,7 +35,7 @@ extension SemanticConventions {
    attributes[.cloudeventsEventSpecVersion] = "1.0"
      - Requires: Value type should be `String`
     */
-    case cloudeventsEventSpecVersion = "cloudevents.event_spec_version"
+    case eventSpecVersion = "cloudevents.event_spec_version"
 
     /**
      The [subject](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#subject) of the event in the context of the event producer (identified by source).
@@ -44,7 +44,7 @@ extension SemanticConventions {
    attributes[.cloudeventsEventSubject] = "mynewfile.jpg"
      - Requires: Value type should be `String`
     */
-    case cloudeventsEventSubject = "cloudevents.event_subject"
+    case eventSubject = "cloudevents.event_subject"
 
     /**
      The [event_type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) contains a value describing the type of event related to the originating occurrence.
@@ -53,7 +53,7 @@ extension SemanticConventions {
       attributes[.cloudeventsEventType] = "com.example.object.deleted.v2"
      - Requires: Value type should be `String`
     */
-    case cloudeventsEventType = "cloudevents.event_type"
+    case eventType = "cloudevents.event_type"
 
   }
 }

@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.webengineDescription] = "WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final"
      - Requires: Value type should be `String`
     */
-    case webengineDescription = "webengine.description"
+    case description = "webengine.description"
 
     /**
      The name of the web engine.
@@ -23,7 +23,7 @@ extension SemanticConventions {
       attributes[.webengineName] = "WildFly"
      - Requires: Value type should be `String`
     */
-    case webengineName = "webengine.name"
+    case name = "webengine.name"
 
     /**
      The version of the web engine.
@@ -31,7 +31,7 @@ extension SemanticConventions {
       attributes[.webengineVersion] = "21.0.0"
      - Requires: Value type should be `String`
     */
-    case webengineVersion = "webengine.version"
+    case version = "webengine.version"
 
   }
 }

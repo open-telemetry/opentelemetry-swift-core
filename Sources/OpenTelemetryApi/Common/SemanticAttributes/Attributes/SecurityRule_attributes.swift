@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.securityRuleCategory] = "Attempted Information Leak"
      - Requires: Value type should be `String`
     */
-    case securityRuleCategory = "security_rule.category"
+    case category = "security_rule.category"
 
     /**
      The description of the rule generating the event.
@@ -23,7 +23,7 @@ extension SemanticConventions {
       attributes[.securityRuleDescription] = "Block requests to public DNS over HTTPS / TLS protocols"
      - Requires: Value type should be `String`
     */
-    case securityRuleDescription = "security_rule.description"
+    case description = "security_rule.description"
 
     /**
      Name of the license under which the rule used to generate this event is made available.
@@ -31,7 +31,7 @@ extension SemanticConventions {
       attributes[.securityRuleLicense] = "Apache 2.0"
      - Requires: Value type should be `String`
     */
-    case securityRuleLicense = "security_rule.license"
+    case license = "security_rule.license"
 
     /**
      The name of the rule or signature generating the event.
@@ -39,7 +39,7 @@ extension SemanticConventions {
       attributes[.securityRuleName] = "BLOCK_DNS_over_TLS"
      - Requires: Value type should be `String`
     */
-    case securityRuleName = "security_rule.name"
+    case name = "security_rule.name"
 
     /**
      Reference URL to additional information about the rule used to generate this event.
@@ -48,7 +48,7 @@ extension SemanticConventions {
      - Note: The URL can point to the vendor’s documentation about the rule. If that’s not available, it can also be a link to a more general page describing this type of alert.
      - Requires: Value type should be `String`
     */
-    case securityRuleReference = "security_rule.reference"
+    case reference = "security_rule.reference"
 
     /**
      Name of the ruleset, policy, group, or parent category in which the rule used to generate this event is a member.
@@ -56,7 +56,7 @@ extension SemanticConventions {
       attributes[.securityRuleRulesetName] = "Standard_Protocol_Filters"
      - Requires: Value type should be `String`
     */
-    case securityRuleRulesetName = "security_rule.ruleset.name"
+    case rulesetName = "security_rule.ruleset.name"
 
     /**
      A rule ID that is unique within the scope of a set or group of agents, observers, or other entities using the rule for detection of this event.
@@ -65,7 +65,7 @@ extension SemanticConventions {
       attributes[.securityRuleUuid] = "1100110011"
      - Requires: Value type should be `String`
     */
-    case securityRuleUuid = "security_rule.uuid"
+    case uuid = "security_rule.uuid"
 
     /**
      The version / revision of the rule being used for analysis.
@@ -73,7 +73,7 @@ extension SemanticConventions {
       attributes[.securityRuleVersion] = "1.0.0"
      - Requires: Value type should be `String`
     */
-    case securityRuleVersion = "security_rule.version"
+    case version = "security_rule.version"
 
   }
 }

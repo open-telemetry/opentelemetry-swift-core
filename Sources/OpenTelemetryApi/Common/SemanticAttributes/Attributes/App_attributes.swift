@@ -17,7 +17,7 @@ extension SemanticConventions {
       attributes[.appBuildId] = "my-app-1.0.0-code-123"
      - Requires: Value type should be `String`
     */
-    case appBuildId = "app.build_id"
+    case buildId = "app.build_id"
 
     /**
      A unique identifier representing the installation of an application on a specific device
@@ -42,7 +42,7 @@ extension SemanticConventions {
      More information about Android identifier best practices can be found in the [Android user data IDs guide](https://developer.android.com/training/articles/user-data-ids).
      - Requires: Value type should be `String`
     */
-    case appInstallationId = "app.installation.id"
+    case installationId = "app.installation.id"
 
     /**
      A number of frame renders that experienced jank.
@@ -52,7 +52,7 @@ extension SemanticConventions {
      - Note: Depending on platform limitations, the value provided MAY be approximation.
      - Requires: Value type should be `Int`
     */
-    case appJankFrameCount = "app.jank.frame_count"
+    case jankFrameCount = "app.jank.frame_count"
 
     /**
      The time period, in seconds, for which this jank is being reported.
@@ -62,7 +62,7 @@ extension SemanticConventions {
       attributes[.appJankPeriod] = 10.24
      - Requires: Value type should be `Double`
     */
-    case appJankPeriod = "app.jank.period"
+    case jankPeriod = "app.jank.period"
 
     /**
      The minimum rendering threshold for this jank, in seconds.
@@ -72,7 +72,7 @@ extension SemanticConventions {
       attributes[.appJankThreshold] = 1.024
      - Requires: Value type should be `Double`
     */
-    case appJankThreshold = "app.jank.threshold"
+    case jankThreshold = "app.jank.threshold"
 
     /**
      The x (horizontal) coordinate of a screen coordinate, in screen pixels.
@@ -81,7 +81,7 @@ extension SemanticConventions {
       attributes[.appScreenCoordinateX] = 131
      - Requires: Value type should be `Int`
     */
-    case appScreenCoordinateX = "app.screen.coordinate.x"
+    case screenCoordinateX = "app.screen.coordinate.x"
 
     /**
      The y (vertical) component of a screen coordinate, in screen pixels.
@@ -90,7 +90,7 @@ extension SemanticConventions {
       attributes[.appScreenCoordinateY] = 99
      - Requires: Value type should be `Int`
     */
-    case appScreenCoordinateY = "app.screen.coordinate.y"
+    case screenCoordinateY = "app.screen.coordinate.y"
 
     /**
      An identifier that uniquely differentiates this widget from other widgets in the same application.
@@ -100,7 +100,7 @@ extension SemanticConventions {
      - Note: A widget is an application component, typically an on-screen visual GUI element.
      - Requires: Value type should be `String`
     */
-    case appWidgetId = "app.widget.id"
+    case widgetId = "app.widget.id"
 
     /**
      The name of an application widget.
@@ -111,7 +111,7 @@ extension SemanticConventions {
      - Note: A widget is an application component, typically an on-screen visual GUI element.
      - Requires: Value type should be `String`
     */
-    case appWidgetName = "app.widget.name"
+    case widgetName = "app.widget.name"
 
   }
 }

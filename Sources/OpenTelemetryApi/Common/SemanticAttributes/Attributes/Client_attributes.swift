@@ -18,7 +18,7 @@ extension SemanticConventions {
      - Note: When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
      - Requires: Value type should be `String`
     */
-    case clientAddress = "client.address"
+    case address = "client.address"
 
     /**
      Client port number.
@@ -27,7 +27,7 @@ extension SemanticConventions {
      - Note: When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
      - Requires: Value type should be `Int`
     */
-    case clientPort = "client.port"
+    case port = "client.port"
 
   }
 }

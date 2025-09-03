@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.dnsAnswers] = ["10.0.0.1", "2001:0db8:85a3:0000:0000:8a2e:0370:7334"]
      - Requires: Value type should be `[String]`
     */
-    case dnsAnswers = "dns.answers"
+    case answers = "dns.answers"
 
     /**
      The name being queried.
@@ -25,7 +25,7 @@ extension SemanticConventions {
      - Note: If the name field contains non-printable characters (below 32 or above 126), those characters should be represented as escaped base 10 integers (\DDD). Back slashes and quotes should be escaped. Tabs, carriage returns, and line feeds should be converted to \t, \r, and \n respectively.
      - Requires: Value type should be `String`
     */
-    case dnsQuestionName = "dns.question.name"
+    case questionName = "dns.question.name"
 
   }
 }

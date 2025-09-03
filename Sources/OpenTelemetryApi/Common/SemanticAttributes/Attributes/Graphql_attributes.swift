@@ -17,7 +17,7 @@ extension SemanticConventions {
      - Note: The value may be sanitized to exclude sensitive information.
      - Requires: Value type should be `String`
     */
-    case graphqlDocument = "graphql.document"
+    case document = "graphql.document"
 
     /**
      The name of the operation being executed.
@@ -26,7 +26,7 @@ extension SemanticConventions {
    attributes[.graphqlOperationName] = "findBookById"
      - Requires: Value type should be `String`
     */
-    case graphqlOperationName = "graphql.operation.name"
+    case operationName = "graphql.operation.name"
 
     /**
      The type of the operation being executed.
@@ -34,28 +34,28 @@ extension SemanticConventions {
       attributes[.graphqlOperationType] = query
       attributes[.graphqlOperationType] = mutation
       attributes[.graphqlOperationType] = subscription
-     - Requires: Value should be one of [`/output/Attributes/Graphql_attributes.swift.GraphqlOperationTypeValues`](x-source-tag://otelGraphqlOperationTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Graphql_attributes.swift.OperationTypeValues`](x-source-tag://otelOperationTypeValues) (of type `String`)
     */
-    case graphqlOperationType = "graphql.operation.type"
+    case operationType = "graphql.operation.type"
 
 
     /** 
       The type of the operation being executed.
     */
-    /// - Tag: otelGraphqlOperationTypeValues
-    public struct GraphqlOperationTypeValues: CustomStringConvertible {
+    /// - Tag: otelOperationTypeValues
+    public struct OperationTypeValues: CustomStringConvertible {
       /**
       GraphQL query
       */
-      public static let query = GraphqlOperationTypeValues("query") 
+      public static let query = OperationTypeValues("query") 
       /**
       GraphQL mutation
       */
-      public static let mutation = GraphqlOperationTypeValues("mutation") 
+      public static let mutation = OperationTypeValues("mutation") 
       /**
       GraphQL subscription
       */
-      public static let subscription = GraphqlOperationTypeValues("subscription") 
+      public static let subscription = OperationTypeValues("subscription") 
 
       internal let value: String 
 

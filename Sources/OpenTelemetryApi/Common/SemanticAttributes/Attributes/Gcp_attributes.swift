@@ -15,7 +15,7 @@ extension SemanticConventions {
       attributes[.gcpApphubApplicationContainer] = "projects/my-container-project"
      - Requires: Value type should be `String`
     */
-    case gcpApphubApplicationContainer = "gcp.apphub.application.container"
+    case apphubApplicationContainer = "gcp.apphub.application.container"
 
     /**
      The name of the application as configured in AppHub.
@@ -23,7 +23,7 @@ extension SemanticConventions {
       attributes[.gcpApphubApplicationId] = "my-application"
      - Requires: Value type should be `String`
     */
-    case gcpApphubApplicationId = "gcp.apphub.application.id"
+    case apphubApplicationId = "gcp.apphub.application.id"
 
     /**
      The GCP zone or region where the application is defined.
@@ -31,21 +31,21 @@ extension SemanticConventions {
       attributes[.gcpApphubApplicationLocation] = "us-central1"
      - Requires: Value type should be `String`
     */
-    case gcpApphubApplicationLocation = "gcp.apphub.application.location"
+    case apphubApplicationLocation = "gcp.apphub.application.location"
 
     /**
      Criticality of a service indicates its importance to the business.
      - Note: [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
-     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.GcpApphubServiceCriticalityTypeValues`](x-source-tag://otelGcpApphubServiceCriticalityTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.ApphubServiceCriticalityTypeValues`](x-source-tag://otelApphubServiceCriticalityTypeValues) (of type `String`)
     */
-    case gcpApphubServiceCriticalityType = "gcp.apphub.service.criticality_type"
+    case apphubServiceCriticalityType = "gcp.apphub.service.criticality_type"
 
     /**
      Environment of a service is the stage of a software lifecycle.
      - Note: [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
-     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.GcpApphubServiceEnvironmentTypeValues`](x-source-tag://otelGcpApphubServiceEnvironmentTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.ApphubServiceEnvironmentTypeValues`](x-source-tag://otelApphubServiceEnvironmentTypeValues) (of type `String`)
     */
-    case gcpApphubServiceEnvironmentType = "gcp.apphub.service.environment_type"
+    case apphubServiceEnvironmentType = "gcp.apphub.service.environment_type"
 
     /**
      The name of the service as configured in AppHub.
@@ -53,21 +53,21 @@ extension SemanticConventions {
       attributes[.gcpApphubServiceId] = "my-service"
      - Requires: Value type should be `String`
     */
-    case gcpApphubServiceId = "gcp.apphub.service.id"
+    case apphubServiceId = "gcp.apphub.service.id"
 
     /**
      Criticality of a workload indicates its importance to the business.
      - Note: [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
-     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.GcpApphubWorkloadCriticalityTypeValues`](x-source-tag://otelGcpApphubWorkloadCriticalityTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.ApphubWorkloadCriticalityTypeValues`](x-source-tag://otelApphubWorkloadCriticalityTypeValues) (of type `String`)
     */
-    case gcpApphubWorkloadCriticalityType = "gcp.apphub.workload.criticality_type"
+    case apphubWorkloadCriticalityType = "gcp.apphub.workload.criticality_type"
 
     /**
      Environment of a workload is the stage of a software lifecycle.
      - Note: [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
-     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.GcpApphubWorkloadEnvironmentTypeValues`](x-source-tag://otelGcpApphubWorkloadEnvironmentTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.ApphubWorkloadEnvironmentTypeValues`](x-source-tag://otelApphubWorkloadEnvironmentTypeValues) (of type `String`)
     */
-    case gcpApphubWorkloadEnvironmentType = "gcp.apphub.workload.environment_type"
+    case apphubWorkloadEnvironmentType = "gcp.apphub.workload.environment_type"
 
     /**
      The name of the workload as configured in AppHub.
@@ -75,7 +75,7 @@ extension SemanticConventions {
       attributes[.gcpApphubWorkloadId] = "my-workload"
      - Requires: Value type should be `String`
     */
-    case gcpApphubWorkloadId = "gcp.apphub.workload.id"
+    case apphubWorkloadId = "gcp.apphub.workload.id"
 
     /**
      Identifies the Google Cloud service for which the official client library is intended.
@@ -88,7 +88,7 @@ extension SemanticConventions {
      - Note: Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'.
      - Requires: Value type should be `String`
     */
-    case gcpClientService = "gcp.client.service"
+    case clientService = "gcp.client.service"
 
     /**
      The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable.
@@ -97,7 +97,7 @@ extension SemanticConventions {
       attributes[.gcpCloudRunJobExecution] = "sample-job-mdw84"
      - Requires: Value type should be `String`
     */
-    case gcpCloudRunJobExecution = "gcp.cloud_run.job.execution"
+    case cloudRunJobExecution = "gcp.cloud_run.job.execution"
 
     /**
      The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable.
@@ -106,7 +106,7 @@ extension SemanticConventions {
       attributes[.gcpCloudRunJobTaskIndex] = 1
      - Requires: Value type should be `Int`
     */
-    case gcpCloudRunJobTaskIndex = "gcp.cloud_run.job.task_index"
+    case cloudRunJobTaskIndex = "gcp.cloud_run.job.task_index"
 
     /**
      The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).
@@ -115,7 +115,7 @@ extension SemanticConventions {
       attributes[.gcpGceInstanceHostname] = "sample-vm.us-west1-b.c.my-project.internal"
      - Requires: Value type should be `String`
     */
-    case gcpGceInstanceHostname = "gcp.gce.instance.hostname"
+    case gceInstanceHostname = "gcp.gce.instance.hostname"
 
     /**
      The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names).
@@ -124,30 +124,30 @@ extension SemanticConventions {
       attributes[.gcpGceInstanceName] = "my-vm-name"
      - Requires: Value type should be `String`
     */
-    case gcpGceInstanceName = "gcp.gce.instance.name"
+    case gceInstanceName = "gcp.gce.instance.name"
 
 
     /** 
       Criticality of a service indicates its importance to the business.
     */
-    /// - Tag: otelGcpApphubServiceCriticalityTypeValues
-    public struct GcpApphubServiceCriticalityTypeValues: CustomStringConvertible {
+    /// - Tag: otelApphubServiceCriticalityTypeValues
+    public struct ApphubServiceCriticalityTypeValues: CustomStringConvertible {
       /**
       Mission critical service.
       */
-      public static let missionCritical = GcpApphubServiceCriticalityTypeValues("MISSION_CRITICAL") 
+      public static let missionCritical = ApphubServiceCriticalityTypeValues("MISSION_CRITICAL") 
       /**
       High impact.
       */
-      public static let high = GcpApphubServiceCriticalityTypeValues("HIGH") 
+      public static let high = ApphubServiceCriticalityTypeValues("HIGH") 
       /**
       Medium impact.
       */
-      public static let medium = GcpApphubServiceCriticalityTypeValues("MEDIUM") 
+      public static let medium = ApphubServiceCriticalityTypeValues("MEDIUM") 
       /**
       Low impact.
       */
-      public static let low = GcpApphubServiceCriticalityTypeValues("LOW") 
+      public static let low = ApphubServiceCriticalityTypeValues("LOW") 
 
       internal let value: String 
 
@@ -163,24 +163,24 @@ extension SemanticConventions {
     /** 
       Environment of a service is the stage of a software lifecycle.
     */
-    /// - Tag: otelGcpApphubServiceEnvironmentTypeValues
-    public struct GcpApphubServiceEnvironmentTypeValues: CustomStringConvertible {
+    /// - Tag: otelApphubServiceEnvironmentTypeValues
+    public struct ApphubServiceEnvironmentTypeValues: CustomStringConvertible {
       /**
       Production environment.
       */
-      public static let production = GcpApphubServiceEnvironmentTypeValues("PRODUCTION") 
+      public static let production = ApphubServiceEnvironmentTypeValues("PRODUCTION") 
       /**
       Staging environment.
       */
-      public static let staging = GcpApphubServiceEnvironmentTypeValues("STAGING") 
+      public static let staging = ApphubServiceEnvironmentTypeValues("STAGING") 
       /**
       Test environment.
       */
-      public static let test = GcpApphubServiceEnvironmentTypeValues("TEST") 
+      public static let test = ApphubServiceEnvironmentTypeValues("TEST") 
       /**
       Development environment.
       */
-      public static let development = GcpApphubServiceEnvironmentTypeValues("DEVELOPMENT") 
+      public static let development = ApphubServiceEnvironmentTypeValues("DEVELOPMENT") 
 
       internal let value: String 
 
@@ -196,24 +196,24 @@ extension SemanticConventions {
     /** 
       Criticality of a workload indicates its importance to the business.
     */
-    /// - Tag: otelGcpApphubWorkloadCriticalityTypeValues
-    public struct GcpApphubWorkloadCriticalityTypeValues: CustomStringConvertible {
+    /// - Tag: otelApphubWorkloadCriticalityTypeValues
+    public struct ApphubWorkloadCriticalityTypeValues: CustomStringConvertible {
       /**
       Mission critical service.
       */
-      public static let missionCritical = GcpApphubWorkloadCriticalityTypeValues("MISSION_CRITICAL") 
+      public static let missionCritical = ApphubWorkloadCriticalityTypeValues("MISSION_CRITICAL") 
       /**
       High impact.
       */
-      public static let high = GcpApphubWorkloadCriticalityTypeValues("HIGH") 
+      public static let high = ApphubWorkloadCriticalityTypeValues("HIGH") 
       /**
       Medium impact.
       */
-      public static let medium = GcpApphubWorkloadCriticalityTypeValues("MEDIUM") 
+      public static let medium = ApphubWorkloadCriticalityTypeValues("MEDIUM") 
       /**
       Low impact.
       */
-      public static let low = GcpApphubWorkloadCriticalityTypeValues("LOW") 
+      public static let low = ApphubWorkloadCriticalityTypeValues("LOW") 
 
       internal let value: String 
 
@@ -229,24 +229,24 @@ extension SemanticConventions {
     /** 
       Environment of a workload is the stage of a software lifecycle.
     */
-    /// - Tag: otelGcpApphubWorkloadEnvironmentTypeValues
-    public struct GcpApphubWorkloadEnvironmentTypeValues: CustomStringConvertible {
+    /// - Tag: otelApphubWorkloadEnvironmentTypeValues
+    public struct ApphubWorkloadEnvironmentTypeValues: CustomStringConvertible {
       /**
       Production environment.
       */
-      public static let production = GcpApphubWorkloadEnvironmentTypeValues("PRODUCTION") 
+      public static let production = ApphubWorkloadEnvironmentTypeValues("PRODUCTION") 
       /**
       Staging environment.
       */
-      public static let staging = GcpApphubWorkloadEnvironmentTypeValues("STAGING") 
+      public static let staging = ApphubWorkloadEnvironmentTypeValues("STAGING") 
       /**
       Test environment.
       */
-      public static let test = GcpApphubWorkloadEnvironmentTypeValues("TEST") 
+      public static let test = ApphubWorkloadEnvironmentTypeValues("TEST") 
       /**
       Development environment.
       */
-      public static let development = GcpApphubWorkloadEnvironmentTypeValues("DEVELOPMENT") 
+      public static let development = ApphubWorkloadEnvironmentTypeValues("DEVELOPMENT") 
 
       internal let value: String 
 

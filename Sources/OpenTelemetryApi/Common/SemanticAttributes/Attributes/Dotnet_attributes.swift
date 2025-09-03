@@ -15,36 +15,36 @@ extension SemanticConventions {
       attributes[.dotnetGcHeapGeneration] = gen0
       attributes[.dotnetGcHeapGeneration] = gen1
       attributes[.dotnetGcHeapGeneration] = gen2
-     - Requires: Value should be one of [`/output/Attributes/Dotnet_attributes.swift.DotnetGcHeapGenerationValues`](x-source-tag://otelDotnetGcHeapGenerationValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Dotnet_attributes.swift.GcHeapGenerationValues`](x-source-tag://otelGcHeapGenerationValues) (of type `String`)
     */
-    case dotnetGcHeapGeneration = "dotnet.gc.heap.generation"
+    case gcHeapGeneration = "dotnet.gc.heap.generation"
 
 
     /** 
       Name of the garbage collector managed heap generation.
     */
-    /// - Tag: otelDotnetGcHeapGenerationValues
-    public struct DotnetGcHeapGenerationValues: CustomStringConvertible {
+    /// - Tag: otelGcHeapGenerationValues
+    public struct GcHeapGenerationValues: CustomStringConvertible {
       /**
       Generation 0
       */
-      public static let gen0 = DotnetGcHeapGenerationValues("gen0") 
+      public static let gen0 = GcHeapGenerationValues("gen0") 
       /**
       Generation 1
       */
-      public static let gen1 = DotnetGcHeapGenerationValues("gen1") 
+      public static let gen1 = GcHeapGenerationValues("gen1") 
       /**
       Generation 2
       */
-      public static let gen2 = DotnetGcHeapGenerationValues("gen2") 
+      public static let gen2 = GcHeapGenerationValues("gen2") 
       /**
       Large Object Heap
       */
-      public static let loh = DotnetGcHeapGenerationValues("loh") 
+      public static let loh = GcHeapGenerationValues("loh") 
       /**
       Pinned Object Heap
       */
-      public static let poh = DotnetGcHeapGenerationValues("poh") 
+      public static let poh = GcHeapGenerationValues("poh") 
 
       internal let value: String 
 

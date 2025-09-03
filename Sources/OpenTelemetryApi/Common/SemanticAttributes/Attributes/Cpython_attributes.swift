@@ -15,28 +15,28 @@ extension SemanticConventions {
       attributes[.cpythonGcGeneration] = 0
       attributes[.cpythonGcGeneration] = 1
       attributes[.cpythonGcGeneration] = 2
-     - Requires: Value should be one of [`/output/Attributes/Cpython_attributes.swift.CpythonGcGenerationValues`](x-source-tag://otelCpythonGcGenerationValues) (of type `Int`)
+     - Requires: Value should be one of [`/output/Attributes/Cpython_attributes.swift.GcGenerationValues`](x-source-tag://otelGcGenerationValues) (of type `Int`)
     */
-    case cpythonGcGeneration = "cpython.gc.generation"
+    case gcGeneration = "cpython.gc.generation"
 
 
     /** 
       Value of the garbage collector collection generation.
     */
-    /// - Tag: otelCpythonGcGenerationValues
-    public struct CpythonGcGenerationValues: CustomStringConvertible {
+    /// - Tag: otelGcGenerationValues
+    public struct GcGenerationValues: CustomStringConvertible {
       /**
       Generation 0
       */
-      public static let generation0 = CpythonGcGenerationValues(0) 
+      public static let generation0 = GcGenerationValues(0) 
       /**
       Generation 1
       */
-      public static let generation1 = CpythonGcGenerationValues(1) 
+      public static let generation1 = GcGenerationValues(1) 
       /**
       Generation 2
       */
-      public static let generation2 = CpythonGcGenerationValues(2) 
+      public static let generation2 = GcGenerationValues(2) 
 
       internal let value: Int 
 

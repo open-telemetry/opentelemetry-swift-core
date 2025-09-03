@@ -16,7 +16,7 @@ extension SemanticConventions {
       attributes[.exceptionMessage] = "Can't convert 'int' object to str implicitly"
      - Requires: Value type should be `String`
     */
-    case exceptionMessage = "exception.message"
+    case message = "exception.message"
 
     /**
      A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG.
@@ -26,7 +26,7 @@ extension SemanticConventions {
    "
      - Requires: Value type should be `String`
     */
-    case exceptionStacktrace = "exception.stacktrace"
+    case stacktrace = "exception.stacktrace"
 
     /**
      The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it.
@@ -35,7 +35,7 @@ extension SemanticConventions {
       attributes[.exceptionType] = "OSError"
      - Requires: Value type should be `String`
     */
-    case exceptionType = "exception.type"
+    case type = "exception.type"
 
   }
 }

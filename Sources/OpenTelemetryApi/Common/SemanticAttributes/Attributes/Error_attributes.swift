@@ -21,7 +21,7 @@ extension SemanticConventions {
      `error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status.
      - Requires: Value type should be `String`
     */
-    case errorMessage = "error.message"
+    case message = "error.message"
 
     /**
      Describes a class of error the operation ended with.
@@ -49,20 +49,20 @@ extension SemanticConventions {
 
      - Use a domain-specific attribute
      - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
-     - Requires: Value should be one of [`/output/Attributes/Error_attributes.swift.ErrorTypeValues`](x-source-tag://otelErrorTypeValues) (of type `String`)
+     - Requires: Value should be one of [`/output/Attributes/Error_attributes.swift.TypeValues`](x-source-tag://otelTypeValues) (of type `String`)
     */
-    case errorType = "error.type"
+    case type = "error.type"
 
 
     /** 
       Describes a class of error the operation ended with.
     */
-    /// - Tag: otelErrorTypeValues
-    public struct ErrorTypeValues: CustomStringConvertible {
+    /// - Tag: otelTypeValues
+    public struct TypeValues: CustomStringConvertible {
       /**
       A fallback error value to be used when the instrumentation doesn't define a custom value.
       */
-      public static let other = ErrorTypeValues("_OTHER") 
+      public static let other = TypeValues("_OTHER") 
 
       internal let value: String 
 
