@@ -1,5 +1,5 @@
 params:
-  excluded_namespaces: [aws, artifact, azure, rpc, cloudevents, gen_ai, cloudfoundry, aspnetcore, cicd, signalr, gcp, android, dotnet, k8s, jvm, kestrel, browser, cloud, container, deployment, faas, feature_flag]
+  excluded_namespaces: [artifact, hw, cloudevents, gen_ai, cloudfoundry, aspnetcore, cicd, signalr, android, dotnet, k8s, jvm, kestrel, browser, cloud, container, faas, feature_flag]
 comment_formats:
   default:
     format: markdown
