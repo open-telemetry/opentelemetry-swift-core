@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum K8s: String {
+
+
     /**
      The name of the cluster.
 
@@ -20,6 +22,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case clusterName = "k8s.cluster.name"
+
 
     /**
      A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace.
@@ -56,6 +59,7 @@ extension SemanticConventions {
     */
     case clusterUid = "k8s.cluster.uid"
 
+
     /**
      The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`).
 
@@ -68,6 +72,7 @@ extension SemanticConventions {
     */
     case containerName = "k8s.container.name"
 
+
     /**
      Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec.
       ```
@@ -75,6 +80,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case containerRestartCount = "k8s.container.restart_count"
+
 
     /**
      Last terminated reason of the Container.
@@ -88,6 +94,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case containerStatusLastTerminatedReason = "k8s.container.status.last_terminated_reason"
+
 
     /**
      The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
@@ -105,9 +112,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.K8s.containerStatusReason.rawValue] = .ContainerCannotRun
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.K8s.ContainerStatusReasonValues`](x-source-tag://SemanticConventions.k8s.ContainerStatusReasonValues) (of type `String`)
+     - Requires: Value should be one of ``ContainerStatusReasonValues`` (of type `String`)
     */
     case containerStatusReason = "k8s.container.status.reason"
+
 
     /**
      The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
@@ -119,9 +127,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.K8s.containerStatusState.rawValue] = .waiting
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.K8s.ContainerStatusStateValues`](x-source-tag://SemanticConventions.k8s.ContainerStatusStateValues) (of type `String`)
+     - Requires: Value should be one of ``ContainerStatusStateValues`` (of type `String`)
     */
     case containerStatusState = "k8s.container.status.state"
+
 
     /**
      The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value.
@@ -143,6 +152,7 @@ extension SemanticConventions {
     */
     case cronjobAnnotation = "k8s.cronjob.annotation"
 
+
     /**
      The label placed on the CronJob, the `<key>` being the label name, the value being the label value.
 
@@ -163,6 +173,7 @@ extension SemanticConventions {
     */
     case cronjobLabel = "k8s.cronjob.label"
 
+
     /**
      The name of the CronJob.
 
@@ -175,6 +186,7 @@ extension SemanticConventions {
     */
     case cronjobName = "k8s.cronjob.name"
 
+
     /**
      The UID of the CronJob.
 
@@ -186,6 +198,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case cronjobUid = "k8s.cronjob.uid"
+
 
     /**
      The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -207,6 +220,7 @@ extension SemanticConventions {
     */
     case daemonsetAnnotation = "k8s.daemonset.annotation"
 
+
     /**
      The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
 
@@ -227,6 +241,7 @@ extension SemanticConventions {
     */
     case daemonsetLabel = "k8s.daemonset.label"
 
+
     /**
      The name of the DaemonSet.
 
@@ -239,6 +254,7 @@ extension SemanticConventions {
     */
     case daemonsetName = "k8s.daemonset.name"
 
+
     /**
      The UID of the DaemonSet.
 
@@ -250,6 +266,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case daemonsetUid = "k8s.daemonset.uid"
+
 
     /**
      The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -271,6 +288,7 @@ extension SemanticConventions {
     */
     case deploymentAnnotation = "k8s.deployment.annotation"
 
+
     /**
      The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty.
 
@@ -291,6 +309,7 @@ extension SemanticConventions {
     */
     case deploymentLabel = "k8s.deployment.label"
 
+
     /**
      The name of the Deployment.
 
@@ -303,6 +322,7 @@ extension SemanticConventions {
     */
     case deploymentName = "k8s.deployment.name"
 
+
     /**
      The UID of the Deployment.
 
@@ -314,6 +334,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case deploymentUid = "k8s.deployment.uid"
+
 
     /**
      The type of metric source for the horizontal pod autoscaler.
@@ -330,6 +351,7 @@ extension SemanticConventions {
     */
     case hpaMetricType = "k8s.hpa.metric.type"
 
+
     /**
      The name of the horizontal pod autoscaler.
 
@@ -341,6 +363,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case hpaName = "k8s.hpa.name"
+
 
     /**
      The API version of the target resource to scale for the HorizontalPodAutoscaler.
@@ -357,6 +380,7 @@ extension SemanticConventions {
     */
     case hpaScaletargetrefApiVersion = "k8s.hpa.scaletargetref.api_version"
 
+
     /**
      The kind of the target resource to scale for the HorizontalPodAutoscaler.
 
@@ -371,6 +395,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case hpaScaletargetrefKind = "k8s.hpa.scaletargetref.kind"
+
 
     /**
      The name of the target resource to scale for the HorizontalPodAutoscaler.
@@ -387,6 +412,7 @@ extension SemanticConventions {
     */
     case hpaScaletargetrefName = "k8s.hpa.scaletargetref.name"
 
+
     /**
      The UID of the horizontal pod autoscaler.
 
@@ -399,6 +425,7 @@ extension SemanticConventions {
     */
     case hpaUid = "k8s.hpa.uid"
 
+
     /**
      The size (identifier) of the K8s huge page.
 
@@ -410,6 +437,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case hugepageSize = "k8s.hugepage.size"
+
 
     /**
      The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -431,6 +459,7 @@ extension SemanticConventions {
     */
     case jobAnnotation = "k8s.job.annotation"
 
+
     /**
      The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty.
 
@@ -451,6 +480,7 @@ extension SemanticConventions {
     */
     case jobLabel = "k8s.job.label"
 
+
     /**
      The name of the Job.
 
@@ -463,6 +493,7 @@ extension SemanticConventions {
     */
     case jobName = "k8s.job.name"
 
+
     /**
      The UID of the Job.
 
@@ -474,6 +505,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case jobUid = "k8s.job.uid"
+
 
     /**
      The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -495,6 +527,7 @@ extension SemanticConventions {
     */
     case namespaceAnnotation = "k8s.namespace.annotation"
 
+
     /**
      The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty.
 
@@ -515,6 +548,7 @@ extension SemanticConventions {
     */
     case namespaceLabel = "k8s.namespace.label"
 
+
     /**
      The name of the namespace that the pod is running in.
 
@@ -526,6 +560,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case namespaceName = "k8s.namespace.name"
+
 
     /**
      The phase of the K8s namespace.
@@ -539,9 +574,10 @@ extension SemanticConventions {
      - Note: This attribute aligns with the `phase` field of the
      [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
 
-     - Requires: Value should be one of [`SemanticContentions.K8s.NamespacePhaseValues`](x-source-tag://SemanticConventions.k8s.NamespacePhaseValues) (of type `String`)
+     - Requires: Value should be one of ``NamespacePhaseValues`` (of type `String`)
     */
     case namespacePhase = "k8s.namespace.phase"
+
 
     /**
      The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -563,6 +599,7 @@ extension SemanticConventions {
     */
     case nodeAnnotation = "k8s.node.annotation"
 
+
     /**
      The status of the condition, one of True, False, Unknown.
 
@@ -576,9 +613,10 @@ extension SemanticConventions {
      - Note: This attribute aligns with the `status` field of the
      [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
 
-     - Requires: Value should be one of [`SemanticContentions.K8s.NodeConditionStatusValues`](x-source-tag://SemanticConventions.k8s.NodeConditionStatusValues) (of type `String`)
+     - Requires: Value should be one of ``NodeConditionStatusValues`` (of type `String`)
     */
     case nodeConditionStatus = "k8s.node.condition.status"
+
 
     /**
      The condition type of a K8s Node.
@@ -599,9 +637,10 @@ extension SemanticConventions {
      or custom controllers MAY introduce additional node condition types.
      When this occurs, the exact value as reported by the Kubernetes API SHOULD be used.
 
-     - Requires: Value should be one of [`SemanticContentions.K8s.NodeConditionTypeValues`](x-source-tag://SemanticConventions.k8s.NodeConditionTypeValues) (of type `String`)
+     - Requires: Value should be one of ``NodeConditionTypeValues`` (of type `String`)
     */
     case nodeConditionType = "k8s.node.condition.type"
+
 
     /**
      The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty.
@@ -623,6 +662,7 @@ extension SemanticConventions {
     */
     case nodeLabel = "k8s.node.label"
 
+
     /**
      The name of the Node.
 
@@ -635,6 +675,7 @@ extension SemanticConventions {
     */
     case nodeName = "k8s.node.name"
 
+
     /**
      The UID of the Node.
 
@@ -646,6 +687,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case nodeUid = "k8s.node.uid"
+
 
     /**
      The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
@@ -670,6 +712,7 @@ extension SemanticConventions {
     */
     case podAnnotation = "k8s.pod.annotation"
 
+
     /**
      The label placed on the Pod, the `<key>` being the label name, the value being the label value.
 
@@ -693,6 +736,7 @@ extension SemanticConventions {
     */
     case podLabel = "k8s.pod.label"
 
+
     /**
      The name of the Pod.
 
@@ -705,6 +749,7 @@ extension SemanticConventions {
     */
     case podName = "k8s.pod.name"
 
+
     /**
      The UID of the Pod.
 
@@ -716,6 +761,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case podUid = "k8s.pod.uid"
+
 
     /**
      The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -737,6 +783,7 @@ extension SemanticConventions {
     */
     case replicasetAnnotation = "k8s.replicaset.annotation"
 
+
     /**
      The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
 
@@ -757,6 +804,7 @@ extension SemanticConventions {
     */
     case replicasetLabel = "k8s.replicaset.label"
 
+
     /**
      The name of the ReplicaSet.
 
@@ -768,6 +816,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case replicasetName = "k8s.replicaset.name"
+
 
     /**
      The UID of the ReplicaSet.
@@ -781,6 +830,7 @@ extension SemanticConventions {
     */
     case replicasetUid = "k8s.replicaset.uid"
 
+
     /**
      The name of the replication controller.
 
@@ -792,6 +842,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case replicationcontrollerName = "k8s.replicationcontroller.name"
+
 
     /**
      The UID of the replication controller.
@@ -805,6 +856,7 @@ extension SemanticConventions {
     */
     case replicationcontrollerUid = "k8s.replicationcontroller.uid"
 
+
     /**
      The name of the resource quota.
 
@@ -816,6 +868,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case resourcequotaName = "k8s.resourcequota.name"
+
 
     /**
      The name of the K8s resource a resource quota defines.
@@ -831,6 +884,7 @@ extension SemanticConventions {
     */
     case resourcequotaResourceName = "k8s.resourcequota.resource_name"
 
+
     /**
      The UID of the resource quota.
 
@@ -842,6 +896,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case resourcequotaUid = "k8s.resourcequota.uid"
+
 
     /**
      The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
@@ -863,6 +918,7 @@ extension SemanticConventions {
     */
     case statefulsetAnnotation = "k8s.statefulset.annotation"
 
+
     /**
      The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
 
@@ -883,6 +939,7 @@ extension SemanticConventions {
     */
     case statefulsetLabel = "k8s.statefulset.label"
 
+
     /**
      The name of the StatefulSet.
 
@@ -894,6 +951,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case statefulsetName = "k8s.statefulset.name"
+
 
     /**
      The UID of the StatefulSet.
@@ -907,6 +965,7 @@ extension SemanticConventions {
     */
     case statefulsetUid = "k8s.statefulset.uid"
 
+
     /**
      The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object.
 
@@ -918,6 +977,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case storageclassName = "k8s.storageclass.name"
+
 
     /**
      The name of the K8s volume.
@@ -931,6 +991,7 @@ extension SemanticConventions {
     */
     case volumeName = "k8s.volume.name"
 
+
     /**
      The type of the K8s volume.
 
@@ -940,15 +1001,20 @@ extension SemanticConventions {
       attributes[SemanticConventions.K8s.volumeType.rawValue] = .persistentVolumeClaim
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.K8s.VolumeTypeValues`](x-source-tag://SemanticConventions.k8s.VolumeTypeValues) (of type `String`)
+     - Requires: Value should be one of ``VolumeTypeValues`` (of type `String`)
     */
     case volumeType = "k8s.volume.type"
+
+
+
+
+
+
 
 
     /** 
       The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
     */
-    /// - Tag: SemanticConventions.K8s.ContainerStatusReasonValues
     public struct ContainerStatusReasonValues: CustomStringConvertible {
       /**
       The container is being created.
@@ -998,10 +1064,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
     */
-    /// - Tag: SemanticConventions.K8s.ContainerStatusStateValues
     public struct ContainerStatusStateValues: CustomStringConvertible {
       /**
       The container has terminated.
@@ -1027,10 +1093,36 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /** 
       The phase of the K8s namespace.
     */
-    /// - Tag: SemanticConventions.K8s.NamespacePhaseValues
     public struct NamespacePhaseValues: CustomStringConvertible {
       /**
       Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)
@@ -1052,10 +1144,11 @@ extension SemanticConventions {
       }
     }
 
+
+
     /** 
       The status of the condition, one of True, False, Unknown.
     */
-    /// - Tag: SemanticConventions.K8s.NodeConditionStatusValues
     public struct NodeConditionStatusValues: CustomStringConvertible {
       public static let conditionTrue = NodeConditionStatusValues("true") 
       public static let conditionFalse = NodeConditionStatusValues("false") 
@@ -1072,10 +1165,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       The condition type of a K8s Node.
     */
-    /// - Tag: SemanticConventions.K8s.NodeConditionTypeValues
     public struct NodeConditionTypeValues: CustomStringConvertible {
       /**
       The node is healthy and ready to accept pods
@@ -1109,10 +1202,32 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /** 
       The type of the K8s volume.
     */
-    /// - Tag: SemanticConventions.K8s.VolumeTypeValues
     public struct VolumeTypeValues: CustomStringConvertible {
       /**
       A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume

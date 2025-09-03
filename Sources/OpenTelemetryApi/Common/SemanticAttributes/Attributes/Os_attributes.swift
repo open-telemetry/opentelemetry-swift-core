@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Os: String {
+
+
     /**
      Unique identifier for a particular build or compilation of the operating system.
 
@@ -23,6 +25,7 @@ extension SemanticConventions {
     */
     case buildId = "os.build_id"
 
+
     /**
      Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands.
 
@@ -35,6 +38,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case description = "os.description"
+
 
     /**
      Human readable operating system name.
@@ -50,13 +54,15 @@ extension SemanticConventions {
     */
     case name = "os.name"
 
+
     /**
      The operating system type.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Os.TypeValues`](x-source-tag://SemanticConventions.os.TypeValues) (of type `String`)
+     - Requires: Value should be one of ``TypeValues`` (of type `String`)
     */
     case type = "os.type"
+
 
     /**
      The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
@@ -72,10 +78,13 @@ extension SemanticConventions {
     case version = "os.version"
 
 
+
+
+
+
     /** 
       The operating system type.
     */
-    /// - Tag: SemanticConventions.Os.TypeValues
     public struct TypeValues: CustomStringConvertible {
       /**
       Microsoft Windows
@@ -132,5 +141,6 @@ extension SemanticConventions {
         return value
       }
     }
+
   }
 }

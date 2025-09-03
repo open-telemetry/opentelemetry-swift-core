@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Cloud: String {
+
+
     /**
      The cloud account ID the resource is assigned to.
 
@@ -21,6 +23,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case accountId = "cloud.account.id"
+
 
     /**
      Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running.
@@ -36,23 +39,26 @@ extension SemanticConventions {
     */
     case availabilityZone = "cloud.availability_zone"
 
+
     /**
      The cloud platform in use.
       ```
 
      - Note: The prefix of the service SHOULD match the one specified in `cloud.provider`.
 
-     - Requires: Value should be one of [`SemanticContentions.Cloud.PlatformValues`](x-source-tag://SemanticConventions.cloud.PlatformValues) (of type `String`)
+     - Requires: Value should be one of ``PlatformValues`` (of type `String`)
     */
     case platform = "cloud.platform"
+
 
     /**
      Name of the cloud provider.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Cloud.ProviderValues`](x-source-tag://SemanticConventions.cloud.ProviderValues) (of type `String`)
+     - Requires: Value should be one of ``ProviderValues`` (of type `String`)
     */
     case provider = "cloud.provider"
+
 
     /**
      The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed.
@@ -68,6 +74,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case region = "cloud.region"
+
 
     /**
      Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP)
@@ -102,10 +109,12 @@ extension SemanticConventions {
     case resourceId = "cloud.resource_id"
 
 
+
+
+
     /** 
       The cloud platform in use.
     */
-    /// - Tag: SemanticConventions.Cloud.PlatformValues
     public struct PlatformValues: CustomStringConvertible {
       /**
       Alibaba Cloud Elastic Compute Service
@@ -239,10 +248,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       Name of the cloud provider.
     */
-    /// - Tag: SemanticConventions.Cloud.ProviderValues
     public struct ProviderValues: CustomStringConvertible {
       /**
       Alibaba Cloud
@@ -287,5 +296,7 @@ extension SemanticConventions {
         return value
       }
     }
+
+
   }
 }

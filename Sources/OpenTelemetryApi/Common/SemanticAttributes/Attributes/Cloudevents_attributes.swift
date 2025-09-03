@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Cloudevents: String {
+
+
     /**
      The [event_id](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id) uniquely identifies the event.
 
@@ -21,6 +23,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case eventId = "cloudevents.event_id"
+
 
     /**
      The [source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) identifies the context in which an event happened.
@@ -36,6 +39,7 @@ extension SemanticConventions {
     */
     case eventSource = "cloudevents.event_source"
 
+
     /**
      The [version of the CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) which the event uses.
 
@@ -48,6 +52,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case eventSpecVersion = "cloudevents.event_spec_version"
+
 
     /**
      The [subject](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#subject) of the event in the context of the event producer (identified by source).
@@ -62,6 +67,7 @@ extension SemanticConventions {
     */
     case eventSubject = "cloudevents.event_subject"
 
+
     /**
      The [event_type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) contains a value describing the type of event related to the originating occurrence.
 
@@ -74,6 +80,11 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case eventType = "cloudevents.event_type"
+
+
+
+
+
 
   }
 }

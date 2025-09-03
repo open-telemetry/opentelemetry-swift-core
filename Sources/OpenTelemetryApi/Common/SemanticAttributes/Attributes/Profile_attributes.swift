@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Profile: String {
+
+
     /**
      Describes the interpreter or compiler of a single frame.
 
@@ -17,15 +19,15 @@ extension SemanticConventions {
       attributes[SemanticConventions.Profile.frameType.rawValue] = .cpython
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Profile.FrameTypeValues`](x-source-tag://SemanticConventions.profile.FrameTypeValues) (of type `String`)
+     - Requires: Value should be one of ``FrameTypeValues`` (of type `String`)
     */
     case frameType = "profile.frame.type"
+
 
 
     /** 
       Describes the interpreter or compiler of a single frame.
     */
-    /// - Tag: SemanticConventions.Profile.FrameTypeValues
     public struct FrameTypeValues: CustomStringConvertible {
       /**
       [.NET](https://wikipedia.org/wiki/.NET)

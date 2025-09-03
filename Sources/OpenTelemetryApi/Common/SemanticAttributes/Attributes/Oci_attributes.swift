@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Oci: String {
+
+
     /**
      The digest of the OCI image manifest. For container images specifically is the digest by which the container image is known.
 
@@ -23,6 +25,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case manifestDigest = "oci.manifest.digest"
+
 
   }
 }

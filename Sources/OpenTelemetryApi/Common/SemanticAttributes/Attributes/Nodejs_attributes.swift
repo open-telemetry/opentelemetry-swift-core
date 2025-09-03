@@ -9,19 +9,21 @@ import Foundation
 
 extension SemanticConventions {
   public enum Nodejs: String {
+
+
     /**
      The state of event loop time.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Nodejs.EventloopStateValues`](x-source-tag://SemanticConventions.nodejs.EventloopStateValues) (of type `String`)
+     - Requires: Value should be one of ``EventloopStateValues`` (of type `String`)
     */
     case eventloopState = "nodejs.eventloop.state"
+
 
 
     /** 
       The state of event loop time.
     */
-    /// - Tag: SemanticConventions.Nodejs.EventloopStateValues
     public struct EventloopStateValues: CustomStringConvertible {
       /**
       Active time.

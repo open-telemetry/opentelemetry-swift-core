@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum App: String {
+
+
     /**
      Unique identifier for a particular build or compilation of the application.
 
@@ -22,6 +24,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case buildId = "app.build_id"
+
 
     /**
      A unique identifier representing the installation of an application on a specific device
@@ -53,6 +56,7 @@ extension SemanticConventions {
     */
     case installationId = "app.installation.id"
 
+
     /**
      A number of frame renders that experienced jank.
 
@@ -68,6 +72,7 @@ extension SemanticConventions {
     */
     case jankFrameCount = "app.jank.frame_count"
 
+
     /**
      The time period, in seconds, for which this jank is being reported.
 
@@ -81,6 +86,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Double`
     */
     case jankPeriod = "app.jank.period"
+
 
     /**
      The minimum rendering threshold for this jank, in seconds.
@@ -96,6 +102,7 @@ extension SemanticConventions {
     */
     case jankThreshold = "app.jank.threshold"
 
+
     /**
      The x (horizontal) coordinate of a screen coordinate, in screen pixels.
 
@@ -109,6 +116,7 @@ extension SemanticConventions {
     */
     case screenCoordinateX = "app.screen.coordinate.x"
 
+
     /**
      The y (vertical) component of a screen coordinate, in screen pixels.
 
@@ -121,6 +129,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case screenCoordinateY = "app.screen.coordinate.y"
+
 
     /**
      An identifier that uniquely differentiates this widget from other widgets in the same application.
@@ -137,6 +146,7 @@ extension SemanticConventions {
     */
     case widgetId = "app.widget.id"
 
+
     /**
      The name of an application widget.
 
@@ -152,6 +162,15 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case widgetName = "app.widget.name"
+
+
+
+
+
+
+
+
+
 
   }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Db: String {
+
+
     /**
      The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it.
 
@@ -21,6 +23,7 @@ extension SemanticConventions {
     */
     case clientConnectionPoolName = "db.client.connection.pool.name"
 
+
     /**
      The state of a connection in the pool
 
@@ -29,9 +32,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Db.clientConnectionState.rawValue] = .idle
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Db.ClientConnectionStateValues`](x-source-tag://SemanticConventions.db.ClientConnectionStateValues) (of type `String`)
+     - Requires: Value should be one of ``ClientConnectionStateValues`` (of type `String`)
     */
     case clientConnectionState = "db.client.connection.state"
+
 
     /**
      The name of a collection (table, container) within the database.
@@ -56,6 +60,7 @@ extension SemanticConventions {
     */
     case collectionName = "db.collection.name"
 
+
     /**
      The name of the database, fully qualified within the server address and port.
 
@@ -73,6 +78,7 @@ extension SemanticConventions {
     */
     case namespace = "db.namespace"
 
+
     /**
      The number of queries included in a batch operation.
 
@@ -88,6 +94,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case operationBatchSize = "db.operation.batch.size"
+
 
     /**
      The name of the operation or command being executed.
@@ -118,6 +125,7 @@ extension SemanticConventions {
     */
     case operationName = "db.operation.name"
 
+
     /**
      A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
 
@@ -136,6 +144,7 @@ extension SemanticConventions {
      - Requires: Value type should be `template[string]`
     */
     case operationParameter = "db.operation.parameter"
+
 
     /**
      A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
@@ -165,6 +174,7 @@ extension SemanticConventions {
     */
     case queryParameter = "db.query.parameter"
 
+
     /**
      Low cardinality summary of a database query.
 
@@ -189,6 +199,7 @@ extension SemanticConventions {
     */
     case querySummary = "db.query.summary"
 
+
     /**
      The database query being executed.
 
@@ -206,6 +217,7 @@ extension SemanticConventions {
     */
     case queryText = "db.query.text"
 
+
     /**
      Number of rows returned by the operation.
 
@@ -219,6 +231,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case responseReturnedRows = "db.response.returned_rows"
+
 
     /**
      Database response status code.
@@ -238,6 +251,7 @@ extension SemanticConventions {
     */
     case responseStatusCode = "db.response.status_code"
 
+
     /**
      The name of a stored procedure within the database.
 
@@ -256,21 +270,23 @@ extension SemanticConventions {
     */
     case storedProcedureName = "db.stored_procedure.name"
 
+
     /**
      The database management system (DBMS) product as identified by the client instrumentation.
       ```
 
      - Note: The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
 
-     - Requires: Value should be one of [`SemanticContentions.Db.SystemNameValues`](x-source-tag://SemanticConventions.db.SystemNameValues) (of type `String`)
+     - Requires: Value should be one of ``SystemNameValues`` (of type `String`)
     */
     case systemName = "db.system.name"
+
+
 
 
     /** 
       The state of a connection in the pool
     */
-    /// - Tag: SemanticConventions.Db.ClientConnectionStateValues
     public struct ClientConnectionStateValues: CustomStringConvertible {
       public static let idle = ClientConnectionStateValues("idle") 
       public static let used = ClientConnectionStateValues("used") 
@@ -286,10 +302,21 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
     /** 
       The database management system (DBMS) product as identified by the client instrumentation.
     */
-    /// - Tag: SemanticConventions.Db.SystemNameValues
     public struct SystemNameValues: CustomStringConvertible {
       /**
       Some other SQL database. Fallback only.

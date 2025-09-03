@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Log: String {
+
+
     /**
      The basename of the file.
 
@@ -20,6 +22,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case fileName = "log.file.name"
+
 
     /**
      The basename of the file, with symlinks resolved.
@@ -33,6 +36,7 @@ extension SemanticConventions {
     */
     case fileNameResolved = "log.file.name_resolved"
 
+
     /**
      The full path to the file.
 
@@ -44,6 +48,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case filePath = "log.file.path"
+
 
     /**
      The full path to the file, with symlinks resolved.
@@ -57,13 +62,15 @@ extension SemanticConventions {
     */
     case filePathResolved = "log.file.path_resolved"
 
+
     /**
      The stream associated with the log. See below for a list of well-known values.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Log.IostreamValues`](x-source-tag://SemanticConventions.log.IostreamValues) (of type `String`)
+     - Requires: Value should be one of ``IostreamValues`` (of type `String`)
     */
     case iostream = "log.iostream"
+
 
     /**
      The complete original Log Record.
@@ -79,6 +86,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case recordOriginal = "log.record.original"
+
 
     /**
      A unique identifier for the Log Record.
@@ -96,10 +104,14 @@ extension SemanticConventions {
     case recordUid = "log.record.uid"
 
 
+
+
+
+
+
     /** 
       The stream associated with the log. See below for a list of well-known values.
     */
-    /// - Tag: SemanticConventions.Log.IostreamValues
     public struct IostreamValues: CustomStringConvertible {
       /**
       Logs from stdout stream
@@ -120,5 +132,7 @@ extension SemanticConventions {
         return value
       }
     }
+
+
   }
 }

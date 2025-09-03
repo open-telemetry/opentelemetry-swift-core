@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Destination: String {
+
+
     /**
      Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
@@ -25,6 +27,7 @@ extension SemanticConventions {
     */
     case address = "destination.address"
 
+
     /**
      Destination port number
 
@@ -37,6 +40,8 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case port = "destination.port"
+
+
 
   }
 }

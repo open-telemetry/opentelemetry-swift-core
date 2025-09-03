@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Session: String {
+
+
     /**
      A unique id to identify a session.
 
@@ -22,6 +24,7 @@ extension SemanticConventions {
     */
     case id = "session.id"
 
+
     /**
      The previous `session.id` for this user, when known.
 
@@ -34,6 +37,8 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case previousId = "session.previous_id"
+
+
 
   }
 }

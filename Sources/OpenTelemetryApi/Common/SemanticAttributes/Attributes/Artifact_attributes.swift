@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Artifact: String {
+
+
     /**
      The provenance filename of the built attestation which directly relates to the build artifact filename. This filename SHOULD accompany the artifact at publish time. See the [SLSA Relationship](https://slsa.dev/spec/v1.0/distributing-provenance#relationship-between-artifacts-and-attestations) specification for more information.
 
@@ -24,6 +26,7 @@ extension SemanticConventions {
     */
     case attestationFilename = "artifact.attestation.filename"
 
+
     /**
      The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf), of the built attestation. Some envelopes in the [software attestation space](https://github.com/in-toto/attestation/tree/main/spec) also refer to this as the **digest**.
 
@@ -36,6 +39,7 @@ extension SemanticConventions {
     */
     case attestationHash = "artifact.attestation.hash"
 
+
     /**
      The id of the build [software attestation](https://slsa.dev/attestation-model).
 
@@ -47,6 +51,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case attestationId = "artifact.attestation.id"
+
 
     /**
      The human readable file name of the artifact, typically generated during build and release processes. Often includes the package name and version in the file name.
@@ -67,6 +72,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case filename = "artifact.filename"
+
 
     /**
      The full [hash value (see glossary)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf), often found in checksum.txt on a release of the artifact and used to verify package integrity.
@@ -89,6 +95,7 @@ extension SemanticConventions {
     */
     case hash = "artifact.hash"
 
+
     /**
      The [Package URL](https://github.com/package-url/purl-spec) of the [package artifact](https://slsa.dev/spec/v1.0/terminology#package-model) provides a standard way to identify and locate the packaged artifact.
 
@@ -101,6 +108,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case purl = "artifact.purl"
+
 
     /**
      The version of the artifact.
@@ -115,6 +123,13 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case version = "artifact.version"
+
+
+
+
+
+
+
 
   }
 }

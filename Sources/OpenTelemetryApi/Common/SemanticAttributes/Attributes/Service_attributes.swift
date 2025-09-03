@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Service: String {
+
+
     /**
      The string ID of the service instance.
 
@@ -48,6 +50,7 @@ extension SemanticConventions {
     */
     case instanceId = "service.instance.id"
 
+
     /**
      Logical name of the service.
 
@@ -61,6 +64,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case name = "service.name"
+
 
     /**
      A namespace for `service.name`.
@@ -76,6 +80,7 @@ extension SemanticConventions {
     */
     case namespace = "service.namespace"
 
+
     /**
      The version string of the service API or implementation. The format is not defined by these conventions.
 
@@ -88,6 +93,10 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case version = "service.version"
+
+
+
+
 
   }
 }

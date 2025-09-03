@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Faas: String {
+
+
     /**
      A boolean that is true if the serverless function is executed for the first time (aka cold-start).
       ```
@@ -16,6 +18,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Bool`
     */
     case coldstart = "faas.coldstart"
+
 
     /**
      A string containing the schedule period as [Cron Expression](https://docs.oracle.com/cd/E12058_01/doc/doc.1014/e12030/cron_expressions.htm).
@@ -30,6 +33,7 @@ extension SemanticConventions {
     */
     case cron = "faas.cron"
 
+
     /**
      The name of the source on which the triggering operation was performed. For example, in Cloud Storage or S3 corresponds to the bucket name, and in Cosmos DB to the database name.
 
@@ -42,6 +46,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case documentCollection = "faas.document.collection"
+
 
     /**
      The document name/table subjected to the operation. For example, in Cloud Storage or S3 is the name of the file, and in Cosmos DB the table name.
@@ -56,13 +61,15 @@ extension SemanticConventions {
     */
     case documentName = "faas.document.name"
 
+
     /**
      Describes the type of the operation that was performed on the data.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Faas.DocumentOperationValues`](x-source-tag://SemanticConventions.faas.DocumentOperationValues) (of type `String`)
+     - Requires: Value should be one of ``DocumentOperationValues`` (of type `String`)
     */
     case documentOperation = "faas.document.operation"
+
 
     /**
      A string containing the time when the data was accessed in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
@@ -76,6 +83,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case documentTime = "faas.document.time"
+
 
     /**
      The execution environment ID as a string, that will be potentially reused for other invocations to the same function/function version.
@@ -91,6 +99,7 @@ extension SemanticConventions {
     */
     case instance = "faas.instance"
 
+
     /**
      The invocation ID of the current function invocation.
 
@@ -103,6 +112,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case invocationId = "faas.invocation_id"
+
 
     /**
      The name of the invoked function.
@@ -119,15 +129,17 @@ extension SemanticConventions {
     */
     case invokedName = "faas.invoked_name"
 
+
     /**
      The cloud provider of the invoked function.
       ```
 
      - Note: SHOULD be equal to the `cloud.provider` resource attribute of the invoked function.
 
-     - Requires: Value should be one of [`SemanticContentions.Faas.InvokedProviderValues`](x-source-tag://SemanticConventions.faas.InvokedProviderValues) (of type `String`)
+     - Requires: Value should be one of ``InvokedProviderValues`` (of type `String`)
     */
     case invokedProvider = "faas.invoked_provider"
+
 
     /**
      The cloud region of the invoked function.
@@ -144,6 +156,7 @@ extension SemanticConventions {
     */
     case invokedRegion = "faas.invoked_region"
 
+
     /**
      The amount of memory available to the serverless function converted to Bytes.
 
@@ -158,6 +171,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case maxMemory = "faas.max_memory"
+
 
     /**
      The name of the single function that this runtime instance executes.
@@ -189,6 +203,7 @@ extension SemanticConventions {
     */
     case name = "faas.name"
 
+
     /**
      A string containing the function invocation time in the [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format expressed in [UTC](https://www.w3.org/TR/NOTE-datetime).
 
@@ -202,13 +217,15 @@ extension SemanticConventions {
     */
     case time = "faas.time"
 
+
     /**
      Type of the trigger which caused this function invocation.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Faas.TriggerValues`](x-source-tag://SemanticConventions.faas.TriggerValues) (of type `String`)
+     - Requires: Value should be one of ``TriggerValues`` (of type `String`)
     */
     case trigger = "faas.trigger"
+
 
     /**
      The immutable version of the function being executed.
@@ -234,10 +251,14 @@ extension SemanticConventions {
     case version = "faas.version"
 
 
+
+
+
+
+
     /** 
       Describes the type of the operation that was performed on the data.
     */
-    /// - Tag: SemanticConventions.Faas.DocumentOperationValues
     public struct DocumentOperationValues: CustomStringConvertible {
       /**
       When a new object is created.
@@ -263,10 +284,14 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
     /** 
       The cloud provider of the invoked function.
     */
-    /// - Tag: SemanticConventions.Faas.InvokedProviderValues
     public struct InvokedProviderValues: CustomStringConvertible {
       /**
       Alibaba Cloud
@@ -300,10 +325,14 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
     /** 
       Type of the trigger which caused this function invocation.
     */
-    /// - Tag: SemanticConventions.Faas.TriggerValues
     public struct TriggerValues: CustomStringConvertible {
       /**
       A response to some data source operation such as a database or filesystem read/write
@@ -336,5 +365,6 @@ extension SemanticConventions {
         return value
       }
     }
+
   }
 }

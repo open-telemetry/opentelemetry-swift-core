@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Code: String {
+
+
     /**
      The column number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Line'. This constraint is imposed to prevent redundancy and maintain data integrity.
 
@@ -22,6 +24,7 @@ extension SemanticConventions {
     */
     case columnNumber = "code.column.number"
 
+
     /**
      The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Function'. This constraint is imposed to prevent redundancy and maintain data integrity.
 
@@ -34,6 +37,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case filePath = "code.file.path"
+
 
     /**
      The method or function fully-qualified name without arguments. The value should fit the natural representation of the language runtime, which is also likely the same used within `code.stacktrace` attribute value. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Function'. This constraint is imposed to prevent redundancy and maintain data integrity.
@@ -65,6 +69,7 @@ extension SemanticConventions {
     */
     case functionName = "code.function.name"
 
+
     /**
      The line number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Line'. This constraint is imposed to prevent redundancy and maintain data integrity.
 
@@ -77,6 +82,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case lineNumber = "code.line.number"
+
 
     /**
      A stacktrace as a string in the natural representation for the language runtime. The representation is identical to [`exception.stacktrace`](/docs/exceptions/exceptions-spans.md#stacktrace-representation). This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Location'. This constraint is imposed to prevent redundancy and maintain data integrity.
@@ -91,6 +97,11 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case stacktrace = "code.stacktrace"
+
+
+
+
+
 
   }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Aspnetcore: String {
+
+
     /**
      The result of the authentication operation.
 
@@ -18,9 +20,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.authenticationResult.rawValue] = .failure
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.AuthenticationResultValues`](x-source-tag://SemanticConventions.aspnetcore.AuthenticationResultValues) (of type `String`)
+     - Requires: Value should be one of ``AuthenticationResultValues`` (of type `String`)
     */
     case authenticationResult = "aspnetcore.authentication.result"
+
 
     /**
      The identifier that names a particular authentication handler.
@@ -36,6 +39,7 @@ extension SemanticConventions {
     */
     case authenticationScheme = "aspnetcore.authentication.scheme"
 
+
     /**
      The name of the authorization policy.
 
@@ -48,6 +52,7 @@ extension SemanticConventions {
     */
     case authorizationPolicy = "aspnetcore.authorization.policy"
 
+
     /**
      The result of calling the authorization service.
 
@@ -57,9 +62,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.authorizationResult.rawValue] = .failure
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.AuthorizationResultValues`](x-source-tag://SemanticConventions.aspnetcore.AuthorizationResultValues) (of type `String`)
+     - Requires: Value should be one of ``AuthorizationResultValues`` (of type `String`)
     */
     case authorizationResult = "aspnetcore.authorization.result"
+
 
     /**
      ASP.NET Core exception middleware handling result.
@@ -70,9 +76,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.diagnosticsExceptionResult.rawValue] = .unhandled
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.DiagnosticsExceptionResultValues`](x-source-tag://SemanticConventions.aspnetcore.DiagnosticsExceptionResultValues) (of type `String`)
+     - Requires: Value should be one of ``DiagnosticsExceptionResultValues`` (of type `String`)
     */
     case diagnosticsExceptionResult = "aspnetcore.diagnostics.exception.result"
+
 
     /**
      Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception.
@@ -85,6 +92,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case diagnosticsHandlerType = "aspnetcore.diagnostics.handler.type"
+
 
     /**
      The error code for a failed identity operation.
@@ -99,6 +107,7 @@ extension SemanticConventions {
     */
     case identityErrorCode = "aspnetcore.identity.error_code"
 
+
     /**
      The result from checking the password.
 
@@ -108,9 +117,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.identityPasswordCheckResult.rawValue] = .failure
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentityPasswordCheckResultValues`](x-source-tag://SemanticConventions.aspnetcore.IdentityPasswordCheckResultValues) (of type `String`)
+     - Requires: Value should be one of ``IdentityPasswordCheckResultValues`` (of type `String`)
     */
     case identityPasswordCheckResult = "aspnetcore.identity.password_check_result"
+
 
     /**
      The result of the identity operation.
@@ -121,9 +131,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.identityResult.rawValue] = .failure
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentityResultValues`](x-source-tag://SemanticConventions.aspnetcore.IdentityResultValues) (of type `String`)
+     - Requires: Value should be one of ``IdentityResultValues`` (of type `String`)
     */
     case identityResult = "aspnetcore.identity.result"
+
 
     /**
      Whether the sign in result was success or failure.
@@ -134,9 +145,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.identitySignInResult.rawValue] = .two_factor
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentitySignInResultValues`](x-source-tag://SemanticConventions.aspnetcore.IdentitySignInResultValues) (of type `String`)
+     - Requires: Value should be one of ``IdentitySignInResultValues`` (of type `String`)
     */
     case identitySignInResult = "aspnetcore.identity.sign_in.result"
+
 
     /**
      The authentication type.
@@ -147,9 +159,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.identitySignInType.rawValue] = .two_factor
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentitySignInTypeValues`](x-source-tag://SemanticConventions.aspnetcore.IdentitySignInTypeValues) (of type `String`)
+     - Requires: Value should be one of ``IdentitySignInTypeValues`` (of type `String`)
     */
     case identitySignInType = "aspnetcore.identity.sign_in.type"
+
 
     /**
      What the token will be used for.
@@ -160,9 +173,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.identityTokenPurpose.rawValue] = .failure
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentityTokenPurposeValues`](x-source-tag://SemanticConventions.aspnetcore.IdentityTokenPurposeValues) (of type `String`)
+     - Requires: Value should be one of ``IdentityTokenPurposeValues`` (of type `String`)
     */
     case identityTokenPurpose = "aspnetcore.identity.token_purpose"
+
 
     /**
      The result of token verification.
@@ -173,9 +187,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.identityTokenVerified.rawValue] = .failure
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentityTokenVerifiedValues`](x-source-tag://SemanticConventions.aspnetcore.IdentityTokenVerifiedValues) (of type `String`)
+     - Requires: Value should be one of ``IdentityTokenVerifiedValues`` (of type `String`)
     */
     case identityTokenVerified = "aspnetcore.identity.token_verified"
+
 
     /**
      The user update type.
@@ -187,9 +202,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.identityUserUpdateType.rawValue] = .reset_password
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentityUserUpdateTypeValues`](x-source-tag://SemanticConventions.aspnetcore.IdentityUserUpdateTypeValues) (of type `String`)
+     - Requires: Value should be one of ``IdentityUserUpdateTypeValues`` (of type `String`)
     */
     case identityUserUpdateType = "aspnetcore.identity.user.update_type"
+
 
     /**
      The full name of the identity user type.
@@ -203,6 +219,7 @@ extension SemanticConventions {
     */
     case identityUserType = "aspnetcore.identity.user_type"
 
+
     /**
      The name of the library or subsystem using the memory pool instance.
 
@@ -215,6 +232,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case memoryPoolOwner = "aspnetcore.memory_pool.owner"
+
 
     /**
      Rate limiting policy name.
@@ -230,6 +248,7 @@ extension SemanticConventions {
     */
     case rateLimitingPolicy = "aspnetcore.rate_limiting.policy"
 
+
     /**
      Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
 
@@ -239,9 +258,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.rateLimitingResult.rawValue] = .request_canceled
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.RateLimitingResultValues`](x-source-tag://SemanticConventions.aspnetcore.RateLimitingResultValues) (of type `String`)
+     - Requires: Value should be one of ``RateLimitingResultValues`` (of type `String`)
     */
     case rateLimitingResult = "aspnetcore.rate_limiting.result"
+
 
     /**
      Flag indicating if request was handled by the application pipeline.
@@ -255,6 +275,7 @@ extension SemanticConventions {
     */
     case requestIsUnhandled = "aspnetcore.request.is_unhandled"
 
+
     /**
      A value that indicates whether the matched route is a fallback route.
 
@@ -267,6 +288,7 @@ extension SemanticConventions {
     */
     case routingIsFallback = "aspnetcore.routing.is_fallback"
 
+
     /**
      Match result - success or failure
 
@@ -276,9 +298,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Aspnetcore.routingMatchStatus.rawValue] = .failure
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.RoutingMatchStatusValues`](x-source-tag://SemanticConventions.aspnetcore.RoutingMatchStatusValues) (of type `String`)
+     - Requires: Value should be one of ``RoutingMatchStatusValues`` (of type `String`)
     */
     case routingMatchStatus = "aspnetcore.routing.match_status"
+
 
     /**
      A flag indicating whether the sign in is persistent.
@@ -287,6 +310,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Bool`
     */
     case signInIsPersistent = "aspnetcore.sign_in.is_persistent"
+
 
     /**
      A value that indicates whether the user is authenticated.
@@ -301,10 +325,10 @@ extension SemanticConventions {
     case userIsAuthenticated = "aspnetcore.user.is_authenticated"
 
 
+
     /** 
       The result of the authentication operation.
     */
-    /// - Tag: SemanticConventions.Aspnetcore.AuthenticationResultValues
     public struct AuthenticationResultValues: CustomStringConvertible {
       /**
       Authentication was successful.
@@ -330,10 +354,12 @@ extension SemanticConventions {
       }
     }
 
+
+
+
     /** 
       The result of calling the authorization service.
     */
-    /// - Tag: SemanticConventions.Aspnetcore.AuthorizationResultValues
     public struct AuthorizationResultValues: CustomStringConvertible {
       /**
       Authorization was successful.
@@ -355,10 +381,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       ASP.NET Core exception middleware handling result.
     */
-    /// - Tag: SemanticConventions.Aspnetcore.DiagnosticsExceptionResultValues
     public struct DiagnosticsExceptionResultValues: CustomStringConvertible {
       /**
       Exception was handled by the exception handling middleware.
@@ -388,10 +414,12 @@ extension SemanticConventions {
       }
     }
 
+
+
+
     /** 
       The result from checking the password.
     */
-    /// - Tag: SemanticConventions.Aspnetcore.IdentityPasswordCheckResultValues
     public struct IdentityPasswordCheckResultValues: CustomStringConvertible {
       /**
       Password check was successful.
@@ -425,10 +453,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       The result of the identity operation.
     */
-    /// - Tag: SemanticConventions.Aspnetcore.IdentityResultValues
     public struct IdentityResultValues: CustomStringConvertible {
       /**
       Identity operation was successful.
@@ -450,10 +478,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       Whether the sign in result was success or failure.
     */
-    /// - Tag: SemanticConventions.Aspnetcore.IdentitySignInResultValues
     public struct IdentitySignInResultValues: CustomStringConvertible {
       /**
       Sign in was successful.
@@ -487,10 +515,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       The authentication type.
     */
-    /// - Tag: SemanticConventions.Aspnetcore.IdentitySignInTypeValues
     public struct IdentitySignInTypeValues: CustomStringConvertible {
       /**
       Sign in with password.
@@ -528,10 +556,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       What the token will be used for.
     */
-    /// - Tag: SemanticConventions.Aspnetcore.IdentityTokenPurposeValues
     public struct IdentityTokenPurposeValues: CustomStringConvertible {
       /**
       The token is for resetting a user password.
@@ -569,10 +597,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       The result of token verification.
     */
-    /// - Tag: SemanticConventions.Aspnetcore.IdentityTokenVerifiedValues
     public struct IdentityTokenVerifiedValues: CustomStringConvertible {
       /**
       Token verification was successful.
@@ -594,10 +622,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       The user update type.
     */
-    /// - Tag: SemanticConventions.Aspnetcore.IdentityUserUpdateTypeValues
     public struct IdentityUserUpdateTypeValues: CustomStringConvertible {
       /**
       Identity user updated.
@@ -743,10 +771,13 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
     /** 
       Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
     */
-    /// - Tag: SemanticConventions.Aspnetcore.RateLimitingResultValues
     public struct RateLimitingResultValues: CustomStringConvertible {
       /**
       Lease was acquired
@@ -776,10 +807,12 @@ extension SemanticConventions {
       }
     }
 
+
+
+
     /** 
       Match result - success or failure
     */
-    /// - Tag: SemanticConventions.Aspnetcore.RoutingMatchStatusValues
     public struct RoutingMatchStatusValues: CustomStringConvertible {
       /**
       Match succeeded
@@ -800,5 +833,7 @@ extension SemanticConventions {
         return value
       }
     }
+
+
   }
 }

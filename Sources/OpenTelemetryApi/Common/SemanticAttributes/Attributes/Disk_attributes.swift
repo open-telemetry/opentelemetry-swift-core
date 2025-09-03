@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Disk: String {
+
+
     /**
      The disk IO operation direction.
 
@@ -17,15 +19,15 @@ extension SemanticConventions {
       attributes[SemanticConventions.Disk.ioDirection.rawValue] = .read
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Disk.IoDirectionValues`](x-source-tag://SemanticConventions.disk.IoDirectionValues) (of type `String`)
+     - Requires: Value should be one of ``IoDirectionValues`` (of type `String`)
     */
     case ioDirection = "disk.io.direction"
+
 
 
     /** 
       The disk IO operation direction.
     */
-    /// - Tag: SemanticConventions.Disk.IoDirectionValues
     public struct IoDirectionValues: CustomStringConvertible {
       public static let read = IoDirectionValues("read") 
       public static let write = IoDirectionValues("write") 

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Telemetry: String {
+
+
     /**
      The name of the auto instrumentation agent or distribution, if used.
 
@@ -24,6 +26,7 @@ extension SemanticConventions {
     */
     case distroName = "telemetry.distro.name"
 
+
     /**
      The version string of the auto instrumentation agent or distribution, if used.
 
@@ -36,13 +39,15 @@ extension SemanticConventions {
     */
     case distroVersion = "telemetry.distro.version"
 
+
     /**
      The language of the telemetry SDK.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Telemetry.SdkLanguageValues`](x-source-tag://SemanticConventions.telemetry.SdkLanguageValues) (of type `String`)
+     - Requires: Value should be one of ``SdkLanguageValues`` (of type `String`)
     */
     case sdkLanguage = "telemetry.sdk.language"
+
 
     /**
      The name of the telemetry SDK as defined above.
@@ -63,6 +68,7 @@ extension SemanticConventions {
     */
     case sdkName = "telemetry.sdk.name"
 
+
     /**
      The version string of the telemetry SDK.
 
@@ -76,10 +82,12 @@ extension SemanticConventions {
     case sdkVersion = "telemetry.sdk.version"
 
 
+
+
+
     /** 
       The language of the telemetry SDK.
     */
-    /// - Tag: SemanticConventions.Telemetry.SdkLanguageValues
     public struct SdkLanguageValues: CustomStringConvertible {
       public static let cpp = SdkLanguageValues("cpp") 
       public static let dotnet = SdkLanguageValues("dotnet") 
@@ -104,5 +112,7 @@ extension SemanticConventions {
         return value
       }
     }
+
+
   }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum FeatureFlag: String {
+
+
     /**
      The unique identifier for the flag evaluation context. For example, the targeting key.
 
@@ -20,6 +22,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case contextId = "feature_flag.context.id"
+
 
     /**
      The lookup key of the feature flag.
@@ -33,6 +36,7 @@ extension SemanticConventions {
     */
     case key = "feature_flag.key"
 
+
     /**
      Identifies the feature flag provider.
 
@@ -45,6 +49,7 @@ extension SemanticConventions {
     */
     case providerName = "feature_flag.provider.name"
 
+
     /**
      The reason code which shows how a feature flag value was determined.
 
@@ -56,9 +61,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.FeatureFlag.resultReason.rawValue] = .default
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.FeatureFlag.ResultReasonValues`](x-source-tag://SemanticConventions.feature_flag.ResultReasonValues) (of type `String`)
+     - Requires: Value should be one of ``ResultReasonValues`` (of type `String`)
     */
     case resultReason = "feature_flag.result.reason"
+
 
     /**
      The evaluated value of the feature flag.
@@ -80,6 +86,7 @@ extension SemanticConventions {
     */
     case resultValue = "feature_flag.result.value"
 
+
     /**
      A semantic identifier for an evaluated flag value.
 
@@ -99,6 +106,7 @@ extension SemanticConventions {
     */
     case resultVariant = "feature_flag.result.variant"
 
+
     /**
      The identifier of the [flag set](https://openfeature.dev/specification/glossary/#flag-set) to which the feature flag belongs.
 
@@ -112,6 +120,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case setId = "feature_flag.set.id"
+
 
     /**
      The version of the ruleset used during the evaluation. This may be any stable value which uniquely identifies the ruleset.
@@ -127,10 +136,13 @@ extension SemanticConventions {
     case version = "feature_flag.version"
 
 
+
+
+
+
     /** 
       The reason code which shows how a feature flag value was determined.
     */
-    /// - Tag: SemanticConventions.FeatureFlag.ResultReasonValues
     public struct ResultReasonValues: CustomStringConvertible {
       /**
       The resolved value is static (no dynamic evaluation).
@@ -179,5 +191,9 @@ extension SemanticConventions {
         return value
       }
     }
+
+
+
+
   }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Browser: String {
+
+
     /**
      Array of brand name and version separated by a space
 
@@ -22,6 +24,7 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case brands = "browser.brands"
+
 
     /**
      Preferred language of the user using the browser
@@ -40,6 +43,7 @@ extension SemanticConventions {
     */
     case language = "browser.language"
 
+
     /**
      A boolean that is true if the browser is running on a mobile device
       ```
@@ -49,6 +53,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Bool`
     */
     case mobile = "browser.mobile"
+
 
     /**
      The platform on which the browser is running
@@ -66,6 +71,10 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case platform = "browser.platform"
+
+
+
+
 
   }
 }

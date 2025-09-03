@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Gcp: String {
+
+
     /**
      The container within GCP where the AppHub application is defined.
 
@@ -20,6 +22,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case apphubApplicationContainer = "gcp.apphub.application.container"
+
 
     /**
      The name of the application as configured in AppHub.
@@ -33,6 +36,7 @@ extension SemanticConventions {
     */
     case apphubApplicationId = "gcp.apphub.application.id"
 
+
     /**
      The GCP zone or region where the application is defined.
 
@@ -45,15 +49,17 @@ extension SemanticConventions {
     */
     case apphubApplicationLocation = "gcp.apphub.application.location"
 
+
     /**
      Criticality of a service indicates its importance to the business.
       ```
 
      - Note: [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-     - Requires: Value should be one of [`SemanticContentions.Gcp.ApphubServiceCriticalityTypeValues`](x-source-tag://SemanticConventions.gcp.ApphubServiceCriticalityTypeValues) (of type `String`)
+     - Requires: Value should be one of ``ApphubServiceCriticalityTypeValues`` (of type `String`)
     */
     case apphubServiceCriticalityType = "gcp.apphub.service.criticality_type"
+
 
     /**
      Environment of a service is the stage of a software lifecycle.
@@ -61,9 +67,10 @@ extension SemanticConventions {
 
      - Note: [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
-     - Requires: Value should be one of [`SemanticContentions.Gcp.ApphubServiceEnvironmentTypeValues`](x-source-tag://SemanticConventions.gcp.ApphubServiceEnvironmentTypeValues) (of type `String`)
+     - Requires: Value should be one of ``ApphubServiceEnvironmentTypeValues`` (of type `String`)
     */
     case apphubServiceEnvironmentType = "gcp.apphub.service.environment_type"
+
 
     /**
      The name of the service as configured in AppHub.
@@ -77,15 +84,17 @@ extension SemanticConventions {
     */
     case apphubServiceId = "gcp.apphub.service.id"
 
+
     /**
      Criticality of a workload indicates its importance to the business.
       ```
 
      - Note: [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
 
-     - Requires: Value should be one of [`SemanticContentions.Gcp.ApphubWorkloadCriticalityTypeValues`](x-source-tag://SemanticConventions.gcp.ApphubWorkloadCriticalityTypeValues) (of type `String`)
+     - Requires: Value should be one of ``ApphubWorkloadCriticalityTypeValues`` (of type `String`)
     */
     case apphubWorkloadCriticalityType = "gcp.apphub.workload.criticality_type"
+
 
     /**
      Environment of a workload is the stage of a software lifecycle.
@@ -93,9 +102,10 @@ extension SemanticConventions {
 
      - Note: [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
 
-     - Requires: Value should be one of [`SemanticContentions.Gcp.ApphubWorkloadEnvironmentTypeValues`](x-source-tag://SemanticConventions.gcp.ApphubWorkloadEnvironmentTypeValues) (of type `String`)
+     - Requires: Value should be one of ``ApphubWorkloadEnvironmentTypeValues`` (of type `String`)
     */
     case apphubWorkloadEnvironmentType = "gcp.apphub.workload.environment_type"
+
 
     /**
      The name of the workload as configured in AppHub.
@@ -108,6 +118,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case apphubWorkloadId = "gcp.apphub.workload.id"
+
 
     /**
      Identifies the Google Cloud service for which the official client library is intended.
@@ -127,6 +138,7 @@ extension SemanticConventions {
     */
     case clientService = "gcp.client.service"
 
+
     /**
      The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable.
 
@@ -139,6 +151,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case cloudRunJobExecution = "gcp.cloud_run.job.execution"
+
 
     /**
      The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable.
@@ -153,6 +166,7 @@ extension SemanticConventions {
     */
     case cloudRunJobTaskIndex = "gcp.cloud_run.job.task_index"
 
+
     /**
      The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).
 
@@ -165,6 +179,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case gceInstanceHostname = "gcp.gce.instance.hostname"
+
 
     /**
      The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names).
@@ -180,10 +195,13 @@ extension SemanticConventions {
     case gceInstanceName = "gcp.gce.instance.name"
 
 
+
+
+
+
     /** 
       Criticality of a service indicates its importance to the business.
     */
-    /// - Tag: SemanticConventions.Gcp.ApphubServiceCriticalityTypeValues
     public struct ApphubServiceCriticalityTypeValues: CustomStringConvertible {
       /**
       Mission critical service.
@@ -213,10 +231,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       Environment of a service is the stage of a software lifecycle.
     */
-    /// - Tag: SemanticConventions.Gcp.ApphubServiceEnvironmentTypeValues
     public struct ApphubServiceEnvironmentTypeValues: CustomStringConvertible {
       /**
       Production environment.
@@ -246,10 +264,11 @@ extension SemanticConventions {
       }
     }
 
+
+
     /** 
       Criticality of a workload indicates its importance to the business.
     */
-    /// - Tag: SemanticConventions.Gcp.ApphubWorkloadCriticalityTypeValues
     public struct ApphubWorkloadCriticalityTypeValues: CustomStringConvertible {
       /**
       Mission critical service.
@@ -279,10 +298,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       Environment of a workload is the stage of a software lifecycle.
     */
-    /// - Tag: SemanticConventions.Gcp.ApphubWorkloadEnvironmentTypeValues
     public struct ApphubWorkloadEnvironmentTypeValues: CustomStringConvertible {
       /**
       Production environment.
@@ -311,5 +330,11 @@ extension SemanticConventions {
         return value
       }
     }
+
+
+
+
+
+
   }
 }

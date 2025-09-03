@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Cpython: String {
+
+
     /**
      Value of the garbage collector collection generation.
 
@@ -19,15 +21,15 @@ extension SemanticConventions {
       attributes[SemanticConventions.Cpython.gcGeneration.rawValue] = .2
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Cpython.GcGenerationValues`](x-source-tag://SemanticConventions.cpython.GcGenerationValues) (of type `Int`)
+     - Requires: Value should be one of ``GcGenerationValues`` (of type `Int`)
     */
     case gcGeneration = "cpython.gc.generation"
+
 
 
     /** 
       Value of the garbage collector collection generation.
     */
-    /// - Tag: SemanticConventions.Cpython.GcGenerationValues
     public struct GcGenerationValues: CustomStringConvertible {
       /**
       Generation 0

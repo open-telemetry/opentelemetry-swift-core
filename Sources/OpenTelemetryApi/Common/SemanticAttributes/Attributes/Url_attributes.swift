@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Url: String {
+
+
     /**
      Domain extracted from the `url.full`, such as "opentelemetry.io".
 
@@ -26,6 +28,7 @@ extension SemanticConventions {
     */
     case domain = "url.domain"
 
+
     /**
      The file extension extracted from the `url.full`, excluding the leading dot.
 
@@ -41,6 +44,7 @@ extension SemanticConventions {
     */
     case _extension = "url.extension"
 
+
     /**
      The [URI fragment](https://www.rfc-editor.org/rfc/rfc3986#section-3.5) component
 
@@ -52,6 +56,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case fragment = "url.fragment"
+
 
     /**
      Absolute URL describing a network resource according to [RFC3986](https://www.rfc-editor.org/rfc/rfc3986)
@@ -90,6 +95,7 @@ extension SemanticConventions {
     */
     case full = "url.full"
 
+
     /**
      Unmodified original URL as seen in the event source.
 
@@ -106,6 +112,7 @@ extension SemanticConventions {
     */
     case original = "url.original"
 
+
     /**
      The [URI path](https://www.rfc-editor.org/rfc/rfc3986#section-3.3) component
 
@@ -120,6 +127,7 @@ extension SemanticConventions {
     */
     case path = "url.path"
 
+
     /**
      Port extracted from the `url.full`
 
@@ -131,6 +139,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case port = "url.port"
+
 
     /**
      The [URI query](https://www.rfc-editor.org/rfc/rfc3986#section-3.4) component
@@ -159,6 +168,7 @@ extension SemanticConventions {
     */
     case query = "url.query"
 
+
     /**
      The highest registered url domain, stripped of the subdomain.
 
@@ -174,6 +184,7 @@ extension SemanticConventions {
     */
     case registeredDomain = "url.registered_domain"
 
+
     /**
      The [URI scheme](https://www.rfc-editor.org/rfc/rfc3986#section-3.1) component identifying the used protocol.
 
@@ -187,6 +198,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case scheme = "url.scheme"
+
 
     /**
      The subdomain portion of a fully qualified domain name includes all of the names except the host name under the registered_domain. In a partially qualified domain, or if the qualification level of the full name cannot be determined, subdomain contains all of the names below the registered domain.
@@ -203,6 +215,7 @@ extension SemanticConventions {
     */
     case subdomain = "url.subdomain"
 
+
     /**
      The low-cardinality template of an [absolute path reference](https://www.rfc-editor.org/rfc/rfc3986#section-4.2).
 
@@ -216,6 +229,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case template = "url.template"
+
 
     /**
      The effective top level domain (eTLD), also known as the domain suffix, is the last part of the domain name. For example, the top level domain for example.com is `com`.
@@ -231,6 +245,19 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case topLevelDomain = "url.top_level_domain"
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Dotnet: String {
+
+
     /**
      Name of the garbage collector managed heap generation.
 
@@ -19,15 +21,15 @@ extension SemanticConventions {
       attributes[SemanticConventions.Dotnet.gcHeapGeneration.rawValue] = .gen2
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Dotnet.GcHeapGenerationValues`](x-source-tag://SemanticConventions.dotnet.GcHeapGenerationValues) (of type `String`)
+     - Requires: Value should be one of ``GcHeapGenerationValues`` (of type `String`)
     */
     case gcHeapGeneration = "dotnet.gc.heap.generation"
+
 
 
     /** 
       Name of the garbage collector managed heap generation.
     */
-    /// - Tag: SemanticConventions.Dotnet.GcHeapGenerationValues
     public struct GcHeapGenerationValues: CustomStringConvertible {
       /**
       Generation 0

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Exception: String {
+
+
     /**
      The exception message.
 
@@ -21,6 +23,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case message = "exception.message"
+
 
     /**
      A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG.
@@ -36,6 +39,7 @@ extension SemanticConventions {
     */
     case stacktrace = "exception.stacktrace"
 
+
     /**
      The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it.
 
@@ -48,6 +52,9 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case type = "exception.type"
+
+
+
 
   }
 }

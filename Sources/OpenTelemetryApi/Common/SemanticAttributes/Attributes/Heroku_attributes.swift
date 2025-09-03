@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Heroku: String {
+
+
     /**
      Unique identifier for the application
 
@@ -20,6 +22,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case appId = "heroku.app.id"
+
 
     /**
      Commit hash for the current release
@@ -33,6 +36,7 @@ extension SemanticConventions {
     */
     case releaseCommit = "heroku.release.commit"
 
+
     /**
      Time and date the release was created
 
@@ -44,6 +48,9 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case releaseCreationTimestamp = "heroku.release.creation_timestamp"
+
+
+
 
   }
 }

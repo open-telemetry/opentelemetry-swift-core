@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Client: String {
+
+
     /**
      Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
 
@@ -25,6 +27,7 @@ extension SemanticConventions {
     */
     case address = "client.address"
 
+
     /**
      Client port number.
 
@@ -38,6 +41,8 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case port = "client.port"
+
+
 
   }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Cpu: String {
+
+
     /**
      The logical CPU number [0..n-1]
 
@@ -21,6 +23,7 @@ extension SemanticConventions {
     */
     case logicalNumber = "cpu.logical_number"
 
+
     /**
      The mode of the CPU
 
@@ -30,15 +33,16 @@ extension SemanticConventions {
       attributes[SemanticConventions.Cpu.mode.rawValue] = .system
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Cpu.ModeValues`](x-source-tag://SemanticConventions.cpu.ModeValues) (of type `String`)
+     - Requires: Value should be one of ``ModeValues`` (of type `String`)
     */
     case mode = "cpu.mode"
+
+
 
 
     /** 
       The mode of the CPU
     */
-    /// - Tag: SemanticConventions.Cpu.ModeValues
     public struct ModeValues: CustomStringConvertible {
       /**
       User

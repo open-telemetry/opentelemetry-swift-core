@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Aws: String {
+
+
     /**
      The unique identifier of the AWS Bedrock Guardrail. A [guardrail](https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html) helps safeguard and prevent unwanted behavior from model responses or user messages.
 
@@ -20,6 +22,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case bedrockGuardrailId = "aws.bedrock.guardrail.id"
+
 
     /**
      The unique identifier of the AWS Bedrock Knowledge base. A [knowledge base](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html) is a bank of information that can be queried by models to generate more relevant responses and augment prompts.
@@ -33,6 +36,7 @@ extension SemanticConventions {
     */
     case bedrockKnowledgeBaseId = "aws.bedrock.knowledge_base.id"
 
+
     /**
      The JSON-serialized value of each item in the `AttributeDefinitions` request field.
 
@@ -44,6 +48,7 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case dynamodbAttributeDefinitions = "aws.dynamodb.attribute_definitions"
+
 
     /**
      The value of the `AttributesToGet` request parameter.
@@ -57,6 +62,7 @@ extension SemanticConventions {
     */
     case dynamodbAttributesToGet = "aws.dynamodb.attributes_to_get"
 
+
     /**
      The value of the `ConsistentRead` request parameter.
       ```
@@ -64,6 +70,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Bool`
     */
     case dynamodbConsistentRead = "aws.dynamodb.consistent_read"
+
 
     /**
      The JSON-serialized value of each item in the `ConsumedCapacity` response field.
@@ -77,6 +84,7 @@ extension SemanticConventions {
     */
     case dynamodbConsumedCapacity = "aws.dynamodb.consumed_capacity"
 
+
     /**
      The value of the `Count` response parameter.
 
@@ -88,6 +96,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case dynamodbCount = "aws.dynamodb.count"
+
 
     /**
      The value of the `ExclusiveStartTableName` request parameter.
@@ -102,6 +111,7 @@ extension SemanticConventions {
     */
     case dynamodbExclusiveStartTable = "aws.dynamodb.exclusive_start_table"
 
+
     /**
      The JSON-serialized value of each item in the `GlobalSecondaryIndexUpdates` request field.
 
@@ -113,6 +123,7 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case dynamodbGlobalSecondaryIndexUpdates = "aws.dynamodb.global_secondary_index_updates"
+
 
     /**
      The JSON-serialized value of each item of the `GlobalSecondaryIndexes` request field
@@ -126,6 +137,7 @@ extension SemanticConventions {
     */
     case dynamodbGlobalSecondaryIndexes = "aws.dynamodb.global_secondary_indexes"
 
+
     /**
      The value of the `IndexName` request parameter.
 
@@ -137,6 +149,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case dynamodbIndexName = "aws.dynamodb.index_name"
+
 
     /**
      The JSON-serialized value of the `ItemCollectionMetrics` response field.
@@ -150,6 +163,7 @@ extension SemanticConventions {
     */
     case dynamodbItemCollectionMetrics = "aws.dynamodb.item_collection_metrics"
 
+
     /**
      The value of the `Limit` request parameter.
 
@@ -162,6 +176,7 @@ extension SemanticConventions {
     */
     case dynamodbLimit = "aws.dynamodb.limit"
 
+
     /**
      The JSON-serialized value of each item of the `LocalSecondaryIndexes` request field.
 
@@ -173,6 +188,7 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case dynamodbLocalSecondaryIndexes = "aws.dynamodb.local_secondary_indexes"
+
 
     /**
      The value of the `ProjectionExpression` request parameter.
@@ -188,6 +204,7 @@ extension SemanticConventions {
     */
     case dynamodbProjection = "aws.dynamodb.projection"
 
+
     /**
      The value of the `ProvisionedThroughput.ReadCapacityUnits` request parameter.
 
@@ -200,6 +217,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Double`
     */
     case dynamodbProvisionedReadCapacity = "aws.dynamodb.provisioned_read_capacity"
+
 
     /**
      The value of the `ProvisionedThroughput.WriteCapacityUnits` request parameter.
@@ -214,6 +232,7 @@ extension SemanticConventions {
     */
     case dynamodbProvisionedWriteCapacity = "aws.dynamodb.provisioned_write_capacity"
 
+
     /**
      The value of the `ScanIndexForward` request parameter.
       ```
@@ -221,6 +240,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Bool`
     */
     case dynamodbScanForward = "aws.dynamodb.scan_forward"
+
 
     /**
      The value of the `ScannedCount` response parameter.
@@ -234,6 +254,7 @@ extension SemanticConventions {
     */
     case dynamodbScannedCount = "aws.dynamodb.scanned_count"
 
+
     /**
      The value of the `Segment` request parameter.
 
@@ -245,6 +266,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case dynamodbSegment = "aws.dynamodb.segment"
+
 
     /**
      The value of the `Select` request parameter.
@@ -259,6 +281,7 @@ extension SemanticConventions {
     */
     case dynamodbSelect = "aws.dynamodb.select"
 
+
     /**
      The number of items in the `TableNames` response parameter.
 
@@ -270,6 +293,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case dynamodbTableCount = "aws.dynamodb.table_count"
+
 
     /**
      The keys in the `RequestItems` object field.
@@ -283,6 +307,7 @@ extension SemanticConventions {
     */
     case dynamodbTableNames = "aws.dynamodb.table_names"
 
+
     /**
      The value of the `TotalSegments` request parameter.
 
@@ -294,6 +319,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case dynamodbTotalSegments = "aws.dynamodb.total_segments"
+
 
     /**
      The ARN of an [ECS cluster](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/clusters.html).
@@ -307,6 +333,7 @@ extension SemanticConventions {
     */
     case ecsClusterArn = "aws.ecs.cluster.arn"
 
+
     /**
      The Amazon Resource Name (ARN) of an [ECS container instance](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_instances.html).
 
@@ -319,13 +346,15 @@ extension SemanticConventions {
     */
     case ecsContainerArn = "aws.ecs.container.arn"
 
+
     /**
      The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Aws.EcsLaunchtypeValues`](x-source-tag://SemanticConventions.aws.EcsLaunchtypeValues) (of type `String`)
+     - Requires: Value should be one of ``EcsLaunchtypeValues`` (of type `String`)
     */
     case ecsLaunchtype = "aws.ecs.launchtype"
+
 
     /**
      The ARN of a running [ECS task](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-account-settings.html#ecs-resource-ids).
@@ -340,6 +369,7 @@ extension SemanticConventions {
     */
     case ecsTaskArn = "aws.ecs.task.arn"
 
+
     /**
      The family name of the [ECS task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) used to create the ECS task.
 
@@ -351,6 +381,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case ecsTaskFamily = "aws.ecs.task.family"
+
 
     /**
      The ID of a running ECS task. The ID MUST be extracted from `task.arn`.
@@ -365,6 +396,7 @@ extension SemanticConventions {
     */
     case ecsTaskId = "aws.ecs.task.id"
 
+
     /**
      The revision for the task definition used to create the ECS task.
 
@@ -378,6 +410,7 @@ extension SemanticConventions {
     */
     case ecsTaskRevision = "aws.ecs.task.revision"
 
+
     /**
      The ARN of an EKS cluster.
 
@@ -389,6 +422,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case eksClusterArn = "aws.eks.cluster.arn"
+
 
     /**
      The AWS extended request ID as returned in the response header `x-amz-id-2`.
@@ -402,6 +436,7 @@ extension SemanticConventions {
     */
     case extendedRequestId = "aws.extended_request_id"
 
+
     /**
      The name of the AWS Kinesis [stream](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) the request refers to. Corresponds to the `--stream-name` parameter of the Kinesis [describe-stream](https://docs.aws.amazon.com/cli/latest/reference/kinesis/describe-stream.html) operation.
 
@@ -413,6 +448,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case kinesisStreamName = "aws.kinesis.stream_name"
+
 
     /**
      The full invoked ARN as provided on the `Context` passed to the function (`Lambda-Runtime-Invoked-Function-Arn` header on the `/runtime/invocation/next` applicable).
@@ -428,6 +464,7 @@ extension SemanticConventions {
     */
     case lambdaInvokedArn = "aws.lambda.invoked_arn"
 
+
     /**
      The UUID of the [AWS Lambda EvenSource Mapping](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-eventsourcemapping.html). An event source is mapped to a lambda function. It's contents are read by Lambda and used to trigger a function. This isn't available in the lambda execution context or the lambda runtime environtment. This is going to be populated by the AWS SDK for each language when that UUID is present. Some of these operations are Create/Delete/Get/List/Update EventSourceMapping.
 
@@ -439,6 +476,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case lambdaResourceMappingId = "aws.lambda.resource_mapping.id"
+
 
     /**
      The Amazon Resource Name(s) (ARN) of the AWS log group(s).
@@ -454,6 +492,7 @@ extension SemanticConventions {
     */
     case logGroupArns = "aws.log.group.arns"
 
+
     /**
      The name(s) of the AWS log group(s) an application is writing to.
 
@@ -467,6 +506,7 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case logGroupNames = "aws.log.group.names"
+
 
     /**
      The ARN(s) of the AWS log stream(s).
@@ -482,6 +522,7 @@ extension SemanticConventions {
     */
     case logStreamArns = "aws.log.stream.arns"
 
+
     /**
      The name(s) of the AWS log stream(s) an application is writing to.
 
@@ -493,6 +534,7 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case logStreamNames = "aws.log.stream.names"
+
 
     /**
      The AWS request ID as returned in the response headers `x-amzn-requestid`, `x-amzn-request-id` or `x-amz-request-id`.
@@ -506,6 +548,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case requestId = "aws.request_id"
+
 
     /**
      The S3 bucket name the request refers to. Corresponds to the `--bucket` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
@@ -521,6 +564,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case s3Bucket = "aws.s3.bucket"
+
 
     /**
      The source object (in the form `bucket`/`key`) for the copy operation.
@@ -541,6 +585,7 @@ extension SemanticConventions {
     */
     case s3CopySource = "aws.s3.copy_source"
 
+
     /**
      The delete request container that specifies the objects to be deleted.
 
@@ -556,6 +601,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case s3Delete = "aws.s3.delete"
+
 
     /**
      The S3 object key the request refers to. Corresponds to the `--key` parameter of the [S3 API](https://docs.aws.amazon.com/cli/latest/reference/s3api/index.html) operations.
@@ -586,6 +632,7 @@ extension SemanticConventions {
     */
     case s3Key = "aws.s3.key"
 
+
     /**
      The part number of the part being uploaded in a multipart-upload operation. This is a positive integer between 1 and 10,000.
 
@@ -602,6 +649,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case s3PartNumber = "aws.s3.part_number"
+
 
     /**
      Upload ID that identifies the multipart upload.
@@ -625,6 +673,7 @@ extension SemanticConventions {
     */
     case s3UploadId = "aws.s3.upload_id"
 
+
     /**
      The ARN of the Secret stored in the Secrets Mangger
 
@@ -636,6 +685,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case secretsmanagerSecretArn = "aws.secretsmanager.secret.arn"
+
 
     /**
      The ARN of the AWS SNS Topic. An Amazon SNS [topic](https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html) is a logical access point that acts as a communication channel.
@@ -649,6 +699,7 @@ extension SemanticConventions {
     */
     case snsTopicArn = "aws.sns.topic.arn"
 
+
     /**
      The URL of the AWS SQS Queue. It's a unique identifier for a queue in Amazon Simple Queue Service (SQS) and is used to access the queue and perform actions on it.
 
@@ -661,6 +712,7 @@ extension SemanticConventions {
     */
     case sqsQueueUrl = "aws.sqs.queue.url"
 
+
     /**
      The ARN of the AWS Step Functions Activity.
 
@@ -672,6 +724,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case stepFunctionsActivityArn = "aws.step_functions.activity.arn"
+
 
     /**
      The ARN of the AWS Step Functions State Machine.
@@ -686,10 +739,36 @@ extension SemanticConventions {
     case stepFunctionsStateMachineArn = "aws.step_functions.state_machine.arn"
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /** 
       The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
     */
-    /// - Tag: SemanticConventions.Aws.EcsLaunchtypeValues
     public struct EcsLaunchtypeValues: CustomStringConvertible {
       /**
       Amazon EC2
@@ -710,5 +789,30 @@ extension SemanticConventions {
         return value
       }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 }

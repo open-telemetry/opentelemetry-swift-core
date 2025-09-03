@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Cloudfoundry: String {
+
+
     /**
      The guid of the application.
 
@@ -24,6 +26,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case appId = "cloudfoundry.app.id"
+
 
     /**
      The index of the application instance. 0 when just one instance is active.
@@ -46,6 +49,7 @@ extension SemanticConventions {
     */
     case appInstanceId = "cloudfoundry.app.instance.id"
 
+
     /**
      The name of the application.
 
@@ -61,6 +65,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case appName = "cloudfoundry.app.name"
+
 
     /**
      The guid of the CloudFoundry org the application is running in.
@@ -78,6 +83,7 @@ extension SemanticConventions {
     */
     case orgId = "cloudfoundry.org.id"
 
+
     /**
      The name of the CloudFoundry organization the app is running in.
 
@@ -93,6 +99,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case orgName = "cloudfoundry.org.name"
+
 
     /**
      The UID identifying the process.
@@ -111,6 +118,7 @@ extension SemanticConventions {
     */
     case processId = "cloudfoundry.process.id"
 
+
     /**
      The type of process.
 
@@ -126,6 +134,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case processType = "cloudfoundry.process.type"
+
 
     /**
      The guid of the CloudFoundry space the application is running in.
@@ -143,6 +152,7 @@ extension SemanticConventions {
     */
     case spaceId = "cloudfoundry.space.id"
 
+
     /**
      The name of the CloudFoundry space the application is running in.
 
@@ -158,6 +168,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case spaceName = "cloudfoundry.space.name"
+
 
     /**
      A guid or another name describing the event source.
@@ -181,6 +192,7 @@ extension SemanticConventions {
     */
     case systemId = "cloudfoundry.system.id"
 
+
     /**
      A guid describing the concrete instance of the event source.
 
@@ -200,6 +212,17 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case systemInstanceId = "cloudfoundry.system.instance.id"
+
+
+
+
+
+
+
+
+
+
+
 
   }
 }

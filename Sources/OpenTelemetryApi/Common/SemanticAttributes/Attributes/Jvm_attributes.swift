@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Jvm: String {
+
+
     /**
      Name of the buffer pool.
 
@@ -23,6 +25,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case bufferPoolName = "jvm.buffer.pool.name"
+
 
     /**
      Name of the garbage collector action.
@@ -39,6 +42,7 @@ extension SemanticConventions {
     */
     case gcAction = "jvm.gc.action"
 
+
     /**
      Name of the garbage collector cause.
 
@@ -54,6 +58,7 @@ extension SemanticConventions {
     */
     case gcCause = "jvm.gc.cause"
 
+
     /**
      Name of the garbage collector.
 
@@ -68,6 +73,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case gcName = "jvm.gc.name"
+
 
     /**
      Name of the memory pool.
@@ -85,6 +91,7 @@ extension SemanticConventions {
     */
     case memoryPoolName = "jvm.memory.pool.name"
 
+
     /**
      The type of memory.
 
@@ -94,9 +101,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Jvm.memoryType.rawValue] = .non_heap
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Jvm.MemoryTypeValues`](x-source-tag://SemanticConventions.jvm.MemoryTypeValues) (of type `String`)
+     - Requires: Value should be one of ``MemoryTypeValues`` (of type `String`)
     */
     case memoryType = "jvm.memory.type"
+
 
     /**
      Whether the thread is daemon or not.
@@ -105,6 +113,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Bool`
     */
     case threadDaemon = "jvm.thread.daemon"
+
 
     /**
      State of the thread.
@@ -115,15 +124,20 @@ extension SemanticConventions {
       attributes[SemanticConventions.Jvm.threadState.rawValue] = .blocked
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Jvm.ThreadStateValues`](x-source-tag://SemanticConventions.jvm.ThreadStateValues) (of type `String`)
+     - Requires: Value should be one of ``ThreadStateValues`` (of type `String`)
     */
     case threadState = "jvm.thread.state"
+
+
+
+
+
+
 
 
     /** 
       The type of memory.
     */
-    /// - Tag: SemanticConventions.Jvm.MemoryTypeValues
     public struct MemoryTypeValues: CustomStringConvertible {
       /**
       Heap memory.
@@ -145,10 +159,11 @@ extension SemanticConventions {
       }
     }
 
+
+
     /** 
       State of the thread.
     */
-    /// - Tag: SemanticConventions.Jvm.ThreadStateValues
     public struct ThreadStateValues: CustomStringConvertible {
       /**
       A thread that has not yet started is in this state.

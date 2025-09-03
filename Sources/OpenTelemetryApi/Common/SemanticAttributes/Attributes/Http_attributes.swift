@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Http: String {
+
+
     /**
      State of the HTTP connection in the HTTP connection pool.
 
@@ -18,9 +20,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Http.connectionState.rawValue] = .idle
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Http.ConnectionStateValues`](x-source-tag://SemanticConventions.http.ConnectionStateValues) (of type `String`)
+     - Requires: Value should be one of ``ConnectionStateValues`` (of type `String`)
     */
     case connectionState = "http.connection.state"
+
 
     /**
      The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
@@ -34,6 +37,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case requestBodySize = "http.request.body.size"
+
 
     /**
      HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
@@ -65,6 +69,7 @@ extension SemanticConventions {
     */
     case requestHeader = "http.request.header"
 
+
     /**
      HTTP request method.
 
@@ -90,9 +95,10 @@ extension SemanticConventions {
      Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
      Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
 
-     - Requires: Value should be one of [`SemanticContentions.Http.RequestMethodValues`](x-source-tag://SemanticConventions.http.RequestMethodValues) (of type `String`)
+     - Requires: Value should be one of ``RequestMethodValues`` (of type `String`)
     */
     case requestMethod = "http.request.method"
+
 
     /**
      Original HTTP method sent by the client in the request line.
@@ -107,6 +113,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case requestMethodOriginal = "http.request.method_original"
+
 
     /**
      The ordinal number of request resending attempt (for any reason, including redirects).
@@ -123,6 +130,7 @@ extension SemanticConventions {
     */
     case requestResendCount = "http.request.resend_count"
 
+
     /**
      The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.
 
@@ -136,6 +144,7 @@ extension SemanticConventions {
     */
     case requestSize = "http.request.size"
 
+
     /**
      The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
 
@@ -148,6 +157,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case responseBodySize = "http.response.body.size"
+
 
     /**
      HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
@@ -178,6 +188,7 @@ extension SemanticConventions {
     */
     case responseHeader = "http.response.header"
 
+
     /**
      The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
 
@@ -191,6 +202,7 @@ extension SemanticConventions {
     */
     case responseSize = "http.response.size"
 
+
     /**
      [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).
 
@@ -202,6 +214,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case responseStatusCode = "http.response.status_code"
+
 
     /**
      The matched route, that is, the path template in the format used by the respective server framework.
@@ -220,10 +233,10 @@ extension SemanticConventions {
     case route = "http.route"
 
 
+
     /** 
       State of the HTTP connection in the HTTP connection pool.
     */
-    /// - Tag: SemanticConventions.Http.ConnectionStateValues
     public struct ConnectionStateValues: CustomStringConvertible {
       /**
       active state.
@@ -245,10 +258,12 @@ extension SemanticConventions {
       }
     }
 
+
+
+
     /** 
       HTTP request method.
     */
-    /// - Tag: SemanticConventions.Http.RequestMethodValues
     public struct RequestMethodValues: CustomStringConvertible {
       /**
       CONNECT method.
@@ -301,5 +316,13 @@ extension SemanticConventions {
         return value
       }
     }
+
+
+
+
+
+
+
+
   }
 }

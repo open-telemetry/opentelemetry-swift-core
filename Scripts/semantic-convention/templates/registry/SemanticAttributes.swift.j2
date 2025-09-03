@@ -56,8 +56,10 @@ import Foundation
 extension SemanticConventions {
   public enum {{ enum_name }}: String {
 {% set attributes = ctx.attributes %}
+
 {% for attribute in attributes | unique(attribute="name") %}
 {%    set class_name = attribute.name | replace(ctx.root_namespace, '') | pascal_case ~ "Values" %}
+
     /**
      {{attribute.brief | comment }}
 {%    if attribute.examples %}
@@ -83,7 +85,7 @@ extension SemanticConventions {
 {%    endif %}
 {%    if attribute is enum %}
 
-     - Requires: Value should be one of [`SemanticContentions.{{ctx.root_namespace|pascal_case}}.{{class_name}}`](x-source-tag://SemanticConventions.{{ctx.root_namespace}}.{{class_name}}) (of type `{{to_swift_return_type(attribute.type | enum_type |lower)}}`)
+     - Requires: Value should be one of ``{{class_name}}`` (of type `{{to_swift_return_type(attribute.type | enum_type |lower)}}`)
 {%    else %}
 
      - Requires: Value type should be `{{to_swift_return_type(attribute.type|lower)}}`
@@ -99,15 +101,14 @@ extension SemanticConventions {
 {% endfor %}
 
 {% for attribute in attributes | unique(attribute="name") %}
-{% set main_loop = loop %}
 {%   set class_name = attribute.name | replace(ctx.root_namespace, "") | pascal_case ~ "Values" %}
+
 {%   set type = to_swift_return_type(attribute.type) %}
 {%   if attribute is enum %}
 
     /** 
       {{attribute.brief | comment}}
     */
-    /// - Tag: SemanticConventions.{{ctx.root_namespace|pascal_case}}.{{class_name}}
 {%     if attribute is enum %}
     public struct {{class_name}}: CustomStringConvertible {
 {%       for member in attribute.type.members %}

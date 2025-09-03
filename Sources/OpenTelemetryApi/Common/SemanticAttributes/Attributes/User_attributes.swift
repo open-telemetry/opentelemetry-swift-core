@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum User: String {
+
+
     /**
      User email address.
 
@@ -21,6 +23,7 @@ extension SemanticConventions {
     */
     case email = "user.email"
 
+
     /**
      User's full name
 
@@ -32,6 +35,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case fullName = "user.full_name"
+
 
     /**
      Unique user hash to correlate information for a user in anonymized form.
@@ -47,6 +51,7 @@ extension SemanticConventions {
     */
     case hash = "user.hash"
 
+
     /**
      Unique identifier of the user.
 
@@ -58,6 +63,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case id = "user.id"
+
 
     /**
      Short name or login/username of the user.
@@ -71,6 +77,7 @@ extension SemanticConventions {
     */
     case name = "user.name"
 
+
     /**
      Array of user roles at the time of the event.
 
@@ -82,6 +89,12 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case roles = "user.roles"
+
+
+
+
+
+
 
   }
 }

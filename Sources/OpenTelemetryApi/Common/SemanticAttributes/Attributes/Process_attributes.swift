@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Process: String {
+
+
     /**
      Length of the process.command_args array
 
@@ -23,6 +25,7 @@ extension SemanticConventions {
     */
     case argsCount = "process.args_count"
 
+
     /**
      The command used to launch the process (i.e. the command name). On Linux based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`.
 
@@ -34,6 +37,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case command = "process.command"
+
 
     /**
      All the command arguments (including the command/executable itself) as received by the process. On Linux-based systems (and some other Unixoid systems supporting procfs), can be set according to the list of null-delimited strings extracted from `proc/[pid]/cmdline`. For libc-based executables, this would be the full argv vector passed to `main`. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
@@ -47,6 +51,7 @@ extension SemanticConventions {
     */
     case commandArgs = "process.command_args"
 
+
     /**
      The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. SHOULD NOT be collected by default unless there is sanitization that excludes sensitive data.
 
@@ -59,13 +64,15 @@ extension SemanticConventions {
     */
     case commandLine = "process.command_line"
 
+
     /**
      Specifies whether the context switches for this data point were voluntary or involuntary.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Process.ContextSwitchTypeValues`](x-source-tag://SemanticConventions.process.ContextSwitchTypeValues) (of type `String`)
+     - Requires: Value should be one of ``ContextSwitchTypeValues`` (of type `String`)
     */
     case contextSwitchType = "process.context_switch_type"
+
 
     /**
      The date and time the process was created, in ISO 8601 format.
@@ -78,6 +85,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case creationTime = "process.creation.time"
+
 
     /**
      Process environment variables, `<key>` being the environment variable name, the value being the environment variable value.
@@ -100,6 +108,7 @@ extension SemanticConventions {
     */
     case environmentVariable = "process.environment_variable"
 
+
     /**
      The GNU build ID as found in the `.note.gnu.build-id` ELF section (hex string).
 
@@ -111,6 +120,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case executableBuildIdGnu = "process.executable.build_id.gnu"
+
 
     /**
      The Go build ID as retrieved by `go tool buildid <go executable>`.
@@ -124,6 +134,7 @@ extension SemanticConventions {
     */
     case executableBuildIdGo = "process.executable.build_id.go"
 
+
     /**
      Profiling specific build ID for executables. See the OTel specification for Profiles for more information.
 
@@ -135,6 +146,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case executableBuildIdHtlhash = "process.executable.build_id.htlhash"
+
 
     /**
      The name of the process executable. On Linux based systems, this SHOULD be set to the base name of the target of `/proc/[pid]/exe`. On Windows, this SHOULD be set to the base name of `GetProcessImageFileNameW`.
@@ -148,6 +160,7 @@ extension SemanticConventions {
     */
     case executableName = "process.executable.name"
 
+
     /**
      The full path to the process executable. On Linux based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`.
 
@@ -159,6 +172,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case executablePath = "process.executable.path"
+
 
     /**
      The exit code of the process.
@@ -172,6 +186,7 @@ extension SemanticConventions {
     */
     case exitCode = "process.exit.code"
 
+
     /**
      The date and time the process exited, in ISO 8601 format.
 
@@ -183,6 +198,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case exitTime = "process.exit.time"
+
 
     /**
      The PID of the process's group leader. This is also the process group ID (PGID) of the process.
@@ -196,6 +212,7 @@ extension SemanticConventions {
     */
     case groupLeaderPid = "process.group_leader.pid"
 
+
     /**
      Whether the process is connected to an interactive shell.
       ```
@@ -203,6 +220,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Bool`
     */
     case interactive = "process.interactive"
+
 
     /**
      The control group associated with the process.
@@ -219,6 +237,7 @@ extension SemanticConventions {
     */
     case linuxCgroup = "process.linux.cgroup"
 
+
     /**
      The username of the user that owns the process.
 
@@ -231,13 +250,15 @@ extension SemanticConventions {
     */
     case owner = "process.owner"
 
+
     /**
      The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Process.PagingFaultTypeValues`](x-source-tag://SemanticConventions.process.PagingFaultTypeValues) (of type `String`)
+     - Requires: Value should be one of ``PagingFaultTypeValues`` (of type `String`)
     */
     case pagingFaultType = "process.paging.fault_type"
+
 
     /**
      Parent Process identifier (PPID).
@@ -251,6 +272,7 @@ extension SemanticConventions {
     */
     case parentPid = "process.parent_pid"
 
+
     /**
      Process identifier (PID).
 
@@ -262,6 +284,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case pid = "process.pid"
+
 
     /**
      The real user ID (RUID) of the process.
@@ -275,6 +298,7 @@ extension SemanticConventions {
     */
     case realUserId = "process.real_user.id"
 
+
     /**
      The username of the real user of the process.
 
@@ -286,6 +310,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case realUserName = "process.real_user.name"
+
 
     /**
      An additional description about the runtime of the process, for example a specific vendor customization of the runtime environment.
@@ -300,6 +325,7 @@ extension SemanticConventions {
     */
     case runtimeDescription = "process.runtime.description"
 
+
     /**
      The name of the runtime of this process.
 
@@ -311,6 +337,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case runtimeName = "process.runtime.name"
+
 
     /**
      The version of the runtime of this process, as returned by the runtime without modification.
@@ -325,6 +352,7 @@ extension SemanticConventions {
     */
     case runtimeVersion = "process.runtime.version"
 
+
     /**
      The saved user ID (SUID) of the process.
 
@@ -336,6 +364,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case savedUserId = "process.saved_user.id"
+
 
     /**
      The username of the saved user.
@@ -349,6 +378,7 @@ extension SemanticConventions {
     */
     case savedUserName = "process.saved_user.name"
 
+
     /**
      The PID of the process's session leader. This is also the session ID (SID) of the process.
 
@@ -360,6 +390,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case sessionLeaderPid = "process.session_leader.pid"
+
 
     /**
      Process title (proctitle)
@@ -377,6 +408,7 @@ extension SemanticConventions {
     */
     case title = "process.title"
 
+
     /**
      The effective user ID (EUID) of the process.
 
@@ -389,6 +421,7 @@ extension SemanticConventions {
     */
     case userId = "process.user.id"
 
+
     /**
      The username of the effective user of the process.
 
@@ -400,6 +433,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case userName = "process.user.name"
+
 
     /**
      Virtual process identifier.
@@ -415,6 +449,7 @@ extension SemanticConventions {
     */
     case vpid = "process.vpid"
 
+
     /**
      The working directory of the process.
 
@@ -428,10 +463,14 @@ extension SemanticConventions {
     case workingDirectory = "process.working_directory"
 
 
+
+
+
+
+
     /** 
       Specifies whether the context switches for this data point were voluntary or involuntary.
     */
-    /// - Tag: SemanticConventions.Process.ContextSwitchTypeValues
     public struct ContextSwitchTypeValues: CustomStringConvertible {
       public static let voluntary = ContextSwitchTypeValues("voluntary") 
       public static let involuntary = ContextSwitchTypeValues("involuntary") 
@@ -447,10 +486,23 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /** 
       The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.
     */
-    /// - Tag: SemanticConventions.Process.PagingFaultTypeValues
     public struct PagingFaultTypeValues: CustomStringConvertible {
       public static let major = PagingFaultTypeValues("major") 
       public static let minor = PagingFaultTypeValues("minor") 
@@ -465,5 +517,20 @@ extension SemanticConventions {
         return value
       }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 }

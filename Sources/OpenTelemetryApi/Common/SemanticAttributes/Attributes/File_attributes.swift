@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum File: String {
+
+
     /**
      Time when the file was last accessed, in ISO 8601 format.
 
@@ -22,6 +24,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case accessed = "file.accessed"
+
 
     /**
      Array of file attributes.
@@ -37,6 +40,7 @@ extension SemanticConventions {
     */
     case attributes = "file.attributes"
 
+
     /**
      Time when the file attributes or metadata was last changed, in ISO 8601 format.
 
@@ -50,6 +54,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case changed = "file.changed"
+
 
     /**
      Time when the file was created, in ISO 8601 format.
@@ -65,6 +70,7 @@ extension SemanticConventions {
     */
     case created = "file.created"
 
+
     /**
      Directory where the file is located. It should include the drive letter, when appropriate.
 
@@ -77,6 +83,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case directory = "file.directory"
+
 
     /**
      File extension, excluding the leading dot.
@@ -93,6 +100,7 @@ extension SemanticConventions {
     */
     case _extension = "file.extension"
 
+
     /**
      Name of the fork. A fork is additional data associated with a filesystem object.
 
@@ -108,6 +116,7 @@ extension SemanticConventions {
     */
     case forkName = "file.fork_name"
 
+
     /**
      Primary Group ID (GID) of the file.
 
@@ -119,6 +128,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case groupId = "file.group.id"
+
 
     /**
      Primary group name of the file.
@@ -132,6 +142,7 @@ extension SemanticConventions {
     */
     case groupName = "file.group.name"
 
+
     /**
      Inode representing the file in the filesystem.
 
@@ -143,6 +154,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case inode = "file.inode"
+
 
     /**
      Mode of the file in octal representation.
@@ -156,6 +168,7 @@ extension SemanticConventions {
     */
     case mode = "file.mode"
 
+
     /**
      Time when the file content was last modified, in ISO 8601 format.
 
@@ -167,6 +180,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case modified = "file.modified"
+
 
     /**
      Name of the file including the extension, without the directory.
@@ -180,6 +194,7 @@ extension SemanticConventions {
     */
     case name = "file.name"
 
+
     /**
      The user ID (UID) or security identifier (SID) of the file owner.
 
@@ -192,6 +207,7 @@ extension SemanticConventions {
     */
     case ownerId = "file.owner.id"
 
+
     /**
      Username of the file owner.
 
@@ -203,6 +219,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case ownerName = "file.owner.name"
+
 
     /**
      Full path to the file, including the file name. It should include the drive letter, when appropriate.
@@ -217,6 +234,7 @@ extension SemanticConventions {
     */
     case path = "file.path"
 
+
     /**
      File size in bytes.
       ```
@@ -224,6 +242,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case size = "file.size"
+
 
     /**
      Path to the target of a symbolic link.
@@ -238,6 +257,24 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case symbolicLinkTargetPath = "file.symbolic_link.target_path"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   }
 }

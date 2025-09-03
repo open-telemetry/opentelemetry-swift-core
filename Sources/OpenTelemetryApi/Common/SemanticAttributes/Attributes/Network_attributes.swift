@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Network: String {
+
+
     /**
      The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.
 
@@ -21,6 +23,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case carrierIcc = "network.carrier.icc"
+
 
     /**
      The mobile carrier country code.
@@ -35,6 +38,7 @@ extension SemanticConventions {
     */
     case carrierMcc = "network.carrier.mcc"
 
+
     /**
      The mobile carrier network code.
 
@@ -47,6 +51,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case carrierMnc = "network.carrier.mnc"
+
 
     /**
      The name of the mobile carrier.
@@ -61,6 +66,7 @@ extension SemanticConventions {
     */
     case carrierName = "network.carrier.name"
 
+
     /**
      The state of network connection
 
@@ -71,9 +77,10 @@ extension SemanticConventions {
 
      - Note: Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
 
-     - Requires: Value should be one of [`SemanticContentions.Network.ConnectionStateValues`](x-source-tag://SemanticConventions.network.ConnectionStateValues) (of type `String`)
+     - Requires: Value should be one of ``ConnectionStateValues`` (of type `String`)
     */
     case connectionState = "network.connection.state"
+
 
     /**
      This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
@@ -84,9 +91,10 @@ extension SemanticConventions {
    attributes[SemanticConventions.Network.connectionSubtype.rawValue] = .LTE
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Network.ConnectionSubtypeValues`](x-source-tag://SemanticConventions.network.ConnectionSubtypeValues) (of type `String`)
+     - Requires: Value should be one of ``ConnectionSubtypeValues`` (of type `String`)
     */
     case connectionSubtype = "network.connection.subtype"
+
 
     /**
      The internet connection type.
@@ -97,9 +105,10 @@ extension SemanticConventions {
    attributes[SemanticConventions.Network.connectionType.rawValue] = .wifi
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Network.ConnectionTypeValues`](x-source-tag://SemanticConventions.network.ConnectionTypeValues) (of type `String`)
+     - Requires: Value should be one of ``ConnectionTypeValues`` (of type `String`)
     */
     case connectionType = "network.connection.type"
+
 
     /**
      The network interface name.
@@ -114,6 +123,7 @@ extension SemanticConventions {
     */
     case interfaceName = "network.interface.name"
 
+
     /**
      The network IO operation direction.
 
@@ -122,9 +132,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Network.ioDirection.rawValue] = .transmit
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Network.IoDirectionValues`](x-source-tag://SemanticConventions.network.IoDirectionValues) (of type `String`)
+     - Requires: Value should be one of ``IoDirectionValues`` (of type `String`)
     */
     case ioDirection = "network.io.direction"
+
 
     /**
      Local address of the network connection - IP address or Unix domain socket name.
@@ -139,6 +150,7 @@ extension SemanticConventions {
     */
     case localAddress = "network.local.address"
 
+
     /**
      Local port number of the network connection.
 
@@ -150,6 +162,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case localPort = "network.local.port"
+
 
     /**
      Peer address of the network connection - IP address or Unix domain socket name.
@@ -164,6 +177,7 @@ extension SemanticConventions {
     */
     case peerAddress = "network.peer.address"
 
+
     /**
      Peer port number of the network connection.
 
@@ -175,6 +189,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case peerPort = "network.peer.port"
+
 
     /**
      [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent.
@@ -192,6 +207,7 @@ extension SemanticConventions {
     */
     case protocolName = "network.protocol.name"
 
+
     /**
      The actual version of the protocol used for network communication.
 
@@ -206,6 +222,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case protocolVersion = "network.protocol.version"
+
 
     /**
      [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
@@ -222,9 +239,10 @@ extension SemanticConventions {
      a port number is ambiguous without knowing the transport. For example
      different processes could be listening on TCP port 12345 and UDP port 12345.
 
-     - Requires: Value should be one of [`SemanticContentions.Network.TransportValues`](x-source-tag://SemanticConventions.network.TransportValues) (of type `String`)
+     - Requires: Value should be one of ``TransportValues`` (of type `String`)
     */
     case transport = "network.transport"
+
 
     /**
      [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.
@@ -237,15 +255,19 @@ extension SemanticConventions {
 
      - Note: The value SHOULD be normalized to lowercase.
 
-     - Requires: Value should be one of [`SemanticContentions.Network.TypeValues`](x-source-tag://SemanticConventions.network.TypeValues) (of type `String`)
+     - Requires: Value should be one of ``TypeValues`` (of type `String`)
     */
     case type = "network.type"
+
+
+
+
+
 
 
     /** 
       The state of network connection
     */
-    /// - Tag: SemanticConventions.Network.ConnectionStateValues
     public struct ConnectionStateValues: CustomStringConvertible {
       public static let closed = ConnectionStateValues("closed") 
       public static let closeWait = ConnectionStateValues("close_wait") 
@@ -270,10 +292,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
     */
-    /// - Tag: SemanticConventions.Network.ConnectionSubtypeValues
     public struct ConnectionSubtypeValues: CustomStringConvertible {
       /**
       GPRS
@@ -371,10 +393,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       The internet connection type.
     */
-    /// - Tag: SemanticConventions.Network.ConnectionTypeValues
     public struct ConnectionTypeValues: CustomStringConvertible {
       public static let wifi = ConnectionTypeValues("wifi") 
       public static let wired = ConnectionTypeValues("wired") 
@@ -393,10 +415,11 @@ extension SemanticConventions {
       }
     }
 
+
+
     /** 
       The network IO operation direction.
     */
-    /// - Tag: SemanticConventions.Network.IoDirectionValues
     public struct IoDirectionValues: CustomStringConvertible {
       public static let transmit = IoDirectionValues("transmit") 
       public static let receive = IoDirectionValues("receive") 
@@ -412,10 +435,16 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
+
+
     /** 
       [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
     */
-    /// - Tag: SemanticConventions.Network.TransportValues
     public struct TransportValues: CustomStringConvertible {
       /**
       TCP
@@ -449,10 +478,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.
     */
-    /// - Tag: SemanticConventions.Network.TypeValues
     public struct TypeValues: CustomStringConvertible {
       /**
       IPv4

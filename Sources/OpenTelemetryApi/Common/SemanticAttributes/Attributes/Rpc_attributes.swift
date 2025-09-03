@@ -9,13 +9,16 @@ import Foundation
 
 extension SemanticConventions {
   public enum Rpc: String {
+
+
     /**
      The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Rpc.ConnectErrorCodeValues`](x-source-tag://SemanticConventions.rpc.ConnectErrorCodeValues) (of type `String`)
+     - Requires: Value should be one of ``ConnectErrorCodeValues`` (of type `String`)
     */
     case connectErrorCode = "rpc.connect_rpc.error_code"
+
 
     /**
      Connect request metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
@@ -35,6 +38,7 @@ extension SemanticConventions {
     */
     case connectRequestMetadata = "rpc.connect_rpc.request.metadata"
 
+
     /**
      Connect response metadata, `<key>` being the normalized Connect Metadata key (lowercase), the value being the metadata values.
 
@@ -52,6 +56,7 @@ extension SemanticConventions {
      - Requires: Value type should be `template[string[]]`
     */
     case connectResponseMetadata = "rpc.connect_rpc.response.metadata"
+
 
     /**
      gRPC request metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
@@ -71,6 +76,7 @@ extension SemanticConventions {
     */
     case gRequestMetadata = "rpc.grpc.request.metadata"
 
+
     /**
      gRPC response metadata, `<key>` being the normalized gRPC Metadata key (lowercase), the value being the metadata values.
 
@@ -89,13 +95,15 @@ extension SemanticConventions {
     */
     case gResponseMetadata = "rpc.grpc.response.metadata"
 
+
     /**
      The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Rpc.GStatusCodeValues`](x-source-tag://SemanticConventions.rpc.GStatusCodeValues) (of type `Int`)
+     - Requires: Value should be one of ``GStatusCodeValues`` (of type `Int`)
     */
     case gStatusCode = "rpc.grpc.status_code"
+
 
     /**
      `error.code` property of response if it is an error response.
@@ -110,6 +118,7 @@ extension SemanticConventions {
     */
     case jsonErrorCode = "rpc.jsonrpc.error_code"
 
+
     /**
      `error.message` property of response if it is an error response.
 
@@ -122,6 +131,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case jsonErrorMessage = "rpc.jsonrpc.error_message"
+
 
     /**
      `id` property of request or response. Since protocol allows id to be int, string, `null` or missing (for notifications), value is expected to be cast to string for simplicity. Use empty string in case of `null` value. Omit entirely if this is a notification.
@@ -137,6 +147,7 @@ extension SemanticConventions {
     */
     case jsonRequestId = "rpc.jsonrpc.request_id"
 
+
     /**
      Protocol version as in `jsonrpc` property of request/response. Since JSON-RPC 1.0 doesn't specify this, the value can be omitted.
 
@@ -150,6 +161,7 @@ extension SemanticConventions {
     */
     case jsonVersion = "rpc.jsonrpc.version"
 
+
     /**
      Compressed size of the message in bytes.
       ```
@@ -157,6 +169,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case messageCompressedSize = "rpc.message.compressed_size"
+
 
     /**
      MUST be calculated as two different counters starting from `1` one for sent messages and one for received message.
@@ -168,13 +181,15 @@ extension SemanticConventions {
     */
     case messageId = "rpc.message.id"
 
+
     /**
      Whether this is a received or sent message.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Rpc.MessageTypeValues`](x-source-tag://SemanticConventions.rpc.MessageTypeValues) (of type `String`)
+     - Requires: Value should be one of ``MessageTypeValues`` (of type `String`)
     */
     case messageType = "rpc.message.type"
+
 
     /**
      Uncompressed size of the message in bytes.
@@ -183,6 +198,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case messageUncompressedSize = "rpc.message.uncompressed_size"
+
 
     /**
      The name of the (logical) method being called, must be equal to the $method part in the span name.
@@ -199,6 +215,7 @@ extension SemanticConventions {
     */
     case method = "rpc.method"
 
+
     /**
      The full (logical) name of the service being called, including its package name, if applicable.
 
@@ -214,19 +231,20 @@ extension SemanticConventions {
     */
     case service = "rpc.service"
 
+
     /**
      A string identifying the remoting system. See below for a list of well-known identifiers.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Rpc.SystemValues`](x-source-tag://SemanticConventions.rpc.SystemValues) (of type `String`)
+     - Requires: Value should be one of ``SystemValues`` (of type `String`)
     */
     case system = "rpc.system"
+
 
 
     /** 
       The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
     */
-    /// - Tag: SemanticConventions.Rpc.ConnectErrorCodeValues
     public struct ConnectErrorCodeValues: CustomStringConvertible {
       public static let cancelled = ConnectErrorCodeValues("cancelled") 
       public static let unknown = ConnectErrorCodeValues("unknown") 
@@ -256,10 +274,14 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
     /** 
       The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
     */
-    /// - Tag: SemanticConventions.Rpc.GStatusCodeValues
     public struct GStatusCodeValues: CustomStringConvertible {
       /**
       OK
@@ -341,10 +363,16 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
+
+
     /** 
       Whether this is a received or sent message.
     */
-    /// - Tag: SemanticConventions.Rpc.MessageTypeValues
     public struct MessageTypeValues: CustomStringConvertible {
       public static let sent = MessageTypeValues("SENT") 
       public static let received = MessageTypeValues("RECEIVED") 
@@ -360,10 +388,13 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
     /** 
       A string identifying the remoting system. See below for a list of well-known identifiers.
     */
-    /// - Tag: SemanticConventions.Rpc.SystemValues
     public struct SystemValues: CustomStringConvertible {
       /**
       gRPC

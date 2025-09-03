@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Graphql: String {
+
+
     /**
      The GraphQL document being executed.
 
@@ -24,6 +26,7 @@ extension SemanticConventions {
     */
     case document = "graphql.document"
 
+
     /**
      The name of the operation being executed.
 
@@ -37,6 +40,7 @@ extension SemanticConventions {
     */
     case operationName = "graphql.operation.name"
 
+
     /**
      The type of the operation being executed.
 
@@ -47,15 +51,17 @@ extension SemanticConventions {
       attributes[SemanticConventions.Graphql.operationType.rawValue] = .subscription
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Graphql.OperationTypeValues`](x-source-tag://SemanticConventions.graphql.OperationTypeValues) (of type `String`)
+     - Requires: Value should be one of ``OperationTypeValues`` (of type `String`)
     */
     case operationType = "graphql.operation.type"
+
+
+
 
 
     /** 
       The type of the operation being executed.
     */
-    /// - Tag: SemanticConventions.Graphql.OperationTypeValues
     public struct OperationTypeValues: CustomStringConvertible {
       /**
       GraphQL query

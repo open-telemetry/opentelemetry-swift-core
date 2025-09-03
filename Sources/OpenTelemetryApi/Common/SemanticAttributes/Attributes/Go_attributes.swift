@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Go: String {
+
+
     /**
      The type of memory.
 
@@ -18,15 +20,15 @@ extension SemanticConventions {
       attributes[SemanticConventions.Go.memoryType.rawValue] = .stack
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Go.MemoryTypeValues`](x-source-tag://SemanticConventions.go.MemoryTypeValues) (of type `String`)
+     - Requires: Value should be one of ``MemoryTypeValues`` (of type `String`)
     */
     case memoryType = "go.memory.type"
+
 
 
     /** 
       The type of memory.
     */
-    /// - Tag: SemanticConventions.Go.MemoryTypeValues
     public struct MemoryTypeValues: CustomStringConvertible {
       /**
       Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.

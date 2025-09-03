@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Error: String {
+
+
     /**
      A message providing more detail about an error in human-readable form.
 
@@ -27,6 +29,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case message = "error.message"
+
 
     /**
      Describes a class of error the operation ended with.
@@ -59,15 +62,16 @@ extension SemanticConventions {
      - Use a domain-specific attribute
      - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
 
-     - Requires: Value should be one of [`SemanticContentions.Error.TypeValues`](x-source-tag://SemanticConventions.error.TypeValues) (of type `String`)
+     - Requires: Value should be one of ``TypeValues`` (of type `String`)
     */
     case type = "error.type"
+
+
 
 
     /** 
       Describes a class of error the operation ended with.
     */
-    /// - Tag: SemanticConventions.Error.TypeValues
     public struct TypeValues: CustomStringConvertible {
       /**
       A fallback error value to be used when the instrumentation doesn't define a custom value.

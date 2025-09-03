@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Zos: String {
+
+
     /**
      The System Management Facility (SMF) Identifier uniquely identified a z/OS system within a SYSPLEX or mainframe environment and is used for system and performance analysis.
 
@@ -21,6 +23,7 @@ extension SemanticConventions {
     */
     case smfId = "zos.smf.id"
 
+
     /**
      The name of the SYSPLEX to which the z/OS system belongs too.
 
@@ -32,6 +35,8 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case sysplexName = "zos.sysplex.name"
+
+
 
   }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum GenAi: String {
+
+
     /**
      Free-form description of the GenAI agent provided by the application.
 
@@ -22,6 +24,7 @@ extension SemanticConventions {
     */
     case agentDescription = "gen_ai.agent.description"
 
+
     /**
      The unique identifier of the GenAI agent.
 
@@ -33,6 +36,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case agentId = "gen_ai.agent.id"
+
 
     /**
      Human-readable name of the GenAI agent provided by the application.
@@ -47,6 +51,7 @@ extension SemanticConventions {
     */
     case agentName = "gen_ai.agent.name"
 
+
     /**
      The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
 
@@ -58,6 +63,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case conversationId = "gen_ai.conversation.id"
+
 
     /**
      The data source identifier.
@@ -72,6 +78,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case dataSourceId = "gen_ai.data_source.id"
+
 
     /**
      The chat history provided to the model as an input.
@@ -133,15 +140,17 @@ extension SemanticConventions {
     */
     case inputMessages = "gen_ai.input.messages"
 
+
     /**
      The name of the operation being performed.
       ```
 
      - Note: If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
 
-     - Requires: Value should be one of [`SemanticContentions.GenAi.OperationNameValues`](x-source-tag://SemanticConventions.gen_ai.OperationNameValues) (of type `String`)
+     - Requires: Value should be one of ``OperationNameValues`` (of type `String`)
     */
     case operationName = "gen_ai.operation.name"
+
 
     /**
      Messages returned by the model where each message represents a specific model response (choice, candidate).
@@ -186,6 +195,7 @@ extension SemanticConventions {
     */
     case outputMessages = "gen_ai.output.messages"
 
+
     /**
      Represents the content type requested by the client.
       ```
@@ -194,9 +204,10 @@ extension SemanticConventions {
      This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
      Additional output format details may be recorded in the future in the `gen_ai.output.{type}.*` attributes.
 
-     - Requires: Value should be one of [`SemanticContentions.GenAi.OutputTypeValues`](x-source-tag://SemanticConventions.gen_ai.OutputTypeValues) (of type `String`)
+     - Requires: Value should be one of ``OutputTypeValues`` (of type `String`)
     */
     case outputType = "gen_ai.output.type"
+
 
     /**
      The Generative AI provider as identified by the client or server instrumentation.
@@ -221,9 +232,10 @@ extension SemanticConventions {
      applicable `aws.bedrock.*` attributes and are not expected to include
      `openai.*` attributes.
 
-     - Requires: Value should be one of [`SemanticContentions.GenAi.ProviderNameValues`](x-source-tag://SemanticConventions.gen_ai.ProviderNameValues) (of type `String`)
+     - Requires: Value should be one of ``ProviderNameValues`` (of type `String`)
     */
     case providerName = "gen_ai.provider.name"
+
 
     /**
      The target number of candidate completions to return.
@@ -236,6 +248,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case requestChoiceCount = "gen_ai.request.choice.count"
+
 
     /**
      The encoding formats requested in an embeddings operation, if specified.
@@ -252,6 +265,7 @@ extension SemanticConventions {
     */
     case requestEncodingFormats = "gen_ai.request.encoding_formats"
 
+
     /**
      The frequency penalty setting for the GenAI request.
 
@@ -264,6 +278,7 @@ extension SemanticConventions {
     */
     case requestFrequencyPenalty = "gen_ai.request.frequency_penalty"
 
+
     /**
      The maximum number of tokens the model generates for a request.
 
@@ -275,6 +290,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case requestMaxTokens = "gen_ai.request.max_tokens"
+
 
     /**
      The name of the GenAI model a request is being made to.
@@ -289,6 +305,7 @@ extension SemanticConventions {
     */
     case requestModel = "gen_ai.request.model"
 
+
     /**
      The presence penalty setting for the GenAI request.
 
@@ -300,6 +317,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Double`
     */
     case requestPresencePenalty = "gen_ai.request.presence_penalty"
+
 
     /**
      Requests with same seed value more likely to return same result.
@@ -313,6 +331,7 @@ extension SemanticConventions {
     */
     case requestSeed = "gen_ai.request.seed"
 
+
     /**
      List of sequences that the model will use to stop generating further tokens.
 
@@ -324,6 +343,7 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case requestStopSequences = "gen_ai.request.stop_sequences"
+
 
     /**
      The temperature setting for the GenAI request.
@@ -337,6 +357,7 @@ extension SemanticConventions {
     */
     case requestTemperature = "gen_ai.request.temperature"
 
+
     /**
      The top_k sampling setting for the GenAI request.
 
@@ -349,6 +370,7 @@ extension SemanticConventions {
     */
     case requestTopK = "gen_ai.request.top_k"
 
+
     /**
      The top_p sampling setting for the GenAI request.
 
@@ -360,6 +382,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Double`
     */
     case requestTopP = "gen_ai.request.top_p"
+
 
     /**
      Array of reasons the model stopped generating tokens, corresponding to each generation received.
@@ -374,6 +397,7 @@ extension SemanticConventions {
     */
     case responseFinishReasons = "gen_ai.response.finish_reasons"
 
+
     /**
      The unique identifier for the completion.
 
@@ -386,6 +410,7 @@ extension SemanticConventions {
     */
     case responseId = "gen_ai.response.id"
 
+
     /**
      The name of the model that generated the response.
 
@@ -397,6 +422,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case responseModel = "gen_ai.response.model"
+
 
     /**
      The system message or instructions provided to the GenAI model separately from the chat history.
@@ -446,6 +472,7 @@ extension SemanticConventions {
     */
     case systemInstructions = "gen_ai.system_instructions"
 
+
     /**
      The type of token being counted.
 
@@ -455,9 +482,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.GenAi.tokenType.rawValue] = .output
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.GenAi.TokenTypeValues`](x-source-tag://SemanticConventions.gen_ai.TokenTypeValues) (of type `String`)
+     - Requires: Value should be one of ``TokenTypeValues`` (of type `String`)
     */
     case tokenType = "gen_ai.token.type"
+
 
     /**
      The tool call identifier.
@@ -471,6 +499,7 @@ extension SemanticConventions {
     */
     case toolCallId = "gen_ai.tool.call.id"
 
+
     /**
      The tool description.
 
@@ -483,6 +512,7 @@ extension SemanticConventions {
     */
     case toolDescription = "gen_ai.tool.description"
 
+
     /**
      Name of the tool utilized by the agent.
 
@@ -494,6 +524,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case toolName = "gen_ai.tool.name"
+
 
     /**
      Type of the tool utilized by the agent
@@ -515,6 +546,7 @@ extension SemanticConventions {
     */
     case toolType = "gen_ai.tool.type"
 
+
     /**
      The number of tokens used in the GenAI input (prompt).
 
@@ -526,6 +558,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Int`
     */
     case usageInputTokens = "gen_ai.usage.input_tokens"
+
 
     /**
      The number of tokens used in the GenAI response (completion).
@@ -540,10 +573,16 @@ extension SemanticConventions {
     case usageOutputTokens = "gen_ai.usage.output_tokens"
 
 
+
+
+
+
+
+
+
     /** 
       The name of the operation being performed.
     */
-    /// - Tag: SemanticConventions.GenAi.OperationNameValues
     public struct OperationNameValues: CustomStringConvertible {
       /**
       Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)
@@ -585,10 +624,11 @@ extension SemanticConventions {
       }
     }
 
+
+
     /** 
       Represents the content type requested by the client.
     */
-    /// - Tag: SemanticConventions.GenAi.OutputTypeValues
     public struct OutputTypeValues: CustomStringConvertible {
       /**
       Plain text
@@ -618,10 +658,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       The Generative AI provider as identified by the client or server instrumentation.
     */
-    /// - Tag: SemanticConventions.GenAi.ProviderNameValues
     public struct ProviderNameValues: CustomStringConvertible {
       /**
       [OpenAI](https://openai.com/)
@@ -695,10 +735,25 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /** 
       The type of token being counted.
     */
-    /// - Tag: SemanticConventions.GenAi.TokenTypeValues
     public struct TokenTypeValues: CustomStringConvertible {
       /**
       Input tokens (prompt, input, etc.)
@@ -719,5 +774,11 @@ extension SemanticConventions {
         return value
       }
     }
+
+
+
+
+
+
   }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Hw: String {
+
+
     /**
      Design capacity in Watts-hours or Amper-hours
 
@@ -21,6 +23,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case batteryCapacity = "hw.battery.capacity"
+
 
     /**
      Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc.
@@ -35,13 +38,15 @@ extension SemanticConventions {
     */
     case batteryChemistry = "hw.battery.chemistry"
 
+
     /**
      The current state of the battery
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Hw.BatteryStateValues`](x-source-tag://SemanticConventions.hw.BatteryStateValues) (of type `String`)
+     - Requires: Value should be one of ``BatteryStateValues`` (of type `String`)
     */
     case batteryState = "hw.battery.state"
+
 
     /**
      BIOS version of the hardware component
@@ -55,6 +60,7 @@ extension SemanticConventions {
     */
     case biosVersion = "hw.bios_version"
 
+
     /**
      Driver version for the hardware component
 
@@ -66,6 +72,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case driverVersion = "hw.driver_version"
+
 
     /**
      Type of the enclosure (useful for modular systems)
@@ -81,6 +88,7 @@ extension SemanticConventions {
     */
     case enclosureType = "hw.enclosure.type"
 
+
     /**
      Firmware version of the hardware component
 
@@ -93,13 +101,15 @@ extension SemanticConventions {
     */
     case firmwareVersion = "hw.firmware_version"
 
+
     /**
      Type of task the GPU is performing
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Hw.GpuTaskValues`](x-source-tag://SemanticConventions.hw.GpuTaskValues) (of type `String`)
+     - Requires: Value should be one of ``GpuTaskValues`` (of type `String`)
     */
     case gpuTask = "hw.gpu.task"
+
 
     /**
      An identifier for the hardware component, unique within the monitored host
@@ -113,13 +123,15 @@ extension SemanticConventions {
     */
     case id = "hw.id"
 
+
     /**
      Type of limit for hardware components
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Hw.LimitTypeValues`](x-source-tag://SemanticConventions.hw.LimitTypeValues) (of type `String`)
+     - Requires: Value should be one of ``LimitTypeValues`` (of type `String`)
     */
     case limitType = "hw.limit_type"
+
 
     /**
      RAID Level of the logical disk
@@ -135,13 +147,15 @@ extension SemanticConventions {
     */
     case logicalDiskRaidLevel = "hw.logical_disk.raid_level"
 
+
     /**
      State of the logical disk space usage
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Hw.LogicalDiskStateValues`](x-source-tag://SemanticConventions.hw.LogicalDiskStateValues) (of type `String`)
+     - Requires: Value should be one of ``LogicalDiskStateValues`` (of type `String`)
     */
     case logicalDiskState = "hw.logical_disk.state"
+
 
     /**
      Type of the memory module
@@ -157,6 +171,7 @@ extension SemanticConventions {
     */
     case memoryType = "hw.memory.type"
 
+
     /**
      Descriptive model name of the hardware component
 
@@ -171,6 +186,7 @@ extension SemanticConventions {
     */
     case model = "hw.model"
 
+
     /**
      An easily-recognizable name for the hardware component
 
@@ -182,6 +198,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case name = "hw.name"
+
 
     /**
      Logical addresses of the adapter (e.g. IP address, or WWPN)
@@ -195,6 +212,7 @@ extension SemanticConventions {
     */
     case networkLogicalAddresses = "hw.network.logical_addresses"
 
+
     /**
      Physical address of the adapter (e.g. MAC address, or WWNN)
 
@@ -207,6 +225,7 @@ extension SemanticConventions {
     */
     case networkPhysicalAddress = "hw.network.physical_address"
 
+
     /**
      Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller)
 
@@ -218,6 +237,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case parent = "hw.parent"
+
 
     /**
      [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
@@ -233,13 +253,15 @@ extension SemanticConventions {
     */
     case physicalDiskSmartAttribute = "hw.physical_disk.smart_attribute"
 
+
     /**
      State of the physical disk endurance utilization
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Hw.PhysicalDiskStateValues`](x-source-tag://SemanticConventions.hw.PhysicalDiskStateValues) (of type `String`)
+     - Requires: Value should be one of ``PhysicalDiskStateValues`` (of type `String`)
     */
     case physicalDiskState = "hw.physical_disk.state"
+
 
     /**
      Type of the physical disk
@@ -254,6 +276,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case physicalDiskType = "hw.physical_disk.type"
+
 
     /**
      Location of the sensor
@@ -275,6 +298,7 @@ extension SemanticConventions {
     */
     case sensorLocation = "hw.sensor_location"
 
+
     /**
      Serial number of the hardware component
 
@@ -287,21 +311,24 @@ extension SemanticConventions {
     */
     case serialNumber = "hw.serial_number"
 
+
     /**
      The current state of the component
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Hw.StateValues`](x-source-tag://SemanticConventions.hw.StateValues) (of type `String`)
+     - Requires: Value should be one of ``StateValues`` (of type `String`)
     */
     case state = "hw.state"
+
 
     /**
      Type of tape drive operation
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Hw.TapeDriveOperationTypeValues`](x-source-tag://SemanticConventions.hw.TapeDriveOperationTypeValues) (of type `String`)
+     - Requires: Value should be one of ``TapeDriveOperationTypeValues`` (of type `String`)
     */
     case tapeDriveOperationType = "hw.tape_drive.operation_type"
+
 
     /**
      Type of the component
@@ -309,9 +336,10 @@ extension SemanticConventions {
 
      - Note: Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
 
-     - Requires: Value should be one of [`SemanticContentions.Hw.TypeValues`](x-source-tag://SemanticConventions.hw.TypeValues) (of type `String`)
+     - Requires: Value should be one of ``TypeValues`` (of type `String`)
     */
     case type = "hw.type"
+
 
     /**
      Vendor name of the hardware component
@@ -331,10 +359,12 @@ extension SemanticConventions {
     case vendor = "hw.vendor"
 
 
+
+
+
     /** 
       The current state of the battery
     */
-    /// - Tag: SemanticConventions.Hw.BatteryStateValues
     public struct BatteryStateValues: CustomStringConvertible {
       /**
       Charging
@@ -356,10 +386,14 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
     /** 
       Type of task the GPU is performing
     */
-    /// - Tag: SemanticConventions.Hw.GpuTaskValues
     public struct GpuTaskValues: CustomStringConvertible {
       /**
       Decoder
@@ -385,10 +419,11 @@ extension SemanticConventions {
       }
     }
 
+
+
     /** 
       Type of limit for hardware components
     */
-    /// - Tag: SemanticConventions.Hw.LimitTypeValues
     public struct LimitTypeValues: CustomStringConvertible {
       /**
       Critical
@@ -438,10 +473,11 @@ extension SemanticConventions {
       }
     }
 
+
+
     /** 
       State of the logical disk space usage
     */
-    /// - Tag: SemanticConventions.Hw.LogicalDiskStateValues
     public struct LogicalDiskStateValues: CustomStringConvertible {
       /**
       Used
@@ -463,10 +499,17 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
+
+
+
+
     /** 
       State of the physical disk endurance utilization
     */
-    /// - Tag: SemanticConventions.Hw.PhysicalDiskStateValues
     public struct PhysicalDiskStateValues: CustomStringConvertible {
       /**
       Remaining
@@ -484,10 +527,13 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
     /** 
       The current state of the component
     */
-    /// - Tag: SemanticConventions.Hw.StateValues
     public struct StateValues: CustomStringConvertible {
       /**
       Degraded
@@ -521,10 +567,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       Type of tape drive operation
     */
-    /// - Tag: SemanticConventions.Hw.TapeDriveOperationTypeValues
     public struct TapeDriveOperationTypeValues: CustomStringConvertible {
       /**
       Mount
@@ -550,10 +596,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       Type of the component
     */
-    /// - Tag: SemanticConventions.Hw.TypeValues
     public struct TypeValues: CustomStringConvertible {
       /**
       Battery
@@ -622,5 +668,6 @@ extension SemanticConventions {
         return value
       }
     }
+
   }
 }

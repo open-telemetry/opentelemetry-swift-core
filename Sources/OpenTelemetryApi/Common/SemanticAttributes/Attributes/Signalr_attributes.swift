@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Signalr: String {
+
+
     /**
      SignalR HTTP connection closure status.
 
@@ -18,9 +20,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Signalr.connectionStatus.rawValue] = .timeout
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Signalr.ConnectionStatusValues`](x-source-tag://SemanticConventions.signalr.ConnectionStatusValues) (of type `String`)
+     - Requires: Value should be one of ``ConnectionStatusValues`` (of type `String`)
     */
     case connectionStatus = "signalr.connection.status"
+
 
     /**
      [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md)
@@ -31,15 +34,15 @@ extension SemanticConventions {
       attributes[SemanticConventions.Signalr.transport.rawValue] = .long_polling
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Signalr.TransportValues`](x-source-tag://SemanticConventions.signalr.TransportValues) (of type `String`)
+     - Requires: Value should be one of ``TransportValues`` (of type `String`)
     */
     case transport = "signalr.transport"
+
 
 
     /** 
       SignalR HTTP connection closure status.
     */
-    /// - Tag: SemanticConventions.Signalr.ConnectionStatusValues
     public struct ConnectionStatusValues: CustomStringConvertible {
       /**
       The connection was closed normally.
@@ -65,10 +68,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md)
     */
-    /// - Tag: SemanticConventions.Signalr.TransportValues
     public struct TransportValues: CustomStringConvertible {
       /**
       ServerSentEvents protocol

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Tls: String {
+
+
     /**
      String indicating the [cipher](https://datatracker.ietf.org/doc/html/rfc5246#appendix-A.5) used during the current connection.
 
@@ -24,6 +26,7 @@ extension SemanticConventions {
     */
     case cipher = "tls.cipher"
 
+
     /**
      PEM-encoded stand-alone certificate offered by the client. This is usually mutually-exclusive of `client.certificate_chain` since this value also exists in that list.
 
@@ -35,6 +38,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case clientCertificate = "tls.client.certificate"
+
 
     /**
      Array of PEM-encoded certificates that make up the certificate chain offered by the client. This is usually mutually-exclusive of `client.certificate` since that value should be the first certificate in the chain.
@@ -48,6 +52,7 @@ extension SemanticConventions {
     */
     case clientCertificateChain = "tls.client.certificate_chain"
 
+
     /**
      Certificate fingerprint using the MD5 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
 
@@ -59,6 +64,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case clientHashMd5 = "tls.client.hash.md5"
+
 
     /**
      Certificate fingerprint using the SHA1 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
@@ -72,6 +78,7 @@ extension SemanticConventions {
     */
     case clientHashSha1 = "tls.client.hash.sha1"
 
+
     /**
      Certificate fingerprint using the SHA256 digest of DER-encoded version of certificate offered by the client. For consistency with other hash values, this value should be formatted as an uppercase hash.
 
@@ -83,6 +90,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case clientHashSha256 = "tls.client.hash.sha256"
+
 
     /**
      Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
@@ -96,6 +104,7 @@ extension SemanticConventions {
     */
     case clientIssuer = "tls.client.issuer"
 
+
     /**
      A hash that identifies clients based on how they perform an SSL/TLS handshake.
 
@@ -107,6 +116,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case clientJa3 = "tls.client.ja3"
+
 
     /**
      Date/Time indicating when client certificate is no longer considered valid.
@@ -120,6 +130,7 @@ extension SemanticConventions {
     */
     case clientNotAfter = "tls.client.not_after"
 
+
     /**
      Date/Time indicating when client certificate is first considered valid.
 
@@ -131,6 +142,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case clientNotBefore = "tls.client.not_before"
+
 
     /**
      Distinguished name of subject of the x.509 certificate presented by the client.
@@ -144,6 +156,7 @@ extension SemanticConventions {
     */
     case clientSubject = "tls.client.subject"
 
+
     /**
      Array of ciphers offered by the client during the client hello.
 
@@ -155,6 +168,7 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case clientSupportedCiphers = "tls.client.supported_ciphers"
+
 
     /**
      String indicating the curve used for the given cipher, when applicable
@@ -168,6 +182,7 @@ extension SemanticConventions {
     */
     case curve = "tls.curve"
 
+
     /**
      Boolean flag indicating if the TLS negotiation was successful and transitioned to an encrypted tunnel.
 
@@ -179,6 +194,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Bool`
     */
     case established = "tls.established"
+
 
     /**
      String indicating the protocol being tunneled. Per the values in the [IANA registry](https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids), this string should be lower case.
@@ -192,13 +208,15 @@ extension SemanticConventions {
     */
     case nextProtocol = "tls.next_protocol"
 
+
     /**
      Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Tls.ProtocolNameValues`](x-source-tag://SemanticConventions.tls.ProtocolNameValues) (of type `String`)
+     - Requires: Value should be one of ``ProtocolNameValues`` (of type `String`)
     */
     case protocolName = "tls.protocol.name"
+
 
     /**
      Numeric part of the version parsed from the original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
@@ -213,6 +231,7 @@ extension SemanticConventions {
     */
     case protocolVersion = "tls.protocol.version"
 
+
     /**
      Boolean flag indicating if this TLS connection was resumed from an existing TLS negotiation.
 
@@ -224,6 +243,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Bool`
     */
     case resumed = "tls.resumed"
+
 
     /**
      PEM-encoded stand-alone certificate offered by the server. This is usually mutually-exclusive of `server.certificate_chain` since this value also exists in that list.
@@ -237,6 +257,7 @@ extension SemanticConventions {
     */
     case serverCertificate = "tls.server.certificate"
 
+
     /**
      Array of PEM-encoded certificates that make up the certificate chain offered by the server. This is usually mutually-exclusive of `server.certificate` since that value should be the first certificate in the chain.
 
@@ -248,6 +269,7 @@ extension SemanticConventions {
      - Requires: Value type should be `[String]`
     */
     case serverCertificateChain = "tls.server.certificate_chain"
+
 
     /**
      Certificate fingerprint using the MD5 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
@@ -261,6 +283,7 @@ extension SemanticConventions {
     */
     case serverHashMd5 = "tls.server.hash.md5"
 
+
     /**
      Certificate fingerprint using the SHA1 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
 
@@ -272,6 +295,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case serverHashSha1 = "tls.server.hash.sha1"
+
 
     /**
      Certificate fingerprint using the SHA256 digest of DER-encoded version of certificate offered by the server. For consistency with other hash values, this value should be formatted as an uppercase hash.
@@ -285,6 +309,7 @@ extension SemanticConventions {
     */
     case serverHashSha256 = "tls.server.hash.sha256"
 
+
     /**
      Distinguished name of [subject](https://datatracker.ietf.org/doc/html/rfc5280#section-4.1.2.6) of the issuer of the x.509 certificate presented by the client.
 
@@ -296,6 +321,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case serverIssuer = "tls.server.issuer"
+
 
     /**
      A hash that identifies servers based on how they perform an SSL/TLS handshake.
@@ -309,6 +335,7 @@ extension SemanticConventions {
     */
     case serverJa3s = "tls.server.ja3s"
 
+
     /**
      Date/Time indicating when server certificate is no longer considered valid.
 
@@ -321,6 +348,7 @@ extension SemanticConventions {
     */
     case serverNotAfter = "tls.server.not_after"
 
+
     /**
      Date/Time indicating when server certificate is first considered valid.
 
@@ -332,6 +360,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case serverNotBefore = "tls.server.not_before"
+
 
     /**
      Distinguished name of subject of the x.509 certificate presented by the server.
@@ -346,10 +375,25 @@ extension SemanticConventions {
     case serverSubject = "tls.server.subject"
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /** 
       Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
     */
-    /// - Tag: SemanticConventions.Tls.ProtocolNameValues
     public struct ProtocolNameValues: CustomStringConvertible {
       public static let ssl = ProtocolNameValues("ssl") 
       public static let tls = ProtocolNameValues("tls") 
@@ -364,5 +408,17 @@ extension SemanticConventions {
         return value
       }
     }
+
+
+
+
+
+
+
+
+
+
+
+
   }
 }

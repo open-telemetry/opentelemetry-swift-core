@@ -9,13 +9,16 @@ import Foundation
 
 extension SemanticConventions {
   public enum V8js: String {
+
+
     /**
      The type of garbage collection.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.V8js.GcTypeValues`](x-source-tag://SemanticConventions.v8js.GcTypeValues) (of type `String`)
+     - Requires: Value should be one of ``GcTypeValues`` (of type `String`)
     */
     case gcType = "v8js.gc.type"
+
 
     /**
      The name of the space type of heap memory.
@@ -23,15 +26,15 @@ extension SemanticConventions {
 
      - Note: Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
 
-     - Requires: Value should be one of [`SemanticContentions.V8js.HeapSpaceNameValues`](x-source-tag://SemanticConventions.v8js.HeapSpaceNameValues) (of type `String`)
+     - Requires: Value should be one of ``HeapSpaceNameValues`` (of type `String`)
     */
     case heapSpaceName = "v8js.heap.space.name"
+
 
 
     /** 
       The type of garbage collection.
     */
-    /// - Tag: SemanticConventions.V8js.GcTypeValues
     public struct GcTypeValues: CustomStringConvertible {
       /**
       Major (Mark Sweep Compact).
@@ -61,10 +64,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       The name of the space type of heap memory.
     */
-    /// - Tag: SemanticConventions.V8js.HeapSpaceNameValues
     public struct HeapSpaceNameValues: CustomStringConvertible {
       /**
       New memory space.

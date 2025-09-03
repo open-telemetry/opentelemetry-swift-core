@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Test: String {
+
+
     /**
      The fully qualified human readable name of the [test case](https://wikipedia.org/wiki/Test_case).
 
@@ -23,6 +25,7 @@ extension SemanticConventions {
     */
     case caseName = "test.case.name"
 
+
     /**
      The status of the actual test case result from test execution.
 
@@ -32,9 +35,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Test.caseResultStatus.rawValue] = .fail
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Test.CaseResultStatusValues`](x-source-tag://SemanticConventions.test.CaseResultStatusValues) (of type `String`)
+     - Requires: Value should be one of ``CaseResultStatusValues`` (of type `String`)
     */
     case caseResultStatus = "test.case.result.status"
+
 
     /**
      The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite).
@@ -47,6 +51,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case suiteName = "test.suite.name"
+
 
     /**
      The status of the test suite run.
@@ -61,15 +66,16 @@ extension SemanticConventions {
       attributes[SemanticConventions.Test.suiteRunStatus.rawValue] = .in_progress
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Test.SuiteRunStatusValues`](x-source-tag://SemanticConventions.test.SuiteRunStatusValues) (of type `String`)
+     - Requires: Value should be one of ``SuiteRunStatusValues`` (of type `String`)
     */
     case suiteRunStatus = "test.suite.run.status"
+
+
 
 
     /** 
       The status of the actual test case result from test execution.
     */
-    /// - Tag: SemanticConventions.Test.CaseResultStatusValues
     public struct CaseResultStatusValues: CustomStringConvertible {
       /**
       pass
@@ -91,10 +97,11 @@ extension SemanticConventions {
       }
     }
 
+
+
     /** 
       The status of the test suite run.
     */
-    /// - Tag: SemanticConventions.Test.SuiteRunStatusValues
     public struct SuiteRunStatusValues: CustomStringConvertible {
       /**
       success

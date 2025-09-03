@@ -9,13 +9,16 @@ import Foundation
 
 extension SemanticConventions {
   public enum Cassandra: String {
+
+
     /**
      The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Cassandra.ConsistencyLevelValues`](x-source-tag://SemanticConventions.cassandra.ConsistencyLevelValues) (of type `String`)
+     - Requires: Value should be one of ``ConsistencyLevelValues`` (of type `String`)
     */
     case consistencyLevel = "cassandra.consistency.level"
+
 
     /**
      The data center of the coordinating node for a query.
@@ -30,6 +33,7 @@ extension SemanticConventions {
     */
     case coordinatorDc = "cassandra.coordinator.dc"
 
+
     /**
      The ID of the coordinating node for a query.
 
@@ -43,6 +47,7 @@ extension SemanticConventions {
     */
     case coordinatorId = "cassandra.coordinator.id"
 
+
     /**
      The fetch size used for paging, i.e. how many rows will be returned at once.
 
@@ -55,6 +60,7 @@ extension SemanticConventions {
     */
     case pageSize = "cassandra.page.size"
 
+
     /**
      Whether or not the query is idempotent.
       ```
@@ -62,6 +68,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Bool`
     */
     case queryIdempotent = "cassandra.query.idempotent"
+
 
     /**
      The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
@@ -77,10 +84,10 @@ extension SemanticConventions {
     case speculativeExecutionCount = "cassandra.speculative_execution.count"
 
 
+
     /** 
       The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
     */
-    /// - Tag: SemanticConventions.Cassandra.ConsistencyLevelValues
     public struct ConsistencyLevelValues: CustomStringConvertible {
       /**
       All
@@ -137,5 +144,10 @@ extension SemanticConventions {
         return value
       }
     }
+
+
+
+
+
   }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Otel: String {
+
+
     /**
      A name uniquely identifying the instance of the OpenTelemetry component within its containing SDK instance.
 
@@ -36,6 +38,7 @@ extension SemanticConventions {
     */
     case componentName = "otel.component.name"
 
+
     /**
      A name identifying the type of the OpenTelemetry component.
 
@@ -48,9 +51,10 @@ extension SemanticConventions {
      - Note: If none of the standardized values apply, implementations SHOULD use the language-defined name of the type.
      E.g. for Java the fully qualified classname SHOULD be used in this case.
 
-     - Requires: Value should be one of [`SemanticContentions.Otel.ComponentTypeValues`](x-source-tag://SemanticConventions.otel.ComponentTypeValues) (of type `String`)
+     - Requires: Value should be one of ``ComponentTypeValues`` (of type `String`)
     */
     case componentType = "otel.component.type"
+
 
     /**
      The name of the instrumentation scope - (`InstrumentationScope.Name` in OTLP).
@@ -64,6 +68,7 @@ extension SemanticConventions {
     */
     case scopeName = "otel.scope.name"
 
+
     /**
      The schema URL of the instrumentation scope.
 
@@ -75,6 +80,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case scopeSchemaUrl = "otel.scope.schema_url"
+
 
     /**
      The version of the instrumentation scope - (`InstrumentationScope.Version` in OTLP).
@@ -88,29 +94,33 @@ extension SemanticConventions {
     */
     case scopeVersion = "otel.scope.version"
 
+
     /**
      Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Otel.SpanParentOriginValues`](x-source-tag://SemanticConventions.otel.SpanParentOriginValues) (of type `String`)
+     - Requires: Value should be one of ``SpanParentOriginValues`` (of type `String`)
     */
     case spanParentOrigin = "otel.span.parent.origin"
+
 
     /**
      The result value of the sampler for this span
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Otel.SpanSamplingResultValues`](x-source-tag://SemanticConventions.otel.SpanSamplingResultValues) (of type `String`)
+     - Requires: Value should be one of ``SpanSamplingResultValues`` (of type `String`)
     */
     case spanSamplingResult = "otel.span.sampling_result"
+
 
     /**
      Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Otel.StatusCodeValues`](x-source-tag://SemanticConventions.otel.StatusCodeValues) (of type `String`)
+     - Requires: Value should be one of ``StatusCodeValues`` (of type `String`)
     */
     case statusCode = "otel.status_code"
+
 
     /**
      Description of the Status if it has a value, otherwise not set.
@@ -125,10 +135,11 @@ extension SemanticConventions {
     case statusDescription = "otel.status_description"
 
 
+
+
     /** 
       A name identifying the type of the OpenTelemetry component.
     */
-    /// - Tag: SemanticConventions.Otel.ComponentTypeValues
     public struct ComponentTypeValues: CustomStringConvertible {
       /**
       The builtin SDK batching span processor
@@ -206,10 +217,13 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
     /** 
       Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)
     */
-    /// - Tag: SemanticConventions.Otel.SpanParentOriginValues
     public struct SpanParentOriginValues: CustomStringConvertible {
       /**
       The span does not have a parent, it is a root span
@@ -235,10 +249,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       The result value of the sampler for this span
     */
-    /// - Tag: SemanticConventions.Otel.SpanSamplingResultValues
     public struct SpanSamplingResultValues: CustomStringConvertible {
       /**
       The span is not sampled and not recording
@@ -264,10 +278,10 @@ extension SemanticConventions {
       }
     }
 
+
     /** 
       Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET.
     */
-    /// - Tag: SemanticConventions.Otel.StatusCodeValues
     public struct StatusCodeValues: CustomStringConvertible {
       /**
       The operation has been validated by an Application developer or Operator to have completed successfully.
@@ -288,5 +302,6 @@ extension SemanticConventions {
         return value
       }
     }
+
   }
 }

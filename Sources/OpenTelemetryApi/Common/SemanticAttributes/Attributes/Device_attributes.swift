@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Device: String {
+
+
     /**
      A unique identifier representing the device
 
@@ -33,6 +35,7 @@ extension SemanticConventions {
     */
     case id = "device.id"
 
+
     /**
      The name of the device manufacturer
 
@@ -47,6 +50,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case manufacturer = "device.manufacturer"
+
 
     /**
      The model identifier for the device
@@ -63,6 +67,7 @@ extension SemanticConventions {
     */
     case modelIdentifier = "device.model.identifier"
 
+
     /**
      The marketing name for the device model
 
@@ -77,6 +82,10 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case modelName = "device.model.name"
+
+
+
+
 
   }
 }

@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Enduser: String {
+
+
     /**
      Unique identifier of an end user in the system. It maybe a username, email address, or other identifier.
 
@@ -26,6 +28,7 @@ extension SemanticConventions {
     */
     case id = "enduser.id"
 
+
     /**
      Pseudonymous identifier of an end user. This identifier should be a random value that is not directly linked or associated with the end user's actual identity.
 
@@ -42,6 +45,8 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case pseudoId = "enduser.pseudo.id"
+
+
 
   }
 }

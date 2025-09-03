@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Cicd: String {
+
+
     /**
      The kind of action a pipeline run is performing.
 
@@ -19,9 +21,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Cicd.pipelineActionName.rawValue] = .SYNC
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Cicd.PipelineActionNameValues`](x-source-tag://SemanticConventions.cicd.PipelineActionNameValues) (of type `String`)
+     - Requires: Value should be one of ``PipelineActionNameValues`` (of type `String`)
     */
     case pipelineActionName = "cicd.pipeline.action.name"
+
 
     /**
      The human readable name of the pipeline within a CI/CD system.
@@ -38,6 +41,7 @@ extension SemanticConventions {
     */
     case pipelineName = "cicd.pipeline.name"
 
+
     /**
      The result of a pipeline run.
 
@@ -49,9 +53,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Cicd.pipelineResult.rawValue] = .skipped
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Cicd.PipelineResultValues`](x-source-tag://SemanticConventions.cicd.PipelineResultValues) (of type `String`)
+     - Requires: Value should be one of ``PipelineResultValues`` (of type `String`)
     */
     case pipelineResult = "cicd.pipeline.result"
+
 
     /**
      The unique identifier of a pipeline run within a CI/CD system.
@@ -65,6 +70,7 @@ extension SemanticConventions {
     */
     case pipelineRunId = "cicd.pipeline.run.id"
 
+
     /**
      The pipeline run goes through these states during its lifecycle.
 
@@ -75,9 +81,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Cicd.pipelineRunState.rawValue] = .finalizing
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Cicd.PipelineRunStateValues`](x-source-tag://SemanticConventions.cicd.PipelineRunStateValues) (of type `String`)
+     - Requires: Value should be one of ``PipelineRunStateValues`` (of type `String`)
     */
     case pipelineRunState = "cicd.pipeline.run.state"
+
 
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run.
@@ -90,6 +97,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case pipelineRunUrlFull = "cicd.pipeline.run.url.full"
+
 
     /**
      The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures.
@@ -106,6 +114,7 @@ extension SemanticConventions {
     */
     case pipelineTaskName = "cicd.pipeline.task.name"
 
+
     /**
      The unique identifier of a task run within a pipeline.
 
@@ -118,6 +127,7 @@ extension SemanticConventions {
     */
     case pipelineTaskRunId = "cicd.pipeline.task.run.id"
 
+
     /**
      The result of a task run.
 
@@ -129,9 +139,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Cicd.pipelineTaskRunResult.rawValue] = .skipped
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Cicd.PipelineTaskRunResultValues`](x-source-tag://SemanticConventions.cicd.PipelineTaskRunResultValues) (of type `String`)
+     - Requires: Value should be one of ``PipelineTaskRunResultValues`` (of type `String`)
     */
     case pipelineTaskRunResult = "cicd.pipeline.task.run.result"
+
 
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run.
@@ -145,6 +156,7 @@ extension SemanticConventions {
     */
     case pipelineTaskRunUrlFull = "cicd.pipeline.task.run.url.full"
 
+
     /**
      The type of the task within a pipeline.
 
@@ -155,9 +167,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Cicd.pipelineTaskType.rawValue] = .deploy
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Cicd.PipelineTaskTypeValues`](x-source-tag://SemanticConventions.cicd.PipelineTaskTypeValues) (of type `String`)
+     - Requires: Value should be one of ``PipelineTaskTypeValues`` (of type `String`)
     */
     case pipelineTaskType = "cicd.pipeline.task.type"
+
 
     /**
      The name of a component of the CICD system.
@@ -173,6 +186,7 @@ extension SemanticConventions {
     */
     case systemComponent = "cicd.system.component"
 
+
     /**
      The unique identifier of a worker within a CICD system.
 
@@ -186,6 +200,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case workerId = "cicd.worker.id"
+
 
     /**
      The name of a worker within a CICD system.
@@ -201,6 +216,7 @@ extension SemanticConventions {
     */
     case workerName = "cicd.worker.name"
 
+
     /**
      The state of a CICD worker / agent.
 
@@ -211,9 +227,10 @@ extension SemanticConventions {
       attributes[SemanticConventions.Cicd.workerState.rawValue] = .down
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Cicd.WorkerStateValues`](x-source-tag://SemanticConventions.cicd.WorkerStateValues) (of type `String`)
+     - Requires: Value should be one of ``WorkerStateValues`` (of type `String`)
     */
     case workerState = "cicd.worker.state"
+
 
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker.
@@ -228,10 +245,10 @@ extension SemanticConventions {
     case workerUrlFull = "cicd.worker.url.full"
 
 
+
     /** 
       The kind of action a pipeline run is performing.
     */
-    /// - Tag: SemanticConventions.Cicd.PipelineActionNameValues
     public struct PipelineActionNameValues: CustomStringConvertible {
       /**
       The pipeline run is executing a build.
@@ -257,10 +274,11 @@ extension SemanticConventions {
       }
     }
 
+
+
     /** 
       The result of a pipeline run.
     */
-    /// - Tag: SemanticConventions.Cicd.PipelineResultValues
     public struct PipelineResultValues: CustomStringConvertible {
       /**
       The pipeline run finished successfully.
@@ -298,10 +316,11 @@ extension SemanticConventions {
       }
     }
 
+
+
     /** 
       The pipeline run goes through these states during its lifecycle.
     */
-    /// - Tag: SemanticConventions.Cicd.PipelineRunStateValues
     public struct PipelineRunStateValues: CustomStringConvertible {
       /**
       The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
@@ -327,10 +346,13 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
     /** 
       The result of a task run.
     */
-    /// - Tag: SemanticConventions.Cicd.PipelineTaskRunResultValues
     public struct PipelineTaskRunResultValues: CustomStringConvertible {
       /**
       The task run finished successfully.
@@ -368,10 +390,11 @@ extension SemanticConventions {
       }
     }
 
+
+
     /** 
       The type of the task within a pipeline.
     */
-    /// - Tag: SemanticConventions.Cicd.PipelineTaskTypeValues
     public struct PipelineTaskTypeValues: CustomStringConvertible {
       /**
       build
@@ -397,10 +420,13 @@ extension SemanticConventions {
       }
     }
 
+
+
+
+
     /** 
       The state of a CICD worker / agent.
     */
-    /// - Tag: SemanticConventions.Cicd.WorkerStateValues
     public struct WorkerStateValues: CustomStringConvertible {
       /**
       The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle).
@@ -425,5 +451,6 @@ extension SemanticConventions {
         return value
       }
     }
+
   }
 }

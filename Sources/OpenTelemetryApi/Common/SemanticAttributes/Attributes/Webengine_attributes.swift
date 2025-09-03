@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Webengine: String {
+
+
     /**
      Additional description of the web engine (e.g. detailed version and edition information).
 
@@ -20,6 +22,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case description = "webengine.description"
+
 
     /**
      The name of the web engine.
@@ -33,6 +36,7 @@ extension SemanticConventions {
     */
     case name = "webengine.name"
 
+
     /**
      The version of the web engine.
 
@@ -44,6 +48,9 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case version = "webengine.version"
+
+
+
 
   }
 }

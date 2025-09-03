@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Linux: String {
+
+
     /**
      The Linux Slab memory state
 
@@ -18,15 +20,15 @@ extension SemanticConventions {
       attributes[SemanticConventions.Linux.memorySlabState.rawValue] = .unreclaimable
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Linux.MemorySlabStateValues`](x-source-tag://SemanticConventions.linux.MemorySlabStateValues) (of type `String`)
+     - Requires: Value should be one of ``MemorySlabStateValues`` (of type `String`)
     */
     case memorySlabState = "linux.memory.slab.state"
+
 
 
     /** 
       The Linux Slab memory state
     */
-    /// - Tag: SemanticConventions.Linux.MemorySlabStateValues
     public struct MemorySlabStateValues: CustomStringConvertible {
       public static let reclaimable = MemorySlabStateValues("reclaimable") 
       public static let unreclaimable = MemorySlabStateValues("unreclaimable") 

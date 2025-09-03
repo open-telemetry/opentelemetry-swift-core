@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Thread: String {
+
+
     /**
      Current "managed" thread ID (as opposed to OS thread ID).
 
@@ -22,6 +24,7 @@ extension SemanticConventions {
     */
     case id = "thread.id"
 
+
     /**
      Current thread name.
 
@@ -34,6 +37,8 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case name = "thread.name"
+
+
 
   }
 }

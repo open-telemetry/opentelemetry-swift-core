@@ -9,13 +9,16 @@ import Foundation
 
 extension SemanticConventions {
   public enum Geo: String {
+
+
     /**
      Two-letter code representing continent’s name.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Geo.ContinentCodeValues`](x-source-tag://SemanticConventions.geo.ContinentCodeValues) (of type `String`)
+     - Requires: Value should be one of ``ContinentCodeValues`` (of type `String`)
     */
     case continentCode = "geo.continent.code"
+
 
     /**
      Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)).
@@ -28,6 +31,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case countryIsoCode = "geo.country.iso_code"
+
 
     /**
      Locality name. Represents the name of a city, town, village, or similar populated place.
@@ -42,6 +46,7 @@ extension SemanticConventions {
     */
     case localityName = "geo.locality.name"
 
+
     /**
      Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
 
@@ -53,6 +58,7 @@ extension SemanticConventions {
      - Requires: Value type should be `Double`
     */
     case locationLat = "geo.location.lat"
+
 
     /**
      Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
@@ -66,6 +72,7 @@ extension SemanticConventions {
     */
     case locationLon = "geo.location.lon"
 
+
     /**
      Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country.
 
@@ -77,6 +84,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case postalCode = "geo.postal_code"
+
 
     /**
      Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)).
@@ -91,10 +99,10 @@ extension SemanticConventions {
     case regionIsoCode = "geo.region.iso_code"
 
 
+
     /** 
       Two-letter code representing continent’s name.
     */
-    /// - Tag: SemanticConventions.Geo.ContinentCodeValues
     public struct ContinentCodeValues: CustomStringConvertible {
       /**
       Africa
@@ -135,5 +143,11 @@ extension SemanticConventions {
         return value
       }
     }
+
+
+
+
+
+
   }
 }

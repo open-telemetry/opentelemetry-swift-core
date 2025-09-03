@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Mainframe: String {
+
+
     /**
      Name of the logical partition that hosts a systems with a mainframe operating system.
 
@@ -20,6 +22,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case lparName = "mainframe.lpar.name"
+
 
   }
 }

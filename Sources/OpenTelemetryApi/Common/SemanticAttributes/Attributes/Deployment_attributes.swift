@@ -9,6 +9,8 @@ import Foundation
 
 extension SemanticConventions {
   public enum Deployment: String {
+
+
     /**
      Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier).
 
@@ -30,6 +32,7 @@ extension SemanticConventions {
     */
     case environmentName = "deployment.environment.name"
 
+
     /**
      The id of the deployment.
 
@@ -41,6 +44,7 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case id = "deployment.id"
+
 
     /**
      The name of the deployment.
@@ -55,19 +59,23 @@ extension SemanticConventions {
     */
     case name = "deployment.name"
 
+
     /**
      The status of the deployment.
       ```
 
-     - Requires: Value should be one of [`SemanticContentions.Deployment.StatusValues`](x-source-tag://SemanticConventions.deployment.StatusValues) (of type `String`)
+     - Requires: Value should be one of ``StatusValues`` (of type `String`)
     */
     case status = "deployment.status"
+
+
+
+
 
 
     /** 
       The status of the deployment.
     */
-    /// - Tag: SemanticConventions.Deployment.StatusValues
     public struct StatusValues: CustomStringConvertible {
       /**
       failed
