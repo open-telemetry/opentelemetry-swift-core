@@ -8,44 +8,60 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Test: String {
+  public enum Test: String {
     /**
      The fully qualified human readable name of the [test case](https://wikipedia.org/wiki/Test_case).
-      // Examples
-      attributes[.testCaseName] = "org.example.TestCase1.test1"
-      attributes[.testCaseName] = "example/tests/TestCase1.test1"
-      attributes[.testCaseName] = "ExampleTestCase1_test1"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Test.caseName.rawValue] = "org.example.TestCase1.test1"
+      attributes[SemanticConventions.Test.caseName.rawValue] = "example/tests/TestCase1.test1"
+      attributes[SemanticConventions.Test.caseName.rawValue] = "ExampleTestCase1_test1"
+      ```
+
      - Requires: Value type should be `String`
     */
     case caseName = "test.case.name"
 
     /**
      The status of the actual test case result from test execution.
-      // Examples
-      attributes[.testCaseResultStatus] = pass
-      attributes[.testCaseResultStatus] = fail
-     - Requires: Value should be one of [`/output/Attributes/Test_attributes.swift.CaseResultStatusValues`](x-source-tag://otelCaseResultStatusValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Test.caseResultStatus.rawValue] = .pass
+      attributes[SemanticConventions.Test.caseResultStatus.rawValue] = .fail
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Test.CaseResultStatusValues`](x-source-tag://SemanticConventions.test.CaseResultStatusValues) (of type `String`)
     */
     case caseResultStatus = "test.case.result.status"
 
     /**
      The human readable name of a [test suite](https://wikipedia.org/wiki/Test_suite).
-      // Examples
-      attributes[.testSuiteName] = "TestSuite1"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Test.suiteName.rawValue] = "TestSuite1"
+      ```
+
      - Requires: Value type should be `String`
     */
     case suiteName = "test.suite.name"
 
     /**
      The status of the test suite run.
-      // Examples
-      attributes[.testSuiteRunStatus] = success
-      attributes[.testSuiteRunStatus] = failure
-      attributes[.testSuiteRunStatus] = skipped
-      attributes[.testSuiteRunStatus] = aborted
-      attributes[.testSuiteRunStatus] = timed_out
-      attributes[.testSuiteRunStatus] = in_progress
-     - Requires: Value should be one of [`/output/Attributes/Test_attributes.swift.SuiteRunStatusValues`](x-source-tag://otelSuiteRunStatusValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Test.suiteRunStatus.rawValue] = .success
+      attributes[SemanticConventions.Test.suiteRunStatus.rawValue] = .failure
+      attributes[SemanticConventions.Test.suiteRunStatus.rawValue] = .skipped
+      attributes[SemanticConventions.Test.suiteRunStatus.rawValue] = .aborted
+      attributes[SemanticConventions.Test.suiteRunStatus.rawValue] = .timed_out
+      attributes[SemanticConventions.Test.suiteRunStatus.rawValue] = .in_progress
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Test.SuiteRunStatusValues`](x-source-tag://SemanticConventions.test.SuiteRunStatusValues) (of type `String`)
     */
     case suiteRunStatus = "test.suite.run.status"
 
@@ -53,7 +69,7 @@ extension SemanticConventions {
     /** 
       The status of the actual test case result from test execution.
     */
-    /// - Tag: otelCaseResultStatusValues
+    /// - Tag: SemanticConventions.Test.CaseResultStatusValues
     public struct CaseResultStatusValues: CustomStringConvertible {
       /**
       pass
@@ -78,7 +94,7 @@ extension SemanticConventions {
     /** 
       The status of the test suite run.
     */
-    /// - Tag: otelSuiteRunStatusValues
+    /// - Tag: SemanticConventions.Test.SuiteRunStatusValues
     public struct SuiteRunStatusValues: CustomStringConvertible {
       /**
       success

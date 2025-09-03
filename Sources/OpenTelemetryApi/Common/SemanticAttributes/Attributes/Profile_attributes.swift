@@ -8,12 +8,16 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Profile: String {
+  public enum Profile: String {
     /**
      Describes the interpreter or compiler of a single frame.
-      // Examples
-      attributes[.profileFrameType] = cpython
-     - Requires: Value should be one of [`/output/Attributes/Profile_attributes.swift.FrameTypeValues`](x-source-tag://otelFrameTypeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Profile.frameType.rawValue] = .cpython
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Profile.FrameTypeValues`](x-source-tag://SemanticConventions.profile.FrameTypeValues) (of type `String`)
     */
     case frameType = "profile.frame.type"
 
@@ -21,7 +25,7 @@ extension SemanticConventions {
     /** 
       Describes the interpreter or compiler of a single frame.
     */
-    /// - Tag: otelFrameTypeValues
+    /// - Tag: SemanticConventions.Profile.FrameTypeValues
     public struct FrameTypeValues: CustomStringConvertible {
       /**
       [.NET](https://wikipedia.org/wiki/.NET)

@@ -8,11 +8,14 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Opentracing: String {
+  public enum Opentracing: String {
     /**
      Parent-child Reference type
+      ```
+
      - Note: The causal relationship between a child Span and a parent Span.
-     - Requires: Value should be one of [`/output/Attributes/Opentracing_attributes.swift.RefTypeValues`](x-source-tag://otelRefTypeValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Opentracing.RefTypeValues`](x-source-tag://SemanticConventions.opentracing.RefTypeValues) (of type `String`)
     */
     case refType = "opentracing.ref_type"
 
@@ -20,7 +23,7 @@ extension SemanticConventions {
     /** 
       Parent-child Reference type
     */
-    /// - Tag: otelRefTypeValues
+    /// - Tag: SemanticConventions.Opentracing.RefTypeValues
     public struct RefTypeValues: CustomStringConvertible {
       /**
       The parent Span depends on the child Span in some capacity

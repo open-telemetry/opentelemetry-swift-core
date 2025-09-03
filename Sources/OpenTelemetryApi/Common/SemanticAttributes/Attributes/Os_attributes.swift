@@ -8,47 +8,65 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Os: String {
+  public enum Os: String {
     /**
      Unique identifier for a particular build or compilation of the operating system.
-      // Examples
-      attributes[.osBuildId] = "TQ3C.230805.001.B2"
-      attributes[.osBuildId] = "20E247"
-      attributes[.osBuildId] = "22621"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Os.buildId.rawValue] = "TQ3C.230805.001.B2"
+      attributes[SemanticConventions.Os.buildId.rawValue] = "20E247"
+      attributes[SemanticConventions.Os.buildId.rawValue] = "22621"
+      ```
+
      - Requires: Value type should be `String`
     */
     case buildId = "os.build_id"
 
     /**
      Human readable (not intended to be parsed) OS version information, like e.g. reported by `ver` or `lsb_release -a` commands.
-      // Examples
-      attributes[.osDescription] = "Microsoft Windows [Version 10.0.18363.778]"
-      attributes[.osDescription] = "Ubuntu 18.04.1 LTS"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Os.description.rawValue] = "Microsoft Windows [Version 10.0.18363.778]"
+      attributes[SemanticConventions.Os.description.rawValue] = "Ubuntu 18.04.1 LTS"
+      ```
+
      - Requires: Value type should be `String`
     */
     case description = "os.description"
 
     /**
      Human readable operating system name.
-      // Examples
-      attributes[.osName] = "iOS"
-      attributes[.osName] = "Android"
-      attributes[.osName] = "Ubuntu"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Os.name.rawValue] = "iOS"
+      attributes[SemanticConventions.Os.name.rawValue] = "Android"
+      attributes[SemanticConventions.Os.name.rawValue] = "Ubuntu"
+      ```
+
      - Requires: Value type should be `String`
     */
     case name = "os.name"
 
     /**
      The operating system type.
-     - Requires: Value should be one of [`/output/Attributes/Os_attributes.swift.TypeValues`](x-source-tag://otelTypeValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Os.TypeValues`](x-source-tag://SemanticConventions.os.TypeValues) (of type `String`)
     */
     case type = "os.type"
 
     /**
      The version string of the operating system as defined in [Version Attributes](/docs/resource/README.md#version-attributes).
-      // Examples
-      attributes[.osVersion] = "14.2.1"
-      attributes[.osVersion] = "18.04.1"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Os.version.rawValue] = "14.2.1"
+      attributes[SemanticConventions.Os.version.rawValue] = "18.04.1"
+      ```
+
      - Requires: Value type should be `String`
     */
     case version = "os.version"
@@ -57,7 +75,7 @@ extension SemanticConventions {
     /** 
       The operating system type.
     */
-    /// - Tag: otelTypeValues
+    /// - Tag: SemanticConventions.Os.TypeValues
     public struct TypeValues: CustomStringConvertible {
       /**
       Microsoft Windows

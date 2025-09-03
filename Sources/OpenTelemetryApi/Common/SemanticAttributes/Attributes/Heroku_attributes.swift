@@ -8,27 +8,39 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Heroku: String {
+  public enum Heroku: String {
     /**
      Unique identifier for the application
-      // Examples
-      attributes[.herokuAppId] = "2daa2797-e42b-4624-9322-ec3f968df4da"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Heroku.appId.rawValue] = "2daa2797-e42b-4624-9322-ec3f968df4da"
+      ```
+
      - Requires: Value type should be `String`
     */
     case appId = "heroku.app.id"
 
     /**
      Commit hash for the current release
-      // Examples
-      attributes[.herokuReleaseCommit] = "e6134959463efd8966b20e75b913cafe3f5ec"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Heroku.releaseCommit.rawValue] = "e6134959463efd8966b20e75b913cafe3f5ec"
+      ```
+
      - Requires: Value type should be `String`
     */
     case releaseCommit = "heroku.release.commit"
 
     /**
      Time and date the release was created
-      // Examples
-      attributes[.herokuReleaseCreationTimestamp] = "2022-10-23T18:00:42Z"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Heroku.releaseCreationTimestamp.rawValue] = "2022-10-23T18:00:42Z"
+      ```
+
      - Requires: Value type should be `String`
     */
     case releaseCreationTimestamp = "heroku.release.creation_timestamp"

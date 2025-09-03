@@ -8,12 +8,16 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Disk: String {
+  public enum Disk: String {
     /**
      The disk IO operation direction.
-      // Examples
-      attributes[.diskIoDirection] = read
-     - Requires: Value should be one of [`/output/Attributes/Disk_attributes.swift.IoDirectionValues`](x-source-tag://otelIoDirectionValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Disk.ioDirection.rawValue] = .read
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Disk.IoDirectionValues`](x-source-tag://SemanticConventions.disk.IoDirectionValues) (of type `String`)
     */
     case ioDirection = "disk.io.direction"
 
@@ -21,7 +25,7 @@ extension SemanticConventions {
     /** 
       The disk IO operation direction.
     */
-    /// - Tag: otelIoDirectionValues
+    /// - Tag: SemanticConventions.Disk.IoDirectionValues
     public struct IoDirectionValues: CustomStringConvertible {
       public static let read = IoDirectionValues("read") 
       public static let write = IoDirectionValues("write") 

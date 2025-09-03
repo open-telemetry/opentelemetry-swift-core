@@ -8,31 +8,43 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Exception: String {
+  public enum Exception: String {
     /**
      The exception message.
-      // Examples
-      attributes[.exceptionMessage] = "Division by zero"
-      attributes[.exceptionMessage] = "Can't convert 'int' object to str implicitly"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Exception.message.rawValue] = "Division by zero"
+      attributes[SemanticConventions.Exception.message.rawValue] = "Can't convert 'int' object to str implicitly"
+      ```
+
      - Requires: Value type should be `String`
     */
     case message = "exception.message"
 
     /**
      A stacktrace as a string in the natural representation for the language runtime. The representation is to be determined and documented by each language SIG.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.exceptionStacktrace] = "Exception in thread \"main\" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)
+   attributes[SemanticConventions.Exception.stacktrace.rawValue] = "Exception in thread \"main\" java.lang.RuntimeException: Test exception\n at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)
    "
+      ```
+
      - Requires: Value type should be `String`
     */
     case stacktrace = "exception.stacktrace"
 
     /**
      The type of the exception (its fully-qualified class name, if applicable). The dynamic type of the exception should be preferred over the static type in languages that support it.
-      // Examples
-      attributes[.exceptionType] = "java.net.ConnectException"
-      attributes[.exceptionType] = "OSError"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Exception.type.rawValue] = "java.net.ConnectException"
+      attributes[SemanticConventions.Exception.type.rawValue] = "OSError"
+      ```
+
      - Requires: Value type should be `String`
     */
     case type = "exception.type"

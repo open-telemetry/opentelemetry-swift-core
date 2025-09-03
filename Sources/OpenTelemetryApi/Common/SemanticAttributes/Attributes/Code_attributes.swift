@@ -8,31 +8,43 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Code: String {
+  public enum Code: String {
     /**
      The column number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Line'. This constraint is imposed to prevent redundancy and maintain data integrity.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.codeColumnNumber] = 16
+   attributes[SemanticConventions.Code.columnNumber.rawValue] = 16
+      ```
+
      - Requires: Value type should be `Int`
     */
     case columnNumber = "code.column.number"
 
     /**
      The source code file name that identifies the code unit as uniquely as possible (preferably an absolute file path). This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Function'. This constraint is imposed to prevent redundancy and maintain data integrity.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.codeFilePath] = "/usr/local/MyApplication/content_root/app/index.php"
+   attributes[SemanticConventions.Code.filePath.rawValue] = "/usr/local/MyApplication/content_root/app/index.php"
+      ```
+
      - Requires: Value type should be `String`
     */
     case filePath = "code.file.path"
 
     /**
      The method or function fully-qualified name without arguments. The value should fit the natural representation of the language runtime, which is also likely the same used within `code.stacktrace` attribute value. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Function'. This constraint is imposed to prevent redundancy and maintain data integrity.
-      // Examples
-      attributes[.codeFunctionName] = "com.example.MyHttpService.serveRequest"
-      attributes[.codeFunctionName] = "GuzzleHttp\Client::transfer"
-      attributes[.codeFunctionName] = "fopen"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Code.functionName.rawValue] = "com.example.MyHttpService.serveRequest"
+      attributes[SemanticConventions.Code.functionName.rawValue] = "GuzzleHttp\Client::transfer"
+      attributes[SemanticConventions.Code.functionName.rawValue] = "fopen"
+      ```
+
      - Note: Values and format depends on each language runtime, thus it is impossible to provide an exhaustive list of examples.
      The values are usually the same (or prefixes of) the ones found in native stack trace representation stored in
      `code.stacktrace` without information on arguments.
@@ -48,25 +60,34 @@ extension SemanticConventions {
      - Erlang: `opentelemetry_ctx:new`
      - Rust: `playground::my_module::my_cool_func`
      - C function: `fopen`
+
      - Requires: Value type should be `String`
     */
     case functionName = "code.function.name"
 
     /**
      The line number in `code.file.path` best representing the operation. It SHOULD point within the code unit named in `code.function.name`. This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Line'. This constraint is imposed to prevent redundancy and maintain data integrity.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.codeLineNumber] = 42
+   attributes[SemanticConventions.Code.lineNumber.rawValue] = 42
+      ```
+
      - Requires: Value type should be `Int`
     */
     case lineNumber = "code.line.number"
 
     /**
      A stacktrace as a string in the natural representation for the language runtime. The representation is identical to [`exception.stacktrace`](/docs/exceptions/exceptions-spans.md#stacktrace-representation). This attribute MUST NOT be used on the Profile signal since the data is already captured in 'message Location'. This constraint is imposed to prevent redundancy and maintain data integrity.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.codeStacktrace] = "at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)
+   attributes[SemanticConventions.Code.stacktrace.rawValue] = "at com.example.GenerateTrace.methodB(GenerateTrace.java:13)\n at com.example.GenerateTrace.methodA(GenerateTrace.java:9)\n at com.example.GenerateTrace.main(GenerateTrace.java:5)
    "
+      ```
+
      - Requires: Value type should be `String`
     */
     case stacktrace = "code.stacktrace"

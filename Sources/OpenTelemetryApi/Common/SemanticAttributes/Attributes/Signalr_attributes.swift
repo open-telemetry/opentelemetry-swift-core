@@ -8,22 +8,30 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Signalr: String {
+  public enum Signalr: String {
     /**
      SignalR HTTP connection closure status.
-      // Examples
-      attributes[.signalrConnectionStatus] = app_shutdown
-      attributes[.signalrConnectionStatus] = timeout
-     - Requires: Value should be one of [`/output/Attributes/Signalr_attributes.swift.ConnectionStatusValues`](x-source-tag://otelConnectionStatusValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Signalr.connectionStatus.rawValue] = .app_shutdown
+      attributes[SemanticConventions.Signalr.connectionStatus.rawValue] = .timeout
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Signalr.ConnectionStatusValues`](x-source-tag://SemanticConventions.signalr.ConnectionStatusValues) (of type `String`)
     */
     case connectionStatus = "signalr.connection.status"
 
     /**
      [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md)
-      // Examples
-      attributes[.signalrTransport] = web_sockets
-      attributes[.signalrTransport] = long_polling
-     - Requires: Value should be one of [`/output/Attributes/Signalr_attributes.swift.TransportValues`](x-source-tag://otelTransportValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Signalr.transport.rawValue] = .web_sockets
+      attributes[SemanticConventions.Signalr.transport.rawValue] = .long_polling
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Signalr.TransportValues`](x-source-tag://SemanticConventions.signalr.TransportValues) (of type `String`)
     */
     case transport = "signalr.transport"
 
@@ -31,7 +39,7 @@ extension SemanticConventions {
     /** 
       SignalR HTTP connection closure status.
     */
-    /// - Tag: otelConnectionStatusValues
+    /// - Tag: SemanticConventions.Signalr.ConnectionStatusValues
     public struct ConnectionStatusValues: CustomStringConvertible {
       /**
       The connection was closed normally.
@@ -60,7 +68,7 @@ extension SemanticConventions {
     /** 
       [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md)
     */
-    /// - Tag: otelTransportValues
+    /// - Tag: SemanticConventions.Signalr.TransportValues
     public struct TransportValues: CustomStringConvertible {
       /**
       ServerSentEvents protocol

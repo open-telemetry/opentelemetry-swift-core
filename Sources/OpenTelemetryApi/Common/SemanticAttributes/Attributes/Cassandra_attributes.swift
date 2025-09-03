@@ -8,50 +8,70 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Cassandra: String {
+  public enum Cassandra: String {
     /**
      The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
-     - Requires: Value should be one of [`/output/Attributes/Cassandra_attributes.swift.ConsistencyLevelValues`](x-source-tag://otelConsistencyLevelValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Cassandra.ConsistencyLevelValues`](x-source-tag://SemanticConventions.cassandra.ConsistencyLevelValues) (of type `String`)
     */
     case consistencyLevel = "cassandra.consistency.level"
 
     /**
      The data center of the coordinating node for a query.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.cassandraCoordinatorDc] = "us-west-2"
+   attributes[SemanticConventions.Cassandra.coordinatorDc.rawValue] = "us-west-2"
+      ```
+
      - Requires: Value type should be `String`
     */
     case coordinatorDc = "cassandra.coordinator.dc"
 
     /**
      The ID of the coordinating node for a query.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.cassandraCoordinatorId] = "be13faa2-8574-4d71-926d-27f16cf8a7af"
+   attributes[SemanticConventions.Cassandra.coordinatorId.rawValue] = "be13faa2-8574-4d71-926d-27f16cf8a7af"
+      ```
+
      - Requires: Value type should be `String`
     */
     case coordinatorId = "cassandra.coordinator.id"
 
     /**
      The fetch size used for paging, i.e. how many rows will be returned at once.
-      // Examples
-      attributes[.cassandraPageSize] = 5000
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cassandra.pageSize.rawValue] = 5000
+      ```
+
      - Requires: Value type should be `Int`
     */
     case pageSize = "cassandra.page.size"
 
     /**
      Whether or not the query is idempotent.
+      ```
+
      - Requires: Value type should be `Bool`
     */
     case queryIdempotent = "cassandra.query.idempotent"
 
     /**
      The number of times a query was speculatively executed. Not set or `0` if the query was not executed speculatively.
-      // Examples
-      attributes[.cassandraSpeculativeExecutionCount] = 0
-      attributes[.cassandraSpeculativeExecutionCount] = 2
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cassandra.speculativeExecutionCount.rawValue] = 0
+      attributes[SemanticConventions.Cassandra.speculativeExecutionCount.rawValue] = 2
+      ```
+
      - Requires: Value type should be `Int`
     */
     case speculativeExecutionCount = "cassandra.speculative_execution.count"
@@ -60,7 +80,7 @@ extension SemanticConventions {
     /** 
       The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
     */
-    /// - Tag: otelConsistencyLevelValues
+    /// - Tag: SemanticConventions.Cassandra.ConsistencyLevelValues
     public struct ConsistencyLevelValues: CustomStringConvertible {
       /**
       All

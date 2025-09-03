@@ -8,21 +8,30 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Android: String {
+  public enum Android: String {
     /**
      This attribute represents the state of the application.
-      // Examples
-      attributes[.androidAppState] = created
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Android.appState.rawValue] = .created
+      ```
+
      - Note: The Android lifecycle states are defined in [Activity lifecycle callbacks](https://developer.android.com/guide/components/activities/activity-lifecycle#lc), and from which the `OS identifiers` are derived.
-     - Requires: Value should be one of [`/output/Attributes/Android_attributes.swift.AppStateValues`](x-source-tag://otelAppStateValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Android.AppStateValues`](x-source-tag://SemanticConventions.android.AppStateValues) (of type `String`)
     */
     case appState = "android.app.state"
 
     /**
      Uniquely identifies the framework API revision offered by a version (`os.version`) of the android operating system. More information can be found in the [Android API levels documentation](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels).
-      // Examples
-      attributes[.androidOsApiLevel] = "33"
-      attributes[.androidOsApiLevel] = "32"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Android.osApiLevel.rawValue] = "33"
+      attributes[SemanticConventions.Android.osApiLevel.rawValue] = "32"
+      ```
+
      - Requires: Value type should be `String`
     */
     case osApiLevel = "android.os.api_level"
@@ -31,7 +40,7 @@ extension SemanticConventions {
     /** 
       This attribute represents the state of the application.
     */
-    /// - Tag: otelAppStateValues
+    /// - Tag: SemanticConventions.Android.AppStateValues
     public struct AppStateValues: CustomStringConvertible {
       /**
       Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time.

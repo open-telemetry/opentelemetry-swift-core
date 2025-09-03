@@ -34,10 +34,13 @@ Double
 {{ template.set_file_name(filename) }}
 
 {%- macro print_example(attribute, example) -%}
+{% set attribute_name = "SemanticConventions." + ctx.root_namespace|pascal_case + "." + attribute.name | replace(ctx.root_namespace, "") | camel_case ~ ".rawValue" %}
 {%    if attribute.type|lower == "string" or attribute.type|lower == "template[string]" -%}
-attributes[.{{attribute.name | camel_case}}] = "{{example | replace("\"", "\\\"")}}"
-{%-    else -%}
-attributes[.{{attribute.name | camel_case}}] = {{example}}
+attributes[{{attribute_name}}] = "{{example | replace("\"", "\\\"")}}"
+{%   elif attribute is enum %}
+attributes[{{attribute_name}}] = .{{example}}
+{%   else %}
+attributes[{{attribute_name}}] = {{example}}
 {%-   endif %}
 {%- endmacro -%}
 
@@ -51,14 +54,16 @@ attributes[.{{attribute.name | camel_case}}] = {{example}}
 import Foundation 
 
 extension SemanticConventions {
-  enum {{ enum_name }}: String {
+  public enum {{ enum_name }}: String {
 {% set attributes = ctx.attributes %}
 {% for attribute in attributes | unique(attribute="name") %}
 {%    set class_name = attribute.name | replace(ctx.root_namespace, '') | pascal_case ~ "Values" %}
     /**
      {{attribute.brief | comment }}
 {%    if attribute.examples %}
-      // Examples
+
+      - Examples:
+      ```
 {%      if attribute.examples is sequence %}
 {%        for example in attribute.examples -%}  
 {{ print_example(attribute, example) | indent(6, true) }}
@@ -67,15 +72,20 @@ extension SemanticConventions {
 {{ print_example(attribute, attribute.examples) | indent(3, true) }}
 {%      endif %}
 {%    endif %}
+      ```
 {%    if attribute.note %}
+
      - Note: {{attribute.note | comment(indent=5) }}
 {%    endif %}
 {%    if attribute.deprecated %}
+
      - Warning: Deprecated • {{attribute.deprecated | comment}}
 {%    endif %}
 {%    if attribute is enum %}
-     - Requires: Value should be one of [`{{filename}}.{{class_name}}`](x-source-tag://otel{{class_name}}) (of type `{{to_swift_return_type(attribute.type | enum_type |lower)}}`)
+
+     - Requires: Value should be one of [`SemanticContentions.{{ctx.root_namespace|pascal_case}}.{{class_name}}`](x-source-tag://SemanticConventions.{{ctx.root_namespace}}.{{class_name}}) (of type `{{to_swift_return_type(attribute.type | enum_type |lower)}}`)
 {%    else %}
+
      - Requires: Value type should be `{{to_swift_return_type(attribute.type|lower)}}`
 {%    endif %}
     */
@@ -97,7 +107,7 @@ extension SemanticConventions {
     /** 
       {{attribute.brief | comment}}
     */
-    /// - Tag: otel{{class_name}}
+    /// - Tag: SemanticConventions.{{ctx.root_namespace|pascal_case}}.{{class_name}}
 {%     if attribute is enum %}
     public struct {{class_name}}: CustomStringConvertible {
 {%       for member in attribute.type.members %}

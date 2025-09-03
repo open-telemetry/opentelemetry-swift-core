@@ -8,30 +8,42 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Http: String {
+  public enum Http: String {
     /**
      State of the HTTP connection in the HTTP connection pool.
-      // Examples
-      attributes[.httpConnectionState] = active
-      attributes[.httpConnectionState] = idle
-     - Requires: Value should be one of [`/output/Attributes/Http_attributes.swift.ConnectionStateValues`](x-source-tag://otelConnectionStateValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Http.connectionState.rawValue] = .active
+      attributes[SemanticConventions.Http.connectionState.rawValue] = .idle
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Http.ConnectionStateValues`](x-source-tag://SemanticConventions.http.ConnectionStateValues) (of type `String`)
     */
     case connectionState = "http.connection.state"
 
     /**
      The size of the request payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.httpRequestBodySize] = 3495
+   attributes[SemanticConventions.Http.requestBodySize.rawValue] = 3495
+      ```
+
      - Requires: Value type should be `Int`
     */
     case requestBodySize = "http.request.body.size"
 
     /**
      HTTP request headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
-      // Examples
-      attributes[.httpRequestHeader] = ["application/json"]
-      attributes[.httpRequestHeader] = ["1.2.3.4", "1.2.3.5"]
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Http.requestHeader.rawValue] = ["application/json"]
+      attributes[SemanticConventions.Http.requestHeader.rawValue] = ["1.2.3.4", "1.2.3.5"]
+      ```
+
      - Note: Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
      Including all request headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
@@ -48,16 +60,21 @@ extension SemanticConventions {
        attribute with value `["application/json"]`.
      - A header `X-Forwarded-For: 1.2.3.4, 1.2.3.5` SHOULD be recorded as the `http.request.header.x-forwarded-for`
        attribute with value `["1.2.3.4", "1.2.3.5"]` or `["1.2.3.4, 1.2.3.5"]` depending on the HTTP library.
+
      - Requires: Value type should be `template[string[]]`
     */
     case requestHeader = "http.request.header"
 
     /**
      HTTP request method.
-      // Examples
-      attributes[.httpRequestMethod] = GET
-      attributes[.httpRequestMethod] = POST
-      attributes[.httpRequestMethod] = HEAD
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Http.requestMethod.rawValue] = .GET
+      attributes[SemanticConventions.Http.requestMethod.rawValue] = .POST
+      attributes[SemanticConventions.Http.requestMethod.rawValue] = .HEAD
+      ```
+
      - Note: HTTP request method value SHOULD be "known" to the instrumentation.
      By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
      and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
@@ -72,53 +89,75 @@ extension SemanticConventions {
      HTTP method names are case-sensitive and `http.request.method` attribute value MUST match a known HTTP method name exactly.
      Instrumentations for specific web frameworks that consider HTTP methods to be case insensitive, SHOULD populate a canonical equivalent.
      Tracing instrumentations that do so, MUST also set `http.request.method_original` to the original value.
-     - Requires: Value should be one of [`/output/Attributes/Http_attributes.swift.RequestMethodValues`](x-source-tag://otelRequestMethodValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Http.RequestMethodValues`](x-source-tag://SemanticConventions.http.RequestMethodValues) (of type `String`)
     */
     case requestMethod = "http.request.method"
 
     /**
      Original HTTP method sent by the client in the request line.
-      // Examples
-      attributes[.httpRequestMethodOriginal] = "GeT"
-      attributes[.httpRequestMethodOriginal] = "ACL"
-      attributes[.httpRequestMethodOriginal] = "foo"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Http.requestMethodOriginal.rawValue] = "GeT"
+      attributes[SemanticConventions.Http.requestMethodOriginal.rawValue] = "ACL"
+      attributes[SemanticConventions.Http.requestMethodOriginal.rawValue] = "foo"
+      ```
+
      - Requires: Value type should be `String`
     */
     case requestMethodOriginal = "http.request.method_original"
 
     /**
      The ordinal number of request resending attempt (for any reason, including redirects).
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.httpRequestResendCount] = 3
+   attributes[SemanticConventions.Http.requestResendCount.rawValue] = 3
+      ```
+
      - Note: The resend count SHOULD be updated each time an HTTP request gets resent by the client, regardless of what was the cause of the resending (e.g. redirection, authorization failure, 503 Server Unavailable, network issues, or any other).
+
      - Requires: Value type should be `Int`
     */
     case requestResendCount = "http.request.resend_count"
 
     /**
      The total size of the request in bytes. This should be the total number of bytes sent over the wire, including the request line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and request body if any.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.httpRequestSize] = 1437
+   attributes[SemanticConventions.Http.requestSize.rawValue] = 1437
+      ```
+
      - Requires: Value type should be `Int`
     */
     case requestSize = "http.request.size"
 
     /**
      The size of the response payload body in bytes. This is the number of bytes transferred excluding headers and is often, but not always, present as the [Content-Length](https://www.rfc-editor.org/rfc/rfc9110.html#field.content-length) header. For requests using transport encoding, this should be the compressed size.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.httpResponseBodySize] = 3495
+   attributes[SemanticConventions.Http.responseBodySize.rawValue] = 3495
+      ```
+
      - Requires: Value type should be `Int`
     */
     case responseBodySize = "http.response.body.size"
 
     /**
      HTTP response headers, `<key>` being the normalized HTTP Header name (lowercase), the value being the header values.
-      // Examples
-      attributes[.httpResponseHeader] = ["application/json"]
-      attributes[.httpResponseHeader] = ["abc", "def"]
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Http.responseHeader.rawValue] = ["application/json"]
+      attributes[SemanticConventions.Http.responseHeader.rawValue] = ["abc", "def"]
+      ```
+
      - Note: Instrumentations SHOULD require an explicit configuration of which headers are to be captured.
      Including all response headers can be a security risk - explicit configuration helps avoid leaking sensitive information.
 
@@ -134,34 +173,48 @@ extension SemanticConventions {
        attribute with value `["application/json"]`.
      - A header `My-custom-header: abc, def` header SHOULD be recorded as the `http.response.header.my-custom-header`
        attribute with value `["abc", "def"]` or `["abc, def"]` depending on the HTTP library.
+
      - Requires: Value type should be `template[string[]]`
     */
     case responseHeader = "http.response.header"
 
     /**
      The total size of the response in bytes. This should be the total number of bytes sent over the wire, including the status line (HTTP/1.1), framing (HTTP/2 and HTTP/3), headers, and response body and trailers if any.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.httpResponseSize] = 1437
+   attributes[SemanticConventions.Http.responseSize.rawValue] = 1437
+      ```
+
      - Requires: Value type should be `Int`
     */
     case responseSize = "http.response.size"
 
     /**
      [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).
-      // Examples
-      attributes[.httpResponseStatusCode] = 200
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Http.responseStatusCode.rawValue] = 200
+      ```
+
      - Requires: Value type should be `Int`
     */
     case responseStatusCode = "http.response.status_code"
 
     /**
      The matched route, that is, the path template in the format used by the respective server framework.
-      // Examples
-      attributes[.httpRoute] = "/users/:userID?"
-      attributes[.httpRoute] = "{controller}/{action}/{id?}"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Http.route.rawValue] = "/users/:userID?"
+      attributes[SemanticConventions.Http.route.rawValue] = "{controller}/{action}/{id?}"
+      ```
+
      - Note: MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
      SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
+
      - Requires: Value type should be `String`
     */
     case route = "http.route"
@@ -170,7 +223,7 @@ extension SemanticConventions {
     /** 
       State of the HTTP connection in the HTTP connection pool.
     */
-    /// - Tag: otelConnectionStateValues
+    /// - Tag: SemanticConventions.Http.ConnectionStateValues
     public struct ConnectionStateValues: CustomStringConvertible {
       /**
       active state.
@@ -195,7 +248,7 @@ extension SemanticConventions {
     /** 
       HTTP request method.
     */
-    /// - Tag: otelRequestMethodValues
+    /// - Tag: SemanticConventions.Http.RequestMethodValues
     public struct RequestMethodValues: CustomStringConvertible {
       /**
       CONNECT method.

@@ -8,25 +8,35 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Server: String {
+  public enum Server: String {
     /**
      Server domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
-      // Examples
-      attributes[.serverAddress] = "example.com"
-      attributes[.serverAddress] = "10.1.2.80"
-      attributes[.serverAddress] = "/tmp/my.sock"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Server.address.rawValue] = "example.com"
+      attributes[SemanticConventions.Server.address.rawValue] = "10.1.2.80"
+      attributes[SemanticConventions.Server.address.rawValue] = "/tmp/my.sock"
+      ```
+
      - Note: When observed from the client side, and when communicating through an intermediary, `server.address` SHOULD represent the server address behind any intermediaries, for example proxies, if it's available.
+
      - Requires: Value type should be `String`
     */
     case address = "server.address"
 
     /**
      Server port number.
-      // Examples
-      attributes[.serverPort] = 80
-      attributes[.serverPort] = 8080
-      attributes[.serverPort] = 443
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Server.port.rawValue] = 80
+      attributes[SemanticConventions.Server.port.rawValue] = 8080
+      attributes[SemanticConventions.Server.port.rawValue] = 443
+      ```
+
      - Note: When observed from the client side, and when communicating through an intermediary, `server.port` SHOULD represent the server port behind any intermediaries, for example proxies, if it's available.
+
      - Requires: Value type should be `Int`
     */
     case port = "server.port"

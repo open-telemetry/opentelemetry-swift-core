@@ -8,204 +8,294 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Aspnetcore: String {
+  public enum Aspnetcore: String {
     /**
      The result of the authentication operation.
-      // Examples
-      attributes[.aspnetcoreAuthenticationResult] = success
-      attributes[.aspnetcoreAuthenticationResult] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AuthenticationResultValues`](x-source-tag://otelAuthenticationResultValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.authenticationResult.rawValue] = .success
+      attributes[SemanticConventions.Aspnetcore.authenticationResult.rawValue] = .failure
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.AuthenticationResultValues`](x-source-tag://SemanticConventions.aspnetcore.AuthenticationResultValues) (of type `String`)
     */
     case authenticationResult = "aspnetcore.authentication.result"
 
     /**
      The identifier that names a particular authentication handler.
-      // Examples
-      attributes[.aspnetcoreAuthenticationScheme] = "Cookies"
-      attributes[.aspnetcoreAuthenticationScheme] = "Bearer"
-      attributes[.aspnetcoreAuthenticationScheme] = "Identity.Application"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.authenticationScheme.rawValue] = "Cookies"
+      attributes[SemanticConventions.Aspnetcore.authenticationScheme.rawValue] = "Bearer"
+      attributes[SemanticConventions.Aspnetcore.authenticationScheme.rawValue] = "Identity.Application"
+      ```
+
      - Requires: Value type should be `String`
     */
     case authenticationScheme = "aspnetcore.authentication.scheme"
 
     /**
      The name of the authorization policy.
-      // Examples
-      attributes[.aspnetcoreAuthorizationPolicy] = "RequireAdminRole"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.authorizationPolicy.rawValue] = "RequireAdminRole"
+      ```
+
      - Requires: Value type should be `String`
     */
     case authorizationPolicy = "aspnetcore.authorization.policy"
 
     /**
      The result of calling the authorization service.
-      // Examples
-      attributes[.aspnetcoreAuthorizationResult] = success
-      attributes[.aspnetcoreAuthorizationResult] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.AuthorizationResultValues`](x-source-tag://otelAuthorizationResultValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.authorizationResult.rawValue] = .success
+      attributes[SemanticConventions.Aspnetcore.authorizationResult.rawValue] = .failure
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.AuthorizationResultValues`](x-source-tag://SemanticConventions.aspnetcore.AuthorizationResultValues) (of type `String`)
     */
     case authorizationResult = "aspnetcore.authorization.result"
 
     /**
      ASP.NET Core exception middleware handling result.
-      // Examples
-      attributes[.aspnetcoreDiagnosticsExceptionResult] = handled
-      attributes[.aspnetcoreDiagnosticsExceptionResult] = unhandled
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.DiagnosticsExceptionResultValues`](x-source-tag://otelDiagnosticsExceptionResultValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.diagnosticsExceptionResult.rawValue] = .handled
+      attributes[SemanticConventions.Aspnetcore.diagnosticsExceptionResult.rawValue] = .unhandled
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.DiagnosticsExceptionResultValues`](x-source-tag://SemanticConventions.aspnetcore.DiagnosticsExceptionResultValues) (of type `String`)
     */
     case diagnosticsExceptionResult = "aspnetcore.diagnostics.exception.result"
 
     /**
      Full type name of the [`IExceptionHandler`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.diagnostics.iexceptionhandler) implementation that handled the exception.
-      // Examples
-      attributes[.aspnetcoreDiagnosticsHandlerType] = "Contoso.MyHandler"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.diagnosticsHandlerType.rawValue] = "Contoso.MyHandler"
+      ```
+
      - Requires: Value type should be `String`
     */
     case diagnosticsHandlerType = "aspnetcore.diagnostics.handler.type"
 
     /**
      The error code for a failed identity operation.
-      // Examples
-      attributes[.aspnetcoreIdentityErrorCode] = "DefaultError"
-      attributes[.aspnetcoreIdentityErrorCode] = "PasswordMismatch"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.identityErrorCode.rawValue] = "DefaultError"
+      attributes[SemanticConventions.Aspnetcore.identityErrorCode.rawValue] = "PasswordMismatch"
+      ```
+
      - Requires: Value type should be `String`
     */
     case identityErrorCode = "aspnetcore.identity.error_code"
 
     /**
      The result from checking the password.
-      // Examples
-      attributes[.aspnetcoreIdentityPasswordCheckResult] = success
-      attributes[.aspnetcoreIdentityPasswordCheckResult] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentityPasswordCheckResultValues`](x-source-tag://otelIdentityPasswordCheckResultValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.identityPasswordCheckResult.rawValue] = .success
+      attributes[SemanticConventions.Aspnetcore.identityPasswordCheckResult.rawValue] = .failure
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentityPasswordCheckResultValues`](x-source-tag://SemanticConventions.aspnetcore.IdentityPasswordCheckResultValues) (of type `String`)
     */
     case identityPasswordCheckResult = "aspnetcore.identity.password_check_result"
 
     /**
      The result of the identity operation.
-      // Examples
-      attributes[.aspnetcoreIdentityResult] = success
-      attributes[.aspnetcoreIdentityResult] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentityResultValues`](x-source-tag://otelIdentityResultValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.identityResult.rawValue] = .success
+      attributes[SemanticConventions.Aspnetcore.identityResult.rawValue] = .failure
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentityResultValues`](x-source-tag://SemanticConventions.aspnetcore.IdentityResultValues) (of type `String`)
     */
     case identityResult = "aspnetcore.identity.result"
 
     /**
      Whether the sign in result was success or failure.
-      // Examples
-      attributes[.aspnetcoreIdentitySignInResult] = password
-      attributes[.aspnetcoreIdentitySignInResult] = two_factor
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentitySignInResultValues`](x-source-tag://otelIdentitySignInResultValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.identitySignInResult.rawValue] = .password
+      attributes[SemanticConventions.Aspnetcore.identitySignInResult.rawValue] = .two_factor
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentitySignInResultValues`](x-source-tag://SemanticConventions.aspnetcore.IdentitySignInResultValues) (of type `String`)
     */
     case identitySignInResult = "aspnetcore.identity.sign_in.result"
 
     /**
      The authentication type.
-      // Examples
-      attributes[.aspnetcoreIdentitySignInType] = password
-      attributes[.aspnetcoreIdentitySignInType] = two_factor
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentitySignInTypeValues`](x-source-tag://otelIdentitySignInTypeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.identitySignInType.rawValue] = .password
+      attributes[SemanticConventions.Aspnetcore.identitySignInType.rawValue] = .two_factor
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentitySignInTypeValues`](x-source-tag://SemanticConventions.aspnetcore.IdentitySignInTypeValues) (of type `String`)
     */
     case identitySignInType = "aspnetcore.identity.sign_in.type"
 
     /**
      What the token will be used for.
-      // Examples
-      attributes[.aspnetcoreIdentityTokenPurpose] = success
-      attributes[.aspnetcoreIdentityTokenPurpose] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentityTokenPurposeValues`](x-source-tag://otelIdentityTokenPurposeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.identityTokenPurpose.rawValue] = .success
+      attributes[SemanticConventions.Aspnetcore.identityTokenPurpose.rawValue] = .failure
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentityTokenPurposeValues`](x-source-tag://SemanticConventions.aspnetcore.IdentityTokenPurposeValues) (of type `String`)
     */
     case identityTokenPurpose = "aspnetcore.identity.token_purpose"
 
     /**
      The result of token verification.
-      // Examples
-      attributes[.aspnetcoreIdentityTokenVerified] = success
-      attributes[.aspnetcoreIdentityTokenVerified] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentityTokenVerifiedValues`](x-source-tag://otelIdentityTokenVerifiedValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.identityTokenVerified.rawValue] = .success
+      attributes[SemanticConventions.Aspnetcore.identityTokenVerified.rawValue] = .failure
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentityTokenVerifiedValues`](x-source-tag://SemanticConventions.aspnetcore.IdentityTokenVerifiedValues) (of type `String`)
     */
     case identityTokenVerified = "aspnetcore.identity.token_verified"
 
     /**
      The user update type.
-      // Examples
-      attributes[.aspnetcoreIdentityUserUpdateType] = update
-      attributes[.aspnetcoreIdentityUserUpdateType] = user_name
-      attributes[.aspnetcoreIdentityUserUpdateType] = reset_password
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.IdentityUserUpdateTypeValues`](x-source-tag://otelIdentityUserUpdateTypeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.identityUserUpdateType.rawValue] = .update
+      attributes[SemanticConventions.Aspnetcore.identityUserUpdateType.rawValue] = .user_name
+      attributes[SemanticConventions.Aspnetcore.identityUserUpdateType.rawValue] = .reset_password
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.IdentityUserUpdateTypeValues`](x-source-tag://SemanticConventions.aspnetcore.IdentityUserUpdateTypeValues) (of type `String`)
     */
     case identityUserUpdateType = "aspnetcore.identity.user.update_type"
 
     /**
      The full name of the identity user type.
-      // Examples
-      attributes[.aspnetcoreIdentityUserType] = "Contoso.ContosoUser"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.identityUserType.rawValue] = "Contoso.ContosoUser"
+      ```
+
      - Requires: Value type should be `String`
     */
     case identityUserType = "aspnetcore.identity.user_type"
 
     /**
      The name of the library or subsystem using the memory pool instance.
-      // Examples
-      attributes[.aspnetcoreMemoryPoolOwner] = "kestrel"
-      attributes[.aspnetcoreMemoryPoolOwner] = "iis"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.memoryPoolOwner.rawValue] = "kestrel"
+      attributes[SemanticConventions.Aspnetcore.memoryPoolOwner.rawValue] = "iis"
+      ```
+
      - Requires: Value type should be `String`
     */
     case memoryPoolOwner = "aspnetcore.memory_pool.owner"
 
     /**
      Rate limiting policy name.
-      // Examples
-      attributes[.aspnetcoreRateLimitingPolicy] = "fixed"
-      attributes[.aspnetcoreRateLimitingPolicy] = "sliding"
-      attributes[.aspnetcoreRateLimitingPolicy] = "token"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.rateLimitingPolicy.rawValue] = "fixed"
+      attributes[SemanticConventions.Aspnetcore.rateLimitingPolicy.rawValue] = "sliding"
+      attributes[SemanticConventions.Aspnetcore.rateLimitingPolicy.rawValue] = "token"
+      ```
+
      - Requires: Value type should be `String`
     */
     case rateLimitingPolicy = "aspnetcore.rate_limiting.policy"
 
     /**
      Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
-      // Examples
-      attributes[.aspnetcoreRateLimitingResult] = acquired
-      attributes[.aspnetcoreRateLimitingResult] = request_canceled
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.RateLimitingResultValues`](x-source-tag://otelRateLimitingResultValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.rateLimitingResult.rawValue] = .acquired
+      attributes[SemanticConventions.Aspnetcore.rateLimitingResult.rawValue] = .request_canceled
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.RateLimitingResultValues`](x-source-tag://SemanticConventions.aspnetcore.RateLimitingResultValues) (of type `String`)
     */
     case rateLimitingResult = "aspnetcore.rate_limiting.result"
 
     /**
      Flag indicating if request was handled by the application pipeline.
-      // Examples
-      attributes[.aspnetcoreRequestIsUnhandled] = true
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.requestIsUnhandled.rawValue] = true
+      ```
+
      - Requires: Value type should be `Bool`
     */
     case requestIsUnhandled = "aspnetcore.request.is_unhandled"
 
     /**
      A value that indicates whether the matched route is a fallback route.
-      // Examples
-      attributes[.aspnetcoreRoutingIsFallback] = true
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.routingIsFallback.rawValue] = true
+      ```
+
      - Requires: Value type should be `Bool`
     */
     case routingIsFallback = "aspnetcore.routing.is_fallback"
 
     /**
      Match result - success or failure
-      // Examples
-      attributes[.aspnetcoreRoutingMatchStatus] = success
-      attributes[.aspnetcoreRoutingMatchStatus] = failure
-     - Requires: Value should be one of [`/output/Attributes/Aspnetcore_attributes.swift.RoutingMatchStatusValues`](x-source-tag://otelRoutingMatchStatusValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.routingMatchStatus.rawValue] = .success
+      attributes[SemanticConventions.Aspnetcore.routingMatchStatus.rawValue] = .failure
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Aspnetcore.RoutingMatchStatusValues`](x-source-tag://SemanticConventions.aspnetcore.RoutingMatchStatusValues) (of type `String`)
     */
     case routingMatchStatus = "aspnetcore.routing.match_status"
 
     /**
      A flag indicating whether the sign in is persistent.
+      ```
+
      - Requires: Value type should be `Bool`
     */
     case signInIsPersistent = "aspnetcore.sign_in.is_persistent"
 
     /**
      A value that indicates whether the user is authenticated.
-      // Examples
-      attributes[.aspnetcoreUserIsAuthenticated] = true
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Aspnetcore.userIsAuthenticated.rawValue] = true
+      ```
+
      - Requires: Value type should be `Bool`
     */
     case userIsAuthenticated = "aspnetcore.user.is_authenticated"
@@ -214,7 +304,7 @@ extension SemanticConventions {
     /** 
       The result of the authentication operation.
     */
-    /// - Tag: otelAuthenticationResultValues
+    /// - Tag: SemanticConventions.Aspnetcore.AuthenticationResultValues
     public struct AuthenticationResultValues: CustomStringConvertible {
       /**
       Authentication was successful.
@@ -243,7 +333,7 @@ extension SemanticConventions {
     /** 
       The result of calling the authorization service.
     */
-    /// - Tag: otelAuthorizationResultValues
+    /// - Tag: SemanticConventions.Aspnetcore.AuthorizationResultValues
     public struct AuthorizationResultValues: CustomStringConvertible {
       /**
       Authorization was successful.
@@ -268,7 +358,7 @@ extension SemanticConventions {
     /** 
       ASP.NET Core exception middleware handling result.
     */
-    /// - Tag: otelDiagnosticsExceptionResultValues
+    /// - Tag: SemanticConventions.Aspnetcore.DiagnosticsExceptionResultValues
     public struct DiagnosticsExceptionResultValues: CustomStringConvertible {
       /**
       Exception was handled by the exception handling middleware.
@@ -301,7 +391,7 @@ extension SemanticConventions {
     /** 
       The result from checking the password.
     */
-    /// - Tag: otelIdentityPasswordCheckResultValues
+    /// - Tag: SemanticConventions.Aspnetcore.IdentityPasswordCheckResultValues
     public struct IdentityPasswordCheckResultValues: CustomStringConvertible {
       /**
       Password check was successful.
@@ -338,7 +428,7 @@ extension SemanticConventions {
     /** 
       The result of the identity operation.
     */
-    /// - Tag: otelIdentityResultValues
+    /// - Tag: SemanticConventions.Aspnetcore.IdentityResultValues
     public struct IdentityResultValues: CustomStringConvertible {
       /**
       Identity operation was successful.
@@ -363,7 +453,7 @@ extension SemanticConventions {
     /** 
       Whether the sign in result was success or failure.
     */
-    /// - Tag: otelIdentitySignInResultValues
+    /// - Tag: SemanticConventions.Aspnetcore.IdentitySignInResultValues
     public struct IdentitySignInResultValues: CustomStringConvertible {
       /**
       Sign in was successful.
@@ -400,7 +490,7 @@ extension SemanticConventions {
     /** 
       The authentication type.
     */
-    /// - Tag: otelIdentitySignInTypeValues
+    /// - Tag: SemanticConventions.Aspnetcore.IdentitySignInTypeValues
     public struct IdentitySignInTypeValues: CustomStringConvertible {
       /**
       Sign in with password.
@@ -441,7 +531,7 @@ extension SemanticConventions {
     /** 
       What the token will be used for.
     */
-    /// - Tag: otelIdentityTokenPurposeValues
+    /// - Tag: SemanticConventions.Aspnetcore.IdentityTokenPurposeValues
     public struct IdentityTokenPurposeValues: CustomStringConvertible {
       /**
       The token is for resetting a user password.
@@ -482,7 +572,7 @@ extension SemanticConventions {
     /** 
       The result of token verification.
     */
-    /// - Tag: otelIdentityTokenVerifiedValues
+    /// - Tag: SemanticConventions.Aspnetcore.IdentityTokenVerifiedValues
     public struct IdentityTokenVerifiedValues: CustomStringConvertible {
       /**
       Token verification was successful.
@@ -507,7 +597,7 @@ extension SemanticConventions {
     /** 
       The user update type.
     */
-    /// - Tag: otelIdentityUserUpdateTypeValues
+    /// - Tag: SemanticConventions.Aspnetcore.IdentityUserUpdateTypeValues
     public struct IdentityUserUpdateTypeValues: CustomStringConvertible {
       /**
       Identity user updated.
@@ -656,7 +746,7 @@ extension SemanticConventions {
     /** 
       Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
     */
-    /// - Tag: otelRateLimitingResultValues
+    /// - Tag: SemanticConventions.Aspnetcore.RateLimitingResultValues
     public struct RateLimitingResultValues: CustomStringConvertible {
       /**
       Lease was acquired
@@ -689,7 +779,7 @@ extension SemanticConventions {
     /** 
       Match result - success or failure
     */
-    /// - Tag: otelRoutingMatchStatusValues
+    /// - Tag: SemanticConventions.Aspnetcore.RoutingMatchStatusValues
     public struct RoutingMatchStatusValues: CustomStringConvertible {
       /**
       Match succeeded

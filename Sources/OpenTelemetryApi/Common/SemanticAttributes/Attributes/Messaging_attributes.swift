@@ -8,325 +8,467 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Messaging: String {
+  public enum Messaging: String {
     /**
      The number of messages sent, received, or processed in the scope of the batching operation.
-      // Examples
-      attributes[.messagingBatchMessageCount] = 0
-      attributes[.messagingBatchMessageCount] = 1
-      attributes[.messagingBatchMessageCount] = 2
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Messaging.batchMessageCount.rawValue] = 0
+      attributes[SemanticConventions.Messaging.batchMessageCount.rawValue] = 1
+      attributes[SemanticConventions.Messaging.batchMessageCount.rawValue] = 2
+      ```
+
      - Note: Instrumentations SHOULD NOT set `messaging.batch.message_count` on spans that operate with a single message. When a messaging client library supports both batch and single-message API for the same operation, instrumentations SHOULD use `messaging.batch.message_count` for batching APIs and SHOULD NOT use it for single-message APIs.
+
      - Requires: Value type should be `Int`
     */
     case batchMessageCount = "messaging.batch.message_count"
 
     /**
      A unique identifier for the client that consumes or produces a message.
-      // Examples
-      attributes[.messagingClientId] = "client-5"
-      attributes[.messagingClientId] = "myhost@8742@s8083jm"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Messaging.clientId.rawValue] = "client-5"
+      attributes[SemanticConventions.Messaging.clientId.rawValue] = "myhost@8742@s8083jm"
+      ```
+
      - Requires: Value type should be `String`
     */
     case clientId = "messaging.client.id"
 
     /**
      The name of the consumer group with which a consumer is associated.
-      // Examples
-      attributes[.messagingConsumerGroupName] = "my-group"
-      attributes[.messagingConsumerGroupName] = "indexer"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Messaging.consumerGroupName.rawValue] = "my-group"
+      attributes[SemanticConventions.Messaging.consumerGroupName.rawValue] = "indexer"
+      ```
+
      - Note: Semantic conventions for individual messaging systems SHOULD document whether `messaging.consumer.group.name` is applicable and what it means in the context of that system.
+
      - Requires: Value type should be `String`
     */
     case consumerGroupName = "messaging.consumer.group.name"
 
     /**
      A boolean that is true if the message destination is anonymous (could be unnamed or have auto-generated name).
+      ```
+
      - Requires: Value type should be `Bool`
     */
     case destinationAnonymous = "messaging.destination.anonymous"
 
     /**
      The message destination name
-      // Examples
-      attributes[.messagingDestinationName] = "MyQueue"
-      attributes[.messagingDestinationName] = "MyTopic"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Messaging.destinationName.rawValue] = "MyQueue"
+      attributes[SemanticConventions.Messaging.destinationName.rawValue] = "MyTopic"
+      ```
+
      - Note: Destination name SHOULD uniquely identify a specific queue, topic or other entity within the broker. If
      the broker doesn't have such notion, the destination name SHOULD uniquely identify the broker.
+
      - Requires: Value type should be `String`
     */
     case destinationName = "messaging.destination.name"
 
     /**
      The identifier of the partition messages are sent to or received from, unique within the `messaging.destination.name`.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingDestinationPartitionId] = "1"
+   attributes[SemanticConventions.Messaging.destinationPartitionId.rawValue] = "1"
+      ```
+
      - Requires: Value type should be `String`
     */
     case destinationPartitionId = "messaging.destination.partition.id"
 
     /**
      The name of the destination subscription from which a message is consumed.
-      // Examples
-      attributes[.messagingDestinationSubscriptionName] = "subscription-a"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Messaging.destinationSubscriptionName.rawValue] = "subscription-a"
+      ```
+
      - Note: Semantic conventions for individual messaging systems SHOULD document whether `messaging.destination.subscription.name` is applicable and what it means in the context of that system.
+
      - Requires: Value type should be `String`
     */
     case destinationSubscriptionName = "messaging.destination.subscription.name"
 
     /**
      Low cardinality representation of the messaging destination name
-      // Examples
-      attributes[.messagingDestinationTemplate] = "/customers/{customerId}"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Messaging.destinationTemplate.rawValue] = "/customers/{customerId}"
+      ```
+
      - Note: Destination names could be constructed from templates. An example would be a destination name involving a user name or product id. Although the destination name in this case is of high cardinality, the underlying template is of low cardinality and can be effectively used for grouping and aggregation.
+
      - Requires: Value type should be `String`
     */
     case destinationTemplate = "messaging.destination.template"
 
     /**
      A boolean that is true if the message destination is temporary and might not exist anymore after messages are processed.
+      ```
+
      - Requires: Value type should be `Bool`
     */
     case destinationTemporary = "messaging.destination.temporary"
 
     /**
      The UTC epoch seconds at which the message has been accepted and stored in the entity.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingEventhubsMessageEnqueuedTime] = 1701393730
+   attributes[SemanticConventions.Messaging.eventhubsMessageEnqueuedTime.rawValue] = 1701393730
+      ```
+
      - Requires: Value type should be `Int`
     */
     case eventhubsMessageEnqueuedTime = "messaging.eventhubs.message.enqueued_time"
 
     /**
      The ack deadline in seconds set for the modify ack deadline request.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingGcpPubsubMessageAckDeadline] = 10
+   attributes[SemanticConventions.Messaging.gcpPubsubMessageAckDeadline.rawValue] = 10
+      ```
+
      - Requires: Value type should be `Int`
     */
     case gcpPubsubMessageAckDeadline = "messaging.gcp_pubsub.message.ack_deadline"
 
     /**
      The ack id for a given message.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingGcpPubsubMessageAckId] = "ack_id"
+   attributes[SemanticConventions.Messaging.gcpPubsubMessageAckId.rawValue] = "ack_id"
+      ```
+
      - Requires: Value type should be `String`
     */
     case gcpPubsubMessageAckId = "messaging.gcp_pubsub.message.ack_id"
 
     /**
      The delivery attempt for a given message.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingGcpPubsubMessageDeliveryAttempt] = 2
+   attributes[SemanticConventions.Messaging.gcpPubsubMessageDeliveryAttempt.rawValue] = 2
+      ```
+
      - Requires: Value type should be `Int`
     */
     case gcpPubsubMessageDeliveryAttempt = "messaging.gcp_pubsub.message.delivery_attempt"
 
     /**
      The ordering key for a given message. If the attribute is not present, the message does not have an ordering key.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingGcpPubsubMessageOrderingKey] = "ordering_key"
+   attributes[SemanticConventions.Messaging.gcpPubsubMessageOrderingKey.rawValue] = "ordering_key"
+      ```
+
      - Requires: Value type should be `String`
     */
     case gcpPubsubMessageOrderingKey = "messaging.gcp_pubsub.message.ordering_key"
 
     /**
      Message keys in Kafka are used for grouping alike messages to ensure they're processed on the same partition. They differ from `messaging.message.id` in that they're not unique. If the key is `null`, the attribute MUST NOT be set.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingKafkaMessageKey] = "myKey"
+   attributes[SemanticConventions.Messaging.kafkaMessageKey.rawValue] = "myKey"
+      ```
+
      - Note: If the key type is not string, it's string representation has to be supplied for the attribute. If the key has no unambiguous, canonical string form, don't include its value.
+
      - Requires: Value type should be `String`
     */
     case kafkaMessageKey = "messaging.kafka.message.key"
 
     /**
      A boolean that is true if the message is a tombstone.
+      ```
+
      - Requires: Value type should be `Bool`
     */
     case kafkaMessageTombstone = "messaging.kafka.message.tombstone"
 
     /**
      The offset of a record in the corresponding Kafka partition.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingKafkaOffset] = 42
+   attributes[SemanticConventions.Messaging.kafkaOffset.rawValue] = 42
+      ```
+
      - Requires: Value type should be `Int`
     */
     case kafkaOffset = "messaging.kafka.offset"
 
     /**
      The size of the message body in bytes.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingMessageBodySize] = 1439
+   attributes[SemanticConventions.Messaging.messageBodySize.rawValue] = 1439
+      ```
+
      - Note: This can refer to both the compressed or uncompressed body size. If both sizes are known, the uncompressed
      body size should be used.
+
      - Requires: Value type should be `Int`
     */
     case messageBodySize = "messaging.message.body.size"
 
     /**
      The conversation ID identifying the conversation to which the message belongs, represented as a string. Sometimes called "Correlation ID".
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingMessageConversationId] = "MyConversationId"
+   attributes[SemanticConventions.Messaging.messageConversationId.rawValue] = "MyConversationId"
+      ```
+
      - Requires: Value type should be `String`
     */
     case messageConversationId = "messaging.message.conversation_id"
 
     /**
      The size of the message body and metadata in bytes.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingMessageEnvelopeSize] = 2738
+   attributes[SemanticConventions.Messaging.messageEnvelopeSize.rawValue] = 2738
+      ```
+
      - Note: This can refer to both the compressed or uncompressed size. If both sizes are known, the uncompressed
      size should be used.
+
      - Requires: Value type should be `Int`
     */
     case messageEnvelopeSize = "messaging.message.envelope.size"
 
     /**
      A value used by the messaging system as an identifier for the message, represented as a string.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingMessageId] = "452a7c7c7c7048c2f887f61572b18fc2"
+   attributes[SemanticConventions.Messaging.messageId.rawValue] = "452a7c7c7c7048c2f887f61572b18fc2"
+      ```
+
      - Requires: Value type should be `String`
     */
     case messageId = "messaging.message.id"
 
     /**
      The system-specific name of the messaging operation.
-      // Examples
-      attributes[.messagingOperationName] = "ack"
-      attributes[.messagingOperationName] = "nack"
-      attributes[.messagingOperationName] = "send"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Messaging.operationName.rawValue] = "ack"
+      attributes[SemanticConventions.Messaging.operationName.rawValue] = "nack"
+      attributes[SemanticConventions.Messaging.operationName.rawValue] = "send"
+      ```
+
      - Requires: Value type should be `String`
     */
     case operationName = "messaging.operation.name"
 
     /**
      A string identifying the type of the messaging operation.
+      ```
+
      - Note: If a custom value is used, it MUST be of low cardinality.
-     - Requires: Value should be one of [`/output/Attributes/Messaging_attributes.swift.OperationTypeValues`](x-source-tag://otelOperationTypeValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Messaging.OperationTypeValues`](x-source-tag://SemanticConventions.messaging.OperationTypeValues) (of type `String`)
     */
     case operationType = "messaging.operation.type"
 
     /**
      RabbitMQ message routing key.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingRabbitmqDestinationRoutingKey] = "myKey"
+   attributes[SemanticConventions.Messaging.rabbitmqDestinationRoutingKey.rawValue] = "myKey"
+      ```
+
      - Requires: Value type should be `String`
     */
     case rabbitmqDestinationRoutingKey = "messaging.rabbitmq.destination.routing_key"
 
     /**
      RabbitMQ message delivery tag
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingRabbitmqMessageDeliveryTag] = 123
+   attributes[SemanticConventions.Messaging.rabbitmqMessageDeliveryTag.rawValue] = 123
+      ```
+
      - Requires: Value type should be `Int`
     */
     case rabbitmqMessageDeliveryTag = "messaging.rabbitmq.message.delivery_tag"
 
     /**
      Model of message consumption. This only applies to consumer spans.
-     - Requires: Value should be one of [`/output/Attributes/Messaging_attributes.swift.RocketmqConsumptionModelValues`](x-source-tag://otelRocketmqConsumptionModelValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Messaging.RocketmqConsumptionModelValues`](x-source-tag://SemanticConventions.messaging.RocketmqConsumptionModelValues) (of type `String`)
     */
     case rocketmqConsumptionModel = "messaging.rocketmq.consumption_model"
 
     /**
      The delay time level for delay message, which determines the message delay time.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingRocketmqMessageDelayTimeLevel] = 3
+   attributes[SemanticConventions.Messaging.rocketmqMessageDelayTimeLevel.rawValue] = 3
+      ```
+
      - Requires: Value type should be `Int`
     */
     case rocketmqMessageDelayTimeLevel = "messaging.rocketmq.message.delay_time_level"
 
     /**
      The timestamp in milliseconds that the delay message is expected to be delivered to consumer.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingRocketmqMessageDeliveryTimestamp] = 1665987217045
+   attributes[SemanticConventions.Messaging.rocketmqMessageDeliveryTimestamp.rawValue] = 1665987217045
+      ```
+
      - Requires: Value type should be `Int`
     */
     case rocketmqMessageDeliveryTimestamp = "messaging.rocketmq.message.delivery_timestamp"
 
     /**
      It is essential for FIFO message. Messages that belong to the same message group are always processed one by one within the same consumer group.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingRocketmqMessageGroup] = "myMessageGroup"
+   attributes[SemanticConventions.Messaging.rocketmqMessageGroup.rawValue] = "myMessageGroup"
+      ```
+
      - Requires: Value type should be `String`
     */
     case rocketmqMessageGroup = "messaging.rocketmq.message.group"
 
     /**
      Key(s) of message, another way to mark message besides message id.
-      // Examples
-      attributes[.messagingRocketmqMessageKeys] = ["keyA", "keyB"]
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Messaging.rocketmqMessageKeys.rawValue] = ["keyA", "keyB"]
+      ```
+
      - Requires: Value type should be `[String]`
     */
     case rocketmqMessageKeys = "messaging.rocketmq.message.keys"
 
     /**
      The secondary classifier of message besides topic.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingRocketmqMessageTag] = "tagA"
+   attributes[SemanticConventions.Messaging.rocketmqMessageTag.rawValue] = "tagA"
+      ```
+
      - Requires: Value type should be `String`
     */
     case rocketmqMessageTag = "messaging.rocketmq.message.tag"
 
     /**
      Type of message.
-     - Requires: Value should be one of [`/output/Attributes/Messaging_attributes.swift.RocketmqMessageTypeValues`](x-source-tag://otelRocketmqMessageTypeValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Messaging.RocketmqMessageTypeValues`](x-source-tag://SemanticConventions.messaging.RocketmqMessageTypeValues) (of type `String`)
     */
     case rocketmqMessageType = "messaging.rocketmq.message.type"
 
     /**
      Namespace of RocketMQ resources, resources in different namespaces are individual.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingRocketmqNamespace] = "myNamespace"
+   attributes[SemanticConventions.Messaging.rocketmqNamespace.rawValue] = "myNamespace"
+      ```
+
      - Requires: Value type should be `String`
     */
     case rocketmqNamespace = "messaging.rocketmq.namespace"
 
     /**
      Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
-     - Requires: Value should be one of [`/output/Attributes/Messaging_attributes.swift.ServicebusDispositionStatusValues`](x-source-tag://otelServicebusDispositionStatusValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Messaging.ServicebusDispositionStatusValues`](x-source-tag://SemanticConventions.messaging.ServicebusDispositionStatusValues) (of type `String`)
     */
     case servicebusDispositionStatus = "messaging.servicebus.disposition_status"
 
     /**
      Number of deliveries that have been attempted for this message.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingServicebusMessageDeliveryCount] = 2
+   attributes[SemanticConventions.Messaging.servicebusMessageDeliveryCount.rawValue] = 2
+      ```
+
      - Requires: Value type should be `Int`
     */
     case servicebusMessageDeliveryCount = "messaging.servicebus.message.delivery_count"
 
     /**
      The UTC epoch seconds at which the message has been accepted and stored in the entity.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.messagingServicebusMessageEnqueuedTime] = 1701393730
+   attributes[SemanticConventions.Messaging.servicebusMessageEnqueuedTime.rawValue] = 1701393730
+      ```
+
      - Requires: Value type should be `Int`
     */
     case servicebusMessageEnqueuedTime = "messaging.servicebus.message.enqueued_time"
 
     /**
      The messaging system as identified by the client instrumentation.
+      ```
+
      - Note: The actual messaging system may differ from the one known by the client. For example, when using Kafka client libraries to communicate with Azure Event Hubs, the `messaging.system` is set to `kafka` based on the instrumentation's best knowledge.
-     - Requires: Value should be one of [`/output/Attributes/Messaging_attributes.swift.SystemValues`](x-source-tag://otelSystemValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Messaging.SystemValues`](x-source-tag://SemanticConventions.messaging.SystemValues) (of type `String`)
     */
     case system = "messaging.system"
 
@@ -334,7 +476,7 @@ extension SemanticConventions {
     /** 
       A string identifying the type of the messaging operation.
     */
-    /// - Tag: otelOperationTypeValues
+    /// - Tag: SemanticConventions.Messaging.OperationTypeValues
     public struct OperationTypeValues: CustomStringConvertible {
       /**
       A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios.
@@ -371,7 +513,7 @@ extension SemanticConventions {
     /** 
       Model of message consumption. This only applies to consumer spans.
     */
-    /// - Tag: otelRocketmqConsumptionModelValues
+    /// - Tag: SemanticConventions.Messaging.RocketmqConsumptionModelValues
     public struct RocketmqConsumptionModelValues: CustomStringConvertible {
       /**
       Clustering consumption model
@@ -396,7 +538,7 @@ extension SemanticConventions {
     /** 
       Type of message.
     */
-    /// - Tag: otelRocketmqMessageTypeValues
+    /// - Tag: SemanticConventions.Messaging.RocketmqMessageTypeValues
     public struct RocketmqMessageTypeValues: CustomStringConvertible {
       /**
       Normal message
@@ -429,7 +571,7 @@ extension SemanticConventions {
     /** 
       Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
     */
-    /// - Tag: otelServicebusDispositionStatusValues
+    /// - Tag: SemanticConventions.Messaging.ServicebusDispositionStatusValues
     public struct ServicebusDispositionStatusValues: CustomStringConvertible {
       /**
       Message is completed
@@ -462,7 +604,7 @@ extension SemanticConventions {
     /** 
       The messaging system as identified by the client instrumentation.
     */
-    /// - Tag: otelSystemValues
+    /// - Tag: SemanticConventions.Messaging.SystemValues
     public struct SystemValues: CustomStringConvertible {
       /**
       Apache ActiveMQ

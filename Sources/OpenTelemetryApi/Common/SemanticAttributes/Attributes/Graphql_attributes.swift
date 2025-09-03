@@ -8,33 +8,46 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Graphql: String {
+  public enum Graphql: String {
     /**
      The GraphQL document being executed.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.graphqlDocument] = "query findBookById { bookById(id: ?) { name } }"
+   attributes[SemanticConventions.Graphql.document.rawValue] = "query findBookById { bookById(id: ?) { name } }"
+      ```
+
      - Note: The value may be sanitized to exclude sensitive information.
+
      - Requires: Value type should be `String`
     */
     case document = "graphql.document"
 
     /**
      The name of the operation being executed.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.graphqlOperationName] = "findBookById"
+   attributes[SemanticConventions.Graphql.operationName.rawValue] = "findBookById"
+      ```
+
      - Requires: Value type should be `String`
     */
     case operationName = "graphql.operation.name"
 
     /**
      The type of the operation being executed.
-      // Examples
-      attributes[.graphqlOperationType] = query
-      attributes[.graphqlOperationType] = mutation
-      attributes[.graphqlOperationType] = subscription
-     - Requires: Value should be one of [`/output/Attributes/Graphql_attributes.swift.OperationTypeValues`](x-source-tag://otelOperationTypeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Graphql.operationType.rawValue] = .query
+      attributes[SemanticConventions.Graphql.operationType.rawValue] = .mutation
+      attributes[SemanticConventions.Graphql.operationType.rawValue] = .subscription
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Graphql.OperationTypeValues`](x-source-tag://SemanticConventions.graphql.OperationTypeValues) (of type `String`)
     */
     case operationType = "graphql.operation.type"
 
@@ -42,7 +55,7 @@ extension SemanticConventions {
     /** 
       The type of the operation being executed.
     */
-    /// - Tag: otelOperationTypeValues
+    /// - Tag: SemanticConventions.Graphql.OperationTypeValues
     public struct OperationTypeValues: CustomStringConvertible {
       /**
       GraphQL query

@@ -8,17 +8,22 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum V8js: String {
+  public enum V8js: String {
     /**
      The type of garbage collection.
-     - Requires: Value should be one of [`/output/Attributes/V8js_attributes.swift.GcTypeValues`](x-source-tag://otelGcTypeValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.V8js.GcTypeValues`](x-source-tag://SemanticConventions.v8js.GcTypeValues) (of type `String`)
     */
     case gcType = "v8js.gc.type"
 
     /**
      The name of the space type of heap memory.
+      ```
+
      - Note: Value can be retrieved from value `space_name` of [`v8.getHeapSpaceStatistics()`](https://nodejs.org/api/v8.html#v8getheapspacestatistics)
-     - Requires: Value should be one of [`/output/Attributes/V8js_attributes.swift.HeapSpaceNameValues`](x-source-tag://otelHeapSpaceNameValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.V8js.HeapSpaceNameValues`](x-source-tag://SemanticConventions.v8js.HeapSpaceNameValues) (of type `String`)
     */
     case heapSpaceName = "v8js.heap.space.name"
 
@@ -26,7 +31,7 @@ extension SemanticConventions {
     /** 
       The type of garbage collection.
     */
-    /// - Tag: otelGcTypeValues
+    /// - Tag: SemanticConventions.V8js.GcTypeValues
     public struct GcTypeValues: CustomStringConvertible {
       /**
       Major (Mark Sweep Compact).
@@ -59,7 +64,7 @@ extension SemanticConventions {
     /** 
       The name of the space type of heap memory.
     */
-    /// - Tag: otelHeapSpaceNameValues
+    /// - Tag: SemanticConventions.V8js.HeapSpaceNameValues
     public struct HeapSpaceNameValues: CustomStringConvertible {
       /**
       New memory space.

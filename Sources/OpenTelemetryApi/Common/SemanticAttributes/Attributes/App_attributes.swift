@@ -8,21 +8,29 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum App: String {
+  public enum App: String {
     /**
      Unique identifier for a particular build or compilation of the application.
-      // Examples
-      attributes[.appBuildId] = "6cff0a7e-cefc-4668-96f5-1273d8b334d0"
-      attributes[.appBuildId] = "9f2b833506aa6973a92fde9733e6271f"
-      attributes[.appBuildId] = "my-app-1.0.0-code-123"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.App.buildId.rawValue] = "6cff0a7e-cefc-4668-96f5-1273d8b334d0"
+      attributes[SemanticConventions.App.buildId.rawValue] = "9f2b833506aa6973a92fde9733e6271f"
+      attributes[SemanticConventions.App.buildId.rawValue] = "my-app-1.0.0-code-123"
+      ```
+
      - Requires: Value type should be `String`
     */
     case buildId = "app.build_id"
 
     /**
      A unique identifier representing the installation of an application on a specific device
-      // Examples
-      attributes[.appInstallationId] = "2ab2916d-a51f-4ac8-80ee-45ac31a28092"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.App.installationId.rawValue] = "2ab2916d-a51f-4ac8-80ee-45ac31a28092"
+      ```
+
      - Note: Its value SHOULD persist across launches of the same application installation, including through application upgrades.
      It SHOULD change if the application is uninstalled or if all applications of the vendor are uninstalled.
      Additionally, users might be able to reset this value (e.g. by clearing application data).
@@ -40,75 +48,107 @@ extension SemanticConventions {
      - [`Settings.getString(Settings.Secure.ANDROID_ID)`](https://developer.android.com/reference/android/provider/Settings.Secure#ANDROID_ID).
 
      More information about Android identifier best practices can be found in the [Android user data IDs guide](https://developer.android.com/training/articles/user-data-ids).
+
      - Requires: Value type should be `String`
     */
     case installationId = "app.installation.id"
 
     /**
      A number of frame renders that experienced jank.
-      // Examples
-      attributes[.appJankFrameCount] = 9
-      attributes[.appJankFrameCount] = 42
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.App.jankFrameCount.rawValue] = 9
+      attributes[SemanticConventions.App.jankFrameCount.rawValue] = 42
+      ```
+
      - Note: Depending on platform limitations, the value provided MAY be approximation.
+
      - Requires: Value type should be `Int`
     */
     case jankFrameCount = "app.jank.frame_count"
 
     /**
      The time period, in seconds, for which this jank is being reported.
-      // Examples
-      attributes[.appJankPeriod] = 1.0
-      attributes[.appJankPeriod] = 5.0
-      attributes[.appJankPeriod] = 10.24
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.App.jankPeriod.rawValue] = 1.0
+      attributes[SemanticConventions.App.jankPeriod.rawValue] = 5.0
+      attributes[SemanticConventions.App.jankPeriod.rawValue] = 10.24
+      ```
+
      - Requires: Value type should be `Double`
     */
     case jankPeriod = "app.jank.period"
 
     /**
      The minimum rendering threshold for this jank, in seconds.
-      // Examples
-      attributes[.appJankThreshold] = 0.016
-      attributes[.appJankThreshold] = 0.7
-      attributes[.appJankThreshold] = 1.024
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.App.jankThreshold.rawValue] = 0.016
+      attributes[SemanticConventions.App.jankThreshold.rawValue] = 0.7
+      attributes[SemanticConventions.App.jankThreshold.rawValue] = 1.024
+      ```
+
      - Requires: Value type should be `Double`
     */
     case jankThreshold = "app.jank.threshold"
 
     /**
      The x (horizontal) coordinate of a screen coordinate, in screen pixels.
-      // Examples
-      attributes[.appScreenCoordinateX] = 0
-      attributes[.appScreenCoordinateX] = 131
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.App.screenCoordinateX.rawValue] = 0
+      attributes[SemanticConventions.App.screenCoordinateX.rawValue] = 131
+      ```
+
      - Requires: Value type should be `Int`
     */
     case screenCoordinateX = "app.screen.coordinate.x"
 
     /**
      The y (vertical) component of a screen coordinate, in screen pixels.
-      // Examples
-      attributes[.appScreenCoordinateY] = 12
-      attributes[.appScreenCoordinateY] = 99
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.App.screenCoordinateY.rawValue] = 12
+      attributes[SemanticConventions.App.screenCoordinateY.rawValue] = 99
+      ```
+
      - Requires: Value type should be `Int`
     */
     case screenCoordinateY = "app.screen.coordinate.y"
 
     /**
      An identifier that uniquely differentiates this widget from other widgets in the same application.
-      // Examples
-      attributes[.appWidgetId] = "f9bc787d-ff05-48ad-90e1-fca1d46130b3"
-      attributes[.appWidgetId] = "submit_order_1829"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.App.widgetId.rawValue] = "f9bc787d-ff05-48ad-90e1-fca1d46130b3"
+      attributes[SemanticConventions.App.widgetId.rawValue] = "submit_order_1829"
+      ```
+
      - Note: A widget is an application component, typically an on-screen visual GUI element.
+
      - Requires: Value type should be `String`
     */
     case widgetId = "app.widget.id"
 
     /**
      The name of an application widget.
-      // Examples
-      attributes[.appWidgetName] = "submit"
-      attributes[.appWidgetName] = "attack"
-      attributes[.appWidgetName] = "Clear Cart"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.App.widgetName.rawValue] = "submit"
+      attributes[SemanticConventions.App.widgetName.rawValue] = "attack"
+      attributes[SemanticConventions.App.widgetName.rawValue] = "Clear Cart"
+      ```
+
      - Note: A widget is an application component, typically an on-screen visual GUI element.
+
      - Requires: Value type should be `String`
     */
     case widgetName = "app.widget.name"

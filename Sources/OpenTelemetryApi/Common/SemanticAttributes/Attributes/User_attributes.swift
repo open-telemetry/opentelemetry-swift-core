@@ -8,52 +8,77 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum User: String {
+  public enum User: String {
     /**
      User email address.
-      // Examples
-      attributes[.userEmail] = "a.einstein@example.com"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.User.email.rawValue] = "a.einstein@example.com"
+      ```
+
      - Requires: Value type should be `String`
     */
     case email = "user.email"
 
     /**
      User's full name
-      // Examples
-      attributes[.userFullName] = "Albert Einstein"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.User.fullName.rawValue] = "Albert Einstein"
+      ```
+
      - Requires: Value type should be `String`
     */
     case fullName = "user.full_name"
 
     /**
      Unique user hash to correlate information for a user in anonymized form.
-      // Examples
-      attributes[.userHash] = "364fc68eaf4c8acec74a4e52d7d1feaa"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.User.hash.rawValue] = "364fc68eaf4c8acec74a4e52d7d1feaa"
+      ```
+
      - Note: Useful if `user.id` or `user.name` contain confidential information and cannot be used.
+
      - Requires: Value type should be `String`
     */
     case hash = "user.hash"
 
     /**
      Unique identifier of the user.
-      // Examples
-      attributes[.userId] = "S-1-5-21-202424912787-2692429404-2351956786-1000"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.User.id.rawValue] = "S-1-5-21-202424912787-2692429404-2351956786-1000"
+      ```
+
      - Requires: Value type should be `String`
     */
     case id = "user.id"
 
     /**
      Short name or login/username of the user.
-      // Examples
-      attributes[.userName] = "a.einstein"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.User.name.rawValue] = "a.einstein"
+      ```
+
      - Requires: Value type should be `String`
     */
     case name = "user.name"
 
     /**
      Array of user roles at the time of the event.
-      // Examples
-      attributes[.userRoles] = ["admin", "reporting_user"]
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.User.roles.rawValue] = ["admin", "reporting_user"]
+      ```
+
      - Requires: Value type should be `[String]`
     */
     case roles = "user.roles"

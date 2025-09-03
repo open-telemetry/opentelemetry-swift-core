@@ -8,11 +8,15 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Mainframe: String {
+  public enum Mainframe: String {
     /**
      Name of the logical partition that hosts a systems with a mainframe operating system.
-      // Examples
-      attributes[.mainframeLparName] = "LPAR01"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Mainframe.lparName.rawValue] = "LPAR01"
+      ```
+
      - Requires: Value type should be `String`
     */
     case lparName = "mainframe.lpar.name"

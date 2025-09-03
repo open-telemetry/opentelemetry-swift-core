@@ -8,93 +8,137 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum System: String {
+  public enum System: String {
     /**
      Deprecated, use `cpu.logical_number` instead.
-      // Examples
-      attributes[.systemCpuLogicalNumber] = 1
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.cpuLogicalNumber.rawValue] = 1
+      ```
+
      - Requires: Value type should be `Int`
     */
     case cpuLogicalNumber = "system.cpu.logical_number"
 
     /**
      The device identifier
-      // Examples
-      attributes[.systemDevice] = "(identifier)"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.device.rawValue] = "(identifier)"
+      ```
+
      - Requires: Value type should be `String`
     */
     case device = "system.device"
 
     /**
      The filesystem mode
-      // Examples
-      attributes[.systemFilesystemMode] = "rw, ro"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.fileMode.rawValue] = "rw, ro"
+      ```
+
      - Requires: Value type should be `String`
     */
     case fileMode = "system.filesystem.mode"
 
     /**
      The filesystem mount path
-      // Examples
-      attributes[.systemFilesystemMountpoint] = "/mnt/data"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.fileMountpoint.rawValue] = "/mnt/data"
+      ```
+
      - Requires: Value type should be `String`
     */
     case fileMountpoint = "system.filesystem.mountpoint"
 
     /**
      The filesystem state
-      // Examples
-      attributes[.systemFilesystemState] = used
-     - Requires: Value should be one of [`/output/Attributes/System_attributes.swift.FileStateValues`](x-source-tag://otelFileStateValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.fileState.rawValue] = .used
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.System.FileStateValues`](x-source-tag://SemanticConventions.system.FileStateValues) (of type `String`)
     */
     case fileState = "system.filesystem.state"
 
     /**
      The filesystem type
-      // Examples
-      attributes[.systemFilesystemType] = ext4
-     - Requires: Value should be one of [`/output/Attributes/System_attributes.swift.FileTypeValues`](x-source-tag://otelFileTypeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.fileType.rawValue] = .ext4
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.System.FileTypeValues`](x-source-tag://SemanticConventions.system.FileTypeValues) (of type `String`)
     */
     case fileType = "system.filesystem.type"
 
     /**
      The memory state
-      // Examples
-      attributes[.systemMemoryState] = free
-      attributes[.systemMemoryState] = cached
-     - Requires: Value should be one of [`/output/Attributes/System_attributes.swift.MemoryStateValues`](x-source-tag://otelMemoryStateValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.memoryState.rawValue] = .free
+      attributes[SemanticConventions.System.memoryState.rawValue] = .cached
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.System.MemoryStateValues`](x-source-tag://SemanticConventions.system.MemoryStateValues) (of type `String`)
     */
     case memoryState = "system.memory.state"
 
     /**
      The paging access direction
-      // Examples
-      attributes[.systemPagingDirection] = in
-     - Requires: Value should be one of [`/output/Attributes/System_attributes.swift.PagingDirectionValues`](x-source-tag://otelPagingDirectionValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.pagingDirection.rawValue] = .in
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.System.PagingDirectionValues`](x-source-tag://SemanticConventions.system.PagingDirectionValues) (of type `String`)
     */
     case pagingDirection = "system.paging.direction"
 
     /**
      The memory paging state
-      // Examples
-      attributes[.systemPagingState] = free
-     - Requires: Value should be one of [`/output/Attributes/System_attributes.swift.PagingStateValues`](x-source-tag://otelPagingStateValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.pagingState.rawValue] = .free
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.System.PagingStateValues`](x-source-tag://SemanticConventions.system.PagingStateValues) (of type `String`)
     */
     case pagingState = "system.paging.state"
 
     /**
      The memory paging type
-      // Examples
-      attributes[.systemPagingType] = minor
-     - Requires: Value should be one of [`/output/Attributes/System_attributes.swift.PagingTypeValues`](x-source-tag://otelPagingTypeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.pagingType.rawValue] = .minor
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.System.PagingTypeValues`](x-source-tag://SemanticConventions.system.PagingTypeValues) (of type `String`)
     */
     case pagingType = "system.paging.type"
 
     /**
      The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
-      // Examples
-      attributes[.systemProcessStatus] = running
-     - Requires: Value should be one of [`/output/Attributes/System_attributes.swift.ProcessStatusValues`](x-source-tag://otelProcessStatusValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.processStatus.rawValue] = .running
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.System.ProcessStatusValues`](x-source-tag://SemanticConventions.system.ProcessStatusValues) (of type `String`)
     */
     case processStatus = "system.process.status"
 
@@ -102,7 +146,7 @@ extension SemanticConventions {
     /** 
       The filesystem state
     */
-    /// - Tag: otelFileStateValues
+    /// - Tag: SemanticConventions.System.FileStateValues
     public struct FileStateValues: CustomStringConvertible {
       public static let used = FileStateValues("used") 
       public static let free = FileStateValues("free") 
@@ -122,7 +166,7 @@ extension SemanticConventions {
     /** 
       The filesystem type
     */
-    /// - Tag: otelFileTypeValues
+    /// - Tag: SemanticConventions.System.FileTypeValues
     public struct FileTypeValues: CustomStringConvertible {
       public static let fat32 = FileTypeValues("fat32") 
       public static let exfat = FileTypeValues("exfat") 
@@ -145,7 +189,7 @@ extension SemanticConventions {
     /** 
       The memory state
     */
-    /// - Tag: otelMemoryStateValues
+    /// - Tag: SemanticConventions.System.MemoryStateValues
     public struct MemoryStateValues: CustomStringConvertible {
       /**
       Actual used virtual memory in bytes.
@@ -169,7 +213,7 @@ extension SemanticConventions {
     /** 
       The paging access direction
     */
-    /// - Tag: otelPagingDirectionValues
+    /// - Tag: SemanticConventions.System.PagingDirectionValues
     public struct PagingDirectionValues: CustomStringConvertible {
       public static let _in = PagingDirectionValues("in") 
       public static let out = PagingDirectionValues("out") 
@@ -188,7 +232,7 @@ extension SemanticConventions {
     /** 
       The memory paging state
     */
-    /// - Tag: otelPagingStateValues
+    /// - Tag: SemanticConventions.System.PagingStateValues
     public struct PagingStateValues: CustomStringConvertible {
       public static let used = PagingStateValues("used") 
       public static let free = PagingStateValues("free") 
@@ -207,7 +251,7 @@ extension SemanticConventions {
     /** 
       The memory paging type
     */
-    /// - Tag: otelPagingTypeValues
+    /// - Tag: SemanticConventions.System.PagingTypeValues
     public struct PagingTypeValues: CustomStringConvertible {
       public static let major = PagingTypeValues("major") 
       public static let minor = PagingTypeValues("minor") 
@@ -226,7 +270,7 @@ extension SemanticConventions {
     /** 
       The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
     */
-    /// - Tag: otelProcessStatusValues
+    /// - Tag: SemanticConventions.System.ProcessStatusValues
     public struct ProcessStatusValues: CustomStringConvertible {
       public static let running = ProcessStatusValues("running") 
       public static let sleeping = ProcessStatusValues("sleeping") 

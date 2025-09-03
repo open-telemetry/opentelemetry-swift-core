@@ -8,28 +8,40 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Db: String {
+  public enum Db: String {
     /**
      The name of the connection pool; unique within the instrumented application. In case the connection pool implementation doesn't provide a name, instrumentation SHOULD use a combination of parameters that would make the name unique, for example, combining attributes `server.address`, `server.port`, and `db.namespace`, formatted as `server.address:server.port/db.namespace`. Instrumentations that generate connection pool name following different patterns SHOULD document it.
-      // Examples
-      attributes[.dbClientConnectionPoolName] = "myDataSource"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.clientConnectionPoolName.rawValue] = "myDataSource"
+      ```
+
      - Requires: Value type should be `String`
     */
     case clientConnectionPoolName = "db.client.connection.pool.name"
 
     /**
      The state of a connection in the pool
-      // Examples
-      attributes[.dbClientConnectionState] = idle
-     - Requires: Value should be one of [`/output/Attributes/Db_attributes.swift.ClientConnectionStateValues`](x-source-tag://otelClientConnectionStateValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.clientConnectionState.rawValue] = .idle
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Db.ClientConnectionStateValues`](x-source-tag://SemanticConventions.db.ClientConnectionStateValues) (of type `String`)
     */
     case clientConnectionState = "db.client.connection.state"
 
     /**
      The name of a collection (table, container) within the database.
-      // Examples
-      attributes[.dbCollectionName] = "public.users"
-      attributes[.dbCollectionName] = "customers"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.collectionName.rawValue] = "public.users"
+      attributes[SemanticConventions.Db.collectionName.rawValue] = "customers"
+      ```
+
      - Note: It is RECOMMENDED to capture the value as provided by the application
      without attempting to do any case normalization.
 
@@ -39,39 +51,54 @@ extension SemanticConventions {
 
      For batch operations, if the individual operations are known to have the same
      collection name then that collection name SHOULD be used.
+
      - Requires: Value type should be `String`
     */
     case collectionName = "db.collection.name"
 
     /**
      The name of the database, fully qualified within the server address and port.
-      // Examples
-      attributes[.dbNamespace] = "customers"
-      attributes[.dbNamespace] = "test.users"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.namespace.rawValue] = "customers"
+      attributes[SemanticConventions.Db.namespace.rawValue] = "test.users"
+      ```
+
      - Note: If a database system has multiple namespace components, they SHOULD be concatenated from the most general to the most specific namespace component, using `|` as a separator between the components. Any missing components (and their associated separators) SHOULD be omitted.
      Semantic conventions for individual database systems SHOULD document what `db.namespace` means in the context of that system.
      It is RECOMMENDED to capture the value as provided by the application without attempting to do any case normalization.
+
      - Requires: Value type should be `String`
     */
     case namespace = "db.namespace"
 
     /**
      The number of queries included in a batch operation.
-      // Examples
-      attributes[.dbOperationBatchSize] = 2
-      attributes[.dbOperationBatchSize] = 3
-      attributes[.dbOperationBatchSize] = 4
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.operationBatchSize.rawValue] = 2
+      attributes[SemanticConventions.Db.operationBatchSize.rawValue] = 3
+      attributes[SemanticConventions.Db.operationBatchSize.rawValue] = 4
+      ```
+
      - Note: Operations are only considered batches when they contain two or more operations, and so `db.operation.batch.size` SHOULD never be `1`.
+
      - Requires: Value type should be `Int`
     */
     case operationBatchSize = "db.operation.batch.size"
 
     /**
      The name of the operation or command being executed.
-      // Examples
-      attributes[.dbOperationName] = "findAndModify"
-      attributes[.dbOperationName] = "HMSET"
-      attributes[.dbOperationName] = "SELECT"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.operationName.rawValue] = "findAndModify"
+      attributes[SemanticConventions.Db.operationName.rawValue] = "HMSET"
+      attributes[SemanticConventions.Db.operationName.rawValue] = "SELECT"
+      ```
+
      - Note: It is RECOMMENDED to capture the value as provided by the application
      without attempting to do any case normalization.
 
@@ -86,29 +113,39 @@ extension SemanticConventions {
      then that operation name SHOULD be used prepended by `BATCH `,
      otherwise `db.operation.name` SHOULD be `BATCH` or some other database
      system specific term if more applicable.
+
      - Requires: Value type should be `String`
     */
     case operationName = "db.operation.name"
 
     /**
      A database operation parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
-      // Examples
-      attributes[.dbOperationParameter] = "someval"
-      attributes[.dbOperationParameter] = "55"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.operationParameter.rawValue] = "someval"
+      attributes[SemanticConventions.Db.operationParameter.rawValue] = "55"
+      ```
+
      - Note: For example, a client-side maximum number of rows to read from the database
      MAY be recorded as the `db.operation.parameter.max_rows` attribute.
 
      `db.query.text` parameters SHOULD be captured using `db.query.parameter.<key>`
      instead of `db.operation.parameter.<key>`.
+
      - Requires: Value type should be `template[string]`
     */
     case operationParameter = "db.operation.parameter"
 
     /**
      A database query parameter, with `<key>` being the parameter name, and the attribute value being a string representation of the parameter value.
-      // Examples
-      attributes[.dbQueryParameter] = "someval"
-      attributes[.dbQueryParameter] = "55"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.queryParameter.rawValue] = "someval"
+      attributes[SemanticConventions.Db.queryParameter.rawValue] = "55"
+      ```
+
      - Note: If a query parameter has no name and instead is referenced only by index,
      then `<key>` SHOULD be the 0-based index.
 
@@ -123,16 +160,21 @@ extension SemanticConventions {
        the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
      - For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
        `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
+
      - Requires: Value type should be `template[string]`
     */
     case queryParameter = "db.query.parameter"
 
     /**
      Low cardinality summary of a database query.
-      // Examples
-      attributes[.dbQuerySummary] = "SELECT wuser_table"
-      attributes[.dbQuerySummary] = "INSERT shipping_details SELECT orders"
-      attributes[.dbQuerySummary] = "get user by id"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.querySummary.rawValue] = "SELECT wuser_table"
+      attributes[SemanticConventions.Db.querySummary.rawValue] = "INSERT shipping_details SELECT orders"
+      attributes[SemanticConventions.Db.querySummary.rawValue] = "get user by id"
+      ```
+
      - Note: The query summary describes a class of database queries and is useful
      as a grouping key, especially when analyzing telemetry for database
      calls involving complex queries.
@@ -142,62 +184,85 @@ extension SemanticConventions {
      that support query parsing SHOULD generate a summary following
      [Generating query summary](/docs/database/database-spans.md#generating-a-summary-of-the-query)
      section.
+
      - Requires: Value type should be `String`
     */
     case querySummary = "db.query.summary"
 
     /**
      The database query being executed.
-      // Examples
-      attributes[.dbQueryText] = "SELECT * FROM wuser_table where username = ?"
-      attributes[.dbQueryText] = "SET mykey ?"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.queryText.rawValue] = "SELECT * FROM wuser_table where username = ?"
+      attributes[SemanticConventions.Db.queryText.rawValue] = "SET mykey ?"
+      ```
+
      - Note: For sanitization see [Sanitization of `db.query.text`](/docs/database/database-spans.md#sanitization-of-dbquerytext).
      For batch operations, if the individual operations are known to have the same query text then that query text SHOULD be used, otherwise all of the individual query texts SHOULD be concatenated with separator `; ` or some other database system specific separator if more applicable.
      Parameterized query text SHOULD NOT be sanitized. Even though parameterized query text can potentially have sensitive data, by using a parameterized query the user is giving a strong signal that any sensitive data will be passed as parameter values, and the benefit to observability of capturing the static part of the query text by default outweighs the risk.
+
      - Requires: Value type should be `String`
     */
     case queryText = "db.query.text"
 
     /**
      Number of rows returned by the operation.
-      // Examples
-      attributes[.dbResponseReturnedRows] = 10
-      attributes[.dbResponseReturnedRows] = 30
-      attributes[.dbResponseReturnedRows] = 1000
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.responseReturnedRows.rawValue] = 10
+      attributes[SemanticConventions.Db.responseReturnedRows.rawValue] = 30
+      attributes[SemanticConventions.Db.responseReturnedRows.rawValue] = 1000
+      ```
+
      - Requires: Value type should be `Int`
     */
     case responseReturnedRows = "db.response.returned_rows"
 
     /**
      Database response status code.
-      // Examples
-      attributes[.dbResponseStatusCode] = "102"
-      attributes[.dbResponseStatusCode] = "ORA-17002"
-      attributes[.dbResponseStatusCode] = "08P01"
-      attributes[.dbResponseStatusCode] = "404"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.responseStatusCode.rawValue] = "102"
+      attributes[SemanticConventions.Db.responseStatusCode.rawValue] = "ORA-17002"
+      attributes[SemanticConventions.Db.responseStatusCode.rawValue] = "08P01"
+      attributes[SemanticConventions.Db.responseStatusCode.rawValue] = "404"
+      ```
+
      - Note: The status code returned by the database. Usually it represents an error code, but may also represent partial success, warning, or differentiate between various types of successful outcomes.
      Semantic conventions for individual database systems SHOULD document what `db.response.status_code` means in the context of that system.
+
      - Requires: Value type should be `String`
     */
     case responseStatusCode = "db.response.status_code"
 
     /**
      The name of a stored procedure within the database.
-      // Examples
-      attributes[.dbStoredProcedureName] = "GetCustomer"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Db.storedProcedureName.rawValue] = "GetCustomer"
+      ```
+
      - Note: It is RECOMMENDED to capture the value as provided by the application
      without attempting to do any case normalization.
 
      For batch operations, if the individual operations are known to have the same
      stored procedure name then that stored procedure name SHOULD be used.
+
      - Requires: Value type should be `String`
     */
     case storedProcedureName = "db.stored_procedure.name"
 
     /**
      The database management system (DBMS) product as identified by the client instrumentation.
+      ```
+
      - Note: The actual DBMS may differ from the one identified by the client. For example, when using PostgreSQL client libraries to connect to a CockroachDB, the `db.system.name` is set to `postgresql` based on the instrumentation's best knowledge.
-     - Requires: Value should be one of [`/output/Attributes/Db_attributes.swift.SystemNameValues`](x-source-tag://otelSystemNameValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Db.SystemNameValues`](x-source-tag://SemanticConventions.db.SystemNameValues) (of type `String`)
     */
     case systemName = "db.system.name"
 
@@ -205,7 +270,7 @@ extension SemanticConventions {
     /** 
       The state of a connection in the pool
     */
-    /// - Tag: otelClientConnectionStateValues
+    /// - Tag: SemanticConventions.Db.ClientConnectionStateValues
     public struct ClientConnectionStateValues: CustomStringConvertible {
       public static let idle = ClientConnectionStateValues("idle") 
       public static let used = ClientConnectionStateValues("used") 
@@ -224,7 +289,7 @@ extension SemanticConventions {
     /** 
       The database management system (DBMS) product as identified by the client instrumentation.
     */
-    /// - Tag: otelSystemNameValues
+    /// - Tag: SemanticConventions.Db.SystemNameValues
     public struct SystemNameValues: CustomStringConvertible {
       /**
       Some other SQL database. Fallback only.

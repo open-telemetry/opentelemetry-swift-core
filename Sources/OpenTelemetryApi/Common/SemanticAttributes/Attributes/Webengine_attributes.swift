@@ -8,27 +8,39 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Webengine: String {
+  public enum Webengine: String {
     /**
      Additional description of the web engine (e.g. detailed version and edition information).
-      // Examples
-      attributes[.webengineDescription] = "WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Webengine.description.rawValue] = "WildFly Full 21.0.0.Final (WildFly Core 13.0.1.Final) - 2.2.2.Final"
+      ```
+
      - Requires: Value type should be `String`
     */
     case description = "webengine.description"
 
     /**
      The name of the web engine.
-      // Examples
-      attributes[.webengineName] = "WildFly"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Webengine.name.rawValue] = "WildFly"
+      ```
+
      - Requires: Value type should be `String`
     */
     case name = "webengine.name"
 
     /**
      The version of the web engine.
-      // Examples
-      attributes[.webengineVersion] = "21.0.0"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Webengine.version.rawValue] = "21.0.0"
+      ```
+
      - Requires: Value type should be `String`
     */
     case version = "webengine.version"

@@ -8,58 +8,84 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Geo: String {
+  public enum Geo: String {
     /**
      Two-letter code representing continent’s name.
-     - Requires: Value should be one of [`/output/Attributes/Geo_attributes.swift.ContinentCodeValues`](x-source-tag://otelContinentCodeValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Geo.ContinentCodeValues`](x-source-tag://SemanticConventions.geo.ContinentCodeValues) (of type `String`)
     */
     case continentCode = "geo.continent.code"
 
     /**
      Two-letter ISO Country Code ([ISO 3166-1 alpha2](https://wikipedia.org/wiki/ISO_3166-1#Codes)).
-      // Examples
-      attributes[.geoCountryIsoCode] = "CA"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Geo.countryIsoCode.rawValue] = "CA"
+      ```
+
      - Requires: Value type should be `String`
     */
     case countryIsoCode = "geo.country.iso_code"
 
     /**
      Locality name. Represents the name of a city, town, village, or similar populated place.
-      // Examples
-      attributes[.geoLocalityName] = "Montreal"
-      attributes[.geoLocalityName] = "Berlin"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Geo.localityName.rawValue] = "Montreal"
+      attributes[SemanticConventions.Geo.localityName.rawValue] = "Berlin"
+      ```
+
      - Requires: Value type should be `String`
     */
     case localityName = "geo.locality.name"
 
     /**
      Latitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
-      // Examples
-      attributes[.geoLocationLat] = 45.505918
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Geo.locationLat.rawValue] = 45.505918
+      ```
+
      - Requires: Value type should be `Double`
     */
     case locationLat = "geo.location.lat"
 
     /**
      Longitude of the geo location in [WGS84](https://wikipedia.org/wiki/World_Geodetic_System#WGS84).
-      // Examples
-      attributes[.geoLocationLon] = -73.61483
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Geo.locationLon.rawValue] = -73.61483
+      ```
+
      - Requires: Value type should be `Double`
     */
     case locationLon = "geo.location.lon"
 
     /**
      Postal code associated with the location. Values appropriate for this field may also be known as a postcode or ZIP code and will vary widely from country to country.
-      // Examples
-      attributes[.geoPostalCode] = "94040"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Geo.postalCode.rawValue] = "94040"
+      ```
+
      - Requires: Value type should be `String`
     */
     case postalCode = "geo.postal_code"
 
     /**
      Region ISO code ([ISO 3166-2](https://wikipedia.org/wiki/ISO_3166-2)).
-      // Examples
-      attributes[.geoRegionIsoCode] = "CA-QC"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Geo.regionIsoCode.rawValue] = "CA-QC"
+      ```
+
      - Requires: Value type should be `String`
     */
     case regionIsoCode = "geo.region.iso_code"
@@ -68,7 +94,7 @@ extension SemanticConventions {
     /** 
       Two-letter code representing continent’s name.
     */
-    /// - Tag: otelContinentCodeValues
+    /// - Tag: SemanticConventions.Geo.ContinentCodeValues
     public struct ContinentCodeValues: CustomStringConvertible {
       /**
       Africa

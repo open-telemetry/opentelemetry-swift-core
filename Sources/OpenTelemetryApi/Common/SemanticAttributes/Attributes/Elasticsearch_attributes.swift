@@ -8,11 +8,15 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Elasticsearch: String {
+  public enum Elasticsearch: String {
     /**
      Represents the human-readable identifier of the node/instance to which a request was routed.
-      // Examples
-      attributes[.elasticsearchNodeName] = "instance-0000000001"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Elasticsearch.nodeName.rawValue] = "instance-0000000001"
+      ```
+
      - Requires: Value type should be `String`
     */
     case nodeName = "elasticsearch.node.name"

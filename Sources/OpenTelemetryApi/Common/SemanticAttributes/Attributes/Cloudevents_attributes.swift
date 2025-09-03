@@ -8,49 +8,69 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Cloudevents: String {
+  public enum Cloudevents: String {
     /**
      The [event_id](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id) uniquely identifies the event.
-      // Examples
-      attributes[.cloudeventsEventId] = "123e4567-e89b-12d3-a456-426614174000"
-      attributes[.cloudeventsEventId] = "0001"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cloudevents.eventId.rawValue] = "123e4567-e89b-12d3-a456-426614174000"
+      attributes[SemanticConventions.Cloudevents.eventId.rawValue] = "0001"
+      ```
+
      - Requires: Value type should be `String`
     */
     case eventId = "cloudevents.event_id"
 
     /**
      The [source](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1) identifies the context in which an event happened.
-      // Examples
-      attributes[.cloudeventsEventSource] = "https://github.com/cloudevents"
-      attributes[.cloudeventsEventSource] = "/cloudevents/spec/pull/123"
-      attributes[.cloudeventsEventSource] = "my-service"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cloudevents.eventSource.rawValue] = "https://github.com/cloudevents"
+      attributes[SemanticConventions.Cloudevents.eventSource.rawValue] = "/cloudevents/spec/pull/123"
+      attributes[SemanticConventions.Cloudevents.eventSource.rawValue] = "my-service"
+      ```
+
      - Requires: Value type should be `String`
     */
     case eventSource = "cloudevents.event_source"
 
     /**
      The [version of the CloudEvents specification](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) which the event uses.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.cloudeventsEventSpecVersion] = "1.0"
+   attributes[SemanticConventions.Cloudevents.eventSpecVersion.rawValue] = "1.0"
+      ```
+
      - Requires: Value type should be `String`
     */
     case eventSpecVersion = "cloudevents.event_spec_version"
 
     /**
      The [subject](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#subject) of the event in the context of the event producer (identified by source).
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.cloudeventsEventSubject] = "mynewfile.jpg"
+   attributes[SemanticConventions.Cloudevents.eventSubject.rawValue] = "mynewfile.jpg"
+      ```
+
      - Requires: Value type should be `String`
     */
     case eventSubject = "cloudevents.event_subject"
 
     /**
      The [event_type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) contains a value describing the type of event related to the originating occurrence.
-      // Examples
-      attributes[.cloudeventsEventType] = "com.github.pull_request.opened"
-      attributes[.cloudeventsEventType] = "com.example.object.deleted.v2"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cloudevents.eventType.rawValue] = "com.github.pull_request.opened"
+      attributes[SemanticConventions.Cloudevents.eventType.rawValue] = "com.example.object.deleted.v2"
+      ```
+
      - Requires: Value type should be `String`
     */
     case eventType = "cloudevents.event_type"

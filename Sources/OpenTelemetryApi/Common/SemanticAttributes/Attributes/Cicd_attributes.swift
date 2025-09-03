@@ -8,157 +8,221 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Cicd: String {
+  public enum Cicd: String {
     /**
      The kind of action a pipeline run is performing.
-      // Examples
-      attributes[.cicdPipelineActionName] = BUILD
-      attributes[.cicdPipelineActionName] = RUN
-      attributes[.cicdPipelineActionName] = SYNC
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.PipelineActionNameValues`](x-source-tag://otelPipelineActionNameValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.pipelineActionName.rawValue] = .BUILD
+      attributes[SemanticConventions.Cicd.pipelineActionName.rawValue] = .RUN
+      attributes[SemanticConventions.Cicd.pipelineActionName.rawValue] = .SYNC
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Cicd.PipelineActionNameValues`](x-source-tag://SemanticConventions.cicd.PipelineActionNameValues) (of type `String`)
     */
     case pipelineActionName = "cicd.pipeline.action.name"
 
     /**
      The human readable name of the pipeline within a CI/CD system.
-      // Examples
-      attributes[.cicdPipelineName] = "Build and Test"
-      attributes[.cicdPipelineName] = "Lint"
-      attributes[.cicdPipelineName] = "Deploy Go Project"
-      attributes[.cicdPipelineName] = "deploy_to_environment"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.pipelineName.rawValue] = "Build and Test"
+      attributes[SemanticConventions.Cicd.pipelineName.rawValue] = "Lint"
+      attributes[SemanticConventions.Cicd.pipelineName.rawValue] = "Deploy Go Project"
+      attributes[SemanticConventions.Cicd.pipelineName.rawValue] = "deploy_to_environment"
+      ```
+
      - Requires: Value type should be `String`
     */
     case pipelineName = "cicd.pipeline.name"
 
     /**
      The result of a pipeline run.
-      // Examples
-      attributes[.cicdPipelineResult] = success
-      attributes[.cicdPipelineResult] = failure
-      attributes[.cicdPipelineResult] = timeout
-      attributes[.cicdPipelineResult] = skipped
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.PipelineResultValues`](x-source-tag://otelPipelineResultValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.pipelineResult.rawValue] = .success
+      attributes[SemanticConventions.Cicd.pipelineResult.rawValue] = .failure
+      attributes[SemanticConventions.Cicd.pipelineResult.rawValue] = .timeout
+      attributes[SemanticConventions.Cicd.pipelineResult.rawValue] = .skipped
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Cicd.PipelineResultValues`](x-source-tag://SemanticConventions.cicd.PipelineResultValues) (of type `String`)
     */
     case pipelineResult = "cicd.pipeline.result"
 
     /**
      The unique identifier of a pipeline run within a CI/CD system.
-      // Examples
-      attributes[.cicdPipelineRunId] = "120912"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.pipelineRunId.rawValue] = "120912"
+      ```
+
      - Requires: Value type should be `String`
     */
     case pipelineRunId = "cicd.pipeline.run.id"
 
     /**
      The pipeline run goes through these states during its lifecycle.
-      // Examples
-      attributes[.cicdPipelineRunState] = pending
-      attributes[.cicdPipelineRunState] = executing
-      attributes[.cicdPipelineRunState] = finalizing
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.PipelineRunStateValues`](x-source-tag://otelPipelineRunStateValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.pipelineRunState.rawValue] = .pending
+      attributes[SemanticConventions.Cicd.pipelineRunState.rawValue] = .executing
+      attributes[SemanticConventions.Cicd.pipelineRunState.rawValue] = .finalizing
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Cicd.PipelineRunStateValues`](x-source-tag://SemanticConventions.cicd.PipelineRunStateValues) (of type `String`)
     */
     case pipelineRunState = "cicd.pipeline.run.state"
 
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the pipeline run, providing the complete address in order to locate and identify the pipeline run.
-      // Examples
-      attributes[.cicdPipelineRunUrlFull] = "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.pipelineRunUrlFull.rawValue] = "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763?pr=1075"
+      ```
+
      - Requires: Value type should be `String`
     */
     case pipelineRunUrlFull = "cicd.pipeline.run.url.full"
 
     /**
      The human readable name of a task within a pipeline. Task here most closely aligns with a [computing process](https://wikipedia.org/wiki/Pipeline_(computing)) in a pipeline. Other terms for tasks include commands, steps, and procedures.
-      // Examples
-      attributes[.cicdPipelineTaskName] = "Run GoLang Linter"
-      attributes[.cicdPipelineTaskName] = "Go Build"
-      attributes[.cicdPipelineTaskName] = "go-test"
-      attributes[.cicdPipelineTaskName] = "deploy_binary"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.pipelineTaskName.rawValue] = "Run GoLang Linter"
+      attributes[SemanticConventions.Cicd.pipelineTaskName.rawValue] = "Go Build"
+      attributes[SemanticConventions.Cicd.pipelineTaskName.rawValue] = "go-test"
+      attributes[SemanticConventions.Cicd.pipelineTaskName.rawValue] = "deploy_binary"
+      ```
+
      - Requires: Value type should be `String`
     */
     case pipelineTaskName = "cicd.pipeline.task.name"
 
     /**
      The unique identifier of a task run within a pipeline.
-      // Examples
-      attributes[.cicdPipelineTaskRunId] = "12097"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.pipelineTaskRunId.rawValue] = "12097"
+      ```
+
      - Requires: Value type should be `String`
     */
     case pipelineTaskRunId = "cicd.pipeline.task.run.id"
 
     /**
      The result of a task run.
-      // Examples
-      attributes[.cicdPipelineTaskRunResult] = success
-      attributes[.cicdPipelineTaskRunResult] = failure
-      attributes[.cicdPipelineTaskRunResult] = timeout
-      attributes[.cicdPipelineTaskRunResult] = skipped
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.PipelineTaskRunResultValues`](x-source-tag://otelPipelineTaskRunResultValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.pipelineTaskRunResult.rawValue] = .success
+      attributes[SemanticConventions.Cicd.pipelineTaskRunResult.rawValue] = .failure
+      attributes[SemanticConventions.Cicd.pipelineTaskRunResult.rawValue] = .timeout
+      attributes[SemanticConventions.Cicd.pipelineTaskRunResult.rawValue] = .skipped
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Cicd.PipelineTaskRunResultValues`](x-source-tag://SemanticConventions.cicd.PipelineTaskRunResultValues) (of type `String`)
     */
     case pipelineTaskRunResult = "cicd.pipeline.task.run.result"
 
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the pipeline task run, providing the complete address in order to locate and identify the pipeline task run.
-      // Examples
-      attributes[.cicdPipelineTaskRunUrlFull] = "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.pipelineTaskRunUrlFull.rawValue] = "https://github.com/open-telemetry/semantic-conventions/actions/runs/9753949763/job/26920038674?pr=1075"
+      ```
+
      - Requires: Value type should be `String`
     */
     case pipelineTaskRunUrlFull = "cicd.pipeline.task.run.url.full"
 
     /**
      The type of the task within a pipeline.
-      // Examples
-      attributes[.cicdPipelineTaskType] = build
-      attributes[.cicdPipelineTaskType] = test
-      attributes[.cicdPipelineTaskType] = deploy
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.PipelineTaskTypeValues`](x-source-tag://otelPipelineTaskTypeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.pipelineTaskType.rawValue] = .build
+      attributes[SemanticConventions.Cicd.pipelineTaskType.rawValue] = .test
+      attributes[SemanticConventions.Cicd.pipelineTaskType.rawValue] = .deploy
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Cicd.PipelineTaskTypeValues`](x-source-tag://SemanticConventions.cicd.PipelineTaskTypeValues) (of type `String`)
     */
     case pipelineTaskType = "cicd.pipeline.task.type"
 
     /**
      The name of a component of the CICD system.
-      // Examples
-      attributes[.cicdSystemComponent] = "controller"
-      attributes[.cicdSystemComponent] = "scheduler"
-      attributes[.cicdSystemComponent] = "agent"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.systemComponent.rawValue] = "controller"
+      attributes[SemanticConventions.Cicd.systemComponent.rawValue] = "scheduler"
+      attributes[SemanticConventions.Cicd.systemComponent.rawValue] = "agent"
+      ```
+
      - Requires: Value type should be `String`
     */
     case systemComponent = "cicd.system.component"
 
     /**
      The unique identifier of a worker within a CICD system.
-      // Examples
-      attributes[.cicdWorkerId] = "abc123"
-      attributes[.cicdWorkerId] = "10.0.1.2"
-      attributes[.cicdWorkerId] = "controller"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.workerId.rawValue] = "abc123"
+      attributes[SemanticConventions.Cicd.workerId.rawValue] = "10.0.1.2"
+      attributes[SemanticConventions.Cicd.workerId.rawValue] = "controller"
+      ```
+
      - Requires: Value type should be `String`
     */
     case workerId = "cicd.worker.id"
 
     /**
      The name of a worker within a CICD system.
-      // Examples
-      attributes[.cicdWorkerName] = "agent-abc"
-      attributes[.cicdWorkerName] = "controller"
-      attributes[.cicdWorkerName] = "Ubuntu LTS"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.workerName.rawValue] = "agent-abc"
+      attributes[SemanticConventions.Cicd.workerName.rawValue] = "controller"
+      attributes[SemanticConventions.Cicd.workerName.rawValue] = "Ubuntu LTS"
+      ```
+
      - Requires: Value type should be `String`
     */
     case workerName = "cicd.worker.name"
 
     /**
      The state of a CICD worker / agent.
-      // Examples
-      attributes[.cicdWorkerState] = idle
-      attributes[.cicdWorkerState] = busy
-      attributes[.cicdWorkerState] = down
-     - Requires: Value should be one of [`/output/Attributes/Cicd_attributes.swift.WorkerStateValues`](x-source-tag://otelWorkerStateValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.workerState.rawValue] = .idle
+      attributes[SemanticConventions.Cicd.workerState.rawValue] = .busy
+      attributes[SemanticConventions.Cicd.workerState.rawValue] = .down
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Cicd.WorkerStateValues`](x-source-tag://SemanticConventions.cicd.WorkerStateValues) (of type `String`)
     */
     case workerState = "cicd.worker.state"
 
     /**
      The [URL](https://wikipedia.org/wiki/URL) of the worker, providing the complete address in order to locate and identify the worker.
-      // Examples
-      attributes[.cicdWorkerUrlFull] = "https://cicd.example.org/worker/abc123"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cicd.workerUrlFull.rawValue] = "https://cicd.example.org/worker/abc123"
+      ```
+
      - Requires: Value type should be `String`
     */
     case workerUrlFull = "cicd.worker.url.full"
@@ -167,7 +231,7 @@ extension SemanticConventions {
     /** 
       The kind of action a pipeline run is performing.
     */
-    /// - Tag: otelPipelineActionNameValues
+    /// - Tag: SemanticConventions.Cicd.PipelineActionNameValues
     public struct PipelineActionNameValues: CustomStringConvertible {
       /**
       The pipeline run is executing a build.
@@ -196,7 +260,7 @@ extension SemanticConventions {
     /** 
       The result of a pipeline run.
     */
-    /// - Tag: otelPipelineResultValues
+    /// - Tag: SemanticConventions.Cicd.PipelineResultValues
     public struct PipelineResultValues: CustomStringConvertible {
       /**
       The pipeline run finished successfully.
@@ -237,7 +301,7 @@ extension SemanticConventions {
     /** 
       The pipeline run goes through these states during its lifecycle.
     */
-    /// - Tag: otelPipelineRunStateValues
+    /// - Tag: SemanticConventions.Cicd.PipelineRunStateValues
     public struct PipelineRunStateValues: CustomStringConvertible {
       /**
       The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
@@ -266,7 +330,7 @@ extension SemanticConventions {
     /** 
       The result of a task run.
     */
-    /// - Tag: otelPipelineTaskRunResultValues
+    /// - Tag: SemanticConventions.Cicd.PipelineTaskRunResultValues
     public struct PipelineTaskRunResultValues: CustomStringConvertible {
       /**
       The task run finished successfully.
@@ -307,7 +371,7 @@ extension SemanticConventions {
     /** 
       The type of the task within a pipeline.
     */
-    /// - Tag: otelPipelineTaskTypeValues
+    /// - Tag: SemanticConventions.Cicd.PipelineTaskTypeValues
     public struct PipelineTaskTypeValues: CustomStringConvertible {
       /**
       build
@@ -336,7 +400,7 @@ extension SemanticConventions {
     /** 
       The state of a CICD worker / agent.
     */
-    /// - Tag: otelWorkerStateValues
+    /// - Tag: SemanticConventions.Cicd.WorkerStateValues
     public struct WorkerStateValues: CustomStringConvertible {
       /**
       The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle).

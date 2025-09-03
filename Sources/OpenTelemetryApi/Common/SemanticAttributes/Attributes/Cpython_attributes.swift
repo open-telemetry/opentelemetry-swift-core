@@ -8,14 +8,18 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Cpython: String {
+  public enum Cpython: String {
     /**
      Value of the garbage collector collection generation.
-      // Examples
-      attributes[.cpythonGcGeneration] = 0
-      attributes[.cpythonGcGeneration] = 1
-      attributes[.cpythonGcGeneration] = 2
-     - Requires: Value should be one of [`/output/Attributes/Cpython_attributes.swift.GcGenerationValues`](x-source-tag://otelGcGenerationValues) (of type `Int`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cpython.gcGeneration.rawValue] = .0
+      attributes[SemanticConventions.Cpython.gcGeneration.rawValue] = .1
+      attributes[SemanticConventions.Cpython.gcGeneration.rawValue] = .2
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Cpython.GcGenerationValues`](x-source-tag://SemanticConventions.cpython.GcGenerationValues) (of type `Int`)
     */
     case gcGeneration = "cpython.gc.generation"
 
@@ -23,7 +27,7 @@ extension SemanticConventions {
     /** 
       Value of the garbage collector collection generation.
     */
-    /// - Tag: otelGcGenerationValues
+    /// - Tag: SemanticConventions.Cpython.GcGenerationValues
     public struct GcGenerationValues: CustomStringConvertible {
       /**
       Generation 0

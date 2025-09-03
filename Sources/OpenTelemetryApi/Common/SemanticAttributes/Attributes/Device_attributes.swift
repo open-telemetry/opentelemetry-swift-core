@@ -8,12 +8,16 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Device: String {
+  public enum Device: String {
     /**
      A unique identifier representing the device
-      // Examples
-      attributes[.deviceId] = "123456789012345"
-      attributes[.deviceId] = "01:23:45:67:89:AB"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Device.id.rawValue] = "123456789012345"
+      attributes[SemanticConventions.Device.id.rawValue] = "01:23:45:67:89:AB"
+      ```
+
      - Note: Its value SHOULD be identical for all apps on a device and it SHOULD NOT change if an app is uninstalled and re-installed.
      However, it might be resettable by the user for all apps on a device.
      Hardware IDs (e.g. vendor-specific serial number, IMEI or MAC address) MAY be used as values.
@@ -24,36 +28,52 @@ extension SemanticConventions {
      > ensure you do your own due diligence.> Due to these reasons, this identifier is not recommended for consumer applications and will likely result in rejection from both Google Play and App Store.
      > However, it may be appropriate for specific enterprise scenarios, such as kiosk devices or enterprise-managed devices, with appropriate compliance clearance.
      > Any instrumentation providing this identifier MUST implement it as an opt-in feature.> See [`app.installation.id`](/docs/registry/attributes/app.md#app-installation-id)>  for a more privacy-preserving alternative.
+
      - Requires: Value type should be `String`
     */
     case id = "device.id"
 
     /**
      The name of the device manufacturer
-      // Examples
-      attributes[.deviceManufacturer] = "Apple"
-      attributes[.deviceManufacturer] = "Samsung"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Device.manufacturer.rawValue] = "Apple"
+      attributes[SemanticConventions.Device.manufacturer.rawValue] = "Samsung"
+      ```
+
      - Note: The Android OS provides this field via [Build](https://developer.android.com/reference/android/os/Build#MANUFACTURER). iOS apps SHOULD hardcode the value `Apple`.
+
      - Requires: Value type should be `String`
     */
     case manufacturer = "device.manufacturer"
 
     /**
      The model identifier for the device
-      // Examples
-      attributes[.deviceModelIdentifier] = "iPhone3,4"
-      attributes[.deviceModelIdentifier] = "SM-G920F"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Device.modelIdentifier.rawValue] = "iPhone3,4"
+      attributes[SemanticConventions.Device.modelIdentifier.rawValue] = "SM-G920F"
+      ```
+
      - Note: It's recommended this value represents a machine-readable version of the model identifier rather than the market or consumer-friendly name of the device.
+
      - Requires: Value type should be `String`
     */
     case modelIdentifier = "device.model.identifier"
 
     /**
      The marketing name for the device model
-      // Examples
-      attributes[.deviceModelName] = "iPhone 6s Plus"
-      attributes[.deviceModelName] = "Samsung Galaxy S6"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Device.modelName.rawValue] = "iPhone 6s Plus"
+      attributes[SemanticConventions.Device.modelName.rawValue] = "Samsung Galaxy S6"
+      ```
+
      - Note: It's recommended this value represents a human-readable version of the device model rather than a machine-readable alternative.
+
      - Requires: Value type should be `String`
     */
     case modelName = "device.model.name"

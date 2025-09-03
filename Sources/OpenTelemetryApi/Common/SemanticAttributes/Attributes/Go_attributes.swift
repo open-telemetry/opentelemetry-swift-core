@@ -8,13 +8,17 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Go: String {
+  public enum Go: String {
     /**
      The type of memory.
-      // Examples
-      attributes[.goMemoryType] = other
-      attributes[.goMemoryType] = stack
-     - Requires: Value should be one of [`/output/Attributes/Go_attributes.swift.MemoryTypeValues`](x-source-tag://otelMemoryTypeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Go.memoryType.rawValue] = .other
+      attributes[SemanticConventions.Go.memoryType.rawValue] = .stack
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Go.MemoryTypeValues`](x-source-tag://SemanticConventions.go.MemoryTypeValues) (of type `String`)
     */
     case memoryType = "go.memory.type"
 
@@ -22,7 +26,7 @@ extension SemanticConventions {
     /** 
       The type of memory.
     */
-    /// - Tag: otelMemoryTypeValues
+    /// - Tag: SemanticConventions.Go.MemoryTypeValues
     public struct MemoryTypeValues: CustomStringConvertible {
       /**
       Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.

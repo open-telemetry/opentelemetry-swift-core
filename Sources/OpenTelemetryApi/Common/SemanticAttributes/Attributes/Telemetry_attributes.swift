@@ -8,49 +8,69 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Telemetry: String {
+  public enum Telemetry: String {
     /**
      The name of the auto instrumentation agent or distribution, if used.
-      // Examples
-      attributes[.telemetryDistroName] = "parts-unlimited-java"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Telemetry.distroName.rawValue] = "parts-unlimited-java"
+      ```
+
      - Note: Official auto instrumentation agents and distributions SHOULD set the `telemetry.distro.name` attribute to
      a string starting with `opentelemetry-`, e.g. `opentelemetry-java-instrumentation`.
+
      - Requires: Value type should be `String`
     */
     case distroName = "telemetry.distro.name"
 
     /**
      The version string of the auto instrumentation agent or distribution, if used.
-      // Examples
-      attributes[.telemetryDistroVersion] = "1.2.3"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Telemetry.distroVersion.rawValue] = "1.2.3"
+      ```
+
      - Requires: Value type should be `String`
     */
     case distroVersion = "telemetry.distro.version"
 
     /**
      The language of the telemetry SDK.
-     - Requires: Value should be one of [`/output/Attributes/Telemetry_attributes.swift.SdkLanguageValues`](x-source-tag://otelSdkLanguageValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Telemetry.SdkLanguageValues`](x-source-tag://SemanticConventions.telemetry.SdkLanguageValues) (of type `String`)
     */
     case sdkLanguage = "telemetry.sdk.language"
 
     /**
      The name of the telemetry SDK as defined above.
-      // Examples
-      attributes[.telemetrySdkName] = "opentelemetry"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Telemetry.sdkName.rawValue] = "opentelemetry"
+      ```
+
      - Note: The OpenTelemetry SDK MUST set the `telemetry.sdk.name` attribute to `opentelemetry`.
      If another SDK, like a fork or a vendor-provided implementation, is used, this SDK MUST set the
      `telemetry.sdk.name` attribute to the fully-qualified class or module name of this SDK's main entry point
      or another suitable identifier depending on the language.
      The identifier `opentelemetry` is reserved and MUST NOT be used in this case.
      All custom identifiers SHOULD be stable across different versions of an implementation.
+
      - Requires: Value type should be `String`
     */
     case sdkName = "telemetry.sdk.name"
 
     /**
      The version string of the telemetry SDK.
-      // Examples
-      attributes[.telemetrySdkVersion] = "1.2.3"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Telemetry.sdkVersion.rawValue] = "1.2.3"
+      ```
+
      - Requires: Value type should be `String`
     */
     case sdkVersion = "telemetry.sdk.version"
@@ -59,7 +79,7 @@ extension SemanticConventions {
     /** 
       The language of the telemetry SDK.
     */
-    /// - Tag: otelSdkLanguageValues
+    /// - Tag: SemanticConventions.Telemetry.SdkLanguageValues
     public struct SdkLanguageValues: CustomStringConvertible {
       public static let cpp = SdkLanguageValues("cpp") 
       public static let dotnet = SdkLanguageValues("dotnet") 

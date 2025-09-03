@@ -8,29 +8,41 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Openai: String {
+  public enum Openai: String {
     /**
      The service tier requested. May be a specific tier, default, or auto.
-      // Examples
-      attributes[.openaiRequestServiceTier] = auto
-      attributes[.openaiRequestServiceTier] = default
-     - Requires: Value should be one of [`/output/Attributes/Openai_attributes.swift.RequestServiceTierValues`](x-source-tag://otelRequestServiceTierValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Openai.requestServiceTier.rawValue] = .auto
+      attributes[SemanticConventions.Openai.requestServiceTier.rawValue] = .default
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Openai.RequestServiceTierValues`](x-source-tag://SemanticConventions.openai.RequestServiceTierValues) (of type `String`)
     */
     case requestServiceTier = "openai.request.service_tier"
 
     /**
      The service tier used for the response.
-      // Examples
-      attributes[.openaiResponseServiceTier] = "scale"
-      attributes[.openaiResponseServiceTier] = "default"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Openai.responseServiceTier.rawValue] = "scale"
+      attributes[SemanticConventions.Openai.responseServiceTier.rawValue] = "default"
+      ```
+
      - Requires: Value type should be `String`
     */
     case responseServiceTier = "openai.response.service_tier"
 
     /**
      A fingerprint to track any eventual change in the Generative AI environment.
-      // Examples
-      attributes[.openaiResponseSystemFingerprint] = "fp_44709d6fcb"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Openai.responseSystemFingerprint.rawValue] = "fp_44709d6fcb"
+      ```
+
      - Requires: Value type should be `String`
     */
     case responseSystemFingerprint = "openai.response.system_fingerprint"
@@ -39,7 +51,7 @@ extension SemanticConventions {
     /** 
       The service tier requested. May be a specific tier, default, or auto.
     */
-    /// - Tag: otelRequestServiceTierValues
+    /// - Tag: SemanticConventions.Openai.RequestServiceTierValues
     public struct RequestServiceTierValues: CustomStringConvertible {
       /**
       The system will utilize scale tier credits until they are exhausted.

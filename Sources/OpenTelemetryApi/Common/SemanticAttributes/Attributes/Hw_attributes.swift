@@ -8,231 +8,324 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Hw: String {
+  public enum Hw: String {
     /**
      Design capacity in Watts-hours or Amper-hours
-      // Examples
-      attributes[.hwBatteryCapacity] = "9.3Ah"
-      attributes[.hwBatteryCapacity] = "50Wh"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.batteryCapacity.rawValue] = "9.3Ah"
+      attributes[SemanticConventions.Hw.batteryCapacity.rawValue] = "50Wh"
+      ```
+
      - Requires: Value type should be `String`
     */
     case batteryCapacity = "hw.battery.capacity"
 
     /**
      Battery [chemistry](https://schemas.dmtf.org/wbem/cim-html/2.31.0/CIM_Battery.html), e.g. Lithium-Ion, Nickel-Cadmium, etc.
-      // Examples
-      attributes[.hwBatteryChemistry] = "Li-ion"
-      attributes[.hwBatteryChemistry] = "NiMH"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.batteryChemistry.rawValue] = "Li-ion"
+      attributes[SemanticConventions.Hw.batteryChemistry.rawValue] = "NiMH"
+      ```
+
      - Requires: Value type should be `String`
     */
     case batteryChemistry = "hw.battery.chemistry"
 
     /**
      The current state of the battery
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.BatteryStateValues`](x-source-tag://otelBatteryStateValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Hw.BatteryStateValues`](x-source-tag://SemanticConventions.hw.BatteryStateValues) (of type `String`)
     */
     case batteryState = "hw.battery.state"
 
     /**
      BIOS version of the hardware component
-      // Examples
-      attributes[.hwBiosVersion] = "1.2.3"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.biosVersion.rawValue] = "1.2.3"
+      ```
+
      - Requires: Value type should be `String`
     */
     case biosVersion = "hw.bios_version"
 
     /**
      Driver version for the hardware component
-      // Examples
-      attributes[.hwDriverVersion] = "10.2.1-3"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.driverVersion.rawValue] = "10.2.1-3"
+      ```
+
      - Requires: Value type should be `String`
     */
     case driverVersion = "hw.driver_version"
 
     /**
      Type of the enclosure (useful for modular systems)
-      // Examples
-      attributes[.hwEnclosureType] = "Computer"
-      attributes[.hwEnclosureType] = "Storage"
-      attributes[.hwEnclosureType] = "Switch"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.enclosureType.rawValue] = "Computer"
+      attributes[SemanticConventions.Hw.enclosureType.rawValue] = "Storage"
+      attributes[SemanticConventions.Hw.enclosureType.rawValue] = "Switch"
+      ```
+
      - Requires: Value type should be `String`
     */
     case enclosureType = "hw.enclosure.type"
 
     /**
      Firmware version of the hardware component
-      // Examples
-      attributes[.hwFirmwareVersion] = "2.0.1"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.firmwareVersion.rawValue] = "2.0.1"
+      ```
+
      - Requires: Value type should be `String`
     */
     case firmwareVersion = "hw.firmware_version"
 
     /**
      Type of task the GPU is performing
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.GpuTaskValues`](x-source-tag://otelGpuTaskValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Hw.GpuTaskValues`](x-source-tag://SemanticConventions.hw.GpuTaskValues) (of type `String`)
     */
     case gpuTask = "hw.gpu.task"
 
     /**
      An identifier for the hardware component, unique within the monitored host
-      // Examples
-      attributes[.hwId] = "win32battery_battery_testsysa33_1"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.id.rawValue] = "win32battery_battery_testsysa33_1"
+      ```
+
      - Requires: Value type should be `String`
     */
     case id = "hw.id"
 
     /**
      Type of limit for hardware components
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.LimitTypeValues`](x-source-tag://otelLimitTypeValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Hw.LimitTypeValues`](x-source-tag://SemanticConventions.hw.LimitTypeValues) (of type `String`)
     */
     case limitType = "hw.limit_type"
 
     /**
      RAID Level of the logical disk
-      // Examples
-      attributes[.hwLogicalDiskRaidLevel] = "RAID0+1"
-      attributes[.hwLogicalDiskRaidLevel] = "RAID5"
-      attributes[.hwLogicalDiskRaidLevel] = "RAID10"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.logicalDiskRaidLevel.rawValue] = "RAID0+1"
+      attributes[SemanticConventions.Hw.logicalDiskRaidLevel.rawValue] = "RAID5"
+      attributes[SemanticConventions.Hw.logicalDiskRaidLevel.rawValue] = "RAID10"
+      ```
+
      - Requires: Value type should be `String`
     */
     case logicalDiskRaidLevel = "hw.logical_disk.raid_level"
 
     /**
      State of the logical disk space usage
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.LogicalDiskStateValues`](x-source-tag://otelLogicalDiskStateValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Hw.LogicalDiskStateValues`](x-source-tag://SemanticConventions.hw.LogicalDiskStateValues) (of type `String`)
     */
     case logicalDiskState = "hw.logical_disk.state"
 
     /**
      Type of the memory module
-      // Examples
-      attributes[.hwMemoryType] = "DDR4"
-      attributes[.hwMemoryType] = "DDR5"
-      attributes[.hwMemoryType] = "LPDDR5"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.memoryType.rawValue] = "DDR4"
+      attributes[SemanticConventions.Hw.memoryType.rawValue] = "DDR5"
+      attributes[SemanticConventions.Hw.memoryType.rawValue] = "LPDDR5"
+      ```
+
      - Requires: Value type should be `String`
     */
     case memoryType = "hw.memory.type"
 
     /**
      Descriptive model name of the hardware component
-      // Examples
-      attributes[.hwModel] = "PERC H740P"
-      attributes[.hwModel] = "Intel(R) Core(TM) i7-10700K"
-      attributes[.hwModel] = "Dell XPS 15 Battery"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.model.rawValue] = "PERC H740P"
+      attributes[SemanticConventions.Hw.model.rawValue] = "Intel(R) Core(TM) i7-10700K"
+      attributes[SemanticConventions.Hw.model.rawValue] = "Dell XPS 15 Battery"
+      ```
+
      - Requires: Value type should be `String`
     */
     case model = "hw.model"
 
     /**
      An easily-recognizable name for the hardware component
-      // Examples
-      attributes[.hwName] = "eth0"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.name.rawValue] = "eth0"
+      ```
+
      - Requires: Value type should be `String`
     */
     case name = "hw.name"
 
     /**
      Logical addresses of the adapter (e.g. IP address, or WWPN)
-      // Examples
-      attributes[.hwNetworkLogicalAddresses] = ["172.16.8.21", "57.11.193.42"]
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.networkLogicalAddresses.rawValue] = ["172.16.8.21", "57.11.193.42"]
+      ```
+
      - Requires: Value type should be `[String]`
     */
     case networkLogicalAddresses = "hw.network.logical_addresses"
 
     /**
      Physical address of the adapter (e.g. MAC address, or WWNN)
-      // Examples
-      attributes[.hwNetworkPhysicalAddress] = "00-90-F5-E9-7B-36"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.networkPhysicalAddress.rawValue] = "00-90-F5-E9-7B-36"
+      ```
+
      - Requires: Value type should be `String`
     */
     case networkPhysicalAddress = "hw.network.physical_address"
 
     /**
      Unique identifier of the parent component (typically the `hw.id` attribute of the enclosure, or disk controller)
-      // Examples
-      attributes[.hwParent] = "dellStorage_perc_0"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.parent.rawValue] = "dellStorage_perc_0"
+      ```
+
      - Requires: Value type should be `String`
     */
     case parent = "hw.parent"
 
     /**
      [S.M.A.R.T.](https://wikipedia.org/wiki/S.M.A.R.T.) (Self-Monitoring, Analysis, and Reporting Technology) attribute of the physical disk
-      // Examples
-      attributes[.hwPhysicalDiskSmartAttribute] = "Spin Retry Count"
-      attributes[.hwPhysicalDiskSmartAttribute] = "Seek Error Rate"
-      attributes[.hwPhysicalDiskSmartAttribute] = "Raw Read Error Rate"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.physicalDiskSmartAttribute.rawValue] = "Spin Retry Count"
+      attributes[SemanticConventions.Hw.physicalDiskSmartAttribute.rawValue] = "Seek Error Rate"
+      attributes[SemanticConventions.Hw.physicalDiskSmartAttribute.rawValue] = "Raw Read Error Rate"
+      ```
+
      - Requires: Value type should be `String`
     */
     case physicalDiskSmartAttribute = "hw.physical_disk.smart_attribute"
 
     /**
      State of the physical disk endurance utilization
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.PhysicalDiskStateValues`](x-source-tag://otelPhysicalDiskStateValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Hw.PhysicalDiskStateValues`](x-source-tag://SemanticConventions.hw.PhysicalDiskStateValues) (of type `String`)
     */
     case physicalDiskState = "hw.physical_disk.state"
 
     /**
      Type of the physical disk
-      // Examples
-      attributes[.hwPhysicalDiskType] = "HDD"
-      attributes[.hwPhysicalDiskType] = "SSD"
-      attributes[.hwPhysicalDiskType] = "10K"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.physicalDiskType.rawValue] = "HDD"
+      attributes[SemanticConventions.Hw.physicalDiskType.rawValue] = "SSD"
+      attributes[SemanticConventions.Hw.physicalDiskType.rawValue] = "10K"
+      ```
+
      - Requires: Value type should be `String`
     */
     case physicalDiskType = "hw.physical_disk.type"
 
     /**
      Location of the sensor
-      // Examples
-      attributes[.hwSensorLocation] = "cpu0"
-      attributes[.hwSensorLocation] = "ps1"
-      attributes[.hwSensorLocation] = "INLET"
-      attributes[.hwSensorLocation] = "CPU0_DIE"
-      attributes[.hwSensorLocation] = "AMBIENT"
-      attributes[.hwSensorLocation] = "MOTHERBOARD"
-      attributes[.hwSensorLocation] = "PS0 V3_3"
-      attributes[.hwSensorLocation] = "MAIN_12V"
-      attributes[.hwSensorLocation] = "CPU_VCORE"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.sensorLocation.rawValue] = "cpu0"
+      attributes[SemanticConventions.Hw.sensorLocation.rawValue] = "ps1"
+      attributes[SemanticConventions.Hw.sensorLocation.rawValue] = "INLET"
+      attributes[SemanticConventions.Hw.sensorLocation.rawValue] = "CPU0_DIE"
+      attributes[SemanticConventions.Hw.sensorLocation.rawValue] = "AMBIENT"
+      attributes[SemanticConventions.Hw.sensorLocation.rawValue] = "MOTHERBOARD"
+      attributes[SemanticConventions.Hw.sensorLocation.rawValue] = "PS0 V3_3"
+      attributes[SemanticConventions.Hw.sensorLocation.rawValue] = "MAIN_12V"
+      attributes[SemanticConventions.Hw.sensorLocation.rawValue] = "CPU_VCORE"
+      ```
+
      - Requires: Value type should be `String`
     */
     case sensorLocation = "hw.sensor_location"
 
     /**
      Serial number of the hardware component
-      // Examples
-      attributes[.hwSerialNumber] = "CNFCP0123456789"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.serialNumber.rawValue] = "CNFCP0123456789"
+      ```
+
      - Requires: Value type should be `String`
     */
     case serialNumber = "hw.serial_number"
 
     /**
      The current state of the component
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.StateValues`](x-source-tag://otelStateValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Hw.StateValues`](x-source-tag://SemanticConventions.hw.StateValues) (of type `String`)
     */
     case state = "hw.state"
 
     /**
      Type of tape drive operation
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.TapeDriveOperationTypeValues`](x-source-tag://otelTapeDriveOperationTypeValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Hw.TapeDriveOperationTypeValues`](x-source-tag://SemanticConventions.hw.TapeDriveOperationTypeValues) (of type `String`)
     */
     case tapeDriveOperationType = "hw.tape_drive.operation_type"
 
     /**
      Type of the component
+      ```
+
      - Note: Describes the category of the hardware component for which `hw.state` is being reported. For example, `hw.type=temperature` along with `hw.state=degraded` would indicate that the temperature of the hardware component has been reported as `degraded`.
-     - Requires: Value should be one of [`/output/Attributes/Hw_attributes.swift.TypeValues`](x-source-tag://otelTypeValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Hw.TypeValues`](x-source-tag://SemanticConventions.hw.TypeValues) (of type `String`)
     */
     case type = "hw.type"
 
     /**
      Vendor name of the hardware component
-      // Examples
-      attributes[.hwVendor] = "Dell"
-      attributes[.hwVendor] = "HP"
-      attributes[.hwVendor] = "Intel"
-      attributes[.hwVendor] = "AMD"
-      attributes[.hwVendor] = "LSI"
-      attributes[.hwVendor] = "Lenovo"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Hw.vendor.rawValue] = "Dell"
+      attributes[SemanticConventions.Hw.vendor.rawValue] = "HP"
+      attributes[SemanticConventions.Hw.vendor.rawValue] = "Intel"
+      attributes[SemanticConventions.Hw.vendor.rawValue] = "AMD"
+      attributes[SemanticConventions.Hw.vendor.rawValue] = "LSI"
+      attributes[SemanticConventions.Hw.vendor.rawValue] = "Lenovo"
+      ```
+
      - Requires: Value type should be `String`
     */
     case vendor = "hw.vendor"
@@ -241,7 +334,7 @@ extension SemanticConventions {
     /** 
       The current state of the battery
     */
-    /// - Tag: otelBatteryStateValues
+    /// - Tag: SemanticConventions.Hw.BatteryStateValues
     public struct BatteryStateValues: CustomStringConvertible {
       /**
       Charging
@@ -266,7 +359,7 @@ extension SemanticConventions {
     /** 
       Type of task the GPU is performing
     */
-    /// - Tag: otelGpuTaskValues
+    /// - Tag: SemanticConventions.Hw.GpuTaskValues
     public struct GpuTaskValues: CustomStringConvertible {
       /**
       Decoder
@@ -295,7 +388,7 @@ extension SemanticConventions {
     /** 
       Type of limit for hardware components
     */
-    /// - Tag: otelLimitTypeValues
+    /// - Tag: SemanticConventions.Hw.LimitTypeValues
     public struct LimitTypeValues: CustomStringConvertible {
       /**
       Critical
@@ -348,7 +441,7 @@ extension SemanticConventions {
     /** 
       State of the logical disk space usage
     */
-    /// - Tag: otelLogicalDiskStateValues
+    /// - Tag: SemanticConventions.Hw.LogicalDiskStateValues
     public struct LogicalDiskStateValues: CustomStringConvertible {
       /**
       Used
@@ -373,7 +466,7 @@ extension SemanticConventions {
     /** 
       State of the physical disk endurance utilization
     */
-    /// - Tag: otelPhysicalDiskStateValues
+    /// - Tag: SemanticConventions.Hw.PhysicalDiskStateValues
     public struct PhysicalDiskStateValues: CustomStringConvertible {
       /**
       Remaining
@@ -394,7 +487,7 @@ extension SemanticConventions {
     /** 
       The current state of the component
     */
-    /// - Tag: otelStateValues
+    /// - Tag: SemanticConventions.Hw.StateValues
     public struct StateValues: CustomStringConvertible {
       /**
       Degraded
@@ -431,7 +524,7 @@ extension SemanticConventions {
     /** 
       Type of tape drive operation
     */
-    /// - Tag: otelTapeDriveOperationTypeValues
+    /// - Tag: SemanticConventions.Hw.TapeDriveOperationTypeValues
     public struct TapeDriveOperationTypeValues: CustomStringConvertible {
       /**
       Mount
@@ -460,7 +553,7 @@ extension SemanticConventions {
     /** 
       Type of the component
     */
-    /// - Tag: otelTypeValues
+    /// - Tag: SemanticConventions.Hw.TypeValues
     public struct TypeValues: CustomStringConvertible {
       /**
       Battery

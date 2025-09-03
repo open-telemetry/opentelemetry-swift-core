@@ -8,54 +8,77 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum GenAi: String {
+  public enum GenAi: String {
     /**
      Free-form description of the GenAI agent provided by the application.
-      // Examples
-      attributes[.genAiAgentDescription] = "Helps with math problems"
-      attributes[.genAiAgentDescription] = "Generates fiction stories"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.agentDescription.rawValue] = "Helps with math problems"
+      attributes[SemanticConventions.GenAi.agentDescription.rawValue] = "Generates fiction stories"
+      ```
+
      - Requires: Value type should be `String`
     */
     case agentDescription = "gen_ai.agent.description"
 
     /**
      The unique identifier of the GenAI agent.
-      // Examples
-      attributes[.genAiAgentId] = "asst_5j66UpCpwteGg4YSxUnt7lPY"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.agentId.rawValue] = "asst_5j66UpCpwteGg4YSxUnt7lPY"
+      ```
+
      - Requires: Value type should be `String`
     */
     case agentId = "gen_ai.agent.id"
 
     /**
      Human-readable name of the GenAI agent provided by the application.
-      // Examples
-      attributes[.genAiAgentName] = "Math Tutor"
-      attributes[.genAiAgentName] = "Fiction Writer"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.agentName.rawValue] = "Math Tutor"
+      attributes[SemanticConventions.GenAi.agentName.rawValue] = "Fiction Writer"
+      ```
+
      - Requires: Value type should be `String`
     */
     case agentName = "gen_ai.agent.name"
 
     /**
      The unique identifier for a conversation (session, thread), used to store and correlate messages within this conversation.
-      // Examples
-      attributes[.genAiConversationId] = "conv_5j66UpCpwteGg4YSxUnt7lPY"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.conversationId.rawValue] = "conv_5j66UpCpwteGg4YSxUnt7lPY"
+      ```
+
      - Requires: Value type should be `String`
     */
     case conversationId = "gen_ai.conversation.id"
 
     /**
      The data source identifier.
-      // Examples
-      attributes[.genAiDataSourceId] = "H7STPQYOND"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.dataSourceId.rawValue] = "H7STPQYOND"
+      ```
+
      - Note: Data sources are used by AI agents and RAG applications to store grounding data. A data source may be an external database, object store, document collection, website, or any other storage system used by the GenAI agent or application. The `gen_ai.data_source.id` SHOULD match the identifier used by the GenAI system rather than a name specific to the external storage, such as a database or object store. Semantic conventions referencing `gen_ai.data_source.id` MAY also leverage additional attributes, such as `db.*`, to further identify and describe the data source.
+
      - Requires: Value type should be `String`
     */
     case dataSourceId = "gen_ai.data_source.id"
 
     /**
      The chat history provided to the model as an input.
-      // Examples
-      attributes[.genAiInputMessages] = [
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.inputMessages.rawValue] = [
         {
           "role": "user",
           "parts": [
@@ -89,6 +112,8 @@ extension SemanticConventions {
           ]
         }
       ]
+      ```
+
      - Note: Instrumentations MUST follow [Input messages JSON schema](/docs/gen-ai/gen-ai-input-messages.json).
      When the attribute is recorded on events, it MUST be recorded in structured
      form. When recorded on spans, it MAY be recorded as a JSON string if structured
@@ -103,21 +128,27 @@ extension SemanticConventions {
 
      See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
      section for more details.
+
      - Requires: Value type should be `any`
     */
     case inputMessages = "gen_ai.input.messages"
 
     /**
      The name of the operation being performed.
+      ```
+
      - Note: If one of the predefined values applies, but specific system uses a different name it's RECOMMENDED to document it in the semantic conventions for specific GenAI system and use system-specific name in the instrumentation. If a different name is not documented, instrumentation libraries SHOULD use applicable predefined value.
-     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.OperationNameValues`](x-source-tag://otelOperationNameValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.GenAi.OperationNameValues`](x-source-tag://SemanticConventions.gen_ai.OperationNameValues) (of type `String`)
     */
     case operationName = "gen_ai.operation.name"
 
     /**
      Messages returned by the model where each message represents a specific model response (choice, candidate).
-      // Examples
-      attributes[.genAiOutputMessages] = [
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.outputMessages.rawValue] = [
         {
           "role": "assistant",
           "parts": [
@@ -129,6 +160,8 @@ extension SemanticConventions {
           "finish_reason": "stop"
         }
       ]
+      ```
+
      - Note: Instrumentations MUST follow [Output messages JSON schema](/docs/gen-ai/gen-ai-output-messages.json)
 
      Each message represents a single output choice/candidate generated by
@@ -148,21 +181,27 @@ extension SemanticConventions {
 
      See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
      section for more details.
+
      - Requires: Value type should be `any`
     */
     case outputMessages = "gen_ai.output.messages"
 
     /**
      Represents the content type requested by the client.
+      ```
+
      - Note: This attribute SHOULD be used when the client requests output of a specific type. The model may return zero or more outputs of this type.
      This attribute specifies the output modality and not the actual output format. For example, if an image is requested, the actual output could be a URL pointing to an image file.
      Additional output format details may be recorded in the future in the `gen_ai.output.{type}.*` attributes.
-     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.OutputTypeValues`](x-source-tag://otelOutputTypeValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.GenAi.OutputTypeValues`](x-source-tag://SemanticConventions.gen_ai.OutputTypeValues) (of type `String`)
     */
     case outputType = "gen_ai.output.type"
 
     /**
      The Generative AI provider as identified by the client or server instrumentation.
+      ```
+
      - Note: The attribute SHOULD be set based on the instrumentation's best
      knowledge and may differ from the actual model provider.
 
@@ -181,136 +220,196 @@ extension SemanticConventions {
      should have the `gen_ai.provider.name` set to `aws.bedrock` and include
      applicable `aws.bedrock.*` attributes and are not expected to include
      `openai.*` attributes.
-     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.ProviderNameValues`](x-source-tag://otelProviderNameValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.GenAi.ProviderNameValues`](x-source-tag://SemanticConventions.gen_ai.ProviderNameValues) (of type `String`)
     */
     case providerName = "gen_ai.provider.name"
 
     /**
      The target number of candidate completions to return.
-      // Examples
-      attributes[.genAiRequestChoiceCount] = 3
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.requestChoiceCount.rawValue] = 3
+      ```
+
      - Requires: Value type should be `Int`
     */
     case requestChoiceCount = "gen_ai.request.choice.count"
 
     /**
      The encoding formats requested in an embeddings operation, if specified.
-      // Examples
-      attributes[.genAiRequestEncodingFormats] = ["base64"]
-      attributes[.genAiRequestEncodingFormats] = ["float", "binary"]
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.requestEncodingFormats.rawValue] = ["base64"]
+      attributes[SemanticConventions.GenAi.requestEncodingFormats.rawValue] = ["float", "binary"]
+      ```
+
      - Note: In some GenAI systems the encoding formats are called embedding types. Also, some GenAI systems only accept a single format per request.
+
      - Requires: Value type should be `[String]`
     */
     case requestEncodingFormats = "gen_ai.request.encoding_formats"
 
     /**
      The frequency penalty setting for the GenAI request.
-      // Examples
-      attributes[.genAiRequestFrequencyPenalty] = 0.1
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.requestFrequencyPenalty.rawValue] = 0.1
+      ```
+
      - Requires: Value type should be `Double`
     */
     case requestFrequencyPenalty = "gen_ai.request.frequency_penalty"
 
     /**
      The maximum number of tokens the model generates for a request.
-      // Examples
-      attributes[.genAiRequestMaxTokens] = 100
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.requestMaxTokens.rawValue] = 100
+      ```
+
      - Requires: Value type should be `Int`
     */
     case requestMaxTokens = "gen_ai.request.max_tokens"
 
     /**
      The name of the GenAI model a request is being made to.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.genAiRequestModel] = "gpt-4"
+   attributes[SemanticConventions.GenAi.requestModel.rawValue] = "gpt-4"
+      ```
+
      - Requires: Value type should be `String`
     */
     case requestModel = "gen_ai.request.model"
 
     /**
      The presence penalty setting for the GenAI request.
-      // Examples
-      attributes[.genAiRequestPresencePenalty] = 0.1
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.requestPresencePenalty.rawValue] = 0.1
+      ```
+
      - Requires: Value type should be `Double`
     */
     case requestPresencePenalty = "gen_ai.request.presence_penalty"
 
     /**
      Requests with same seed value more likely to return same result.
-      // Examples
-      attributes[.genAiRequestSeed] = 100
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.requestSeed.rawValue] = 100
+      ```
+
      - Requires: Value type should be `Int`
     */
     case requestSeed = "gen_ai.request.seed"
 
     /**
      List of sequences that the model will use to stop generating further tokens.
-      // Examples
-      attributes[.genAiRequestStopSequences] = ["forest", "lived"]
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.requestStopSequences.rawValue] = ["forest", "lived"]
+      ```
+
      - Requires: Value type should be `[String]`
     */
     case requestStopSequences = "gen_ai.request.stop_sequences"
 
     /**
      The temperature setting for the GenAI request.
-      // Examples
-      attributes[.genAiRequestTemperature] = 0.0
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.requestTemperature.rawValue] = 0.0
+      ```
+
      - Requires: Value type should be `Double`
     */
     case requestTemperature = "gen_ai.request.temperature"
 
     /**
      The top_k sampling setting for the GenAI request.
-      // Examples
-      attributes[.genAiRequestTopK] = 1.0
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.requestTopK.rawValue] = 1.0
+      ```
+
      - Requires: Value type should be `Double`
     */
     case requestTopK = "gen_ai.request.top_k"
 
     /**
      The top_p sampling setting for the GenAI request.
-      // Examples
-      attributes[.genAiRequestTopP] = 1.0
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.requestTopP.rawValue] = 1.0
+      ```
+
      - Requires: Value type should be `Double`
     */
     case requestTopP = "gen_ai.request.top_p"
 
     /**
      Array of reasons the model stopped generating tokens, corresponding to each generation received.
-      // Examples
-      attributes[.genAiResponseFinishReasons] = ["stop"]
-      attributes[.genAiResponseFinishReasons] = ["stop", "length"]
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.responseFinishReasons.rawValue] = ["stop"]
+      attributes[SemanticConventions.GenAi.responseFinishReasons.rawValue] = ["stop", "length"]
+      ```
+
      - Requires: Value type should be `[String]`
     */
     case responseFinishReasons = "gen_ai.response.finish_reasons"
 
     /**
      The unique identifier for the completion.
-      // Examples
-      attributes[.genAiResponseId] = "chatcmpl-123"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.responseId.rawValue] = "chatcmpl-123"
+      ```
+
      - Requires: Value type should be `String`
     */
     case responseId = "gen_ai.response.id"
 
     /**
      The name of the model that generated the response.
-      // Examples
-      attributes[.genAiResponseModel] = "gpt-4-0613"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.responseModel.rawValue] = "gpt-4-0613"
+      ```
+
      - Requires: Value type should be `String`
     */
     case responseModel = "gen_ai.response.model"
 
     /**
      The system message or instructions provided to the GenAI model separately from the chat history.
-      // Examples
-      attributes[.genAiSystemInstructions] = [
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.systemInstructions.rawValue] = [
         {
           "type": "text",
           "content": "You are an Agent that greet users, always use greetings tool to respond"
         }
       ]
-      attributes[.genAiSystemInstructions] = [
+      attributes[SemanticConventions.GenAi.systemInstructions.rawValue] = [
         {
           "type": "text",
           "content": "You are a language translator."
@@ -320,6 +419,8 @@ extension SemanticConventions {
           "content": "Your mission is to translate text in English to French."
         }
       ]
+      ```
+
      - Note: This attribute SHOULD be used when the corresponding provider or API
      allows to provide system instructions or messages separately from the
      chat history.
@@ -340,70 +441,100 @@ extension SemanticConventions {
 
      See [Recording content on attributes](/docs/gen-ai/gen-ai-spans.md#recording-content-on-attributes)
      section for more details.
+
      - Requires: Value type should be `any`
     */
     case systemInstructions = "gen_ai.system_instructions"
 
     /**
      The type of token being counted.
-      // Examples
-      attributes[.genAiTokenType] = input
-      attributes[.genAiTokenType] = output
-     - Requires: Value should be one of [`/output/Attributes/GenAi_attributes.swift.TokenTypeValues`](x-source-tag://otelTokenTypeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.tokenType.rawValue] = .input
+      attributes[SemanticConventions.GenAi.tokenType.rawValue] = .output
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.GenAi.TokenTypeValues`](x-source-tag://SemanticConventions.gen_ai.TokenTypeValues) (of type `String`)
     */
     case tokenType = "gen_ai.token.type"
 
     /**
      The tool call identifier.
-      // Examples
-      attributes[.genAiToolCallId] = "call_mszuSIzqtI65i1wAUOE8w5H4"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.toolCallId.rawValue] = "call_mszuSIzqtI65i1wAUOE8w5H4"
+      ```
+
      - Requires: Value type should be `String`
     */
     case toolCallId = "gen_ai.tool.call.id"
 
     /**
      The tool description.
-      // Examples
-      attributes[.genAiToolDescription] = "Multiply two numbers"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.toolDescription.rawValue] = "Multiply two numbers"
+      ```
+
      - Requires: Value type should be `String`
     */
     case toolDescription = "gen_ai.tool.description"
 
     /**
      Name of the tool utilized by the agent.
-      // Examples
-      attributes[.genAiToolName] = "Flights"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.toolName.rawValue] = "Flights"
+      ```
+
      - Requires: Value type should be `String`
     */
     case toolName = "gen_ai.tool.name"
 
     /**
      Type of the tool utilized by the agent
-      // Examples
-      attributes[.genAiToolType] = "function"
-      attributes[.genAiToolType] = "extension"
-      attributes[.genAiToolType] = "datastore"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.toolType.rawValue] = "function"
+      attributes[SemanticConventions.GenAi.toolType.rawValue] = "extension"
+      attributes[SemanticConventions.GenAi.toolType.rawValue] = "datastore"
+      ```
+
      - Note: Extension: A tool executed on the agent-side to directly call external APIs, bridging the gap between the agent and real-world systems.
      Agent-side operations involve actions that are performed by the agent on the server or within the agent's controlled environment.
      Function: A tool executed on the client-side, where the agent generates parameters for a predefined function, and the client executes the logic.
      Client-side operations are actions taken on the user's end or within the client application.
      Datastore: A tool used by the agent to access and query structured or unstructured external data for retrieval-augmented tasks or knowledge updates.
+
      - Requires: Value type should be `String`
     */
     case toolType = "gen_ai.tool.type"
 
     /**
      The number of tokens used in the GenAI input (prompt).
-      // Examples
-      attributes[.genAiUsageInputTokens] = 100
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.usageInputTokens.rawValue] = 100
+      ```
+
      - Requires: Value type should be `Int`
     */
     case usageInputTokens = "gen_ai.usage.input_tokens"
 
     /**
      The number of tokens used in the GenAI response (completion).
-      // Examples
-      attributes[.genAiUsageOutputTokens] = 180
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.usageOutputTokens.rawValue] = 180
+      ```
+
      - Requires: Value type should be `Int`
     */
     case usageOutputTokens = "gen_ai.usage.output_tokens"
@@ -412,7 +543,7 @@ extension SemanticConventions {
     /** 
       The name of the operation being performed.
     */
-    /// - Tag: otelOperationNameValues
+    /// - Tag: SemanticConventions.GenAi.OperationNameValues
     public struct OperationNameValues: CustomStringConvertible {
       /**
       Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)
@@ -457,7 +588,7 @@ extension SemanticConventions {
     /** 
       Represents the content type requested by the client.
     */
-    /// - Tag: otelOutputTypeValues
+    /// - Tag: SemanticConventions.GenAi.OutputTypeValues
     public struct OutputTypeValues: CustomStringConvertible {
       /**
       Plain text
@@ -490,7 +621,7 @@ extension SemanticConventions {
     /** 
       The Generative AI provider as identified by the client or server instrumentation.
     */
-    /// - Tag: otelProviderNameValues
+    /// - Tag: SemanticConventions.GenAi.ProviderNameValues
     public struct ProviderNameValues: CustomStringConvertible {
       /**
       [OpenAI](https://openai.com/)
@@ -567,7 +698,7 @@ extension SemanticConventions {
     /** 
       The type of token being counted.
     */
-    /// - Tag: otelTokenTypeValues
+    /// - Tag: SemanticConventions.GenAi.TokenTypeValues
     public struct TokenTypeValues: CustomStringConvertible {
       /**
       Input tokens (prompt, input, etc.)

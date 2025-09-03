@@ -8,54 +8,77 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Cloud: String {
+  public enum Cloud: String {
     /**
      The cloud account ID the resource is assigned to.
-      // Examples
-      attributes[.cloudAccountId] = "111111111111"
-      attributes[.cloudAccountId] = "opentelemetry"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cloud.accountId.rawValue] = "111111111111"
+      attributes[SemanticConventions.Cloud.accountId.rawValue] = "opentelemetry"
+      ```
+
      - Requires: Value type should be `String`
     */
     case accountId = "cloud.account.id"
 
     /**
      Cloud regions often have multiple, isolated locations known as zones to increase availability. Availability zone represents the zone where the resource is running.
-      // Examples
-      attributes[.cloudAvailabilityZone] = "us-east-1c"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cloud.availabilityZone.rawValue] = "us-east-1c"
+      ```
+
      - Note: Availability zones are called "zones" on Alibaba Cloud and Google Cloud.
+
      - Requires: Value type should be `String`
     */
     case availabilityZone = "cloud.availability_zone"
 
     /**
      The cloud platform in use.
+      ```
+
      - Note: The prefix of the service SHOULD match the one specified in `cloud.provider`.
-     - Requires: Value should be one of [`/output/Attributes/Cloud_attributes.swift.PlatformValues`](x-source-tag://otelPlatformValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Cloud.PlatformValues`](x-source-tag://SemanticConventions.cloud.PlatformValues) (of type `String`)
     */
     case platform = "cloud.platform"
 
     /**
      Name of the cloud provider.
-     - Requires: Value should be one of [`/output/Attributes/Cloud_attributes.swift.ProviderValues`](x-source-tag://otelProviderValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Cloud.ProviderValues`](x-source-tag://SemanticConventions.cloud.ProviderValues) (of type `String`)
     */
     case provider = "cloud.provider"
 
     /**
      The geographical region within a cloud provider. When associated with a resource, this attribute specifies the region where the resource operates. When calling services or APIs deployed on a cloud, this attribute identifies the region where the called destination is deployed.
-      // Examples
-      attributes[.cloudRegion] = "us-central1"
-      attributes[.cloudRegion] = "us-east-1"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cloud.region.rawValue] = "us-central1"
+      attributes[SemanticConventions.Cloud.region.rawValue] = "us-east-1"
+      ```
+
      - Note: Refer to your provider's docs to see the available regions, for example [Alibaba Cloud regions](https://www.alibabacloud.com/help/doc-detail/40654.htm), [AWS regions](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), [Azure regions](https://azure.microsoft.com/global-infrastructure/geographies/), [Google Cloud regions](https://cloud.google.com/about/locations), or [Tencent Cloud regions](https://www.tencentcloud.com/document/product/213/6091).
+
      - Requires: Value type should be `String`
     */
     case region = "cloud.region"
 
     /**
      Cloud provider-specific native identifier of the monitored cloud resource (e.g. an [ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) on AWS, a [fully qualified resource ID](https://learn.microsoft.com/rest/api/resources/resources/get-by-id) on Azure, a [full resource name](https://google.aip.dev/122#full-resource-names) on GCP)
-      // Examples
-      attributes[.cloudResourceId] = "arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function"
-      attributes[.cloudResourceId] = "//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID"
-      attributes[.cloudResourceId] = "/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Cloud.resourceId.rawValue] = "arn:aws:lambda:REGION:ACCOUNT_ID:function:my-function"
+      attributes[SemanticConventions.Cloud.resourceId.rawValue] = "//run.googleapis.com/projects/PROJECT_ID/locations/LOCATION_ID/services/SERVICE_ID"
+      attributes[SemanticConventions.Cloud.resourceId.rawValue] = "/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>"
+      ```
+
      - Note: On some cloud providers, it may not be possible to determine the full ID at startup,
      so it may be necessary to set `cloud.resource_id` as a span attribute instead.
 
@@ -73,6 +96,7 @@ extension SemanticConventions {
        `/subscriptions/<SUBSCRIPTION_GUID>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<FUNCAPP>/functions/<FUNC>`.
        This means that a span attribute MUST be used, as an Azure function app can host multiple functions that would usually share
        a TracerProvider.
+
      - Requires: Value type should be `String`
     */
     case resourceId = "cloud.resource_id"
@@ -81,7 +105,7 @@ extension SemanticConventions {
     /** 
       The cloud platform in use.
     */
-    /// - Tag: otelPlatformValues
+    /// - Tag: SemanticConventions.Cloud.PlatformValues
     public struct PlatformValues: CustomStringConvertible {
       /**
       Alibaba Cloud Elastic Compute Service
@@ -218,7 +242,7 @@ extension SemanticConventions {
     /** 
       Name of the cloud provider.
     */
-    /// - Tag: otelProviderValues
+    /// - Tag: SemanticConventions.Cloud.ProviderValues
     public struct ProviderValues: CustomStringConvertible {
       /**
       Alibaba Cloud

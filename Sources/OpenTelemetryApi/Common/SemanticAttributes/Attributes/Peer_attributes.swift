@@ -8,12 +8,16 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Peer: String {
+  public enum Peer: String {
     /**
      The [`service.name`](/docs/resource/README.md#service) of the remote service. SHOULD be equal to the actual `service.name` resource attribute of the remote service if any.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.peerService] = "AuthTokenCache"
+   attributes[SemanticConventions.Peer.service.rawValue] = "AuthTokenCache"
+      ```
+
      - Requires: Value type should be `String`
     */
     case service = "peer.service"

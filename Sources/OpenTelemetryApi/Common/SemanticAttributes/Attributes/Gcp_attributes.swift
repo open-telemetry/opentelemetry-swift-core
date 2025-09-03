@@ -8,120 +8,173 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Gcp: String {
+  public enum Gcp: String {
     /**
      The container within GCP where the AppHub application is defined.
-      // Examples
-      attributes[.gcpApphubApplicationContainer] = "projects/my-container-project"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.apphubApplicationContainer.rawValue] = "projects/my-container-project"
+      ```
+
      - Requires: Value type should be `String`
     */
     case apphubApplicationContainer = "gcp.apphub.application.container"
 
     /**
      The name of the application as configured in AppHub.
-      // Examples
-      attributes[.gcpApphubApplicationId] = "my-application"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.apphubApplicationId.rawValue] = "my-application"
+      ```
+
      - Requires: Value type should be `String`
     */
     case apphubApplicationId = "gcp.apphub.application.id"
 
     /**
      The GCP zone or region where the application is defined.
-      // Examples
-      attributes[.gcpApphubApplicationLocation] = "us-central1"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.apphubApplicationLocation.rawValue] = "us-central1"
+      ```
+
      - Requires: Value type should be `String`
     */
     case apphubApplicationLocation = "gcp.apphub.application.location"
 
     /**
      Criticality of a service indicates its importance to the business.
+      ```
+
      - Note: [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
-     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.ApphubServiceCriticalityTypeValues`](x-source-tag://otelApphubServiceCriticalityTypeValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Gcp.ApphubServiceCriticalityTypeValues`](x-source-tag://SemanticConventions.gcp.ApphubServiceCriticalityTypeValues) (of type `String`)
     */
     case apphubServiceCriticalityType = "gcp.apphub.service.criticality_type"
 
     /**
      Environment of a service is the stage of a software lifecycle.
+      ```
+
      - Note: [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
-     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.ApphubServiceEnvironmentTypeValues`](x-source-tag://otelApphubServiceEnvironmentTypeValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Gcp.ApphubServiceEnvironmentTypeValues`](x-source-tag://SemanticConventions.gcp.ApphubServiceEnvironmentTypeValues) (of type `String`)
     */
     case apphubServiceEnvironmentType = "gcp.apphub.service.environment_type"
 
     /**
      The name of the service as configured in AppHub.
-      // Examples
-      attributes[.gcpApphubServiceId] = "my-service"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.apphubServiceId.rawValue] = "my-service"
+      ```
+
      - Requires: Value type should be `String`
     */
     case apphubServiceId = "gcp.apphub.service.id"
 
     /**
      Criticality of a workload indicates its importance to the business.
+      ```
+
      - Note: [See AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
-     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.ApphubWorkloadCriticalityTypeValues`](x-source-tag://otelApphubWorkloadCriticalityTypeValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Gcp.ApphubWorkloadCriticalityTypeValues`](x-source-tag://SemanticConventions.gcp.ApphubWorkloadCriticalityTypeValues) (of type `String`)
     */
     case apphubWorkloadCriticalityType = "gcp.apphub.workload.criticality_type"
 
     /**
      Environment of a workload is the stage of a software lifecycle.
+      ```
+
      - Note: [See AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
-     - Requires: Value should be one of [`/output/Attributes/Gcp_attributes.swift.ApphubWorkloadEnvironmentTypeValues`](x-source-tag://otelApphubWorkloadEnvironmentTypeValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Gcp.ApphubWorkloadEnvironmentTypeValues`](x-source-tag://SemanticConventions.gcp.ApphubWorkloadEnvironmentTypeValues) (of type `String`)
     */
     case apphubWorkloadEnvironmentType = "gcp.apphub.workload.environment_type"
 
     /**
      The name of the workload as configured in AppHub.
-      // Examples
-      attributes[.gcpApphubWorkloadId] = "my-workload"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.apphubWorkloadId.rawValue] = "my-workload"
+      ```
+
      - Requires: Value type should be `String`
     */
     case apphubWorkloadId = "gcp.apphub.workload.id"
 
     /**
      Identifies the Google Cloud service for which the official client library is intended.
-      // Examples
-      attributes[.gcpClientService] = "appengine"
-      attributes[.gcpClientService] = "run"
-      attributes[.gcpClientService] = "firestore"
-      attributes[.gcpClientService] = "alloydb"
-      attributes[.gcpClientService] = "spanner"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.clientService.rawValue] = "appengine"
+      attributes[SemanticConventions.Gcp.clientService.rawValue] = "run"
+      attributes[SemanticConventions.Gcp.clientService.rawValue] = "firestore"
+      attributes[SemanticConventions.Gcp.clientService.rawValue] = "alloydb"
+      attributes[SemanticConventions.Gcp.clientService.rawValue] = "spanner"
+      ```
+
      - Note: Intended to be a stable identifier for Google Cloud client libraries that is uniform across implementation languages. The value should be derived from the canonical service domain for the service; for example, 'foo.googleapis.com' should result in a value of 'foo'.
+
      - Requires: Value type should be `String`
     */
     case clientService = "gcp.client.service"
 
     /**
      The name of the Cloud Run [execution](https://cloud.google.com/run/docs/managing/job-executions) being run for the Job, as set by the [`CLOUD_RUN_EXECUTION`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable.
-      // Examples
-      attributes[.gcpCloudRunJobExecution] = "job-name-xxxx"
-      attributes[.gcpCloudRunJobExecution] = "sample-job-mdw84"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.cloudRunJobExecution.rawValue] = "job-name-xxxx"
+      attributes[SemanticConventions.Gcp.cloudRunJobExecution.rawValue] = "sample-job-mdw84"
+      ```
+
      - Requires: Value type should be `String`
     */
     case cloudRunJobExecution = "gcp.cloud_run.job.execution"
 
     /**
      The index for a task within an execution as provided by the [`CLOUD_RUN_TASK_INDEX`](https://cloud.google.com/run/docs/container-contract#jobs-env-vars) environment variable.
-      // Examples
-      attributes[.gcpCloudRunJobTaskIndex] = 0
-      attributes[.gcpCloudRunJobTaskIndex] = 1
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.cloudRunJobTaskIndex.rawValue] = 0
+      attributes[SemanticConventions.Gcp.cloudRunJobTaskIndex.rawValue] = 1
+      ```
+
      - Requires: Value type should be `Int`
     */
     case cloudRunJobTaskIndex = "gcp.cloud_run.job.task_index"
 
     /**
      The hostname of a GCE instance. This is the full value of the default or [custom hostname](https://cloud.google.com/compute/docs/instances/custom-hostname-vm).
-      // Examples
-      attributes[.gcpGceInstanceHostname] = "my-host1234.example.com"
-      attributes[.gcpGceInstanceHostname] = "sample-vm.us-west1-b.c.my-project.internal"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.gceInstanceHostname.rawValue] = "my-host1234.example.com"
+      attributes[SemanticConventions.Gcp.gceInstanceHostname.rawValue] = "sample-vm.us-west1-b.c.my-project.internal"
+      ```
+
      - Requires: Value type should be `String`
     */
     case gceInstanceHostname = "gcp.gce.instance.hostname"
 
     /**
      The instance name of a GCE instance. This is the value provided by `host.name`, the visible name of the instance in the Cloud Console UI, and the prefix for the default hostname of the instance as defined by the [default internal DNS name](https://cloud.google.com/compute/docs/internal-dns#instance-fully-qualified-domain-names).
-      // Examples
-      attributes[.gcpGceInstanceName] = "instance-1"
-      attributes[.gcpGceInstanceName] = "my-vm-name"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.gceInstanceName.rawValue] = "instance-1"
+      attributes[SemanticConventions.Gcp.gceInstanceName.rawValue] = "my-vm-name"
+      ```
+
      - Requires: Value type should be `String`
     */
     case gceInstanceName = "gcp.gce.instance.name"
@@ -130,7 +183,7 @@ extension SemanticConventions {
     /** 
       Criticality of a service indicates its importance to the business.
     */
-    /// - Tag: otelApphubServiceCriticalityTypeValues
+    /// - Tag: SemanticConventions.Gcp.ApphubServiceCriticalityTypeValues
     public struct ApphubServiceCriticalityTypeValues: CustomStringConvertible {
       /**
       Mission critical service.
@@ -163,7 +216,7 @@ extension SemanticConventions {
     /** 
       Environment of a service is the stage of a software lifecycle.
     */
-    /// - Tag: otelApphubServiceEnvironmentTypeValues
+    /// - Tag: SemanticConventions.Gcp.ApphubServiceEnvironmentTypeValues
     public struct ApphubServiceEnvironmentTypeValues: CustomStringConvertible {
       /**
       Production environment.
@@ -196,7 +249,7 @@ extension SemanticConventions {
     /** 
       Criticality of a workload indicates its importance to the business.
     */
-    /// - Tag: otelApphubWorkloadCriticalityTypeValues
+    /// - Tag: SemanticConventions.Gcp.ApphubWorkloadCriticalityTypeValues
     public struct ApphubWorkloadCriticalityTypeValues: CustomStringConvertible {
       /**
       Mission critical service.
@@ -229,7 +282,7 @@ extension SemanticConventions {
     /** 
       Environment of a workload is the stage of a software lifecycle.
     */
-    /// - Tag: otelApphubWorkloadEnvironmentTypeValues
+    /// - Tag: SemanticConventions.Gcp.ApphubWorkloadEnvironmentTypeValues
     public struct ApphubWorkloadEnvironmentTypeValues: CustomStringConvertible {
       /**
       Production environment.

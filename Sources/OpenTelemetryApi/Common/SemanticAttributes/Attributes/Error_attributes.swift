@@ -8,28 +8,37 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Error: String {
+  public enum Error: String {
     /**
      A message providing more detail about an error in human-readable form.
-      // Examples
-      attributes[.errorMessage] = "Unexpected input type: string"
-      attributes[.errorMessage] = "The user has exceeded their storage quota"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Error.message.rawValue] = "Unexpected input type: string"
+      attributes[SemanticConventions.Error.message.rawValue] = "The user has exceeded their storage quota"
+      ```
+
      - Note: `error.message` should provide additional context and detail about an error.
      It is NOT RECOMMENDED to duplicate the value of `error.type` in `error.message`.
      It is also NOT RECOMMENDED to duplicate the value of `exception.message` in `error.message`.
 
      `error.message` is NOT RECOMMENDED for metrics or spans due to its unbounded cardinality and overlap with span status.
+
      - Requires: Value type should be `String`
     */
     case message = "error.message"
 
     /**
      Describes a class of error the operation ended with.
-      // Examples
-      attributes[.errorType] = timeout
-      attributes[.errorType] = java.net.UnknownHostException
-      attributes[.errorType] = server_certificate_invalid
-      attributes[.errorType] = 500
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Error.type.rawValue] = .timeout
+      attributes[SemanticConventions.Error.type.rawValue] = .java.net.UnknownHostException
+      attributes[SemanticConventions.Error.type.rawValue] = .server_certificate_invalid
+      attributes[SemanticConventions.Error.type.rawValue] = .500
+      ```
+
      - Note: The `error.type` SHOULD be predictable, and SHOULD have low cardinality.
 
      When `error.type` is set to a type (e.g., an exception type), its
@@ -49,7 +58,8 @@ extension SemanticConventions {
 
      - Use a domain-specific attribute
      - Set `error.type` to capture all errors, regardless of whether they are defined within the domain-specific set or not.
-     - Requires: Value should be one of [`/output/Attributes/Error_attributes.swift.TypeValues`](x-source-tag://otelTypeValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Error.TypeValues`](x-source-tag://SemanticConventions.error.TypeValues) (of type `String`)
     */
     case type = "error.type"
 
@@ -57,7 +67,7 @@ extension SemanticConventions {
     /** 
       Describes a class of error the operation ended with.
     */
-    /// - Tag: otelTypeValues
+    /// - Tag: SemanticConventions.Error.TypeValues
     public struct TypeValues: CustomStringConvertible {
       /**
       A fallback error value to be used when the instrumentation doesn't define a custom value.

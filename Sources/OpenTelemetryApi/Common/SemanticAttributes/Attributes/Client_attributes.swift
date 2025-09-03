@@ -8,23 +8,33 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Client: String {
+  public enum Client: String {
     /**
      Client address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
-      // Examples
-      attributes[.clientAddress] = "client.example.com"
-      attributes[.clientAddress] = "10.1.2.80"
-      attributes[.clientAddress] = "/tmp/my.sock"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Client.address.rawValue] = "client.example.com"
+      attributes[SemanticConventions.Client.address.rawValue] = "10.1.2.80"
+      attributes[SemanticConventions.Client.address.rawValue] = "/tmp/my.sock"
+      ```
+
      - Note: When observed from the server side, and when communicating through an intermediary, `client.address` SHOULD represent the client address behind any intermediaries,  for example proxies, if it's available.
+
      - Requires: Value type should be `String`
     */
     case address = "client.address"
 
     /**
      Client port number.
-      // Examples
-      attributes[.clientPort] = 65123
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Client.port.rawValue] = 65123
+      ```
+
      - Note: When observed from the server side, and when communicating through an intermediary, `client.port` SHOULD represent the client port behind any intermediaries,  for example proxies, if it's available.
+
      - Requires: Value type should be `Int`
     */
     case port = "client.port"

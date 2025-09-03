@@ -8,10 +8,12 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Nodejs: String {
+  public enum Nodejs: String {
     /**
      The state of event loop time.
-     - Requires: Value should be one of [`/output/Attributes/Nodejs_attributes.swift.EventloopStateValues`](x-source-tag://otelEventloopStateValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Nodejs.EventloopStateValues`](x-source-tag://SemanticConventions.nodejs.EventloopStateValues) (of type `String`)
     */
     case eventloopState = "nodejs.eventloop.state"
 
@@ -19,7 +21,7 @@ extension SemanticConventions {
     /** 
       The state of event loop time.
     */
-    /// - Tag: otelEventloopStateValues
+    /// - Tag: SemanticConventions.Nodejs.EventloopStateValues
     public struct EventloopStateValues: CustomStringConvertible {
       /**
       Active time.

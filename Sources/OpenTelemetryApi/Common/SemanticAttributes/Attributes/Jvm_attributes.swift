@@ -8,79 +8,114 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Jvm: String {
+  public enum Jvm: String {
     /**
      Name of the buffer pool.
-      // Examples
-      attributes[.jvmBufferPoolName] = "mapped"
-      attributes[.jvmBufferPoolName] = "direct"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Jvm.bufferPoolName.rawValue] = "mapped"
+      attributes[SemanticConventions.Jvm.bufferPoolName.rawValue] = "direct"
+      ```
+
      - Note: Pool names are generally obtained via [BufferPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/BufferPoolMXBean.html#getName()).
+
      - Requires: Value type should be `String`
     */
     case bufferPoolName = "jvm.buffer.pool.name"
 
     /**
      Name of the garbage collector action.
-      // Examples
-      attributes[.jvmGcAction] = "end of minor GC"
-      attributes[.jvmGcAction] = "end of major GC"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Jvm.gcAction.rawValue] = "end of minor GC"
+      attributes[SemanticConventions.Jvm.gcAction.rawValue] = "end of major GC"
+      ```
+
      - Note: Garbage collector action is generally obtained via [GarbageCollectionNotificationInfo#getGcAction()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcAction()).
+
      - Requires: Value type should be `String`
     */
     case gcAction = "jvm.gc.action"
 
     /**
      Name of the garbage collector cause.
-      // Examples
-      attributes[.jvmGcCause] = "System.gc()"
-      attributes[.jvmGcCause] = "Allocation Failure"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Jvm.gcCause.rawValue] = "System.gc()"
+      attributes[SemanticConventions.Jvm.gcCause.rawValue] = "Allocation Failure"
+      ```
+
      - Note: Garbage collector cause is generally obtained via [GarbageCollectionNotificationInfo#getGcCause()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcCause()).
+
      - Requires: Value type should be `String`
     */
     case gcCause = "jvm.gc.cause"
 
     /**
      Name of the garbage collector.
-      // Examples
-      attributes[.jvmGcName] = "G1 Young Generation"
-      attributes[.jvmGcName] = "G1 Old Generation"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Jvm.gcName.rawValue] = "G1 Young Generation"
+      attributes[SemanticConventions.Jvm.gcName.rawValue] = "G1 Old Generation"
+      ```
+
      - Note: Garbage collector name is generally obtained via [GarbageCollectionNotificationInfo#getGcName()](https://docs.oracle.com/en/java/javase/11/docs/api/jdk.management/com/sun/management/GarbageCollectionNotificationInfo.html#getGcName()).
+
      - Requires: Value type should be `String`
     */
     case gcName = "jvm.gc.name"
 
     /**
      Name of the memory pool.
-      // Examples
-      attributes[.jvmMemoryPoolName] = "G1 Old Gen"
-      attributes[.jvmMemoryPoolName] = "G1 Eden space"
-      attributes[.jvmMemoryPoolName] = "G1 Survivor Space"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Jvm.memoryPoolName.rawValue] = "G1 Old Gen"
+      attributes[SemanticConventions.Jvm.memoryPoolName.rawValue] = "G1 Eden space"
+      attributes[SemanticConventions.Jvm.memoryPoolName.rawValue] = "G1 Survivor Space"
+      ```
+
      - Note: Pool names are generally obtained via [MemoryPoolMXBean#getName()](https://docs.oracle.com/en/java/javase/11/docs/api/java.management/java/lang/management/MemoryPoolMXBean.html#getName()).
+
      - Requires: Value type should be `String`
     */
     case memoryPoolName = "jvm.memory.pool.name"
 
     /**
      The type of memory.
-      // Examples
-      attributes[.jvmMemoryType] = heap
-      attributes[.jvmMemoryType] = non_heap
-     - Requires: Value should be one of [`/output/Attributes/Jvm_attributes.swift.MemoryTypeValues`](x-source-tag://otelMemoryTypeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Jvm.memoryType.rawValue] = .heap
+      attributes[SemanticConventions.Jvm.memoryType.rawValue] = .non_heap
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Jvm.MemoryTypeValues`](x-source-tag://SemanticConventions.jvm.MemoryTypeValues) (of type `String`)
     */
     case memoryType = "jvm.memory.type"
 
     /**
      Whether the thread is daemon or not.
+      ```
+
      - Requires: Value type should be `Bool`
     */
     case threadDaemon = "jvm.thread.daemon"
 
     /**
      State of the thread.
-      // Examples
-      attributes[.jvmThreadState] = runnable
-      attributes[.jvmThreadState] = blocked
-     - Requires: Value should be one of [`/output/Attributes/Jvm_attributes.swift.ThreadStateValues`](x-source-tag://otelThreadStateValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Jvm.threadState.rawValue] = .runnable
+      attributes[SemanticConventions.Jvm.threadState.rawValue] = .blocked
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Jvm.ThreadStateValues`](x-source-tag://SemanticConventions.jvm.ThreadStateValues) (of type `String`)
     */
     case threadState = "jvm.thread.state"
 
@@ -88,7 +123,7 @@ extension SemanticConventions {
     /** 
       The type of memory.
     */
-    /// - Tag: otelMemoryTypeValues
+    /// - Tag: SemanticConventions.Jvm.MemoryTypeValues
     public struct MemoryTypeValues: CustomStringConvertible {
       /**
       Heap memory.
@@ -113,7 +148,7 @@ extension SemanticConventions {
     /** 
       State of the thread.
     */
-    /// - Tag: otelThreadStateValues
+    /// - Tag: SemanticConventions.Jvm.ThreadStateValues
     public struct ThreadStateValues: CustomStringConvertible {
       /**
       A thread that has not yet started is in this state.

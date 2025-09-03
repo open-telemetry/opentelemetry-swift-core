@@ -8,12 +8,16 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Deployment: String {
+  public enum Deployment: String {
     /**
      Name of the [deployment environment](https://wikipedia.org/wiki/Deployment_environment) (aka deployment tier).
-      // Examples
-      attributes[.deploymentEnvironmentName] = "staging"
-      attributes[.deploymentEnvironmentName] = "production"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Deployment.environmentName.rawValue] = "staging"
+      attributes[SemanticConventions.Deployment.environmentName.rawValue] = "production"
+      ```
+
      - Note: `deployment.environment.name` does not affect the uniqueness constraints defined through
      the `service.namespace`, `service.name` and `service.instance.id` resource attributes.
      This implies that resources carrying the following attribute combinations MUST be
@@ -21,30 +25,41 @@ extension SemanticConventions {
 
      - `service.name=frontend`, `deployment.environment.name=production`
      - `service.name=frontend`, `deployment.environment.name=staging`.
+
      - Requires: Value type should be `String`
     */
     case environmentName = "deployment.environment.name"
 
     /**
      The id of the deployment.
-      // Examples
-      attributes[.deploymentId] = "1208"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Deployment.id.rawValue] = "1208"
+      ```
+
      - Requires: Value type should be `String`
     */
     case id = "deployment.id"
 
     /**
      The name of the deployment.
-      // Examples
-      attributes[.deploymentName] = "deploy my app"
-      attributes[.deploymentName] = "deploy-frontend"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Deployment.name.rawValue] = "deploy my app"
+      attributes[SemanticConventions.Deployment.name.rawValue] = "deploy-frontend"
+      ```
+
      - Requires: Value type should be `String`
     */
     case name = "deployment.name"
 
     /**
      The status of the deployment.
-     - Requires: Value should be one of [`/output/Attributes/Deployment_attributes.swift.StatusValues`](x-source-tag://otelStatusValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Deployment.StatusValues`](x-source-tag://SemanticConventions.deployment.StatusValues) (of type `String`)
     */
     case status = "deployment.status"
 
@@ -52,7 +67,7 @@ extension SemanticConventions {
     /** 
       The status of the deployment.
     */
-    /// - Tag: otelStatusValues
+    /// - Tag: SemanticConventions.Deployment.StatusValues
     public struct StatusValues: CustomStringConvertible {
       /**
       failed

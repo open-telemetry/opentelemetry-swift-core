@@ -8,81 +8,114 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Azure: String {
+  public enum Azure: String {
     /**
      The unique identifier of the client instance.
-      // Examples
-      attributes[.azureClientId] = "3ba4827d-4422-483f-b59f-85b74211c11d"
-      attributes[.azureClientId] = "storage-client-1"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Azure.clientId.rawValue] = "3ba4827d-4422-483f-b59f-85b74211c11d"
+      attributes[SemanticConventions.Azure.clientId.rawValue] = "storage-client-1"
+      ```
+
      - Requires: Value type should be `String`
     */
     case clientId = "azure.client.id"
 
     /**
      Cosmos client connection mode.
-     - Requires: Value should be one of [`/output/Attributes/Azure_attributes.swift.CosmosdbConnectionModeValues`](x-source-tag://otelCosmosdbConnectionModeValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Azure.CosmosdbConnectionModeValues`](x-source-tag://SemanticConventions.azure.CosmosdbConnectionModeValues) (of type `String`)
     */
     case cosmosdbConnectionMode = "azure.cosmosdb.connection.mode"
 
     /**
      Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
-      // Examples
-      attributes[.azureCosmosdbConsistencyLevel] = Eventual
-      attributes[.azureCosmosdbConsistencyLevel] = ConsistentPrefix
-      attributes[.azureCosmosdbConsistencyLevel] = BoundedStaleness
-      attributes[.azureCosmosdbConsistencyLevel] = Strong
-      attributes[.azureCosmosdbConsistencyLevel] = Session
-     - Requires: Value should be one of [`/output/Attributes/Azure_attributes.swift.CosmosdbConsistencyLevelValues`](x-source-tag://otelCosmosdbConsistencyLevelValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Azure.cosmosdbConsistencyLevel.rawValue] = .Eventual
+      attributes[SemanticConventions.Azure.cosmosdbConsistencyLevel.rawValue] = .ConsistentPrefix
+      attributes[SemanticConventions.Azure.cosmosdbConsistencyLevel.rawValue] = .BoundedStaleness
+      attributes[SemanticConventions.Azure.cosmosdbConsistencyLevel.rawValue] = .Strong
+      attributes[SemanticConventions.Azure.cosmosdbConsistencyLevel.rawValue] = .Session
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Azure.CosmosdbConsistencyLevelValues`](x-source-tag://SemanticConventions.azure.CosmosdbConsistencyLevelValues) (of type `String`)
     */
     case cosmosdbConsistencyLevel = "azure.cosmosdb.consistency.level"
 
     /**
      List of regions contacted during operation in the order that they were contacted. If there is more than one region listed, it indicates that the operation was performed on multiple regions i.e. cross-regional call.
-      // Examples
-      attributes[.azureCosmosdbOperationContactedRegions] = ["North Central US", "Australia East", "Australia Southeast"]
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Azure.cosmosdbOperationContactedRegions.rawValue] = ["North Central US", "Australia East", "Australia Southeast"]
+      ```
+
      - Note: Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+
      - Requires: Value type should be `[String]`
     */
     case cosmosdbOperationContactedRegions = "azure.cosmosdb.operation.contacted_regions"
 
     /**
      The number of request units consumed by the operation.
-      // Examples
-      attributes[.azureCosmosdbOperationRequestCharge] = 46.18
-      attributes[.azureCosmosdbOperationRequestCharge] = 1.0
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Azure.cosmosdbOperationRequestCharge.rawValue] = 46.18
+      attributes[SemanticConventions.Azure.cosmosdbOperationRequestCharge.rawValue] = 1.0
+      ```
+
      - Requires: Value type should be `Double`
     */
     case cosmosdbOperationRequestCharge = "azure.cosmosdb.operation.request_charge"
 
     /**
      Request payload size in bytes.
+      ```
+
      - Requires: Value type should be `Int`
     */
     case cosmosdbRequestBodySize = "azure.cosmosdb.request.body.size"
 
     /**
      Cosmos DB sub status code.
-      // Examples
-      attributes[.azureCosmosdbResponseSubStatusCode] = 1000
-      attributes[.azureCosmosdbResponseSubStatusCode] = 1002
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Azure.cosmosdbResponseSubStatusCode.rawValue] = 1000
+      attributes[SemanticConventions.Azure.cosmosdbResponseSubStatusCode.rawValue] = 1002
+      ```
+
      - Requires: Value type should be `Int`
     */
     case cosmosdbResponseSubStatusCode = "azure.cosmosdb.response.sub_status_code"
 
     /**
      [Azure Resource Provider Namespace](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-services-resource-providers) as recognized by the client.
-      // Examples
-      attributes[.azureResourceProviderNamespace] = "Microsoft.Storage"
-      attributes[.azureResourceProviderNamespace] = "Microsoft.KeyVault"
-      attributes[.azureResourceProviderNamespace] = "Microsoft.ServiceBus"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Azure.resourceProviderNamespace.rawValue] = "Microsoft.Storage"
+      attributes[SemanticConventions.Azure.resourceProviderNamespace.rawValue] = "Microsoft.KeyVault"
+      attributes[SemanticConventions.Azure.resourceProviderNamespace.rawValue] = "Microsoft.ServiceBus"
+      ```
+
      - Requires: Value type should be `String`
     */
     case resourceProviderNamespace = "azure.resource_provider.namespace"
 
     /**
      The unique identifier of the service request. It's generated by the Azure service and returned with the response.
-      // Examples
-      attributes[.azureServiceRequestId] = "00000000-0000-0000-0000-000000000000"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Azure.serviceRequestId.rawValue] = "00000000-0000-0000-0000-000000000000"
+      ```
+
      - Requires: Value type should be `String`
     */
     case serviceRequestId = "azure.service.request.id"
@@ -91,7 +124,7 @@ extension SemanticConventions {
     /** 
       Cosmos client connection mode.
     */
-    /// - Tag: otelCosmosdbConnectionModeValues
+    /// - Tag: SemanticConventions.Azure.CosmosdbConnectionModeValues
     public struct CosmosdbConnectionModeValues: CustomStringConvertible {
       /**
       Gateway (HTTP) connection.
@@ -116,7 +149,7 @@ extension SemanticConventions {
     /** 
       Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
     */
-    /// - Tag: otelCosmosdbConsistencyLevelValues
+    /// - Tag: SemanticConventions.Azure.CosmosdbConsistencyLevelValues
     public struct CosmosdbConsistencyLevelValues: CustomStringConvertible {
       /**
       Strong

@@ -8,11 +8,15 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Service: String {
+  public enum Service: String {
     /**
      The string ID of the service instance.
-      // Examples
-      attributes[.serviceInstanceId] = "627cc493-f310-47de-96bd-71410b7dec09"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Service.instanceId.rawValue] = "627cc493-f310-47de-96bd-71410b7dec09"
+      ```
+
      - Note: MUST be unique for each instance of the same `service.namespace,service.name` pair (in other words
      `service.namespace,service.name,service.instance.id` triplet MUST be globally unique). The ID helps to
      distinguish instances of the same service that exist at the same time (e.g. instances of a horizontally scaled
@@ -39,33 +43,48 @@ extension SemanticConventions {
      However, Collectors can set the `service.instance.id` if they can unambiguously determine the service instance
      for that telemetry. This is typically the case for scraping receivers, as they know the target address and
      port.
+
      - Requires: Value type should be `String`
     */
     case instanceId = "service.instance.id"
 
     /**
      Logical name of the service.
-      // Examples
-      attributes[.serviceName] = "shoppingcart"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Service.name.rawValue] = "shoppingcart"
+      ```
+
      - Note: MUST be the same for all instances of horizontally scaled services. If the value was not specified, SDKs MUST fallback to `unknown_service:` concatenated with [`process.executable.name`](process.md), e.g. `unknown_service:bash`. If `process.executable.name` is not available, the value MUST be set to `unknown_service`.
+
      - Requires: Value type should be `String`
     */
     case name = "service.name"
 
     /**
      A namespace for `service.name`.
-      // Examples
-      attributes[.serviceNamespace] = "Shop"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Service.namespace.rawValue] = "Shop"
+      ```
+
      - Note: A string value having a meaning that helps to distinguish a group of services, for example the team name that owns a group of services. `service.name` is expected to be unique within the same namespace. If `service.namespace` is not specified in the Resource then `service.name` is expected to be unique for all services that have no explicit namespace defined (so the empty/unspecified namespace is simply one more valid namespace). Zero-length namespace string is assumed equal to unspecified namespace.
+
      - Requires: Value type should be `String`
     */
     case namespace = "service.namespace"
 
     /**
      The version string of the service API or implementation. The format is not defined by these conventions.
-      // Examples
-      attributes[.serviceVersion] = "2.0.0"
-      attributes[.serviceVersion] = "a01dbef8a"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Service.version.rawValue] = "2.0.0"
+      attributes[SemanticConventions.Service.version.rawValue] = "a01dbef8a"
+      ```
+
      - Requires: Value type should be `String`
     */
     case version = "service.version"

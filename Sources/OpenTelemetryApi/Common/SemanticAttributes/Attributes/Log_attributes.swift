@@ -8,61 +8,89 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Log: String {
+  public enum Log: String {
     /**
      The basename of the file.
-      // Examples
-      attributes[.logFileName] = "audit.log"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Log.fileName.rawValue] = "audit.log"
+      ```
+
      - Requires: Value type should be `String`
     */
     case fileName = "log.file.name"
 
     /**
      The basename of the file, with symlinks resolved.
-      // Examples
-      attributes[.logFileNameResolved] = "uuid.log"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Log.fileNameResolved.rawValue] = "uuid.log"
+      ```
+
      - Requires: Value type should be `String`
     */
     case fileNameResolved = "log.file.name_resolved"
 
     /**
      The full path to the file.
-      // Examples
-      attributes[.logFilePath] = "/var/log/mysql/audit.log"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Log.filePath.rawValue] = "/var/log/mysql/audit.log"
+      ```
+
      - Requires: Value type should be `String`
     */
     case filePath = "log.file.path"
 
     /**
      The full path to the file, with symlinks resolved.
-      // Examples
-      attributes[.logFilePathResolved] = "/var/lib/docker/uuid.log"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Log.filePathResolved.rawValue] = "/var/lib/docker/uuid.log"
+      ```
+
      - Requires: Value type should be `String`
     */
     case filePathResolved = "log.file.path_resolved"
 
     /**
      The stream associated with the log. See below for a list of well-known values.
-     - Requires: Value should be one of [`/output/Attributes/Log_attributes.swift.IostreamValues`](x-source-tag://otelIostreamValues) (of type `String`)
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Log.IostreamValues`](x-source-tag://SemanticConventions.log.IostreamValues) (of type `String`)
     */
     case iostream = "log.iostream"
 
     /**
      The complete original Log Record.
-      // Examples
-      attributes[.logRecordOriginal] = "77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened"
-      attributes[.logRecordOriginal] = "[INFO] 8/3/24 12:34:56 Something happened"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Log.recordOriginal.rawValue] = "77 <86>1 2015-08-06T21:58:59.694Z 192.168.2.133 inactive - - - Something happened"
+      attributes[SemanticConventions.Log.recordOriginal.rawValue] = "[INFO] 8/3/24 12:34:56 Something happened"
+      ```
+
      - Note: This value MAY be added when processing a Log Record which was originally transmitted as a string or equivalent data type AND the Body field of the Log Record does not contain the same value. (e.g. a syslog or a log record read from a file.)
+
      - Requires: Value type should be `String`
     */
     case recordOriginal = "log.record.original"
 
     /**
      A unique identifier for the Log Record.
-      // Examples
-      attributes[.logRecordUid] = "01ARZ3NDEKTSV4RRFFQ69G5FAV"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Log.recordUid.rawValue] = "01ARZ3NDEKTSV4RRFFQ69G5FAV"
+      ```
+
      - Note: If an id is provided, other log records with the same id will be considered duplicates and can be removed safely. This means, that two distinguishable log records MUST have different values.
      The id MAY be an [Universally Unique Lexicographically Sortable Identifier (ULID)](https://github.com/ulid/spec), but other identifiers (e.g. UUID) may be used as needed.
+
      - Requires: Value type should be `String`
     */
     case recordUid = "log.record.uid"
@@ -71,7 +99,7 @@ extension SemanticConventions {
     /** 
       The stream associated with the log. See below for a list of well-known values.
     */
-    /// - Tag: otelIostreamValues
+    /// - Tag: SemanticConventions.Log.IostreamValues
     public struct IostreamValues: CustomStringConvertible {
       /**
       Logs from stdout stream

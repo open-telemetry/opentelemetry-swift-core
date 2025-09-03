@@ -8,19 +8,27 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum K8s: String {
+  public enum K8s: String {
     /**
      The name of the cluster.
-      // Examples
-      attributes[.k8sClusterName] = "opentelemetry-cluster"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.clusterName.rawValue] = "opentelemetry-cluster"
+      ```
+
      - Requires: Value type should be `String`
     */
     case clusterName = "k8s.cluster.name"
 
     /**
      A pseudo-ID for the cluster, set to the UID of the `kube-system` namespace.
-      // Examples
-      attributes[.k8sClusterUid] = "218fc5a9-a5f1-4b54-aa05-46717d0ab26d"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.clusterUid.rawValue] = "218fc5a9-a5f1-4b54-aa05-46717d0ab26d"
+      ```
+
      - Note: K8s doesn't have support for obtaining a cluster ID. If this is ever
      added, we will recommend collecting the `k8s.cluster.uid` through the
      official APIs. In the meantime, we are able to use the `uid` of the
@@ -43,388 +51,544 @@ extension SemanticConventions {
 
      Therefore, UIDs between clusters should be extremely unlikely to
      conflict.
+
      - Requires: Value type should be `String`
     */
     case clusterUid = "k8s.cluster.uid"
 
     /**
      The name of the Container from Pod specification, must be unique within a Pod. Container runtime usually uses different globally unique name (`container.name`).
-      // Examples
-      attributes[.k8sContainerName] = "redis"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.containerName.rawValue] = "redis"
+      ```
+
      - Requires: Value type should be `String`
     */
     case containerName = "k8s.container.name"
 
     /**
      Number of times the container was restarted. This attribute can be used to identify a particular container (running or stopped) within a container spec.
+      ```
+
      - Requires: Value type should be `Int`
     */
     case containerRestartCount = "k8s.container.restart_count"
 
     /**
      Last terminated reason of the Container.
-      // Examples
-      attributes[.k8sContainerStatusLastTerminatedReason] = "Evicted"
-      attributes[.k8sContainerStatusLastTerminatedReason] = "Error"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.containerStatusLastTerminatedReason.rawValue] = "Evicted"
+      attributes[SemanticConventions.K8s.containerStatusLastTerminatedReason.rawValue] = "Error"
+      ```
+
      - Requires: Value type should be `String`
     */
     case containerStatusLastTerminatedReason = "k8s.container.status.last_terminated_reason"
 
     /**
      The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
-      // Examples
-      attributes[.k8sContainerStatusReason] = ContainerCreating
-      attributes[.k8sContainerStatusReason] = CrashLoopBackOff
-      attributes[.k8sContainerStatusReason] = CreateContainerConfigError
-      attributes[.k8sContainerStatusReason] = ErrImagePull
-      attributes[.k8sContainerStatusReason] = ImagePullBackOff
-      attributes[.k8sContainerStatusReason] = OOMKilled
-      attributes[.k8sContainerStatusReason] = Completed
-      attributes[.k8sContainerStatusReason] = Error
-      attributes[.k8sContainerStatusReason] = ContainerCannotRun
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.ContainerStatusReasonValues`](x-source-tag://otelContainerStatusReasonValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.containerStatusReason.rawValue] = .ContainerCreating
+      attributes[SemanticConventions.K8s.containerStatusReason.rawValue] = .CrashLoopBackOff
+      attributes[SemanticConventions.K8s.containerStatusReason.rawValue] = .CreateContainerConfigError
+      attributes[SemanticConventions.K8s.containerStatusReason.rawValue] = .ErrImagePull
+      attributes[SemanticConventions.K8s.containerStatusReason.rawValue] = .ImagePullBackOff
+      attributes[SemanticConventions.K8s.containerStatusReason.rawValue] = .OOMKilled
+      attributes[SemanticConventions.K8s.containerStatusReason.rawValue] = .Completed
+      attributes[SemanticConventions.K8s.containerStatusReason.rawValue] = .Error
+      attributes[SemanticConventions.K8s.containerStatusReason.rawValue] = .ContainerCannotRun
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.K8s.ContainerStatusReasonValues`](x-source-tag://SemanticConventions.k8s.ContainerStatusReasonValues) (of type `String`)
     */
     case containerStatusReason = "k8s.container.status.reason"
 
     /**
      The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
-      // Examples
-      attributes[.k8sContainerStatusState] = terminated
-      attributes[.k8sContainerStatusState] = running
-      attributes[.k8sContainerStatusState] = waiting
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.ContainerStatusStateValues`](x-source-tag://otelContainerStatusStateValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.containerStatusState.rawValue] = .terminated
+      attributes[SemanticConventions.K8s.containerStatusState.rawValue] = .running
+      attributes[SemanticConventions.K8s.containerStatusState.rawValue] = .waiting
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.K8s.ContainerStatusStateValues`](x-source-tag://SemanticConventions.k8s.ContainerStatusStateValues) (of type `String`)
     */
     case containerStatusState = "k8s.container.status.state"
 
     /**
      The cronjob annotation placed on the CronJob, the `<key>` being the annotation name, the value being the annotation value.
-      // Examples
-      attributes[.k8sCronjobAnnotation] = "4"
-      attributes[.k8sCronjobAnnotation] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.cronjobAnnotation.rawValue] = "4"
+      attributes[SemanticConventions.K8s.cronjobAnnotation.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - An annotation `retries` with value `4` SHOULD be recorded as the
        `k8s.cronjob.annotation.retries` attribute with value `"4"`.
      - An annotation `data` with empty string value SHOULD be recorded as
        the `k8s.cronjob.annotation.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case cronjobAnnotation = "k8s.cronjob.annotation"
 
     /**
      The label placed on the CronJob, the `<key>` being the label name, the value being the label value.
-      // Examples
-      attributes[.k8sCronjobLabel] = "weekly"
-      attributes[.k8sCronjobLabel] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.cronjobLabel.rawValue] = "weekly"
+      attributes[SemanticConventions.K8s.cronjobLabel.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `type` with value `weekly` SHOULD be recorded as the
        `k8s.cronjob.label.type` attribute with value `"weekly"`.
      - A label `automated` with empty string value SHOULD be recorded as
        the `k8s.cronjob.label.automated` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case cronjobLabel = "k8s.cronjob.label"
 
     /**
      The name of the CronJob.
-      // Examples
-      attributes[.k8sCronjobName] = "opentelemetry"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.cronjobName.rawValue] = "opentelemetry"
+      ```
+
      - Requires: Value type should be `String`
     */
     case cronjobName = "k8s.cronjob.name"
 
     /**
      The UID of the CronJob.
-      // Examples
-      attributes[.k8sCronjobUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.cronjobUid.rawValue] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+      ```
+
      - Requires: Value type should be `String`
     */
     case cronjobUid = "k8s.cronjob.uid"
 
     /**
      The annotation placed on the DaemonSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-      // Examples
-      attributes[.k8sDaemonsetAnnotation] = "1"
-      attributes[.k8sDaemonsetAnnotation] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.daemonsetAnnotation.rawValue] = "1"
+      attributes[SemanticConventions.K8s.daemonsetAnnotation.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `replicas` with value `1` SHOULD be recorded
        as the `k8s.daemonset.annotation.replicas` attribute with value `"1"`.
      - A label `data` with empty string value SHOULD be recorded as
        the `k8s.daemonset.annotation.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case daemonsetAnnotation = "k8s.daemonset.annotation"
 
     /**
      The label placed on the DaemonSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
-      // Examples
-      attributes[.k8sDaemonsetLabel] = "guestbook"
-      attributes[.k8sDaemonsetLabel] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.daemonsetLabel.rawValue] = "guestbook"
+      attributes[SemanticConventions.K8s.daemonsetLabel.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `app` with value `guestbook` SHOULD be recorded
        as the `k8s.daemonset.label.app` attribute with value `"guestbook"`.
      - A label `data` with empty string value SHOULD be recorded as
        the `k8s.daemonset.label.injected` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case daemonsetLabel = "k8s.daemonset.label"
 
     /**
      The name of the DaemonSet.
-      // Examples
-      attributes[.k8sDaemonsetName] = "opentelemetry"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.daemonsetName.rawValue] = "opentelemetry"
+      ```
+
      - Requires: Value type should be `String`
     */
     case daemonsetName = "k8s.daemonset.name"
 
     /**
      The UID of the DaemonSet.
-      // Examples
-      attributes[.k8sDaemonsetUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.daemonsetUid.rawValue] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+      ```
+
      - Requires: Value type should be `String`
     */
     case daemonsetUid = "k8s.daemonset.uid"
 
     /**
      The annotation placed on the Deployment, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-      // Examples
-      attributes[.k8sDeploymentAnnotation] = "1"
-      attributes[.k8sDeploymentAnnotation] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.deploymentAnnotation.rawValue] = "1"
+      attributes[SemanticConventions.K8s.deploymentAnnotation.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `replicas` with value `1` SHOULD be recorded
        as the `k8s.deployment.annotation.replicas` attribute with value `"1"`.
      - A label `data` with empty string value SHOULD be recorded as
        the `k8s.deployment.annotation.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case deploymentAnnotation = "k8s.deployment.annotation"
 
     /**
      The label placed on the Deployment, the `<key>` being the label name, the value being the label value, even if the value is empty.
-      // Examples
-      attributes[.k8sDeploymentLabel] = "guestbook"
-      attributes[.k8sDeploymentLabel] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.deploymentLabel.rawValue] = "guestbook"
+      attributes[SemanticConventions.K8s.deploymentLabel.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `replicas` with value `0` SHOULD be recorded
        as the `k8s.deployment.label.app` attribute with value `"guestbook"`.
      - A label `injected` with empty string value SHOULD be recorded as
        the `k8s.deployment.label.injected` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case deploymentLabel = "k8s.deployment.label"
 
     /**
      The name of the Deployment.
-      // Examples
-      attributes[.k8sDeploymentName] = "opentelemetry"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.deploymentName.rawValue] = "opentelemetry"
+      ```
+
      - Requires: Value type should be `String`
     */
     case deploymentName = "k8s.deployment.name"
 
     /**
      The UID of the Deployment.
-      // Examples
-      attributes[.k8sDeploymentUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.deploymentUid.rawValue] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+      ```
+
      - Requires: Value type should be `String`
     */
     case deploymentUid = "k8s.deployment.uid"
 
     /**
      The type of metric source for the horizontal pod autoscaler.
-      // Examples
-      attributes[.k8sHpaMetricType] = "Resource"
-      attributes[.k8sHpaMetricType] = "ContainerResource"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.hpaMetricType.rawValue] = "Resource"
+      attributes[SemanticConventions.K8s.hpaMetricType.rawValue] = "ContainerResource"
+      ```
+
      - Note: This attribute reflects the `type` field of spec.metrics[] in the HPA.
+
      - Requires: Value type should be `String`
     */
     case hpaMetricType = "k8s.hpa.metric.type"
 
     /**
      The name of the horizontal pod autoscaler.
-      // Examples
-      attributes[.k8sHpaName] = "opentelemetry"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.hpaName.rawValue] = "opentelemetry"
+      ```
+
      - Requires: Value type should be `String`
     */
     case hpaName = "k8s.hpa.name"
 
     /**
      The API version of the target resource to scale for the HorizontalPodAutoscaler.
-      // Examples
-      attributes[.k8sHpaScaletargetrefApiVersion] = "apps/v1"
-      attributes[.k8sHpaScaletargetrefApiVersion] = "autoscaling/v2"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.hpaScaletargetrefApiVersion.rawValue] = "apps/v1"
+      attributes[SemanticConventions.K8s.hpaScaletargetrefApiVersion.rawValue] = "autoscaling/v2"
+      ```
+
      - Note: This maps to the `apiVersion` field in the `scaleTargetRef` of the HPA spec.
+
      - Requires: Value type should be `String`
     */
     case hpaScaletargetrefApiVersion = "k8s.hpa.scaletargetref.api_version"
 
     /**
      The kind of the target resource to scale for the HorizontalPodAutoscaler.
-      // Examples
-      attributes[.k8sHpaScaletargetrefKind] = "Deployment"
-      attributes[.k8sHpaScaletargetrefKind] = "StatefulSet"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.hpaScaletargetrefKind.rawValue] = "Deployment"
+      attributes[SemanticConventions.K8s.hpaScaletargetrefKind.rawValue] = "StatefulSet"
+      ```
+
      - Note: This maps to the `kind` field in the `scaleTargetRef` of the HPA spec.
+
      - Requires: Value type should be `String`
     */
     case hpaScaletargetrefKind = "k8s.hpa.scaletargetref.kind"
 
     /**
      The name of the target resource to scale for the HorizontalPodAutoscaler.
-      // Examples
-      attributes[.k8sHpaScaletargetrefName] = "my-deployment"
-      attributes[.k8sHpaScaletargetrefName] = "my-statefulset"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.hpaScaletargetrefName.rawValue] = "my-deployment"
+      attributes[SemanticConventions.K8s.hpaScaletargetrefName.rawValue] = "my-statefulset"
+      ```
+
      - Note: This maps to the `name` field in the `scaleTargetRef` of the HPA spec.
+
      - Requires: Value type should be `String`
     */
     case hpaScaletargetrefName = "k8s.hpa.scaletargetref.name"
 
     /**
      The UID of the horizontal pod autoscaler.
-      // Examples
-      attributes[.k8sHpaUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.hpaUid.rawValue] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+      ```
+
      - Requires: Value type should be `String`
     */
     case hpaUid = "k8s.hpa.uid"
 
     /**
      The size (identifier) of the K8s huge page.
-      // Examples
-      attributes[.k8sHugepageSize] = "2Mi"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.hugepageSize.rawValue] = "2Mi"
+      ```
+
      - Requires: Value type should be `String`
     */
     case hugepageSize = "k8s.hugepage.size"
 
     /**
      The annotation placed on the Job, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-      // Examples
-      attributes[.k8sJobAnnotation] = "1"
-      attributes[.k8sJobAnnotation] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.jobAnnotation.rawValue] = "1"
+      attributes[SemanticConventions.K8s.jobAnnotation.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `number` with value `1` SHOULD be recorded
        as the `k8s.job.annotation.number` attribute with value `"1"`.
      - A label `data` with empty string value SHOULD be recorded as
        the `k8s.job.annotation.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case jobAnnotation = "k8s.job.annotation"
 
     /**
      The label placed on the Job, the `<key>` being the label name, the value being the label value, even if the value is empty.
-      // Examples
-      attributes[.k8sJobLabel] = "ci"
-      attributes[.k8sJobLabel] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.jobLabel.rawValue] = "ci"
+      attributes[SemanticConventions.K8s.jobLabel.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `jobtype` with value `ci` SHOULD be recorded
        as the `k8s.job.label.jobtype` attribute with value `"ci"`.
      - A label `data` with empty string value SHOULD be recorded as
        the `k8s.job.label.automated` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case jobLabel = "k8s.job.label"
 
     /**
      The name of the Job.
-      // Examples
-      attributes[.k8sJobName] = "opentelemetry"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.jobName.rawValue] = "opentelemetry"
+      ```
+
      - Requires: Value type should be `String`
     */
     case jobName = "k8s.job.name"
 
     /**
      The UID of the Job.
-      // Examples
-      attributes[.k8sJobUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.jobUid.rawValue] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+      ```
+
      - Requires: Value type should be `String`
     */
     case jobUid = "k8s.job.uid"
 
     /**
      The annotation placed on the Namespace, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-      // Examples
-      attributes[.k8sNamespaceAnnotation] = "0"
-      attributes[.k8sNamespaceAnnotation] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.namespaceAnnotation.rawValue] = "0"
+      attributes[SemanticConventions.K8s.namespaceAnnotation.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `ttl` with value `0` SHOULD be recorded
        as the `k8s.namespace.annotation.ttl` attribute with value `"0"`.
      - A label `data` with empty string value SHOULD be recorded as
        the `k8s.namespace.annotation.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case namespaceAnnotation = "k8s.namespace.annotation"
 
     /**
      The label placed on the Namespace, the `<key>` being the label name, the value being the label value, even if the value is empty.
-      // Examples
-      attributes[.k8sNamespaceLabel] = "default"
-      attributes[.k8sNamespaceLabel] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.namespaceLabel.rawValue] = "default"
+      attributes[SemanticConventions.K8s.namespaceLabel.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `kubernetes.io/metadata.name` with value `default` SHOULD be recorded
        as the `k8s.namespace.label.kubernetes.io/metadata.name` attribute with value `"default"`.
      - A label `data` with empty string value SHOULD be recorded as
        the `k8s.namespace.label.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case namespaceLabel = "k8s.namespace.label"
 
     /**
      The name of the namespace that the pod is running in.
-      // Examples
-      attributes[.k8sNamespaceName] = "default"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.namespaceName.rawValue] = "default"
+      ```
+
      - Requires: Value type should be `String`
     */
     case namespaceName = "k8s.namespace.name"
 
     /**
      The phase of the K8s namespace.
-      // Examples
-      attributes[.k8sNamespacePhase] = active
-      attributes[.k8sNamespacePhase] = terminating
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.namespacePhase.rawValue] = .active
+      attributes[SemanticConventions.K8s.namespacePhase.rawValue] = .terminating
+      ```
+
      - Note: This attribute aligns with the `phase` field of the
      [K8s NamespaceStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#namespacestatus-v1-core)
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.NamespacePhaseValues`](x-source-tag://otelNamespacePhaseValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.K8s.NamespacePhaseValues`](x-source-tag://SemanticConventions.k8s.NamespacePhaseValues) (of type `String`)
     */
     case namespacePhase = "k8s.namespace.phase"
 
     /**
      The annotation placed on the Node, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-      // Examples
-      attributes[.k8sNodeAnnotation] = "0"
-      attributes[.k8sNodeAnnotation] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.nodeAnnotation.rawValue] = "0"
+      attributes[SemanticConventions.K8s.nodeAnnotation.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - An annotation `node.alpha.kubernetes.io/ttl` with value `0` SHOULD be recorded as
        the `k8s.node.annotation.node.alpha.kubernetes.io/ttl` attribute with value `"0"`.
      - An annotation `data` with empty string value SHOULD be recorded as
        the `k8s.node.annotation.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case nodeAnnotation = "k8s.node.annotation"
 
     /**
      The status of the condition, one of True, False, Unknown.
-      // Examples
-      attributes[.k8sNodeConditionStatus] = true
-      attributes[.k8sNodeConditionStatus] = false
-      attributes[.k8sNodeConditionStatus] = unknown
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.nodeConditionStatus.rawValue] = .true
+      attributes[SemanticConventions.K8s.nodeConditionStatus.rawValue] = .false
+      attributes[SemanticConventions.K8s.nodeConditionStatus.rawValue] = .unknown
+      ```
+
      - Note: This attribute aligns with the `status` field of the
      [NodeCondition](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#nodecondition-v1-core)
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.NodeConditionStatusValues`](x-source-tag://otelNodeConditionStatusValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.K8s.NodeConditionStatusValues`](x-source-tag://SemanticConventions.k8s.NodeConditionStatusValues) (of type `String`)
     */
     case nodeConditionStatus = "k8s.node.condition.status"
 
     /**
      The condition type of a K8s Node.
-      // Examples
-      attributes[.k8sNodeConditionType] = Ready
-      attributes[.k8sNodeConditionType] = DiskPressure
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.nodeConditionType.rawValue] = .Ready
+      attributes[SemanticConventions.K8s.nodeConditionType.rawValue] = .DiskPressure
+      ```
+
      - Note: K8s Node conditions as described
      by [K8s documentation](https://v1-32.docs.kubernetes.io/docs/reference/node/node-status/#condition).
 
@@ -434,47 +598,65 @@ extension SemanticConventions {
      The set of possible values is not limited to those listed here. Managed Kubernetes environments,
      or custom controllers MAY introduce additional node condition types.
      When this occurs, the exact value as reported by the Kubernetes API SHOULD be used.
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.NodeConditionTypeValues`](x-source-tag://otelNodeConditionTypeValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.K8s.NodeConditionTypeValues`](x-source-tag://SemanticConventions.k8s.NodeConditionTypeValues) (of type `String`)
     */
     case nodeConditionType = "k8s.node.condition.type"
 
     /**
      The label placed on the Node, the `<key>` being the label name, the value being the label value, even if the value is empty.
-      // Examples
-      attributes[.k8sNodeLabel] = "arm64"
-      attributes[.k8sNodeLabel] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.nodeLabel.rawValue] = "arm64"
+      attributes[SemanticConventions.K8s.nodeLabel.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `kubernetes.io/arch` with value `arm64` SHOULD be recorded
        as the `k8s.node.label.kubernetes.io/arch` attribute with value `"arm64"`.
      - A label `data` with empty string value SHOULD be recorded as
        the `k8s.node.label.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case nodeLabel = "k8s.node.label"
 
     /**
      The name of the Node.
-      // Examples
-      attributes[.k8sNodeName] = "node-1"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.nodeName.rawValue] = "node-1"
+      ```
+
      - Requires: Value type should be `String`
     */
     case nodeName = "k8s.node.name"
 
     /**
      The UID of the Node.
-      // Examples
-      attributes[.k8sNodeUid] = "1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.nodeUid.rawValue] = "1eb3a0c6-0477-4080-a9cb-0cb7db65c6a2"
+      ```
+
      - Requires: Value type should be `String`
     */
     case nodeUid = "k8s.node.uid"
 
     /**
      The annotation placed on the Pod, the `<key>` being the annotation name, the value being the annotation value.
-      // Examples
-      attributes[.k8sPodAnnotation] = "true"
-      attributes[.k8sPodAnnotation] = "x64"
-      attributes[.k8sPodAnnotation] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.podAnnotation.rawValue] = "true"
+      attributes[SemanticConventions.K8s.podAnnotation.rawValue] = "x64"
+      attributes[SemanticConventions.K8s.podAnnotation.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - An annotation `kubernetes.io/enforce-mountable-secrets` with value `true` SHOULD be recorded as
@@ -483,16 +665,21 @@ extension SemanticConventions {
        the `k8s.pod.annotation.mycompany.io/arch` attribute with value `"x64"`.
      - An annotation `data` with empty string value SHOULD be recorded as
        the `k8s.pod.annotation.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case podAnnotation = "k8s.pod.annotation"
 
     /**
      The label placed on the Pod, the `<key>` being the label name, the value being the label value.
-      // Examples
-      attributes[.k8sPodLabel] = "my-app"
-      attributes[.k8sPodLabel] = "x64"
-      attributes[.k8sPodLabel] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.podLabel.rawValue] = "my-app"
+      attributes[SemanticConventions.K8s.podLabel.rawValue] = "x64"
+      attributes[SemanticConventions.K8s.podLabel.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `app` with value `my-app` SHOULD be recorded as
@@ -501,181 +688,259 @@ extension SemanticConventions {
        the `k8s.pod.label.mycompany.io/arch` attribute with value `"x64"`.
      - A label `data` with empty string value SHOULD be recorded as
        the `k8s.pod.label.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case podLabel = "k8s.pod.label"
 
     /**
      The name of the Pod.
-      // Examples
-      attributes[.k8sPodName] = "opentelemetry-pod-autoconf"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.podName.rawValue] = "opentelemetry-pod-autoconf"
+      ```
+
      - Requires: Value type should be `String`
     */
     case podName = "k8s.pod.name"
 
     /**
      The UID of the Pod.
-      // Examples
-      attributes[.k8sPodUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.podUid.rawValue] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+      ```
+
      - Requires: Value type should be `String`
     */
     case podUid = "k8s.pod.uid"
 
     /**
      The annotation placed on the ReplicaSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-      // Examples
-      attributes[.k8sReplicasetAnnotation] = "0"
-      attributes[.k8sReplicasetAnnotation] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.replicasetAnnotation.rawValue] = "0"
+      attributes[SemanticConventions.K8s.replicasetAnnotation.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `replicas` with value `0` SHOULD be recorded
        as the `k8s.replicaset.annotation.replicas` attribute with value `"0"`.
      - A label `data` with empty string value SHOULD be recorded as
        the `k8s.replicaset.annotation.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case replicasetAnnotation = "k8s.replicaset.annotation"
 
     /**
      The label placed on the ReplicaSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
-      // Examples
-      attributes[.k8sReplicasetLabel] = "guestbook"
-      attributes[.k8sReplicasetLabel] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.replicasetLabel.rawValue] = "guestbook"
+      attributes[SemanticConventions.K8s.replicasetLabel.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `app` with value `guestbook` SHOULD be recorded
        as the `k8s.replicaset.label.app` attribute with value `"guestbook"`.
      - A label `injected` with empty string value SHOULD be recorded as
        the `k8s.replicaset.label.injected` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case replicasetLabel = "k8s.replicaset.label"
 
     /**
      The name of the ReplicaSet.
-      // Examples
-      attributes[.k8sReplicasetName] = "opentelemetry"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.replicasetName.rawValue] = "opentelemetry"
+      ```
+
      - Requires: Value type should be `String`
     */
     case replicasetName = "k8s.replicaset.name"
 
     /**
      The UID of the ReplicaSet.
-      // Examples
-      attributes[.k8sReplicasetUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.replicasetUid.rawValue] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+      ```
+
      - Requires: Value type should be `String`
     */
     case replicasetUid = "k8s.replicaset.uid"
 
     /**
      The name of the replication controller.
-      // Examples
-      attributes[.k8sReplicationcontrollerName] = "opentelemetry"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.replicationcontrollerName.rawValue] = "opentelemetry"
+      ```
+
      - Requires: Value type should be `String`
     */
     case replicationcontrollerName = "k8s.replicationcontroller.name"
 
     /**
      The UID of the replication controller.
-      // Examples
-      attributes[.k8sReplicationcontrollerUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.replicationcontrollerUid.rawValue] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+      ```
+
      - Requires: Value type should be `String`
     */
     case replicationcontrollerUid = "k8s.replicationcontroller.uid"
 
     /**
      The name of the resource quota.
-      // Examples
-      attributes[.k8sResourcequotaName] = "opentelemetry"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.resourcequotaName.rawValue] = "opentelemetry"
+      ```
+
      - Requires: Value type should be `String`
     */
     case resourcequotaName = "k8s.resourcequota.name"
 
     /**
      The name of the K8s resource a resource quota defines.
-      // Examples
-      attributes[.k8sResourcequotaResourceName] = "count/replicationcontrollers"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.resourcequotaResourceName.rawValue] = "count/replicationcontrollers"
+      ```
+
      - Note: The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota) for more details.
+
      - Requires: Value type should be `String`
     */
     case resourcequotaResourceName = "k8s.resourcequota.resource_name"
 
     /**
      The UID of the resource quota.
-      // Examples
-      attributes[.k8sResourcequotaUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.resourcequotaUid.rawValue] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+      ```
+
      - Requires: Value type should be `String`
     */
     case resourcequotaUid = "k8s.resourcequota.uid"
 
     /**
      The annotation placed on the StatefulSet, the `<key>` being the annotation name, the value being the annotation value, even if the value is empty.
-      // Examples
-      attributes[.k8sStatefulsetAnnotation] = "1"
-      attributes[.k8sStatefulsetAnnotation] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.statefulsetAnnotation.rawValue] = "1"
+      attributes[SemanticConventions.K8s.statefulsetAnnotation.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `replicas` with value `1` SHOULD be recorded
        as the `k8s.statefulset.annotation.replicas` attribute with value `"1"`.
      - A label `data` with empty string value SHOULD be recorded as
        the `k8s.statefulset.annotation.data` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case statefulsetAnnotation = "k8s.statefulset.annotation"
 
     /**
      The label placed on the StatefulSet, the `<key>` being the label name, the value being the label value, even if the value is empty.
-      // Examples
-      attributes[.k8sStatefulsetLabel] = "guestbook"
-      attributes[.k8sStatefulsetLabel] = ""
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.statefulsetLabel.rawValue] = "guestbook"
+      attributes[SemanticConventions.K8s.statefulsetLabel.rawValue] = ""
+      ```
+
      - Note: Examples:
 
      - A label `replicas` with value `0` SHOULD be recorded
        as the `k8s.statefulset.label.app` attribute with value `"guestbook"`.
      - A label `injected` with empty string value SHOULD be recorded as
        the `k8s.statefulset.label.injected` attribute with value `""`.
+
      - Requires: Value type should be `template[string]`
     */
     case statefulsetLabel = "k8s.statefulset.label"
 
     /**
      The name of the StatefulSet.
-      // Examples
-      attributes[.k8sStatefulsetName] = "opentelemetry"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.statefulsetName.rawValue] = "opentelemetry"
+      ```
+
      - Requires: Value type should be `String`
     */
     case statefulsetName = "k8s.statefulset.name"
 
     /**
      The UID of the StatefulSet.
-      // Examples
-      attributes[.k8sStatefulsetUid] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.statefulsetUid.rawValue] = "275ecb36-5aa8-4c2a-9c47-d8bb681b9aff"
+      ```
+
      - Requires: Value type should be `String`
     */
     case statefulsetUid = "k8s.statefulset.uid"
 
     /**
      The name of K8s [StorageClass](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#storageclass-v1-storage-k8s-io) object.
-      // Examples
-      attributes[.k8sStorageclassName] = "gold.storageclass.storage.k8s.io"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.storageclassName.rawValue] = "gold.storageclass.storage.k8s.io"
+      ```
+
      - Requires: Value type should be `String`
     */
     case storageclassName = "k8s.storageclass.name"
 
     /**
      The name of the K8s volume.
-      // Examples
-      attributes[.k8sVolumeName] = "volume0"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.volumeName.rawValue] = "volume0"
+      ```
+
      - Requires: Value type should be `String`
     */
     case volumeName = "k8s.volume.name"
 
     /**
      The type of the K8s volume.
-      // Examples
-      attributes[.k8sVolumeType] = emptyDir
-      attributes[.k8sVolumeType] = persistentVolumeClaim
-     - Requires: Value should be one of [`/output/Attributes/K8s_attributes.swift.VolumeTypeValues`](x-source-tag://otelVolumeTypeValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.volumeType.rawValue] = .emptyDir
+      attributes[SemanticConventions.K8s.volumeType.rawValue] = .persistentVolumeClaim
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.K8s.VolumeTypeValues`](x-source-tag://SemanticConventions.k8s.VolumeTypeValues) (of type `String`)
     */
     case volumeType = "k8s.volume.type"
 
@@ -683,7 +948,7 @@ extension SemanticConventions {
     /** 
       The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
     */
-    /// - Tag: otelContainerStatusReasonValues
+    /// - Tag: SemanticConventions.K8s.ContainerStatusReasonValues
     public struct ContainerStatusReasonValues: CustomStringConvertible {
       /**
       The container is being created.
@@ -736,7 +1001,7 @@ extension SemanticConventions {
     /** 
       The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
     */
-    /// - Tag: otelContainerStatusStateValues
+    /// - Tag: SemanticConventions.K8s.ContainerStatusStateValues
     public struct ContainerStatusStateValues: CustomStringConvertible {
       /**
       The container has terminated.
@@ -765,7 +1030,7 @@ extension SemanticConventions {
     /** 
       The phase of the K8s namespace.
     */
-    /// - Tag: otelNamespacePhaseValues
+    /// - Tag: SemanticConventions.K8s.NamespacePhaseValues
     public struct NamespacePhaseValues: CustomStringConvertible {
       /**
       Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)
@@ -790,7 +1055,7 @@ extension SemanticConventions {
     /** 
       The status of the condition, one of True, False, Unknown.
     */
-    /// - Tag: otelNodeConditionStatusValues
+    /// - Tag: SemanticConventions.K8s.NodeConditionStatusValues
     public struct NodeConditionStatusValues: CustomStringConvertible {
       public static let conditionTrue = NodeConditionStatusValues("true") 
       public static let conditionFalse = NodeConditionStatusValues("false") 
@@ -810,7 +1075,7 @@ extension SemanticConventions {
     /** 
       The condition type of a K8s Node.
     */
-    /// - Tag: otelNodeConditionTypeValues
+    /// - Tag: SemanticConventions.K8s.NodeConditionTypeValues
     public struct NodeConditionTypeValues: CustomStringConvertible {
       /**
       The node is healthy and ready to accept pods
@@ -847,7 +1112,7 @@ extension SemanticConventions {
     /** 
       The type of the K8s volume.
     */
-    /// - Tag: otelVolumeTypeValues
+    /// - Tag: SemanticConventions.K8s.VolumeTypeValues
     public struct VolumeTypeValues: CustomStringConvertible {
       /**
       A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume

@@ -8,163 +8,236 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Network: String {
+  public enum Network: String {
     /**
      The ISO 3166-1 alpha-2 2-character country code associated with the mobile carrier network.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.networkCarrierIcc] = "DE"
+   attributes[SemanticConventions.Network.carrierIcc.rawValue] = "DE"
+      ```
+
      - Requires: Value type should be `String`
     */
     case carrierIcc = "network.carrier.icc"
 
     /**
      The mobile carrier country code.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.networkCarrierMcc] = "310"
+   attributes[SemanticConventions.Network.carrierMcc.rawValue] = "310"
+      ```
+
      - Requires: Value type should be `String`
     */
     case carrierMcc = "network.carrier.mcc"
 
     /**
      The mobile carrier network code.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.networkCarrierMnc] = "001"
+   attributes[SemanticConventions.Network.carrierMnc.rawValue] = "001"
+      ```
+
      - Requires: Value type should be `String`
     */
     case carrierMnc = "network.carrier.mnc"
 
     /**
      The name of the mobile carrier.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.networkCarrierName] = "sprint"
+   attributes[SemanticConventions.Network.carrierName.rawValue] = "sprint"
+      ```
+
      - Requires: Value type should be `String`
     */
     case carrierName = "network.carrier.name"
 
     /**
      The state of network connection
-      // Examples
-      attributes[.networkConnectionState] = close_wait
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Network.connectionState.rawValue] = .close_wait
+      ```
+
      - Note: Connection states are defined as part of the [rfc9293](https://datatracker.ietf.org/doc/html/rfc9293#section-3.3.2)
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.ConnectionStateValues`](x-source-tag://otelConnectionStateValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Network.ConnectionStateValues`](x-source-tag://SemanticConventions.network.ConnectionStateValues) (of type `String`)
     */
     case connectionState = "network.connection.state"
 
     /**
      This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.networkConnectionSubtype] = LTE
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.ConnectionSubtypeValues`](x-source-tag://otelConnectionSubtypeValues) (of type `String`)
+   attributes[SemanticConventions.Network.connectionSubtype.rawValue] = .LTE
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Network.ConnectionSubtypeValues`](x-source-tag://SemanticConventions.network.ConnectionSubtypeValues) (of type `String`)
     */
     case connectionSubtype = "network.connection.subtype"
 
     /**
      The internet connection type.
-      // Examples
+
+      - Examples:
+      ```
   
-   attributes[.networkConnectionType] = wifi
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.ConnectionTypeValues`](x-source-tag://otelConnectionTypeValues) (of type `String`)
+   attributes[SemanticConventions.Network.connectionType.rawValue] = .wifi
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Network.ConnectionTypeValues`](x-source-tag://SemanticConventions.network.ConnectionTypeValues) (of type `String`)
     */
     case connectionType = "network.connection.type"
 
     /**
      The network interface name.
-      // Examples
-      attributes[.networkInterfaceName] = "lo"
-      attributes[.networkInterfaceName] = "eth0"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Network.interfaceName.rawValue] = "lo"
+      attributes[SemanticConventions.Network.interfaceName.rawValue] = "eth0"
+      ```
+
      - Requires: Value type should be `String`
     */
     case interfaceName = "network.interface.name"
 
     /**
      The network IO operation direction.
-      // Examples
-      attributes[.networkIoDirection] = transmit
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.IoDirectionValues`](x-source-tag://otelIoDirectionValues) (of type `String`)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Network.ioDirection.rawValue] = .transmit
+      ```
+
+     - Requires: Value should be one of [`SemanticContentions.Network.IoDirectionValues`](x-source-tag://SemanticConventions.network.IoDirectionValues) (of type `String`)
     */
     case ioDirection = "network.io.direction"
 
     /**
      Local address of the network connection - IP address or Unix domain socket name.
-      // Examples
-      attributes[.networkLocalAddress] = "10.1.2.80"
-      attributes[.networkLocalAddress] = "/tmp/my.sock"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Network.localAddress.rawValue] = "10.1.2.80"
+      attributes[SemanticConventions.Network.localAddress.rawValue] = "/tmp/my.sock"
+      ```
+
      - Requires: Value type should be `String`
     */
     case localAddress = "network.local.address"
 
     /**
      Local port number of the network connection.
-      // Examples
-      attributes[.networkLocalPort] = 65123
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Network.localPort.rawValue] = 65123
+      ```
+
      - Requires: Value type should be `Int`
     */
     case localPort = "network.local.port"
 
     /**
      Peer address of the network connection - IP address or Unix domain socket name.
-      // Examples
-      attributes[.networkPeerAddress] = "10.1.2.80"
-      attributes[.networkPeerAddress] = "/tmp/my.sock"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Network.peerAddress.rawValue] = "10.1.2.80"
+      attributes[SemanticConventions.Network.peerAddress.rawValue] = "/tmp/my.sock"
+      ```
+
      - Requires: Value type should be `String`
     */
     case peerAddress = "network.peer.address"
 
     /**
      Peer port number of the network connection.
-      // Examples
-      attributes[.networkPeerPort] = 65123
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Network.peerPort.rawValue] = 65123
+      ```
+
      - Requires: Value type should be `Int`
     */
     case peerPort = "network.peer.port"
 
     /**
      [OSI application layer](https://wikipedia.org/wiki/Application_layer) or non-OSI equivalent.
-      // Examples
-      attributes[.networkProtocolName] = "amqp"
-      attributes[.networkProtocolName] = "http"
-      attributes[.networkProtocolName] = "mqtt"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Network.protocolName.rawValue] = "amqp"
+      attributes[SemanticConventions.Network.protocolName.rawValue] = "http"
+      attributes[SemanticConventions.Network.protocolName.rawValue] = "mqtt"
+      ```
+
      - Note: The value SHOULD be normalized to lowercase.
+
      - Requires: Value type should be `String`
     */
     case protocolName = "network.protocol.name"
 
     /**
      The actual version of the protocol used for network communication.
-      // Examples
-      attributes[.networkProtocolVersion] = "1.1"
-      attributes[.networkProtocolVersion] = "2"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Network.protocolVersion.rawValue] = "1.1"
+      attributes[SemanticConventions.Network.protocolVersion.rawValue] = "2"
+      ```
+
      - Note: If protocol version is subject to negotiation (for example using [ALPN](https://www.rfc-editor.org/rfc/rfc7301.html)), this attribute SHOULD be set to the negotiated version. If the actual protocol version is not known, this attribute SHOULD NOT be set.
+
      - Requires: Value type should be `String`
     */
     case protocolVersion = "network.protocol.version"
 
     /**
      [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
-      // Examples
-      attributes[.networkTransport] = tcp
-      attributes[.networkTransport] = udp
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Network.transport.rawValue] = .tcp
+      attributes[SemanticConventions.Network.transport.rawValue] = .udp
+      ```
+
      - Note: The value SHOULD be normalized to lowercase.
 
      Consider always setting the transport when setting a port number, since
      a port number is ambiguous without knowing the transport. For example
      different processes could be listening on TCP port 12345 and UDP port 12345.
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.TransportValues`](x-source-tag://otelTransportValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Network.TransportValues`](x-source-tag://SemanticConventions.network.TransportValues) (of type `String`)
     */
     case transport = "network.transport"
 
     /**
      [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.
-      // Examples
-      attributes[.networkType] = ipv4
-      attributes[.networkType] = ipv6
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Network.type.rawValue] = .ipv4
+      attributes[SemanticConventions.Network.type.rawValue] = .ipv6
+      ```
+
      - Note: The value SHOULD be normalized to lowercase.
-     - Requires: Value should be one of [`/output/Attributes/Network_attributes.swift.TypeValues`](x-source-tag://otelTypeValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Network.TypeValues`](x-source-tag://SemanticConventions.network.TypeValues) (of type `String`)
     */
     case type = "network.type"
 
@@ -172,7 +245,7 @@ extension SemanticConventions {
     /** 
       The state of network connection
     */
-    /// - Tag: otelConnectionStateValues
+    /// - Tag: SemanticConventions.Network.ConnectionStateValues
     public struct ConnectionStateValues: CustomStringConvertible {
       public static let closed = ConnectionStateValues("closed") 
       public static let closeWait = ConnectionStateValues("close_wait") 
@@ -200,7 +273,7 @@ extension SemanticConventions {
     /** 
       This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
     */
-    /// - Tag: otelConnectionSubtypeValues
+    /// - Tag: SemanticConventions.Network.ConnectionSubtypeValues
     public struct ConnectionSubtypeValues: CustomStringConvertible {
       /**
       GPRS
@@ -301,7 +374,7 @@ extension SemanticConventions {
     /** 
       The internet connection type.
     */
-    /// - Tag: otelConnectionTypeValues
+    /// - Tag: SemanticConventions.Network.ConnectionTypeValues
     public struct ConnectionTypeValues: CustomStringConvertible {
       public static let wifi = ConnectionTypeValues("wifi") 
       public static let wired = ConnectionTypeValues("wired") 
@@ -323,7 +396,7 @@ extension SemanticConventions {
     /** 
       The network IO operation direction.
     */
-    /// - Tag: otelIoDirectionValues
+    /// - Tag: SemanticConventions.Network.IoDirectionValues
     public struct IoDirectionValues: CustomStringConvertible {
       public static let transmit = IoDirectionValues("transmit") 
       public static let receive = IoDirectionValues("receive") 
@@ -342,7 +415,7 @@ extension SemanticConventions {
     /** 
       [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
     */
-    /// - Tag: otelTransportValues
+    /// - Tag: SemanticConventions.Network.TransportValues
     public struct TransportValues: CustomStringConvertible {
       /**
       TCP
@@ -379,7 +452,7 @@ extension SemanticConventions {
     /** 
       [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.
     */
-    /// - Tag: otelTypeValues
+    /// - Tag: SemanticConventions.Network.TypeValues
     public struct TypeValues: CustomStringConvertible {
       /**
       IPv4

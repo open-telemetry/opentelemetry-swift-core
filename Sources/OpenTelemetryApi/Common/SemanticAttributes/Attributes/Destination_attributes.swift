@@ -8,23 +8,32 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Destination: String {
+  public enum Destination: String {
     /**
      Destination address - domain name if available without reverse DNS lookup; otherwise, IP address or Unix domain socket name.
-      // Examples
-      attributes[.destinationAddress] = "destination.example.com"
-      attributes[.destinationAddress] = "10.1.2.80"
-      attributes[.destinationAddress] = "/tmp/my.sock"
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Destination.address.rawValue] = "destination.example.com"
+      attributes[SemanticConventions.Destination.address.rawValue] = "10.1.2.80"
+      attributes[SemanticConventions.Destination.address.rawValue] = "/tmp/my.sock"
+      ```
+
      - Note: When observed from the source side, and when communicating through an intermediary, `destination.address` SHOULD represent the destination address behind any intermediaries, for example proxies, if it's available.
+
      - Requires: Value type should be `String`
     */
     case address = "destination.address"
 
     /**
      Destination port number
-      // Examples
-      attributes[.destinationPort] = 3389
-      attributes[.destinationPort] = 2888
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Destination.port.rawValue] = 3389
+      attributes[SemanticConventions.Destination.port.rawValue] = 2888
+      ```
+
      - Requires: Value type should be `Int`
     */
     case port = "destination.port"

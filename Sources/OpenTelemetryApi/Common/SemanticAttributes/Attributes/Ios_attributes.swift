@@ -8,11 +8,14 @@
 import Foundation 
 
 extension SemanticConventions {
-  enum Ios: String {
+  public enum Ios: String {
     /**
      This attribute represents the state of the application.
+      ```
+
      - Note: The iOS lifecycle states are defined in the [UIApplicationDelegate documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate), and from which the `OS terminology` column values are derived.
-     - Requires: Value should be one of [`/output/Attributes/Ios_attributes.swift.AppStateValues`](x-source-tag://otelAppStateValues) (of type `String`)
+
+     - Requires: Value should be one of [`SemanticContentions.Ios.AppStateValues`](x-source-tag://SemanticConventions.ios.AppStateValues) (of type `String`)
     */
     case appState = "ios.app.state"
 
@@ -20,7 +23,7 @@ extension SemanticConventions {
     /** 
       This attribute represents the state of the application.
     */
-    /// - Tag: otelAppStateValues
+    /// - Tag: SemanticConventions.Ios.AppStateValues
     public struct AppStateValues: CustomStringConvertible {
       /**
       The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`.
