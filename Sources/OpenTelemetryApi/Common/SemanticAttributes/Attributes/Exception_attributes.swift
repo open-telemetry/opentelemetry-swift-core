@@ -8,7 +8,7 @@
 import Foundation 
 
 extension SemanticConventions {
-  public enum Exception: String, Hashable {
+  public enum Exception: String {
 
     // MARK: - Manual Definitions
     // Some definitions have not yet been added to the YAML which generates this script.
