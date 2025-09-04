@@ -18,13 +18,16 @@ public struct Resource: Equatable, Hashable, Codable {
   public init() {
     let executableName = ProcessInfo.processInfo.processName
     self.init(attributes: [
-      ResourceAttributes.serviceName.rawValue: AttributeValue.string(
+      SemanticConventions.Service.name.rawValue: AttributeValue.string(
         "unknown_service:\(executableName)"),
-      ResourceAttributes.telemetrySdkName.rawValue: AttributeValue.string(
+      SemanticConventions.Telemetry.sdkName.rawValue: AttributeValue
+        .string(
         "opentelemetry"),
-      ResourceAttributes.telemetrySdkLanguage.rawValue: AttributeValue.string(
-        "swift"),
-      ResourceAttributes.telemetrySdkVersion.rawValue: AttributeValue.string(
+      SemanticConventions.Telemetry.sdkLanguage.rawValue: AttributeValue
+        .string(
+          SemanticConventions.Telemetry.SdkLanguageValues.swift.description),
+      SemanticConventions.Telemetry.sdkVersion.rawValue: AttributeValue
+        .string(
         Resource.OTEL_SWIFT_SDK_VERSION)
     ]
     )

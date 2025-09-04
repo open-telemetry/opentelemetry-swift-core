@@ -11,29 +11,50 @@ class EnvVarResourceTest: XCTestCase {
   func testDefaultSharedInstance() {
     let resource = EnvVarResource.resource
     XCTAssertEqual(resource.attributes.count, 4)
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.serviceName.rawValue))
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.telemetrySdkName.rawValue))
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.telemetrySdkLanguage.rawValue))
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.telemetrySdkVersion.rawValue))
+    XCTAssertTrue(
+      resource.attributes.keys
+        .contains(SemanticConventions.Service.name)
+    )
+    XCTAssertTrue(
+      resource.attributes.keys
+        .contains(
+          SemanticConventions.Telemetry.sdkName
+        )
+    )
+    XCTAssertTrue(
+      resource.attributes.keys
+        .contains(
+          SemanticConventions.Telemetry.sdkLanguage
+        )
+    )
+    XCTAssertTrue(
+      resource.attributes.keys
+        .contains(
+          SemanticConventions.Telemetry.sdkVersion
+        )
+    )
   }
 
   func testGetUniqueInstance() {
     let resource = EnvVarResource.get()
     XCTAssertEqual(resource.attributes.count, 4)
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.serviceName.rawValue))
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.telemetrySdkName.rawValue))
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.telemetrySdkLanguage.rawValue))
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.telemetrySdkVersion.rawValue))
+    XCTAssertTrue(
+      resource.attributes.keys
+        .contains(SemanticConventions.Service.name)
+    )
+    XCTAssertTrue(resource.attributes.keys.contains(SemanticConventions.Telemetry.sdkName))
+    XCTAssertTrue(resource.attributes.keys.contains(SemanticConventions.Telemetry.sdkLanguage))
+    XCTAssertTrue(resource.attributes.keys.contains(SemanticConventions.Telemetry.sdkVersion))
   }
 
   func testGetUniqueInstanceConsideringEnvironment() {
     let environment = ["OTEL_RESOURCE_ATTRIBUTES": "unique.key=some.value,another.key=another.value"]
     let resource = EnvVarResource.get(environment: environment)
     XCTAssertEqual(resource.attributes.count, 6)
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.serviceName.rawValue))
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.telemetrySdkName.rawValue))
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.telemetrySdkLanguage.rawValue))
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.telemetrySdkVersion.rawValue))
+    XCTAssertTrue(resource.attributes.keys.contains(SemanticConventions.Service.name))
+    XCTAssertTrue(resource.attributes.keys.contains(SemanticConventions.Telemetry.sdkName))
+    XCTAssertTrue(resource.attributes.keys.contains(SemanticConventions.Telemetry.sdkLanguage))
+    XCTAssertTrue(resource.attributes.keys.contains(SemanticConventions.Telemetry.sdkVersion))
 
     XCTAssertTrue(resource.attributes.keys.contains("unique.key"))
     XCTAssertEqual(resource.attributes["unique.key"]!, AttributeValue("some.value"))
@@ -45,7 +66,7 @@ class EnvVarResourceTest: XCTestCase {
   func testSpecifyingServiceNameViaEnvironment_changesResourceAttributeValue() {
     let environment = ["OTEL_RESOURCE_ATTRIBUTES": "service.name=CustomServiceName"]
     let resource = EnvVarResource.get(environment: environment)
-    XCTAssertTrue(resource.attributes.keys.contains(ResourceAttributes.serviceName.rawValue))
-    XCTAssertEqual(resource.attributes[ResourceAttributes.serviceName.rawValue], AttributeValue("CustomServiceName"))
+    XCTAssertTrue(resource.attributes.keys.contains(SemanticConventions.Service.name))
+    XCTAssertEqual(resource.attributes[SemanticConventions.Service.name], AttributeValue("CustomServiceName"))
   }
 }

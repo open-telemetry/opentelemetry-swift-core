@@ -6,6 +6,7 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "SemanticConventions")
 public enum SemanticAttributes: String {
   /**
    Client address - unix domain socket name, IPv4 or IPv6 address.
