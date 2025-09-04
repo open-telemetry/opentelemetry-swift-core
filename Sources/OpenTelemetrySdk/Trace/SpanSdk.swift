@@ -346,16 +346,24 @@ public class SpanSdk: ReadableSpan {
     var limitedAttributes = AttributesDictionary(capacity: maxNumberOfAttributesPerEvent)
     limitedAttributes.updateValues(attributes: attributes)
     limitedAttributes.updateValues(attributes: exception.eventAttributes)
-    addEvent(event: SpanData.Event(name: SemanticAttributes.exception.rawValue, timestamp: timestamp, attributes: limitedAttributes.attributes))
+    addEvent(
+      event: SpanData
+        .Event(
+          name: SemanticConventions.Exception.exception.rawValue,
+          timestamp: timestamp,
+          attributes: limitedAttributes.attributes
+        )
+    )
   }
 }
 
 private extension SpanException {
   var eventAttributes: [String: AttributeValue] {
     [
-      SemanticAttributes.exceptionType.rawValue: type,
-      SemanticAttributes.exceptionMessage.rawValue: message,
-      SemanticAttributes.exceptionStacktrace.rawValue: stackTrace?.joined(separator: "\n")
+      SemanticConventions.Exception.type.rawValue: type,
+      SemanticConventions.Exception.message.rawValue: message,
+      SemanticConventions.Exception.stacktrace.rawValue: stackTrace?
+        .joined(separator: "\n")
     ].compactMapValues { value in
       if let value, !value.isEmpty {
         return .string(value)

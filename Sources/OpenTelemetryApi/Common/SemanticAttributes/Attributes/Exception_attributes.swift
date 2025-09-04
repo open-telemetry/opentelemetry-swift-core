@@ -8,7 +8,16 @@
 import Foundation 
 
 extension SemanticConventions {
-  public enum Exception: String {
+  public enum Exception: String, Hashable {
+
+    // MARK: - Manual Definitions
+    // Some definitions have not yet been added to the YAML which generates this script.
+    // As such as we have some manually defined cases.
+    /**
+      An exception event **MUST** be called "exception" as per the [specification](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/exceptions/exceptions-spans.md#exception-event).
+    */
+    case exception = "exception"
+
 
     /**
      The exception message.
