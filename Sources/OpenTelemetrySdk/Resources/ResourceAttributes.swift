@@ -6,6 +6,7 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "SemanticConventions", message: "Available in OpenTelemetryApi")
 public enum ResourceAttributes: String {
   /**
    Array of brand name and version separated by a space.
@@ -1530,10 +1531,12 @@ public enum ResourceAttributes: String {
   }
 }
 
+@available(*, deprecated)
 public func == (left: ResourceAttributes, right: String) -> Bool {
   return left.rawValue == right
 }
 
+@available(*, deprecated)
 public func == (left: String, right: ResourceAttributes) -> Bool {
   return left == right.rawValue
 }

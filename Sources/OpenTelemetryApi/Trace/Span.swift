@@ -140,18 +140,36 @@ public extension SpanBase {
     return setAttribute(key: key, value: AttributeValue.bool(value))
   }
 
+  func setAttribute(key: any RawRepresentable<String>, value: String) {
+    return setAttribute(key: key.rawValue, value: AttributeValue.string(value))
+  }
+
+  func setAttribute(key: any RawRepresentable<String>, value: Int) {
+    return setAttribute(key: key.rawValue, value: AttributeValue.int(value))
+  }
+
+  func setAttribute(key: any RawRepresentable<String>, value: Double) {
+    return setAttribute(key: key.rawValue, value: AttributeValue.double(value))
+  }
+
+  func setAttribute(key: any RawRepresentable<String>, value: Bool) {
+    return setAttribute(key: key.rawValue, value: AttributeValue.bool(value))
+  }
+
+  @available(*, deprecated, message: "parameter SemanticAttributes is deprecated. Use SemanticConventions.")
   func setAttribute(key: SemanticAttributes, value: String) {
     return setAttribute(key: key.rawValue, value: AttributeValue.string(value))
   }
 
+  @available(*, deprecated, message: "parameter SemanticAttributes is deprecated. Use SemanticConventions.")
   func setAttribute(key: SemanticAttributes, value: Int) {
     return setAttribute(key: key.rawValue, value: AttributeValue.int(value))
   }
-
+  @available(*, deprecated, message: "parameter SemanticAttributes is deprecated. Use SemanticConventions.")
   func setAttribute(key: SemanticAttributes, value: Double) {
     return setAttribute(key: key.rawValue, value: AttributeValue.double(value))
   }
-
+  @available(*, deprecated, message: "parameter SemanticAttributes is deprecated. Use SemanticConventions.")
   func setAttribute(key: SemanticAttributes, value: Bool) {
     return setAttribute(key: key.rawValue, value: AttributeValue.bool(value))
   }
@@ -186,8 +204,11 @@ public extension Span {
   ///   - hostName: Hostr name.
   ///   - port: Port number.
   func putHttpHostAttribute(string hostName: String, int port: Int) {
-    setAttribute(key: .netHostName, value: hostName)
-    setAttribute(key: .netHostPort, value: port)
+    setAttribute(
+      key: SemanticConventions.Server.address,
+      value: hostName
+    )
+    setAttribute(key: SemanticConventions.Server.port, value: port)
   }
 
   /// Helper method that populates span properties from http status code
@@ -195,7 +216,10 @@ public extension Span {
   ///   - statusCode: Http status code.
   ///   - reasonPhrase: Http reason phrase.
   func putHttpStatusCode(statusCode: Int, reasonPhrase: String) {
-    setAttribute(key: .httpStatusCode, value: statusCode)
+    setAttribute(
+      key: SemanticConventions.Http.responseStatusCode,
+      value: statusCode
+    )
     let newStatus: Status = switch statusCode {
     case 200 ..< 400:
       .ok

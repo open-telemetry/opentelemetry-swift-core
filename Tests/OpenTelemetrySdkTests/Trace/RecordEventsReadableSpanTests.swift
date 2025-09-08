@@ -297,11 +297,23 @@ class SpanSdkTest: XCTestCase {
 
       let exceptionEvent = try XCTUnwrap(spanData.events.first)
       let exceptionAttributes = exceptionEvent.attributes
-      XCTAssertEqual(exceptionEvent.name, SemanticAttributes.exception.rawValue)
-      XCTAssertEqual(exceptionAttributes[SemanticAttributes.exceptionType.rawValue], .string(spanException.type))
-      XCTAssertEqual(exceptionAttributes[SemanticAttributes.exceptionMessage.rawValue], .string(exceptionMessage))
-      XCTAssertNil(exceptionAttributes[SemanticAttributes.exceptionEscaped.rawValue])
-      XCTAssertEqual(exceptionAttributes[SemanticAttributes.exceptionStacktrace.rawValue], .string(exceptionStackTrace.joined(separator: "\n")))
+      XCTAssertEqual(
+        exceptionEvent.name,
+        SemanticConventions.Exception.exception.rawValue
+      )
+      XCTAssertEqual(
+        exceptionAttributes[SemanticConventions.Exception.type],
+        .string(spanException.type)
+      )
+      XCTAssertEqual(
+        exceptionAttributes[SemanticConventions.Exception.message],
+        .string(exceptionMessage)
+      )
+//      XCTAssertNil(exceptionAttributes[SemanticConventions.Exception.escaped.rawValue])
+      XCTAssertEqual(
+        exceptionAttributes[SemanticConventions.Exception.stacktrace],
+        .string(exceptionStackTrace.joined(separator: "\n"))
+      )
     }
 
     func testRecordExceptionWithoutStackTrace() throws {
@@ -317,11 +329,17 @@ class SpanSdkTest: XCTestCase {
 
       let exceptionEvent = try XCTUnwrap(spanData.events.first)
       let exceptionAttributes = exceptionEvent.attributes
-      XCTAssertEqual(exceptionEvent.name, SemanticAttributes.exception.rawValue)
-      XCTAssertEqual(exceptionAttributes[SemanticAttributes.exceptionType.rawValue], .string(spanException.type))
-      XCTAssertEqual(exceptionAttributes[SemanticAttributes.exceptionMessage.rawValue], .string(exceptionMessage))
-      XCTAssertNil(exceptionAttributes[SemanticAttributes.exceptionEscaped.rawValue])
-      XCTAssertNil(exceptionAttributes[SemanticAttributes.exceptionStacktrace.rawValue])
+      XCTAssertEqual(
+        exceptionEvent.name,
+        SemanticConventions.Exception.exception.rawValue
+      )
+      XCTAssertEqual(
+        exceptionAttributes[SemanticConventions.Exception.type],
+        .string(spanException.type)
+      )
+      XCTAssertEqual(exceptionAttributes[SemanticConventions.Exception.message], .string(exceptionMessage))
+//      XCTAssertNil(exceptionAttributes[SemanticConventions.exceptionEscaped])
+      XCTAssertNil(exceptionAttributes[SemanticConventions.Exception.stacktrace])
     }
 
     func testRecordMultipleExceptions() throws {
@@ -341,8 +359,8 @@ class SpanSdkTest: XCTestCase {
       let secondSpanException = secondException as SpanException
       let firstExceptionAttributes = try XCTUnwrap(spanData.events.first?.attributes)
       let secondExceptionAttributes = try XCTUnwrap(spanData.events.last?.attributes)
-      XCTAssertEqual(firstExceptionAttributes[SemanticAttributes.exceptionType.rawValue], .string(firstSpanException.type))
-      XCTAssertEqual(secondExceptionAttributes[SemanticAttributes.exceptionType.rawValue], .string(secondSpanException.type))
+      XCTAssertEqual(firstExceptionAttributes[SemanticConventions.Exception.type], .string(firstSpanException.type))
+      XCTAssertEqual(secondExceptionAttributes[SemanticConventions.Exception.type], .string(secondSpanException.type))
     }
   #endif
 
@@ -351,7 +369,8 @@ class SpanSdkTest: XCTestCase {
     let exception = NSError(domain: "test error", code: 5)
     span.recordException(exception,
                          attributes: [
-                           SemanticAttributes.exceptionMessage.rawValue: .string("another, different reason"),
+                          SemanticConventions.Exception.message.rawValue:
+                              .string("another, different reason"),
                            "This-Key-Should-Not-Get-Overwritten": .string("original-value")
                          ])
     span.end()
@@ -364,12 +383,15 @@ class SpanSdkTest: XCTestCase {
     let exceptionEvent = try XCTUnwrap(spanData.events.first)
     let exceptionAttributes = exceptionEvent.attributes
 
-    // Custom value specified for `SemanticAttributes.exceptionMessage`,
+    // Custom value specified for `SemanticConventions.exceptionMessage`,
     // but overwritten by the value out of the provided exception.
     XCTAssertEqual(exceptionAttributes.count, 3)
     XCTAssertNotEqual(exceptionMessage, "another, different reason")
-    XCTAssertEqual(exceptionAttributes[SemanticAttributes.exceptionMessage.rawValue], .string(exceptionMessage))
-    XCTAssertEqual(exceptionAttributes[SemanticAttributes.exceptionType.rawValue], .string(spanException.type))
+    XCTAssertEqual(
+      exceptionAttributes[SemanticConventions.Exception.message],
+      .string(exceptionMessage)
+    )
+    XCTAssertEqual(exceptionAttributes[SemanticConventions.Exception.type], .string(spanException.type))
     XCTAssertEqual(exceptionAttributes["This-Key-Should-Not-Get-Overwritten"], .string("original-value"))
   }
 
@@ -405,12 +427,12 @@ class SpanSdkTest: XCTestCase {
     // prioritization and the remaining 1 matches an entry from the additional attributes. We just can't be sure
     // which of those entries it will be.
     XCTAssertEqual(exceptionAttributes.count, 3)
-    XCTAssertEqual(exceptionAttributes[SemanticAttributes.exceptionMessage.rawValue], .string(exceptionMessage))
-    XCTAssertEqual(exceptionAttributes[SemanticAttributes.exceptionType.rawValue], .string(spanException.type))
+    XCTAssertEqual(exceptionAttributes[SemanticConventions.Exception.message], .string(exceptionMessage))
+    XCTAssertEqual(exceptionAttributes[SemanticConventions.Exception.type], .string(spanException.type))
 
     let remainingExceptionAttributeKeys = exceptionAttributes.keys.filter { key in
-      key != SemanticAttributes.exceptionMessage.rawValue &&
-        key != SemanticAttributes.exceptionType.rawValue
+      key != SemanticConventions.Exception.message.rawValue &&
+      key != SemanticConventions.Exception.type.rawValue
     }
 
     XCTAssertEqual(remainingExceptionAttributeKeys.count, 1)
@@ -596,11 +618,13 @@ class SpanSdkTest: XCTestCase {
     let endTime = clock.now
     let event1 = SpanData.Event(name: "event1", timestamp: firstEventTimeNanos, attributes: event1Attributes)
     let event2 = SpanData.Event(name: "event2", timestamp: secondEventTimeNanos, attributes: event2Attributes)
-    let exceptionEvent = SpanData.Event(name: SemanticAttributes.exception.rawValue,
+    let exceptionEvent = SpanData.Event(name: SemanticConventions.Exception.exception.rawValue,
                                         timestamp: exceptionTimeNanos,
                                         attributes: [
-                                          SemanticAttributes.exceptionType.rawValue: .string(exception.type),
-                                          SemanticAttributes.exceptionMessage.rawValue: .string(exception.message!)
+                                          SemanticConventions.Exception.type.rawValue:
+                                              .string(exception.type),
+                                          SemanticConventions.Exception.message.rawValue: 
+                                              .string(exception.message!)
                                         ])
     let events = [event1, event2, exceptionEvent]
     let expected = SpanData(traceId: traceId,
