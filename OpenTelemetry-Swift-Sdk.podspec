@@ -3,12 +3,12 @@ Pod::Spec.new do |spec|
   spec.version = "2.1.0"
   spec.summary = "Swift OpenTelemetrySDK"
 
-  spec.homepage = "https://github.com/open-telemetry/opentelemetry-swift"
+  spec.homepage = "https://github.com/open-telemetry/opentelemetry-swift-core"
   spec.documentation_url = "https://opentelemetry.io/docs/languages/swift"
   spec.license = { :type => "Apache 2.0", :file => "LICENSE" }
   spec.authors = "OpenTelemetry Authors"
 
-  spec.source = { :git => "https://github.com/open-telemetry/opentelemetry-swift.git", :tag => spec.version.to_s }
+  spec.source = { :git => "https://github.com/open-telemetry/opentelemetry-swift-core.git", :tag => spec.version.to_s }
   spec.source_files = "Sources/OpenTelemetrySdk/**/*.swift"
 
   spec.swift_version = "5.10"
