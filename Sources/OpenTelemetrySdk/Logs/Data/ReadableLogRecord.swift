@@ -26,4 +26,50 @@ public struct ReadableLogRecord: Codable {
   public private(set) var severity: Severity?
   public private(set) var body: AttributeValue?
   public private(set) var attributes: [String: AttributeValue]
+
+  /// Puts a new attribute to the log record.
+  /// - Parameters:
+  ///   - key: Key of the attribute.
+  ///   - value: Attribute value.
+  public mutating func setAttribute(key: String, value: AttributeValue?) {
+    if let value = value {
+      attributes[key] = value
+    } else {
+      attributes.removeValue(forKey: key)
+    }
+  }
+}
+
+public extension ReadableLogRecord {
+  mutating func setAttribute(key: String, value: String) {
+    setAttribute(key: key, value: AttributeValue.string(value))
+  }
+
+  mutating func setAttribute(key: String, value: Int) {
+    setAttribute(key: key, value: AttributeValue.int(value))
+  }
+
+  mutating func setAttribute(key: String, value: Double) {
+    setAttribute(key: key, value: AttributeValue.double(value))
+  }
+
+  mutating func setAttribute(key: String, value: Bool) {
+    setAttribute(key: key, value: AttributeValue.bool(value))
+  }
+
+  mutating func setAttribute(key: any RawRepresentable<String>, value: String) {
+    setAttribute(key: key.rawValue, value: AttributeValue.string(value))
+  }
+
+  mutating func setAttribute(key: any RawRepresentable<String>, value: Int) {
+    setAttribute(key: key.rawValue, value: AttributeValue.int(value))
+  }
+
+  mutating func setAttribute(key: any RawRepresentable<String>, value: Double) {
+    setAttribute(key: key.rawValue, value: AttributeValue.double(value))
+  }
+
+  mutating func setAttribute(key: any RawRepresentable<String>, value: Bool) {
+    setAttribute(key: key.rawValue, value: AttributeValue.bool(value))
+  }
 }

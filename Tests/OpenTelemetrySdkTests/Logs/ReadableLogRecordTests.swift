@@ -29,4 +29,41 @@ class ReadableLogRecordTests: XCTestCase {
     let key = logRecord?.attributes.keys.first
     XCTAssertEqual(logRecord?.attributes[key!]?.description.count, 1)
   }
+
+  func testSetAttribute() {
+    var logRecord = ReadableLogRecord(
+      resource: Resource(),
+      instrumentationScopeInfo: InstrumentationScopeInfo(name: "test"),
+      timestamp: Date(),
+      attributes: [:]
+    )
+
+    // Test string attribute
+    logRecord.setAttribute(key: "stringKey", value: "stringValue")
+    XCTAssertEqual(logRecord.attributes["stringKey"], AttributeValue.string("stringValue"))
+
+    // Test int attribute
+    logRecord.setAttribute(key: "intKey", value: 42)
+    XCTAssertEqual(logRecord.attributes["intKey"], AttributeValue.int(42))
+
+    // Test double attribute
+    logRecord.setAttribute(key: "doubleKey", value: 3.14)
+    XCTAssertEqual(logRecord.attributes["doubleKey"], AttributeValue.double(3.14))
+
+    // Test bool attribute
+    logRecord.setAttribute(key: "boolKey", value: true)
+    XCTAssertEqual(logRecord.attributes["boolKey"], AttributeValue.bool(true))
+
+    // Test AttributeValue attribute
+    logRecord.setAttribute(key: "attributeValueKey", value: AttributeValue.string("test"))
+    XCTAssertEqual(logRecord.attributes["attributeValueKey"], AttributeValue.string("test"))
+
+    // Test nil value removes attribute
+    logRecord.setAttribute(key: "stringKey", value: nil)
+    XCTAssertNil(logRecord.attributes["stringKey"])
+
+    // Test session.id attribute
+    logRecord.setAttribute(key: "session.id", value: "E6BD5A6F-076A-438C-9E6E-23DCF417F2F5")
+    XCTAssertEqual(logRecord.attributes["session.id"], AttributeValue.string("E6BD5A6F-076A-438C-9E6E-23DCF417F2F5"))
+  }
 }
