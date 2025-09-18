@@ -107,3 +107,12 @@ jobs:
           else
             pod trunk push OpenTelemetry-Swift-Sdk.podspec --allow-warnings --synchronous
           fi
+
+      - name: Push OpenTelemetry-Swift-StdoutExporter if not exists
+        run: |
+          set -euo pipefail
+          if pod trunk info OpenTelemetry-Swift-StdoutExporter.podspec 2>&1 | grep -F " - ${VERSION} (" >/dev/null; then
+            echo "::warning::OpenTelemetry-Swift-StdoutExporter '${VERSION}' already exists on CocoaPods. Skipping."
+          else
+            pod trunk push OpenTelemetry-Swift-StdoutExporter.podspec --allow-warnings --synchronous
+          fi
