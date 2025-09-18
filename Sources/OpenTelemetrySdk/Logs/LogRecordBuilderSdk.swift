@@ -73,7 +73,7 @@ public class LogRecordBuilderSdk: EventBuilder {
       logRecord: ReadableLogRecord(resource: sharedState.resource,
                                    instrumentationScopeInfo: instrumentationScope,
                                    timestamp: timestamp ?? sharedState.clock.now,
-                                   observedTimestamp: observedTimestamp,
+                                   observedTimestamp: observedTimestamp ?? sharedState.clock.now,
                                    spanContext: spanContext,
                                    severity: severity,
                                    body: body,

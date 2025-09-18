@@ -15,7 +15,7 @@ final class LogRecordBuilderSdkTests: XCTestCase {
     sharedState = LoggerSharedState(resource: .empty, logLimits: .init(), processors: [mockProcessor], clock: testClock)
   }
 
-  func testGivenNeitherTimestampNorObservedSet_whenEmit_thenTimestampFromClockAndObservedIsNil() {
+  func testGivenNeitherTimestampNorObservedSet_whenEmit_thenTimestampFromClockAndObservedFromClock() {
     // When
     LogRecordBuilderSdk(sharedState: sharedState, instrumentationScope: .init(), includeSpanContext: false)
       .emit()
@@ -24,7 +24,7 @@ final class LogRecordBuilderSdkTests: XCTestCase {
     XCTAssertEqual(mockProcessor.onEmitCalledTimes, 1)
     let logRecord = mockProcessor.onEmitCalledLogRecord
     XCTAssertEqual(logRecord?.timestamp, testClock.now)
-    XCTAssertNil(logRecord?.observedTimestamp)
+    XCTAssertEqual(logRecord?.observedTimestamp, testClock.now)
   }
 
   func testGivenTimestampAndObservedSet_whenEmit_thenRecordHasTimestampAndObserved() {
