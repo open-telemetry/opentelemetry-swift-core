@@ -20,6 +20,7 @@ public class LoggerBuilderSdk: LoggerBuilder {
     self.instrumentationScopeName = instrumentationScopeName
   }
 
+  @available(*, deprecated, message: "Event domain is deprecated. Use LogRecordBuilder.setEventName() directly.")
   public func setEventDomain(_ eventDomain: String) -> Self {
     self.eventDomain = eventDomain
     return self

@@ -4,6 +4,7 @@
 //
 
 import XCTest
+import OpenTelemetryApi
 @testable import OpenTelemetrySdk
 
 final class LogRecordBuilderSdkTests: XCTestCase {
@@ -44,5 +45,20 @@ final class LogRecordBuilderSdkTests: XCTestCase {
     let logRecord = mockProcessor.onEmitCalledLogRecord
     XCTAssertEqual(logRecord?.timestamp, timestamp)
     XCTAssertEqual(logRecord?.observedTimestamp, observedTimestamp)
+  }
+
+  func testSetEventName_Emits() {
+    // Given
+    let eventName = "session.start"
+    let logRecordBuilder = LogRecordBuilderSdk(sharedState: sharedState, instrumentationScope: .init(), includeSpanContext: false)
+      .setEventName(eventName)
+
+    // When
+    logRecordBuilder.emit()
+
+    // Then
+    XCTAssertEqual(mockProcessor.onEmitCalledTimes, 1)
+    let logRecord = mockProcessor.onEmitCalledLogRecord
+    XCTAssertEqual(logRecord?.eventName, eventName)
   }
 }

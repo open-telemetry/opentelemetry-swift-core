@@ -30,6 +30,27 @@ class ReadableLogRecordTests: XCTestCase {
     XCTAssertEqual(logRecord?.attributes[key!]?.description.count, 1)
   }
 
+  func testEventName() {
+    let logRecordWithEvent = ReadableLogRecord(
+      resource: Resource(),
+      instrumentationScopeInfo: InstrumentationScopeInfo(name: "test"),
+      timestamp: Date(),
+      attributes: [:],
+      eventName: "user.login"
+    )
+    XCTAssertEqual(logRecordWithEvent.eventName, "user.login")
+  }
+
+  func testWithoutEventName()  {
+    let logRecordWithoutEvent = ReadableLogRecord(
+      resource: Resource(),
+      instrumentationScopeInfo: InstrumentationScopeInfo(name: "test"),
+      timestamp: Date(),
+      attributes: [:]
+    )
+    XCTAssertNil(logRecordWithoutEvent.eventName)
+  }
+
   func testSetAttribute() {
     var logRecord = ReadableLogRecord(
       resource: Resource(),

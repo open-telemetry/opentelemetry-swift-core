@@ -14,6 +14,7 @@ public protocol LoggerBuilder {
   ///                          Within a particular event domain, event name defines a particular
   ///                          class or type of event.
   /// - Returns: self
+  @available(*, deprecated, message: "Event domain is deprecated. Use event_name field directly.")
   func setEventDomain(_ eventDomain: String) -> Self
 
   /// Assign an OpenTelemetry schema URL to the resulting Logger

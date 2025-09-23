@@ -19,6 +19,7 @@ public class LoggerSdkTests: OpenTelemetryContextTestCase {
     logger.eventBuilder(name: "myEvent").setData(["test": AttributeValue("data")]).emit()
 
     XCTAssertTrue(processor.onEmitCalled)
+    XCTAssertEqual(processor.onEmitCalledLogRecord?.eventName, "myEvent")
     XCTAssertEqual(processor.onEmitCalledLogRecord?.attributes["event.name"]?.description, "myEvent")
     XCTAssertEqual(processor.onEmitCalledLogRecord?.attributes["event.domain"]?.description, "Test")
     XCTAssertEqual(processor.onEmitCalledLogRecord?.attributes["event.data"]?.description, "[\"test\": data]")
@@ -32,8 +33,11 @@ public class LoggerSdkTests: OpenTelemetryContextTestCase {
 
     logger.eventBuilder(name: "myEvent").emit()
 
-    XCTAssertFalse(processor.onEmitCalled)
-    XCTAssertNil(processor.onEmitCalledLogRecord)
+    XCTAssertTrue(processor.onEmitCalled)
+    XCTAssertNotNil(processor.onEmitCalledLogRecord)
+    XCTAssertEqual(processor.onEmitCalledLogRecord?.eventName, "myEvent")
+    XCTAssertEqual(processor.onEmitCalledLogRecord?.attributes["event.name"]?.description, "myEvent")
+    XCTAssertNil(processor.onEmitCalledLogRecord?.attributes["event.domain"])
   }
 
   func testNewEventDomain() {
@@ -45,6 +49,7 @@ public class LoggerSdkTests: OpenTelemetryContextTestCase {
     logger.eventBuilder(name: "myEvent").emit()
 
     XCTAssertTrue(processor.onEmitCalled)
+    XCTAssertEqual(processor.onEmitCalledLogRecord?.eventName, "myEvent")
     XCTAssertEqual(processor.onEmitCalledLogRecord?.attributes["event.name"]?.description, "myEvent")
     XCTAssertEqual(processor.onEmitCalledLogRecord?.attributes["event.domain"]?.description, "OldDomain")
 
@@ -53,8 +58,25 @@ public class LoggerSdkTests: OpenTelemetryContextTestCase {
     newLogger.eventBuilder(name: "MyEvent").emit()
     XCTAssertTrue(processor.onEmitCalled)
     XCTAssertNotNil(processor.onEmitCalledLogRecord)
+    XCTAssertEqual(processor.onEmitCalledLogRecord?.eventName, "MyEvent")
     XCTAssertEqual(processor.onEmitCalledLogRecord?.attributes["event.name"]?.description, "MyEvent")
     XCTAssertEqual(processor.onEmitCalledLogRecord?.attributes["event.domain"]?.description, "MyDomain")
+  }
+
+  func testLogRecordBuilderSetEventName() {
+    let processor = LogRecordProcessorMock()
+    let sharedState = LoggerSharedState(resource: Resource(), logLimits: LogLimits(), processors: [processor], clock: MillisClock())
+    let logger = LoggerSdk(sharedState: sharedState, instrumentationScope: InstrumentationScopeInfo(name: "test"),
+                           eventDomain: nil)
+
+    logger.logRecordBuilder()
+      .setEventName("session.start")
+      .setBody(AttributeValue.string("foo bar"))
+      .emit()
+
+    XCTAssertTrue(processor.onEmitCalled)
+    XCTAssertEqual(processor.onEmitCalledLogRecord?.eventName, "session.start")
+    XCTAssertEqual(processor.onEmitCalledLogRecord?.body?.description, "foo bar")
   }
 
   func testContextPropogation() {

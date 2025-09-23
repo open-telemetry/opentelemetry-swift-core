@@ -64,6 +64,10 @@ public class DefaultLogger: Logger {
       return self
     }
 
+    func setEventName(_ eventName: String) -> Self {
+      return self
+    }
+
     func emit() {}
   }
 }

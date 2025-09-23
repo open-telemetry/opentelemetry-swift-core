@@ -17,6 +17,7 @@ public class LogRecordBuilderSdk: EventBuilder {
   private var severity: Severity?
   private var attributes: AttributesDictionary
   private var spanContext: SpanContext?
+  private var eventName: String?
 
   init(sharedState: LoggerSharedState, instrumentationScope: InstrumentationScopeInfo,
        includeSpanContext: Bool) {
@@ -63,6 +64,11 @@ public class LogRecordBuilderSdk: EventBuilder {
     self.attributes["event.data"] = AttributeValue(AttributeSet(labels: attributes))
     return self
   }
+  
+  public func setEventName(_ eventName: String) -> Self {
+    self.eventName = eventName
+    return self
+  }
 
   public func emit() {
     if spanContext == nil, includeSpanContext {
@@ -77,6 +83,7 @@ public class LogRecordBuilderSdk: EventBuilder {
                                    spanContext: spanContext,
                                    severity: severity,
                                    body: body,
-                                   attributes: attributes.attributes))
+                                   attributes: attributes.attributes,
+                                   eventName: eventName))
   }
 }

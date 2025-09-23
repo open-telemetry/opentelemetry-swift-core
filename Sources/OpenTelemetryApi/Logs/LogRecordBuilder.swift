@@ -42,6 +42,12 @@ public protocol LogRecordBuilder {
   /// - Returns:
   func setAttributes(_ attributes: [String: AttributeValue]) -> Self
 
+  /// set the event name for the log record.
+  ///
+  /// - Parameter eventName: the name of the event
+  /// - Returns: self
+  func setEventName(_ eventName: String) -> Self
+
   /// emits the log record.
   func emit()
 }
