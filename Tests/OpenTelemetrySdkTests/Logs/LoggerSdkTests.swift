@@ -79,6 +79,23 @@ public class LoggerSdkTests: OpenTelemetryContextTestCase {
     XCTAssertEqual(processor.onEmitCalledLogRecord?.body?.description, "foo bar")
   }
 
+  func testWithoutTraceContext() {
+    let processor = LogRecordProcessorMock()
+    let sharedState = LoggerSharedState(resource: Resource(), logLimits: LogLimits(), processors: [processor], clock: MillisClock())
+    let logger = LoggerSdk(sharedState: sharedState, instrumentationScope: InstrumentationScopeInfo(name: "test"), eventDomain: nil)
+
+    let loggerWithoutTrace = logger.withoutTraceContext()
+    
+    XCTAssertFalse(logger === loggerWithoutTrace)
+    
+    loggerWithoutTrace.logRecordBuilder()
+      .setBody(AttributeValue.string("test message"))
+      .emit()
+    
+    XCTAssertTrue(processor.onEmitCalled)
+    XCTAssertNotNil(processor.onEmitCalledLogRecord)
+  }
+
   func testContextPropogation() {
     let processor = LogRecordProcessorMock()
     let sharedState = LoggerSharedState(resource: Resource(), logLimits: LogLimits(), processors: [processor], clock: MillisClock())

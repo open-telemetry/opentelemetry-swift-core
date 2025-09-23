@@ -50,11 +50,9 @@ final class LogRecordBuilderSdkTests: XCTestCase {
   func testSetEventName_Emits() {
     // Given
     let eventName = "session.start"
-    let logRecordBuilder = LogRecordBuilderSdk(sharedState: sharedState, instrumentationScope: .init(), includeSpanContext: false)
+    LogRecordBuilderSdk(sharedState: sharedState, instrumentationScope: .init(), includeSpanContext: false)
       .setEventName(eventName)
-
-    // When
-    logRecordBuilder.emit()
+      .emit()
 
     // Then
     XCTAssertEqual(mockProcessor.onEmitCalledTimes, 1)
