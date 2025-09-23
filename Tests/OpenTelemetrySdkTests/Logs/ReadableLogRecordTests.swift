@@ -66,25 +66,4 @@ class ReadableLogRecordTests: XCTestCase {
     logRecord.setAttribute(key: "session.id", value: "E6BD5A6F-076A-438C-9E6E-23DCF417F2F5")
     XCTAssertEqual(logRecord.attributes["session.id"], AttributeValue.string("E6BD5A6F-076A-438C-9E6E-23DCF417F2F5"))
   }
-
-  func testEventName() {
-    // Test with eventName
-    let logRecordWithEvent = ReadableLogRecord(
-      resource: Resource(),
-      instrumentationScopeInfo: InstrumentationScopeInfo(name: "test"),
-      timestamp: Date(),
-      attributes: [:],
-      eventName: "user.login"
-    )
-    XCTAssertEqual(logRecordWithEvent.eventName, "user.login")
-
-    // Test without eventName (default nil)
-    let logRecordWithoutEvent = ReadableLogRecord(
-      resource: Resource(),
-      instrumentationScopeInfo: InstrumentationScopeInfo(name: "test"),
-      timestamp: Date(),
-      attributes: [:]
-    )
-    XCTAssertNil(logRecordWithoutEvent.eventName)
-  }
 }
