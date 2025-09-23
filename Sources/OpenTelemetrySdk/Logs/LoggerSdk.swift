@@ -19,6 +19,7 @@ public class LoggerSdk: OpenTelemetryApi.Logger {
     self.withTraceContext = withTraceContext
   }
 
+  @available(*, deprecated, message: "Use logRecordBuilder() and setEventName(_:) instead")
   public func eventBuilder(name: String) -> OpenTelemetryApi.EventBuilder {
     var builder = LogRecordBuilderSdk(sharedState: sharedState, instrumentationScope: instrumentationScope, includeSpanContext: true)
       .setEventName(name)

@@ -6,6 +6,7 @@
 import Foundation
 
 public protocol Logger {
+  @available(*, deprecated, message: "Use logRecordBuilder() and setEventName(_:) instead")
   func eventBuilder(name: String) -> EventBuilder
   func logRecordBuilder() -> LogRecordBuilder
 }
