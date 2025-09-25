@@ -35,39 +35,5 @@ public class DefaultLogger: Logger {
     return Self.noopLogRecordBuilder
   }
 
-  private class NoopLogRecordBuilder: EventBuilder {
-    func setTimestamp(_ timestamp: Date) -> Self {
-      return self
-    }
-
-    func setObservedTimestamp(_ observed: Date) -> Self {
-      return self
-    }
-
-    func setSpanContext(_ context: SpanContext) -> Self {
-      return self
-    }
-
-    func setSeverity(_ severity: Severity) -> Self {
-      return self
-    }
-
-    func setBody(_ body: AttributeValue) -> Self {
-      return self
-    }
-
-    func setAttributes(_ attributes: [String: AttributeValue]) -> Self {
-      return self
-    }
-
-    func setData(_ attributes: [String: AttributeValue]) -> Self {
-      return self
-    }
-
-    func setEventName(_ eventName: String) -> Self {
-      return self
-    }
-
-    func emit() {}
-  }
+  private class NoopLogRecordBuilder: EventBuilder {}
 }

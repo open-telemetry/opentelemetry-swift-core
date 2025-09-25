@@ -14,3 +14,9 @@ import Foundation
 public protocol EventBuilder: LogRecordBuilder {
   func setData(_ attributes: [String: AttributeValue]) -> Self
 }
+
+public extension EventBuilder {
+  func setData(_ attributes: [String: AttributeValue]) -> Self {
+    return self
+  }
+}

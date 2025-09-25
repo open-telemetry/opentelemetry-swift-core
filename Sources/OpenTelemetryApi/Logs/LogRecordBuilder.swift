@@ -53,7 +53,33 @@ public protocol LogRecordBuilder {
 }
 
 public extension LogRecordBuilder {
+  func setTimestamp(_ timestamp: Date) -> Self {
+    return self
+  }
+
+  func setObservedTimestamp(_ observed: Date) -> Self {
+    return self
+  }
+
+  func setSpanContext(_ context: SpanContext) -> Self {
+    return self
+  }
+
+  func setSeverity(_ severity: Severity) -> Self {
+    return self
+  }
+
+  func setBody(_ body: AttributeValue) -> Self {
+    return self
+  }
+
+  func setAttributes(_ attributes: [String: AttributeValue]) -> Self {
+    return self
+  }
+
   func setEventName(_ eventName: String) -> Self {
     return self
   }
+
+  func emit() {}
 }
