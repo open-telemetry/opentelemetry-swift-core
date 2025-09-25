@@ -51,3 +51,9 @@ public protocol LogRecordBuilder {
   /// emits the log record.
   func emit()
 }
+
+public extension LogRecordBuilder {
+  func setEventName(_ eventName: String) -> Self {
+    return self
+  }
+}
