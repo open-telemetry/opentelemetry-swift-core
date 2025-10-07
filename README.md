@@ -79,6 +79,44 @@ We have a weekly SIG meeting! See the [community page](https://github.com/open-t
 
 We are also available in the [#otel-swift](https://cloud-native.slack.com/archives/C01NCHR19SB) channel in the [CNCF slack](https://slack.cncf.io/). Please join us there for OTel Swift discussions.
 
+### Release process
+This project uses github releases to track release versions. Cocoapods are also delpoyed using the automated release process. Github actions are used to streamline the release project and generate tags and release notes with minimal intervention. 
+The Release process has several phases:
+1. Preperation
+2. `Framework Release` Github action
+3. On Release PR Merge
+4. Tag & Release notes
+
+#### Preperation
+When it is deemed appropriate by the project maintainers to create a release a few peperations should be accounted for:
+* Are all relevant PRs merged into `main`?
+* What version number is appropriate? e.g.: is this a hotfix, minor, or major release?
+* Are all dependencies in the `Package.swift` using appropriate version numbers? (no branches in dependency defintion)
+
+This isn't a complete list, so use your best instincts. 
+
+
+#### `Framework Release` Github action
+
+Once preperations are complete, run the [`Framework Release` Github action](https://github.com/open-telemetry/opentelemetry-swift-core/blob/main/.github/workflows/Create-Release-PR.yml).  This job takes the version you selected and creates a PR updating all the necessary version locations, such as the sdk.telemetry.version, docs, and Cocoapod podspecs. 
+This release PR needs to be manually merged and reviewed. 
+
+An [additional job](https://github.com/open-telemetry/opentelemetry-swift-core/blob/main/.github/workflows/PR-Release-Warning.yml) will also be run in the background adding a WARNING to the release PR indicating subsequent jobs will automatically be triggered after merge. This job detects the Release PR based of the branch name, and will show up if you use that naming scheme in any PR, so watchout for it. 
+
+**Note**: The `Framework Release` job should always be run on the `main` branch.
+
+#### On Release PR merged
+Once the release PR is merged an automated job is kicked off: [`Tag and Release`](https://github.com/open-telemetry/opentelemetry-swift-core/blob/main/.github/workflows/Tag-And-Release.yml)
+
+This job will run once the release PR is merged, based off the format of the PR branch name. It will auto generate a Github release, as well as push all Cocoapod specs to the Cocoapods Trunk. 
+
+
+#### Tag & Release notes 
+The release will be set as `pre-release` which allows maintainers to edit the auto-generated release notes into the appropriate format and provides a final go/no-go allowance for the release. 
+The notes should be formatted into categories based on area of concern : e.g.: `Trace`, `Metrics`, `Instrumentation`.
+
+Look to older releases for inspriation. 
+
 ### Maintainers ([@open-telemetry/swift-core-maintainers](https://github.com/orgs/open-telemetry/teams/swift-core-maintainers))
 
 - [Ariel Demarco](https://github.com/arieldemarco), Embrace
