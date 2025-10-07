@@ -87,7 +87,7 @@ The Release process has several phases:
 3. On Release PR Merge
 4. Tag & Release notes
 
-#### Preperation
+#### Preparation
 When it is deemed appropriate by the project maintainers to create a release a few peperations should be accounted for:
 * Are all relevant PRs merged into `main`?
 * What version number is appropriate? e.g.: is this a hotfix, minor, or major release?
