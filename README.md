@@ -88,7 +88,7 @@ The Release process has several phases:
 4. Tag & Release notes
 
 #### Preparation
-When it is deemed appropriate by the project maintainers to create a release a few peperations should be accounted for:
+When it is deemed appropriate by the project maintainers to create a release a few preparations should be accounted for:
 * Are all relevant PRs merged into `main`?
 * What version number is appropriate? e.g.: is this a hotfix, minor, or major release?
 * Are all dependencies in the `Package.swift` using appropriate version numbers? (no branches in dependency defintion)
