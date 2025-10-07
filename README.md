@@ -82,7 +82,7 @@ We are also available in the [#otel-swift](https://cloud-native.slack.com/archiv
 ### Release process
 This project uses github releases to track release versions. Cocoapods are also deployed using the automated release process. Github actions are used to streamline the release project and generate tags and release notes with minimal intervention. 
 The Release process has several phases:
-1. Preperation
+1. Preparation
 2. `Framework Release` Github action
 3. On Release PR Merge
 4. Tag & Release notes
