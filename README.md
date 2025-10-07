@@ -80,7 +80,7 @@ We have a weekly SIG meeting! See the [community page](https://github.com/open-t
 We are also available in the [#otel-swift](https://cloud-native.slack.com/archives/C01NCHR19SB) channel in the [CNCF slack](https://slack.cncf.io/). Please join us there for OTel Swift discussions.
 
 ### Release process
-This project uses github releases to track release versions. Cocoapods are also delpoyed using the automated release process. Github actions are used to streamline the release project and generate tags and release notes with minimal intervention. 
+This project uses github releases to track release versions. Cocoapods are also deployed using the automated release process. Github actions are used to streamline the release project and generate tags and release notes with minimal intervention. 
 The Release process has several phases:
 1. Preperation
 2. `Framework Release` Github action
