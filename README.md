@@ -98,7 +98,7 @@ This isn't a complete list, so use your best instincts.
 
 #### `Framework Release` Github action
 
-Once preperations are complete, run the [`Framework Release` Github action](https://github.com/open-telemetry/opentelemetry-swift-core/blob/main/.github/workflows/Create-Release-PR.yml).  This job takes the version you selected and creates a PR updating all the necessary version locations, such as the sdk.telemetry.version, docs, and Cocoapod podspecs. 
+Once preparations are complete, run the [`Framework Release` Github action](https://github.com/open-telemetry/opentelemetry-swift-core/blob/main/.github/workflows/Create-Release-PR.yml).  This job takes the version you selected and creates a PR updating all the necessary version locations, such as the sdk.telemetry.version, docs, and Cocoapod podspecs. 
 This release PR needs to be manually merged and reviewed. 
 
 An [additional job](https://github.com/open-telemetry/opentelemetry-swift-core/blob/main/.github/workflows/PR-Release-Warning.yml) will also be run in the background adding a WARNING to the release PR indicating subsequent jobs will automatically be triggered after merge. This job detects the Release PR based of the branch name, and will show up if you use that naming scheme in any PR, so watchout for it. 
