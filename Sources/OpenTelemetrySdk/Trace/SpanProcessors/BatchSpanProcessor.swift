@@ -229,6 +229,10 @@ private class BatchWorker: WorkerThread {
     timeoutTimer.setEventHandler {
       exportOperation.cancel()
     }
+    timeoutTimer.setCancelHandler {
+      // Cancel handler ensures the dispatch source is properly deallocated
+      // and prevents double-release of the event handler block
+    }
 
     timeoutTimer.schedule(deadline: .now() + .milliseconds(Int(maxTimeOut.toMilliseconds)), leeway: .milliseconds(1))
     timeoutTimer.activate()
