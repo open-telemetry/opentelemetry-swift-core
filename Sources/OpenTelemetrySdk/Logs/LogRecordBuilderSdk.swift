@@ -83,7 +83,7 @@ public class LogRecordBuilderSdk: EventBuilder {
                                    spanContext: spanContext,
                                    severity: severity,
                                    body: body,
-                                   attributes: attributes.attributes,
+                                   attributes: attributes.attributesSnapshot(),
                                    eventName: eventName))
   }
 }

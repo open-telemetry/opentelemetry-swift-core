@@ -119,6 +119,12 @@ public struct AttributesDictionary {
   }
 }
 
+extension AttributesDictionary {
+  public func attributesSnapshot() -> [String: AttributeValue] {
+    Dictionary(uniqueKeysWithValues: attributes.map { ($0.key, $0.value) })
+  }
+}
+
 extension AttributesDictionary: Sequence {
   public func makeIterator() -> AttributesWithCapacityIterator {
     AttributesWithCapacityIterator(sequence: attributes, keys: keys, current: 0)
