@@ -135,5 +135,6 @@ For more information about the approver role, see the [community repository](htt
 ### Triager ([@open-telemetry/swift-core-triagers](https://github.com/orgs/open-telemetry/teams/swift-core-triagers))
 
 - [Alolita Sharma](https://github.com/alolita), Apple
+- [Billy Zhou](https://github.com/williazz), AWS
 
 For more information about the triager role, see the [community repository](https://github.com/open-telemetry/community/blob/main/community-membership.md#triager).
