@@ -196,7 +196,7 @@ public class SpanSdk: ReadableSpan {
                name: internalName,
                kind: kind,
                startTime: startTime,
-               attributes: attributes.attributesSnapshot(),
+               attributes: attributes.attributesCopy(),
                events: lockedAdaptEvents(),
                links: lockedAdaptLinks(),
                status: internalStatus,
@@ -269,13 +269,13 @@ public class SpanSdk: ReadableSpan {
   public func addEvent(name: String, attributes: [String: AttributeValue]) {
     var limitedAttributes = AttributesDictionary(capacity: maxNumberOfAttributesPerEvent)
     limitedAttributes.updateValues(attributes: attributes)
-    addEvent(event: SpanData.Event(name: name, timestamp: clock.now, attributes: limitedAttributes.attributesSnapshot()))
+    addEvent(event: SpanData.Event(name: name, timestamp: clock.now, attributes: limitedAttributes.attributesCopy()))
   }
 
   public func addEvent(name: String, attributes: [String: AttributeValue], timestamp: Date) {
     var limitedAttributes = AttributesDictionary(capacity: maxNumberOfAttributesPerEvent)
     limitedAttributes.updateValues(attributes: attributes)
-    addEvent(event: SpanData.Event(name: name, timestamp: timestamp, attributes: limitedAttributes.attributesSnapshot()))
+    addEvent(event: SpanData.Event(name: name, timestamp: timestamp, attributes: limitedAttributes.attributesCopy()))
   }
 
   private func addEvent(event: SpanData.Event) {
@@ -317,7 +317,7 @@ public class SpanSdk: ReadableSpan {
 
   public func getAttributes() -> [String: AttributeValue] {
     lock.withReaderLock {
-      return attributes.attributesSnapshot()
+      return attributes.attributesCopy()
     }
   }
 
@@ -351,7 +351,7 @@ public class SpanSdk: ReadableSpan {
         .Event(
           name: SemanticConventions.Exception.exception.rawValue,
           timestamp: timestamp,
-          attributes: limitedAttributes.attributesSnapshot()
+          attributes: limitedAttributes.attributesCopy()
         )
     )
   }

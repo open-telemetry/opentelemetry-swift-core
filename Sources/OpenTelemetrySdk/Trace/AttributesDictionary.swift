@@ -120,7 +120,7 @@ public struct AttributesDictionary {
 }
 
 extension AttributesDictionary {
-  public func attributesSnapshot() -> [String: AttributeValue] {
+  public func attributesCopy() -> [String: AttributeValue] {
     Dictionary(uniqueKeysWithValues: attributes.map { ($0.key, $0.value) })
   }
 }
