@@ -12,9 +12,10 @@ Pod::Spec.new do |spec|
   spec.source_files = "Sources/OpenTelemetryApi/**/*.swift"
 
   spec.swift_version = "5.10"
-  spec.ios.deployment_target = "13.0"
-  spec.tvos.deployment_target = "13.0"
-  spec.watchos.deployment_target = "6.0"
+  spec.osx.deployment_target  = "10.13"
+  spec.ios.deployment_target = "12.0"
+  spec.tvos.deployment_target = "12.0"
+  spec.watchos.deployment_target = "4.0"
   spec.visionos.deployment_target = "1.0"
   spec.module_name = "OpenTelemetryApi"
   # This is necessary because we use the `package` keyword to access some properties in `OpenTelemetryApi`

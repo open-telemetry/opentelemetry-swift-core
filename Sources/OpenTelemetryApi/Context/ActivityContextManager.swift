@@ -20,7 +20,7 @@ import Foundation
     _ flags: os_activity_flag_t
   ) -> AnyObject!
 
-  class ActivityContextManager: ImperativeContextManager {
+  public class ActivityContextManager: ImperativeContextManager {
     static let instance = ActivityContextManager()
 
     let rlock = NSRecursiveLock()
@@ -36,7 +36,7 @@ import Foundation
     var objectScope = NSMapTable<AnyObject, ScopeElement>(keyOptions: .weakMemory, valueOptions: .strongMemory)
     var contextMap = [os_activity_id_t: [String: AnyObject]]()
 
-    func getCurrentContextValue(forKey key: OpenTelemetryContextKeys)
+    public func getCurrentContextValue(forKey key: OpenTelemetryContextKeys)
       -> AnyObject? {
       var parentIdent: os_activity_id_t = 0
       let activityIdent = os_activity_get_identifier(OS_ACTIVITY_CURRENT, &parentIdent)
@@ -52,7 +52,7 @@ import Foundation
       return contextValue
     }
 
-    func setCurrentContextValue(forKey key: OpenTelemetryContextKeys, value: AnyObject) {
+    public func setCurrentContextValue(forKey key: OpenTelemetryContextKeys, value: AnyObject) {
       var parentIdent: os_activity_id_t = 0
       var activityIdent = os_activity_get_identifier(OS_ACTIVITY_CURRENT, &parentIdent)
       rlock.lock()
@@ -76,7 +76,7 @@ import Foundation
       return (currentActivityId, activityState)
     }
 
-    func removeContextValue(forKey key: OpenTelemetryContextKeys, value: AnyObject) {
+    public func removeContextValue(forKey key: OpenTelemetryContextKeys, value: AnyObject) {
       rlock.lock()
 
       for (activityKey, activity) in contextMap
