@@ -5,8 +5,8 @@
 
 import Foundation
 
-/// An interface that allows different tracing services to export recorded data for sampled spans in
-/// their own format.
+/// An interface that allows different tracing services to export recorded data for 
+/// sampled spans in their own format.
 /// To export data this MUST be register to the TracerSdk using a SimpleSpansProcessor or
 ///  a  BatchSampledSpansProcessor.
 public protocol SpanExporter: AnyObject {
