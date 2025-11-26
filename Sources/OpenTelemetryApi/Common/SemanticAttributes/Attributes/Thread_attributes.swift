@@ -18,6 +18,17 @@ extension SemanticConventions {
       attributes[SemanticConventions.Thread.id.rawValue] = 42
       ```
 
+     - Note: Examples of where the value can be extracted from:
+
+       | Language or platform  | Source |
+       | --- | --- |
+       | JVM | `Thread.currentThread().threadId()` |
+       | .NET | `Thread.CurrentThread.ManagedThreadId` |
+       | Python | `threading.current_thread().ident` |
+       | Ruby | `Thread.current.object_id` |
+       | C++ | `std::this_thread::get_id()` |
+       | Erlang | `erlang:self()` |
+
      - Requires: Value type should be `Int`
     */
     case id = "thread.id"
@@ -29,6 +40,16 @@ extension SemanticConventions {
       ```
       attributes[SemanticConventions.Thread.name.rawValue] = "main"
       ```
+
+     - Note: Examples of where the value can be extracted from:
+
+       | Language or platform  | Source |
+       | --- | --- |
+       | JVM | `Thread.currentThread().getName()` |
+       | .NET | `Thread.CurrentThread.Name` |
+       | Python | `threading.current_thread().name` |
+       | Ruby | `Thread.current.name` |
+       | Erlang | `erlang:process_info(self(), registered_name)` |
 
      - Requires: Value type should be `String`
     */

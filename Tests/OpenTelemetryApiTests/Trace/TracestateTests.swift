@@ -160,7 +160,7 @@ final class TraceStateTests: XCTestCase {
     XCTAssertEqual(multiValueTraceState, try decoder.decode(TraceState.self, from: encoder.encode(multiValueTraceState)))
   }
 
-  static var allTests = [
+  static let allTests = [
     ("testGet", testGet),
     ("testGetEntries", testGetEntries),
     ("testDisallowsEmptyKey", testDisallowsEmptyKey),

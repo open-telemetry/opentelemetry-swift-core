@@ -10,7 +10,7 @@ import Foundation
 /// and contain only printable ASCII characters.
 /// EntryKeys are designed to be used as constants. Declaring each key as a constant
 /// prevents key names from being validated multiple times.
-public struct EntryKey: Equatable, Comparable, Hashable {
+public struct EntryKey: Equatable, Comparable, Hashable, Sendable {
   // RFC7230 token characters for valid keys
   private static let validKeyCharacters: CharacterSet = {
     var chars = CharacterSet()

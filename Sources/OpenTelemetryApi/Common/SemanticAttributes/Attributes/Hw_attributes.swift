@@ -326,7 +326,7 @@ extension SemanticConventions {
     /** 
       The current state of the battery
     */
-    public struct BatteryStateValues: CustomStringConvertible {
+    public struct BatteryStateValues: CustomStringConvertible, Sendable {
       
       /// Charging
       public static let charging = BatteryStateValues("charging") 
@@ -348,7 +348,7 @@ extension SemanticConventions {
     /** 
       Type of task the GPU is performing
     */
-    public struct GpuTaskValues: CustomStringConvertible {
+    public struct GpuTaskValues: CustomStringConvertible, Sendable {
       
       /// Decoder
       public static let decoder = GpuTaskValues("decoder") 
@@ -373,7 +373,7 @@ extension SemanticConventions {
     /** 
       Type of limit for hardware components
     */
-    public struct LimitTypeValues: CustomStringConvertible {
+    public struct LimitTypeValues: CustomStringConvertible, Sendable {
       
       /// Critical
       public static let critical = LimitTypeValues("critical") 
@@ -416,7 +416,7 @@ extension SemanticConventions {
     /** 
       State of the logical disk space usage
     */
-    public struct LogicalDiskStateValues: CustomStringConvertible {
+    public struct LogicalDiskStateValues: CustomStringConvertible, Sendable {
       
       /// Used
       public static let used = LogicalDiskStateValues("used") 
@@ -438,7 +438,7 @@ extension SemanticConventions {
     /** 
       State of the physical disk endurance utilization
     */
-    public struct PhysicalDiskStateValues: CustomStringConvertible {
+    public struct PhysicalDiskStateValues: CustomStringConvertible, Sendable {
       
       /// Remaining
       public static let remaining = PhysicalDiskStateValues("remaining") 
@@ -457,7 +457,7 @@ extension SemanticConventions {
     /** 
       The current state of the component
     */
-    public struct StateValues: CustomStringConvertible {
+    public struct StateValues: CustomStringConvertible, Sendable {
       
       /// Degraded
       public static let degraded = StateValues("degraded") 
@@ -488,7 +488,7 @@ extension SemanticConventions {
     /** 
       Type of tape drive operation
     */
-    public struct TapeDriveOperationTypeValues: CustomStringConvertible {
+    public struct TapeDriveOperationTypeValues: CustomStringConvertible, Sendable {
       
       /// Mount
       public static let mount = TapeDriveOperationTypeValues("mount") 
@@ -513,7 +513,7 @@ extension SemanticConventions {
     /** 
       Type of the component
     */
-    public struct TypeValues: CustomStringConvertible {
+    public struct TypeValues: CustomStringConvertible, Sendable {
       
       /// Battery
       public static let battery = TypeValues("battery") 

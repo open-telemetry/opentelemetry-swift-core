@@ -7,9 +7,10 @@ import Foundation
 
 /// A struct that represents a trace identifier. A valid trace identifier is a 16-byte array with at
 /// least one non-zero byte.
-public struct TraceId: Comparable, Hashable, CustomStringConvertible, Equatable, Codable {
+public struct TraceId: Comparable, Hashable, CustomStringConvertible, Equatable, Codable, Sendable {
   public static let size = 16
   public static let invalidId: UInt64 = 0
+  
   public static let invalid = TraceId()
 
   // The internal representation of the TraceId.

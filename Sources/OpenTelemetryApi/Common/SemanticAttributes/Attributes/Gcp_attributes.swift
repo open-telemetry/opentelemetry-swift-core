@@ -107,6 +107,94 @@ extension SemanticConventions {
     case apphubWorkloadId = "gcp.apphub.workload.id"
 
     /**
+     The container within GCP where the AppHub destination application is defined.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.apphubDestinationApplicationContainer.rawValue] = "projects/my-container-project"
+      ```
+
+     - Requires: Value type should be `String`
+    */
+    case apphubDestinationApplicationContainer = "gcp.apphub_destination.application.container"
+
+    /**
+     The name of the destination application as configured in AppHub.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.apphubDestinationApplicationId.rawValue] = "my-application"
+      ```
+
+     - Requires: Value type should be `String`
+    */
+    case apphubDestinationApplicationId = "gcp.apphub_destination.application.id"
+
+    /**
+     The GCP zone or region where the destination application is defined.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.apphubDestinationApplicationLocation.rawValue] = "us-central1"
+      ```
+
+     - Requires: Value type should be `String`
+    */
+    case apphubDestinationApplicationLocation = "gcp.apphub_destination.application.location"
+
+    /**
+     Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+
+     - Requires: Value should be one of ``ApphubDestinationServiceCriticalityTypeValues`` (of type `String`)
+    */
+    case apphubDestinationServiceCriticalityType = "gcp.apphub_destination.service.criticality_type"
+
+    /**
+     Software lifecycle stage of a destination service as defined [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+
+     - Requires: Value should be one of ``ApphubDestinationServiceEnvironmentTypeValues`` (of type `String`)
+    */
+    case apphubDestinationServiceEnvironmentType = "gcp.apphub_destination.service.environment_type"
+
+    /**
+     The name of the destination service as configured in AppHub.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.apphubDestinationServiceId.rawValue] = "my-service"
+      ```
+
+     - Requires: Value type should be `String`
+    */
+    case apphubDestinationServiceId = "gcp.apphub_destination.service.id"
+
+    /**
+     Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+
+     - Requires: Value should be one of ``ApphubDestinationWorkloadCriticalityTypeValues`` (of type `String`)
+    */
+    case apphubDestinationWorkloadCriticalityType = "gcp.apphub_destination.workload.criticality_type"
+
+    /**
+     Environment of a destination workload is the stage of a software lifecycle as provided in the [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+
+     - Requires: Value should be one of ``ApphubDestinationWorkloadEnvironmentTypeValues`` (of type `String`)
+    */
+    case apphubDestinationWorkloadEnvironmentType = "gcp.apphub_destination.workload.environment_type"
+
+    /**
+     The name of the destination workload as configured in AppHub.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Gcp.apphubDestinationWorkloadId.rawValue] = "my-workload"
+      ```
+
+     - Requires: Value type should be `String`
+    */
+    case apphubDestinationWorkloadId = "gcp.apphub_destination.workload.id"
+
+    /**
      Identifies the Google Cloud service for which the official client library is intended.
 
       - Examples:
@@ -179,7 +267,7 @@ extension SemanticConventions {
     /** 
       Criticality of a service indicates its importance to the business.
     */
-    public struct ApphubServiceCriticalityTypeValues: CustomStringConvertible {
+    public struct ApphubServiceCriticalityTypeValues: CustomStringConvertible, Sendable {
       
       /// Mission critical service.
       public static let missionCritical = ApphubServiceCriticalityTypeValues("MISSION_CRITICAL") 
@@ -207,7 +295,7 @@ extension SemanticConventions {
     /** 
       Environment of a service is the stage of a software lifecycle.
     */
-    public struct ApphubServiceEnvironmentTypeValues: CustomStringConvertible {
+    public struct ApphubServiceEnvironmentTypeValues: CustomStringConvertible, Sendable {
       
       /// Production environment.
       public static let production = ApphubServiceEnvironmentTypeValues("PRODUCTION") 
@@ -235,7 +323,7 @@ extension SemanticConventions {
     /** 
       Criticality of a workload indicates its importance to the business.
     */
-    public struct ApphubWorkloadCriticalityTypeValues: CustomStringConvertible {
+    public struct ApphubWorkloadCriticalityTypeValues: CustomStringConvertible, Sendable {
       
       /// Mission critical service.
       public static let missionCritical = ApphubWorkloadCriticalityTypeValues("MISSION_CRITICAL") 
@@ -263,7 +351,7 @@ extension SemanticConventions {
     /** 
       Environment of a workload is the stage of a software lifecycle.
     */
-    public struct ApphubWorkloadEnvironmentTypeValues: CustomStringConvertible {
+    public struct ApphubWorkloadEnvironmentTypeValues: CustomStringConvertible, Sendable {
       
       /// Production environment.
       public static let production = ApphubWorkloadEnvironmentTypeValues("PRODUCTION") 
@@ -276,6 +364,118 @@ extension SemanticConventions {
       
       /// Development environment.
       public static let development = ApphubWorkloadEnvironmentTypeValues("DEVELOPMENT") 
+
+      internal let value: String 
+
+      public init(_ customValue: String) {
+        self.value = customValue
+      }
+
+      public var description: String { 
+        return value
+      }
+    }
+
+    /** 
+      Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+    */
+    public struct ApphubDestinationServiceCriticalityTypeValues: CustomStringConvertible, Sendable {
+      
+      /// Mission critical service.
+      public static let missionCritical = ApphubDestinationServiceCriticalityTypeValues("MISSION_CRITICAL") 
+      
+      /// High impact.
+      public static let high = ApphubDestinationServiceCriticalityTypeValues("HIGH") 
+      
+      /// Medium impact.
+      public static let medium = ApphubDestinationServiceCriticalityTypeValues("MEDIUM") 
+      
+      /// Low impact.
+      public static let low = ApphubDestinationServiceCriticalityTypeValues("LOW") 
+
+      internal let value: String 
+
+      public init(_ customValue: String) {
+        self.value = customValue
+      }
+
+      public var description: String { 
+        return value
+      }
+    }
+
+    /** 
+      Software lifecycle stage of a destination service as defined [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+    */
+    public struct ApphubDestinationServiceEnvironmentTypeValues: CustomStringConvertible, Sendable {
+      
+      /// Production environment.
+      public static let production = ApphubDestinationServiceEnvironmentTypeValues("PRODUCTION") 
+      
+      /// Staging environment.
+      public static let staging = ApphubDestinationServiceEnvironmentTypeValues("STAGING") 
+      
+      /// Test environment.
+      public static let test = ApphubDestinationServiceEnvironmentTypeValues("TEST") 
+      
+      /// Development environment.
+      public static let development = ApphubDestinationServiceEnvironmentTypeValues("DEVELOPMENT") 
+
+      internal let value: String 
+
+      public init(_ customValue: String) {
+        self.value = customValue
+      }
+
+      public var description: String { 
+        return value
+      }
+    }
+
+    /** 
+      Criticality of a destination workload indicates its importance to the business as specified in [AppHub type enum](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type)
+    */
+    public struct ApphubDestinationWorkloadCriticalityTypeValues: CustomStringConvertible, Sendable {
+      
+      /// Mission critical service.
+      public static let missionCritical = ApphubDestinationWorkloadCriticalityTypeValues("MISSION_CRITICAL") 
+      
+      /// High impact.
+      public static let high = ApphubDestinationWorkloadCriticalityTypeValues("HIGH") 
+      
+      /// Medium impact.
+      public static let medium = ApphubDestinationWorkloadCriticalityTypeValues("MEDIUM") 
+      
+      /// Low impact.
+      public static let low = ApphubDestinationWorkloadCriticalityTypeValues("LOW") 
+
+      internal let value: String 
+
+      public init(_ customValue: String) {
+        self.value = customValue
+      }
+
+      public var description: String { 
+        return value
+      }
+    }
+
+    /** 
+      Environment of a destination workload is the stage of a software lifecycle as provided in the [AppHub environment type](https://cloud.google.com/app-hub/docs/reference/rest/v1/Attributes#type_1)
+    */
+    public struct ApphubDestinationWorkloadEnvironmentTypeValues: CustomStringConvertible, Sendable {
+      
+      /// Production environment.
+      public static let production = ApphubDestinationWorkloadEnvironmentTypeValues("PRODUCTION") 
+      
+      /// Staging environment.
+      public static let staging = ApphubDestinationWorkloadEnvironmentTypeValues("STAGING") 
+      
+      /// Test environment.
+      public static let test = ApphubDestinationWorkloadEnvironmentTypeValues("TEST") 
+      
+      /// Development environment.
+      public static let development = ApphubDestinationWorkloadEnvironmentTypeValues("DEVELOPMENT") 
 
       internal let value: String 
 

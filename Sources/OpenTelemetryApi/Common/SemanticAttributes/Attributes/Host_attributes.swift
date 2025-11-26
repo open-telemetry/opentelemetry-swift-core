@@ -198,7 +198,7 @@ extension SemanticConventions {
     /** 
       The CPU architecture the host system is running on.
     */
-    public struct ArchValues: CustomStringConvertible {
+    public struct ArchValues: CustomStringConvertible, Sendable {
       
       /// AMD64
       public static let amd64 = ArchValues("amd64") 

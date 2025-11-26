@@ -105,7 +105,7 @@ final class TraceIdTests: XCTestCase {
     XCTAssertEqual(short, try decoder.decode(TraceId.self, from: encoder.encode(short)))
   }
 
-  static var allTests = [
+  static let allTests = [
     ("testInvalidTraceId", testInvalidTraceId),
     ("testInvalidTraceId", testInvalidTraceId),
     ("testIsValid", testIsValid),

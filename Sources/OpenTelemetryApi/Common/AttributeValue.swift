@@ -6,7 +6,7 @@
 import Foundation
 
 /// An enum that represents all the possible values for an attribute.
-public enum AttributeValue: Equatable, CustomStringConvertible, Hashable {
+public enum AttributeValue: Equatable, CustomStringConvertible, Hashable, Sendable {
   case string(String)
   case bool(Bool)
   case int(Int)

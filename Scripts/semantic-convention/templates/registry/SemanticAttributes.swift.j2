@@ -115,7 +115,7 @@ extension SemanticConventions {
       {{attribute.brief | comment}}
     */
 {%     if attribute is enum %}
-    public struct {{class_name}}: CustomStringConvertible {
+    public struct {{class_name}}: CustomStringConvertible, Sendable {
 {%       for member in attribute.type.members %}
 {%         if member.brief is defined %}
       

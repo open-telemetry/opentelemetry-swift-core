@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol LoggerProvider: AnyObject {
+public protocol LoggerProvider: AnyObject, Sendable {
   /// Returns a Logger for a given name and version
   /// - Parameters:
   ///     - instrumentationName: Name of the instrumentation library.

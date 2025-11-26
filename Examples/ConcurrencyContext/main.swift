@@ -41,9 +41,9 @@
       
     func childSpan() async throws {
       // SpanBuilder's `setActive` method is not available here, since it isn't compatible with structured concurrency based context management
-      try await tracer.spanBuilder(spanName: "parentSpan").setSpanKind(spanKind: .client).withActiveSpan { span in
+      try await tracer.spanBuilder(spanName: "parentSpan").setSpanKind(spanKind: .client).withActiveSpan { @Sendable span in
         span.setAttribute(key: sampleKey, value: sampleValue)
-        await Task.detached {
+        await Task.detached { @Sendable in
           // A detached task doesn't inherit the task local context, so this span won't have a parent.
           let notAChildSpan = tracer.spanBuilder(spanName: "notAChild").setSpanKind(spanKind: .client).startSpan()
           notAChildSpan.setAttribute(key: sampleKey, value: sampleValue)

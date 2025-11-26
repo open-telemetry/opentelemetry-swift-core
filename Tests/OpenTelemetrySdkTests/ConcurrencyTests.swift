@@ -45,24 +45,24 @@
       await tracer
         .spanBuilder(spanName: "basic")
         .withActiveSpan { _ in
+          let testTracer = self.tracer
           await Task.detached {
             // Detached task doesn't inherit context
             XCTAssertNil(OpenTelemetry.instance.contextProvider.activeSpan)
-            let detached = self.tracer.spanBuilder(spanName: "detached").startSpan()
+            let detached = testTracer.spanBuilder(spanName: "detached").startSpan()
             XCTAssertNil((detached as! SpanSdk).parentContext)
           }.value
         }
     }
 
-    func testTask() async {
+    nonisolated func testTask() async {
       await tracer
         .spanBuilder(spanName: "basic")
         .withActiveSpan { span in
-          await Task {
-            XCTAssertIdentical(OpenTelemetry.instance.contextProvider.activeSpan, span)
-            let attached = self.tracer.spanBuilder(spanName: "attached").startSpan()
-            XCTAssertEqual((attached as! SpanSdk).parentContext, (span as! SpanSdk).context)
-          }.value
+          let testTracer = self.tracer
+          XCTAssertIdentical(OpenTelemetry.instance.contextProvider.activeSpan, span)
+          let attached = testTracer.spanBuilder(spanName: "attached").startSpan()
+          XCTAssertEqual((attached as! SpanSdk).parentContext, (span as! SpanSdk).context)
         }
     }
   }

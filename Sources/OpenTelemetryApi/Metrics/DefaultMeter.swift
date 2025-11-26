@@ -15,7 +15,7 @@ public class NoopObservableDoubleMeasurement: ObservableDoubleMeasurement {
   public func record(value: Double, attributes: [String: AttributeValue]) {}
 }
 
-public class DefaultMeter: Meter {
+public class DefaultMeter: Meter, @unchecked Sendable {
   init() {}
 
   public func counterBuilder(name: String) -> NoopLongCounterBuilder {

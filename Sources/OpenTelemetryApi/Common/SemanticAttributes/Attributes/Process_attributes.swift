@@ -65,7 +65,7 @@ extension SemanticConventions {
 
      - Requires: Value should be one of ``ContextSwitchTypeValues`` (of type `String`)
     */
-    case contextSwitchType = "process.context_switch_type"
+    case contextSwitchType = "process.context_switch.type"
 
     /**
      The date and time the process was created, in ISO 8601 format.
@@ -231,13 +231,6 @@ extension SemanticConventions {
     case owner = "process.owner"
 
     /**
-     The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.
-
-     - Requires: Value should be one of ``PagingFaultTypeValues`` (of type `String`)
-    */
-    case pagingFaultType = "process.paging.fault_type"
-
-    /**
      Parent Process identifier (PPID).
 
       - Examples:
@@ -358,6 +351,18 @@ extension SemanticConventions {
     case sessionLeaderPid = "process.session_leader.pid"
 
     /**
+     The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.Process.state.rawValue] = .running
+      ```
+
+     - Requires: Value should be one of ``StateValues`` (of type `String`)
+    */
+    case state = "process.state"
+
+    /**
      Process title (proctitle)
 
       - Examples:
@@ -426,7 +431,7 @@ extension SemanticConventions {
     /** 
       Specifies whether the context switches for this data point were voluntary or involuntary.
     */
-    public struct ContextSwitchTypeValues: CustomStringConvertible {
+    public struct ContextSwitchTypeValues: CustomStringConvertible, Sendable {
       public static let voluntary = ContextSwitchTypeValues("voluntary") 
       public static let involuntary = ContextSwitchTypeValues("involuntary") 
 
@@ -442,11 +447,13 @@ extension SemanticConventions {
     }
 
     /** 
-      The type of page fault for this data point. Type `major` is for major/hard page faults, and `minor` is for minor/soft page faults.
+      The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
     */
-    public struct PagingFaultTypeValues: CustomStringConvertible {
-      public static let major = PagingFaultTypeValues("major") 
-      public static let minor = PagingFaultTypeValues("minor") 
+    public struct StateValues: CustomStringConvertible, Sendable {
+      public static let running = StateValues("running") 
+      public static let sleeping = StateValues("sleeping") 
+      public static let stopped = StateValues("stopped") 
+      public static let defunct = StateValues("defunct") 
 
       internal let value: String 
 

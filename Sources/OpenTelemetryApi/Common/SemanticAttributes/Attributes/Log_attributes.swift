@@ -98,7 +98,7 @@ extension SemanticConventions {
     /** 
       The stream associated with the log. See below for a list of well-known values.
     */
-    public struct IostreamValues: CustomStringConvertible {
+    public struct IostreamValues: CustomStringConvertible, Sendable {
       
       /// Logs from stdout stream
       public static let stdout = IostreamValues("stdout") 

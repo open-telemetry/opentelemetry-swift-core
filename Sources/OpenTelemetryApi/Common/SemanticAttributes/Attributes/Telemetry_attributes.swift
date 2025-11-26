@@ -78,7 +78,7 @@ extension SemanticConventions {
     /** 
       The language of the telemetry SDK.
     */
-    public struct SdkLanguageValues: CustomStringConvertible {
+    public struct SdkLanguageValues: CustomStringConvertible, Sendable {
       public static let cpp = SdkLanguageValues("cpp") 
       public static let dotnet = SdkLanguageValues("dotnet") 
       public static let erlang = SdkLanguageValues("erlang") 

@@ -8,7 +8,7 @@ import Foundation
 /// A validated entry value.
 /// Validation ensures that the String has a maximum length of 255 and
 /// contains only printable ASCII characters.
-public struct EntryValue: Equatable {
+public struct EntryValue: Equatable, Sendable {
   /// The maximum length for a entry value. The value is 255.
   static let maxLength = 255
 

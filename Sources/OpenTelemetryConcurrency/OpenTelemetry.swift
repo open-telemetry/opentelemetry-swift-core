@@ -9,7 +9,7 @@ import OpenTelemetryApi
 typealias _OpenTelemetry = OpenTelemetryApi.OpenTelemetry
 
 /// A wrapper type which provides a span builder just like `Tracer`, returns a type of `SpanBuilderBase` to hide APIs on `SpanBuilder` that aren't correctly usable when using a structured concurrency based context manager.
-public struct TracerWrapper {
+public struct TracerWrapper: @unchecked Sendable {
   /// The inner `Tracer` used to construct a span builder. Be careful when accessing this property, as it may make it easier to use API's that don't function properly with your configuration.
   public let inner: Tracer
 
@@ -19,7 +19,7 @@ public struct TracerWrapper {
 }
 
 /// A wrapper type which provides a `Tracer` just like `TracerProvider`, but wraps it in a `TracerWrapper` to hide APIs on `SpanBuilder` that aren't correctly usable when using a structured concurrency based context manager.
-public struct TracerProviderWrapper {
+public struct TracerProviderWrapper: @unchecked Sendable {
   /// The inner `TracerProvider` used to construct a `Tracer`. Be careful when accessing this property, as it may make it easier to use API's that don't function properly with your configuration.
   public let inner: TracerProvider
 
@@ -118,7 +118,7 @@ public struct OpenTelemetry: Sendable {
 }
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-public struct OpenTelemetryContextProvider {
+public struct OpenTelemetryContextProvider: @unchecked Sendable {
   var contextManager: ContextManager
 
   /// Returns the Span from the current context
