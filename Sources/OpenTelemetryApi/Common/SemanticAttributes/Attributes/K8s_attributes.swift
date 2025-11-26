@@ -706,6 +706,32 @@ extension SemanticConventions {
     case podName = "k8s.pod.name"
 
     /**
+     The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.podStatusPhase.rawValue] = .Pending
+      attributes[SemanticConventions.K8s.podStatusPhase.rawValue] = .Running
+      ```
+
+     - Requires: Value should be one of ``PodStatusPhaseValues`` (of type `String`)
+    */
+    case podStatusPhase = "k8s.pod.status.phase"
+
+    /**
+     The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.K8s.podStatusReason.rawValue] = .Evicted
+      attributes[SemanticConventions.K8s.podStatusReason.rawValue] = .NodeAffinity
+      ```
+
+     - Requires: Value should be one of ``PodStatusReasonValues`` (of type `String`)
+    */
+    case podStatusReason = "k8s.pod.status.reason"
+
+    /**
      The UID of the Pod.
 
       - Examples:
@@ -825,7 +851,7 @@ extension SemanticConventions {
       attributes[SemanticConventions.K8s.resourcequotaResourceName.rawValue] = "count/replicationcontrollers"
       ```
 
-     - Note: The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#object-count-quota) for more details.
+     - Note: The value for this attribute can be either the full `count/<resource>[.<group>]` string (e.g., count/deployments.apps, count/pods), or, for certain core Kubernetes resources, just the resource name (e.g., pods, services, configmaps). Both forms are supported by Kubernetes for object count quotas. See [Kubernetes Resource Quotas documentation](https://kubernetes.io/docs/concepts/policy/resource-quotas/#quota-on-object-count) for more details.
 
      - Requires: Value type should be `String`
     */
@@ -947,7 +973,7 @@ extension SemanticConventions {
     /** 
       The reason for the container state. Corresponds to the `reason` field of the: [K8s ContainerStateWaiting](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstatewaiting-v1-core) or [K8s ContainerStateTerminated](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstateterminated-v1-core)
     */
-    public struct ContainerStatusReasonValues: CustomStringConvertible {
+    public struct ContainerStatusReasonValues: CustomStringConvertible, Sendable {
       
       /// The container is being created.
       public static let containerCreating = ContainerStatusReasonValues("ContainerCreating") 
@@ -990,7 +1016,7 @@ extension SemanticConventions {
     /** 
       The state of the container. [K8s ContainerState](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.30/#containerstate-v1-core)
     */
-    public struct ContainerStatusStateValues: CustomStringConvertible {
+    public struct ContainerStatusStateValues: CustomStringConvertible, Sendable {
       
       /// The container has terminated.
       public static let terminated = ContainerStatusStateValues("terminated") 
@@ -1015,7 +1041,7 @@ extension SemanticConventions {
     /** 
       The phase of the K8s namespace.
     */
-    public struct NamespacePhaseValues: CustomStringConvertible {
+    public struct NamespacePhaseValues: CustomStringConvertible, Sendable {
       
       /// Active namespace phase as described by [K8s API](https://pkg.go.dev/k8s.io/api@v0.31.3/core/v1#NamespacePhase)
       public static let active = NamespacePhaseValues("active") 
@@ -1037,7 +1063,7 @@ extension SemanticConventions {
     /** 
       The status of the condition, one of True, False, Unknown.
     */
-    public struct NodeConditionStatusValues: CustomStringConvertible {
+    public struct NodeConditionStatusValues: CustomStringConvertible, Sendable {
       public static let conditionTrue = NodeConditionStatusValues("true") 
       public static let conditionFalse = NodeConditionStatusValues("false") 
       public static let conditionUnknown = NodeConditionStatusValues("unknown") 
@@ -1056,7 +1082,7 @@ extension SemanticConventions {
     /** 
       The condition type of a K8s Node.
     */
-    public struct NodeConditionTypeValues: CustomStringConvertible {
+    public struct NodeConditionTypeValues: CustomStringConvertible, Sendable {
       
       /// The node is healthy and ready to accept pods
       public static let ready = NodeConditionTypeValues("Ready") 
@@ -1085,9 +1111,71 @@ extension SemanticConventions {
     }
 
     /** 
+      The phase for the pod. Corresponds to the `phase` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core)
+    */
+    public struct PodStatusPhaseValues: CustomStringConvertible, Sendable {
+      
+      /// The pod has been accepted by the system, but one or more of the containers has not been started. This includes time before being bound to a node, as well as time spent pulling images onto the host.
+      public static let pending = PodStatusPhaseValues("Pending") 
+      
+      /// The pod has been bound to a node and all of the containers have been started. At least one container is still running or is in the process of being restarted.
+      public static let running = PodStatusPhaseValues("Running") 
+      
+      /// All containers in the pod have voluntarily terminated with a container exit code of 0, and the system is not going to restart any of these containers.
+      public static let succeeded = PodStatusPhaseValues("Succeeded") 
+      
+      /// All containers in the pod have terminated, and at least one container has terminated in a failure (exited with a non-zero exit code or was stopped by the system).
+      public static let failed = PodStatusPhaseValues("Failed") 
+      
+      /// For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod.
+      public static let unknown = PodStatusPhaseValues("Unknown") 
+
+      internal let value: String 
+
+      public init(_ customValue: String) {
+        self.value = customValue
+      }
+
+      public var description: String { 
+        return value
+      }
+    }
+
+    /** 
+      The reason for the pod state. Corresponds to the `reason` field of the: [K8s PodStatus](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.33/#podstatus-v1-core)
+    */
+    public struct PodStatusReasonValues: CustomStringConvertible, Sendable {
+      
+      /// The pod is evicted.
+      public static let evicted = PodStatusReasonValues("Evicted") 
+      
+      /// The pod is in a status because of its node affinity
+      public static let nodeAffinity = PodStatusReasonValues("NodeAffinity") 
+      
+      /// The reason on a pod when its state cannot be confirmed as kubelet is unresponsive on the node it is (was) running.
+      public static let nodeLost = PodStatusReasonValues("NodeLost") 
+      
+      /// The node is shutdown
+      public static let shutdown = PodStatusReasonValues("Shutdown") 
+      
+      /// The pod was rejected admission to the node because of an error during admission that could not be categorized.
+      public static let unexpectedAdmissionError = PodStatusReasonValues("UnexpectedAdmissionError") 
+
+      internal let value: String 
+
+      public init(_ customValue: String) {
+        self.value = customValue
+      }
+
+      public var description: String { 
+        return value
+      }
+    }
+
+    /** 
       The type of the K8s volume.
     */
-    public struct VolumeTypeValues: CustomStringConvertible {
+    public struct VolumeTypeValues: CustomStringConvertible, Sendable {
       
       /// A [persistentVolumeClaim](https://v1-30.docs.kubernetes.io/docs/concepts/storage/volumes/#persistentvolumeclaim) volume
       public static let persistentVolumeClaim = VolumeTypeValues("persistentVolumeClaim") 

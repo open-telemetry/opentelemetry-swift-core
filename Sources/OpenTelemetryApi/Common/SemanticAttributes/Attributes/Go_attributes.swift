@@ -26,7 +26,7 @@ extension SemanticConventions {
     /** 
       The type of memory.
     */
-    public struct MemoryTypeValues: CustomStringConvertible {
+    public struct MemoryTypeValues: CustomStringConvertible, Sendable {
       
       /// Memory allocated from the heap that is reserved for stack space, whether or not it is currently in-use.
       public static let stack = MemoryTypeValues("stack") 

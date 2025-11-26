@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class DefaultLoggerProvider: LoggerProvider {
+public final class DefaultLoggerProvider: LoggerProvider, @unchecked Sendable {
   public static let instance: LoggerProvider = DefaultLoggerProvider()
   fileprivate static let noopBuilderWithDomain = NoopLoggerBuilder(true)
   fileprivate static let noopBuilderNoDomain = NoopLoggerBuilder(false)
@@ -19,7 +19,7 @@ public class DefaultLoggerProvider: LoggerProvider {
   }
 }
 
-private class NoopLoggerBuilder: LoggerBuilder {
+private final class NoopLoggerBuilder: LoggerBuilder, @unchecked Sendable {
   private let hasDomain: Bool
 
   fileprivate init(_ hasDomain: Bool) {

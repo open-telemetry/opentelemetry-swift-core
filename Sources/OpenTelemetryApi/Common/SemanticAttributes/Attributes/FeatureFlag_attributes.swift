@@ -130,7 +130,7 @@ extension SemanticConventions {
     /** 
       The reason code which shows how a feature flag value was determined.
     */
-    public struct ResultReasonValues: CustomStringConvertible {
+    public struct ResultReasonValues: CustomStringConvertible, Sendable {
       
       /// The resolved value is static (no dynamic evaluation).
       public static let _static = ResultReasonValues("static") 

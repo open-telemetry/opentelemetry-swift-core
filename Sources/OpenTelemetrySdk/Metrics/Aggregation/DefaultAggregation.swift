@@ -5,8 +5,8 @@
 
 import Foundation
 
-public class DefaultAggregation: Aggregation {
-  public private(set) static var instance = DefaultAggregation()
+public final class DefaultAggregation: Aggregation, @unchecked Sendable {
+  public static let instance = DefaultAggregation()
 
   public func createAggregator(descriptor: InstrumentDescriptor, exemplarFilter: ExemplarFilter) -> any Aggregator {
     resolve(for: descriptor).createAggregator(descriptor: descriptor, exemplarFilter: exemplarFilter)

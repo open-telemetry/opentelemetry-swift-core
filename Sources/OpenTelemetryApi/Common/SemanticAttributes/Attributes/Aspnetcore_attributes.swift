@@ -303,7 +303,7 @@ extension SemanticConventions {
     /** 
       The result of the authentication operation.
     */
-    public struct AuthenticationResultValues: CustomStringConvertible {
+    public struct AuthenticationResultValues: CustomStringConvertible, Sendable {
       
       /// Authentication was successful.
       public static let success = AuthenticationResultValues("success") 
@@ -328,7 +328,7 @@ extension SemanticConventions {
     /** 
       The result of calling the authorization service.
     */
-    public struct AuthorizationResultValues: CustomStringConvertible {
+    public struct AuthorizationResultValues: CustomStringConvertible, Sendable {
       
       /// Authorization was successful.
       public static let success = AuthorizationResultValues("success") 
@@ -350,7 +350,7 @@ extension SemanticConventions {
     /** 
       ASP.NET Core exception middleware handling result.
     */
-    public struct DiagnosticsExceptionResultValues: CustomStringConvertible {
+    public struct DiagnosticsExceptionResultValues: CustomStringConvertible, Sendable {
       
       /// Exception was handled by the exception handling middleware.
       public static let handled = DiagnosticsExceptionResultValues("handled") 
@@ -378,7 +378,7 @@ extension SemanticConventions {
     /** 
       The result from checking the password.
     */
-    public struct IdentityPasswordCheckResultValues: CustomStringConvertible {
+    public struct IdentityPasswordCheckResultValues: CustomStringConvertible, Sendable {
       
       /// Password check was successful.
       public static let success = IdentityPasswordCheckResultValues("success") 
@@ -409,7 +409,7 @@ extension SemanticConventions {
     /** 
       The result of the identity operation.
     */
-    public struct IdentityResultValues: CustomStringConvertible {
+    public struct IdentityResultValues: CustomStringConvertible, Sendable {
       
       /// Identity operation was successful.
       public static let success = IdentityResultValues("success") 
@@ -431,7 +431,7 @@ extension SemanticConventions {
     /** 
       Whether the sign in result was success or failure.
     */
-    public struct IdentitySignInResultValues: CustomStringConvertible {
+    public struct IdentitySignInResultValues: CustomStringConvertible, Sendable {
       
       /// Sign in was successful.
       public static let success = IdentitySignInResultValues("success") 
@@ -462,7 +462,7 @@ extension SemanticConventions {
     /** 
       The authentication type.
     */
-    public struct IdentitySignInTypeValues: CustomStringConvertible {
+    public struct IdentitySignInTypeValues: CustomStringConvertible, Sendable {
       
       /// Sign in with password.
       public static let password = IdentitySignInTypeValues("password") 
@@ -496,7 +496,7 @@ extension SemanticConventions {
     /** 
       What the token will be used for.
     */
-    public struct IdentityTokenPurposeValues: CustomStringConvertible {
+    public struct IdentityTokenPurposeValues: CustomStringConvertible, Sendable {
       
       /// The token is for resetting a user password.
       public static let resetPassword = IdentityTokenPurposeValues("reset_password") 
@@ -530,7 +530,7 @@ extension SemanticConventions {
     /** 
       The result of token verification.
     */
-    public struct IdentityTokenVerifiedValues: CustomStringConvertible {
+    public struct IdentityTokenVerifiedValues: CustomStringConvertible, Sendable {
       
       /// Token verification was successful.
       public static let success = IdentityTokenVerifiedValues("success") 
@@ -552,7 +552,7 @@ extension SemanticConventions {
     /** 
       The user update type.
     */
-    public struct IdentityUserUpdateTypeValues: CustomStringConvertible {
+    public struct IdentityUserUpdateTypeValues: CustomStringConvertible, Sendable {
       
       /// Identity user updated.
       public static let update = IdentityUserUpdateTypeValues("update") 
@@ -667,7 +667,7 @@ extension SemanticConventions {
     /** 
       Rate-limiting result, shows whether the lease was acquired or contains a rejection reason
     */
-    public struct RateLimitingResultValues: CustomStringConvertible {
+    public struct RateLimitingResultValues: CustomStringConvertible, Sendable {
       
       /// Lease was acquired
       public static let acquired = RateLimitingResultValues("acquired") 
@@ -695,7 +695,7 @@ extension SemanticConventions {
     /** 
       Match result - success or failure
     */
-    public struct RoutingMatchStatusValues: CustomStringConvertible {
+    public struct RoutingMatchStatusValues: CustomStringConvertible, Sendable {
       
       /// Match succeeded
       public static let success = RoutingMatchStatusValues("success") 

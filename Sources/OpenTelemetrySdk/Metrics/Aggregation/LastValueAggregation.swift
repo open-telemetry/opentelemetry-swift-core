@@ -6,8 +6,8 @@
 import Foundation
 import OpenTelemetryApi
 
-public class LastValueAggregation: Aggregation {
-  public private(set) static var instance = LastValueAggregation()
+public final class LastValueAggregation: Aggregation, @unchecked Sendable {
+  public static let instance = LastValueAggregation()
 
   public func createAggregator(descriptor: InstrumentDescriptor, exemplarFilter: ExemplarFilter) -> Aggregator {
     switch descriptor.valueType {

@@ -38,7 +38,7 @@ extension SemanticConventions {
     /** 
       The mode of the CPU
     */
-    public struct ModeValues: CustomStringConvertible {
+    public struct ModeValues: CustomStringConvertible, Sendable {
       
       /// User
       public static let user = ModeValues("user") 

@@ -54,7 +54,7 @@ extension SemanticConventions {
       attributes[SemanticConventions.Azure.cosmosdbOperationContactedRegions.rawValue] = ["North Central US", "Australia East", "Australia Southeast"]
       ```
 
-     - Note: Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/subscription/subscriptions/list-locations?view=rest-subscription-2021-10-01&tabs=HTTP#location)
+     - Note: Region name matches the format of `displayName` in [Azure Location API](https://learn.microsoft.com/rest/api/resources/subscriptions/list-locations)
 
      - Requires: Value type should be `[String]`
     */
@@ -122,7 +122,7 @@ extension SemanticConventions {
     /** 
       Cosmos client connection mode.
     */
-    public struct CosmosdbConnectionModeValues: CustomStringConvertible {
+    public struct CosmosdbConnectionModeValues: CustomStringConvertible, Sendable {
       
       /// Gateway (HTTP) connection.
       public static let gateway = CosmosdbConnectionModeValues("gateway") 
@@ -144,7 +144,7 @@ extension SemanticConventions {
     /** 
       Account or request [consistency level](https://learn.microsoft.com/azure/cosmos-db/consistency-levels).
     */
-    public struct CosmosdbConsistencyLevelValues: CustomStringConvertible {
+    public struct CosmosdbConsistencyLevelValues: CustomStringConvertible, Sendable {
       
       /// Strong
       public static let strong = CosmosdbConsistencyLevelValues("Strong") 

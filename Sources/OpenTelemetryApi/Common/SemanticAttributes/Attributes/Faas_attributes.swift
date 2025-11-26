@@ -216,7 +216,7 @@ extension SemanticConventions {
        - **Google Cloud Run (Services):** The [revision](https://cloud.google.com/run/docs/managing/revisions)
          (i.e., the function name plus the revision suffix).
        - **Google Cloud Functions:** The value of the
-         [`K_REVISION` environment variable](https://cloud.google.com/functions/docs/env-var#runtime_environment_variables_set_automatically).
+         [`K_REVISION` environment variable](https://cloud.google.com/run/docs/container-contract#services-env-vars).
        - **Azure Functions:** Not applicable. Do not set this attribute.
 
      - Requires: Value type should be `String`
@@ -226,7 +226,7 @@ extension SemanticConventions {
     /** 
       Describes the type of the operation that was performed on the data.
     */
-    public struct DocumentOperationValues: CustomStringConvertible {
+    public struct DocumentOperationValues: CustomStringConvertible, Sendable {
       
       /// When a new object is created.
       public static let insert = DocumentOperationValues("insert") 
@@ -251,7 +251,7 @@ extension SemanticConventions {
     /** 
       The cloud provider of the invoked function.
     */
-    public struct InvokedProviderValues: CustomStringConvertible {
+    public struct InvokedProviderValues: CustomStringConvertible, Sendable {
       
       /// Alibaba Cloud
       public static let alibabaCloud = InvokedProviderValues("alibaba_cloud") 
@@ -282,7 +282,7 @@ extension SemanticConventions {
     /** 
       Type of the trigger which caused this function invocation.
     */
-    public struct TriggerValues: CustomStringConvertible {
+    public struct TriggerValues: CustomStringConvertible, Sendable {
       
       /// A response to some data source operation such as a database or filesystem read/write
       public static let datasource = TriggerValues("datasource") 

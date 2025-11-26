@@ -311,17 +311,17 @@ final class SpanBuilderSdkTestImperative: SpanBuilderSdkTestInfo {
 }
 
 #if canImport(os.activity)
-  import os.activity
+  @preconcurrency import os.activity
 
   // Bridging Obj-C variabled defined as c-macroses. See `activity.h` header.
-  private let OS_ACTIVITY_CURRENT = unsafeBitCast(dlsym(UnsafeMutableRawPointer(bitPattern: -2), "_os_activity_current"),
+  private nonisolated(unsafe) let OS_ACTIVITY_CURRENT = unsafeBitCast(dlsym(UnsafeMutableRawPointer(bitPattern: -2), "_os_activity_current"),
                                                   to: os_activity_t.self)
   @_silgen_name("_os_activity_create") private func _os_activity_create(_ dso: UnsafeRawPointer?,
                                                                         _ description: UnsafePointer<Int8>,
                                                                         _ parent: Unmanaged<AnyObject>?,
                                                                         _ flags: os_activity_flag_t) -> AnyObject!
 
-  private let dso = UnsafeMutableRawPointer(mutating: #dsohandle)
+  private nonisolated(unsafe) let dso = UnsafeMutableRawPointer(mutating: #dsohandle)
 
   final class SpanBuilderSdkTestActivity: SpanBuilderSdkTestInfo {
     override var contextManagers: [any ContextManager] {

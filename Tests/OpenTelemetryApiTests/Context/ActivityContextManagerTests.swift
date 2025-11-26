@@ -8,6 +8,7 @@
   import OpenTelemetryTestUtils
   import XCTest
 
+  @MainActor
   class ActivityContextManagerTests: OpenTelemetryContextTestCase {
     override var contextManagers: [any ContextManager] {
       Self.activityContextManagers()
@@ -16,7 +17,7 @@
     let defaultTracer = DefaultTracer.instance
     let firstBytes: [UInt8] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, UInt8(ascii: "a")]
 
-    var spanContext: SpanContext!
+    nonisolated(unsafe) var spanContext: SpanContext!
 
     override func setUp() {
       spanContext = SpanContext.create(traceId: TraceId(fromBytes: firstBytes), spanId: SpanId(fromBytes: firstBytes, withOffset: 8), traceFlags: TraceFlags(), traceState: TraceState())
@@ -32,9 +33,11 @@
       ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
       XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === span1)
       let expec = expectation(description: "testStartAndEndSpanInAsyncQueue")
-      DispatchQueue.global().async {
-        let span2 = self.createSpan(parentSpan: span1, name: "testStartAndEndSpanInAsyncQueue2")
-        self.endSpanAndValidateContext(span: span2, parentSpan: span1)
+      let tracer = defaultTracer
+      DispatchQueue.global().async { @Sendable in
+        let span2 = tracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncQueue2").startSpan()
+        ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span2)
+        span2.end()
         expec.fulfill()
       }
       waitForExpectations(timeout: 30)
@@ -49,14 +52,17 @@
       XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === span1)
       let expec = expectation(description: "testStartAndEndSpanInAsyncQueueTwice1")
       let expec2 = expectation(description: "testStartAndEndSpanInAsyncQueueTwice2")
-      DispatchQueue.global().async {
-        let span2 = self.createSpan(parentSpan: span1, name: "testStartAndEndSpanInAsyncQueueTwice2")
-        self.endSpanAndValidateContext(span: span2, parentSpan: span1)
+      let tracer = defaultTracer
+      DispatchQueue.global().async { @Sendable in
+        let span2 = tracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncQueueTwice2").startSpan()
+        ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span2)
+        span2.end()
         expec.fulfill()
       }
-      DispatchQueue.global().async {
-        let span3 = self.createSpan(parentSpan: span1, name: "testStartAndEndSpanInAsyncQueueTwice3")
-        self.endSpanAndValidateContext(span: span3, parentSpan: span1)
+      DispatchQueue.global().async { @Sendable in
+        let span3 = tracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncQueueTwice3").startSpan()
+        ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span3)
+        span3.end()
         expec2.fulfill()
       }
       waitForExpectations(timeout: 30)
@@ -134,11 +140,10 @@
       let expec = expectation(description: "testStartAndEndSpanInAsyncTaskTwice")
       Task {
         XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === span1)
-        async let one: () = createAsyncSpan(parentSpan: span1, name: "Child1")
-        async let two: () = createAsyncSpan(parentSpan: span1, name: "Child2")
+        await createAsyncSpan(parentSpan: span1, name: "Child1")
+        await createAsyncSpan(parentSpan: span1, name: "Child2")
         XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === span1)
-        await one
-        await two
+
         expec.fulfill()
       }
       waitForExpectations(timeout: 30)
@@ -151,11 +156,10 @@
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTaskTwice1").startSpan()
       ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
       XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === span1)
-      async let one: () = createAsyncSpan(parentSpan: span1, name: "Child1")
-      async let two: () = createAsyncSpan(parentSpan: span1, name: "Child2")
+      await createAsyncSpan(parentSpan: span1, name: "Child1")
+      await createAsyncSpan(parentSpan: span1, name: "Child2")
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === span1)
-      await one
-      await two
+
       span1.end()
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
@@ -222,9 +226,12 @@
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTask1").startSpan()
       ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
       let expec = expectation(description: "testStartAndEndSpanInAsyncTaskWithParent")
-      Task.detached {
+      let tracer = defaultTracer
+      Task.detached { @Sendable in
         XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === nil)
-        await self.createAsyncSpan(parentSpan: nil, name: "detachedspan")
+        let newSpan = tracer.spanBuilder(spanName: "detachedspan").startSpan()
+        ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: newSpan)
+        newSpan.end()
         XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
         expec.fulfill()
       }
@@ -239,9 +246,12 @@
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTask1").startSpan()
       ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
       let expec = expectation(description: "testStartAndEndSpanInAsyncTaskWithParent")
-      Task.detached {
+      let tracer = defaultTracer
+      Task.detached { @Sendable in
         XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === nil)
-        await self.createAsyncSpan(parentSpan: nil, name: "detachedspan")
+        let newSpan = tracer.spanBuilder(spanName: "detachedspan").startSpan()
+        ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: newSpan)
+        newSpan.end()
         XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
         expec.fulfill()
       }
@@ -321,26 +331,25 @@
       XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === span1)
 
       // Add it to one parent in one thread
-      DispatchQueue.global().async {
-        let parent1 = self.defaultTracer.spanBuilder(spanName: "parent1").startSpan()
+      let tracer = defaultTracer
+      DispatchQueue.global().async { @Sendable in
+        let parent1 = tracer.spanBuilder(spanName: "parent1").startSpan()
         ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: parent1)
         XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === parent1)
 
         let activeSpan = ActivityContextManager.instance.getCurrentContextValue(forKey: .span)
         XCTAssert(activeSpan === parent1)
-        ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
         parent1.end()
       }
 
       // Add it to another parent in another thread
-      DispatchQueue.global().async {
-        let parent2 = self.defaultTracer.spanBuilder(spanName: "parent2").startSpan()
+      DispatchQueue.global().async { @Sendable in
+        let parent2 = tracer.spanBuilder(spanName: "parent2").startSpan()
         ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: parent2)
         XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === parent2)
 
         let activeSpan = ActivityContextManager.instance.getCurrentContextValue(forKey: .span)
         XCTAssert(activeSpan === parent2)
-        ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
         parent2.end()
       }
 

@@ -29,7 +29,7 @@ extension SemanticConventions {
     /** 
       The type of garbage collection.
     */
-    public struct GcTypeValues: CustomStringConvertible {
+    public struct GcTypeValues: CustomStringConvertible, Sendable {
       
       /// Major (Mark Sweep Compact).
       public static let major = GcTypeValues("major") 
@@ -57,7 +57,7 @@ extension SemanticConventions {
     /** 
       The name of the space type of heap memory.
     */
-    public struct HeapSpaceNameValues: CustomStringConvertible {
+    public struct HeapSpaceNameValues: CustomStringConvertible, Sendable {
       
       /// New memory space.
       public static let newSpace = HeapSpaceNameValues("new_space") 

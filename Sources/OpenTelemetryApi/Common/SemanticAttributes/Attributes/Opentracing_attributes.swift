@@ -22,7 +22,7 @@ extension SemanticConventions {
     /** 
       Parent-child Reference type
     */
-    public struct RefTypeValues: CustomStringConvertible {
+    public struct RefTypeValues: CustomStringConvertible, Sendable {
       
       /// The parent Span depends on the child Span in some capacity
       public static let childOf = RefTypeValues("child_of") 
