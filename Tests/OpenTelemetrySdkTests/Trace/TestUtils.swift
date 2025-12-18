@@ -8,7 +8,7 @@ import OpenTelemetryApi
 @testable import OpenTelemetrySdk
 
 enum TestUtils {
-  static func dateFromNanos(_ nanos: UInt64) -> Date {
+  static func dateFromNanos(_ nanos: Int64) -> Date {
     return Date(timeIntervalSince1970: Double(nanos) / 1000000000)
   }
 
