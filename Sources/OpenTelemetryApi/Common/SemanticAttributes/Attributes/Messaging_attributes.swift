@@ -447,7 +447,7 @@ extension SemanticConventions {
     /** 
       A string identifying the type of the messaging operation.
     */
-    public struct OperationTypeValues: CustomStringConvertible {
+    public struct OperationTypeValues: CustomStringConvertible, Sendable {
       
       /// A message is created. "Create" spans always refer to a single message and are used to provide a unique creation context for messages in batch sending scenarios.
       public static let create = OperationTypeValues("create") 
@@ -478,7 +478,7 @@ extension SemanticConventions {
     /** 
       Model of message consumption. This only applies to consumer spans.
     */
-    public struct RocketmqConsumptionModelValues: CustomStringConvertible {
+    public struct RocketmqConsumptionModelValues: CustomStringConvertible, Sendable {
       
       /// Clustering consumption model
       public static let clustering = RocketmqConsumptionModelValues("clustering") 
@@ -500,7 +500,7 @@ extension SemanticConventions {
     /** 
       Type of message.
     */
-    public struct RocketmqMessageTypeValues: CustomStringConvertible {
+    public struct RocketmqMessageTypeValues: CustomStringConvertible, Sendable {
       
       /// Normal message
       public static let normal = RocketmqMessageTypeValues("normal") 
@@ -528,7 +528,7 @@ extension SemanticConventions {
     /** 
       Describes the [settlement type](https://learn.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
     */
-    public struct ServicebusDispositionStatusValues: CustomStringConvertible {
+    public struct ServicebusDispositionStatusValues: CustomStringConvertible, Sendable {
       
       /// Message is completed
       public static let complete = ServicebusDispositionStatusValues("complete") 
@@ -556,7 +556,7 @@ extension SemanticConventions {
     /** 
       The messaging system as identified by the client instrumentation.
     */
-    public struct SystemValues: CustomStringConvertible {
+    public struct SystemValues: CustomStringConvertible, Sendable {
       
       /// Apache ActiveMQ
       public static let activemq = SystemValues("activemq") 

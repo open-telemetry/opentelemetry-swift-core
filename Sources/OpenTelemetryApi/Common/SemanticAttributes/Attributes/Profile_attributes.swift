@@ -25,7 +25,7 @@ extension SemanticConventions {
     /** 
       Describes the interpreter or compiler of a single frame.
     */
-    public struct FrameTypeValues: CustomStringConvertible {
+    public struct FrameTypeValues: CustomStringConvertible, Sendable {
       
       /// [.NET](https://wikipedia.org/wiki/.NET)
       public static let dotnet = FrameTypeValues("dotnet") 

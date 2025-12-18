@@ -6,8 +6,8 @@
 import Foundation
 import OpenTelemetryApi
 
-public class SumAggregation: Aggregation {
-  public private(set) static var instance = SumAggregation()
+public final class SumAggregation: Aggregation, @unchecked Sendable {
+  public static let instance = SumAggregation()
 
   public func isCompatible(with descriptor: InstrumentDescriptor) -> Bool {
     switch descriptor.type {

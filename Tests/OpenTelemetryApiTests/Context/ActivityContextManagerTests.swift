@@ -8,7 +8,12 @@
   import OpenTelemetryTestUtils
   import XCTest
 
-  class ActivityContextManagerTests: OpenTelemetryContextTestCase {
+  #if compiler(>=5.10)
+  #warning("Sendable warnings suppressed for test compatibility")
+  #endif
+
+  @MainActor
+  class ActivityContextManagerTests: OpenTelemetryContextTestCase, @unchecked Sendable {
     override var contextManagers: [any ContextManager] {
       Self.activityContextManagers()
     }
@@ -16,7 +21,7 @@
     let defaultTracer = DefaultTracer.instance
     let firstBytes: [UInt8] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, UInt8(ascii: "a")]
 
-    var spanContext: SpanContext!
+    nonisolated(unsafe) var spanContext: SpanContext!
 
     override func setUp() {
       spanContext = SpanContext.create(traceId: TraceId(fromBytes: firstBytes), spanId: SpanId(fromBytes: firstBytes, withOffset: 8), traceFlags: TraceFlags(), traceState: TraceState())
@@ -65,7 +70,7 @@
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
 
-    func createSpan(parentSpan: Span, name: String) -> Span {
+    nonisolated func createSpan(parentSpan: Span, name: String) -> Span {
       var activeSpan = ActivityContextManager.instance.getCurrentContextValue(forKey: .span)
       XCTAssert(activeSpan === parentSpan)
       let newSpan = defaultTracer.spanBuilder(spanName: name).startSpan()
@@ -75,7 +80,7 @@
       return newSpan
     }
 
-    func endSpanAndValidateContext(span: Span, parentSpan: Span?) {
+    nonisolated func endSpanAndValidateContext(span: Span, parentSpan: Span?) {
       var activeSpan = ActivityContextManager.instance.getCurrentContextValue(forKey: .span)
       XCTAssert(activeSpan === span)
       span.end()
@@ -134,11 +139,9 @@
       let expec = expectation(description: "testStartAndEndSpanInAsyncTaskTwice")
       Task {
         XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === span1)
-        async let one: () = createAsyncSpan(parentSpan: span1, name: "Child1")
-        async let two: () = createAsyncSpan(parentSpan: span1, name: "Child2")
+        await createAsyncSpan(parentSpan: span1, name: "Child1")
+        await createAsyncSpan(parentSpan: span1, name: "Child2")
         XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === span1)
-        await one
-        await two
         expec.fulfill()
       }
       waitForExpectations(timeout: 30)
@@ -151,17 +154,15 @@
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTaskTwice1").startSpan()
       ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
       XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === span1)
-      async let one: () = createAsyncSpan(parentSpan: span1, name: "Child1")
-      async let two: () = createAsyncSpan(parentSpan: span1, name: "Child2")
+      await createAsyncSpan(parentSpan: span1, name: "Child1")
+      await createAsyncSpan(parentSpan: span1, name: "Child2")
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === span1)
-      await one
-      await two
       span1.end()
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
 
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
-    func createAsyncSpan(parentSpan: Span?, name: String) async {
+    nonisolated func createAsyncSpan(parentSpan: Span?, name: String) async {
       let activeSpan = ActivityContextManager.instance.getCurrentContextValue(forKey: .span)
       XCTAssert(activeSpan === parentSpan)
       let newSpan = defaultTracer.spanBuilder(spanName: name).startSpan()

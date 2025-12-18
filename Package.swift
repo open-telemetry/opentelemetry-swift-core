@@ -1,4 +1,4 @@
-// swift-tools-version:5.9
+// swift-tools-version:6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import Foundation
@@ -51,7 +51,8 @@ let package = Package(
     .testTarget(
       name: "OpenTelemetryApiTests",
       dependencies: ["OpenTelemetryApi", "OpenTelemetryTestUtils"],
-      path: "Tests/OpenTelemetryApiTests"
+      path: "Tests/OpenTelemetryApiTests",
+      swiftSettings: [.unsafeFlags(["-Xfrontend", "-disable-availability-checking", "-strict-concurrency=minimal"])]
     ),
     .testTarget(
       name: "OpenTelemetrySdkTests",
@@ -60,7 +61,8 @@ let package = Package(
         "OpenTelemetryConcurrency",
         "OpenTelemetryTestUtils",
       ],
-      path: "Tests/OpenTelemetrySdkTests"
+      path: "Tests/OpenTelemetrySdkTests",
+      swiftSettings: [.unsafeFlags(["-Xfrontend", "-disable-availability-checking"])]
     ),
     .executableTarget(
       name: "ConcurrencyContext",

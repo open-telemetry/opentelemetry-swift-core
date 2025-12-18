@@ -12,7 +12,7 @@ public protocol DefaultAggregationSelector {
   func getDefaultAggregation(for instrument: InstrumentType) -> Aggregation
 }
 
-public class AggregationSelector: DefaultAggregationSelector {
+public final class AggregationSelector: DefaultAggregationSelector, @unchecked Sendable {
   public static let instance = AggregationSelector()
 
   public let selector: AggregationResolver

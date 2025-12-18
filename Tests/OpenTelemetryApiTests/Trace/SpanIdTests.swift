@@ -75,7 +75,7 @@ final class SpanIdTests: XCTestCase {
     XCTAssertEqual(second, try decoder.decode(SpanId.self, from: encoder.encode(second)))
   }
 
-  static var allTests = [
+  static let allTests = [
     ("testIsValid", testIsValid),
     ("testFromHexString", testFromHexString),
     ("testToHexString", testToHexString),

@@ -348,7 +348,7 @@ extension SemanticConventions {
     /** 
       Normalized lowercase protocol name parsed from original string of the negotiated [SSL/TLS protocol version](https://docs.openssl.org/1.1.1/man3/SSL_get_version/#return-values)
     */
-    public struct ProtocolNameValues: CustomStringConvertible {
+    public struct ProtocolNameValues: CustomStringConvertible, Sendable {
       public static let ssl = ProtocolNameValues("ssl") 
       public static let tls = ProtocolNameValues("tls") 
 

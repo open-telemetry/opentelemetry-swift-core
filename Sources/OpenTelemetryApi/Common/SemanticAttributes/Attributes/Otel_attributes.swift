@@ -125,7 +125,7 @@ extension SemanticConventions {
     /** 
       A name identifying the type of the OpenTelemetry component.
     */
-    public struct ComponentTypeValues: CustomStringConvertible {
+    public struct ComponentTypeValues: CustomStringConvertible, Sendable {
       
       /// The builtin SDK batching span processor
       public static let batchingSpanProcessor = ComponentTypeValues("batching_span_processor") 
@@ -189,7 +189,7 @@ extension SemanticConventions {
     /** 
       Determines whether the span has a parent span, and if so, [whether it is a remote parent](https://opentelemetry.io/docs/specs/otel/trace/api/#isremote)
     */
-    public struct SpanParentOriginValues: CustomStringConvertible {
+    public struct SpanParentOriginValues: CustomStringConvertible, Sendable {
       
       /// The span does not have a parent, it is a root span
       public static let none = SpanParentOriginValues("none") 
@@ -214,7 +214,7 @@ extension SemanticConventions {
     /** 
       The result value of the sampler for this span
     */
-    public struct SpanSamplingResultValues: CustomStringConvertible {
+    public struct SpanSamplingResultValues: CustomStringConvertible, Sendable {
       
       /// The span is not sampled and not recording
       public static let drop = SpanSamplingResultValues("DROP") 
@@ -239,7 +239,7 @@ extension SemanticConventions {
     /** 
       Name of the code, either "OK" or "ERROR". MUST NOT be set if the status code is UNSET.
     */
-    public struct StatusCodeValues: CustomStringConvertible {
+    public struct StatusCodeValues: CustomStringConvertible, Sendable {
       
       /// The operation has been validated by an Application developer or Operator to have completed successfully.
       public static let ok = StatusCodeValues("OK") 

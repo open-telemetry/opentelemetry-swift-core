@@ -6,8 +6,8 @@
 import Foundation
 import OpenTelemetryApi
 
-public class DropAggregation: Aggregation {
-  public private(set) static var instance = DropAggregation()
+public final class DropAggregation: Aggregation, @unchecked Sendable {
+  public static let instance = DropAggregation()
 
   public func createAggregator(descriptor: InstrumentDescriptor, exemplarFilter: ExemplarFilter) -> any Aggregator {
     return DropAggregator()

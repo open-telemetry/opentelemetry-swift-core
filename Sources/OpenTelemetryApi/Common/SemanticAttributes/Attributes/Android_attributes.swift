@@ -40,7 +40,7 @@ extension SemanticConventions {
     /** 
       This attribute represents the state of the application.
     */
-    public struct AppStateValues: CustomStringConvertible {
+    public struct AppStateValues: CustomStringConvertible, Sendable {
       
       /// Any time before Activity.onResume() or, if the app has no Activity, Context.startService() has been called in the app for the first time.
       public static let created = AppStateValues("created") 

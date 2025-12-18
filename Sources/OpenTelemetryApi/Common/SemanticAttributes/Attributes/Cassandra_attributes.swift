@@ -76,7 +76,7 @@ extension SemanticConventions {
     /** 
       The consistency level of the query. Based on consistency values from [CQL](https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlConfigConsistency.html).
     */
-    public struct ConsistencyLevelValues: CustomStringConvertible {
+    public struct ConsistencyLevelValues: CustomStringConvertible, Sendable {
       
       /// All
       public static let all = ConsistencyLevelValues("all") 
