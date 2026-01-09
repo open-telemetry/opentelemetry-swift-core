@@ -34,7 +34,9 @@ class DefaultBaggageManagerTestsInfo: OpenTelemetryContextTestCase {
   }
 }
 
+#if canImport(Darwin)
 @MainActor
+#endif
 class DefaultBaggageManagerTests: DefaultBaggageManagerTestsInfo {
   func testBuilderMethod() {
     let builder = defaultBaggageManager.baggageBuilder()
@@ -62,7 +64,9 @@ class DefaultBaggageManagerTests: DefaultBaggageManagerTestsInfo {
 
 #if canImport(_Concurrency)
   @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  #if canImport(Darwin)
   @MainActor
+  #endif
   class DefaultBaggageManagerConcurrency: DefaultBaggageManagerTestsInfo {
     override var contextManagers: [any ContextManager] {
       Self.concurrencyContextManagers()
@@ -88,7 +92,9 @@ class DefaultBaggageManagerTests: DefaultBaggageManagerTestsInfo {
   }
 #endif
 
+#if canImport(Darwin)
 @MainActor
+#endif
 class DefaultBaggageManagerTestsImperative: DefaultBaggageManagerTestsInfo {
   override var contextManagers: [any ContextManager] {
     Self.imperativeContextManagers()
