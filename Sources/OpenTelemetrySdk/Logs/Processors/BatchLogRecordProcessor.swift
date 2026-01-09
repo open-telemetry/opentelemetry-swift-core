@@ -75,7 +75,7 @@ public class BatchLogRecordProcessor: LogRecordProcessor {
   }
 }
 
-private class BatchWorker: WorkerThread {
+private class BatchWorker: WorkerThread, @unchecked Sendable {
   let logRecordExporter: LogRecordExporter
   let scheduleDelay: TimeInterval
   let maxQueueSize: Int

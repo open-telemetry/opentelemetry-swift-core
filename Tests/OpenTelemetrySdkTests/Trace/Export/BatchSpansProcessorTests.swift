@@ -292,7 +292,7 @@ class BatchSpansProcessorTests: XCTestCase {
   }
 }
 
-class BlockingSpanExporter: SpanExporter {
+class BlockingSpanExporter: SpanExporter, @unchecked Sendable {
   let cond = NSCondition()
 
   enum State {
@@ -337,7 +337,7 @@ class BlockingSpanExporter: SpanExporter {
   }
 }
 
-class WaitingSpanExporter: SpanExporter {
+class WaitingSpanExporter: SpanExporter, @unchecked Sendable {
   var spanDataList = [SpanData]()
   let cond = NSCondition()
   let numberToWaitFor: Int

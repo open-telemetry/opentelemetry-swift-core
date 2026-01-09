@@ -10,7 +10,7 @@ import OpenTelemetrySdk
 @available(*, deprecated, renamed: "StdoutSpanExporter")
 public typealias StdoutExporter = StdoutSpanExporter
 
-public class StdoutSpanExporter: SpanExporter {
+public class StdoutSpanExporter: SpanExporter, @unchecked Sendable {
   let isDebug: Bool
 
   public init(isDebug: Bool = false) {

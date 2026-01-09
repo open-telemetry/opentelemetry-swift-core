@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetrySdk
 
-class SpanExporterMock: SpanExporter {
+class SpanExporterMock: SpanExporter, @unchecked Sendable {
   var exportCalledTimes: Int = 0
   var exportCalledData: [SpanData]?
   var shutdownCalledTimes: Int = 0
