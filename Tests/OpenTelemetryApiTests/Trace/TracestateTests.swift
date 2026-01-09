@@ -6,7 +6,7 @@
 import OpenTelemetryApi
 import XCTest
 
-final class TraceStateTests: XCTestCase {
+final class TraceStateTests: XCTestCase, @unchecked Sendable {
   let first_key = "key_1"
   let second_key = "key_2"
   let first_value = "value_1"
