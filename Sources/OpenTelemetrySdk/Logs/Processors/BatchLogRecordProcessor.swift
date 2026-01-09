@@ -127,7 +127,7 @@ private class BatchWorker: WorkerThread, @unchecked Sendable {
         cond.lock()
         if logRecordList.count < maxExportBatchSize {
           repeat {
-            cond.wait(until: Date().addingTimeInterval(scheduleDelay))
+            _ = cond.wait(until: Date().addingTimeInterval(scheduleDelay))
           } while logRecordList.isEmpty && !self.isCancelled
         }
         logRecordsCopy = logRecordList

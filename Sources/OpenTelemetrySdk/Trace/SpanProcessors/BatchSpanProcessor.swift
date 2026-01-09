@@ -194,7 +194,7 @@ private class BatchWorker: WorkerThread, @unchecked Sendable {
         cond.lock()
         if spanList.count < maxExportBatchSize {
           repeat {
-            cond.wait(until: Date().addingTimeInterval(scheduleDelay))
+            _ = cond.wait(until: Date().addingTimeInterval(scheduleDelay))
           } while spanList.isEmpty && !self.isCancelled
         }
         spansCopy = spanList
