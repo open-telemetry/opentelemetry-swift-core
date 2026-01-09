@@ -52,8 +52,8 @@ public struct TraceId: Comparable, Hashable, CustomStringConvertible, Equatable,
     var idHi: UInt64 = 0
     var idLo: UInt64 = 0
     data.withUnsafeBytes { rawPointer in
-      idHi = rawPointer.load(fromByteOffset: data.startIndex, as: UInt64.self).bigEndian
-      idLo = rawPointer.load(fromByteOffset: data.startIndex + MemoryLayout<UInt64>.size, as: UInt64.self).bigEndian
+      idHi = rawPointer.loadUnaligned(fromByteOffset: data.startIndex, as: UInt64.self).bigEndian
+      idLo = rawPointer.loadUnaligned(fromByteOffset: data.startIndex + MemoryLayout<UInt64>.size, as: UInt64.self).bigEndian
     }
     self.init(idHi: idHi, idLo: idLo)
   }

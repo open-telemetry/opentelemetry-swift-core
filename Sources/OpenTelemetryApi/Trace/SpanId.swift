@@ -50,7 +50,7 @@ public struct SpanId: Equatable, Comparable, Hashable, CustomStringConvertible, 
   init(fromData data: Data, withOffset offset: Int = 0) {
     var id: UInt64 = 0
     data.withUnsafeBytes { rawPointer in
-      id = rawPointer.load(fromByteOffset: data.startIndex + offset, as: UInt64.self).bigEndian
+      id = rawPointer.loadUnaligned(fromByteOffset: data.startIndex + offset, as: UInt64.self).bigEndian
     }
     self.init(id: id)
   }
