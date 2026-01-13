@@ -10,7 +10,7 @@ import OpenTelemetryTestUtils
 private let key = EntryKey(name: "key")!
 private let value = EntryValue(string: "value")!
 
-class TestBaggage: Baggage {
+final class TestBaggage: Baggage, @unchecked Sendable {
   static func baggageBuilder() -> BaggageBuilder {
     EmptyBaggageBuilder()
   }
@@ -34,7 +34,7 @@ class DefaultBaggageManagerTestsInfo: OpenTelemetryContextTestCase {
   }
 }
 
-class DefaultBaggageManagerTests: DefaultBaggageManagerTestsInfo {
+class DefaultBaggageManagerTests: DefaultBaggageManagerTestsInfo, @unchecked Sendable {
   func testBuilderMethod() {
     let builder = defaultBaggageManager.baggageBuilder()
     XCTAssertEqual(builder.build().getEntries().count, 0)
@@ -61,7 +61,7 @@ class DefaultBaggageManagerTests: DefaultBaggageManagerTestsInfo {
 
 #if canImport(_Concurrency)
   @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-  class DefaultBaggageManagerConcurrency: DefaultBaggageManagerTestsInfo {
+  class DefaultBaggageManagerConcurrency: DefaultBaggageManagerTestsInfo, @unchecked Sendable {
     override var contextManagers: [any ContextManager] {
       Self.concurrencyContextManagers()
     }
@@ -77,16 +77,12 @@ class DefaultBaggageManagerTests: DefaultBaggageManagerTestsInfo {
       }
 
       XCTAssertNil(defaultBaggageManager.getCurrentBaggage())
-      waitForExpectations(timeout: 30) { error in
-        if let error {
-          print("Error: \(error.localizedDescription)")
-        }
-      }
+      wait(for: [expec], timeout: 30)
     }
   }
 #endif
 
-class DefaultBaggageManagerTestsImperative: DefaultBaggageManagerTestsInfo {
+class DefaultBaggageManagerTestsImperative: DefaultBaggageManagerTestsInfo, @unchecked Sendable {
   override var contextManagers: [any ContextManager] {
     Self.imperativeContextManagers()
   }
@@ -105,21 +101,19 @@ class DefaultBaggageManagerTestsImperative: DefaultBaggageManagerTestsInfo {
     XCTAssertTrue(defaultBaggageManager.getCurrentBaggage() === baggage)
     let semaphore = DispatchSemaphore(value: 0)
     let semaphore2 = DispatchSemaphore(value: 0)
-    DispatchQueue.global().async {
-      XCTAssert(self.defaultBaggageManager.getCurrentBaggage() === self.baggage)
+    let manager = defaultBaggageManager
+    let testBaggage = baggage
+    DispatchQueue.global().async { @Sendable in
+      XCTAssert(manager.getCurrentBaggage() === testBaggage)
       semaphore2.signal()
       semaphore.wait()
-      XCTAssertNil(self.defaultBaggageManager.getCurrentBaggage())
+      XCTAssertNil(manager.getCurrentBaggage())
       expec.fulfill()
     }
     semaphore2.wait()
     OpenTelemetry.instance.contextProvider.removeContextForBaggage(baggage)
     XCTAssertNil(defaultBaggageManager.getCurrentBaggage())
     semaphore.signal()
-    waitForExpectations(timeout: 30) { error in
-      if let error {
-        print("Error: \(error.localizedDescription)")
-      }
-    }
+    wait(for: [expec], timeout: 30)
   }
 }

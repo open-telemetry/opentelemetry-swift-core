@@ -8,7 +8,7 @@ import OpenTelemetryApi
 
 /// Holds information about the instrumentation library specified when creating an instance of
 /// TracerSdk using TracerProviderSdk.
-public struct InstrumentationScopeInfo: Hashable, Codable, Equatable {
+public struct InstrumentationScopeInfo: Hashable, Codable, Equatable, Sendable {
   public private(set) var name: String = ""
   public private(set) var version: String?
   public private(set) var schemaUrl: String?

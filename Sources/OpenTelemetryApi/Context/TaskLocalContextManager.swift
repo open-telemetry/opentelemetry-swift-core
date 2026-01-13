@@ -6,6 +6,13 @@
 import Foundation
 
 #if canImport(_Concurrency)
+  @preconcurrency import _Concurrency
+  
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  struct SendableWrapper: @unchecked Sendable {
+    let value: AnyObject?
+  }
+  
   /// A context manager utilizing a task local for tracking active context.
   ///
   /// Unlike the `os.activity` context manager, this class does not handle setting and removing context manually.
@@ -15,13 +22,13 @@ import Foundation
   /// - Note: This restriction means this class is not suitable for dynamic context injection.
   /// If you require dynamic context injection, you will need a custom context manager.
   @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-  public class TaskLocalContextManager: ContextManager {
+  public final class TaskLocalContextManager: ContextManager, @unchecked Sendable {
     package static let instance = TaskLocalContextManager()
 
-    @TaskLocal static var context = [String: AnyObject]()
+    @TaskLocal nonisolated(unsafe) static var context: [String: SendableWrapper] = [:]
 
     public func getCurrentContextValue(forKey key: OpenTelemetryContextKeys) -> AnyObject? {
-      Self.context[key.rawValue]
+      Self.context[key.rawValue]?.value
     }
 
     public func setCurrentContextValue(forKey: OpenTelemetryContextKeys, value: AnyObject) {}
@@ -30,14 +37,14 @@ import Foundation
 
     public func withCurrentContextValue<T>(forKey key: OpenTelemetryContextKeys, value: AnyObject?, _ operation: () async throws -> T) async rethrows -> T {
       var context = Self.context
-      context[key.rawValue] = value
+      context[key.rawValue] = SendableWrapper(value: value)
 
       return try await Self.$context.withValue(context, operation: operation)
     }
 
     public func withCurrentContextValue<T>(forKey key: OpenTelemetryContextKeys, value: AnyObject?, _ operation: () throws -> T) rethrows -> T {
       var context = Self.context
-      context[key.rawValue] = value
+      context[key.rawValue] = SendableWrapper(value: value)
 
       return try Self.$context.withValue(context, operation: operation)
     }

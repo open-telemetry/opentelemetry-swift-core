@@ -245,7 +245,7 @@ extension SemanticConventions {
     case repositoryName = "vcs.repository.name"
 
     /**
-     The [canonical URL](https://support.google.com/webmasters/answer/10347851?hl=en#:~:text=A%20canonical%20URL%20is%20the,Google%20chooses%20one%20as%20canonical.) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser.
+     The [canonical URL](https://support.google.com/webmasters/answer/10347851) of the repository providing the complete HTTP(S) address in order to locate and identify the repository through a browser.
 
       - Examples:
       ```
@@ -276,7 +276,7 @@ extension SemanticConventions {
     /** 
       The state of the change (pull request/merge request/changelist).
     */
-    public struct ChangeStateValues: CustomStringConvertible {
+    public struct ChangeStateValues: CustomStringConvertible, Sendable {
       
       /// Open means the change is currently active and under review. It hasn't been merged into the target branch yet, and it's still possible to make changes or add comments.
       public static let open = ChangeStateValues("open") 
@@ -304,7 +304,7 @@ extension SemanticConventions {
     /** 
       The type of line change being measured on a branch or change.
     */
-    public struct LineChangeTypeValues: CustomStringConvertible {
+    public struct LineChangeTypeValues: CustomStringConvertible, Sendable {
       
       /// How many lines were added.
       public static let added = LineChangeTypeValues("added") 
@@ -326,7 +326,7 @@ extension SemanticConventions {
     /** 
       The name of the version control system provider.
     */
-    public struct ProviderNameValues: CustomStringConvertible {
+    public struct ProviderNameValues: CustomStringConvertible, Sendable {
       
       /// [GitHub](https://github.com)
       public static let github = ProviderNameValues("github") 
@@ -354,7 +354,7 @@ extension SemanticConventions {
     /** 
       The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
     */
-    public struct RefBaseTypeValues: CustomStringConvertible {
+    public struct RefBaseTypeValues: CustomStringConvertible, Sendable {
       
       /// [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)
       public static let branch = RefBaseTypeValues("branch") 
@@ -376,7 +376,7 @@ extension SemanticConventions {
     /** 
       The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
     */
-    public struct RefHeadTypeValues: CustomStringConvertible {
+    public struct RefHeadTypeValues: CustomStringConvertible, Sendable {
       
       /// [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)
       public static let branch = RefHeadTypeValues("branch") 
@@ -398,7 +398,7 @@ extension SemanticConventions {
     /** 
       The type of the [reference](https://git-scm.com/docs/gitglossary#def_ref) in the repository.
     */
-    public struct RefTypeValues: CustomStringConvertible {
+    public struct RefTypeValues: CustomStringConvertible, Sendable {
       
       /// [branch](https://git-scm.com/docs/gitglossary#Documentation/gitglossary.txt-aiddefbranchabranch)
       public static let branch = RefTypeValues("branch") 
@@ -420,7 +420,7 @@ extension SemanticConventions {
     /** 
       The type of revision comparison.
     */
-    public struct RevisionDeltaDirectionValues: CustomStringConvertible {
+    public struct RevisionDeltaDirectionValues: CustomStringConvertible, Sendable {
       
       /// How many revisions the change is behind the target ref.
       public static let behind = RevisionDeltaDirectionValues("behind") 

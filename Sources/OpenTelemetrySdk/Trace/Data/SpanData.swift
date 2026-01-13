@@ -7,7 +7,7 @@ import Foundation
 import OpenTelemetryApi
 
 /// representation of all data collected by the Span.
-public struct SpanData: Equatable, Codable {
+public struct SpanData: Equatable, Codable, @unchecked Sendable {
   /// The trace id for this span.
   public private(set) var traceId: TraceId
 
@@ -195,7 +195,7 @@ public struct SpanData: Equatable, Codable {
 
 public extension SpanData {
   /// Timed event.
-  struct Event: Equatable, Codable {
+  struct Event: Equatable, Codable, @unchecked Sendable {
     public private(set) var timestamp: Date
     public private(set) var name: String
     public private(set) var attributes: [String: AttributeValue]
@@ -222,7 +222,7 @@ public extension SpanData {
 }
 
 public extension SpanData {
-  struct Link: Codable {
+  struct Link: Codable, @unchecked Sendable {
     public let context: SpanContext
     public let attributes: [String: AttributeValue]
 

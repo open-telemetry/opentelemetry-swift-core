@@ -51,7 +51,7 @@ extension SemanticConventions {
     /** 
       The service tier requested. May be a specific tier, default, or auto.
     */
-    public struct RequestServiceTierValues: CustomStringConvertible {
+    public struct RequestServiceTierValues: CustomStringConvertible, Sendable {
       
       /// The system will utilize scale tier credits until they are exhausted.
       public static let auto = RequestServiceTierValues("auto") 

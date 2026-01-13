@@ -153,14 +153,17 @@ extension SemanticConventions {
        `db.query.parameter.<key>` SHOULD match
        up with the parameterized placeholders present in `db.query.text`.
 
+       It is RECOMMENDED to capture the value as provided by the application
+       without attempting to do any case normalization.
+
        `db.query.parameter.<key>` SHOULD NOT be captured on batch operations.
 
        Examples:
 
        - For a query `SELECT * FROM users where username =  %s` with the parameter `"jdoe"`,
          the attribute `db.query.parameter.0` SHOULD be set to `"jdoe"`.
-       - For a query `"SELECT * FROM users WHERE username = %(username)s;` with parameter
-         `username = "jdoe"`, the attribute `db.query.parameter.username` SHOULD be set to `"jdoe"`.
+       - For a query `"SELECT * FROM users WHERE username = %(userName)s;` with parameter
+         `userName = "jdoe"`, the attribute `db.query.parameter.userName` SHOULD be set to `"jdoe"`.
 
      - Requires: Value type should be `template[string]`
     */
@@ -269,7 +272,7 @@ extension SemanticConventions {
     /** 
       The state of a connection in the pool
     */
-    public struct ClientConnectionStateValues: CustomStringConvertible {
+    public struct ClientConnectionStateValues: CustomStringConvertible, Sendable {
       public static let idle = ClientConnectionStateValues("idle") 
       public static let used = ClientConnectionStateValues("used") 
 
@@ -287,7 +290,7 @@ extension SemanticConventions {
     /** 
       The database management system (DBMS) product as identified by the client instrumentation.
     */
-    public struct SystemNameValues: CustomStringConvertible {
+    public struct SystemNameValues: CustomStringConvertible, Sendable {
       
       /// Some other SQL database. Fallback only.
       public static let otherSql = SystemNameValues("other_sql") 

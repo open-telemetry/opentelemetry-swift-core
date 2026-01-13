@@ -97,7 +97,7 @@ extension SemanticConventions {
     /** 
       Specifies the category of synthetic traffic, such as tests or bots.
     */
-    public struct SyntheticTypeValues: CustomStringConvertible {
+    public struct SyntheticTypeValues: CustomStringConvertible, Sendable {
       
       /// Bot source.
       public static let bot = SyntheticTypeValues("bot") 

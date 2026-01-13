@@ -26,7 +26,7 @@ extension SemanticConventions {
     /** 
       The Linux Slab memory state
     */
-    public struct MemorySlabStateValues: CustomStringConvertible {
+    public struct MemorySlabStateValues: CustomStringConvertible, Sendable {
       public static let reclaimable = MemorySlabStateValues("reclaimable") 
       public static let unreclaimable = MemorySlabStateValues("unreclaimable") 
 

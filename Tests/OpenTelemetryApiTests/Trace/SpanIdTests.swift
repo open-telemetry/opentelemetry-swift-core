@@ -6,7 +6,7 @@
 import OpenTelemetryApi
 import XCTest
 
-final class SpanIdTests: XCTestCase {
+final class SpanIdTests: XCTestCase, @unchecked Sendable {
   let firstBytes: [UInt8] = [0, 0, 0, 0, 0, 0, 0, UInt8(ascii: "a")]
   let secondBytes: [UInt8] = [0xFF, 0, 0, 0, 0, 0, 0, UInt8(ascii: "A")]
 
@@ -75,7 +75,7 @@ final class SpanIdTests: XCTestCase {
     XCTAssertEqual(second, try decoder.decode(SpanId.self, from: encoder.encode(second)))
   }
 
-  static var allTests = [
+  static let allTests = [
     ("testIsValid", testIsValid),
     ("testFromHexString", testFromHexString),
     ("testToHexString", testToHexString),

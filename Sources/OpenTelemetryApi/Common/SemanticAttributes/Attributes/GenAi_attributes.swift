@@ -75,6 +75,75 @@ extension SemanticConventions {
     case dataSourceId = "gen_ai.data_source.id"
 
     /**
+     The number of dimensions the resulting output embeddings should have.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.embeddingsDimensionCount.rawValue] = 512
+      attributes[SemanticConventions.GenAi.embeddingsDimensionCount.rawValue] = 1024
+      ```
+
+     - Requires: Value type should be `Int`
+    */
+    case embeddingsDimensionCount = "gen_ai.embeddings.dimension.count"
+
+    /**
+     A free-form explanation for the assigned score provided by the evaluator.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.evaluationExplanation.rawValue] = "The response is factually accurate but lacks sufficient detail to fully address the question."
+      ```
+
+     - Requires: Value type should be `String`
+    */
+    case evaluationExplanation = "gen_ai.evaluation.explanation"
+
+    /**
+     The name of the evaluation metric used for the GenAI response.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.evaluationName.rawValue] = "Relevance"
+      attributes[SemanticConventions.GenAi.evaluationName.rawValue] = "IntentResolution"
+      ```
+
+     - Requires: Value type should be `String`
+    */
+    case evaluationName = "gen_ai.evaluation.name"
+
+    /**
+     Human readable label for evaluation.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.evaluationScoreLabel.rawValue] = "relevant"
+      attributes[SemanticConventions.GenAi.evaluationScoreLabel.rawValue] = "not_relevant"
+      attributes[SemanticConventions.GenAi.evaluationScoreLabel.rawValue] = "correct"
+      attributes[SemanticConventions.GenAi.evaluationScoreLabel.rawValue] = "incorrect"
+      attributes[SemanticConventions.GenAi.evaluationScoreLabel.rawValue] = "pass"
+      attributes[SemanticConventions.GenAi.evaluationScoreLabel.rawValue] = "fail"
+      ```
+
+     - Note: This attribute provides a human-readable interpretation of the evaluation score produced by an evaluator. For example, a score value of 1 could mean "relevant" in one evaluation system and "not relevant" in another, depending on the scoring range and evaluator. The label SHOULD have low cardinality. Possible values depend on the evaluation metric and evaluator used; implementations SHOULD document the possible values.
+
+     - Requires: Value type should be `String`
+    */
+    case evaluationScoreLabel = "gen_ai.evaluation.score.label"
+
+    /**
+     The evaluation score returned by the evaluator.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.evaluationScoreValue.rawValue] = 4.0
+      ```
+
+     - Requires: Value type should be `Double`
+    */
+    case evaluationScoreValue = "gen_ai.evaluation.score.value"
+
+    /**
      The chat history provided to the model as an input.
 
       - Examples:
@@ -457,6 +526,28 @@ extension SemanticConventions {
     case tokenType = "gen_ai.token.type"
 
     /**
+     Parameters passed to the tool call.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.toolCallArguments.rawValue] = {
+          "location": "San Francisco?",
+          "date": "2025-10-01"
+      }
+      ```
+
+     - Note: > [!WARNING]
+       > This attribute may contain sensitive information.
+
+       It's expected to be an object - in case a serialized string is available
+       to the instrumentation, the instrumentation SHOULD do the best effort to
+       deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+
+     - Requires: Value type should be `any`
+    */
+    case toolCallArguments = "gen_ai.tool.call.arguments"
+
+    /**
      The tool call identifier.
 
       - Examples:
@@ -467,6 +558,79 @@ extension SemanticConventions {
      - Requires: Value type should be `String`
     */
     case toolCallId = "gen_ai.tool.call.id"
+
+    /**
+     The result returned by the tool call (if any and if execution was successful).
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.toolCallResult.rawValue] = {
+        "temperature_range": {
+          "high": 75,
+          "low": 60
+        },
+        "conditions": "sunny"
+      }
+      ```
+
+     - Note: > [!WARNING]
+       > This attribute may contain sensitive information.
+
+       It's expected to be an object - in case a serialized string is available
+       to the instrumentation, the instrumentation SHOULD do the best effort to
+       deserialize it to an object. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+
+     - Requires: Value type should be `any`
+    */
+    case toolCallResult = "gen_ai.tool.call.result"
+
+    /**
+     The list of source system tool definitions available to the GenAI agent or model.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.GenAi.toolDefinitions.rawValue] = [
+        {
+          "type": "function",
+          "name": "get_current_weather",
+          "description": "Get the current weather in a given location",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "The city and state, e.g. San Francisco, CA"
+              },
+              "unit": {
+                "type": "string",
+                "enum": [
+                  "celsius",
+                  "fahrenheit"
+                ]
+              }
+            },
+            "required": [
+              "location",
+              "unit"
+            ]
+          }
+        }
+      ]
+      ```
+
+     - Note: The value of this attribute matches source system tool definition format.
+
+       It's expected to be an array of objects where each object represents a tool definition. In case a serialized string is available
+       to the instrumentation, the instrumentation SHOULD do the best effort to
+       deserialize it to an array. When recorded on spans, it MAY be recorded as a JSON string if structured format is not supported and SHOULD be recorded in structured form otherwise.
+
+       Since this attribute could be large, it's NOT RECOMMENDED to populate
+       it by default. Instrumentations MAY provide a way to enable
+       populating this attribute.
+
+     - Requires: Value type should be `any`
+    */
+    case toolDefinitions = "gen_ai.tool.definitions"
 
     /**
      The tool description.
@@ -539,7 +703,7 @@ extension SemanticConventions {
     /** 
       The name of the operation being performed.
     */
-    public struct OperationNameValues: CustomStringConvertible {
+    public struct OperationNameValues: CustomStringConvertible, Sendable {
       
       /// Chat completion operation such as [OpenAI Chat API](https://platform.openai.com/docs/api-reference/chat)
       public static let chat = OperationNameValues("chat") 
@@ -576,7 +740,7 @@ extension SemanticConventions {
     /** 
       Represents the content type requested by the client.
     */
-    public struct OutputTypeValues: CustomStringConvertible {
+    public struct OutputTypeValues: CustomStringConvertible, Sendable {
       
       /// Plain text
       public static let text = OutputTypeValues("text") 
@@ -604,7 +768,7 @@ extension SemanticConventions {
     /** 
       The Generative AI provider as identified by the client or server instrumentation.
     */
-    public struct ProviderNameValues: CustomStringConvertible {
+    public struct ProviderNameValues: CustomStringConvertible, Sendable {
       
       /// [OpenAI](https://openai.com/)
       public static let openai = ProviderNameValues("openai") 
@@ -665,7 +829,7 @@ extension SemanticConventions {
     /** 
       The type of token being counted.
     */
-    public struct TokenTypeValues: CustomStringConvertible {
+    public struct TokenTypeValues: CustomStringConvertible, Sendable {
       
       /// Input tokens (prompt, input, etc.)
       public static let input = TokenTypeValues("input") 

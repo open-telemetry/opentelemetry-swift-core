@@ -9,8 +9,8 @@ import Foundation
 /// SpanExporter.
 /// Can be used to export to multiple backends using the same SpanProcessor} like a impleSampledSpansProcessor
 ///  or a BatchSampledSpansProcessor.
-public class MultiSpanExporter: SpanExporter {
-  var spanExporters: [SpanExporter]
+public class MultiSpanExporter: SpanExporter, @unchecked Sendable {
+  let spanExporters: [SpanExporter]
 
   public init(spanExporters: [SpanExporter]) {
     self.spanExporters = spanExporters

@@ -6,12 +6,12 @@
 import Foundation
 import OpenTelemetryApi
 
-public class EmptyMetricStorage: SynchronousMetricStorageProtocol {
+public final class EmptyMetricStorage: SynchronousMetricStorageProtocol, @unchecked Sendable {
   public func recordLong(value: Int, attributes: [String: OpenTelemetryApi.AttributeValue]) {}
 
   public func recordDouble(value: Double, attributes: [String: OpenTelemetryApi.AttributeValue]) {}
 
-  public static var instance = EmptyMetricStorage()
+  public static let instance = EmptyMetricStorage()
 
   public var metricDescriptor: MetricDescriptor = .init(name: "", description: "", unit: "")
 

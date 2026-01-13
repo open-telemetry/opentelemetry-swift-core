@@ -20,7 +20,7 @@ extension SemanticConventions {
     /** 
       The state of event loop time.
     */
-    public struct EventloopStateValues: CustomStringConvertible {
+    public struct EventloopStateValues: CustomStringConvertible, Sendable {
       
       /// Active time.
       public static let active = EventloopStateValues("active") 

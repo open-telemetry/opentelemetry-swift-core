@@ -231,7 +231,7 @@ extension SemanticConventions {
     /** 
       The kind of action a pipeline run is performing.
     */
-    public struct PipelineActionNameValues: CustomStringConvertible {
+    public struct PipelineActionNameValues: CustomStringConvertible, Sendable {
       
       /// The pipeline run is executing a build.
       public static let build = PipelineActionNameValues("BUILD") 
@@ -256,7 +256,7 @@ extension SemanticConventions {
     /** 
       The result of a pipeline run.
     */
-    public struct PipelineResultValues: CustomStringConvertible {
+    public struct PipelineResultValues: CustomStringConvertible, Sendable {
       
       /// The pipeline run finished successfully.
       public static let success = PipelineResultValues("success") 
@@ -290,7 +290,7 @@ extension SemanticConventions {
     /** 
       The pipeline run goes through these states during its lifecycle.
     */
-    public struct PipelineRunStateValues: CustomStringConvertible {
+    public struct PipelineRunStateValues: CustomStringConvertible, Sendable {
       
       /// The run pending state spans from the event triggering the pipeline run until the execution of the run starts (eg. time spent in a queue, provisioning agents, creating run resources).
       public static let pending = PipelineRunStateValues("pending") 
@@ -315,7 +315,7 @@ extension SemanticConventions {
     /** 
       The result of a task run.
     */
-    public struct PipelineTaskRunResultValues: CustomStringConvertible {
+    public struct PipelineTaskRunResultValues: CustomStringConvertible, Sendable {
       
       /// The task run finished successfully.
       public static let success = PipelineTaskRunResultValues("success") 
@@ -349,7 +349,7 @@ extension SemanticConventions {
     /** 
       The type of the task within a pipeline.
     */
-    public struct PipelineTaskTypeValues: CustomStringConvertible {
+    public struct PipelineTaskTypeValues: CustomStringConvertible, Sendable {
       
       /// build
       public static let build = PipelineTaskTypeValues("build") 
@@ -374,7 +374,7 @@ extension SemanticConventions {
     /** 
       The state of a CICD worker / agent.
     */
-    public struct WorkerStateValues: CustomStringConvertible {
+    public struct WorkerStateValues: CustomStringConvertible, Sendable {
       
       /// The worker is not performing work for the CICD system. It is available to the CICD system to perform work on (online / idle).
       public static let available = WorkerStateValues("available") 

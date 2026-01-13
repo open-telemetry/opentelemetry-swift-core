@@ -12,10 +12,10 @@ import Foundation
 /// This class provides a static global accessor for telemetry objects Tracer, Meter
 ///  and BaggageManager.
 ///  The telemetry objects are lazy-loaded singletons resolved via ServiceLoader mechanism.
-public struct OpenTelemetry {
-  public static var version = "v1.37.0"
+public struct OpenTelemetry: @unchecked Sendable {
+  public static let version = "v1.38.0"
 
-  public static var instance = OpenTelemetry()
+  nonisolated(unsafe) public static var instance = OpenTelemetry()
 
   /// Registered tracerProvider or default via DefaultTracerProvider.instance.
   public private(set) var tracerProvider: TracerProvider
