@@ -13,7 +13,7 @@ import Foundation
 /// forward slashes /.
 /// Value is opaque string up to 256 characters printable ASCII RFC0020 characters (i.e., the
 /// range 0x20 to 0x7E) except comma , and =.
-public struct TraceState: Equatable, Codable {
+public struct TraceState: Equatable, Codable, @unchecked Sendable {
   private static let maxKeyValuePairs = 32
 
   public private(set) var entries = [Entry]()
@@ -39,7 +39,7 @@ public struct TraceState: Equatable, Codable {
   /// - Parameters:
   ///   - key: the key for the Entry to be added.
   ///   - value: the value for the Entry to be added.
-  mutating func set(key: String, value: String) {
+  mutating private func set(key: String, value: String) {
     // Initially create the Entry to validate input.
     guard let entry = Entry(key: key, value: value) else { return }
     if entries.contains(where: { $0.key == entry.key }) {
@@ -62,7 +62,7 @@ public struct TraceState: Equatable, Codable {
 
   /// Removes the Entry that has the given key if it is present.
   /// - Parameter key: the key for the Entry to be removed.
-  mutating func remove(key: String) {
+  mutating private func remove(key: String) {
     if let index = entries.firstIndex(where: { $0.key == key }) {
       entries.remove(at: index)
     }
