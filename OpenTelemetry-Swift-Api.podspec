@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.source = { :git => "https://github.com/open-telemetry/opentelemetry-swift-core.git", :tag => spec.version.to_s }
   spec.source_files = "Sources/OpenTelemetryApi/**/*.swift"
 
-  spec.swift_version = "6.0.3"
+  spec.swift_version = [ "6.0.3". "5.10" ]
   spec.osx.deployment_target  = "10.13"
   spec.ios.deployment_target = "12.0"
   spec.tvos.deployment_target = "12.0"
