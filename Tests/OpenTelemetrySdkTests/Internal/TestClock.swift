@@ -57,7 +57,7 @@ class TestClock: Clock {
   }
 
   var nanoTime: Int64 {
-    return currentTimeInterval.toSignedNanoseconds + monotonicNanos
+    return currentTimeInterval.toNanoseconds + monotonicNanos
   }
 
   var now: Date {

@@ -21,7 +21,7 @@ public protocol Clock: AnyObject {
 }
 
 public extension Clock {
-  var nanoTime: Int64 { return now.timeIntervalSince1970.toSignedNanoseconds }
+  var nanoTime: Int64 { return now.timeIntervalSince1970.toNanoseconds }
 
   var monotonicNanos: Int64 {
     // Converting this from UInt64 to Int64 means that there will be an overflow
