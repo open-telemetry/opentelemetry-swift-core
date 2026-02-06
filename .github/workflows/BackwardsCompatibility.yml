@@ -40,6 +40,12 @@ jobs:
       - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
         with:
           xcode-version: 16.4
+      - uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        with:
+          path: opentelemetry-swift/.build
+          key: spm-${{ runner.os }}-${{ needs.get-release.outputs.tag }}-${{ hashFiles('opentelemetry-swift-core/**/Package.resolved') }}
+          restore-keys: |
+            spm-${{ runner.os }}-${{ needs.get-release.outputs.tag }}-
       - name: Override dependency
         run: |
           cd opentelemetry-swift
@@ -64,20 +70,28 @@ jobs:
       - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
         with:
           xcode-version: 16.4
-      - name: Install xcbeautify
-        run: brew install xcbeautify
+      - uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        with:
+          path: opentelemetry-swift/.build
+          key: spm-${{ runner.os }}-${{ needs.get-release.outputs.tag }}-${{ hashFiles('opentelemetry-swift-core/**/Package.resolved') }}
+          restore-keys: |
+            spm-${{ runner.os }}-${{ needs.get-release.outputs.tag }}-
       - name: Override dependency
         run: |
           cd opentelemetry-swift
           swift package edit opentelemetry-swift-core --path ../opentelemetry-swift-core
-      - name: Build and Test
+      - name: Install Homebrew kegs
         run: |
           cd opentelemetry-swift
-          set -o pipefail && xcodebuild -configuration Debug \
-            -destination 'platform=iOS Simulator,name=iPhone 16' \
-            -scheme ${{ env.PROJECT_NAME }} \
-            -workspace . \
-            test | xcbeautify
+          make setup-brew
+      - name: Build
+        run: |
+          cd opentelemetry-swift
+          make build-for-testing-ios
+      - name: Test
+        run: |
+          cd opentelemetry-swift
+          make test-without-building-ios
 
   tvOS:
     needs: get-release
@@ -94,20 +108,28 @@ jobs:
       - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
         with:
           xcode-version: 16.4
-      - name: Install xcbeautify
-        run: brew install xcbeautify
+      - uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        with:
+          path: opentelemetry-swift/.build
+          key: spm-${{ runner.os }}-${{ needs.get-release.outputs.tag }}-${{ hashFiles('opentelemetry-swift-core/**/Package.resolved') }}
+          restore-keys: |
+            spm-${{ runner.os }}-${{ needs.get-release.outputs.tag }}-
       - name: Override dependency
         run: |
           cd opentelemetry-swift
           swift package edit opentelemetry-swift-core --path ../opentelemetry-swift-core
-      - name: Build and Test
+      - name: Install Homebrew kegs
         run: |
           cd opentelemetry-swift
-          set -o pipefail && xcodebuild -configuration Debug \
-            -destination 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation)' \
-            -scheme ${{ env.PROJECT_NAME }} \
-            -workspace . \
-            test | xcbeautify
+          make setup-brew
+      - name: Build
+        run: |
+          cd opentelemetry-swift
+          make build-for-testing-tvos
+      - name: Test
+        run: |
+          cd opentelemetry-swift
+          make test-without-building-tvos
 
   watchOS:
     needs: get-release
@@ -124,20 +146,28 @@ jobs:
       - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
         with:
           xcode-version: 16.4
-      - name: Install xcbeautify
-        run: brew install xcbeautify
+      - uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        with:
+          path: opentelemetry-swift/.build
+          key: spm-${{ runner.os }}-${{ needs.get-release.outputs.tag }}-${{ hashFiles('opentelemetry-swift-core/**/Package.resolved') }}
+          restore-keys: |
+            spm-${{ runner.os }}-${{ needs.get-release.outputs.tag }}-
       - name: Override dependency
         run: |
           cd opentelemetry-swift
           swift package edit opentelemetry-swift-core --path ../opentelemetry-swift-core
-      - name: Build and Test
+      - name: Install Homebrew kegs
         run: |
           cd opentelemetry-swift
-          set -o pipefail && xcodebuild -configuration Debug \
-            -destination 'platform=watchOS Simulator,name=Apple Watch Series 10 (46mm)' \
-            -scheme ${{ env.PROJECT_NAME }} \
-            -workspace . \
-            test | xcbeautify
+          make setup-brew
+      - name: Build
+        run: |
+          cd opentelemetry-swift
+          make build-for-testing-watchos
+      - name: Test
+        run: |
+          cd opentelemetry-swift
+          make test-without-building-watchos
 
   visionOS:
     needs: get-release
@@ -154,17 +184,25 @@ jobs:
       - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
         with:
           xcode-version: 16.4
-      - name: Install xcbeautify
-        run: brew install xcbeautify
+      - uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        with:
+          path: opentelemetry-swift/.build
+          key: spm-${{ runner.os }}-${{ needs.get-release.outputs.tag }}-${{ hashFiles('opentelemetry-swift-core/**/Package.resolved') }}
+          restore-keys: |
+            spm-${{ runner.os }}-${{ needs.get-release.outputs.tag }}-
       - name: Override dependency
         run: |
           cd opentelemetry-swift
           swift package edit opentelemetry-swift-core --path ../opentelemetry-swift-core
-      - name: Build and Test
+      - name: Install Homebrew kegs
         run: |
           cd opentelemetry-swift
-          set -o pipefail && xcodebuild -configuration Debug \
-            -destination 'platform=visionOS Simulator,name=Apple Vision Pro' \
-            -scheme ${{ env.PROJECT_NAME }} \
-            -workspace . \
-            test | xcbeautify
+          make setup-brew
+      - name: Build
+        run: |
+          cd opentelemetry-swift
+          make build-for-testing-visionos
+      - name: Test
+        run: |
+          cd opentelemetry-swift
+          make test-without-building-visionos
