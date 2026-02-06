@@ -206,3 +206,30 @@ jobs:
         run: |
           cd opentelemetry-swift
           make test-without-building-visionos
+
+
+  linux:
+    needs: get-release
+    runs-on: ubuntu-latest
+    container: swift:6.1
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: opentelemetry-swift-core
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
+          ref: ${{ needs.get-release.outputs.tag }}
+          path: opentelemetry-swift
+      - name: Override dependency
+        run: |
+          cd opentelemetry-swift
+          swift package edit opentelemetry-swift-core --path ../opentelemetry-swift-core
+      - name: Build
+        run: |
+          cd opentelemetry-swift
+          swift build --build-tests
+      - name: Test
+        run: |
+          cd opentelemetry-swift
+          swift test
