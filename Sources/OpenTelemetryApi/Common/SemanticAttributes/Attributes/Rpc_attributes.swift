@@ -180,12 +180,14 @@ extension SemanticConventions {
     case messageUncompressedSize = "rpc.message.uncompressed_size"
 
     /**
-     This is the logical name of the method from the RPC interface perspective.
+     The name of the (logical) method being called, must be equal to the $method part in the span name.
 
       - Examples:
       ```
       attributes[SemanticConventions.Rpc.method.rawValue] = "exampleMethod"
       ```
+
+     - Note: This is the logical name of the method from the RPC interface perspective, which can be different from the name of any implementing method/function. The `code.function.name` attribute may be used to store the latter (e.g., method actually executing the call on the server side, RPC client stub method on the client side).
 
      - Requires: Value type should be `String`
     */
@@ -198,6 +200,8 @@ extension SemanticConventions {
       ```
       attributes[SemanticConventions.Rpc.service.rawValue] = "myservice.EchoService"
       ```
+
+     - Note: This is the logical name of the service from the RPC interface perspective, which can be different from the name of any implementing class. The `code.namespace` attribute may be used to store the latter (despite the attribute name, it may include a class name; e.g., class with method actually executing the call on the server side, RPC client stub class on the client side).
 
      - Requires: Value type should be `String`
     */
@@ -213,7 +217,7 @@ extension SemanticConventions {
     /** 
       The [error codes](https://connectrpc.com//docs/protocol/#error-codes) of the Connect request. Error codes are always string values.
     */
-    public struct ConnectErrorCodeValues: CustomStringConvertible, Sendable {
+    public struct ConnectErrorCodeValues: CustomStringConvertible {
       public static let cancelled = ConnectErrorCodeValues("cancelled") 
       public static let unknown = ConnectErrorCodeValues("unknown") 
       public static let invalidArgument = ConnectErrorCodeValues("invalid_argument") 
@@ -245,7 +249,7 @@ extension SemanticConventions {
     /** 
       The [numeric status code](https://github.com/grpc/grpc/blob/v1.33.2/doc/statuscodes.md) of the gRPC request.
     */
-    public struct GStatusCodeValues: CustomStringConvertible, Sendable {
+    public struct GStatusCodeValues: CustomStringConvertible {
       
       /// OK
       public static let ok = GStatusCodeValues(0) 
@@ -312,7 +316,7 @@ extension SemanticConventions {
     /** 
       Whether this is a received or sent message.
     */
-    public struct MessageTypeValues: CustomStringConvertible, Sendable {
+    public struct MessageTypeValues: CustomStringConvertible {
       public static let sent = MessageTypeValues("SENT") 
       public static let received = MessageTypeValues("RECEIVED") 
 
@@ -330,7 +334,7 @@ extension SemanticConventions {
     /** 
       A string identifying the remoting system. See below for a list of well-known identifiers.
     */
-    public struct SystemValues: CustomStringConvertible, Sendable {
+    public struct SystemValues: CustomStringConvertible {
       
       /// gRPC
       public static let grpc = SystemValues("grpc") 
@@ -346,12 +350,6 @@ extension SemanticConventions {
       
       /// Connect RPC
       public static let connectRpc = SystemValues("connect_rpc") 
-      
-      /// [ONC RPC (Sun RPC)](https://datatracker.ietf.org/doc/html/rfc5531)
-      public static let oncRpc = SystemValues("onc_rpc") 
-      
-      /// JSON-RPC
-      public static let jsonrpc = SystemValues("jsonrpc") 
 
       internal let value: String 
 

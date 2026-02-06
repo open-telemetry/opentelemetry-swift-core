@@ -686,7 +686,7 @@ extension SemanticConventions {
     /** 
       The [launch type](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html) for an ECS task.
     */
-    public struct EcsLaunchtypeValues: CustomStringConvertible, Sendable {
+    public struct EcsLaunchtypeValues: CustomStringConvertible {
       
       /// Amazon EC2
       public static let ec2 = EcsLaunchtypeValues("ec2") 

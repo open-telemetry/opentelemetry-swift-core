@@ -9,9 +9,9 @@ import OpenTelemetryApi
 /// Struct to access a set of pre-defined Samplers.
 public enum Samplers {
   /// A Sampler that always makes a "yes" decision on Span sampling.
-  public nonisolated(unsafe) static let alwaysOn: Sampler = AlwaysOnSampler()
+  public static var alwaysOn: Sampler = AlwaysOnSampler()
   ///  Sampler that always makes a "no" decision on Span sampling.
-  public nonisolated(unsafe) static let alwaysOff: Sampler = AlwaysOffSampler()
+  public static var alwaysOff: Sampler = AlwaysOffSampler()
   /// Returns a new TraceIdRatioBased Sampler. The probability of sampling a trace is equal to that
   /// of the specified probability.
   /// - Parameter probability: The desired probability of sampling. Must be within [0.0, 1.0].
@@ -34,8 +34,8 @@ public enum Samplers {
                               localParentNotSampled: localParentNotSampled)
   }
 
-  nonisolated(unsafe) static let alwaysOnDecision: Decision = SimpleDecision(decision: true)
-  nonisolated(unsafe) static let alwaysOffDecision: Decision = SimpleDecision(decision: false)
+  static var alwaysOnDecision: Decision = SimpleDecision(decision: true)
+  static var alwaysOffDecision: Decision = SimpleDecision(decision: false)
 }
 
 class AlwaysOnSampler: Sampler {

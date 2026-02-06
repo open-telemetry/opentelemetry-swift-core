@@ -239,7 +239,7 @@ extension SemanticConventions {
     /** 
       The state of network connection
     */
-    public struct ConnectionStateValues: CustomStringConvertible, Sendable {
+    public struct ConnectionStateValues: CustomStringConvertible {
       public static let closed = ConnectionStateValues("closed") 
       public static let closeWait = ConnectionStateValues("close_wait") 
       public static let closing = ConnectionStateValues("closing") 
@@ -266,7 +266,7 @@ extension SemanticConventions {
     /** 
       This describes more details regarding the connection.type. It may be the type of cell technology connection, but it could be used for describing details about a wifi connection.
     */
-    public struct ConnectionSubtypeValues: CustomStringConvertible, Sendable {
+    public struct ConnectionSubtypeValues: CustomStringConvertible {
       
       /// GPRS
       public static let gprs = ConnectionSubtypeValues("gprs") 
@@ -345,7 +345,7 @@ extension SemanticConventions {
     /** 
       The internet connection type.
     */
-    public struct ConnectionTypeValues: CustomStringConvertible, Sendable {
+    public struct ConnectionTypeValues: CustomStringConvertible {
       public static let wifi = ConnectionTypeValues("wifi") 
       public static let wired = ConnectionTypeValues("wired") 
       public static let cell = ConnectionTypeValues("cell") 
@@ -366,7 +366,7 @@ extension SemanticConventions {
     /** 
       The network IO operation direction.
     */
-    public struct IoDirectionValues: CustomStringConvertible, Sendable {
+    public struct IoDirectionValues: CustomStringConvertible {
       public static let transmit = IoDirectionValues("transmit") 
       public static let receive = IoDirectionValues("receive") 
 
@@ -384,7 +384,7 @@ extension SemanticConventions {
     /** 
       [OSI transport layer](https://wikipedia.org/wiki/Transport_layer) or [inter-process communication method](https://wikipedia.org/wiki/Inter-process_communication).
     */
-    public struct TransportValues: CustomStringConvertible, Sendable {
+    public struct TransportValues: CustomStringConvertible {
       
       /// TCP
       public static let tcp = TransportValues("tcp") 
@@ -415,7 +415,7 @@ extension SemanticConventions {
     /** 
       [OSI network layer](https://wikipedia.org/wiki/Network_layer) or non-OSI equivalent.
     */
-    public struct TypeValues: CustomStringConvertible, Sendable {
+    public struct TypeValues: CustomStringConvertible {
       
       /// IPv4
       public static let ipv4 = TypeValues("ipv4") 

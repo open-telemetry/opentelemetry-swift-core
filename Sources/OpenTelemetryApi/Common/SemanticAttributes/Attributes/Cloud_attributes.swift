@@ -103,7 +103,7 @@ extension SemanticConventions {
     /** 
       The cloud platform in use.
     */
-    public struct PlatformValues: CustomStringConvertible, Sendable {
+    public struct PlatformValues: CustomStringConvertible {
       
       /// Alibaba Cloud Elastic Compute Service
       public static let alibabaCloudEcs = PlatformValues("alibaba_cloud_ecs") 
@@ -209,7 +209,7 @@ extension SemanticConventions {
     /** 
       Name of the cloud provider.
     */
-    public struct ProviderValues: CustomStringConvertible, Sendable {
+    public struct ProviderValues: CustomStringConvertible {
       
       /// Alibaba Cloud
       public static let alibabaCloud = ProviderValues("alibaba_cloud") 

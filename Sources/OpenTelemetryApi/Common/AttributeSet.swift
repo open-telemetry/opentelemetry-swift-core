@@ -5,11 +5,11 @@
 
 import Foundation
 
-open class AttributeSet: Hashable, Codable, @unchecked Sendable {
+open class AttributeSet: Hashable, Codable {
   public private(set) var labels: [String: AttributeValue]
 
   /// Empty LabelSet.
-  public static let empty = AttributeSet()
+  public static var empty = AttributeSet()
 
   private init() {
     labels = [String: AttributeValue]()

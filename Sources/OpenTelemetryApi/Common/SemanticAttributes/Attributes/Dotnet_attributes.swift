@@ -27,7 +27,7 @@ extension SemanticConventions {
     /** 
       Name of the garbage collector managed heap generation.
     */
-    public struct GcHeapGenerationValues: CustomStringConvertible, Sendable {
+    public struct GcHeapGenerationValues: CustomStringConvertible {
       
       /// Generation 0
       public static let gen0 = GcHeapGenerationValues("gen0") 

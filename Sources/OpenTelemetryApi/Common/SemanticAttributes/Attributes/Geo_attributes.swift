@@ -93,7 +93,7 @@ extension SemanticConventions {
     /** 
       Two-letter code representing continent’s name.
     */
-    public struct ContinentCodeValues: CustomStringConvertible, Sendable {
+    public struct ContinentCodeValues: CustomStringConvertible {
       
       /// Africa
       public static let af = ContinentCodeValues("AF") 

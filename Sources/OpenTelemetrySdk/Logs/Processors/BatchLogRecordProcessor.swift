@@ -75,7 +75,7 @@ public class BatchLogRecordProcessor: LogRecordProcessor {
   }
 }
 
-private class BatchWorker: WorkerThread, @unchecked Sendable {
+private class BatchWorker: WorkerThread {
   let logRecordExporter: LogRecordExporter
   let scheduleDelay: TimeInterval
   let maxQueueSize: Int
@@ -127,7 +127,7 @@ private class BatchWorker: WorkerThread, @unchecked Sendable {
         cond.lock()
         if logRecordList.count < maxExportBatchSize {
           repeat {
-            _ = cond.wait(until: Date().addingTimeInterval(scheduleDelay))
+            cond.wait(until: Date().addingTimeInterval(scheduleDelay))
           } while logRecordList.isEmpty && !self.isCancelled
         }
         logRecordsCopy = logRecordList

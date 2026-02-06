@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public class ExponentialHistogramPointData: PointData, Codable, @unchecked Sendable {
+public class ExponentialHistogramPointData: PointData, Codable {
   public var scale: Int
   public var sum: Double
   public var count: Int

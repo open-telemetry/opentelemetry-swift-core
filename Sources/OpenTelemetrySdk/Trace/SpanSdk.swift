@@ -9,7 +9,7 @@ import OpenTelemetryApi
 @available(*, deprecated, renamed: "SpanSdk")
 public typealias RecordEventsReadableSpan = SpanSdk
 /// Implementation for the Span class that records trace events.
-public class SpanSdk: ReadableSpan, @unchecked Sendable {
+public class SpanSdk: ReadableSpan {
   private let lock: ReadWriteLock = .init()
 
   fileprivate var internalIsRecording = true

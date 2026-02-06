@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public struct ReadableLogRecord: Codable, @unchecked Sendable {
+public struct ReadableLogRecord: Codable {
   public init(resource: Resource, instrumentationScopeInfo: InstrumentationScopeInfo, timestamp: Date, observedTimestamp: Date? = nil, spanContext: SpanContext? = nil, severity: Severity? = nil, body: AttributeValue? = nil, attributes: [String: AttributeValue], eventName: String? = nil) {
     self.resource = resource
     self.instrumentationScopeInfo = instrumentationScopeInfo

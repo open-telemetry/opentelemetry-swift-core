@@ -69,7 +69,7 @@ extension SemanticConventions {
     /** 
       The status of the actual test case result from test execution.
     */
-    public struct CaseResultStatusValues: CustomStringConvertible, Sendable {
+    public struct CaseResultStatusValues: CustomStringConvertible {
       
       /// pass
       public static let pass = CaseResultStatusValues("pass") 
@@ -91,7 +91,7 @@ extension SemanticConventions {
     /** 
       The status of the test suite run.
     */
-    public struct SuiteRunStatusValues: CustomStringConvertible, Sendable {
+    public struct SuiteRunStatusValues: CustomStringConvertible {
       
       /// success
       public static let success = SuiteRunStatusValues("success") 

@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public class DoublePointData: PointData, Codable, @unchecked Sendable {
+public class DoublePointData: PointData, Codable {
   public var value: Double
 
   enum CodingKeys: String, CodingKey {

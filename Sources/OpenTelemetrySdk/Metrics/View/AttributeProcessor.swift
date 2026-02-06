@@ -89,7 +89,7 @@ public class JoinedAttributeProcessor: AttributeProcessor {
   }
 }
 
-public final class NoopAttributeProcessor: AttributeProcessor, @unchecked Sendable {
+public class NoopAttributeProcessor: AttributeProcessor {
   static let noop = NoopAttributeProcessor()
   private init() {}
   public func process(incoming: [String: AttributeValue]) -> [String: AttributeValue] {

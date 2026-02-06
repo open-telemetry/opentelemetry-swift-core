@@ -6,12 +6,12 @@
 import Foundation
 
 /// No-op implementations of BaggageManager.
-public final class DefaultBaggageManager: BaggageManager, @unchecked Sendable {
+public class DefaultBaggageManager: BaggageManager {
   private init() {}
 
   ///  Returns a BaggageManager singleton that is the default implementation for
   ///  BaggageManager.
-  public static let instance = DefaultBaggageManager()
+  public static var instance = DefaultBaggageManager()
 
   public func baggageBuilder() -> BaggageBuilder {
     return DefaultBaggageBuilder()

@@ -124,41 +124,6 @@ extension SemanticConventions {
     case screenCoordinateY = "app.screen.coordinate.y"
 
     /**
-     An identifier that uniquely differentiates this screen from other screens in the same application.
-
-      - Examples:
-      ```
-      attributes[SemanticConventions.App.screenId.rawValue] = "f9bc787d-ff05-48ad-90e1-fca1d46130b3"
-      attributes[SemanticConventions.App.screenId.rawValue] = "com.example.app.MainActivity"
-      attributes[SemanticConventions.App.screenId.rawValue] = "com.example.shop.ProductDetailFragment"
-      attributes[SemanticConventions.App.screenId.rawValue] = "MyApp.ProfileView"
-      attributes[SemanticConventions.App.screenId.rawValue] = "MyApp.ProfileViewController"
-      ```
-
-     - Note: A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
-
-     - Requires: Value type should be `String`
-    */
-    case screenId = "app.screen.id"
-
-    /**
-     The name of an application screen.
-
-      - Examples:
-      ```
-      attributes[SemanticConventions.App.screenName.rawValue] = "MainActivity"
-      attributes[SemanticConventions.App.screenName.rawValue] = "ProductDetailFragment"
-      attributes[SemanticConventions.App.screenName.rawValue] = "ProfileView"
-      attributes[SemanticConventions.App.screenName.rawValue] = "ProfileViewController"
-      ```
-
-     - Note: A screen represents only the part of the device display drawn by the app. It typically contains multiple widgets or UI components and is larger in scope than individual widgets. Multiple screens can coexist on the same display simultaneously (e.g., split view on tablets).
-
-     - Requires: Value type should be `String`
-    */
-    case screenName = "app.screen.name"
-
-    /**
      An identifier that uniquely differentiates this widget from other widgets in the same application.
 
       - Examples:

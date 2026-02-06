@@ -67,7 +67,7 @@ extension SemanticConventions {
     /** 
       Describes a class of error the operation ended with.
     */
-    public struct TypeValues: CustomStringConvertible, Sendable {
+    public struct TypeValues: CustomStringConvertible {
       
       /// A fallback error value to be used when the instrumentation doesn't define a custom value.
       public static let other = TypeValues("_OTHER") 

@@ -5,7 +5,7 @@
 
 import Foundation
 
-public final class DefaultTracerProvider: TracerProvider, @unchecked Sendable {
+public class DefaultTracerProvider: TracerProvider {
   public static let instance = DefaultTracerProvider()
 
   public func get(instrumentationName: String,

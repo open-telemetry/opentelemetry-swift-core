@@ -5,9 +5,9 @@
 
 import Foundation
 
-open class AttributeArray: Hashable, Codable, @unchecked Sendable {
+open class AttributeArray: Hashable, Codable {
   public private(set) var values: [AttributeValue]
-  public static let empty = AttributeArray()
+  public static var empty = AttributeArray()
   public var description: String {
     values.description
   }

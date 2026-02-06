@@ -66,7 +66,7 @@ extension SemanticConventions {
     /** 
       The status of the deployment.
     */
-    public struct StatusValues: CustomStringConvertible, Sendable {
+    public struct StatusValues: CustomStringConvertible {
       
       /// failed
       public static let failed = StatusValues("failed") 

@@ -7,7 +7,7 @@ import Foundation
 import OpenTelemetryApi
 
 /// The extend Span interface used by the SDK.
-public protocol ReadableSpan: Span, Sendable {
+public protocol ReadableSpan: Span {
   /// The name of the Span.
   /// The name can be changed during the lifetime of the Span so this value cannot be cached.
   var name: String { get set }

@@ -25,7 +25,7 @@ extension SemanticConventions {
     /** 
       The disk IO operation direction.
     */
-    public struct IoDirectionValues: CustomStringConvertible, Sendable {
+    public struct IoDirectionValues: CustomStringConvertible {
       public static let read = IoDirectionValues("read") 
       public static let write = IoDirectionValues("write") 
 

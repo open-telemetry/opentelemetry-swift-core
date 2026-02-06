@@ -122,7 +122,7 @@ extension SemanticConventions {
     /** 
       The type of memory.
     */
-    public struct MemoryTypeValues: CustomStringConvertible, Sendable {
+    public struct MemoryTypeValues: CustomStringConvertible {
       
       /// Heap memory.
       public static let heap = MemoryTypeValues("heap") 
@@ -144,7 +144,7 @@ extension SemanticConventions {
     /** 
       State of the thread.
     */
-    public struct ThreadStateValues: CustomStringConvertible, Sendable {
+    public struct ThreadStateValues: CustomStringConvertible {
       
       /// A thread that has not yet started is in this state.
       public static let new = ThreadStateValues("new") 

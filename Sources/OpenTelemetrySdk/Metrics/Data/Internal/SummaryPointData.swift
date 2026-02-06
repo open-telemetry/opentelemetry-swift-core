@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public class SummaryPointData: PointData, Codable, @unchecked Sendable {
+public class SummaryPointData: PointData, Codable {
   public var count: UInt64
   public var sum: Double
   public var values: [ValueAtQuantile]

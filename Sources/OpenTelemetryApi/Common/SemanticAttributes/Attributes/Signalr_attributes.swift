@@ -39,7 +39,7 @@ extension SemanticConventions {
     /** 
       SignalR HTTP connection closure status.
     */
-    public struct ConnectionStatusValues: CustomStringConvertible, Sendable {
+    public struct ConnectionStatusValues: CustomStringConvertible {
       
       /// The connection was closed normally.
       public static let normalClosure = ConnectionStatusValues("normal_closure") 
@@ -64,7 +64,7 @@ extension SemanticConventions {
     /** 
       [SignalR transport type](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md)
     */
-    public struct TransportValues: CustomStringConvertible, Sendable {
+    public struct TransportValues: CustomStringConvertible {
       
       /// ServerSentEvents protocol
       public static let serverSentEvents = TransportValues("server_sent_events") 

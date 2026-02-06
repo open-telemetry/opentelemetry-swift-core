@@ -74,7 +74,7 @@ extension SemanticConventions {
     /** 
       The operating system type.
     */
-    public struct TypeValues: CustomStringConvertible, Sendable {
+    public struct TypeValues: CustomStringConvertible {
       
       /// Microsoft Windows
       public static let windows = TypeValues("windows") 

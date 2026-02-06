@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public class HistogramPointData: PointData, Codable, @unchecked Sendable {
+public class HistogramPointData: PointData, Codable {
   public var sum: Double
   public var count: UInt64
   public var min: Double

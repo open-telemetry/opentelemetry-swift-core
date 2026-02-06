@@ -6,9 +6,9 @@
 import Foundation
 import OpenTelemetryApi
 
-public final class Base2ExponentialHistogramIndexer: Codable, @unchecked Sendable {
-  nonisolated(unsafe) private static var cache = [Int: Base2ExponentialHistogramIndexer]()
-  nonisolated(unsafe) private static var cacheLock = Lock()
+public class Base2ExponentialHistogramIndexer: Codable {
+  private static var cache = [Int: Base2ExponentialHistogramIndexer]()
+  private static var cacheLock = Lock()
 
   private let scale: Int
   private let scaleFactor: Double

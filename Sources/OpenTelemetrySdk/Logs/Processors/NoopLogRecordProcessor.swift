@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public final class NoopLogRecordProcessor: LogRecordProcessor, @unchecked Sendable {
+public class NoopLogRecordProcessor: LogRecordProcessor {
   public static let noopLogRecordProcessor = NoopLogRecordProcessor()
 
   public func onEmit(logRecord: ReadableLogRecord) {}

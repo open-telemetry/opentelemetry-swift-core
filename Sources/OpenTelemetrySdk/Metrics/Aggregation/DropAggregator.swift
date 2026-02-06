@@ -6,8 +6,8 @@
 import Foundation
 import OpenTelemetryApi
 
-public final class DropAggregator: Aggregator, @unchecked Sendable {
-  public static let POINT_DATA = PointData(startEpochNanos: 0, endEpochNanos: 0, attributes: [String: AttributeValue](), exemplars: [ExemplarData]())
+public class DropAggregator: Aggregator {
+  public private(set) static var POINT_DATA = PointData(startEpochNanos: 0, endEpochNanos: 0, attributes: [String: AttributeValue](), exemplars: [ExemplarData]())
 
   public func createHandle() -> AggregatorHandle {
     AggregatorHandle(exemplarReservoir: ExemplarReservoirCollection.doubleNoSamples())

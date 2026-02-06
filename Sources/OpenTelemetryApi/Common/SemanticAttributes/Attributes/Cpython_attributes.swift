@@ -27,7 +27,7 @@ extension SemanticConventions {
     /** 
       Value of the garbage collector collection generation.
     */
-    public struct GcGenerationValues: CustomStringConvertible, Sendable {
+    public struct GcGenerationValues: CustomStringConvertible {
       
       /// Generation 0
       public static let generation0 = GcGenerationValues(0) 

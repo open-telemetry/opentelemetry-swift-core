@@ -6,11 +6,11 @@
 import Foundation
 
 /// An immutable implementation of the Baggage that does not contain any entries.
-final class EmptyBaggage: Baggage, @unchecked Sendable {
+class EmptyBaggage: Baggage {
   private init() {}
 
   /// Returns the single instance of the EmptyBaggage class.
-  static let instance = EmptyBaggage()
+  static var instance = EmptyBaggage()
 
   static func baggageBuilder() -> BaggageBuilder {
     return EmptyBaggageBuilder()

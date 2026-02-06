@@ -22,7 +22,7 @@ extension SemanticConventions {
     /** 
       This attribute represents the state of the application.
     */
-    public struct AppStateValues: CustomStringConvertible, Sendable {
+    public struct AppStateValues: CustomStringConvertible {
       
       /// The app has become `active`. Associated with UIKit notification `applicationDidBecomeActive`.
       public static let active = AppStateValues("active") 

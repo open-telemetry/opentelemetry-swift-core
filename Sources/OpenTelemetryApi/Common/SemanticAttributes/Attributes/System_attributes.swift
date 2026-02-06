@@ -11,6 +11,18 @@ extension SemanticConventions {
   public enum System: String {
 
     /**
+     Deprecated, use `cpu.logical_number` instead.
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.cpuLogicalNumber.rawValue] = 1
+      ```
+
+     - Requires: Value type should be `Int`
+    */
+    case cpuLogicalNumber = "system.cpu.logical_number"
+
+    /**
      The device identifier
 
       - Examples:
@@ -96,18 +108,6 @@ extension SemanticConventions {
     case pagingDirection = "system.paging.direction"
 
     /**
-     The paging fault type
-
-      - Examples:
-      ```
-      attributes[SemanticConventions.System.pagingFaultType.rawValue] = .minor
-      ```
-
-     - Requires: Value should be one of ``PagingFaultTypeValues`` (of type `String`)
-    */
-    case pagingFaultType = "system.paging.fault.type"
-
-    /**
      The memory paging state
 
       - Examples:
@@ -119,10 +119,34 @@ extension SemanticConventions {
     */
     case pagingState = "system.paging.state"
 
+    /**
+     The memory paging type
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.pagingType.rawValue] = .minor
+      ```
+
+     - Requires: Value should be one of ``PagingTypeValues`` (of type `String`)
+    */
+    case pagingType = "system.paging.type"
+
+    /**
+     The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+
+      - Examples:
+      ```
+      attributes[SemanticConventions.System.processStatus.rawValue] = .running
+      ```
+
+     - Requires: Value should be one of ``ProcessStatusValues`` (of type `String`)
+    */
+    case processStatus = "system.process.status"
+
     /** 
       The filesystem state
     */
-    public struct FileStateValues: CustomStringConvertible, Sendable {
+    public struct FileStateValues: CustomStringConvertible {
       public static let used = FileStateValues("used") 
       public static let free = FileStateValues("free") 
       public static let reserved = FileStateValues("reserved") 
@@ -141,7 +165,7 @@ extension SemanticConventions {
     /** 
       The filesystem type
     */
-    public struct FileTypeValues: CustomStringConvertible, Sendable {
+    public struct FileTypeValues: CustomStringConvertible {
       public static let fat32 = FileTypeValues("fat32") 
       public static let exfat = FileTypeValues("exfat") 
       public static let ntfs = FileTypeValues("ntfs") 
@@ -163,7 +187,7 @@ extension SemanticConventions {
     /** 
       The memory state
     */
-    public struct MemoryStateValues: CustomStringConvertible, Sendable {
+    public struct MemoryStateValues: CustomStringConvertible {
       
       /// Actual used virtual memory in bytes.
       public static let used = MemoryStateValues("used") 
@@ -185,7 +209,7 @@ extension SemanticConventions {
     /** 
       The paging access direction
     */
-    public struct PagingDirectionValues: CustomStringConvertible, Sendable {
+    public struct PagingDirectionValues: CustomStringConvertible {
       public static let _in = PagingDirectionValues("in") 
       public static let out = PagingDirectionValues("out") 
 
@@ -201,11 +225,11 @@ extension SemanticConventions {
     }
 
     /** 
-      The paging fault type
+      The memory paging state
     */
-    public struct PagingFaultTypeValues: CustomStringConvertible, Sendable {
-      public static let major = PagingFaultTypeValues("major") 
-      public static let minor = PagingFaultTypeValues("minor") 
+    public struct PagingStateValues: CustomStringConvertible {
+      public static let used = PagingStateValues("used") 
+      public static let free = PagingStateValues("free") 
 
       internal let value: String 
 
@@ -219,11 +243,31 @@ extension SemanticConventions {
     }
 
     /** 
-      The memory paging state
+      The memory paging type
     */
-    public struct PagingStateValues: CustomStringConvertible, Sendable {
-      public static let used = PagingStateValues("used") 
-      public static let free = PagingStateValues("free") 
+    public struct PagingTypeValues: CustomStringConvertible {
+      public static let major = PagingTypeValues("major") 
+      public static let minor = PagingTypeValues("minor") 
+
+      internal let value: String 
+
+      public init(_ customValue: String) {
+        self.value = customValue
+      }
+
+      public var description: String { 
+        return value
+      }
+    }
+
+    /** 
+      The process state, e.g., [Linux Process State Codes](https://man7.org/linux/man-pages/man1/ps.1.html#PROCESS_STATE_CODES)
+    */
+    public struct ProcessStatusValues: CustomStringConvertible {
+      public static let running = ProcessStatusValues("running") 
+      public static let sleeping = ProcessStatusValues("sleeping") 
+      public static let stopped = ProcessStatusValues("stopped") 
+      public static let defunct = ProcessStatusValues("defunct") 
 
       internal let value: String 
 

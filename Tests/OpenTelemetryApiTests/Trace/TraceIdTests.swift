@@ -6,7 +6,7 @@
 import OpenTelemetryApi
 import XCTest
 
-final class TraceIdTests: XCTestCase, @unchecked Sendable {
+final class TraceIdTests: XCTestCase {
   let firstBytes: [UInt8] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, UInt8(ascii: "a")]
   let secondBytes: [UInt8] = [0xFF, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, UInt8(ascii: "A")]
   let shortBytes: [UInt8] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, UInt8(ascii: "b")]
@@ -105,7 +105,7 @@ final class TraceIdTests: XCTestCase, @unchecked Sendable {
     XCTAssertEqual(short, try decoder.decode(TraceId.self, from: encoder.encode(short)))
   }
 
-  static let allTests = [
+  static var allTests = [
     ("testInvalidTraceId", testInvalidTraceId),
     ("testInvalidTraceId", testInvalidTraceId),
     ("testIsValid", testIsValid),

@@ -7,7 +7,7 @@ import Foundation
 import OpenTelemetryApi
 @testable import OpenTelemetrySdk
 
-class ReadableSpanMock: ReadableSpan, @unchecked Sendable {
+class ReadableSpanMock: ReadableSpan {
   var hasEnded: Bool = false
   var latency: TimeInterval = 0
 

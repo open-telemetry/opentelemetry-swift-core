@@ -76,9 +76,8 @@ extension SemanticConventions {
       ```
 
      - Note: HTTP request method value SHOULD be "known" to the instrumentation.
-       By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods),
-       the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html)
-       and the QUERY method defined in [httpbis-safe-method-w-body](https://datatracker.ietf.org/doc/draft-ietf-httpbis-safe-method-w-body/?include_text=1).
+       By default, this convention defines "known" methods as the ones listed in [RFC9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-methods)
+       and the PATCH method defined in [RFC5789](https://www.rfc-editor.org/rfc/rfc5789.html).
 
        If the HTTP request method is not known to instrumentation, it MUST set the `http.request.method` attribute to `_OTHER`.
 
@@ -201,24 +200,16 @@ extension SemanticConventions {
     case responseStatusCode = "http.response.status_code"
 
     /**
-     The matched route template for the request. This MUST be low-cardinality and include all static path segments, with dynamic path segments represented with placeholders.
+     The matched route, that is, the path template in the format used by the respective server framework.
 
       - Examples:
       ```
       attributes[SemanticConventions.Http.route.rawValue] = "/users/:userID?"
-      attributes[SemanticConventions.Http.route.rawValue] = "my-controller/my-action/{id?}"
+      attributes[SemanticConventions.Http.route.rawValue] = "{controller}/{action}/{id?}"
       ```
 
      - Note: MUST NOT be populated when this is not supported by the HTTP server framework as the route attribute should have low-cardinality and the URI path can NOT substitute it.
        SHOULD include the [application root](/docs/http/http-spans.md#http-server-definitions) if there is one.
-
-       A static path segment is a part of the route template with a fixed, low-cardinality value. This includes literal strings like `/users/` and placeholders that
-       are constrained to a finite, predefined set of values, e.g. `{controller}` or `{action}`.
-
-       A dynamic path segment is a placeholder for a value that can have high cardinality and is not constrained to a predefined list like static path segments.
-
-       Instrumentations SHOULD use routing information provided by the corresponding web framework. They SHOULD pick the most precise source of routing information and MAY
-       support custom route formatting. Instrumentations SHOULD document the format and the API used to obtain the route string.
 
      - Requires: Value type should be `String`
     */
@@ -227,7 +218,7 @@ extension SemanticConventions {
     /** 
       State of the HTTP connection in the HTTP connection pool.
     */
-    public struct ConnectionStateValues: CustomStringConvertible, Sendable {
+    public struct ConnectionStateValues: CustomStringConvertible {
       
       /// active state.
       public static let active = ConnectionStateValues("active") 
@@ -249,7 +240,7 @@ extension SemanticConventions {
     /** 
       HTTP request method.
     */
-    public struct RequestMethodValues: CustomStringConvertible, Sendable {
+    public struct RequestMethodValues: CustomStringConvertible {
       
       /// CONNECT method.
       public static let connect = RequestMethodValues("CONNECT") 
@@ -277,9 +268,6 @@ extension SemanticConventions {
       
       /// TRACE method.
       public static let trace = RequestMethodValues("TRACE") 
-      
-      /// QUERY method.
-      public static let query = RequestMethodValues("QUERY") 
       
       /// Any HTTP method that the instrumentation has no prior knowledge of.
       public static let other = RequestMethodValues("_OTHER") 

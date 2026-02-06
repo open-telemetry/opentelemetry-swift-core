@@ -6,7 +6,7 @@
 import OpenTelemetryApi
 import XCTest
 
-final class TraceStateTests: XCTestCase, @unchecked Sendable {
+final class TraceStateTests: XCTestCase {
   let first_key = "key_1"
   let second_key = "key_2"
   let first_value = "value_1"
@@ -160,7 +160,7 @@ final class TraceStateTests: XCTestCase, @unchecked Sendable {
     XCTAssertEqual(multiValueTraceState, try decoder.decode(TraceState.self, from: encoder.encode(multiValueTraceState)))
   }
 
-  static let allTests = [
+  static var allTests = [
     ("testGet", testGet),
     ("testGetEntries", testGetEntries),
     ("testDisallowsEmptyKey", testDisallowsEmptyKey),

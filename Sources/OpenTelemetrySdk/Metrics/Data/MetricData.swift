@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public enum MetricDataType: Codable, Sendable {
+public enum MetricDataType: Codable {
   case LongGauge
   case DoubleGauge
   case LongSum
@@ -19,7 +19,7 @@ public enum MetricDataType: Codable, Sendable {
 @available(*, deprecated, renamed: "MetricData")
 public typealias StableMetricData = MetricData
 
-public struct MetricData: Equatable, Codable, Sendable {
+public struct MetricData: Equatable, Codable {
   public private(set) var resource: Resource
   public private(set) var instrumentationScopeInfo: InstrumentationScopeInfo
   public private(set) var name: String
@@ -41,7 +41,7 @@ public struct MetricData: Equatable, Codable, Sendable {
       .Data(aggregationTemporality: .cumulative, points: [PointData]())
   )
 
-  public class Data: Equatable, @unchecked Sendable {
+  public class Data: Equatable {
     public private(set) var points: [PointData]
     public private(set) var aggregationTemporality: AggregationTemporality
 
@@ -270,7 +270,7 @@ extension MetricData {
 @available(*, deprecated, renamed: "HistogramData")
 public typealias StableHistogramData = HistogramData
 
-public class HistogramData: MetricData.Data, @unchecked Sendable {
+public class HistogramData: MetricData.Data {
   init(aggregationTemporality: AggregationTemporality, points: [HistogramPointData]) {
     super.init(aggregationTemporality: aggregationTemporality, points: points)
   }
@@ -279,7 +279,7 @@ public class HistogramData: MetricData.Data, @unchecked Sendable {
 @available(*, deprecated, renamed: "ExponentialHistogramData")
 public typealias StableExponentialHistogramData = ExponentialHistogramData
 
-public class ExponentialHistogramData: MetricData.Data, @unchecked Sendable {
+public class ExponentialHistogramData: MetricData.Data {
   override init(aggregationTemporality: AggregationTemporality, points: [PointData]) {
     super.init(aggregationTemporality: aggregationTemporality, points: points)
   }
@@ -288,7 +288,7 @@ public class ExponentialHistogramData: MetricData.Data, @unchecked Sendable {
 @available(*, deprecated, renamed: "GaugeData")
 public typealias StableGaugeData = GaugeData
 
-public class GaugeData: MetricData.Data, @unchecked Sendable {
+public class GaugeData: MetricData.Data {
   override init(aggregationTemporality: AggregationTemporality, points: [PointData]) {
     super.init(aggregationTemporality: aggregationTemporality, points: points)
   }
@@ -297,7 +297,7 @@ public class GaugeData: MetricData.Data, @unchecked Sendable {
 @available(*, deprecated, renamed: "SumData")
 public typealias StableSumData = SumData
 
-public class SumData: MetricData.Data, @unchecked Sendable {
+public class SumData: MetricData.Data {
   override init(aggregationTemporality: AggregationTemporality, points: [PointData]) {
     super.init(aggregationTemporality: aggregationTemporality, points: points)
   }
@@ -306,7 +306,7 @@ public class SumData: MetricData.Data, @unchecked Sendable {
 @available(*, deprecated, renamed: "SummaryData")
 public typealias StableSummaryData = SummaryData
 
-public class SummaryData: MetricData.Data, @unchecked Sendable {
+public class SummaryData: MetricData.Data {
   override init(aggregationTemporality: AggregationTemporality, points: [PointData]) {
     super.init(aggregationTemporality: aggregationTemporality, points: points)
   }

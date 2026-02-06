@@ -9,7 +9,7 @@ import Foundation
 /// sampled spans in their own format.
 /// To export data this MUST be register to the TracerSdk using a SimpleSpansProcessor or
 ///  a  BatchSampledSpansProcessor.
-public protocol SpanExporter: AnyObject, Sendable {
+public protocol SpanExporter: AnyObject {
   /// Called to export sampled Spans.
   /// - Parameter spans: the list of sampled Spans to be exported.
   @discardableResult func export(spans: [SpanData], explicitTimeout: TimeInterval?) -> SpanExporterResultCode

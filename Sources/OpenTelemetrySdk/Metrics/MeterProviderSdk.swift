@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public final class MeterProviderError: Error {}
+public class MeterProviderError: Error {}
 
 @available(*, deprecated, renamed: "MeterProviderSdk")
 public typealias StableMeterProviderSdk = MeterProviderSdk

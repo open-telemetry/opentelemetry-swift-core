@@ -1166,7 +1166,7 @@ public enum ResourceAttributes: String {
    Name of the cloud provider.
    */
   /// - Tag: otelCloudProviderValues
-  public struct CloudProviderValues: CustomStringConvertible, Sendable {
+  public struct CloudProviderValues: CustomStringConvertible {
     /**
      Alibaba Cloud.
      */
@@ -1211,7 +1211,7 @@ public enum ResourceAttributes: String {
    The cloud platform in use.
    */
   /// - Tag: otelCloudPlatformValues
-  public struct CloudPlatformValues: CustomStringConvertible, Sendable {
+  public struct CloudPlatformValues: CustomStringConvertible {
     /**
      Alibaba Cloud Elastic Compute Service.
      */
@@ -1359,7 +1359,7 @@ public enum ResourceAttributes: String {
    The CPU architecture the host system is running on.
    */
   /// - Tag: otelHostArchValues
-  public struct HostArchValues: CustomStringConvertible, Sendable {
+  public struct HostArchValues: CustomStringConvertible {
     /**
      AMD64.
      */
@@ -1408,7 +1408,7 @@ public enum ResourceAttributes: String {
    The operating system type.
    */
   /// - Tag: otelOsTypeValues
-  public struct OsTypeValues: CustomStringConvertible, Sendable {
+  public struct OsTypeValues: CustomStringConvertible {
     /**
      Microsoft Windows.
      */
@@ -1469,7 +1469,7 @@ public enum ResourceAttributes: String {
    The language of the telemetry SDK.
    */
   /// - Tag: otelTelemetrySdkLanguageValues
-  public struct TelemetrySdkLanguageValues: CustomStringConvertible, Sendable {
+  public struct TelemetrySdkLanguageValues: CustomStringConvertible {
     /**
      cpp.
      */

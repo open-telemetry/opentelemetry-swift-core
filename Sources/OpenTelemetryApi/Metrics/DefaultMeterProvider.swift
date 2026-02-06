@@ -8,7 +8,7 @@ import Foundation
 @available(*, deprecated, renamed: "DefaultMeterProvider")
 public typealias DefaultStableMeterProvider = DefaultMeterProvider
 
-public class DefaultMeterProvider: MeterProvider, @unchecked Sendable {
+public class DefaultMeterProvider: MeterProvider {
   static let noopMeterBuilder = NoopMeterBuilder()
 
   public static func noop() -> NoopMeterBuilder {
@@ -23,7 +23,7 @@ public class DefaultMeterProvider: MeterProvider, @unchecked Sendable {
     Self.noop()
   }
 
-  public class NoopMeterBuilder: MeterBuilder, @unchecked Sendable {
+  public class NoopMeterBuilder: MeterBuilder {
     static let noopMeter = DefaultMeter()
 
     public func setSchemaUrl(schemaUrl: String) -> Self {
@@ -43,5 +43,5 @@ public class DefaultMeterProvider: MeterProvider, @unchecked Sendable {
     }
   }
 
-  public static let instance = DefaultMeterProvider()
+  public static var instance = DefaultMeterProvider()
 }

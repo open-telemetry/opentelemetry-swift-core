@@ -11,9 +11,9 @@ import OpenTelemetryApi
 
 public class RegisteredReader: Equatable, Hashable {
   #if canImport(Darwin)
-    private(set) nonisolated(unsafe) static var id_counter: Int32 = 0
+    private(set) static var id_counter: Int32 = 0
   #else
-    private(set) nonisolated(unsafe) static var id_counter = ManagedAtomic<Int32>(0)
+    private(set) static var id_counter = ManagedAtomic<Int32>(0)
   #endif
 
   public let id: Int32

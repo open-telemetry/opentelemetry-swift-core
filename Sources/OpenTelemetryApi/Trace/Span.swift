@@ -156,7 +156,23 @@ public extension SpanBase {
     return setAttribute(key: key.rawValue, value: AttributeValue.bool(value))
   }
 
+  @available(*, deprecated, message: "parameter SemanticAttributes is deprecated. Use SemanticConventions.")
+  func setAttribute(key: SemanticAttributes, value: String) {
+    return setAttribute(key: key.rawValue, value: AttributeValue.string(value))
+  }
 
+  @available(*, deprecated, message: "parameter SemanticAttributes is deprecated. Use SemanticConventions.")
+  func setAttribute(key: SemanticAttributes, value: Int) {
+    return setAttribute(key: key.rawValue, value: AttributeValue.int(value))
+  }
+  @available(*, deprecated, message: "parameter SemanticAttributes is deprecated. Use SemanticConventions.")
+  func setAttribute(key: SemanticAttributes, value: Double) {
+    return setAttribute(key: key.rawValue, value: AttributeValue.double(value))
+  }
+  @available(*, deprecated, message: "parameter SemanticAttributes is deprecated. Use SemanticConventions.")
+  func setAttribute(key: SemanticAttributes, value: Bool) {
+    return setAttribute(key: key.rawValue, value: AttributeValue.bool(value))
+  }
 }
 
 public extension SpanExceptionRecorder {

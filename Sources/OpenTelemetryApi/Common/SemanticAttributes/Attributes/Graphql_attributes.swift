@@ -53,7 +53,7 @@ extension SemanticConventions {
     /** 
       The type of the operation being executed.
     */
-    public struct OperationTypeValues: CustomStringConvertible, Sendable {
+    public struct OperationTypeValues: CustomStringConvertible {
       
       /// GraphQL query
       public static let query = OperationTypeValues("query") 
