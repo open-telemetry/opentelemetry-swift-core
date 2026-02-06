@@ -48,17 +48,17 @@ class TimeIntervalExtensionTests: XCTestCase {
     let uInt64MaxDate = Date(timeIntervalSinceReferenceDate: TimeInterval(UInt64.max))
     XCTAssertEqual(uInt64MaxDate.timeIntervalSince1970.toMilliseconds, UInt64.max)
 
-      let overflownSignedDate = Date(timeIntervalSinceReferenceDate: .greatestFiniteMagnitude)
-      XCTAssertEqual(overflownSignedDate.timeIntervalSince1970.toSignedMilliseconds, Int64.max)
+    let overflownSignedDate = Date(timeIntervalSinceReferenceDate: .greatestFiniteMagnitude)
+    XCTAssertEqual(overflownSignedDate.timeIntervalSince1970.toSignedMilliseconds, Int64.max)
 
-      let underflownSignedDate = Date(timeIntervalSinceReferenceDate: .greatestFiniteMagnitude * -1)
-      XCTAssertEqual(underflownSignedDate.timeIntervalSince1970.toSignedMilliseconds, Int64.min)
+    let underflownSignedDate = Date(timeIntervalSinceReferenceDate: .greatestFiniteMagnitude * -1)
+    XCTAssertEqual(underflownSignedDate.timeIntervalSince1970.toSignedMilliseconds, Int64.min)
 
-      let int64MaxSignedDate = Date(timeIntervalSinceReferenceDate: TimeInterval(Int64.max))
-      XCTAssertEqual(int64MaxSignedDate.timeIntervalSince1970.toSignedMilliseconds, Int64.max)
+    let int64MaxSignedDate = Date(timeIntervalSinceReferenceDate: TimeInterval(Int64.max))
+    XCTAssertEqual(int64MaxSignedDate.timeIntervalSince1970.toSignedMilliseconds, Int64.max)
 
-      let uInt64MaxSignedDate = Date(timeIntervalSinceReferenceDate: TimeInterval(UInt64.max))
-      XCTAssertEqual(uInt64MaxSignedDate.timeIntervalSince1970.toSignedMilliseconds, Int64.max)
+    let uInt64MaxSignedDate = Date(timeIntervalSinceReferenceDate: TimeInterval(UInt64.max))
+    XCTAssertEqual(uInt64MaxSignedDate.timeIntervalSince1970.toSignedMilliseconds, Int64.max)
   }
 
   func testTimeIntervalSince1970InNanoseconds() {
@@ -85,16 +85,16 @@ class TimeIntervalExtensionTests: XCTestCase {
     let uInt64MaxDate = Date(timeIntervalSinceReferenceDate: TimeInterval(UInt64.max))
     XCTAssertEqual(uInt64MaxDate.timeIntervalSince1970.toNanoseconds, UInt64.max)
 
-      let overflownSignedDate = Date(timeIntervalSinceReferenceDate: .greatestFiniteMagnitude)
-      XCTAssertEqual(overflownSignedDate.timeIntervalSince1970.toSignedNanoseconds, Int64.max)
+    let overflownSignedDate = Date(timeIntervalSinceReferenceDate: .greatestFiniteMagnitude)
+    XCTAssertEqual(overflownSignedDate.timeIntervalSince1970.toSignedNanoseconds, Int64.max)
 
-      let underflownSignedDate = Date(timeIntervalSinceReferenceDate: .greatestFiniteMagnitude * -1)
-      XCTAssertEqual(underflownSignedDate.timeIntervalSince1970.toSignedNanoseconds, Int64.min)
+    let underflownSignedDate = Date(timeIntervalSinceReferenceDate: .greatestFiniteMagnitude * -1)
+    XCTAssertEqual(underflownSignedDate.timeIntervalSince1970.toSignedNanoseconds, Int64.min)
 
-      let int64MaxSignedDate = Date(timeIntervalSinceReferenceDate: TimeInterval(Int64.max))
-      XCTAssertEqual(int64MaxSignedDate.timeIntervalSince1970.toSignedNanoseconds, Int64.max)
+    let int64MaxSignedDate = Date(timeIntervalSinceReferenceDate: TimeInterval(Int64.max))
+    XCTAssertEqual(int64MaxSignedDate.timeIntervalSince1970.toSignedNanoseconds, Int64.max)
 
-      let uInt64MaxSignedDate = Date(timeIntervalSinceReferenceDate: TimeInterval(UInt64.max))
-      XCTAssertEqual(uInt64MaxSignedDate.timeIntervalSince1970.toSignedNanoseconds, Int64.max)
+    let uInt64MaxSignedDate = Date(timeIntervalSinceReferenceDate: TimeInterval(UInt64.max))
+    XCTAssertEqual(uInt64MaxSignedDate.timeIntervalSince1970.toSignedNanoseconds, Int64.max)
   }
 }
