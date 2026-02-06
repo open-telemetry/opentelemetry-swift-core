@@ -2,7 +2,6 @@ Pod::Spec.new do |spec|
   spec.name = "OpenTelemetry-Swift-Api"
   spec.version = "2.4.0"
   spec.summary = "Swift OpenTelemetryApi"
-
   spec.homepage = "https://github.com/open-telemetry/opentelemetry-swift-core"
   spec.documentation_url = "https://opentelemetry.io/docs/languages/swift"
   spec.license = { :type => "Apache 2.0", :file => "LICENSE" }
@@ -11,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.source = { :git => "https://github.com/open-telemetry/opentelemetry-swift-core.git", :tag => spec.version.to_s }
   spec.source_files = "Sources/OpenTelemetryApi/**/*.swift"
 
-  spec.swift_version = "5.10"
+  spec.swift_version = [ "6.0", "5.10" ]
   spec.osx.deployment_target  = "10.13"
   spec.ios.deployment_target = "12.0"
   spec.tvos.deployment_target = "12.0"
