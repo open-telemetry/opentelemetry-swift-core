@@ -5,7 +5,7 @@ XCODEBUILD_OPTIONS_IOS=\
 	-destination 'platform=iOS Simulator,name=iPhone 16' \
 	-scheme $(PROJECT_NAME) \
 	-test-iterations 5 \
-	-retry-tests-on-failure \
+    -retry-tests-on-failure \
 	-workspace .
 
 XCODEBUILD_OPTIONS_TVOS=\
@@ -13,7 +13,7 @@ XCODEBUILD_OPTIONS_TVOS=\
 	-destination 'platform=tvOS Simulator,name=Apple TV 4K (3rd generation)' \
 	-scheme $(PROJECT_NAME) \
 	-test-iterations 5 \
-	-retry-tests-on-failure \
+    -retry-tests-on-failure \
 	-workspace .
 
 XCODEBUILD_OPTIONS_WATCHOS=\
@@ -21,7 +21,7 @@ XCODEBUILD_OPTIONS_WATCHOS=\
 	-destination 'platform=watchOS Simulator,name=Apple Watch Series 10 (46mm)' \
 	-scheme $(PROJECT_NAME) \
 	-test-iterations 5 \
-	-retry-tests-on-failure \
+    -retry-tests-on-failure \
 	-workspace .
 
 XCODEBUILD_OPTIONS_VISIONOS=\
@@ -29,7 +29,7 @@ XCODEBUILD_OPTIONS_VISIONOS=\
 	-destination 'platform=visionOS Simulator,name=Apple Vision Pro,OS=2.5' \
 	-scheme $(PROJECT_NAME) \
 	-test-iterations 5 \
-	-retry-tests-on-failure \
+    -retry-tests-on-failure \
 	-workspace .
 
 .PHONY: setup-brew

@@ -31,8 +31,7 @@ public class ReservoirCell {
 
   private func offerMeasurement(attributes: [String: AttributeValue]) {
     self.attributes.protectedValue = attributes
-    let nanoTime = clock.nanoTime
-    recordTime = nanoTime < 0 ? 0 : UInt64(nanoTime)
+    recordTime = clock.nanoTime
     if let context = OpenTelemetry.instance.contextProvider.activeSpan?.context, context.isValid {
       spanContext = context
     }
