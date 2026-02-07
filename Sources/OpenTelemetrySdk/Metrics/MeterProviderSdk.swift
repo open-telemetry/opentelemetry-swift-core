@@ -43,8 +43,7 @@ public class MeterProviderSdk: MeterProvider {
        clock: Clock,
        resource: Resource,
        exemplarFilter: ExemplarFilter) {
-    let now = Date().timeIntervalSince1970.toNanoseconds
-    let startEpochNano = now < 0 ? 0 : UInt64(now)
+    let startEpochNano = Date().timeIntervalSince1970.toNanoseconds
     self.registeredViews = registeredViews
     registeredReaders = metricReaders.map { reader in
       RegisteredReader(
@@ -127,8 +126,7 @@ public class MeterProviderSdk: MeterProvider {
     func collectAllMetrics() -> [MetricData] {
       let meters = registry.getComponents()
       var result = [MetricData]()
-      let nanoTime = sharedState.clock.nanoTime
-      let collectTime = nanoTime < 0 ? 0 : UInt64(nanoTime)
+      let collectTime = sharedState.clock.nanoTime
       for meter in meters {
         result.append(contentsOf: meter.collectAll(registerReader: registeredReader, epochNanos: collectTime))
       }

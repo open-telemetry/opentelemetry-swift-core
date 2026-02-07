@@ -1,0 +1,205 @@
+name: Backwards Compatibility
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+
+env:
+  OPENTELEMETRY_SWIFT_REPO: open-telemetry/opentelemetry-swift
+  PROJECT_NAME: opentelemetry-swift-Package
+
+jobs:
+  get-release:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.get-release.outputs.tag }}
+    steps:
+      - name: Get latest opentelemetry-swift release
+        id: get-release
+        run: |
+          LATEST=$(curl -s https://api.github.com/repos/${{ env.OPENTELEMETRY_SWIFT_REPO }}/releases/latest | jq -r .tag_name)
+          echo "tag=$LATEST" >> "$GITHUB_OUTPUT"
+
+  macOS:
+    needs: get-release
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: opentelemetry-swift-core
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
+          ref: ${{ needs.get-release.outputs.tag }}
+          path: opentelemetry-swift
+      - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+        with:
+          xcode-version: 16.4
+      - name: Override dependency
+        run: |
+          cd opentelemetry-swift
+          swift package edit opentelemetry-swift-core --path ../opentelemetry-swift-core || true
+      - name: Build and Test
+        run: |
+          cd opentelemetry-swift
+          swift test
+
+  iOS:
+    needs: get-release
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: opentelemetry-swift-core
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
+          ref: ${{ needs.get-release.outputs.tag }}
+          path: opentelemetry-swift
+      - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+        with:
+          xcode-version: 16.4
+      - name: Override dependency
+        run: |
+          cd opentelemetry-swift
+          swift package edit opentelemetry-swift-core --path ../opentelemetry-swift-core || true
+      - name: Install Homebrew kegs
+        run: |
+          cd opentelemetry-swift
+          make setup-brew
+      - name: Build
+        run: |
+          cd opentelemetry-swift
+          make build-for-testing-ios
+      - name: Test
+        run: |
+          cd opentelemetry-swift
+          make test-without-building-ios
+
+  tvOS:
+    needs: get-release
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: opentelemetry-swift-core
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
+          ref: ${{ needs.get-release.outputs.tag }}
+          path: opentelemetry-swift
+      - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+        with:
+          xcode-version: 16.4
+      - name: Override dependency
+        run: |
+          cd opentelemetry-swift
+          swift package edit opentelemetry-swift-core --path ../opentelemetry-swift-core || true
+      - name: Install Homebrew kegs
+        run: |
+          cd opentelemetry-swift
+          make setup-brew
+      - name: Build
+        run: |
+          cd opentelemetry-swift
+          make build-for-testing-tvos
+      - name: Test
+        run: |
+          cd opentelemetry-swift
+          make test-without-building-tvos
+
+  watchOS:
+    needs: get-release
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: opentelemetry-swift-core
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
+          ref: ${{ needs.get-release.outputs.tag }}
+          path: opentelemetry-swift
+      - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+        with:
+          xcode-version: 16.4
+      - name: Override dependency
+        run: |
+          cd opentelemetry-swift
+          swift package edit opentelemetry-swift-core --path ../opentelemetry-swift-core || true
+      - name: Install Homebrew kegs
+        run: |
+          cd opentelemetry-swift
+          make setup-brew
+      - name: Build
+        run: |
+          cd opentelemetry-swift
+          make build-for-testing-watchos
+      - name: Test
+        run: |
+          cd opentelemetry-swift
+          make test-without-building-watchos
+
+  visionOS:
+    needs: get-release
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: opentelemetry-swift-core
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
+          ref: ${{ needs.get-release.outputs.tag }}
+          path: opentelemetry-swift
+      - uses: maxim-lobanov/setup-xcode@60606e260d2fc5762a71e64e74b2174e8ea3c8bd # v1.6.0
+        with:
+          xcode-version: 16.4
+      - name: Override dependency
+        run: |
+          cd opentelemetry-swift
+          swift package edit opentelemetry-swift-core --path ../opentelemetry-swift-core || true
+      - name: Install Homebrew kegs
+        run: |
+          cd opentelemetry-swift
+          make setup-brew
+      - name: Build
+        run: |
+          cd opentelemetry-swift
+          make build-for-testing-visionos
+      - name: Test
+        run: |
+          cd opentelemetry-swift
+          make test-without-building-visionos
+
+
+  linux:
+    needs: get-release
+    runs-on: ubuntu-latest
+    container: swift:6.1
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: opentelemetry-swift-core
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
+          ref: ${{ needs.get-release.outputs.tag }}
+          path: opentelemetry-swift
+      - name: Override dependency
+        run: |
+          cd opentelemetry-swift
+          swift package edit opentelemetry-swift-core --path ../opentelemetry-swift-core || true
+      - name: Build
+        run: |
+          cd opentelemetry-swift
+          swift build --build-tests
+      - name: Test
+        run: |
+          cd opentelemetry-swift
+          swift test
