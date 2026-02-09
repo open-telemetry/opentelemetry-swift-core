@@ -45,9 +45,19 @@ public struct TraceState: Equatable, Codable, Sendable {
     // Initially create the Entry to validate input.
     guard let entry = Entry(key: key, value: value) else { return self }
     var newEntries = entries
-    newEntries.removeAll(where: { $0.key == entry.key })
+    TraceState.remove(key: key, from: &newEntries)
     newEntries.append(entry)
     return TraceState(entries: newEntries) ?? self
+  }
+
+  /// Removes the Entry that has the given key if it is present.
+  /// - Parameters:
+  ///   - key: the key for the Entry to be removed.
+  ///   - entries: The entries array to modify.
+  static private func remove(key: String, from entries: inout [Entry]) {
+    if let index = entries.firstIndex(where: { $0.key == key }) {
+      entries.remove(at: index)
+    }
   }
 
   /// Returns a copy the traceState by removing the Entry that has the given key if it is present.
@@ -55,7 +65,7 @@ public struct TraceState: Equatable, Codable, Sendable {
   public func removing(key: String) -> TraceState {
     // Initially create the Entry to validate input.
     var newEntries = entries
-    newEntries.removeAll(where: { $0.key == key })
+    TraceState.remove(key: key, from: &newEntries)
     return TraceState(entries: newEntries) ?? self
   }
 
