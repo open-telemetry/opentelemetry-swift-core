@@ -56,8 +56,9 @@ class TestClock: Clock {
     monotonicNanos += Int64(abs(nanos))
   }
 
-  var nanoTime: Int64 {
-    return currentTimeInterval.toNanoseconds + monotonicNanos
+  var nanoTime: UInt64 {
+    let result = Int64(currentTimeInterval.toNanoseconds) + monotonicNanos
+    return result < 0 ? 0 : UInt64(result)
   }
 
   var now: Date {

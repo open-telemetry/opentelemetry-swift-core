@@ -6,22 +6,22 @@
 import Foundation
 
 public extension TimeInterval {
-  /// `TimeInterval` represented in milliseconds (clamped to [`Int64.min`, `Int64.max`]).
-  var toMilliseconds: Int64 {
+  /// `TimeInterval` represented in milliseconds (capped to `UInt64.max`).
+  var toMilliseconds: UInt64 {
     let milliseconds = self * 1_000
-    return Int64(withReportingOverflow: milliseconds) ?? (self < 0 ? .min : .max)
+    return UInt64(withReportingOverflow: milliseconds) ?? .max
   }
 
-  /// `TimeInterval` represented in microseconds (clamped to [`Int64.min`, `Int64.max`]).
-  var toMicroseconds: Int64 {
+  /// `TimeInterval` represented in microseconds (capped to `UInt64.max`).
+  var toMicroseconds: UInt64 {
     let microseconds = self * 1_000_000
-    return Int64(withReportingOverflow: microseconds) ?? (self < 0 ? .min : .max)
+    return UInt64(withReportingOverflow: microseconds) ?? .max
   }
 
-  /// `TimeInterval` represented in nanoseconds (clamped to [`Int64.min`, `Int64.max`]).
-  var toNanoseconds: Int64 {
+  /// `TimeInterval` represented in nanoseconds (capped to `UInt64.max`).
+  var toNanoseconds: UInt64 {
     let nanoseconds = self * 1_000_000_000
-    return Int64(withReportingOverflow: nanoseconds) ?? (self < 0 ? .min : .max)
+    return UInt64(withReportingOverflow: nanoseconds) ?? .max
   }
 
   static func fromMilliseconds(_ millis: Int64) -> TimeInterval {

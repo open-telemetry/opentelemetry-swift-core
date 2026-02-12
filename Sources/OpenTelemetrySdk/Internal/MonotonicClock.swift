@@ -20,19 +20,16 @@ public class MonotonicClock: Clock {
     self.clock = clock
 
     // Capture both wall time and monotonic time as close together as possible
-    let wallTime = clock.nanoTime
-    let monotonicNanos = clock.monotonicNanos
-
-    self.initialWallTimeNanos = wallTime
-    self.initialMonotonicNanos = monotonicNanos
+    self.initialWallTimeNanos = Int64(clock.nanoTime)
+    self.initialMonotonicNanos = clock.monotonicNanos
   }
 
-  public var nanoTime: Int64 {
+  public var nanoTime: UInt64 {
     // Adjust the initial wall time by however many nanos have passed since then.
     let currentMonotonicNanos = clock.monotonicNanos
     let elapsedNanos = currentMonotonicNanos - initialMonotonicNanos
-    let initialWallTimeNanos = self.initialWallTimeNanos
-    return initialWallTimeNanos + elapsedNanos
+    let result = initialWallTimeNanos + elapsedNanos
+    return result < 0 ? 0 : UInt64(result)
   }
 
   public var now: Date {

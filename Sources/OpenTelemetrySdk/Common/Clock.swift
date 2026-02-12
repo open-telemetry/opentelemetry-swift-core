@@ -17,11 +17,11 @@ public protocol Clock: AnyObject {
   /// Returns the approximate time in nanoseconds since 1970.
   /// This time will not be precise, because Date doesn't use 1970 as its reference date, and also
   /// the double TimeInterval used internall does not have enough precision for nanos.
-  var nanoTime: Int64 { get }
+  var nanoTime: UInt64 { get }
 }
 
 public extension Clock {
-  var nanoTime: Int64 { return now.timeIntervalSince1970.toNanoseconds }
+  var nanoTime: UInt64 { return now.timeIntervalSince1970.toNanoseconds }
 
   var monotonicNanos: Int64 {
     // Converting this from UInt64 to Int64 means that there will be an overflow
