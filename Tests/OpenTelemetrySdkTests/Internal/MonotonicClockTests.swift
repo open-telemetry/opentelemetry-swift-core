@@ -7,7 +7,7 @@ import OpenTelemetrySdk
 import XCTest
 
 class MonotonicClockTests: XCTestCase {
-  let epochNanos: Int64 = 1_234_000_005_678
+  let epochNanos: UInt64 = 1_234_000_005_678
   var testClock: TestClock!
 
   override func setUp() {
@@ -15,7 +15,7 @@ class MonotonicClockTests: XCTestCase {
   }
 
   func testNanoTime() {
-    XCTAssertEqual(testClock.now, TestUtils.dateFromNanos(epochNanos))
+    XCTAssertEqual(testClock.now, TestUtils.dateFromNanos(Int64(epochNanos)))
     XCTAssertEqual(testClock.nanoTime, epochNanos)
     let monotonicClock = MonotonicClock(clock: testClock)
     testClock.advanceNanos(12345)
