@@ -13,13 +13,15 @@ import Foundation
 /// forward slashes /.
 /// Value is opaque string up to 256 characters printable ASCII RFC0020 characters (i.e., the
 /// range 0x20 to 0x7E) except comma , and =.
-public struct TraceState: Equatable, Codable {
+public struct TraceState: Equatable, Codable, Sendable {
   private static let maxKeyValuePairs = 32
 
-  public private(set) var entries = [Entry]()
+  public let entries: [Entry]
 
   /// Returns the default with no entries.
-  public init() {}
+  public init() {
+    self.entries = []
+  }
 
   public init?(entries: [Entry]) {
     guard entries.count <= TraceState.maxKeyValuePairs else { return nil }
@@ -34,20 +36,6 @@ public struct TraceState: Equatable, Codable {
     return entries.first(where: { $0.key == key })?.value
   }
 
-  /// Adds or updates the Entry that has the given key if it is present. The new Entry will always
-  /// be added in the front of the list of entries.
-  /// - Parameters:
-  ///   - key: the key for the Entry to be added.
-  ///   - value: the value for the Entry to be added.
-  mutating func set(key: String, value: String) {
-    // Initially create the Entry to validate input.
-    guard let entry = Entry(key: key, value: value) else { return }
-    if entries.contains(where: { $0.key == entry.key }) {
-      remove(key: entry.key)
-    }
-    entries.append(entry)
-  }
-
   /// Returns a copy the traceState by appending the Entry that has the given key if it is present.
   /// The new Entry will always be added in the front of the existing list of entries.
   /// - Parameters:
@@ -55,35 +43,39 @@ public struct TraceState: Equatable, Codable {
   ///   - value: the value for the Entry to be added.
   public func setting(key: String, value: String) -> Self {
     // Initially create the Entry to validate input.
-    var newTraceState = self
-    newTraceState.set(key: key, value: value)
-    return newTraceState
+    guard let entry = Entry(key: key, value: value) else { return self }
+    var newEntries = entries
+    TraceState.remove(key: key, from: &newEntries)
+    newEntries.append(entry)
+    return TraceState(entries: newEntries) ?? self
   }
 
   /// Removes the Entry that has the given key if it is present.
-  /// - Parameter key: the key for the Entry to be removed.
-  mutating func remove(key: String) {
+  /// - Parameters:
+  ///   - key: the key for the Entry to be removed.
+  ///   - entries: The entries array to modify.
+  static private func remove(key: String, from entries: inout [Entry]) {
     if let index = entries.firstIndex(where: { $0.key == key }) {
       entries.remove(at: index)
     }
   }
 
-  /// Returns a copy the traceState by removinf the Entry that has the given key if it is present.
+  /// Returns a copy the traceState by removing the Entry that has the given key if it is present.
   /// - Parameter key: the key for the Entry to be removed.
   public func removing(key: String) -> TraceState {
     // Initially create the Entry to validate input.
-    var newTraceState = self
-    newTraceState.remove(key: key)
-    return newTraceState
+    var newEntries = entries
+    TraceState.remove(key: key, from: &newEntries)
+    return TraceState(entries: newEntries) ?? self
   }
 
   /// Immutable key-value pair for TraceState
-  public struct Entry: Equatable, Codable {
+  public struct Entry: Equatable, Codable, Sendable {
     /// The key of the Entry
-    public private(set) var key: String
+    public let key: String
 
     /// The value of the Entry
-    public private(set) var value: String
+    public let value: String
 
     /// Creates a new Entry for the TraceState.
     /// - Parameters:
