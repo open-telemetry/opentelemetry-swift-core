@@ -25,6 +25,11 @@ final class TraceFlagsTests: XCTestCase {
     XCTAssertTrue(TraceFlags().settingIsSampled(true).sampled)
   }
 
+  func testIsRandom() {
+    XCTAssertFalse(TraceFlags().random)
+    XCTAssertTrue(TraceFlags().settingIsRandom(true).random)
+  }
+
   func testFromByte() {
     XCTAssertEqual(TraceFlags(fromByte: firstByte).byte, firstByte)
     XCTAssertEqual(TraceFlags(fromByte: secondByte).byte, secondByte)
@@ -39,6 +44,7 @@ final class TraceFlagsTests: XCTestCase {
 
   func testBuilder_FromOptions() {
     XCTAssertEqual(TraceFlags(fromByte: thirdByte).settingIsSampled(true).byte, 6 | 1)
+    XCTAssertEqual(TraceFlags(fromByte: thirdByte).settingIsRandom(true).byte, 6 | 2)
   }
 
   func testTraceFlags_EqualsAndHashCode() {
@@ -53,6 +59,8 @@ final class TraceFlagsTests: XCTestCase {
   func testTraceFlags_ToString() {
     XCTAssert(TraceFlags().description.contains("sampled=false"))
     XCTAssert(TraceFlags().settingIsSampled(true).description.contains("sampled=true"))
+    XCTAssert(TraceFlags().description.contains("random=false"))
+    XCTAssert(TraceFlags().settingIsRandom(true).description.contains("random=true"))
   }
 
   func testTraceFlags_Codabe() {

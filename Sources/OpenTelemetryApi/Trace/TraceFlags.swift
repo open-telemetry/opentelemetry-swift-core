@@ -13,6 +13,8 @@ public struct TraceFlags: Equatable, CustomStringConvertible, Codable, Sendable 
   private static let defaultOptions: UInt8 = 0
   /// Bit to represent whether trace is sampled or not.
   private static let isSampled: UInt8 = 0x1
+  // Bit to represent whether trace-id was generated with random procedure.
+  private static let isRandom: UInt8 = 0x2
 
   /// The size in bytes of the TraceFlags.
   static let size = 1
@@ -62,6 +64,11 @@ public struct TraceFlags: Equatable, CustomStringConvertible, Codable, Sendable 
     return options & TraceFlags.isSampled != 0
   }
 
+  /// A boolean indicating whether this Span's TraceId is known to be randomly generated.
+  public var random: Bool {
+    return options & TraceFlags.isRandom != 0
+  }
+
   /// Sets the sampling bit in the options.
   /// - Parameter isSampled: the sampling bit
   public mutating func setIsSampled(_ isSampled: Bool) {
@@ -83,7 +90,28 @@ public struct TraceFlags: Equatable, CustomStringConvertible, Codable, Sendable 
     return TraceFlags(fromByte: optionsCopy)
   }
 
+  /// Sets the random bit in the options.
+  /// - Parameter isRandom: the random bit
+  public mutating func setIsRandom(_ isRandom: Bool) {
+    if isRandom {
+      options = options | TraceFlags.isRandom
+    } else {
+      options = options & ~TraceFlags.isRandom
+    }
+  }
+
+  /// Sets the random bit in the options.
+  /// - Parameter isRandom: the random bit
+  public func settingIsRandom(_ isRandom: Bool) -> TraceFlags {
+    let optionsCopy: UInt8 = if isRandom {
+      options | TraceFlags.isRandom
+    } else {
+      options & ~TraceFlags.isRandom
+    }
+    return TraceFlags(fromByte: optionsCopy)
+  }
+
   public var description: String {
-    "TraceFlags{sampled=\(sampled)}"
+    "TraceFlags{sampled=\(sampled), random=\(random)}"
   }
 }
