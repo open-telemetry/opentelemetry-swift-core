@@ -68,6 +68,25 @@ class W3CTraceContextPropagatorTest: XCTestCase {
     XCTAssertEqual(carrier[W3CTraceContextPropagator.traceState], traceStateNotDefaultEncoding)
   }
 
+  func testInject_RandomContext() {
+    var carrier = [String: String]()
+    let randomTraceOptions = TraceFlags().settingIsRandom(true)
+    httpTraceContext.inject(
+      spanContext: SpanContext.create(
+        traceId: traceId,
+        spanId: spanId,
+        traceFlags: randomTraceOptions,
+        traceState: traceState_default
+      ),
+      carrier: &carrier,
+      setter: setter
+    )
+    XCTAssertEqual(
+      carrier[W3CTraceContextPropagator.traceparent],
+      "00-" + traceId_base16 + "-" + spanId_base16 + "-02"
+    )
+  }
+
   func testExtract_SampledContext() {
     var carrier = [String: String]()
     carrier[W3CTraceContextPropagator.traceparent] = traceParentHeaderSampled
@@ -92,6 +111,20 @@ class W3CTraceContextPropagatorTest: XCTestCase {
     carrier[W3CTraceContextPropagator.traceparent] = traceParentHeaderNotSampled
     carrier[W3CTraceContextPropagator.traceState] = traceStateNotDefaultEncoding
     XCTAssertEqual(httpTraceContext.extract(carrier: carrier, getter: getter), SpanContext.createFromRemoteParent(traceId: traceId, spanId: spanId, traceFlags: TraceFlags(), traceState: traceState_not_default))
+  }
+
+  func testExtract_RandomContext() {
+    var carrier = [String: String]()
+    carrier[W3CTraceContextPropagator.traceparent] = "00-" + traceId_base16 + "-" + spanId_base16 + "-02"
+    XCTAssertEqual(
+      httpTraceContext.extract(carrier: carrier, getter: getter),
+      SpanContext.createFromRemoteParent(
+        traceId: traceId,
+        spanId: spanId,
+        traceFlags: TraceFlags().settingIsRandom(true),
+        traceState: traceState_default
+      )
+    )
   }
 
   func testExtract_NotSampledContext_NextVersion() {
