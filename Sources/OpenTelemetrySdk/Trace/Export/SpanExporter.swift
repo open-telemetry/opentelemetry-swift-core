@@ -37,7 +37,7 @@ public extension SpanExporter {
 }
 
 /// The possible results for the export method.
-public enum SpanExporterResultCode {
+public enum SpanExporterResultCode: Sendable {
   /// The export operation finished successfully.
   case success
 
