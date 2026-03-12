@@ -5,7 +5,7 @@
 
 import Foundation
 
-public enum ExportResult {
+public enum ExportResult: Sendable {
   /// The export operation finished successfully.
   case success
   /// The export operation finished with an error.
