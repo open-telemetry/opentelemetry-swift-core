@@ -14,7 +14,7 @@ import Foundation
 /// Default implementations bridge to the synchronous `SpanExporter` methods so
 /// that adopters only need to override the methods they want to make async.
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-public protocol AsyncSpanExporter: SpanExporter {
+public protocol AsyncSpanExporter: SpanExporter, Sendable {
   /// Called to export sampled Spans asynchronously.
   /// - Parameter spans: the list of sampled Spans to be exported.
   /// - Parameter explicitTimeout: optional timeout for the export operation.

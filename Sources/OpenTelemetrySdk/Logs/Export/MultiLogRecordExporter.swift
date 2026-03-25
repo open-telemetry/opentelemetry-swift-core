@@ -40,7 +40,9 @@ public class MultiLogRecordExporter: LogRecordExporter, @unchecked Sendable {
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 extension MultiLogRecordExporter: AsyncLogRecordExporter {
-  public func exportAsync(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) async -> ExportResult {
+  private typealias PartitionedExporters = (async: [AsyncLogRecordExporter], sync: [LogRecordExporter])
+
+  private func partitionExporters() -> PartitionedExporters {
     var asyncExporters: [AsyncLogRecordExporter] = []
     var syncExporters: [LogRecordExporter] = []
     for exporter in logRecordExporters {
@@ -50,6 +52,11 @@ extension MultiLogRecordExporter: AsyncLogRecordExporter {
         syncExporters.append(exporter)
       }
     }
+    return (asyncExporters, syncExporters)
+  }
+
+  public func exportAsync(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) async -> ExportResult {
+    let (asyncExporters, syncExporters) = partitionExporters()
 
     var result = await withTaskGroup(of: ExportResult.self, returning: ExportResult.self) { group in
       for exporter in asyncExporters {
@@ -72,15 +79,7 @@ extension MultiLogRecordExporter: AsyncLogRecordExporter {
   }
 
   public func shutdownAsync(explicitTimeout: TimeInterval?) async {
-    var asyncExporters: [AsyncLogRecordExporter] = []
-    var syncExporters: [LogRecordExporter] = []
-    for exporter in logRecordExporters {
-      if let asyncExporter = exporter as? AsyncLogRecordExporter {
-        asyncExporters.append(asyncExporter)
-      } else {
-        syncExporters.append(exporter)
-      }
-    }
+    let (asyncExporters, syncExporters) = partitionExporters()
 
     await withTaskGroup(of: Void.self) { group in
       for exporter in asyncExporters {
@@ -96,15 +95,7 @@ extension MultiLogRecordExporter: AsyncLogRecordExporter {
   }
 
   public func forceFlushAsync(explicitTimeout: TimeInterval?) async -> ExportResult {
-    var asyncExporters: [AsyncLogRecordExporter] = []
-    var syncExporters: [LogRecordExporter] = []
-    for exporter in logRecordExporters {
-      if let asyncExporter = exporter as? AsyncLogRecordExporter {
-        asyncExporters.append(asyncExporter)
-      } else {
-        syncExporters.append(exporter)
-      }
-    }
+    let (asyncExporters, syncExporters) = partitionExporters()
 
     var result = await withTaskGroup(of: ExportResult.self, returning: ExportResult.self) { group in
       for exporter in asyncExporters {
