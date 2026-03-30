@@ -7,7 +7,7 @@ import Foundation
 import OpenTelemetryApi
 
 /**
- * EnvironmentMappingSetter adapts a `Setter` to normalize W3C trace context keys to environment variable format.
+ * EnvironmentMappingSetter adapts a `Setter` to normalize propagation keys to environment variable format.
  *
  * Normalization rules per OpenTelemetry specification:
  * - Converts keys to uppercase (e.g., "traceparent" → "TRACEPARENT")
@@ -21,7 +21,7 @@ import OpenTelemetryApi
  * w3cPropagator.inject(spanContext: context, carrier: &carrier, setter: envSetter)
  * ```
  *
- * See: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/env-carriers.md
+ * See: https://opentelemetry.io/docs/specs/otel/context/env-carriers/
  */
 public struct EnvironmentMappingSetter: Setter {
   let innerSetter: any Setter
@@ -37,7 +37,7 @@ public struct EnvironmentMappingSetter: Setter {
 }
 
 /**
- * EnvironmentMappingGetter adapts a `Getter` to normalize W3C trace context keys to environment variable format.
+ * EnvironmentMappingGetter adapts a `Getter` to normalize propagation keys to environment variable format.
  *
  * Normalization rules per OpenTelemetry specification:
  * - Converts keys to uppercase (e.g., "traceparent" → "TRACEPARENT")
@@ -51,7 +51,7 @@ public struct EnvironmentMappingSetter: Setter {
  * let spanContext = w3cPropagator.extract(carrier: ProcessInfo.processInfo.environment, getter: envGetter)
  * ```
  *
- * See: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/context/env-carriers.md
+ * See: https://opentelemetry.io/docs/specs/otel/context/env-carriers/
  */
 public struct EnvironmentMappingGetter: Getter {
   let innerGetter: any Getter
