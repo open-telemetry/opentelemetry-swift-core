@@ -71,9 +71,9 @@ public struct EnvironmentMappingGetter: Getter {
 /// - Replaces every non-alphanumeric and non-underscore character with an underscore
 private func normalizeKeyForEnvironment(_ key: String) -> String {
   let normalized = key.uppercased()
-  return normalized.map { char in
+  return normalized.map { char -> String in
     if char.isLetter || char.isNumber || char == "_" {
-      return char
+      return String(char)
     } else {
       return "_"
     }
