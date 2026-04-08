@@ -6,7 +6,9 @@
 import Foundation
 import OpenTelemetryApi
 
-
+/**
+ * Implementation of a EnvironmentContextPropagation propagation, using W3CTraceContextPropagator
+ */
 @available(*, deprecated, message: "Use EnvironmentMappingSetter or EnvironmentMappingGetter instead.")
 public struct EnvironmentContextPropagator: TextMapPropagator {
   static let traceParent = "TRACEPARENT"
