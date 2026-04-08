@@ -88,7 +88,14 @@ public struct EnvironmentMappingGetter: Getter {
 
   public func get(carrier: [String: String], key: String) -> [String]? {
     let mappedKey = normalizeKeyForEnvironment(key)
-    return innerGetter.get(carrier: carrier, key: mappedKey)
+    if carrier[mappedKey] != nil {
+      return innerGetter.get(carrier: carrier, key: mappedKey)
+    }
+    let normalizedCarrier = Dictionary(
+      carrier.map { (normalizeKeyForEnvironment($0.key), $0.value) },
+      uniquingKeysWith: { first, _ in first }
+    )
+    return innerGetter.get(carrier: normalizedCarrier, key: mappedKey)
   }
 }
 
