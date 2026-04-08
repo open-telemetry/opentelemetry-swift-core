@@ -99,16 +99,29 @@ public struct EnvironmentMappingGetter: Getter {
   }
 }
 
-/// Normalizes a key for environment variable format:
-/// - Converts to uppercase
-/// - Replaces every non-alphanumeric and non-underscore character with an underscore
+/// Normalizes a key to environment-variable format:
+/// - Uppercases ASCII letters (`a–z` → `A–Z`)
+/// - Replaces every character that is not an ASCII letter, digit, or underscore with `_`
+/// - Prefixes the result with `_` if it would otherwise start with an ASCII digit
 private func normalizeKeyForEnvironment(_ key: String) -> String {
-  let normalized = key.uppercased()
-  return normalized.map { char -> String in
-    if char.isLetter || char.isNumber || char == "_" {
-      return String(char)
-    } else {
-      return "_"
+  var result = ""
+  result.reserveCapacity(key.utf8.count + 1)
+  for scalar in key.unicodeScalars {
+    let v = scalar.value
+    switch v {
+    case 65...90:           // A–Z: keep as-is
+      result.append(Character(scalar))
+    case 97...122:          // a–z: uppercase in-place
+      result.append(Character(UnicodeScalar(v - 32)!))
+    case 48...57, 95:       // 0–9 or _: keep as-is
+      result.append(Character(scalar))
+    default:                // anything else → _
+      result.append("_")
     }
-  }.joined()
+  }
+  // An env-var name must not start with a digit
+  if let first = result.unicodeScalars.first, (48...57).contains(first.value) {
+    result.insert("_", at: result.startIndex)
+  }
+  return result
 }
