@@ -119,7 +119,7 @@ private func normalizeKeyForEnvironment(_ key: String) -> String {
       result.append(Character(UnicodeScalar(v - 32)!))
     case 48...57, 95:       // 0–9 or _: keep as-is
       result.append(Character(scalar))
-    default:                // anything else → _
+    default:                // anything else: _
       result.append("_")
     }
   }
