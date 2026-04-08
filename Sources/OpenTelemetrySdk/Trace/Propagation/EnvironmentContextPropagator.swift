@@ -106,6 +106,10 @@ public struct EnvironmentMappingGetter: Getter {
 private func normalizeKeyForEnvironment(_ key: String) -> String {
   var result = ""
   result.reserveCapacity(key.utf8.count + 1)
+  // An env-var name must not start with a digit
+  if let first = key.unicodeScalars.first, (48...57).contains(first.value) {
+    result.append("_")
+  }
   for scalar in key.unicodeScalars {
     let v = scalar.value
     switch v {
@@ -118,10 +122,6 @@ private func normalizeKeyForEnvironment(_ key: String) -> String {
     default:                // anything else → _
       result.append("_")
     }
-  }
-  // An env-var name must not start with a digit
-  if let first = result.unicodeScalars.first, (48...57).contains(first.value) {
-    result.insert("_", at: result.startIndex)
   }
   return result
 }
