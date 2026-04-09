@@ -22,7 +22,10 @@ jobs:
       - name: Get latest opentelemetry-swift release
         id: get-release
         run: |
-          LATEST=$(curl -s https://api.github.com/repos/${{ env.OPENTELEMETRY_SWIFT_REPO }}/releases/latest | jq -r .tag_name)
+          LATEST=$(curl -s -H "Authorization: Bearer ${{ github.token }}" https://api.github.com/repos/${{ env.OPENTELEMETRY_SWIFT_REPO }}/releases/latest | jq -r .tag_name)
+          if [[ -z "$LATEST" || "$LATEST" == "null" ]]; then
+            echo "Failed to fetch latest release tag" && exit 1
+          fi
           echo "tag=$LATEST" >> "$GITHUB_OUTPUT"
 
   macOS:
