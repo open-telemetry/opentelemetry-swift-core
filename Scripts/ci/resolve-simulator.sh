@@ -4,7 +4,7 @@ set -euo pipefail
 # Resolves the UDID of an available simulator for a given platform.
 # Picks the first device from the newest available runtime.
 #
-# Usage: ./scripts/ci/resolve-simulator.sh <platform>
+# Usage: ./Scripts/ci/resolve-simulator.sh <platform>
 #   platform: iOS, tvOS, watchOS, visionOS
 #
 # Output: prints the UDID to stdout

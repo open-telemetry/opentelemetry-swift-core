@@ -74,7 +74,7 @@ jobs:
     - name: Resolve simulator
       id: ios-sim
       run: |
-        UDID=$(./scripts/ci/resolve-simulator.sh iOS)
+        UDID=$(./Scripts/ci/resolve-simulator.sh iOS)
         echo "destination=platform=iOS Simulator,id=$UDID" >> "$GITHUB_OUTPUT"
     - name: Build for iOS
       run: make build-for-testing-ios IOS_DESTINATION='${{ steps.ios-sim.outputs.destination }}'
@@ -94,7 +94,7 @@ jobs:
     - name: Resolve simulator
       id: tvos-sim
       run: |
-        UDID=$(./scripts/ci/resolve-simulator.sh tvOS)
+        UDID=$(./Scripts/ci/resolve-simulator.sh tvOS)
         echo "destination=platform=tvOS Simulator,id=$UDID" >> "$GITHUB_OUTPUT"
     - name: Build for tvOS
       run: make build-for-testing-tvos TVOS_DESTINATION='${{ steps.tvos-sim.outputs.destination }}'
@@ -114,7 +114,7 @@ jobs:
     - name: Resolve simulator
       id: watchos-sim
       run: |
-        UDID=$(./scripts/ci/resolve-simulator.sh watchOS)
+        UDID=$(./Scripts/ci/resolve-simulator.sh watchOS)
         echo "destination=platform=watchOS Simulator,id=$UDID" >> "$GITHUB_OUTPUT"
     - name: Build for watchOS
       run: make build-for-testing-watchos WATCHOS_DESTINATION='${{ steps.watchos-sim.outputs.destination }}'
@@ -134,7 +134,7 @@ jobs:
     - name: Resolve simulator
       id: visionos-sim
       run: |
-        UDID=$(./scripts/ci/resolve-simulator.sh visionOS)
+        UDID=$(./Scripts/ci/resolve-simulator.sh visionOS)
         echo "destination=platform=visionOS Simulator,id=$UDID" >> "$GITHUB_OUTPUT"
     - name: Build for visionOS
       run: make build-for-testing-visionos VISIONOS_DESTINATION='${{ steps.visionos-sim.outputs.destination }}'
