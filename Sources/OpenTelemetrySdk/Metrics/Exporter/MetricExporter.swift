@@ -19,3 +19,18 @@ public extension MetricExporter {
     return Aggregations.defaultAggregation()
   }
 }
+
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public extension MetricExporter {
+  func exportAsync(metrics: [MetricData]) async -> ExportResult {
+    return export(metrics: metrics)
+  }
+
+  func flushAsync() async -> ExportResult {
+    return flush()
+  }
+
+  func shutdownAsync() async -> ExportResult {
+    return shutdown()
+  }
+}

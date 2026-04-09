@@ -30,3 +30,30 @@ public extension LogRecordExporter {
     return forceFlush(explicitTimeout: nil)
   }
 }
+
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public extension LogRecordExporter {
+  func exportAsync(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) async -> ExportResult {
+    return export(logRecords: logRecords, explicitTimeout: explicitTimeout)
+  }
+
+  func shutdownAsync(explicitTimeout: TimeInterval?) async {
+    shutdown(explicitTimeout: explicitTimeout)
+  }
+
+  func forceFlushAsync(explicitTimeout: TimeInterval?) async -> ExportResult {
+    return forceFlush(explicitTimeout: explicitTimeout)
+  }
+
+  func exportAsync(logRecords: [ReadableLogRecord]) async -> ExportResult {
+    return await exportAsync(logRecords: logRecords, explicitTimeout: nil)
+  }
+
+  func shutdownAsync() async {
+    await shutdownAsync(explicitTimeout: nil)
+  }
+
+  func forceFlushAsync() async -> ExportResult {
+    return await forceFlushAsync(explicitTimeout: nil)
+  }
+}
