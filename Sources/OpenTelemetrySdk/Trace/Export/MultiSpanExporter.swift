@@ -43,16 +43,12 @@ public class MultiSpanExporter: SpanExporter, @unchecked Sendable {
 }
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-extension MultiSpanExporter: AsyncSpanExporter {
-  public func exportAsync(spans: [SpanData], explicitTimeout: TimeInterval?) async -> SpanExporterResultCode {
+extension MultiSpanExporter {
+  public func exportAsync(spans: [SpanData], explicitTimeout: TimeInterval? = nil) async -> SpanExporterResultCode {
     await withTaskGroup(of: SpanExporterResultCode.self, returning: SpanExporterResultCode.self) { group in
       for exporter in spanExporters {
         group.addTask {
-          if let asyncExporter = exporter as? AsyncSpanExporter {
-            return await asyncExporter.exportAsync(spans: spans, explicitTimeout: explicitTimeout)
-          } else {
-            return exporter.export(spans: spans, explicitTimeout: explicitTimeout)
-          }
+          exporter.export(spans: spans, explicitTimeout: explicitTimeout)
         }
       }
       var currentResultCode = SpanExporterResultCode.success
@@ -63,15 +59,11 @@ extension MultiSpanExporter: AsyncSpanExporter {
     }
   }
 
-  public func flushAsync(explicitTimeout: TimeInterval?) async -> SpanExporterResultCode {
+  public func flushAsync(explicitTimeout: TimeInterval? = nil) async -> SpanExporterResultCode {
     await withTaskGroup(of: SpanExporterResultCode.self, returning: SpanExporterResultCode.self) { group in
       for exporter in spanExporters {
         group.addTask {
-          if let asyncExporter = exporter as? AsyncSpanExporter {
-            return await asyncExporter.flushAsync(explicitTimeout: explicitTimeout)
-          } else {
-            return exporter.flush(explicitTimeout: explicitTimeout)
-          }
+          exporter.flush(explicitTimeout: explicitTimeout)
         }
       }
       var currentResultCode = SpanExporterResultCode.success
@@ -82,15 +74,11 @@ extension MultiSpanExporter: AsyncSpanExporter {
     }
   }
 
-  public func shutdownAsync(explicitTimeout: TimeInterval?) async {
+  public func shutdownAsync(explicitTimeout: TimeInterval? = nil) async {
     await withTaskGroup(of: Void.self) { group in
       for exporter in spanExporters {
         group.addTask {
-          if let asyncExporter = exporter as? AsyncSpanExporter {
-            await asyncExporter.shutdownAsync(explicitTimeout: explicitTimeout)
-          } else {
-            exporter.shutdown(explicitTimeout: explicitTimeout)
-          }
+          exporter.shutdown(explicitTimeout: explicitTimeout)
         }
       }
     }

@@ -9,8 +9,8 @@ import XCTest
 
 // MARK: - Test Mocks
 
-/// A sync-only exporter that also conforms to AsyncSpanExporter via defaults.
-private class SyncOnlyAsyncSpanExporter: AsyncSpanExporter, @unchecked Sendable {
+/// A sync-only exporter — async methods use the default bridging from the extension.
+private class SyncOnlySpanExporter: SpanExporter, @unchecked Sendable {
   var exportCalledTimes = 0
   var flushCalledTimes = 0
   var shutdownCalledTimes = 0
@@ -31,40 +31,6 @@ private class SyncOnlyAsyncSpanExporter: AsyncSpanExporter, @unchecked Sendable 
   }
 }
 
-/// An exporter that overrides the async methods.
-private class FullyAsyncSpanExporter: AsyncSpanExporter, @unchecked Sendable {
-  var asyncExportCalledTimes = 0
-  var asyncFlushCalledTimes = 0
-  var asyncShutdownCalledTimes = 0
-  var syncExportCalledTimes = 0
-  var returnValue: SpanExporterResultCode = .success
-
-  func export(spans: [SpanData], explicitTimeout: TimeInterval?) -> SpanExporterResultCode {
-    syncExportCalledTimes += 1
-    return returnValue
-  }
-
-  func flush(explicitTimeout: TimeInterval?) -> SpanExporterResultCode {
-    return returnValue
-  }
-
-  func shutdown(explicitTimeout: TimeInterval?) {}
-
-  func exportAsync(spans: [SpanData], explicitTimeout: TimeInterval?) async -> SpanExporterResultCode {
-    asyncExportCalledTimes += 1
-    return returnValue
-  }
-
-  func flushAsync(explicitTimeout: TimeInterval?) async -> SpanExporterResultCode {
-    asyncFlushCalledTimes += 1
-    return returnValue
-  }
-
-  func shutdownAsync(explicitTimeout: TimeInterval?) async {
-    asyncShutdownCalledTimes += 1
-  }
-}
-
 // MARK: - Tests
 
 class AsyncSpanExporterTests: XCTestCase {
@@ -77,7 +43,7 @@ class AsyncSpanExporterTests: XCTestCase {
   // MARK: Default bridging tests
 
   func testDefaultBridgingExportCallsSyncMethod() async {
-    let exporter = SyncOnlyAsyncSpanExporter()
+    let exporter = SyncOnlySpanExporter()
     exporter.returnValue = .success
     let result = await exporter.exportAsync(spans: spanList)
     XCTAssertEqual(result, .success)
@@ -85,7 +51,7 @@ class AsyncSpanExporterTests: XCTestCase {
   }
 
   func testDefaultBridgingFlushCallsSyncMethod() async {
-    let exporter = SyncOnlyAsyncSpanExporter()
+    let exporter = SyncOnlySpanExporter()
     exporter.returnValue = .success
     let result = await exporter.flushAsync()
     XCTAssertEqual(result, .success)
@@ -93,60 +59,36 @@ class AsyncSpanExporterTests: XCTestCase {
   }
 
   func testDefaultBridgingShutdownCallsSyncMethod() async {
-    let exporter = SyncOnlyAsyncSpanExporter()
+    let exporter = SyncOnlySpanExporter()
     await exporter.shutdownAsync()
     XCTAssertEqual(exporter.shutdownCalledTimes, 1)
   }
 
   func testDefaultBridgingPropagatesFailure() async {
-    let exporter = SyncOnlyAsyncSpanExporter()
+    let exporter = SyncOnlySpanExporter()
     exporter.returnValue = .failure
     let result = await exporter.exportAsync(spans: spanList)
     XCTAssertEqual(result, .failure)
   }
 
-  // MARK: Async override tests
-
-  func testAsyncOverrideExportCallsAsyncMethod() async {
-    let exporter = FullyAsyncSpanExporter()
-    exporter.returnValue = .success
-    let result = await exporter.exportAsync(spans: spanList)
-    XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.asyncExportCalledTimes, 1)
-    XCTAssertEqual(exporter.syncExportCalledTimes, 0)
-  }
-
-  func testAsyncOverrideFlushCallsAsyncMethod() async {
-    let exporter = FullyAsyncSpanExporter()
-    let result = await exporter.flushAsync()
-    XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.asyncFlushCalledTimes, 1)
-  }
-
-  func testAsyncOverrideShutdownCallsAsyncMethod() async {
-    let exporter = FullyAsyncSpanExporter()
-    await exporter.shutdownAsync()
-    XCTAssertEqual(exporter.asyncShutdownCalledTimes, 1)
-  }
-
   // MARK: Convenience overload tests
 
   func testConvenienceExportWithoutTimeout() async {
-    let exporter = SyncOnlyAsyncSpanExporter()
+    let exporter = SyncOnlySpanExporter()
     let result = await exporter.exportAsync(spans: spanList)
     XCTAssertEqual(result, .success)
     XCTAssertEqual(exporter.exportCalledTimes, 1)
   }
 
   func testConvenienceFlushWithoutTimeout() async {
-    let exporter = SyncOnlyAsyncSpanExporter()
+    let exporter = SyncOnlySpanExporter()
     let result = await exporter.flushAsync()
     XCTAssertEqual(result, .success)
     XCTAssertEqual(exporter.flushCalledTimes, 1)
   }
 
   func testConvenienceShutdownWithoutTimeout() async {
-    let exporter = SyncOnlyAsyncSpanExporter()
+    let exporter = SyncOnlySpanExporter()
     await exporter.shutdownAsync()
     XCTAssertEqual(exporter.shutdownCalledTimes, 1)
   }
@@ -154,21 +96,19 @@ class AsyncSpanExporterTests: XCTestCase {
   // MARK: MultiSpanExporter async tests
 
   func testMultiSpanExporterAsyncExportConcurrent() async {
-    let exporter1 = FullyAsyncSpanExporter()
-    let exporter2 = FullyAsyncSpanExporter()
-    exporter1.returnValue = .success
-    exporter2.returnValue = .success
+    let exporter1 = SyncOnlySpanExporter()
+    let exporter2 = SyncOnlySpanExporter()
 
     let multi = MultiSpanExporter(spanExporters: [exporter1, exporter2])
     let result = await multi.exportAsync(spans: spanList)
     XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter1.asyncExportCalledTimes, 1)
-    XCTAssertEqual(exporter2.asyncExportCalledTimes, 1)
+    XCTAssertEqual(exporter1.exportCalledTimes, 1)
+    XCTAssertEqual(exporter2.exportCalledTimes, 1)
   }
 
   func testMultiSpanExporterAsyncExportMergesFailure() async {
-    let exporter1 = FullyAsyncSpanExporter()
-    let exporter2 = FullyAsyncSpanExporter()
+    let exporter1 = SyncOnlySpanExporter()
+    let exporter2 = SyncOnlySpanExporter()
     exporter1.returnValue = .success
     exporter2.returnValue = .failure
 
@@ -178,45 +118,33 @@ class AsyncSpanExporterTests: XCTestCase {
   }
 
   func testMultiSpanExporterAsyncFlushConcurrent() async {
-    let exporter1 = FullyAsyncSpanExporter()
-    let exporter2 = FullyAsyncSpanExporter()
+    let exporter1 = SyncOnlySpanExporter()
+    let exporter2 = SyncOnlySpanExporter()
 
     let multi = MultiSpanExporter(spanExporters: [exporter1, exporter2])
     let result = await multi.flushAsync()
     XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter1.asyncFlushCalledTimes, 1)
-    XCTAssertEqual(exporter2.asyncFlushCalledTimes, 1)
+    XCTAssertEqual(exporter1.flushCalledTimes, 1)
+    XCTAssertEqual(exporter2.flushCalledTimes, 1)
   }
 
   func testMultiSpanExporterAsyncShutdownConcurrent() async {
-    let exporter1 = FullyAsyncSpanExporter()
-    let exporter2 = FullyAsyncSpanExporter()
+    let exporter1 = SyncOnlySpanExporter()
+    let exporter2 = SyncOnlySpanExporter()
 
     let multi = MultiSpanExporter(spanExporters: [exporter1, exporter2])
     await multi.shutdownAsync()
-    XCTAssertEqual(exporter1.asyncShutdownCalledTimes, 1)
-    XCTAssertEqual(exporter2.asyncShutdownCalledTimes, 1)
+    XCTAssertEqual(exporter1.shutdownCalledTimes, 1)
+    XCTAssertEqual(exporter2.shutdownCalledTimes, 1)
   }
 
-  func testMultiSpanExporterMixedSyncAndAsyncExporters() async {
-    let asyncExporter = FullyAsyncSpanExporter()
-    let syncExporter = SyncOnlyAsyncSpanExporter()
-    asyncExporter.returnValue = .success
-    syncExporter.returnValue = .success
+  // MARK: Sync compatibility
 
-    let multi = MultiSpanExporter(spanExporters: [asyncExporter, syncExporter])
-    let result = await multi.exportAsync(spans: spanList)
-    XCTAssertEqual(result, .success)
-    XCTAssertEqual(asyncExporter.asyncExportCalledTimes, 1)
-    XCTAssertEqual(syncExporter.exportCalledTimes, 1)
-  }
-
-  func testSyncProcessorStillWorksWithAsyncExporter() {
-    let exporter = FullyAsyncSpanExporter()
+  func testSyncMethodsStillWork() {
+    let exporter = SyncOnlySpanExporter()
     exporter.returnValue = .success
     let result = exporter.export(spans: spanList)
     XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.syncExportCalledTimes, 1)
-    XCTAssertEqual(exporter.asyncExportCalledTimes, 0)
+    XCTAssertEqual(exporter.exportCalledTimes, 1)
   }
 }

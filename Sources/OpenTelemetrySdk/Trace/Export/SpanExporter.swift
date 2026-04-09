@@ -36,6 +36,33 @@ public extension SpanExporter {
   }
 }
 
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+public extension SpanExporter {
+  @discardableResult func exportAsync(spans: [SpanData], explicitTimeout: TimeInterval?) async -> SpanExporterResultCode {
+    return export(spans: spans, explicitTimeout: explicitTimeout)
+  }
+
+  func flushAsync(explicitTimeout: TimeInterval?) async -> SpanExporterResultCode {
+    return flush(explicitTimeout: explicitTimeout)
+  }
+
+  func shutdownAsync(explicitTimeout: TimeInterval?) async {
+    shutdown(explicitTimeout: explicitTimeout)
+  }
+
+  @discardableResult func exportAsync(spans: [SpanData]) async -> SpanExporterResultCode {
+    return await exportAsync(spans: spans, explicitTimeout: nil)
+  }
+
+  func flushAsync() async -> SpanExporterResultCode {
+    return await flushAsync(explicitTimeout: nil)
+  }
+
+  func shutdownAsync() async {
+    await shutdownAsync(explicitTimeout: nil)
+  }
+}
+
 /// The possible results for the export method.
 public enum SpanExporterResultCode: Sendable {
   /// The export operation finished successfully.
