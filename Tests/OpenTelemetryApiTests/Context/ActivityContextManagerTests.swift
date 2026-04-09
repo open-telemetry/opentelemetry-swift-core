@@ -8,10 +8,6 @@
   import OpenTelemetryTestUtils
   import XCTest
 
-  #if compiler(>=5.10)
-  #warning("Sendable warnings suppressed for test compatibility")
-  #endif
-
   @MainActor
   class ActivityContextManagerTests: OpenTelemetryContextTestCase, @unchecked Sendable {
     override var contextManagers: [any ContextManager] {
@@ -162,7 +158,7 @@
     }
 
     @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
-    nonisolated func createAsyncSpan(parentSpan: Span?, name: String) async {
+    func createAsyncSpan(parentSpan: Span?, name: String) async {
       let activeSpan = ActivityContextManager.instance.getCurrentContextValue(forKey: .span)
       XCTAssert(activeSpan === parentSpan)
       let newSpan = defaultTracer.spanBuilder(spanName: name).startSpan()
