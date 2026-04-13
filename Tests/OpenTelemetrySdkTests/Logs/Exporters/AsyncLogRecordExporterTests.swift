@@ -10,7 +10,41 @@ import XCTest
 
 // MARK: - Test Mocks
 
-/// A sync-only exporter — async methods use the default bridging from the extension.
+/// An exporter that provides native async implementations.
+private class AsyncCapableLogExporter: LogRecordExporter {
+  var exportAsyncCalledTimes = 0
+  var flushAsyncCalledTimes = 0
+  var shutdownAsyncCalledTimes = 0
+  var returnValue: ExportResult = .success
+
+  func export(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) -> ExportResult {
+    fatalError("Sync export should not be called on an async-capable exporter")
+  }
+
+  func forceFlush(explicitTimeout: TimeInterval?) -> ExportResult {
+    fatalError("Sync forceFlush should not be called on an async-capable exporter")
+  }
+
+  func shutdown(explicitTimeout: TimeInterval?) {
+    fatalError("Sync shutdown should not be called on an async-capable exporter")
+  }
+
+  func exportAsync(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) async -> ExportResult {
+    exportAsyncCalledTimes += 1
+    return returnValue
+  }
+
+  func forceFlushAsync(explicitTimeout: TimeInterval?) async -> ExportResult {
+    flushAsyncCalledTimes += 1
+    return returnValue
+  }
+
+  func shutdownAsync(explicitTimeout: TimeInterval?) async {
+    shutdownAsyncCalledTimes += 1
+  }
+}
+
+/// A sync-only exporter used for MultiLogRecordExporter tests and sync compatibility.
 private class SyncOnlyLogExporter: LogRecordExporter, @unchecked Sendable {
   var exportCalledTimes = 0
   var flushCalledTimes = 0
@@ -46,56 +80,34 @@ private func makeLogRecord() -> ReadableLogRecord {
 // MARK: - Tests
 
 class AsyncLogRecordExporterTests: XCTestCase {
-  // MARK: Default bridging tests
+  // MARK: Async-capable exporter tests
 
-  func testDefaultBridgingExportCallsSyncMethod() async {
-    let exporter = SyncOnlyLogExporter()
+  func testAsyncExporterExport() async {
+    let exporter = AsyncCapableLogExporter()
     exporter.returnValue = .success
     let result = await exporter.exportAsync(logRecords: [makeLogRecord()])
     XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.exportCalledTimes, 1)
+    XCTAssertEqual(exporter.exportAsyncCalledTimes, 1)
   }
 
-  func testDefaultBridgingFlushCallsSyncMethod() async {
-    let exporter = SyncOnlyLogExporter()
+  func testAsyncExporterFlush() async {
+    let exporter = AsyncCapableLogExporter()
     let result = await exporter.forceFlushAsync()
     XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.flushCalledTimes, 1)
+    XCTAssertEqual(exporter.flushAsyncCalledTimes, 1)
   }
 
-  func testDefaultBridgingShutdownCallsSyncMethod() async {
-    let exporter = SyncOnlyLogExporter()
+  func testAsyncExporterShutdown() async {
+    let exporter = AsyncCapableLogExporter()
     await exporter.shutdownAsync()
-    XCTAssertEqual(exporter.shutdownCalledTimes, 1)
+    XCTAssertEqual(exporter.shutdownAsyncCalledTimes, 1)
   }
 
-  func testDefaultBridgingPropagatesFailure() async {
-    let exporter = SyncOnlyLogExporter()
+  func testAsyncExporterPropagatesFailure() async {
+    let exporter = AsyncCapableLogExporter()
     exporter.returnValue = .failure
     let result = await exporter.exportAsync(logRecords: [makeLogRecord()])
     XCTAssertEqual(result, .failure)
-  }
-
-  // MARK: Convenience overload tests
-
-  func testConvenienceExportWithoutTimeout() async {
-    let exporter = SyncOnlyLogExporter()
-    let result = await exporter.exportAsync(logRecords: [makeLogRecord()])
-    XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.exportCalledTimes, 1)
-  }
-
-  func testConvenienceFlushWithoutTimeout() async {
-    let exporter = SyncOnlyLogExporter()
-    let result = await exporter.forceFlushAsync()
-    XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.flushCalledTimes, 1)
-  }
-
-  func testConvenienceShutdownWithoutTimeout() async {
-    let exporter = SyncOnlyLogExporter()
-    await exporter.shutdownAsync()
-    XCTAssertEqual(exporter.shutdownCalledTimes, 1)
   }
 
   // MARK: MultiLogRecordExporter async tests
