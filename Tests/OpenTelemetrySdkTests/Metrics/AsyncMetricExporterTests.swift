@@ -10,7 +10,46 @@ import XCTest
 
 // MARK: - Test Mocks
 
-/// A sync-only exporter — async methods use the default bridging from the extension.
+/// An exporter that provides native async implementations.
+private class AsyncCapableMetricExporter: MetricExporter {
+  var exportAsyncCalledTimes = 0
+  var flushAsyncCalledTimes = 0
+  var shutdownAsyncCalledTimes = 0
+  var returnValue: ExportResult = .success
+
+  func export(metrics: [MetricData]) -> ExportResult {
+    fatalError("Sync export should not be called on an async-capable exporter")
+  }
+
+  func flush() -> ExportResult {
+    fatalError("Sync flush should not be called on an async-capable exporter")
+  }
+
+  func shutdown() -> ExportResult {
+    fatalError("Sync shutdown should not be called on an async-capable exporter")
+  }
+
+  func getAggregationTemporality(for instrument: InstrumentType) -> AggregationTemporality {
+    return .cumulative
+  }
+
+  func exportAsync(metrics: [MetricData]) async -> ExportResult {
+    exportAsyncCalledTimes += 1
+    return returnValue
+  }
+
+  func flushAsync() async -> ExportResult {
+    flushAsyncCalledTimes += 1
+    return returnValue
+  }
+
+  func shutdownAsync() async -> ExportResult {
+    shutdownAsyncCalledTimes += 1
+    return returnValue
+  }
+}
+
+/// A sync-only exporter for sync compatibility tests.
 private class SyncOnlyMetricExporter: MetricExporter, @unchecked Sendable {
   var exportCalledTimes = 0
   var flushCalledTimes = 0
@@ -40,32 +79,32 @@ private class SyncOnlyMetricExporter: MetricExporter, @unchecked Sendable {
 // MARK: - Tests
 
 class AsyncMetricExporterTests: XCTestCase {
-  // MARK: Default bridging tests
+  // MARK: Async-capable exporter tests
 
-  func testDefaultBridgingExportCallsSyncMethod() async {
-    let exporter = SyncOnlyMetricExporter()
+  func testAsyncExporterExport() async {
+    let exporter = AsyncCapableMetricExporter()
     exporter.returnValue = .success
     let result = await exporter.exportAsync(metrics: [MetricData.empty])
     XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.exportCalledTimes, 1)
+    XCTAssertEqual(exporter.exportAsyncCalledTimes, 1)
   }
 
-  func testDefaultBridgingFlushCallsSyncMethod() async {
-    let exporter = SyncOnlyMetricExporter()
+  func testAsyncExporterFlush() async {
+    let exporter = AsyncCapableMetricExporter()
     let result = await exporter.flushAsync()
     XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.flushCalledTimes, 1)
+    XCTAssertEqual(exporter.flushAsyncCalledTimes, 1)
   }
 
-  func testDefaultBridgingShutdownCallsSyncMethod() async {
-    let exporter = SyncOnlyMetricExporter()
+  func testAsyncExporterShutdown() async {
+    let exporter = AsyncCapableMetricExporter()
     let result = await exporter.shutdownAsync()
     XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.shutdownCalledTimes, 1)
+    XCTAssertEqual(exporter.shutdownAsyncCalledTimes, 1)
   }
 
-  func testDefaultBridgingPropagatesFailure() async {
-    let exporter = SyncOnlyMetricExporter()
+  func testAsyncExporterPropagatesFailure() async {
+    let exporter = AsyncCapableMetricExporter()
     exporter.returnValue = .failure
     let result = await exporter.exportAsync(metrics: [MetricData.empty])
     XCTAssertEqual(result, .failure)

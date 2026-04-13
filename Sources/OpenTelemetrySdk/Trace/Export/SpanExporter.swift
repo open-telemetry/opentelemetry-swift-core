@@ -20,6 +20,18 @@ public protocol SpanExporter: AnyObject, Sendable {
   /// Called when TracerSdkFactory.shutdown()} is called, if this SpanExporter is registered
   ///  to a TracerSdkFactory object.
   func shutdown(explicitTimeout: TimeInterval?)
+
+  /// Async variant of `export(spans:explicitTimeout:)`.
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  @discardableResult func exportAsync(spans: [SpanData], explicitTimeout: TimeInterval?) async -> SpanExporterResultCode
+
+  /// Async variant of `flush(explicitTimeout:)`.
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  func flushAsync(explicitTimeout: TimeInterval?) async -> SpanExporterResultCode
+
+  /// Async variant of `shutdown(explicitTimeout:)`.
+  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+  func shutdownAsync(explicitTimeout: TimeInterval?) async
 }
 
 public extension SpanExporter {
@@ -39,15 +51,17 @@ public extension SpanExporter {
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 public extension SpanExporter {
   @discardableResult func exportAsync(spans: [SpanData], explicitTimeout: TimeInterval?) async -> SpanExporterResultCode {
-    return export(spans: spans, explicitTimeout: explicitTimeout)
+    assertionFailure("exportAsync(spans:explicitTimeout:) must be implemented by \(type(of: self))")
+    return .failure
   }
 
   func flushAsync(explicitTimeout: TimeInterval?) async -> SpanExporterResultCode {
-    return flush(explicitTimeout: explicitTimeout)
+    assertionFailure("flushAsync(explicitTimeout:) must be implemented by \(type(of: self))")
+    return .failure
   }
 
   func shutdownAsync(explicitTimeout: TimeInterval?) async {
-    shutdown(explicitTimeout: explicitTimeout)
+    assertionFailure("shutdownAsync(explicitTimeout:) must be implemented by \(type(of: self))")
   }
 
   @discardableResult func exportAsync(spans: [SpanData]) async -> SpanExporterResultCode {

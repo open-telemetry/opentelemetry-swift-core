@@ -9,7 +9,41 @@ import XCTest
 
 // MARK: - Test Mocks
 
-/// A sync-only exporter — async methods use the default bridging from the extension.
+/// An exporter that provides native async implementations.
+private class AsyncCapableSpanExporter: SpanExporter, @unchecked Sendable {
+  var exportAsyncCalledTimes = 0
+  var flushAsyncCalledTimes = 0
+  var shutdownAsyncCalledTimes = 0
+  var returnValue: SpanExporterResultCode = .success
+
+  func export(spans: [SpanData], explicitTimeout: TimeInterval?) -> SpanExporterResultCode {
+    fatalError("Sync export should not be called on an async-capable exporter")
+  }
+
+  func flush(explicitTimeout: TimeInterval?) -> SpanExporterResultCode {
+    fatalError("Sync flush should not be called on an async-capable exporter")
+  }
+
+  func shutdown(explicitTimeout: TimeInterval?) {
+    fatalError("Sync shutdown should not be called on an async-capable exporter")
+  }
+
+  func exportAsync(spans: [SpanData], explicitTimeout: TimeInterval?) async -> SpanExporterResultCode {
+    exportAsyncCalledTimes += 1
+    return returnValue
+  }
+
+  func flushAsync(explicitTimeout: TimeInterval?) async -> SpanExporterResultCode {
+    flushAsyncCalledTimes += 1
+    return returnValue
+  }
+
+  func shutdownAsync(explicitTimeout: TimeInterval?) async {
+    shutdownAsyncCalledTimes += 1
+  }
+}
+
+/// A sync-only exporter used for MultiSpanExporter tests and sync compatibility.
 private class SyncOnlySpanExporter: SpanExporter, @unchecked Sendable {
   var exportCalledTimes = 0
   var flushCalledTimes = 0
@@ -40,57 +74,35 @@ class AsyncSpanExporterTests: XCTestCase {
     spanList = [TestUtils.makeBasicSpan()]
   }
 
-  // MARK: Default bridging tests
+  // MARK: Async-capable exporter tests
 
-  func testDefaultBridgingExportCallsSyncMethod() async {
-    let exporter = SyncOnlySpanExporter()
+  func testAsyncExporterExport() async {
+    let exporter = AsyncCapableSpanExporter()
     exporter.returnValue = .success
     let result = await exporter.exportAsync(spans: spanList)
     XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.exportCalledTimes, 1)
+    XCTAssertEqual(exporter.exportAsyncCalledTimes, 1)
   }
 
-  func testDefaultBridgingFlushCallsSyncMethod() async {
-    let exporter = SyncOnlySpanExporter()
+  func testAsyncExporterFlush() async {
+    let exporter = AsyncCapableSpanExporter()
     exporter.returnValue = .success
     let result = await exporter.flushAsync()
     XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.flushCalledTimes, 1)
+    XCTAssertEqual(exporter.flushAsyncCalledTimes, 1)
   }
 
-  func testDefaultBridgingShutdownCallsSyncMethod() async {
-    let exporter = SyncOnlySpanExporter()
+  func testAsyncExporterShutdown() async {
+    let exporter = AsyncCapableSpanExporter()
     await exporter.shutdownAsync()
-    XCTAssertEqual(exporter.shutdownCalledTimes, 1)
+    XCTAssertEqual(exporter.shutdownAsyncCalledTimes, 1)
   }
 
-  func testDefaultBridgingPropagatesFailure() async {
-    let exporter = SyncOnlySpanExporter()
+  func testAsyncExporterPropagatesFailure() async {
+    let exporter = AsyncCapableSpanExporter()
     exporter.returnValue = .failure
     let result = await exporter.exportAsync(spans: spanList)
     XCTAssertEqual(result, .failure)
-  }
-
-  // MARK: Convenience overload tests
-
-  func testConvenienceExportWithoutTimeout() async {
-    let exporter = SyncOnlySpanExporter()
-    let result = await exporter.exportAsync(spans: spanList)
-    XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.exportCalledTimes, 1)
-  }
-
-  func testConvenienceFlushWithoutTimeout() async {
-    let exporter = SyncOnlySpanExporter()
-    let result = await exporter.flushAsync()
-    XCTAssertEqual(result, .success)
-    XCTAssertEqual(exporter.flushCalledTimes, 1)
-  }
-
-  func testConvenienceShutdownWithoutTimeout() async {
-    let exporter = SyncOnlySpanExporter()
-    await exporter.shutdownAsync()
-    XCTAssertEqual(exporter.shutdownCalledTimes, 1)
   }
 
   // MARK: MultiSpanExporter async tests
