@@ -38,7 +38,7 @@ public struct W3CTraceContextPropagator: TextMapPropagator {
       spanContext.spanId.hexString +
       String(W3CTraceContextPropagator.delimiter)
 
-    traceparent += spanContext.traceFlags.sampled ? "01" : "00"
+    traceparent += spanContext.traceFlags.hexString
 
     setter.set(carrier: &carrier, key: W3CTraceContextPropagator.traceparent, value: traceparent)
 
@@ -124,14 +124,14 @@ public struct W3CTraceContextPropagator: TextMapPropagator {
       return nil
     }
 
-    // let options0 = UInt8(String(traceparentArray[TraceContextFormat.versionAndTraceIdAndSpanIdLength]), radix: 16)!
-    guard let options1 = UInt8(String(traceparentArray[W3CTraceContextPropagator.versionAndTraceIdAndSpanIdLength + 1]), radix: 16) else {
+    let optionsStart = W3CTraceContextPropagator.versionAndTraceIdAndSpanIdLength
+    let optionsEnd = optionsStart + W3CTraceContextPropagator.optionsLength
+    let optionsString = String(traceparentArray[optionsStart ..< optionsEnd])
+
+    guard let options = UInt8(optionsString, radix: 16) else {
       return nil
     }
-
-    if (options1 & 1) == 1 {
-      traceOptions.setIsSampled(true)
-    }
+    traceOptions = TraceFlags(fromByte: options)
 
     if !bestAttempt, traceparent.count != W3CTraceContextPropagator.versionAndTraceIdAndSpanIdLength + W3CTraceContextPropagator.optionsLength {
       return nil
