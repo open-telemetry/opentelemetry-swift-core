@@ -43,8 +43,9 @@ class TracerSharedState {
 
     /// Recovers explicit parent context from process environment variables, it allows to automatic
     /// trace context propagation to child processes
-    let environmentPropagator = EnvironmentContextPropagator()
-    launchEnvironmentContext = environmentPropagator.extract(carrier: ProcessInfo.processInfo.environment, getter: EnvironmentGetter())
+    let w3cPropagator = W3CTraceContextPropagator()
+    let mappingGetter = EnvironmentMappingGetter(innerGetter: EnvironmentGetter())
+    launchEnvironmentContext = w3cPropagator.extract(carrier: ProcessInfo.processInfo.environment, getter: mappingGetter)
   }
 
   /// Adds a new SpanProcessor
