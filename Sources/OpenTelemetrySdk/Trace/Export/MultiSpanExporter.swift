@@ -7,8 +7,11 @@ import Foundation
 
 /// Implementation of the SpanExporter that simply forwards all received spans to a list of
 /// SpanExporter.
-/// Can be used to export to multiple backends using the same SpanProcessor} like a impleSampledSpansProcessor
-///  or a BatchSampledSpansProcessor.
+/// Can be used to export to multiple backends using the same SpanProcessor like a SimpleSpanProcessor
+/// or a BatchSpanProcessor.
+/// `@unchecked Sendable` because Swift cannot statically verify Sendable for
+/// non-final classes. Safety is guaranteed by the immutable (`let`) stored property —
+/// no synchronization is needed for concurrent reads of immutable state.
 public class MultiSpanExporter: SpanExporter, @unchecked Sendable {
   let spanExporters: [SpanExporter]
 
@@ -35,6 +38,49 @@ public class MultiSpanExporter: SpanExporter, @unchecked Sendable {
   public func shutdown(explicitTimeout: TimeInterval? = nil) {
     for exporter in spanExporters {
       exporter.shutdown(explicitTimeout: explicitTimeout)
+    }
+  }
+}
+
+@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
+extension MultiSpanExporter {
+  public func export(spans: [SpanData], explicitTimeout: TimeInterval? = nil) async -> SpanExporterResultCode {
+    await withTaskGroup(of: SpanExporterResultCode.self, returning: SpanExporterResultCode.self) { group in
+      for exporter in spanExporters {
+        group.addTask {
+          await exporter.export(spans: spans, explicitTimeout: explicitTimeout)
+        }
+      }
+      var currentResultCode = SpanExporterResultCode.success
+      for await result in group {
+        currentResultCode.mergeResultCode(newResultCode: result)
+      }
+      return currentResultCode
+    }
+  }
+
+  public func flush(explicitTimeout: TimeInterval? = nil) async -> SpanExporterResultCode {
+    await withTaskGroup(of: SpanExporterResultCode.self, returning: SpanExporterResultCode.self) { group in
+      for exporter in spanExporters {
+        group.addTask {
+          await exporter.flush(explicitTimeout: explicitTimeout)
+        }
+      }
+      var currentResultCode = SpanExporterResultCode.success
+      for await result in group {
+        currentResultCode.mergeResultCode(newResultCode: result)
+      }
+      return currentResultCode
+    }
+  }
+
+  public func shutdown(explicitTimeout: TimeInterval? = nil) async {
+    await withTaskGroup(of: Void.self) { group in
+      for exporter in spanExporters {
+        group.addTask {
+          await exporter.shutdown(explicitTimeout: explicitTimeout)
+        }
+      }
     }
   }
 }
