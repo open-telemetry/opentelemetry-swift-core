@@ -13,17 +13,14 @@ public protocol MetricExporter: AggregationTemporalitySelectorProtocol, DefaultA
   func flush() -> ExportResult
   func shutdown() -> ExportResult
 
-  /// Async variant of `export(metrics:)`.
   @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-  func exportAsync(metrics: [MetricData]) async -> ExportResult
+  func export(metrics: [MetricData]) async -> ExportResult
 
-  /// Async variant of `flush()`.
   @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-  func flushAsync() async -> ExportResult
+  func flush() async -> ExportResult
 
-  /// Async variant of `shutdown()`.
   @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-  func shutdownAsync() async -> ExportResult
+  func shutdown() async -> ExportResult
 }
 
 public extension MetricExporter {
@@ -34,18 +31,18 @@ public extension MetricExporter {
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 public extension MetricExporter {
-  func exportAsync(metrics: [MetricData]) async -> ExportResult {
-    assertionFailure("exportAsync(metrics:) must be implemented by \(type(of: self))")
+  func export(metrics: [MetricData]) async -> ExportResult {
+    assertionFailure("async export(metrics:) must be implemented by \(type(of: self))")
     return .failure
   }
 
-  func flushAsync() async -> ExportResult {
-    assertionFailure("flushAsync() must be implemented by \(type(of: self))")
+  func flush() async -> ExportResult {
+    assertionFailure("async flush() must be implemented by \(type(of: self))")
     return .failure
   }
 
-  func shutdownAsync() async -> ExportResult {
-    assertionFailure("shutdownAsync() must be implemented by \(type(of: self))")
+  func shutdown() async -> ExportResult {
+    assertionFailure("async shutdown() must be implemented by \(type(of: self))")
     return .failure
   }
 }

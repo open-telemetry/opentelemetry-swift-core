@@ -33,17 +33,17 @@ private class AsyncCapableMetricExporter: MetricExporter {
     return .cumulative
   }
 
-  func exportAsync(metrics: [MetricData]) async -> ExportResult {
+  func export(metrics: [MetricData]) async -> ExportResult {
     exportAsyncCalledTimes += 1
     return returnValue
   }
 
-  func flushAsync() async -> ExportResult {
+  func flush() async -> ExportResult {
     flushAsyncCalledTimes += 1
     return returnValue
   }
 
-  func shutdownAsync() async -> ExportResult {
+  func shutdown() async -> ExportResult {
     shutdownAsyncCalledTimes += 1
     return returnValue
   }
@@ -84,21 +84,21 @@ class AsyncMetricExporterTests: XCTestCase {
   func testAsyncExporterExport() async {
     let exporter = AsyncCapableMetricExporter()
     exporter.returnValue = .success
-    let result = await exporter.exportAsync(metrics: [MetricData.empty])
+    let result = await exporter.export(metrics: [MetricData.empty])
     XCTAssertEqual(result, .success)
     XCTAssertEqual(exporter.exportAsyncCalledTimes, 1)
   }
 
   func testAsyncExporterFlush() async {
     let exporter = AsyncCapableMetricExporter()
-    let result = await exporter.flushAsync()
+    let result = await exporter.flush()
     XCTAssertEqual(result, .success)
     XCTAssertEqual(exporter.flushAsyncCalledTimes, 1)
   }
 
   func testAsyncExporterShutdown() async {
     let exporter = AsyncCapableMetricExporter()
-    let result = await exporter.shutdownAsync()
+    let result = await exporter.shutdown()
     XCTAssertEqual(result, .success)
     XCTAssertEqual(exporter.shutdownAsyncCalledTimes, 1)
   }
@@ -106,7 +106,7 @@ class AsyncMetricExporterTests: XCTestCase {
   func testAsyncExporterPropagatesFailure() async {
     let exporter = AsyncCapableMetricExporter()
     exporter.returnValue = .failure
-    let result = await exporter.exportAsync(metrics: [MetricData.empty])
+    let result = await exporter.export(metrics: [MetricData.empty])
     XCTAssertEqual(result, .failure)
   }
 

@@ -16,17 +16,14 @@ public protocol LogRecordExporter {
   ///
   func forceFlush(explicitTimeout: TimeInterval?) -> ExportResult
 
-  /// Async variant of `export(logRecords:explicitTimeout:)`.
   @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-  func exportAsync(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) async -> ExportResult
+  func export(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) async -> ExportResult
 
-  /// Async variant of `shutdown(explicitTimeout:)`.
   @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-  func shutdownAsync(explicitTimeout: TimeInterval?) async
+  func shutdown(explicitTimeout: TimeInterval?) async
 
-  /// Async variant of `forceFlush(explicitTimeout:)`.
   @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-  func forceFlushAsync(explicitTimeout: TimeInterval?) async -> ExportResult
+  func forceFlush(explicitTimeout: TimeInterval?) async -> ExportResult
 }
 
 public extension LogRecordExporter {
@@ -45,29 +42,29 @@ public extension LogRecordExporter {
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 public extension LogRecordExporter {
-  func exportAsync(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) async -> ExportResult {
-    assertionFailure("exportAsync(logRecords:explicitTimeout:) must be implemented by \(type(of: self))")
+  func export(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) async -> ExportResult {
+    assertionFailure("async export(logRecords:explicitTimeout:) must be implemented by \(type(of: self))")
     return .failure
   }
 
-  func shutdownAsync(explicitTimeout: TimeInterval?) async {
-    assertionFailure("shutdownAsync(explicitTimeout:) must be implemented by \(type(of: self))")
+  func shutdown(explicitTimeout: TimeInterval?) async {
+    assertionFailure("async shutdown(explicitTimeout:) must be implemented by \(type(of: self))")
   }
 
-  func forceFlushAsync(explicitTimeout: TimeInterval?) async -> ExportResult {
-    assertionFailure("forceFlushAsync(explicitTimeout:) must be implemented by \(type(of: self))")
+  func forceFlush(explicitTimeout: TimeInterval?) async -> ExportResult {
+    assertionFailure("async forceFlush(explicitTimeout:) must be implemented by \(type(of: self))")
     return .failure
   }
 
-  func exportAsync(logRecords: [ReadableLogRecord]) async -> ExportResult {
-    return await exportAsync(logRecords: logRecords, explicitTimeout: nil)
+  func export(logRecords: [ReadableLogRecord]) async -> ExportResult {
+    return await export(logRecords: logRecords, explicitTimeout: nil)
   }
 
-  func shutdownAsync() async {
-    await shutdownAsync(explicitTimeout: nil)
+  func shutdown() async {
+    await shutdown(explicitTimeout: nil)
   }
 
-  func forceFlushAsync() async -> ExportResult {
-    return await forceFlushAsync(explicitTimeout: nil)
+  func forceFlush() async -> ExportResult {
+    return await forceFlush(explicitTimeout: nil)
   }
 }
