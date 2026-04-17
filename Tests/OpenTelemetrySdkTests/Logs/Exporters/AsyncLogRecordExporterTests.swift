@@ -29,17 +29,17 @@ private class AsyncCapableLogExporter: LogRecordExporter {
     fatalError("Sync shutdown should not be called on an async-capable exporter")
   }
 
-  func exportAsync(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) async -> ExportResult {
+  func export(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) async -> ExportResult {
     exportAsyncCalledTimes += 1
     return returnValue
   }
 
-  func forceFlushAsync(explicitTimeout: TimeInterval?) async -> ExportResult {
+  func forceFlush(explicitTimeout: TimeInterval?) async -> ExportResult {
     flushAsyncCalledTimes += 1
     return returnValue
   }
 
-  func shutdownAsync(explicitTimeout: TimeInterval?) async {
+  func shutdown(explicitTimeout: TimeInterval?) async {
     shutdownAsyncCalledTimes += 1
   }
 }
@@ -85,28 +85,28 @@ class AsyncLogRecordExporterTests: XCTestCase {
   func testAsyncExporterExport() async {
     let exporter = AsyncCapableLogExporter()
     exporter.returnValue = .success
-    let result = await exporter.exportAsync(logRecords: [makeLogRecord()])
+    let result = await exporter.export(logRecords: [makeLogRecord()])
     XCTAssertEqual(result, .success)
     XCTAssertEqual(exporter.exportAsyncCalledTimes, 1)
   }
 
   func testAsyncExporterFlush() async {
     let exporter = AsyncCapableLogExporter()
-    let result = await exporter.forceFlushAsync()
+    let result = await exporter.forceFlush()
     XCTAssertEqual(result, .success)
     XCTAssertEqual(exporter.flushAsyncCalledTimes, 1)
   }
 
   func testAsyncExporterShutdown() async {
     let exporter = AsyncCapableLogExporter()
-    await exporter.shutdownAsync()
+    await exporter.shutdown()
     XCTAssertEqual(exporter.shutdownAsyncCalledTimes, 1)
   }
 
   func testAsyncExporterPropagatesFailure() async {
     let exporter = AsyncCapableLogExporter()
     exporter.returnValue = .failure
-    let result = await exporter.exportAsync(logRecords: [makeLogRecord()])
+    let result = await exporter.export(logRecords: [makeLogRecord()])
     XCTAssertEqual(result, .failure)
   }
 
@@ -117,7 +117,7 @@ class AsyncLogRecordExporterTests: XCTestCase {
     let exporter2 = SyncOnlyLogExporter()
 
     let multi = MultiLogRecordExporter(logRecordExporters: [exporter1, exporter2])
-    let result = await multi.exportAsync(logRecords: [makeLogRecord()])
+    let result = await multi.export(logRecords: [makeLogRecord()])
     XCTAssertEqual(result, .success)
     XCTAssertEqual(exporter1.exportCalledTimes, 1)
     XCTAssertEqual(exporter2.exportCalledTimes, 1)
@@ -130,7 +130,7 @@ class AsyncLogRecordExporterTests: XCTestCase {
     exporter2.returnValue = .failure
 
     let multi = MultiLogRecordExporter(logRecordExporters: [exporter1, exporter2])
-    let result = await multi.exportAsync(logRecords: [makeLogRecord()])
+    let result = await multi.export(logRecords: [makeLogRecord()])
     XCTAssertEqual(result, .failure)
   }
 
@@ -139,7 +139,7 @@ class AsyncLogRecordExporterTests: XCTestCase {
     let exporter2 = SyncOnlyLogExporter()
 
     let multi = MultiLogRecordExporter(logRecordExporters: [exporter1, exporter2])
-    let result = await multi.forceFlushAsync()
+    let result = await multi.forceFlush()
     XCTAssertEqual(result, .success)
     XCTAssertEqual(exporter1.flushCalledTimes, 1)
     XCTAssertEqual(exporter2.flushCalledTimes, 1)
@@ -150,7 +150,7 @@ class AsyncLogRecordExporterTests: XCTestCase {
     let exporter2 = SyncOnlyLogExporter()
 
     let multi = MultiLogRecordExporter(logRecordExporters: [exporter1, exporter2])
-    await multi.shutdownAsync()
+    await multi.shutdown()
     XCTAssertEqual(exporter1.shutdownCalledTimes, 1)
     XCTAssertEqual(exporter2.shutdownCalledTimes, 1)
   }

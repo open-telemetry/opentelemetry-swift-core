@@ -40,24 +40,24 @@ public class MultiLogRecordExporter: LogRecordExporter, @unchecked Sendable {
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 extension MultiLogRecordExporter {
-  public func exportAsync(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval? = nil) async -> ExportResult {
+  public func export(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval? = nil) async -> ExportResult {
     var result = ExportResult.success
     for exporter in logRecordExporters {
-      result.mergeResultCode(newResultCode: exporter.export(logRecords: logRecords, explicitTimeout: explicitTimeout))
+      result.mergeResultCode(newResultCode: await exporter.export(logRecords: logRecords, explicitTimeout: explicitTimeout))
     }
     return result
   }
 
-  public func shutdownAsync(explicitTimeout: TimeInterval? = nil) async {
+  public func shutdown(explicitTimeout: TimeInterval? = nil) async {
     for exporter in logRecordExporters {
-      exporter.shutdown(explicitTimeout: explicitTimeout)
+      await exporter.shutdown(explicitTimeout: explicitTimeout)
     }
   }
 
-  public func forceFlushAsync(explicitTimeout: TimeInterval? = nil) async -> ExportResult {
+  public func forceFlush(explicitTimeout: TimeInterval? = nil) async -> ExportResult {
     var result = ExportResult.success
     for exporter in logRecordExporters {
-      result.mergeResultCode(newResultCode: exporter.forceFlush(explicitTimeout: explicitTimeout))
+      result.mergeResultCode(newResultCode: await exporter.forceFlush(explicitTimeout: explicitTimeout))
     }
     return result
   }
