@@ -67,6 +67,16 @@ public protocol SpanBase: AnyObject, CustomStringConvertible {
   ///   - attributes: Dictionary of attributes name/value pairs associated with the event
   ///   - timestamp: the explicit event timestamp in nanos since epoch.
   func addEvent(name: String, attributes: [String: AttributeValue], timestamp: Date)
+
+  /// Adds a link to another span.
+  /// - Parameter spanContext: the context of the linked Span.
+  func addLink(spanContext: SpanContext)
+
+  /// Adds a link with attributes to another span.
+  /// - Parameters:
+  ///   - spanContext: the context of the linked Span.
+  ///   - attributes: attributes associated with the link.
+  func addLink(spanContext: SpanContext, attributes: [String: AttributeValue])
 }
 
 public protocol SpanExceptionRecorder {
