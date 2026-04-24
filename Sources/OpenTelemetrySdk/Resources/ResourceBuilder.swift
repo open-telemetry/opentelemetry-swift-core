@@ -27,7 +27,7 @@ public class ResourceBuilder {
   func add(key: String, value: AttributeValue) -> Self {
     if(!Resource.checkAttributes(attributes: [key: value])) {
 #if canImport(os.log)
-      if #available(macOS 10.14, *) {
+      if #available(macOS 10.14, watchOS 5.0, *) {
         os_log(
           .error,
           "Failed to add attribute %@: %@, invalid key.",
