@@ -44,22 +44,28 @@ or
 
 ### Cocoapods
 
-As of version 1.11.0, OpenTelemetry-Swift support cocoapods. 
-Two pods are provided: 
+As of version 1.11.0, OpenTelemetry-Swift support cocoapods.
+Three pods are provided:
 
 - `OpenTelemetry-Swift-Api`
 
 - `OpenTelemetry-Swift-Sdk`
 
-`OpenTelemetry-Swift-Api` is a dependency of `OpenTelemetry-Swift-Sdk`. 
+- `OpenTelemetry-Swift-StdoutExporter`
+
+`OpenTelemetry-Swift-Api` is a dependency of `OpenTelemetry-Swift-Sdk`. `OpenTelemetry-Swift-StdoutExporter` depends on both.
 
 Most users will want to add the following to their pod file:
 
 `pod 'OpenTelemetry-Swift-Sdk'`
 
-This will add both the API and SDK. If you're only interesting in Adding the API add the following: 
+This will add both the API and SDK. If you're only interesting in Adding the API add the following:
 
 `pod 'OpenTelemetry-Swift-Api'`
+
+To include the stdout exporter, add:
+
+`pod 'OpenTelemetry-Swift-StdoutExporter'`
 
 ## Documentation
 
