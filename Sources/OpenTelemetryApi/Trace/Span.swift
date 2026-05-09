@@ -166,6 +166,12 @@ public extension SpanBase {
     return setAttribute(key: key.rawValue, value: AttributeValue.bool(value))
   }
 
+  func addLink(spanContext: SpanContext) {
+    addLink(spanContext: spanContext, attributes: [:])
+  }
+   
+  @available(*, deprecated, message: "add your own implmentation of addLink(spanContext:attributes:) instead of using this default implementation which does nothing, otherwise your links will not be recorded.")
+  func addLink(spanContext: SpanContext, attributes: [String: AttributeValue]) {}
 
 }
 
