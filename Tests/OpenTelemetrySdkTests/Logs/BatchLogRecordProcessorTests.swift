@@ -161,7 +161,7 @@ class BatchLogRecordProcessorTests: XCTestCase {
   }
 }
 
-class BlockingLogRecordExporter: LogRecordExporter {
+final class BlockingLogRecordExporter: LogRecordExporter, @unchecked Sendable {
   let cond = NSCondition()
 
   enum State {
@@ -205,7 +205,7 @@ class BlockingLogRecordExporter: LogRecordExporter {
   }
 }
 
-class WaitingLogRecordExporter: LogRecordExporter {
+final class WaitingLogRecordExporter: LogRecordExporter, @unchecked Sendable {
   var logRecordList = [ReadableLogRecord]()
   public var exporter = LogRecordExporterMock()
   let cond = NSCondition()

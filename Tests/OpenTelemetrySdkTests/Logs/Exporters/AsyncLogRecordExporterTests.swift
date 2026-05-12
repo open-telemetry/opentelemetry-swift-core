@@ -11,11 +11,24 @@ import XCTest
 // MARK: - Test Mocks
 
 /// An exporter that provides native async implementations.
-private class AsyncCapableLogExporter: LogRecordExporter {
-  var exportAsyncCalledTimes = 0
-  var flushAsyncCalledTimes = 0
-  var shutdownAsyncCalledTimes = 0
-  var returnValue: ExportResult = .success
+private final class AsyncCapableLogExporter: LogRecordExporter {
+  private let state = Locked(initialValue: State())
+
+  struct State {
+    var exportAsyncCalledTimes = 0
+    var flushAsyncCalledTimes = 0
+    var shutdownAsyncCalledTimes = 0
+    var returnValue: ExportResult = .success
+  }
+
+  var exportAsyncCalledTimes: Int { state.locking { $0.exportAsyncCalledTimes } }
+  var flushAsyncCalledTimes: Int { state.locking { $0.flushAsyncCalledTimes } }
+  var shutdownAsyncCalledTimes: Int { state.locking { $0.shutdownAsyncCalledTimes } }
+
+  var returnValue: ExportResult {
+    get { state.locking { $0.returnValue } }
+    set { state.locking { $0.returnValue = newValue } }
+  }
 
   func export(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) -> ExportResult {
     fatalError("Sync export should not be called on an async-capable exporter")
@@ -30,39 +43,60 @@ private class AsyncCapableLogExporter: LogRecordExporter {
   }
 
   func export(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) async -> ExportResult {
-    exportAsyncCalledTimes += 1
-    return returnValue
+    state.locking { state in
+      state.exportAsyncCalledTimes += 1
+      return state.returnValue
+    }
   }
 
   func forceFlush(explicitTimeout: TimeInterval?) async -> ExportResult {
-    flushAsyncCalledTimes += 1
-    return returnValue
+    state.locking { state in
+      state.flushAsyncCalledTimes += 1
+      return state.returnValue
+    }
   }
 
   func shutdown(explicitTimeout: TimeInterval?) async {
-    shutdownAsyncCalledTimes += 1
+    state.locking { $0.shutdownAsyncCalledTimes += 1 }
   }
 }
 
 /// A sync-only exporter used for MultiLogRecordExporter tests and sync compatibility.
-private class SyncOnlyLogExporter: LogRecordExporter, @unchecked Sendable {
-  var exportCalledTimes = 0
-  var flushCalledTimes = 0
-  var shutdownCalledTimes = 0
-  var returnValue: ExportResult = .success
+private final class SyncOnlyLogExporter: LogRecordExporter {
+  private let state = Locked(initialValue: State())
+
+  struct State {
+    var exportCalledTimes = 0
+    var flushCalledTimes = 0
+    var shutdownCalledTimes = 0
+    var returnValue: ExportResult = .success
+  }
+
+  var exportCalledTimes: Int { state.locking { $0.exportCalledTimes } }
+  var flushCalledTimes: Int { state.locking { $0.flushCalledTimes } }
+  var shutdownCalledTimes: Int { state.locking { $0.shutdownCalledTimes } }
+
+  var returnValue: ExportResult {
+    get { state.locking { $0.returnValue } }
+    set { state.locking { $0.returnValue = newValue } }
+  }
 
   func export(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval?) -> ExportResult {
-    exportCalledTimes += 1
-    return returnValue
+    state.locking { state in
+      state.exportCalledTimes += 1
+      return state.returnValue
+    }
   }
 
   func forceFlush(explicitTimeout: TimeInterval?) -> ExportResult {
-    flushCalledTimes += 1
-    return returnValue
+    state.locking { state in
+      state.flushCalledTimes += 1
+      return state.returnValue
+    }
   }
 
   func shutdown(explicitTimeout: TimeInterval?) {
-    shutdownCalledTimes += 1
+    state.locking { $0.shutdownCalledTimes += 1 }
   }
 }
 

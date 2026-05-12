@@ -5,31 +5,41 @@
 
 import Foundation
 
-public class InMemoryLogRecordExporter: LogRecordExporter {
-  private var finishedLogRecords = [ReadableLogRecord]()
-  private var isRunning = true
+public final class InMemoryLogRecordExporter: LogRecordExporter {
+  private let state = Locked(initialValue: State())
+
+  private struct State {
+    var finishedLogRecords = [ReadableLogRecord]()
+    var isRunning = true
+  }
 
   public func getFinishedLogRecords() -> [ReadableLogRecord] {
-    return finishedLogRecords
+    state.locking { $0.finishedLogRecords }
   }
 
   public func export(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval? = nil) -> ExportResult {
-    guard isRunning else {
-      return .failure
+    state.locking { state in
+      guard state.isRunning else {
+        return .failure
+      }
+      state.finishedLogRecords.append(contentsOf: logRecords)
+      return .success
     }
-    finishedLogRecords.append(contentsOf: logRecords)
-    return .success
   }
 
   public func shutdown(explicitTimeout: TimeInterval? = nil) {
-    finishedLogRecords.removeAll()
-    isRunning = false
+    state.locking { state in
+      state.finishedLogRecords.removeAll()
+      state.isRunning = false
+    }
   }
 
   public func forceFlush(explicitTimeout: TimeInterval? = nil) -> ExportResult {
-    guard isRunning else {
-      return .failure
+    state.locking { state in
+      guard state.isRunning else {
+        return .failure
+      }
+      return .success
     }
-    return .success
   }
 }

@@ -9,10 +9,7 @@ import Foundation
 /// SpanExporter.
 /// Can be used to export to multiple backends using the same SpanProcessor like a SimpleSpanProcessor
 /// or a BatchSpanProcessor.
-/// `@unchecked Sendable` because Swift cannot statically verify Sendable for
-/// non-final classes. Safety is guaranteed by the immutable (`let`) stored property —
-/// no synchronization is needed for concurrent reads of immutable state.
-public class MultiSpanExporter: SpanExporter, @unchecked Sendable {
+public final class MultiSpanExporter: SpanExporter {
   let spanExporters: [SpanExporter]
 
   public init(spanExporters: [SpanExporter]) {

@@ -5,10 +5,7 @@
 
 import Foundation
 
-/// `@unchecked Sendable` because Swift cannot statically verify Sendable for
-/// non-final classes. Safety is guaranteed by the immutable (`let`) stored property —
-/// no synchronization is needed for concurrent reads of immutable state.
-public class MultiLogRecordExporter: LogRecordExporter, @unchecked Sendable {
+public final class MultiLogRecordExporter: LogRecordExporter {
   let logRecordExporters: [LogRecordExporter]
 
   public init(logRecordExporters: [LogRecordExporter]) {
@@ -41,24 +38,42 @@ public class MultiLogRecordExporter: LogRecordExporter, @unchecked Sendable {
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 extension MultiLogRecordExporter {
   public func export(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval? = nil) async -> ExportResult {
-    var result = ExportResult.success
-    for exporter in logRecordExporters {
-      result.mergeResultCode(newResultCode: await exporter.export(logRecords: logRecords, explicitTimeout: explicitTimeout))
+    await withTaskGroup(of: ExportResult.self, returning: ExportResult.self) { group in
+      for exporter in logRecordExporters {
+        group.addTask {
+          await exporter.export(logRecords: logRecords, explicitTimeout: explicitTimeout)
+        }
+      }
+      var result = ExportResult.success
+      for await exportResult in group {
+        result.mergeResultCode(newResultCode: exportResult)
+      }
+      return result
     }
-    return result
   }
 
   public func shutdown(explicitTimeout: TimeInterval? = nil) async {
-    for exporter in logRecordExporters {
-      await exporter.shutdown(explicitTimeout: explicitTimeout)
+    await withTaskGroup(of: Void.self) { group in
+      for exporter in logRecordExporters {
+        group.addTask {
+          await exporter.shutdown(explicitTimeout: explicitTimeout)
+        }
+      }
     }
   }
 
   public func forceFlush(explicitTimeout: TimeInterval? = nil) async -> ExportResult {
-    var result = ExportResult.success
-    for exporter in logRecordExporters {
-      result.mergeResultCode(newResultCode: await exporter.forceFlush(explicitTimeout: explicitTimeout))
+    await withTaskGroup(of: ExportResult.self, returning: ExportResult.self) { group in
+      for exporter in logRecordExporters {
+        group.addTask {
+          await exporter.forceFlush(explicitTimeout: explicitTimeout)
+        }
+      }
+      var result = ExportResult.success
+      for await exportResult in group {
+        result.mergeResultCode(newResultCode: exportResult)
+      }
+      return result
     }
-    return result
   }
 }
