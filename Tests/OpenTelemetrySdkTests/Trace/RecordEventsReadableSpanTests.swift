@@ -652,6 +652,42 @@ class SpanSdkTest: XCTestCase {
     XCTAssertEqual(expected, result)
   }
 
+  func testAddLinksAfterStart() {
+    let span = createTestRootSpan()
+    let addedContext = SpanContext.create(traceId: idGenerator.generateTraceId(),
+                                          spanId: idGenerator.generateSpanId(),
+                                          traceFlags: TraceFlags(),
+                                          traceState: TraceState())
+    let addedAttributes = TestUtils.generateRandomAttributes()
+
+    span.addLink(spanContext: addedContext)
+    span.addLink(spanContext: addedContext, attributes: addedAttributes)
+
+    let spanData = span.toSpanData()
+    XCTAssertEqual(spanData.links.count, 3)
+    XCTAssertEqual(spanData.totalRecordedLinks, 3)
+    XCTAssertEqual(spanData.links[1].context, addedContext)
+    XCTAssertEqual(spanData.links[1].attributes, [:])
+    XCTAssertEqual(spanData.links[2].context, addedContext)
+    XCTAssertEqual(spanData.links[2].attributes, addedAttributes)
+  }
+
+  func testAddLinksAfterStartRespectsLimit() {
+    let span = createTestSpan(config: SpanLimits().settingLinkCountLimit(2))
+    let addedContext = SpanContext.create(traceId: idGenerator.generateTraceId(),
+                                          spanId: idGenerator.generateSpanId(),
+                                          traceFlags: TraceFlags(),
+                                          traceState: TraceState())
+
+    span.addLink(spanContext: addedContext)
+    span.addLink(spanContext: addedContext)
+
+    let spanData = span.toSpanData()
+    XCTAssertEqual(spanData.links.count, 2)
+    XCTAssertEqual(spanData.totalRecordedLinks, 3)
+    XCTAssertEqual(span.getDroppedLinksCount(), 1)
+  }
+
   private func createTestRootSpan() -> SpanSdk {
     return createTestSpan(kind: .internal, config: SpanLimits(), parentContext: nil, attributes: [String: AttributeValue]())
   }

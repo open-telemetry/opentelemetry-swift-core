@@ -95,6 +95,10 @@ class PropagatedSpan: Span {
 
   func addEvent(name: String, attributes: [String: AttributeValue], timestamp: Date) {}
 
+  func addLink(spanContext: SpanContext) {}
+
+  func addLink(spanContext: SpanContext, attributes: [String: AttributeValue]) {}
+
   func recordException(_ exception: SpanException) {}
 
   func recordException(_ exception: any SpanException, timestamp: Date) {}

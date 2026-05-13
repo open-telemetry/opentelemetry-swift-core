@@ -278,6 +278,29 @@ public class SpanSdk: ReadableSpan, @unchecked Sendable {
     addEvent(event: SpanData.Event(name: name, timestamp: timestamp, attributes: limitedAttributes.attributesCopy()))
   }
 
+  public func addLink(spanContext: SpanContext) {
+    addLink(SpanData.Link(context: spanContext))
+  }
+
+  public func addLink(spanContext: SpanContext, attributes: [String: AttributeValue]) {
+    addLink(SpanData.Link(context: spanContext, attributes: attributes))
+  }
+
+  public func addLink(_ link: SpanData.Link) {
+    lock.withWriterLock {
+      if !internalIsRecording {
+        return
+      }
+
+      totalRecordedLinks += 1
+      if links.count >= spanLimits.linkCountLimit {
+        return
+      }
+
+      links.append(link)
+    }
+  }
+
   private func addEvent(event: SpanData.Event) {
     lock.withWriterLock {
       if !internalIsRecording {
