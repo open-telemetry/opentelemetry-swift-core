@@ -15,42 +15,57 @@ Libraries that produce telemetry data should only depend on `OpenTelemetryApi`, 
 
 ### Adding the dependency
 
-opentelemetry-swift is designed for Swift 5. To depend on the  opentelemetry-swift package, you need to declare your dependency in your `Package.swift`:
+opentelemetry-swift is designed for Swift 5. To depend on the opentelemetry-swift package, you need to declare your dependencies in your `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/open-telemetry/opentelemetry-swift", from: "1.0.0"),
+.package(url: "https://github.com/open-telemetry/opentelemetry-swift", from: "2.3.0"),
+.package(url: "https://github.com/open-telemetry/opentelemetry-swift-core.git", from: "2.4.1")
 ```
 
-and to your application/library target, add `OpenTelemetryApi` or  `OpenTelemetrySdk`to your `dependencies`, e.g. like this:
+and to your application/library target, add `OpenTelemetryApi` or `OpenTelemetrySdk`to your `dependencies`, e.g. like this:
 
 ```swift
-.target(name: "ExampleTelemetryProducerApp", dependencies: ["OpenTelemetryApi"]),
+.target(
+    name: "ExampleTelemetryProducerApp",
+    dependencies: [
+        .product(name: "OpenTelemetryApi", package: "opentelemetry-swift-core")
+    ])
 ```
 
 or
 
 ```swift
-.target(name: "ExampleApp", dependencies: ["OpenTelemetrySdk"]),
+.target(
+    name: "ExampleApp",
+    dependencies: [
+        .product(name: "OpenTelemetrySdk", package: "opentelemetry-swift-core")
+    ])
 ```
 
 ### Cocoapods
 
-As of version 1.11.0, OpenTelemetry-Swift support cocoapods. 
-Two pods are provided: 
+As of version 1.11.0, OpenTelemetry-Swift support cocoapods.
+Three pods are provided:
 
 - `OpenTelemetry-Swift-Api`
 
 - `OpenTelemetry-Swift-Sdk`
 
-`OpenTelemetry-Swift-Api` is a dependency of `OpenTelemetry-Swift-Sdk`. 
+- `OpenTelemetry-Swift-StdoutExporter`
+
+`OpenTelemetry-Swift-Api` is a dependency of `OpenTelemetry-Swift-Sdk`. `OpenTelemetry-Swift-StdoutExporter` depends on both.
 
 Most users will want to add the following to their pod file:
 
 `pod 'OpenTelemetry-Swift-Sdk'`
 
-This will add both the API and SDK. If you're only interesting in Adding the API add the following: 
+This will add both the API and SDK. If you're only interesting in Adding the API add the following:
 
 `pod 'OpenTelemetry-Swift-Api'`
+
+To include the stdout exporter, add:
+
+`pod 'OpenTelemetry-Swift-StdoutExporter'`
 
 ## Documentation
 
