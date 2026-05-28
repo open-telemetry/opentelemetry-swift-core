@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public class TracerProviderSdk: TracerProvider {
+public class TracerProviderSdk: TracerProvider, @unchecked Sendable {
   private let tracerLock: ReadWriteLock = .init()
   private var tracerProvider = [InstrumentationScopeInfo: TracerSdk]()
   var sharedState: TracerSharedState

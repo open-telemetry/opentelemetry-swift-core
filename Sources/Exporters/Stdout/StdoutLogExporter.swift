@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetrySdk
 
-public final class StdoutLogExporter: LogRecordExporter {
+public final class StdoutLogExporter: LogRecordExporter, @unchecked Sendable {
   let isDebug: Bool
 
   public init(isDebug: Bool = false) {

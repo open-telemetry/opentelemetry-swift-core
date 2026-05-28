@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol LogRecordProcessor {
+public protocol LogRecordProcessor: Sendable {
   /// Called when a Logger's LogRecordBuilder emits a log record
   ///
   /// - Parameter logRecord: the log record emitted

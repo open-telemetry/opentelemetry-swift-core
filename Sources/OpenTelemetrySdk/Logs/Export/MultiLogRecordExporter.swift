@@ -5,7 +5,7 @@
 
 import Foundation
 
-public final class MultiLogRecordExporter: LogRecordExporter {
+public final class MultiLogRecordExporter: LogRecordExporter, @unchecked Sendable {
   let logRecordExporters: [LogRecordExporter]
 
   public init(logRecordExporters: [LogRecordExporter]) {

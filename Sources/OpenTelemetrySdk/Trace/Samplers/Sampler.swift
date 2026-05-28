@@ -7,7 +7,7 @@ import Foundation
 import OpenTelemetryApi
 
 /// Sampler is used to make decisions on Span sampling.
-public protocol Sampler: AnyObject, CustomStringConvertible {
+public protocol Sampler: AnyObject, Sendable, CustomStringConvertible {
   /// Called during Span creation to make a sampling decision.
   /// - Parameters:
   ///   - parentContext: the parent span's SpanContext. nil if this is a root span
@@ -24,7 +24,7 @@ public protocol Sampler: AnyObject, CustomStringConvertible {
 }
 
 /// Sampling decision returned by Sampler.shouldSample(SpanContext, TraceId, SpanId, String, Array).
-public protocol Decision {
+public protocol Decision: Sendable {
   /// The sampling decision whether span should be sampled or not.
   var isSampled: Bool { get }
 
