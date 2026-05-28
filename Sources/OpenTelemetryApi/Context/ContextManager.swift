@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol ContextManager: AnyObject {
+public protocol ContextManager: AnyObject, Sendable {
   func getCurrentContextValue(forKey: OpenTelemetryContextKeys) -> AnyObject?
   func setCurrentContextValue(forKey: OpenTelemetryContextKeys, value: AnyObject)
   func removeContextValue(forKey: OpenTelemetryContextKeys, value: AnyObject)

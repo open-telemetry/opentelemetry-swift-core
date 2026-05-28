@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class SimpleLogRecordProcessor: LogRecordProcessor {
+public class SimpleLogRecordProcessor: LogRecordProcessor, @unchecked Sendable {
   private let logRecordExporter: LogRecordExporter
 
   public init(logRecordExporter: LogRecordExporter) {

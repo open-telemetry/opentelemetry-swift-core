@@ -5,7 +5,7 @@
 
 import Foundation
 
-public final class InMemoryLogRecordExporter: LogRecordExporter {
+public final class InMemoryLogRecordExporter: LogRecordExporter, @unchecked Sendable {
   private let state = Locked(initialValue: State())
 
   private struct State {
