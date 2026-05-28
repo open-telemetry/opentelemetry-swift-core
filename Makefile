@@ -1,6 +1,6 @@
 PROJECT_NAME="opentelemetry-swift-core-Package"
 
-IOS_DESTINATION ?= platform=iOS Simulator,name=iPhone 16
+IOS_DESTINATION ?= platform=iOS Simulator,name=iPhone 16,arch=arm64
 TVOS_DESTINATION ?= platform=tvOS Simulator,name=Apple TV 4K (3rd generation)
 WATCHOS_DESTINATION ?= platform=watchOS Simulator,name=Apple Watch Series 10 (46mm)
 VISIONOS_DESTINATION ?= platform=visionOS Simulator,name=Apple Vision Pro
