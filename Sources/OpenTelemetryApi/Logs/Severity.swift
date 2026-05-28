@@ -5,7 +5,7 @@
 
 import Foundation
 
-public enum Severity: Int, Comparable, CustomStringConvertible, Codable {
+public enum Severity: Int, Comparable, CustomStringConvertible, Codable, Sendable {
   case trace = 1
   case
     trace2,
