@@ -52,7 +52,7 @@ let package = Package(
       name: "OpenTelemetryApiTests",
       dependencies: ["OpenTelemetryApi", "OpenTelemetryTestUtils"],
       path: "Tests/OpenTelemetryApiTests",
-      swiftSettings: [.unsafeFlags(["-Xfrontend", "-disable-availability-checking", "-strict-concurrency=minimal"])]
+      swiftSettings: [.unsafeFlags(["-Xfrontend", "-disable-availability-checking"])]
     ),
     .testTarget(
       name: "OpenTelemetrySdkTests",
