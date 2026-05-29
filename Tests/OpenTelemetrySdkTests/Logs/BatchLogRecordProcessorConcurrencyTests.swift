@@ -26,7 +26,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
     let loggerProvider = LoggerProviderBuilder()
       .with(processors: [processor])
       .build()
-    let logger = loggerProvider.get(instrumentationScopeName: "ConcurrencyTest")
+    nonisolated(unsafe) let logger = loggerProvider.get(instrumentationScopeName: "ConcurrencyTest")
 
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.batch.emit", attributes: .concurrent)
@@ -65,7 +65,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
     let loggerProvider = LoggerProviderBuilder()
       .with(processors: [processor])
       .build()
-    let logger = loggerProvider.get(instrumentationScopeName: "ConcurrencyTest")
+    nonisolated(unsafe) let logger = loggerProvider.get(instrumentationScopeName: "ConcurrencyTest")
 
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.batch.overflow", attributes: .concurrent)
@@ -101,7 +101,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
     let loggerProvider = LoggerProviderBuilder()
       .with(processors: [processor])
       .build()
-    let logger = loggerProvider.get(instrumentationScopeName: "ConcurrencyTest")
+    nonisolated(unsafe) let logger = loggerProvider.get(instrumentationScopeName: "ConcurrencyTest")
 
     let emitters = 5
     let recordsPerEmitter = 100
@@ -150,7 +150,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
     let loggerProvider = LoggerProviderBuilder()
       .with(processors: [processor])
       .build()
-    let logger = loggerProvider.get(instrumentationScopeName: "ConcurrencyTest")
+    nonisolated(unsafe) let logger = loggerProvider.get(instrumentationScopeName: "ConcurrencyTest")
 
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.batch.emitShutdown", attributes: .concurrent)
