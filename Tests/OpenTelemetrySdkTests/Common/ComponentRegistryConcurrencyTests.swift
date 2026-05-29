@@ -14,7 +14,7 @@ final class ComponentRegistryConcurrencyTests: XCTestCase {
 
   func testConcurrentGetSameKey() {
     let buildCount = AtomicCounter()
-    let registry = ComponentRegistry<String> { scope in
+    nonisolated(unsafe) let registry = ComponentRegistry<String> { scope in
       buildCount.increment()
       return "component-\(scope.name)"
     }
@@ -22,16 +22,13 @@ final class ComponentRegistryConcurrencyTests: XCTestCase {
     let threads = 100
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.registry.sameKey", attributes: .concurrent)
-    let lock = NSLock()
-    var results = [String]()
+    let results = LockedArray<String>()
 
     for _ in 0..<threads {
       group.enter()
       queue.async {
         let component = registry.get(name: "shared")
-        lock.lock()
         results.append(component)
-        lock.unlock()
         group.leave()
       }
     }
@@ -39,14 +36,14 @@ final class ComponentRegistryConcurrencyTests: XCTestCase {
     let result = group.wait(timeout: .now() + 10)
     XCTAssertEqual(result, .success, "Concurrent get() should complete without deadlock")
     XCTAssertEqual(buildCount.value, 1, "Builder should be called exactly once for the same key")
-    XCTAssertTrue(results.allSatisfy { $0 == "component-shared" })
+    XCTAssertTrue(results.values.allSatisfy { $0 == "component-shared" })
   }
 
   // MARK: - Concurrent get with different keys
 
   func testConcurrentGetDifferentKeys() {
     let buildCount = AtomicCounter()
-    let registry = ComponentRegistry<String> { scope in
+    nonisolated(unsafe) let registry = ComponentRegistry<String> { scope in
       buildCount.increment()
       return "component-\(scope.name)"
     }
@@ -72,7 +69,7 @@ final class ComponentRegistryConcurrencyTests: XCTestCase {
   // MARK: - Concurrent get with version and schema combinations
 
   func testConcurrentGetWithVersionAndSchema() {
-    let registry = ComponentRegistry<String> { scope in
+    nonisolated(unsafe) let registry = ComponentRegistry<String> { scope in
       return "\(scope.name)-\(scope.version ?? "nil")-\(scope.schemaUrl ?? "nil")"
     }
 
@@ -106,7 +103,7 @@ final class ComponentRegistryConcurrencyTests: XCTestCase {
   // MARK: - getComponents returns consistent snapshot while registering
 
   func testGetComponentsWhileRegistering() {
-    let registry = ComponentRegistry<String> { scope in
+    nonisolated(unsafe) let registry = ComponentRegistry<String> { scope in
       return scope.name
     }
 
@@ -139,7 +136,7 @@ final class ComponentRegistryConcurrencyTests: XCTestCase {
   }
 }
 
-// MARK: - Thread-safe counter
+// MARK: - Thread-safe helpers
 
 private final class AtomicCounter: @unchecked Sendable {
   private let lock = NSLock()
@@ -154,6 +151,23 @@ private final class AtomicCounter: @unchecked Sendable {
   func increment() {
     lock.lock()
     _value += 1
+    lock.unlock()
+  }
+}
+
+private final class LockedArray<T>: @unchecked Sendable {
+  private let lock = NSLock()
+  private var _values = [T]()
+
+  var values: [T] {
+    lock.lock()
+    defer { lock.unlock() }
+    return _values
+  }
+
+  func append(_ value: T) {
+    lock.lock()
+    _values.append(value)
     lock.unlock()
   }
 }

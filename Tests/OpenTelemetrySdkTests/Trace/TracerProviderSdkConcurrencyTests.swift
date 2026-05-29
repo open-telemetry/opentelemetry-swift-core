@@ -17,26 +17,24 @@ final class TracerProviderSdkConcurrencyTests: XCTestCase {
     let threads = 100
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.provider.sameName", attributes: .concurrent)
-    let lock = NSLock()
-    var tracers = [Tracer]()
+    let tracers = LockedArray<Tracer>()
 
     for _ in 0..<threads {
       group.enter()
       queue.async {
         let tracer = provider.get(instrumentationName: "shared-tracer", instrumentationVersion: "1.0")
-        lock.lock()
         tracers.append(tracer)
-        lock.unlock()
         group.leave()
       }
     }
 
     let result = group.wait(timeout: .now() + 10)
     XCTAssertEqual(result, .success, "Concurrent get() should complete without deadlock")
-    XCTAssertEqual(tracers.count, threads)
+    let allTracers = tracers.values
+    XCTAssertEqual(allTracers.count, threads)
 
-    let first = tracers[0] as AnyObject
-    for tracer in tracers {
+    let first = allTracers[0] as AnyObject
+    for tracer in allTracers {
       XCTAssertTrue((tracer as AnyObject) === first,
                     "All threads must receive the same TracerSdk instance")
     }
@@ -49,26 +47,24 @@ final class TracerProviderSdkConcurrencyTests: XCTestCase {
     let threads = 100
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.provider.diffNames", attributes: .concurrent)
-    let lock = NSLock()
-    var tracers = [String: Tracer]()
+    let tracers = LockedDictionary<String, Tracer>()
 
     for i in 0..<threads {
       group.enter()
       queue.async {
         let name = "tracer-\(i)"
         let tracer = provider.get(instrumentationName: name)
-        lock.lock()
-        tracers[name] = tracer
-        lock.unlock()
+        tracers.set(key: name, value: tracer)
         group.leave()
       }
     }
 
     let result = group.wait(timeout: .now() + 10)
     XCTAssertEqual(result, .success, "Concurrent get() with different names should complete")
-    XCTAssertEqual(tracers.count, threads, "Each unique name should produce a unique tracer")
+    let allTracers = tracers.values
+    XCTAssertEqual(allTracers.count, threads, "Each unique name should produce a unique tracer")
 
-    let identities = Set(tracers.values.map { ObjectIdentifier($0 as AnyObject) })
+    let identities = Set(allTracers.values.map { ObjectIdentifier($0 as AnyObject) })
     XCTAssertEqual(identities.count, threads, "All tracers should be distinct instances")
   }
 
@@ -122,5 +118,41 @@ final class TracerProviderSdkConcurrencyTests: XCTestCase {
 
     let result = group.wait(timeout: .now() + 10)
     XCTAssertEqual(result, .success, "Concurrent processor addition and span creation should not crash")
+  }
+}
+
+// MARK: - Thread-safe collection wrappers
+
+private final class LockedArray<T>: @unchecked Sendable {
+  private let lock = NSLock()
+  private var _values = [T]()
+
+  var values: [T] {
+    lock.lock()
+    defer { lock.unlock() }
+    return _values
+  }
+
+  func append(_ value: T) {
+    lock.lock()
+    _values.append(value)
+    lock.unlock()
+  }
+}
+
+private final class LockedDictionary<Key: Hashable, Value>: @unchecked Sendable {
+  private let lock = NSLock()
+  private var _values = [Key: Value]()
+
+  var values: [Key: Value] {
+    lock.lock()
+    defer { lock.unlock() }
+    return _values
+  }
+
+  func set(key: Key, value: Value) {
+    lock.lock()
+    _values[key] = value
+    lock.unlock()
   }
 }
