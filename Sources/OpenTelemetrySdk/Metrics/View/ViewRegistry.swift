@@ -32,7 +32,7 @@ public class ViewRegistry {
   }
 
   public func findViews(descriptor: InstrumentDescriptor, meterScope: InstrumentationScopeInfo) -> [RegisteredView] {
-    return registeredViews.filter { view in
+    let matches = registeredViews.filter { view in
       if let instrumentType = view.selector.instrumentType, descriptor.type != instrumentType {
         return false
       }
@@ -54,5 +54,9 @@ public class ViewRegistry {
 
       return true
     }
+    if matches.isEmpty, let fallback = instrumentDefaultRegisteredView[descriptor.type] {
+      return [fallback]
+    }
+    return matches
   }
 }
