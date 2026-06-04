@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       should-run: ${{ steps.check.outputs.should-run }}
+      should-lint-pods: ${{ steps.check.outputs.should-lint-pods }}
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
         with:
@@ -21,6 +22,7 @@ jobs:
         id: check
         run: |
           git diff --name-only origin/${{ github.base_ref }} HEAD | grep -q "Sources/" && echo "should-run=true" >> "$GITHUB_OUTPUT" || echo "should-run=false" >> "$GITHUB_OUTPUT"
+          git diff --name-only origin/${{ github.base_ref }} HEAD | grep -qE "(Sources/|\.podspec$)" && echo "should-lint-pods=true" >> "$GITHUB_OUTPUT" || echo "should-lint-pods=false" >> "$GITHUB_OUTPUT"
 
 
   FormattingLint: 
@@ -140,6 +142,21 @@ jobs:
       run: make build-for-testing-visionos VISIONOS_DESTINATION='${{ steps.visionos-sim.outputs.destination }}'
     - name: Test for visionOS
       run: make test-without-building-visionos VISIONOS_DESTINATION='${{ steps.visionos-sim.outputs.destination }}'
+  CocoaPodLint:
+    needs: should-run
+    if: ${{ needs.should-run.outputs.should-lint-pods == 'true' }}
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
+        with:
+          xcode-version: 16.4
+      - name: Lint CocoaPods specs
+        run: |
+          pod lib lint OpenTelemetry-Swift-Api.podspec --allow-warnings
+          pod lib lint OpenTelemetry-Swift-Sdk.podspec --allow-warnings
+          pod lib lint OpenTelemetry-Swift-StdoutExporter.podspec --allow-warnings
+
   linux:
     needs: should-run
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
