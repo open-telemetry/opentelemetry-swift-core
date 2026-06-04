@@ -1,0 +1,58 @@
+name: Push CocoaPods
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to push (e.g. 1.2.3)'
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  cocoapods:
+    name: Push CocoaPods
+    runs-on: macos-15
+    env:
+      COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+      VERSION: ${{ inputs.version }}
+    steps:
+      - name: Checkout at tag
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ inputs.version }}
+          fetch-depth: 0
+
+      - name: Push OpenTelemetry-Swift-Api if not exists
+        run: |
+          set -euo pipefail
+          if pod trunk info OpenTelemetry-Swift-Api 2>&1 | grep -F " - ${VERSION} (" >/dev/null; then
+            echo "::warning::OpenTelemetry-Swift-Api '${VERSION}' already exists on CocoaPods. Skipping."
+          else
+            pod trunk push OpenTelemetry-Swift-Api.podspec --allow-warnings
+          fi
+
+      - name: Push OpenTelemetry-Swift-Sdk if not exists
+        run: |
+          set -euo pipefail
+          if pod trunk info OpenTelemetry-Swift-Sdk 2>&1 | grep -F " - ${VERSION} (" >/dev/null; then
+            echo "::warning::OpenTelemetry-Swift-Sdk '${VERSION}' already exists on CocoaPods. Skipping."
+          else
+            pod trunk push OpenTelemetry-Swift-Sdk.podspec --allow-warnings --synchronous
+          fi
+
+      - name: Push OpenTelemetry-Swift-StdoutExporter if not exists
+        run: |
+          set -euo pipefail
+          if pod trunk info OpenTelemetry-Swift-StdoutExporter.podspec 2>&1 | grep -F " - ${VERSION} (" >/dev/null; then
+            echo "::warning::OpenTelemetry-Swift-StdoutExporter '${VERSION}' already exists on CocoaPods. Skipping."
+          else
+            pod trunk push OpenTelemetry-Swift-StdoutExporter.podspec --allow-warnings --synchronous
+          fi
