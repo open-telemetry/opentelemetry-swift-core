@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public class MultiLogRecordProcessor: LogRecordProcessor {
+public class MultiLogRecordProcessor: LogRecordProcessor, @unchecked Sendable {
   var logRecordProcessors = [LogRecordProcessor]()
 
   public func forceFlush(explicitTimeout: TimeInterval? = nil) -> ExportResult {
