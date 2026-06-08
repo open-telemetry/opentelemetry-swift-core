@@ -15,7 +15,7 @@ jobs:
       should-run: ${{ steps.check.outputs.should-run }}
       should-lint-pods: ${{ steps.check.outputs.should-lint-pods }}
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           fetch-depth: 0
       - name: Check if the workflow should run
@@ -30,7 +30,7 @@ jobs:
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
       - name: SwiftFormat
         run: echo swiftformat --lint `git diff --name-only HEAD^1 HEAD` --reporter github-actions-log
 
@@ -39,7 +39,7 @@ jobs:
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
       - name: GitHub Action for SwiftLint (Only files changed in the PR)
         uses: norio-nomura/action-swiftlint@9f4dcd7fd46b4e75d7935cf2f4df406d5cae3684 # 3.2.1
         env:
@@ -50,7 +50,7 @@ jobs:
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
     runs-on: macos-15
     steps:
-    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+    - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
     - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
       with:
         xcode-version: 16.4
@@ -67,7 +67,7 @@ jobs:
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
     runs-on: macos-15
     steps:
-    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+    - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
     - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
       with:
         xcode-version: 16.4
@@ -87,7 +87,7 @@ jobs:
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
     runs-on: macos-15
     steps:
-    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+    - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
     - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
       with:
         xcode-version: 16.4
@@ -107,7 +107,7 @@ jobs:
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
     runs-on: macos-15
     steps:
-    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+    - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
     - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
       with:
         xcode-version: 16.4
@@ -127,7 +127,7 @@ jobs:
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
     runs-on: macos-15
     steps:
-    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+    - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
     - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
       with:
         xcode-version: 16.4
@@ -147,7 +147,7 @@ jobs:
     if: ${{ needs.should-run.outputs.should-lint-pods == 'true' }}
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
       - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
         with:
           xcode-version: 16.4
@@ -163,7 +163,7 @@ jobs:
     runs-on: ubuntu-latest
     container: swift:6.1@sha256:e4be69c365086d94715b08d53e391d0bb26d2f08ce0ae23358477f4fe0aadad9
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
       - name: Build tests for Linux
         run: swift build --build-tests
       - name: Run tests for Linux
