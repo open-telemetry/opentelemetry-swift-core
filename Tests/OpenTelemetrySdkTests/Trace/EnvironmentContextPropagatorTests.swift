@@ -123,10 +123,11 @@ class EnvironmentContextPropagatorTests: XCTestCase {
     XCTAssertEqual(getter.get(carrier: carrier, key: "traceparent"), ["value"])
   }
 
-  func testGetterNormalizesCarrierKeysWhenDirectLookupFails() {
-    // Carrier stored with lowercase; getter should normalize both sides and still find the value.
+  func testGetterIgnoresNonNormalizedCarrierKeys() {
+    // Carrier stored with a non-normalized key; getter must NOT fall back to normalizing
+    // carrier keys, only the requested key is normalized.
     let carrier = ["traceparent": "value"]
-    XCTAssertEqual(getter.get(carrier: carrier, key: "traceparent"), ["value"])
+    XCTAssertNil(getter.get(carrier: carrier, key: "traceparent"))
   }
 
   func testGetterReturnsNilForMissingKey() {
