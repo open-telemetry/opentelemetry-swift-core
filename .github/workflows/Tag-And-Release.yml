@@ -65,7 +65,7 @@ jobs:
 
       - name: Create GitHub Release
         if: steps.check-tag.outputs.exists != 'true'
-        uses: ncipollo/release-action@bcfe5470707e8832e12347755757cec0eb3c22af # v1.18.0
+        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1.21.0
         with: 
           tag: ${{ steps.parse.outputs.version }}
           prerelease: true
