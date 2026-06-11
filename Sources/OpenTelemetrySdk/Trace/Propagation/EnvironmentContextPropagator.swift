@@ -67,14 +67,19 @@ public struct EnvironmentMappingSetter: Setter {
 /**
  * EnvironmentMappingGetter adapts a `Getter` to normalize propagation keys to environment variable format.
  *
- * Normalization rules per OpenTelemetry specification:
- * - Converts keys to uppercase (e.g., "traceparent" → "TRACEPARENT")
- * - Replaces all non-alphanumeric characters (except underscore) with underscores
- *   (e.g., "x-b3-traceid" → "X_B3_TRACEID")
+ * Per the OpenTelemetry specification, it normalizes **only the requested key** and performs a
+ * direct lookup in the carrier using that normalized name. Non-normalized carrier keys
+ * (e.g. `"traceparent"` instead of `"TRACEPARENT"`) are silently ignored.
+ *
+ * Normalization rules:
+ * - Converts the requested key to uppercase (e.g., `"traceparent"` → `"TRACEPARENT"`)
+ * - Replaces every character that is not an ASCII letter, digit, or underscore with `_`
+ *   (e.g., `"x-b3-traceid"` → `"X_B3_TRACEID"`)
+ * - Prefixes the result with `_` if it would otherwise start with an ASCII digit
  *
  * Usage:
  * ```swift
- * let innerGetter = EnvironmentVariableGetter()
+ * let innerGetter = CapturingGetter()
  * let envGetter = EnvironmentMappingGetter(innerGetter: innerGetter)
  * let spanContext = w3cPropagator.extract(carrier: ProcessInfo.processInfo.environment, getter: envGetter)
  * ```
@@ -90,14 +95,7 @@ public struct EnvironmentMappingGetter: Getter {
 
   public func get(carrier: [String: String], key: String) -> [String]? {
     let mappedKey = normalizeKeyForEnvironment(key)
-    if carrier[mappedKey] != nil {
-      return innerGetter.get(carrier: carrier, key: mappedKey)
-    }
-    let normalizedCarrier = Dictionary(
-      carrier.map { (normalizeKeyForEnvironment($0.key), $0.value) },
-      uniquingKeysWith: { first, _ in first }
-    )
-    return innerGetter.get(carrier: normalizedCarrier, key: mappedKey)
+    return innerGetter.get(carrier: carrier, key: mappedKey)
   }
 }
 
