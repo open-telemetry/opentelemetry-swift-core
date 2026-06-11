@@ -161,7 +161,7 @@ jobs:
     needs: should-run
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
     runs-on: ubuntu-latest
-    container: swift:6.1@sha256:e4be69c365086d94715b08d53e391d0bb26d2f08ce0ae23358477f4fe0aadad9
+    container: swift:6.1@sha256:4c6af6663ed2316002a3b38ff5505a1fc1f2749ec31e84936c32dd336713c569
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - name: Build tests for Linux
