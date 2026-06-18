@@ -28,7 +28,7 @@ jobs:
   FormattingLint: 
     needs: should-run
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - name: SwiftFormat
@@ -48,7 +48,7 @@ jobs:
   macOS:
     needs: should-run
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
     - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
     - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
@@ -65,7 +65,7 @@ jobs:
   iOS:
     needs: should-run
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
     - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
     - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
@@ -85,7 +85,7 @@ jobs:
   tvOS:
     needs: should-run
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
     - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
     - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
@@ -105,7 +105,7 @@ jobs:
   watchOS:
     needs: should-run
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
     - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
     - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
@@ -125,7 +125,7 @@ jobs:
   visionOS:
     needs: should-run
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
     - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
     - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
@@ -145,7 +145,7 @@ jobs:
   CocoaPodLint:
     needs: should-run
     if: ${{ needs.should-run.outputs.should-lint-pods == 'true' }}
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
       - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
