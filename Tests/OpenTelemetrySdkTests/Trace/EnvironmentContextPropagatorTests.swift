@@ -104,10 +104,10 @@ class EnvironmentContextPropagatorTests: XCTestCase {
     XCTAssertEqual(carrier, ["_FOO": "v"])
   }
 
-  func testEmptyStringProducesEmptyString() {
+  func testEmptyStringNormalizesToUnderscore() {
     var carrier = [String: String]()
     setter.set(carrier: &carrier, key: "", value: "v")
-    XCTAssertEqual(carrier, ["": "v"])
+    XCTAssertEqual(carrier, ["_": "v"])
   }
 
   func testOnlySpecialCharacters() {
@@ -133,5 +133,10 @@ class EnvironmentContextPropagatorTests: XCTestCase {
   func testGetterReturnsNilForMissingKey() {
     let carrier = ["TRACEPARENT": "value"]
     XCTAssertNil(getter.get(carrier: carrier, key: "tracestate"))
+  }
+
+  func testGetterEmptyKeyNormalizesToUnderscore() {
+    let carrier = ["_": "value"]
+    XCTAssertEqual(getter.get(carrier: carrier, key: ""), ["value"])
   }
 }
