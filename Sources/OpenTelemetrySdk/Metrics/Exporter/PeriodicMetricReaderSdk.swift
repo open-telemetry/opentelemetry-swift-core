@@ -9,7 +9,7 @@ import OpenTelemetryApi
 @available(*, deprecated, renamed: "PeriodicMetricReaderSdk")
 public typealias StablePeriodicMetricReaderSdk = PeriodicMetricReaderSdk
 
-public class PeriodicMetricReaderSdk: MetricReader {
+public final class PeriodicMetricReaderSdk: MetricReader {
   let exporter: MetricExporter
   let exportInterval: TimeInterval
   let scheduleQueue = DispatchQueue(label: "org.opentelemetry.StablePeriodicMetricReaderSdk.scheduleQueue")

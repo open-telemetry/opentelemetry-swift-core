@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetrySdk
 
-class BlockingMetricExporter: MetricExporter {
+final class BlockingMetricExporter: MetricExporter, @unchecked Sendable {
   let cond = NSCondition()
 
   enum State {
@@ -56,7 +56,7 @@ class BlockingMetricExporter: MetricExporter {
   }
 }
 
-class WaitingMetricExporter: MetricExporter {
+final class WaitingMetricExporter: MetricExporter, @unchecked Sendable {
   var metricDataList = [MetricData]()
   let cond = NSCondition()
   let numberToWaitFor: Int

@@ -6,9 +6,9 @@
 import Foundation
 import OpenTelemetrySdk
 
-public class StdoutMetricExporter: MetricExporter {
+public final class StdoutMetricExporter: MetricExporter {
   let isDebug: Bool
-  var aggregationTemporalitySelector: AggregationTemporalitySelector
+  let aggregationTemporalitySelector: AggregationTemporalitySelector
 
   public init(isDebug: Bool, aggregationTemporalitySelector: AggregationTemporalitySelector = AggregationTemporality.alwaysCumulative()) {
     self.isDebug = isDebug

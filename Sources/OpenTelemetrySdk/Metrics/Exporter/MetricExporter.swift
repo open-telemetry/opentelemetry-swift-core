@@ -8,7 +8,7 @@ import Foundation
 @available(*, deprecated, renamed: "MetricExporter")
 public typealias StableMetricExporter = MetricExporter
 
-public protocol MetricExporter: AggregationTemporalitySelectorProtocol, DefaultAggregationSelector {
+public protocol MetricExporter: AggregationTemporalitySelectorProtocol, DefaultAggregationSelector, Sendable {
   func export(metrics: [MetricData]) -> ExportResult
   func flush() -> ExportResult
   func shutdown() -> ExportResult

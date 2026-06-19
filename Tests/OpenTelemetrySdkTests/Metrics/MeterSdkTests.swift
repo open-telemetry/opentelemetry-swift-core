@@ -8,7 +8,7 @@ import XCTest
 @testable import OpenTelemetrySdk
 import OpenTelemetryApi
 
-class MockMetricExporter: MetricExporter {
+final class MockMetricExporter: MetricExporter, @unchecked Sendable {
   public var exportData: [MetricData] = .init()
 
   func export(metrics: [OpenTelemetrySdk.MetricData]) -> OpenTelemetrySdk.ExportResult {

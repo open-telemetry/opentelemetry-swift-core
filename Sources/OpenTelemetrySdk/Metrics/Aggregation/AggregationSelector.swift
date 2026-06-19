@@ -6,9 +6,9 @@
 import Foundation
 import OpenTelemetryApi
 
-public typealias AggregationResolver = (InstrumentType) -> Aggregation
+public typealias AggregationResolver = @Sendable (InstrumentType) -> Aggregation
 
-public protocol DefaultAggregationSelector {
+public protocol DefaultAggregationSelector: Sendable {
   func getDefaultAggregation(for instrument: InstrumentType) -> Aggregation
 }
 
