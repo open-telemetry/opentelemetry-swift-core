@@ -27,20 +27,20 @@ public class MetricStorageRegistry {
     guard let storage = registry[descriptor] else {
       registry[descriptor] = newStorage
 
+      for existingStorage in registry.values {
+        if existingStorage as AnyObject === newStorage as AnyObject {
+          continue
+        }
+
+        let existing = existingStorage.metricDescriptor
+
+        if existing.name.lowercased() == descriptor.name.lowercased(), existing != descriptor {
+          OpenTelemetry.instance.feedbackHandler?("Found duplicate metric definition: \(descriptor.name). A metric with the same name but different identifying fields is already registered. To resolve, consider using a View to rename one of the instruments.")
+          break
+        }
+      }
+
       return newStorage
-    }
-
-    for storage in registry.values {
-      if storage as AnyObject === newStorage as AnyObject {
-        continue
-      }
-
-      let existing = storage.metricDescriptor
-
-      if existing.name.lowercased() == descriptor.name.lowercased(), existing != descriptor {
-        // todo: log warning
-        break
-      }
     }
 
     return storage
