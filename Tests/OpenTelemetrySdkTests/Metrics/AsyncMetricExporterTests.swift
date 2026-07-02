@@ -11,7 +11,7 @@ import XCTest
 // MARK: - Test Mocks
 
 /// An exporter that provides native async implementations.
-private class AsyncCapableMetricExporter: MetricExporter {
+private final class AsyncCapableMetricExporter: MetricExporter, @unchecked Sendable {
   var exportAsyncCalledTimes = 0
   var flushAsyncCalledTimes = 0
   var shutdownAsyncCalledTimes = 0
@@ -50,7 +50,7 @@ private class AsyncCapableMetricExporter: MetricExporter {
 }
 
 /// A sync-only exporter for sync compatibility tests.
-private class SyncOnlyMetricExporter: MetricExporter, @unchecked Sendable {
+private final class SyncOnlyMetricExporter: MetricExporter, @unchecked Sendable {
   var exportCalledTimes = 0
   var flushCalledTimes = 0
   var shutdownCalledTimes = 0

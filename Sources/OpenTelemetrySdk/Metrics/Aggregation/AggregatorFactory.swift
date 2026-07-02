@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol Aggregation: AnyObject {
+public protocol Aggregation: AnyObject, Sendable {
   func createAggregator(descriptor: InstrumentDescriptor, exemplarFilter: ExemplarFilter) -> Aggregator
   func isCompatible(with descriptor: InstrumentDescriptor) -> Bool
 }

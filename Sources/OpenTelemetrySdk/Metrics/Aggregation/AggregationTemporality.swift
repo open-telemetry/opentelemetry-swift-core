@@ -5,23 +5,23 @@
 
 import Foundation
 
-public protocol AggregationTemporalitySelectorProtocol {
+public protocol AggregationTemporalitySelectorProtocol: Sendable {
   func getAggregationTemporality(for instrument: InstrumentType) -> AggregationTemporality
 }
 
-public class AggregationTemporalitySelector: AggregationTemporalitySelectorProtocol {
+public final class AggregationTemporalitySelector: AggregationTemporalitySelectorProtocol {
   public func getAggregationTemporality(for instrument: InstrumentType) -> AggregationTemporality {
     return aggregationTemporalitySelector(instrument)
   }
 
-  public init(aggregationTemporalitySelector: @escaping (InstrumentType) -> AggregationTemporality) {
+  public init(aggregationTemporalitySelector: @escaping @Sendable (InstrumentType) -> AggregationTemporality) {
     self.aggregationTemporalitySelector = aggregationTemporalitySelector
   }
 
-  public var aggregationTemporalitySelector: (InstrumentType) -> AggregationTemporality
+  public let aggregationTemporalitySelector: @Sendable (InstrumentType) -> AggregationTemporality
 }
 
-public enum AggregationTemporality: Codable {
+public enum AggregationTemporality: Codable, Sendable {
   case delta
   case cumulative
 
