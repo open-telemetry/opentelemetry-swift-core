@@ -133,7 +133,7 @@ class SpanBuilderSdkTest: SpanBuilderSdkTestInfo {
   static let samplerAttributeName = "sampler-attribute"
 
   func testSampler_decisionAttributes() {
-    class TestSampler: Sampler {
+    final class TestSampler: Sampler, @unchecked Sendable {
       var decision: Decision
       func shouldSample(parentContext: SpanContext?,
                         traceId: TraceId,
@@ -148,7 +148,7 @@ class SpanBuilderSdkTest: SpanBuilderSdkTestInfo {
       init(decision: Decision) { self.decision = decision }
     }
 
-    class TestDecision: Decision {
+    final class TestDecision: Decision, Sendable {
       var isSampled: Bool {
         return true
       }
