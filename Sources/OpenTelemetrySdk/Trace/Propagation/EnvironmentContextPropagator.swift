@@ -38,6 +38,7 @@ public struct EnvironmentContextPropagator: TextMapPropagator {
  * EnvironmentMappingSetter adapts a `Setter` to normalize propagation keys to environment variable format.
  *
  * Normalization rules per OpenTelemetry specification:
+ * - Replaces an empty key name with a single underscore (`_`)
  * - Converts keys to uppercase (e.g., "traceparent" → "TRACEPARENT")
  * - Replaces all non-alphanumeric characters (except underscore) with underscores
  *   (e.g., "x-b3-traceid" → "X_B3_TRACEID")
@@ -72,6 +73,7 @@ public struct EnvironmentMappingSetter: Setter {
  * (e.g. `"traceparent"` instead of `"TRACEPARENT"`) are silently ignored.
  *
  * Normalization rules:
+ * - Replaces an empty key name with a single underscore (`_`)
  * - Converts the requested key to uppercase (e.g., `"traceparent"` → `"TRACEPARENT"`)
  * - Replaces every character that is not an ASCII letter, digit, or underscore with `_`
  *   (e.g., `"x-b3-traceid"` → `"X_B3_TRACEID"`)
@@ -100,10 +102,15 @@ public struct EnvironmentMappingGetter: Getter {
 }
 
 /// Normalizes a key to environment-variable format:
+/// - Replaces an empty key name with a single underscore (`_`)
 /// - Uppercases ASCII letters (`a–z` → `A–Z`)
 /// - Replaces every character that is not an ASCII letter, digit, or underscore with `_`
 /// - Prefixes the result with `_` if it would otherwise start with an ASCII digit
 private func normalizeKeyForEnvironment(_ key: String) -> String {
+  if key.isEmpty {
+    return "_"
+  }
+
   var result = ""
   result.reserveCapacity(key.utf8.count + 1)
   // An env-var name must not start with a digit
