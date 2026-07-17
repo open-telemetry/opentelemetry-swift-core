@@ -6,7 +6,7 @@
 import Foundation
 
 /// An immutable implementation of the Baggage that does not contain any entries.
-final class EmptyBaggage: Baggage, @unchecked Sendable {
+final class EmptyBaggage: Baggage, Sendable {
   private init() {}
 
   /// Returns the single instance of the EmptyBaggage class.

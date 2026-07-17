@@ -9,7 +9,7 @@ import Foundation
 /// Users may choose to use manual or automatic Context propagation. Because of that this class
 /// offers APIs to facilitate both usages.
 /// The automatic context propagation is done using os.activity
-public protocol Tracer: AnyObject {
+public protocol Tracer: AnyObject, Sendable {
   /// Returns a SpanBuilder to create and start a new Span
   /// - Parameter spanName: The name of the returned Span.
   func spanBuilder(spanName: String) -> SpanBuilder
