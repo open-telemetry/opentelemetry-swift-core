@@ -21,7 +21,7 @@ let package = Package(
     .executable(name: "ConcurrencyContext", targets: ["ConcurrencyContext"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/apple/swift-atomics.git", from: "1.3.0"),
+    .package(url: "https://github.com/apple/swift-atomics.git", from: "1.3.1"),
   ],
   targets: [
     .target(
