@@ -160,6 +160,10 @@ private class BatchWorker: WorkerThread, @unchecked Sendable {
     }
     let timeoutTimer = DispatchSource.makeTimerSource(queue: DispatchQueue.global())
     timeoutTimer.setEventHandler { exportOperation.cancel() }
+    timeoutTimer.setCancelHandler {
+      // Cancel handler ensures the dispatch source is properly deallocated
+      // and prevents double-release of the event handler block
+    }
     let maxTimeOut = min(explicitTimeout ?? TimeInterval.greatestFiniteMagnitude, exportTimeout)
     timeoutTimer.schedule(deadline: .now() + .milliseconds(Int(maxTimeOut.toMilliseconds)), leeway: .milliseconds(1))
     timeoutTimer.activate()
