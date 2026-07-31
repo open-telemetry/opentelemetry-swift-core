@@ -18,10 +18,10 @@ class InstrumentNameValidationTests: XCTestCase {
       "system/cpu/time",
       "a1",
       "A_mixed.Case-name/1",
-      String(repeating: "a", count: InstrumentNameValidation.maximumLength),
+      String(repeating: "a", count: InstrumentBuilder.maximumNameLength),
     ]
     for name in names {
-      XCTAssertTrue(InstrumentNameValidation.isValid(name), "expected \"\(name)\" to be valid")
+      XCTAssertTrue(InstrumentBuilder.isValidName(name), "expected \"\(name)\" to be valid")
     }
   }
 
@@ -37,10 +37,10 @@ class InstrumentNameValidationTests: XCTestCase {
       "requests%",                                                         // disallowed punctuation
       "requests:total",                                                    // disallowed punctuation
       "café.requests",                                                     // non-ASCII
-      String(repeating: "a", count: InstrumentNameValidation.maximumLength + 1), // too long
+      String(repeating: "a", count: InstrumentBuilder.maximumNameLength + 1), // too long
     ]
     for name in names {
-      XCTAssertFalse(InstrumentNameValidation.isValid(name), "expected \"\(name)\" to be invalid")
+      XCTAssertFalse(InstrumentBuilder.isValidName(name), "expected \"\(name)\" to be invalid")
     }
   }
 
