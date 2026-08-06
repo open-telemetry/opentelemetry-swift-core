@@ -86,9 +86,12 @@ public struct MetricData: Equatable, Codable, Sendable {
         .encode(data.points as! [LongPointData], forKey: .dataPoints)
     case .DoubleGauge, .DoubleSum:
       try container.encode(data.points as! [DoublePointData], forKey: .dataPoints)
-    case .Histogram, .ExponentialHistogram:
+    case .Histogram:
       try container
         .encode(data.points as! [HistogramPointData], forKey: .dataPoints)
+    case .ExponentialHistogram:
+      try container
+        .encode(data.points as! [ExponentialHistogramPointData], forKey: .dataPoints)
     }
 
     try container.encode(data.aggregationTemporality, forKey: .aggregationTemporality)
@@ -131,9 +134,18 @@ public struct MetricData: Equatable, Codable, Sendable {
         aggregationTemporality: aggregationTemporality,
         points: points
       )
-    case .Histogram, .ExponentialHistogram:
+    case .Histogram:
       let points = try container.decode(
         [HistogramPointData].self,
+        forKey: .dataPoints
+      )
+      data = Data(
+        aggregationTemporality: aggregationTemporality,
+        points: points
+      )
+    case .ExponentialHistogram:
+      let points = try container.decode(
+        [ExponentialHistogramPointData].self,
         forKey: .dataPoints
       )
       data = Data(
