@@ -15,6 +15,8 @@ class MetricDataTests: XCTestCase {
   let emptyPointData = [PointData]()
   let unit = "unit"
 
+  // MARK: - Creation
+
   func testStableMetricDataCreation() {
     let type = MetricDataType.Summary
     let data = MetricData.Data(
@@ -162,66 +164,6 @@ class MetricDataTests: XCTestCase {
     XCTAssertEqual(histogramMetricData.zeroCount, 0)
   }
 
-  func testExponentialHistogramMetricDataCodable() {
-    let positiveBuckets = DoubleBase2ExponentialHistogramBuckets(scale: 20, maxBuckets: 160)
-    positiveBuckets.downscale(by: 20)
-    positiveBuckets.record(value: 10.0)
-    positiveBuckets.record(value: 40.0)
-    positiveBuckets.record(value: 90.0)
-    positiveBuckets.record(value: 100.0)
-
-    let negativeBuckets = DoubleBase2ExponentialHistogramBuckets(scale: 20, maxBuckets: 160)
-
-    let expHistogramPointData = ExponentialHistogramPointData(
-      scale: 20,
-      sum: 240.0,
-      zeroCount: 0,
-      hasMin: true,
-      hasMax: true,
-      min: 10.0,
-      max: 100.0,
-      positiveBuckets: positiveBuckets,
-      negativeBuckets: negativeBuckets,
-      startEpochNanos: 0,
-      epochNanos: 1,
-      attributes: [:],
-      exemplars: []
-    )
-
-    let metricData = MetricData.createExponentialHistogram(
-      resource: resource,
-      instrumentationScopeInfo: instrumentationScopeInfo,
-      name: metricName,
-      description: metricDescription,
-      unit: unit,
-      data: ExponentialHistogramData(
-        aggregationTemporality: .delta,
-        points: [expHistogramPointData]
-      )
-    )
-
-    do {
-      let encoded = try JSONEncoder().encode(metricData)
-      let decoded = try JSONDecoder().decode(MetricData.self, from: encoded)
-
-      assertCommon(decoded)
-      XCTAssertEqual(decoded.type, .ExponentialHistogram)
-      XCTAssertEqual(decoded.data.aggregationTemporality, .delta)
-      XCTAssertEqual(decoded.isMonotonic, false)
-      XCTAssertEqual(decoded.data.points.count, 1)
-
-      let point = try XCTUnwrap(decoded.data.points.first as? ExponentialHistogramPointData)
-      XCTAssertEqual(point.scale, 20)
-      XCTAssertEqual(point.sum, 240)
-      XCTAssertEqual(point.count, 4)
-      XCTAssertEqual(point.min, 10)
-      XCTAssertEqual(point.max, 100)
-      XCTAssertEqual(point.zeroCount, 0)
-    } catch {
-      XCTFail(String(describing: error))
-    }
-  }
-
   func testCreateDoubleGuage() {
     let type = MetricDataType.DoubleGauge
     let d = 22.22222
@@ -315,6 +257,8 @@ class MetricDataTests: XCTestCase {
     XCTAssertEqual(metricData.data.aggregationTemporality, .cumulative)
     XCTAssertEqual(metricData.isMonotonic, true)
   }
+
+  // MARK: - Codable
 
   func testLongGaugeMetricDataCodable() {
     let point = LongPointData(
@@ -480,6 +424,68 @@ class MetricDataTests: XCTestCase {
       XCTAssertEqual(decoded.isMonotonic, false)
     }
   }
+
+  func testExponentialHistogramMetricDataCodable() {
+    let positiveBuckets = DoubleBase2ExponentialHistogramBuckets(scale: 20, maxBuckets: 160)
+    positiveBuckets.downscale(by: 20)
+    positiveBuckets.record(value: 10.0)
+    positiveBuckets.record(value: 40.0)
+    positiveBuckets.record(value: 90.0)
+    positiveBuckets.record(value: 100.0)
+
+    let negativeBuckets = DoubleBase2ExponentialHistogramBuckets(scale: 20, maxBuckets: 160)
+
+    let expHistogramPointData = ExponentialHistogramPointData(
+      scale: 20,
+      sum: 240.0,
+      zeroCount: 0,
+      hasMin: true,
+      hasMax: true,
+      min: 10.0,
+      max: 100.0,
+      positiveBuckets: positiveBuckets,
+      negativeBuckets: negativeBuckets,
+      startEpochNanos: 0,
+      epochNanos: 1,
+      attributes: [:],
+      exemplars: []
+    )
+
+    let metricData = MetricData.createExponentialHistogram(
+      resource: resource,
+      instrumentationScopeInfo: instrumentationScopeInfo,
+      name: metricName,
+      description: metricDescription,
+      unit: unit,
+      data: ExponentialHistogramData(
+        aggregationTemporality: .delta,
+        points: [expHistogramPointData]
+      )
+    )
+
+    do {
+      let encoded = try JSONEncoder().encode(metricData)
+      let decoded = try JSONDecoder().decode(MetricData.self, from: encoded)
+
+      assertCommon(decoded)
+      XCTAssertEqual(decoded.type, .ExponentialHistogram)
+      XCTAssertEqual(decoded.data.aggregationTemporality, .delta)
+      XCTAssertEqual(decoded.isMonotonic, false)
+      XCTAssertEqual(decoded.data.points.count, 1)
+
+      let point = try XCTUnwrap(decoded.data.points.first as? ExponentialHistogramPointData)
+      XCTAssertEqual(point.scale, 20)
+      XCTAssertEqual(point.sum, 240)
+      XCTAssertEqual(point.count, 4)
+      XCTAssertEqual(point.min, 10)
+      XCTAssertEqual(point.max, 100)
+      XCTAssertEqual(point.zeroCount, 0)
+    } catch {
+      XCTFail(String(describing: error))
+    }
+  }
+
+  // MARK: - Helpers
 
   func assertCommon(_ metricData: MetricData) {
     XCTAssertEqual(metricData.resource, resource)
