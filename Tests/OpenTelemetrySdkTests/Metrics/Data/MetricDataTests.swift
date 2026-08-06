@@ -316,11 +316,194 @@ class MetricDataTests: XCTestCase {
     XCTAssertEqual(metricData.isMonotonic, true)
   }
 
+  func testLongGaugeMetricDataCodable() {
+    let point = LongPointData(
+      startEpochNanos: 0,
+      endEpochNanos: 1,
+      attributes: [:],
+      exemplars: [],
+      value: 33
+    )
+    let metricData = MetricData.createLongGauge(
+      resource: resource,
+      instrumentationScopeInfo: instrumentationScopeInfo,
+      name: metricName,
+      description: metricDescription,
+      unit: unit,
+      data: GaugeData(aggregationTemporality: .cumulative, points: [point])
+    )
+
+    assertMetricDataCodable(metricData) { decoded in
+      let decodedPoint = try XCTUnwrap(decoded.data.points.first as? LongPointData)
+      XCTAssertEqual(decodedPoint.value, 33)
+      XCTAssertEqual(decoded.isMonotonic, false)
+    }
+  }
+
+  func testLongSumMetricDataCodable() {
+    let point = LongPointData(
+      startEpochNanos: 0,
+      endEpochNanos: 1,
+      attributes: [:],
+      exemplars: [],
+      value: 55
+    )
+    let metricData = MetricData.createLongSum(
+      resource: resource,
+      instrumentationScopeInfo: instrumentationScopeInfo,
+      name: metricName,
+      description: metricDescription,
+      unit: unit,
+      isMonotonic: true,
+      data: SumData(aggregationTemporality: .cumulative, points: [point])
+    )
+
+    assertMetricDataCodable(metricData) { decoded in
+      let decodedPoint = try XCTUnwrap(decoded.data.points.first as? LongPointData)
+      XCTAssertEqual(decodedPoint.value, 55)
+      XCTAssertEqual(decoded.isMonotonic, true)
+    }
+  }
+
+  func testDoubleGaugeMetricDataCodable() {
+    let point = DoublePointData(
+      startEpochNanos: 0,
+      endEpochNanos: 1,
+      attributes: [:],
+      exemplars: [],
+      value: 22.22222
+    )
+    let metricData = MetricData.createDoubleGauge(
+      resource: resource,
+      instrumentationScopeInfo: instrumentationScopeInfo,
+      name: metricName,
+      description: metricDescription,
+      unit: unit,
+      data: GaugeData(aggregationTemporality: .cumulative, points: [point])
+    )
+
+    assertMetricDataCodable(metricData) { decoded in
+      let decodedPoint = try XCTUnwrap(decoded.data.points.first as? DoublePointData)
+      XCTAssertEqual(decodedPoint.value, 22.22222)
+      XCTAssertEqual(decoded.isMonotonic, false)
+    }
+  }
+
+  func testDoubleSumMetricDataCodable() {
+    let point = DoublePointData(
+      startEpochNanos: 0,
+      endEpochNanos: 1,
+      attributes: [:],
+      exemplars: [],
+      value: 44.4444
+    )
+    let metricData = MetricData.createDoubleSum(
+      resource: resource,
+      instrumentationScopeInfo: instrumentationScopeInfo,
+      name: metricName,
+      description: metricDescription,
+      unit: unit,
+      isMonotonic: true,
+      data: SumData(aggregationTemporality: .cumulative, points: [point])
+    )
+
+    assertMetricDataCodable(metricData) { decoded in
+      let decodedPoint = try XCTUnwrap(decoded.data.points.first as? DoublePointData)
+      XCTAssertEqual(decodedPoint.value, 44.4444)
+      XCTAssertEqual(decoded.isMonotonic, true)
+    }
+  }
+
+  func testSummaryMetricDataCodable() {
+    let point = SummaryPointData(
+      startEpochNanos: 0,
+      endEpochNanos: 1,
+      attributes: [:],
+      count: 100,
+      sum: 2.2,
+      percentileValues: [ValueAtQuantile(quantile: 1.1, value: 1.3)]
+    )
+    let metricData = MetricData(
+      resource: resource,
+      instrumentationScopeInfo: instrumentationScopeInfo,
+      name: metricName,
+      description: metricDescription,
+      unit: unit,
+      type: .Summary,
+      isMonotonic: false,
+      data: SummaryData(aggregationTemporality: .cumulative, points: [point])
+    )
+
+    assertMetricDataCodable(metricData) { decoded in
+      let decodedPoint = try XCTUnwrap(decoded.data.points.first as? SummaryPointData)
+      XCTAssertEqual(decodedPoint.count, 100)
+      XCTAssertEqual(decodedPoint.sum, 2.2)
+      XCTAssertEqual(decodedPoint.values.count, 1)
+      XCTAssertEqual(decodedPoint.values[0].quantile, 1.1)
+      XCTAssertEqual(decodedPoint.values[0].value, 1.3)
+      XCTAssertEqual(decoded.isMonotonic, false)
+    }
+  }
+
+  func testHistogramMetricDataCodable() {
+    let point = HistogramPointData(
+      startEpochNanos: 0,
+      endEpochNanos: 1,
+      attributes: [:],
+      exemplars: [],
+      sum: 10.0,
+      count: 4,
+      min: 1.0,
+      max: 4.0,
+      boundaries: [1.0, 2.0, 3.0],
+      counts: [1, 1, 1, 1],
+      hasMin: true,
+      hasMax: true
+    )
+    let metricData = MetricData.createHistogram(
+      resource: resource,
+      instrumentationScopeInfo: instrumentationScopeInfo,
+      name: metricName,
+      description: metricDescription,
+      unit: unit,
+      data: HistogramData(aggregationTemporality: .cumulative, points: [point])
+    )
+
+    assertMetricDataCodable(metricData) { decoded in
+      let decodedPoint = try XCTUnwrap(decoded.data.points.first as? HistogramPointData)
+      XCTAssertEqual(decodedPoint.sum, 10.0)
+      XCTAssertEqual(decodedPoint.count, 4)
+      XCTAssertEqual(decodedPoint.min, 1.0)
+      XCTAssertEqual(decodedPoint.max, 4.0)
+      XCTAssertEqual(decodedPoint.boundaries, [1.0, 2.0, 3.0])
+      XCTAssertEqual(decodedPoint.counts, [1, 1, 1, 1])
+      XCTAssertEqual(decoded.isMonotonic, false)
+    }
+  }
+
   func assertCommon(_ metricData: MetricData) {
     XCTAssertEqual(metricData.resource, resource)
     XCTAssertEqual(metricData.instrumentationScopeInfo, instrumentationScopeInfo)
     XCTAssertEqual(metricData.name, metricName)
     XCTAssertEqual(metricData.description, metricDescription)
     XCTAssertEqual(metricData.unit, unit)
+  }
+
+  private func assertMetricDataCodable(
+    _ metricData: MetricData,
+    verify: (MetricData) throws -> Void
+  ) {
+    do {
+      let encoded = try JSONEncoder().encode(metricData)
+      let decoded = try JSONDecoder().decode(MetricData.self, from: encoded)
+
+      assertCommon(decoded)
+      XCTAssertEqual(decoded.type, metricData.type)
+      XCTAssertEqual(decoded.data.aggregationTemporality, metricData.data.aggregationTemporality)
+      XCTAssertEqual(decoded.data.points.count, 1)
+      try verify(decoded)
+    } catch {
+      XCTFail(String(describing: error))
+    }
   }
 }
