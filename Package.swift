@@ -7,10 +7,10 @@ import PackageDescription
 let package = Package(
   name: "opentelemetry-swift-core",
   platforms: [
-    .macOS(.v10_13),
-    .iOS(.v12),
-    .tvOS(.v12),
-    .watchOS(.v4),
+    .macOS(.v12),
+    .iOS(.v13),
+    .tvOS(.v13),
+    .watchOS(.v6),
     .visionOS(.v1),
   ],
   products: [
@@ -52,7 +52,7 @@ let package = Package(
       name: "OpenTelemetryApiTests",
       dependencies: ["OpenTelemetryApi", "OpenTelemetryTestUtils"],
       path: "Tests/OpenTelemetryApiTests",
-      swiftSettings: [.unsafeFlags(["-Xfrontend", "-disable-availability-checking", "-strict-concurrency=minimal"])]
+      swiftSettings: [.unsafeFlags(["-strict-concurrency=minimal"])]
     ),
     .testTarget(
       name: "OpenTelemetrySdkTests",
@@ -62,7 +62,6 @@ let package = Package(
         "OpenTelemetryTestUtils",
       ],
       path: "Tests/OpenTelemetrySdkTests",
-      swiftSettings: [.unsafeFlags(["-Xfrontend", "-disable-availability-checking"])]
     ),
     .executableTarget(
       name: "ConcurrencyContext",

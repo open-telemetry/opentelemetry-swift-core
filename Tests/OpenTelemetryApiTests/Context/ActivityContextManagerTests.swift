@@ -100,7 +100,6 @@
       XCTAssertEqual(parentSpan.context.traceId, child2.context.traceId)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func testStartAndEndSpanInAsyncTask() {
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTask").startSpan()
       ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
@@ -116,7 +115,6 @@
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func testStartAndEndSpanInAsyncTaskAsync() async {
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTask").startSpan()
       ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
@@ -128,7 +126,6 @@
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func testStartAndEndSpanInAsyncTaskTwice() {
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTaskTwice1").startSpan()
       ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
@@ -145,7 +142,6 @@
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func testStartAndEndSpanInAsyncTaskTwiceAsync() async {
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTaskTwice1").startSpan()
       ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
@@ -157,7 +153,6 @@
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func createAsyncSpan(parentSpan: Span?, name: String) async {
       let activeSpan = ActivityContextManager.instance.getCurrentContextValue(forKey: .span)
       XCTAssert(activeSpan === parentSpan)
@@ -166,7 +161,6 @@
       endSpanAndValidateContext(span: newSpan, parentSpan: parentSpan)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func testStartAndEndSpanInAsyncTaskAnidated() {
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTaskAnidated1").startSpan()
       ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
@@ -182,7 +176,6 @@
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func testStartAndEndSpanInAsyncTaskAnidatedAsync() async {
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTaskAnidated1").startSpan()
       ActivityContextManager.instance.setCurrentContextValue(forKey: .span, value: span1)
@@ -193,7 +186,6 @@
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func createAsyncSpanOutside(parentSpan: Span) async {
       let activeSpan = ActivityContextManager.instance.getCurrentContextValue(forKey: .span)
       XCTAssert(activeSpan === parentSpan)
@@ -203,7 +195,6 @@
       endSpanAndValidateContext(span: newSpan, parentSpan: parentSpan)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func createAsyncSpanInside(parentSpan: Span) async {
       let activeSpan = ActivityContextManager.instance.getCurrentContextValue(forKey: .span)
       XCTAssert(activeSpan === parentSpan)
@@ -213,7 +204,6 @@
       endSpanAndValidateContext(span: newSpan, parentSpan: parentSpan)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     // First created task correctly does not inherit activity when created detached
     func testStartAndEndSpanInAsyncTaskDetachedWithParent() {
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTask1").startSpan()
@@ -230,7 +220,6 @@
       waitForExpectations(timeout: 30)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     // First created task correctly does not inherit activity when created detached
     func testStartAndEndSpanInAsyncTaskDetachedWithParentAsync() async {
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTask1").startSpan()
@@ -247,7 +236,6 @@
       await fulfillment(of: [expec], timeout: 30)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     // First created task correctly inherits activity when created, so assigns the proper parent
     func testStartAndEndSpanInAsyncTaskWithParent() {
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTask1").startSpan()
@@ -264,7 +252,6 @@
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     // First created task correctly inherits activity when created, so assigns the proper parent
     func testStartAndEndSpanInAsyncTaskWithParentAsync() async {
       let span1 = defaultTracer.spanBuilder(spanName: "testStartAndEndSpanInAsyncTask1").startSpan()
@@ -281,7 +268,6 @@
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func testActiveSpanIsKeptPerTask() {
       let expectation1 = expectation(description: "firstSpan created")
       let expectation2 = expectation(description: "secondSpan created")
@@ -310,7 +296,6 @@
       XCTAssert(OpenTelemetry.instance.contextProvider.activeSpan === nil)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func testRemoveContextValuesFromSpan() {
       // Create a span
       let span1 = defaultTracer.spanBuilder(spanName: "span1").startSpan()
@@ -349,7 +334,6 @@
       XCTAssert(ActivityContextManager.instance.getCurrentContextValue(forKey: .span) === nil)
     }
 
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, *)
     func testActiveSpanIsKeptPerTaskAsync() async {
       let expectation1 = expectation(description: "firstSpan created")
       let expectation2 = expectation(description: "secondSpan created")

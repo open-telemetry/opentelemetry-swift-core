@@ -39,7 +39,6 @@ public final class MultiSpanExporter: SpanExporter {
   }
 }
 
-@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 extension MultiSpanExporter {
   public func export(spans: [SpanData], explicitTimeout: TimeInterval? = nil) async -> SpanExporterResultCode {
     await withTaskGroup(of: SpanExporterResultCode.self, returning: SpanExporterResultCode.self) { group in

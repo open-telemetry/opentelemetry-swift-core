@@ -76,7 +76,6 @@ class PropagatedSpanBuilder: SpanBuilder {
   }
 
   #if canImport(_Concurrency)
-    @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
     func withActiveSpan<T>(_ operation: (any SpanBase) async throws -> T) async rethrows -> T {
       let span = startSpan()
       defer {

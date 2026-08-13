@@ -21,13 +21,10 @@ public protocol SpanExporter: AnyObject, Sendable {
   ///  to a TracerSdkFactory object.
   func shutdown(explicitTimeout: TimeInterval?)
 
-  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
   @discardableResult func export(spans: [SpanData], explicitTimeout: TimeInterval?) async -> SpanExporterResultCode
 
-  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
   func flush(explicitTimeout: TimeInterval?) async -> SpanExporterResultCode
 
-  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
   func shutdown(explicitTimeout: TimeInterval?) async
 }
 
@@ -45,7 +42,6 @@ public extension SpanExporter {
   }
 }
 
-@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 public extension SpanExporter {
   @discardableResult func export(spans: [SpanData], explicitTimeout: TimeInterval?) async -> SpanExporterResultCode {
     assertionFailure("async export(spans:explicitTimeout:) must be implemented by \(type(of: self))")

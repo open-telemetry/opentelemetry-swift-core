@@ -13,13 +13,10 @@ public protocol MetricExporter: AggregationTemporalitySelectorProtocol, DefaultA
   func flush() -> ExportResult
   func shutdown() -> ExportResult
 
-  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
   func export(metrics: [MetricData]) async -> ExportResult
 
-  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
   func flush() async -> ExportResult
 
-  @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
   func shutdown() async -> ExportResult
 }
 
@@ -29,7 +26,6 @@ public extension MetricExporter {
   }
 }
 
-@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 public extension MetricExporter {
   func export(metrics: [MetricData]) async -> ExportResult {
     assertionFailure("async export(metrics:) must be implemented by \(type(of: self))")

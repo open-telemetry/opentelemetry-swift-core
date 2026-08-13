@@ -52,7 +52,6 @@ public struct TracerProviderWrapper: @unchecked Sendable {
 /// // This typealias will be preferred over the name in either package, so you only have to refer to the module name once
 /// typealias OpenTelemetry = OpenTelemetryConcurrency.OpenTelemetry
 /// ```
-@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 public struct OpenTelemetry: Sendable {
   public static var version: String { _OpenTelemetry.version }
 
@@ -117,7 +116,6 @@ public struct OpenTelemetry: Sendable {
   }
 }
 
-@available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
 public struct OpenTelemetryContextProvider: @unchecked Sendable {
   var contextManager: ContextManager
 
