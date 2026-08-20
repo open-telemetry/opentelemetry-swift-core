@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public class BatchLogRecordProcessor: LogRecordProcessor {
+public class BatchLogRecordProcessor: LogRecordProcessor, @unchecked Sendable {
   fileprivate var worker: BatchWorker
 
   let safeScheduleDelay: TimeInterval

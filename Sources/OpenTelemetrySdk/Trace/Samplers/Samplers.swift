@@ -9,9 +9,9 @@ import OpenTelemetryApi
 /// Struct to access a set of pre-defined Samplers.
 public enum Samplers {
   /// A Sampler that always makes a "yes" decision on Span sampling.
-  public nonisolated(unsafe) static let alwaysOn: Sampler = AlwaysOnSampler()
+  public static let alwaysOn: Sampler = AlwaysOnSampler()
   ///  Sampler that always makes a "no" decision on Span sampling.
-  public nonisolated(unsafe) static let alwaysOff: Sampler = AlwaysOffSampler()
+  public static let alwaysOff: Sampler = AlwaysOffSampler()
   /// Returns a new TraceIdRatioBased Sampler. The probability of sampling a trace is equal to that
   /// of the specified probability.
   /// - Parameter probability: The desired probability of sampling. Must be within [0.0, 1.0].
@@ -34,11 +34,11 @@ public enum Samplers {
                               localParentNotSampled: localParentNotSampled)
   }
 
-  nonisolated(unsafe) static let alwaysOnDecision: Decision = SimpleDecision(decision: true)
-  nonisolated(unsafe) static let alwaysOffDecision: Decision = SimpleDecision(decision: false)
+  static let alwaysOnDecision: Decision = SimpleDecision(decision: true)
+  static let alwaysOffDecision: Decision = SimpleDecision(decision: false)
 }
 
-class AlwaysOnSampler: Sampler {
+class AlwaysOnSampler: Sampler, @unchecked Sendable {
   func shouldSample(parentContext: SpanContext?,
                     traceId: TraceId,
                     name: String,
@@ -53,7 +53,7 @@ class AlwaysOnSampler: Sampler {
   }
 }
 
-class AlwaysOffSampler: Sampler {
+class AlwaysOffSampler: Sampler, @unchecked Sendable {
   func shouldSample(parentContext: SpanContext?,
                     traceId: TraceId,
                     name: String,
@@ -73,7 +73,7 @@ class AlwaysOffSampler: Sampler {
 /// just compare the absolute value of the id and the bound to see if we are within the desired
 /// probability range. Using the low bits of the traceId also ensures that systems that only use 64
 /// bit ID's will also work with this sampler.
-class TraceIdRatioBased: Sampler {
+class TraceIdRatioBased: Sampler, @unchecked Sendable {
   var probability: Double
   var idUpperBound: UInt
 
@@ -123,7 +123,7 @@ class TraceIdRatioBased: Sampler {
 
 /// A Sampler that uses the sampled flag of the parent Span, if present. If the span has no parent,
 /// this Sampler will use the "root" sampler that it is built with.
-class ParentBasedSampler: Sampler {
+class ParentBasedSampler: Sampler, @unchecked Sendable {
   private let root: Sampler
   private let remoteParentSampled: Sampler
   private let remoteParentNotSampled: Sampler

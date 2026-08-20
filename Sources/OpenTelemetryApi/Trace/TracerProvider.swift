@@ -6,7 +6,7 @@
 import Foundation
 
 /// A factory for creating named Tracers.
-public protocol TracerProvider {
+public protocol TracerProvider: Sendable {
   /// Gets or creates a named tracer instance.
   /// - Parameters:
   ///   - instrumentationName: the name of the instrumentation library, not the name of the instrumented library

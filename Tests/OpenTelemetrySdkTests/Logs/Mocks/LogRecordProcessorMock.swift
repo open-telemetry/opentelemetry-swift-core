@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetrySdk
 
-class LogRecordProcessorMock: LogRecordProcessor {
+final class LogRecordProcessorMock: LogRecordProcessor, @unchecked Sendable {
   var onEmitCalledTimes = 0
   lazy var onEmitCalled: Bool = self.onEmitCalledTimes > 0
   var onEmitCalledLogRecord: ReadableLogRecord?

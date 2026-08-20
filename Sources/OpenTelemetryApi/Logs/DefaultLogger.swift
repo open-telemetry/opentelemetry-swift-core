@@ -5,12 +5,12 @@
 
 import Foundation
 
-public final class DefaultLogger: Logger, @unchecked Sendable {
+public final class DefaultLogger: Logger, Sendable {
   private static let instanceWithDomain = DefaultLogger(true)
   private static let instanceNoDomain = DefaultLogger(false)
   private static let noopLogRecordBuilder = NoopLogRecordBuilder()
 
-  private var hasDomain: Bool
+  private let hasDomain: Bool
 
   private init(_ hasDomain: Bool) {
     self.hasDomain = hasDomain
@@ -35,5 +35,5 @@ public final class DefaultLogger: Logger, @unchecked Sendable {
     return Self.noopLogRecordBuilder
   }
 
-  private final class NoopLogRecordBuilder: EventBuilder, @unchecked Sendable {}
+  private final class NoopLogRecordBuilder: EventBuilder, Sendable {}
 }

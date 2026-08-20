@@ -7,7 +7,7 @@ import Foundation
 import OpenTelemetryApi
 
 /// TracerSdk is SDK implementation of Tracer.
-public class TracerSdk: Tracer {
+public class TracerSdk: Tracer, @unchecked Sendable {
   public let instrumentationScopeInfo: InstrumentationScopeInfo
   var sharedState: TracerSharedState
 
