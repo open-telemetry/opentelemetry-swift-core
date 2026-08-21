@@ -43,7 +43,8 @@ jobs:
       - name: Checkout merge commit
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          persist-credentials: false
+          # zizmor: ignore[artipacked] Credentials are required by the tag push below.
+          persist-credentials: true
           ref: ${{ github.event.pull_request.merge_commit_sha }}
           fetch-depth: 0
 
