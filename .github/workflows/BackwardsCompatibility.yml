@@ -34,9 +34,11 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           path: opentelemetry-swift-core
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
           ref: ${{ needs.get-release.outputs.tag }}
           path: opentelemetry-swift
@@ -58,9 +60,11 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           path: opentelemetry-swift-core
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
           ref: ${{ needs.get-release.outputs.tag }}
           path: opentelemetry-swift
@@ -90,9 +94,11 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           path: opentelemetry-swift-core
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
           ref: ${{ needs.get-release.outputs.tag }}
           path: opentelemetry-swift
@@ -122,9 +128,11 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           path: opentelemetry-swift-core
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
           ref: ${{ needs.get-release.outputs.tag }}
           path: opentelemetry-swift
@@ -154,9 +162,11 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           path: opentelemetry-swift-core
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
           ref: ${{ needs.get-release.outputs.tag }}
           path: opentelemetry-swift
@@ -188,9 +198,11 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           path: opentelemetry-swift-core
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
           repository: ${{ env.OPENTELEMETRY_SWIFT_REPO }}
           ref: ${{ needs.get-release.outputs.tag }}
           path: opentelemetry-swift
