@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public final class SumAggregation: Aggregation, @unchecked Sendable {
+public final class SumAggregation: Aggregation, Sendable {
   public static let instance = SumAggregation()
 
   public func isCompatible(with descriptor: InstrumentDescriptor) -> Bool {

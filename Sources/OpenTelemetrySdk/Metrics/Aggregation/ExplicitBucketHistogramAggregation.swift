@@ -6,7 +6,7 @@
 import Foundation
 import OpenTelemetryApi
 
-public final class ExplicitBucketHistogramAggregation: Aggregation, @unchecked Sendable {
+public final class ExplicitBucketHistogramAggregation: Aggregation, Sendable {
   public static let DEFAULT_BOUNDARIES: [Double] = [0, 5, 10, 25, 50, 75, 100, 250, 500, 750, 1_000, 2_500, 5_000, 7_500]
   public static let instance = ExplicitBucketHistogramAggregation(bucketBoundaries: DEFAULT_BOUNDARIES)
 
