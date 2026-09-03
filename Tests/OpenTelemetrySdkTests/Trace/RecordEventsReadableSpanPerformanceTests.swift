@@ -25,7 +25,7 @@
     /// the workload visible to TSan's race detection. It still runs 5 times to
     /// match `measure`'s default iteration count: same accumulated span state,
     /// and each repeat gives TSan a fresh set of interleavings to observe.
-    private func measureOrRunOnce(_ body: () -> Void) {
+    private func measureOrRunUnmeasured(_ body: () -> Void) {
       if Self.isThreadSanitizerLoaded {
         for _ in 0 ..< 5 {
           body()
@@ -47,7 +47,7 @@
     func testAddEventPerformance() {
       let span = createTestSpan()
 
-      measureOrRunOnce {
+      measureOrRunUnmeasured {
         for _ in 0 ..< iterations {
           span.addEvent(name: UUID().uuidString)
         }
@@ -57,7 +57,7 @@
     func testSetAttributePerformance() {
       let span = createTestSpan()
 
-      measureOrRunOnce {
+      measureOrRunUnmeasured {
         for i in 0 ..< iterations {
           span.setAttribute(key: "key\(i)", value: .string("value"))
         }
@@ -67,7 +67,7 @@
     func testSetStatusPerformance() {
       let span = createTestSpan()
 
-      measureOrRunOnce {
+      measureOrRunUnmeasured {
         for _ in 0 ..< iterations {
           span.status = Int.random(in: 0 ... 10) % 2 == 0 ? .ok : .unset
         }
@@ -77,7 +77,7 @@
     func testAllOperationsTogetherPerformance() {
       let span = createTestSpan()
 
-      measureOrRunOnce {
+      measureOrRunUnmeasured {
         for i in 0 ..< iterations {
           span.setAttribute(key: "key\(i)", value: .string("value"))
           span.addEvent(name: UUID().uuidString)
@@ -90,7 +90,7 @@
     func testAddEventPerformance_concurrent() {
       let span = createTestSpan()
 
-      measureOrRunOnce {
+      measureOrRunUnmeasured {
         DispatchQueue.concurrentPerform(iterations: iterations) { _ in
           span.addEvent(name: UUID().uuidString)
         }
@@ -100,7 +100,7 @@
     func testSetAttributePerformance_concurrent() {
       let span = createTestSpan()
 
-      measureOrRunOnce {
+      measureOrRunUnmeasured {
         DispatchQueue.concurrentPerform(iterations: iterations) { i in
           span.setAttribute(key: "key\(i)", value: .string("value"))
         }
@@ -110,7 +110,7 @@
     func testSetStatusPerformance_concurrent() {
       let span = createTestSpan()
 
-      measureOrRunOnce {
+      measureOrRunUnmeasured {
         DispatchQueue.concurrentPerform(iterations: iterations) { _ in
           span.status = Int.random(in: 0 ... 10) % 2 == 0 ? .ok : .unset
         }
@@ -120,7 +120,7 @@
     func testAllOperationsTogetherPerformance_concurrent() {
       let span = createTestSpan()
 
-      measureOrRunOnce {
+      measureOrRunUnmeasured {
         DispatchQueue.concurrentPerform(iterations: iterations) { i in
           span.setAttribute(key: "key\(i)", value: .string("value"))
           span.addEvent(name: UUID().uuidString)
