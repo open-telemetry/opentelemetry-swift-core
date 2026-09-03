@@ -76,12 +76,7 @@ jobs:
       run: swift test --sanitize=thread
       env:
         TSAN_OPTIONS: halt_on_error=1
-    - name: Upload Code coverage
-      run: |
-        curl -Os https://uploader.codecov.io/latest/macos/codecov
-        chmod +x codecov
-        xcrun llvm-cov export -ignore-filename-regex="pb\.swift|grpc\.swift" -format="lcov" .build/debug/opentelemetry-swift-corePackageTests.xctest/Contents/MacOS/opentelemetry-swift-corePackageTests -instr-profile .build/debug/codecov/default.profdata > .build/debug/codecov/coverage_report.lcov
-        ./codecov -f .build/debug/codecov/coverage_report.lcov
+        
   iOS:
     needs: should-run
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
