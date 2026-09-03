@@ -116,7 +116,7 @@ public struct OpenTelemetry: Sendable {
 private final class OpenTelemetryStorage: @unchecked Sendable {
   static let instance = OpenTelemetryStorage()
 
-  private let lock = ApiReadWriteLock()
+  private let lock = ReadWriteLock()
 
   private var _tracerProvider: TracerProvider
   private var _meterProvider: any MeterProvider

@@ -41,6 +41,7 @@
   #error("Unsupported platform")
 #endif
 
+
 /// A threading lock based on `libpthread` instead of `libdispatch`.
 ///
 /// This object provides a lock on top of a single `pthread_mutex_t`. This kind
@@ -107,9 +108,14 @@ extension Lock {
 
 /// A threading lock based on `libpthread` instead of `libdispatch`.
 ///
-/// This object provides a lock on top of a single `pthread_mutex_t`. This kind
-/// of lock is safe to use with `libpthread`-based threading models, such as the
-/// one used by NIO.
+/// This object provides a reader/writer lock on top of a single
+/// `pthread_rwlock_t`, allowing multiple concurrent readers or a single
+/// exclusive writer.
+///
+/// OpenTelemetryApi vendors its own private copy of this class
+/// (`OpenTelemetryApi/Internal/ReadWriteLock.swift`): sharing one
+/// implementation would require `package` visibility, which CocoaPods builds
+/// only support via fragile cross-pod `-package-name` flags.
 final class ReadWriteLock {
   private let rwlock: UnsafeMutablePointer<pthread_rwlock_t> = UnsafeMutablePointer.allocate(capacity: 1)
 
@@ -127,8 +133,8 @@ final class ReadWriteLock {
 
   /// Acquire a reader lock.
   ///
-  /// Whenever possible, consider using `withLock` instead of this method and
-  /// `unlock`, to simplify lock handling.
+  /// Whenever possible, consider using `withReaderLock` instead of this
+  /// method and `unlock`, to simplify lock handling.
   public func lockRead() {
     let err = pthread_rwlock_rdlock(rwlock)
     precondition(err == 0, "pthread_rwlock_rdlock failed with error \(err)")
@@ -136,8 +142,8 @@ final class ReadWriteLock {
 
   /// Acquire a writer lock.
   ///
-  /// Whenever possible, consider using `withLock` instead of this method and
-  /// `unlock`, to simplify lock handling.
+  /// Whenever possible, consider using `withWriterLock` instead of this
+  /// method and `unlock`, to simplify lock handling.
   public func lockWrite() {
     let err = pthread_rwlock_wrlock(rwlock)
     precondition(err == 0, "pthread_rwlock_wrlock failed with error \(err)")
@@ -145,8 +151,8 @@ final class ReadWriteLock {
 
   /// Release the lock.
   ///
-  /// Whenever possible, consider using `withLock` instead of this method and
-  /// `lock`, to simplify lock handling.
+  /// Whenever possible, consider using `withReaderLock` and `withWriterLock`
+  /// instead of this method, to simplify lock handling.
   public func unlock() {
     let err = pthread_rwlock_unlock(rwlock)
     precondition(err == 0, "pthread_rwlock_unlock failed with error \(err)")
@@ -156,9 +162,9 @@ final class ReadWriteLock {
 extension ReadWriteLock {
   /// Acquire the reader lock for the duration of the given block.
   ///
-  /// This convenience method should be preferred to `lock` and `unlock` in
-  /// most situations, as it ensures that the lock will be released regardless
-  /// of how `body` exits.
+  /// This convenience method should be preferred to `lockRead` and `unlock`
+  /// in most situations, as it ensures that the lock will be released
+  /// regardless of how `body` exits.
   ///
   /// - Parameter body: The block to execute while holding the lock.
   /// - Returns: The value returned by the block.
@@ -173,9 +179,9 @@ extension ReadWriteLock {
 
   /// Acquire the writer lock for the duration of the given block.
   ///
-  /// This convenience method should be preferred to `lock` and `unlock` in
-  /// most situations, as it ensures that the lock will be released regardless
-  /// of how `body` exits.
+  /// This convenience method should be preferred to `lockWrite` and `unlock`
+  /// in most situations, as it ensures that the lock will be released
+  /// regardless of how `body` exits.
   ///
   /// - Parameter body: The block to execute while holding the lock.
   /// - Returns: The value returned by the block.
@@ -186,18 +192,6 @@ extension ReadWriteLock {
       self.unlock()
     }
     return try body()
-  }
-
-  // specialise Void return (for performance)
-  @inlinable
-  func withReaderLockVoid(_ body: () throws -> Void) rethrows {
-    try withReaderLock(body)
-  }
-
-  // specialise Void return (for performance)
-  @inlinable
-  func withWriterLockVoid(_ body: () throws -> Void) rethrows {
-    try withWriterLock(body)
   }
 }
 

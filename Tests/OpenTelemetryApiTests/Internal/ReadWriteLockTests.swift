@@ -11,17 +11,17 @@ final class ReadWriteLockTests: XCTestCase {
   // MARK: - Basic semantics
 
   func testReaderLockReturnsBodyValue() {
-    let lock = ApiReadWriteLock()
+    let lock = ReadWriteLock()
     XCTAssertEqual(lock.withReaderLock { 42 }, 42)
   }
 
   func testWriterLockReturnsBodyValue() {
-    let lock = ApiReadWriteLock()
+    let lock = ReadWriteLock()
     XCTAssertEqual(lock.withWriterLock { "value" }, "value")
   }
 
   func testReaderLockRethrowsAndUnlocks() {
-    let lock = ApiReadWriteLock()
+    let lock = ReadWriteLock()
     struct TestError: Error {}
 
     XCTAssertThrowsError(try lock.withReaderLock { throw TestError() })
@@ -30,7 +30,7 @@ final class ReadWriteLockTests: XCTestCase {
   }
 
   func testWriterLockRethrowsAndUnlocks() {
-    let lock = ApiReadWriteLock()
+    let lock = ReadWriteLock()
     struct TestError: Error {}
 
     XCTAssertThrowsError(try lock.withWriterLock { throw TestError() })
@@ -38,7 +38,7 @@ final class ReadWriteLockTests: XCTestCase {
   }
 
   func testSequentialReadAfterWrite() {
-    let lock = ApiReadWriteLock()
+    let lock = ReadWriteLock()
     var value = 0
     lock.withWriterLock { value = 7 }
     XCTAssertEqual(lock.withReaderLock { value }, 7)
@@ -50,7 +50,7 @@ final class ReadWriteLockTests: XCTestCase {
   /// waits inside its critical section until the other has also entered; if
   /// readers excluded each other this would time out.
   func testConcurrentReadersOverlap() {
-    let lock = ApiReadWriteLock()
+    let lock = ReadWriteLock()
     let bothInside = DispatchSemaphore(value: 0)
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.readers.overlap", attributes: .concurrent)
@@ -77,7 +77,7 @@ final class ReadWriteLockTests: XCTestCase {
   /// Writers must be mutually exclusive: unsynchronized increments from many
   /// threads would lose updates, so an exact final count proves exclusion.
   func testWriterMutualExclusion() {
-    let lock = ApiReadWriteLock()
+    let lock = ReadWriteLock()
     let iterations = 10000
     let state = LockGuardedState()
     let group = DispatchGroup()
@@ -99,7 +99,7 @@ final class ReadWriteLockTests: XCTestCase {
   /// updates two variables that should always be equal; a reader running
   /// during the write would see them differ.
   func testReadersNeverObserveTornWrites() {
-    let lock = ApiReadWriteLock()
+    let lock = ReadWriteLock()
     let state = LockGuardedState()
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.torn.writes", attributes: .concurrent)
@@ -126,7 +126,7 @@ final class ReadWriteLockTests: XCTestCase {
 }
 
 /// Mutable state shared across test threads. Safe only because every access
-/// happens inside the ApiReadWriteLock under test.
+/// happens inside the ReadWriteLock under test.
 private final class LockGuardedState: @unchecked Sendable {
   var a = 0
   var b = 0
