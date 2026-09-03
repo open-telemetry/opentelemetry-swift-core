@@ -61,7 +61,7 @@ final class PeriodicMetricReaderSdkTests: XCTestCase {
     XCTAssertEqual(blockingExporter.exportCallCount, 1)
 
     // Keep recording so queued collections have delta data after unblock.
-    let endTime = Date().addingTimeInterval(exportInterval * 5)
+    let endTime = Date().addingTimeInterval(exportInterval * 8)
     while Date() < endTime {
       counter.add(value: 1)
       Thread.sleep(forTimeInterval: 0.01)
@@ -71,8 +71,14 @@ final class PeriodicMetricReaderSdkTests: XCTestCase {
     XCTAssertEqual(blockingExporter.exportCallCount, 1)
 
     blockingExporter.unblock()
-    Thread.sleep(forTimeInterval: 0.2)
-    XCTAssertGreaterThanOrEqual(blockingExporter.exportCallCount, 3)
+    let start = Date()
+    let deadline = Date().addingTimeInterval(1.0)
+    while blockingExporter.exportCallCount <= 2, Date() < deadline {
+      counter.add(value: 1)
+      Thread.sleep(forTimeInterval: 0.01)
+    }
+    XCTAssertGreaterThan(blockingExporter.exportCallCount, 2)
+    XCTAssertLessThan(Date().timeIntervalSince(start), 0.3)
 
     _ = meterProvider.shutdown()
   }
@@ -155,6 +161,17 @@ final class PeriodicMetricReaderSdkTests: XCTestCase {
     XCTAssertTrue(blockingExporter.shutdownCalled)
 
     _ = meterProvider.shutdown()
+  }
+
+  func testEmptyCollectionSkipsExport() {
+    let exporter = ResultMetricExporter(result: .success)
+    let reader = PeriodicMetricReaderSdk(exporter: exporter, exportInterval: exportInterval)
+    reader.register(registration: NoopMetricProducer())
+
+    XCTAssertEqual(reader.forceFlush(), .success)
+    XCTAssertEqual(exporter.exportCallCount, 0)
+
+    _ = reader.shutdown()
   }
 
   private func makeMeterProvider(exporter: MetricExporter) -> MeterProviderSdk {

@@ -13,8 +13,11 @@ public final class PeriodicMetricReaderSdk: MetricReader, @unchecked Sendable {
   let exporter: MetricExporter
   let exportInterval: TimeInterval
   let scheduleQueue = DispatchQueue(label: "org.opentelemetry.StablePeriodicMetricReaderSdk.scheduleQueue")
+  let exportQueue = DispatchQueue(label: "org.opentelemetry.StablePeriodicMetricReaderSdk.exportQueue",
+                                  qos: .userInitiated)
   let scheduleTimer: DispatchSourceTimer
   let metricProduce: ReadWriteLocked<MetricProducer> = .init(initialValue: NoopMetricProducer())
+  private let hasShutdown = Locked(initialValue: false)
 
   init(exporter: MetricExporter, exportInterval: TimeInterval = 60.0) {
     self.exporter = exporter
@@ -23,17 +26,13 @@ public final class PeriodicMetricReaderSdk: MetricReader, @unchecked Sendable {
 
     scheduleTimer.setEventHandler { [weak self] in
       autoreleasepool {
-        guard let self else {
-          return
-        }
-        _ = self.doRun()
+        self?.enqueueExport()
       }
     }
   }
 
   deinit {
     _ = shutdown()
-    scheduleTimer.activate()
   }
 
   public func register(registration: CollectionRegistration) {
@@ -51,10 +50,23 @@ public final class PeriodicMetricReaderSdk: MetricReader, @unchecked Sendable {
   }
 
   public func forceFlush() -> ExportResult {
-    doRun()
+    exportQueue.sync {
+      collectAndExport()
+    }
   }
 
-  private func doRun() -> ExportResult {
+  private func enqueueExport() {
+    exportQueue.async { [weak self] in
+      autoreleasepool {
+        guard let self else {
+          return
+        }
+        _ = self.collectAndExport()
+      }
+    }
+  }
+
+  private func collectAndExport() -> ExportResult {
     let metricData = metricProduce.protectedValue.collectAllMetrics()
     if metricData.isEmpty {
       return .success
@@ -63,11 +75,23 @@ public final class PeriodicMetricReaderSdk: MetricReader, @unchecked Sendable {
   }
 
   public func shutdown() -> ExportResult {
+    let shouldShutdown = hasShutdown.locking { shutdown in
+      guard !shutdown else {
+        return false
+      }
+      shutdown = true
+      return true
+    }
+    guard shouldShutdown else {
+      return .success
+    }
+
     scheduleTimer.suspend()
     if !scheduleTimer.isCancelled {
       scheduleTimer.cancel()
       scheduleTimer.resume()
     }
+    exportQueue.sync {}
     return exporter.shutdown()
   }
 
