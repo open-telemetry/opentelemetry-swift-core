@@ -4,7 +4,7 @@
  */
 
 import Foundation
-@_spi(Locks) import OpenTelemetryApi
+import OpenTelemetryApi
 
 /// Represents the shared state/config between all Tracers created by the same TracerProvider.
 ///

@@ -4,7 +4,7 @@
 //
 
 import Foundation
-@_spi(Locks) import OpenTelemetryApi
+import OpenTelemetryApi
 
 public class LongSumAggregator: SumAggregator, Aggregator {
   private let reservoirSupplier: () -> ExemplarReservoir

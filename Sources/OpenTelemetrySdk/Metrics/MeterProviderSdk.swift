@@ -4,7 +4,7 @@
  */
 
 import Foundation
-@_spi(Locks) import OpenTelemetryApi
+import OpenTelemetryApi
 
 public final class MeterProviderError: Error {}
 

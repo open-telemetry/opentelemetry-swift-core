@@ -41,18 +41,17 @@
   #error("Unsupported platform")
 #endif
 
-// The lock primitives below are declared `@_spi(Locks) public`: they are shared
-// with the other targets in this repository (`@_spi(Locks) import OpenTelemetryApi`)
-// without becoming part of the API module's supported public surface, and without
-// the cross-pod `-package-name` build flags that `package` visibility would
-// require under CocoaPods.
+// The lock primitives below are public so the other modules in this repository
+// (and consumers) can share one implementation -- the same choice
+// NIOConcurrencyHelpers makes with NIOLock. `package` visibility would avoid the
+// public surface but requires fragile cross-pod `-package-name` build flags
+// under CocoaPods.
 
 /// A threading lock based on `libpthread` instead of `libdispatch`.
 ///
 /// This object provides a lock on top of a single `pthread_mutex_t`. This kind
 /// of lock is safe to use with `libpthread`-based threading models, such as the
 /// one used by NIO.
-@_spi(Locks)
 public final class Lock: @unchecked Sendable {
   private let mutex: UnsafeMutablePointer<pthread_mutex_t> = UnsafeMutablePointer.allocate(capacity: 1)
 
@@ -112,7 +111,6 @@ public final class Lock: @unchecked Sendable {
 ///
 /// This object provides a lock on top of a single `pthread_rwlock_t`, allowing
 /// multiple concurrent readers or a single exclusive writer.
-@_spi(Locks)
 public final class ReadWriteLock: @unchecked Sendable {
   private let rwlock: UnsafeMutablePointer<pthread_rwlock_t> = UnsafeMutablePointer.allocate(capacity: 1)
 

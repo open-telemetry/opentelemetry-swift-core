@@ -4,7 +4,7 @@
  */
 
 import Foundation
-@_spi(Locks) import OpenTelemetryApi
+import OpenTelemetryApi
 
 public class TracerProviderSdk: TracerProvider {
   private let tracerLock: ReadWriteLock = .init()

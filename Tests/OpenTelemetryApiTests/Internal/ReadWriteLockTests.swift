@@ -5,7 +5,7 @@
 
 import Foundation
 import XCTest
-@_spi(Locks) import OpenTelemetryApi
+import OpenTelemetryApi
 
 final class ReadWriteLockTests: XCTestCase {
   // MARK: - Basic semantics

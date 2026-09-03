@@ -4,7 +4,7 @@
  */
 
 import Foundation
-@_spi(Locks) import OpenTelemetryApi
+import OpenTelemetryApi
 
 @available(*, deprecated, renamed: "MeterSdk")
 public typealias StableMeterSdk = MeterSdk
