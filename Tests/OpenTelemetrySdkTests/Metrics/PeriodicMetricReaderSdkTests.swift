@@ -174,6 +174,61 @@ final class PeriodicMetricReaderSdkTests: XCTestCase {
     _ = reader.shutdown()
   }
 
+  func testForceFlushReturnsFailureWhenExportTimesOut() {
+    let blockingExporter = CountingBlockingMetricExporter(aggregationTemporality: .delta)
+    let reader = PeriodicMetricReaderSdk(
+      exporter: blockingExporter,
+      exportInterval: exportInterval,
+      exportTimeout: 0.1
+    )
+    let meterProvider = makeMeterProvider(reader: reader)
+    let counter = meterProvider.meterBuilder(name: "meter").build().counterBuilder(name: "counter").build()
+
+    counter.add(value: 1)
+    blockingExporter.waitUntilIsBlocked()
+
+    let flushCompleted = expectation(description: "forceFlush completed")
+    let flushResult = Locked(initialValue: ExportResult.success)
+    flushQueue.async {
+      flushResult.locking { $0 = reader.forceFlush() }
+      flushCompleted.fulfill()
+    }
+
+    wait(for: [flushCompleted], timeout: 1.0)
+    XCTAssertEqual(flushResult.locking { $0 }, .failure)
+
+    blockingExporter.unblock()
+    _ = meterProvider.shutdown()
+  }
+
+  func testShutdownReturnsFailureWhenExportTimesOut() {
+    let blockingExporter = CountingBlockingMetricExporter(aggregationTemporality: .delta)
+    let reader = PeriodicMetricReaderSdk(
+      exporter: blockingExporter,
+      exportInterval: exportInterval,
+      exportTimeout: 0.1
+    )
+    let meterProvider = makeMeterProvider(reader: reader)
+    let counter = meterProvider.meterBuilder(name: "meter").build().counterBuilder(name: "counter").build()
+
+    counter.add(value: 1)
+    blockingExporter.waitUntilIsBlocked()
+
+    let shutdownCompleted = expectation(description: "shutdown completed")
+    let shutdownResult = Locked(initialValue: ExportResult.success)
+    flushQueue.async {
+      shutdownResult.locking { $0 = reader.shutdown() }
+      shutdownCompleted.fulfill()
+    }
+
+    wait(for: [shutdownCompleted], timeout: 1.0)
+    XCTAssertEqual(shutdownResult.locking { $0 }, .failure)
+    XCTAssertTrue(blockingExporter.shutdownCalled)
+
+    blockingExporter.unblock()
+    _ = meterProvider.shutdown()
+  }
+
   private func makeMeterProvider(exporter: MetricExporter) -> MeterProviderSdk {
     let reader = PeriodicMetricReaderSdk(exporter: exporter, exportInterval: exportInterval)
     return makeMeterProvider(reader: reader)
