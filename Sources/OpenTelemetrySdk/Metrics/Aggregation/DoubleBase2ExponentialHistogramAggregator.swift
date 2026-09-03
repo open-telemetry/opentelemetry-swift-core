@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import OpenTelemetryApi
+@_spi(Locks) import OpenTelemetryApi
 
 public class DoubleBase2ExponentialHistogramAggregator: Aggregator {
   private var reservoirSupplier: () -> ExemplarReservoir

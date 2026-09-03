@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import OpenTelemetryApi
+@_spi(Locks) import OpenTelemetryApi
 
 /// Represents the shared state/config between all Loggers created by the same LoggerProvider.
 ///

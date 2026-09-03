@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import OpenTelemetryApi
+@_spi(Locks) import OpenTelemetryApi
 
 public class MetricStorageRegistry {
   private var lock = Lock()

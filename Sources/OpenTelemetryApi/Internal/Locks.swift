@@ -41,13 +41,19 @@
   #error("Unsupported platform")
 #endif
 
+// The lock primitives below are declared `@_spi(Locks) public`: they are shared
+// with the other targets in this repository (`@_spi(Locks) import OpenTelemetryApi`)
+// without becoming part of the API module's supported public surface, and without
+// the cross-pod `-package-name` build flags that `package` visibility would
+// require under CocoaPods.
 
 /// A threading lock based on `libpthread` instead of `libdispatch`.
 ///
 /// This object provides a lock on top of a single `pthread_mutex_t`. This kind
 /// of lock is safe to use with `libpthread`-based threading models, such as the
 /// one used by NIO.
-final class Lock {
+@_spi(Locks)
+public final class Lock: @unchecked Sendable {
   private let mutex: UnsafeMutablePointer<pthread_mutex_t> = UnsafeMutablePointer.allocate(capacity: 1)
 
   /// Create a new lock.
@@ -79,9 +85,7 @@ final class Lock {
     let err = pthread_mutex_unlock(mutex)
     precondition(err == 0, "pthread_mutex_unlock failed with error \(err)")
   }
-}
 
-extension Lock {
   /// Acquire the lock for the duration of the given block.
   ///
   /// This convenience method should be preferred to `lock` and `unlock` in
@@ -90,8 +94,7 @@ extension Lock {
   ///
   /// - Parameter body: The block to execute while holding the lock.
   /// - Returns: The value returned by the block.
-  @inlinable
-  func withLock<T>(_ body: () throws -> T) rethrows -> T {
+  public func withLock<T>(_ body: () throws -> T) rethrows -> T {
     lock()
     defer {
       self.unlock()
@@ -100,23 +103,17 @@ extension Lock {
   }
 
   // specialise Void return (for performance)
-  @inlinable
-  func withLockVoid(_ body: () throws -> Void) rethrows {
+  public func withLockVoid(_ body: () throws -> Void) rethrows {
     try withLock(body)
   }
 }
 
-/// A threading lock based on `libpthread` instead of `libdispatch`.
+/// A pthread-based read-write lock.
 ///
-/// This object provides a reader/writer lock on top of a single
-/// `pthread_rwlock_t`, allowing multiple concurrent readers or a single
-/// exclusive writer.
-///
-/// OpenTelemetryApi vendors its own private copy of this class
-/// (`OpenTelemetryApi/Internal/ReadWriteLock.swift`): sharing one
-/// implementation would require `package` visibility, which CocoaPods builds
-/// only support via fragile cross-pod `-package-name` flags.
-final class ReadWriteLock {
+/// This object provides a lock on top of a single `pthread_rwlock_t`, allowing
+/// multiple concurrent readers or a single exclusive writer.
+@_spi(Locks)
+public final class ReadWriteLock: @unchecked Sendable {
   private let rwlock: UnsafeMutablePointer<pthread_rwlock_t> = UnsafeMutablePointer.allocate(capacity: 1)
 
   /// Create a new lock.
@@ -157,9 +154,7 @@ final class ReadWriteLock {
     let err = pthread_rwlock_unlock(rwlock)
     precondition(err == 0, "pthread_rwlock_unlock failed with error \(err)")
   }
-}
 
-extension ReadWriteLock {
   /// Acquire the reader lock for the duration of the given block.
   ///
   /// This convenience method should be preferred to `lockRead` and `unlock`
@@ -168,7 +163,6 @@ extension ReadWriteLock {
   ///
   /// - Parameter body: The block to execute while holding the lock.
   /// - Returns: The value returned by the block.
-  @inlinable
   public func withReaderLock<T>(_ body: () throws -> T) rethrows -> T {
     lockRead()
     defer {
@@ -185,7 +179,6 @@ extension ReadWriteLock {
   ///
   /// - Parameter body: The block to execute while holding the lock.
   /// - Returns: The value returned by the block.
-  @inlinable
   public func withWriterLock<T>(_ body: () throws -> T) rethrows -> T {
     lockWrite()
     defer {
@@ -195,60 +188,64 @@ extension ReadWriteLock {
   }
 }
 
-public final class Locked<Value> : @unchecked Sendable {
-    
-    private var internalValue: Value
-    
-    private let lock = Lock()
-    
-    public var protectedValue: Value {
-        get {
-            lock.withLock { internalValue }
-        }
-        _modify {
-            lock.lock()
-            defer { lock.unlock() }
-            yield &internalValue
-        }
+/// A wrapper providing locked access to a value.
+///
+/// Marked as `@unchecked Sendable` because the synchronization is performed
+/// manually using a lock.
+public final class Locked<Value>: @unchecked Sendable {
+  private var internalValue: Value
+
+  private let lock = Lock()
+
+  public var protectedValue: Value {
+    get {
+      lock.withLock { internalValue }
     }
-    
-    public init(initialValue: Value) {
-        self.internalValue = initialValue
+    _modify {
+      lock.lock()
+      defer { lock.unlock() }
+      yield &internalValue
     }
-    
-    public func locking<T>(_ block: (inout Value) throws -> T) rethrows -> T {
-        try lock.withLock { try block(&internalValue) }
-    }
+  }
+
+  public init(initialValue: Value) {
+    self.internalValue = initialValue
+  }
+
+  public func locking<T>(_ block: (inout Value) throws -> T) rethrows -> T {
+    try lock.withLock { try block(&internalValue) }
+  }
 }
 
-public final class ReadWriteLocked<Value> : @unchecked Sendable {
-    
-    private var internalValue: Value
-    
-    private let rwlock = ReadWriteLock()
-    
-    public var protectedValue: Value {
-        get {
-            rwlock.withReaderLock { internalValue }
-        }
-        _modify {
-            rwlock.lockWrite()
-            defer { rwlock.unlock() }
-            yield &internalValue
-        }
+/// A wrapper providing read-write-locked access to a value.
+///
+/// Marked as `@unchecked Sendable` because the synchronization is performed
+/// manually using a lock.
+public final class ReadWriteLocked<Value>: @unchecked Sendable {
+  private var internalValue: Value
+
+  private let rwlock = ReadWriteLock()
+
+  public var protectedValue: Value {
+    get {
+      rwlock.withReaderLock { internalValue }
     }
-    
-    public init(initialValue: Value) {
-        self.internalValue = initialValue
+    _modify {
+      rwlock.lockWrite()
+      defer { rwlock.unlock() }
+      yield &internalValue
     }
-    
-    public func readLocking<T>(_ block: (Value) throws -> T) rethrows -> T {
-        try rwlock.withReaderLock{ try block(internalValue) }
-    }
-    
-    public func writeLocking<T>(_ block: (inout Value) throws -> T) rethrows -> T {
-        try rwlock.withWriterLock{ try block(&internalValue) }
-    }
-    
-    
+  }
+
+  public init(initialValue: Value) {
+    self.internalValue = initialValue
+  }
+
+  public func readLocking<T>(_ block: (Value) throws -> T) rethrows -> T {
+    try rwlock.withReaderLock { try block(internalValue) }
+  }
+
+  public func writeLocking<T>(_ block: (inout Value) throws -> T) rethrows -> T {
+    try rwlock.withWriterLock { try block(&internalValue) }
+  }
 }

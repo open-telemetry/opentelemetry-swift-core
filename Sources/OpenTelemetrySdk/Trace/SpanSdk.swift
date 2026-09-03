@@ -4,7 +4,7 @@
  */
 
 import Foundation
-import OpenTelemetryApi
+@_spi(Locks) import OpenTelemetryApi
 
 @available(*, deprecated, renamed: "SpanSdk")
 public typealias RecordEventsReadableSpan = SpanSdk

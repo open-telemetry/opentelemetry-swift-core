@@ -4,6 +4,7 @@
  */
 
 import Foundation
+@_spi(Locks) import OpenTelemetryApi
 
 class MeterSharedState {
   let meterLock = Lock()

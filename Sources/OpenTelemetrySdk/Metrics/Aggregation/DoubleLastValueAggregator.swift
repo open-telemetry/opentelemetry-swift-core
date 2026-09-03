@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import OpenTelemetryApi
+@_spi(Locks) import OpenTelemetryApi
 
 public class DoubleLastValueAggregator: Aggregator {
   private var reservoirSupplier: () -> ExemplarReservoir

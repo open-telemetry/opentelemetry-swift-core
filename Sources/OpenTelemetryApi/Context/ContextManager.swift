@@ -5,7 +5,10 @@
 
 import Foundation
 
-public protocol ContextManager: AnyObject {
+/// - Note: Requires `Sendable`: a context manager is registered globally and invoked
+///   from every thread that starts or ends spans, so any correct implementation must
+///   already be thread-safe.
+public protocol ContextManager: AnyObject, Sendable {
   func getCurrentContextValue(forKey: OpenTelemetryContextKeys) -> AnyObject?
   func setCurrentContextValue(forKey: OpenTelemetryContextKeys, value: AnyObject)
   func removeContextValue(forKey: OpenTelemetryContextKeys, value: AnyObject)
