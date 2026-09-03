@@ -13,7 +13,7 @@ final class TracerProviderSdkConcurrencyTests: XCTestCase {
   // MARK: - Concurrent get with same name returns same instance
 
   func testConcurrentGetSameName() {
-    let provider = TracerProviderSdk()
+    nonisolated(unsafe) let provider = TracerProviderSdk()
     let threads = 100
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.provider.sameName", attributes: .concurrent)
@@ -28,8 +28,7 @@ final class TracerProviderSdkConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent get() should complete without deadlock")
+    waitForConcurrentWork(group, "Concurrent get() should complete without deadlock")
     let allTracers = tracers.values
     XCTAssertEqual(allTracers.count, threads)
 
@@ -43,7 +42,7 @@ final class TracerProviderSdkConcurrencyTests: XCTestCase {
   // MARK: - Concurrent get with different names
 
   func testConcurrentGetDifferentNames() {
-    let provider = TracerProviderSdk()
+    nonisolated(unsafe) let provider = TracerProviderSdk()
     let threads = 100
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.provider.diffNames", attributes: .concurrent)
@@ -59,8 +58,7 @@ final class TracerProviderSdkConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent get() with different names should complete")
+    waitForConcurrentWork(group, "Concurrent get() with different names should complete")
     let allTracers = tracers.values
     XCTAssertEqual(allTracers.count, threads, "Each unique name should produce a unique tracer")
 
@@ -71,7 +69,7 @@ final class TracerProviderSdkConcurrencyTests: XCTestCase {
   // MARK: - Concurrent get during shutdown
 
   func testConcurrentGetDuringShutdown() {
-    let provider = TracerProviderSdk()
+    nonisolated(unsafe) let provider = TracerProviderSdk()
     let threads = 50
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.provider.shutdown", attributes: .concurrent)
@@ -90,14 +88,13 @@ final class TracerProviderSdkConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent get() during shutdown should not crash or deadlock")
+    waitForConcurrentWork(group, "Concurrent get() during shutdown should not crash or deadlock")
   }
 
   // MARK: - Concurrent addSpanProcessor while creating spans
 
   func testConcurrentAddSpanProcessor() {
-    let provider = TracerProviderSdk()
+    nonisolated(unsafe) let provider = TracerProviderSdk()
     let threads = 50
     let group = DispatchGroup()
     let queue = DispatchQueue(label: "test.provider.addProcessor", attributes: .concurrent)
@@ -116,8 +113,7 @@ final class TracerProviderSdkConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent processor addition and span creation should not crash")
+    waitForConcurrentWork(group, "Concurrent processor addition and span creation should not crash")
   }
 }
 

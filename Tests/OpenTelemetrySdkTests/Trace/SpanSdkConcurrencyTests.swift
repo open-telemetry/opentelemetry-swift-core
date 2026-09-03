@@ -56,8 +56,7 @@ final class SpanSdkConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 30)
-    XCTAssertEqual(result, .success, "Concurrent setAttribute should complete without deadlock")
+    waitForConcurrentWork(group, "Concurrent setAttribute should complete without deadlock")
 
     let spanData = span.toSpanData()
     XCTAssertLessThanOrEqual(spanData.attributes.count, SpanLimits().attributeCountLimit)
@@ -87,8 +86,7 @@ final class SpanSdkConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 30)
-    XCTAssertEqual(result, .success, "Concurrent addEvent should complete without deadlock")
+    waitForConcurrentWork(group, "Concurrent addEvent should complete without deadlock")
 
     let spanData = span.toSpanData()
     XCTAssertEqual(spanData.totalRecordedEvents, totalEvents)
@@ -133,8 +131,7 @@ final class SpanSdkConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 30)
-    XCTAssertEqual(result, .success, "Concurrent read/write should complete without deadlock")
+    waitForConcurrentWork(group, "Concurrent read/write should complete without deadlock")
     span.end()
   }
 
@@ -155,8 +152,7 @@ final class SpanSdkConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success)
+    waitForConcurrentWork(group, "concurrent work should complete")
     XCTAssertEqual(processor.onEndCount, 1, "onEnd must be called exactly once regardless of concurrent end() calls")
     XCTAssertTrue(span.hasEnded)
   }
@@ -181,8 +177,7 @@ final class SpanSdkConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success)
+    waitForConcurrentWork(group, "concurrent work should complete")
     XCTAssertEqual(span.toSpanData().attributes.count, countAfterEnd,
                    "No attributes should be added after end()")
   }
@@ -203,8 +198,7 @@ final class SpanSdkConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success)
+    waitForConcurrentWork(group, "concurrent work should complete")
     XCTAssertTrue(names.contains(span.name), "Final name must be one of the set values, got: \(span.name)")
     span.end()
   }

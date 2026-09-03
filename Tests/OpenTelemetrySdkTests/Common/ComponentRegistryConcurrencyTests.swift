@@ -33,8 +33,7 @@ final class ComponentRegistryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent get() should complete without deadlock")
+    waitForConcurrentWork(group, "Concurrent get() should complete without deadlock")
     XCTAssertEqual(buildCount.value, 1, "Builder should be called exactly once for the same key")
     XCTAssertTrue(results.values.allSatisfy { $0 == "component-shared" })
   }
@@ -60,8 +59,7 @@ final class ComponentRegistryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent get() with different keys should complete")
+    waitForConcurrentWork(group, "Concurrent get() with different keys should complete")
     XCTAssertEqual(buildCount.value, threads, "Each unique key should trigger one build")
     XCTAssertEqual(registry.getComponents().count, threads)
   }
@@ -94,8 +92,7 @@ final class ComponentRegistryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Mixed version/schema lookups should not crash")
+    waitForConcurrentWork(group, "Mixed version/schema lookups should not crash")
     XCTAssertEqual(registry.getComponents().count, 4,
                    "Four distinct combinations should produce four components")
   }
@@ -130,8 +127,7 @@ final class ComponentRegistryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success)
+    waitForConcurrentWork(group, "concurrent work should complete")
     XCTAssertEqual(registry.getComponents().count, writers)
   }
 }

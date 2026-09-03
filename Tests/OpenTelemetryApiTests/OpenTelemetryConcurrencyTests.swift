@@ -35,8 +35,7 @@ final class OpenTelemetryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent reads should complete without deadlock")
+    waitForConcurrentWork(group, "Concurrent reads should complete without deadlock")
   }
 
   func testConcurrentReadsOfAllProperties() {
@@ -60,8 +59,7 @@ final class OpenTelemetryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent reads of all properties should complete")
+    waitForConcurrentWork(group, "Concurrent reads of all properties should complete")
   }
 
   // MARK: - Concurrent writes (register calls)
@@ -79,8 +77,7 @@ final class OpenTelemetryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent registerTracerProvider should not crash")
+    waitForConcurrentWork(group, "Concurrent registerTracerProvider should not crash")
   }
 
   func testConcurrentRegisterLoggerProvider() {
@@ -96,8 +93,7 @@ final class OpenTelemetryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent registerLoggerProvider should not crash")
+    waitForConcurrentWork(group, "Concurrent registerLoggerProvider should not crash")
   }
 
   func testConcurrentRegisterMeterProvider() {
@@ -113,8 +109,7 @@ final class OpenTelemetryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent registerMeterProvider should not crash")
+    waitForConcurrentWork(group, "Concurrent registerMeterProvider should not crash")
   }
 
   func testConcurrentRegisterMultipleProviders() {
@@ -140,8 +135,7 @@ final class OpenTelemetryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent registration of multiple providers should not crash")
+    waitForConcurrentWork(group, "Concurrent registration of multiple providers should not crash")
   }
 
   // MARK: - Concurrent read during write (the critical race)
@@ -165,8 +159,7 @@ final class OpenTelemetryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent read during write should not crash")
+    waitForConcurrentWork(group, "Concurrent read during write should not crash")
   }
 
   func testConcurrentReadDuringWriteAllProviders() {
@@ -196,8 +189,7 @@ final class OpenTelemetryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Mixed concurrent reads and writes should not crash")
+    waitForConcurrentWork(group, "Mixed concurrent reads and writes should not crash")
   }
 
   // MARK: - Propagators concurrent access
@@ -222,8 +214,7 @@ final class OpenTelemetryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent propagator access should not crash")
+    waitForConcurrentWork(group, "Concurrent propagator access should not crash")
   }
 
   // MARK: - Context provider concurrent access
@@ -247,8 +238,7 @@ final class OpenTelemetryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent context provider access should not crash")
+    waitForConcurrentWork(group, "Concurrent context provider access should not crash")
   }
 
   // MARK: - Stress test: high-contention scenario
@@ -286,7 +276,6 @@ final class OpenTelemetryConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 30)
-    XCTAssertEqual(result, .success, "High contention stress test should complete without crash")
+    waitForConcurrentWork(group, "High contention stress test should complete without crash")
   }
 }

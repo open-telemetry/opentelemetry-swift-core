@@ -17,7 +17,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
     let threads = 10
     let recordsPerThread = totalRecords / threads
     let waitingExporter = WaitingLogRecordExporter(numberToWaitFor: totalRecords)
-    let processor = BatchLogRecordProcessor(
+    nonisolated(unsafe) let processor = BatchLogRecordProcessor(
       logRecordExporter: waitingExporter,
       scheduleDelay: 0.1,
       maxQueueSize: totalRecords + 100,
@@ -41,8 +41,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
       }
     }
 
-    let dispatchResult = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(dispatchResult, .success, "All emit calls should complete")
+    waitForConcurrentWork(group, "All emit calls should complete")
 
     let exported = waitingExporter.waitForExport()
     XCTAssertEqual(exported?.count, totalRecords,
@@ -56,7 +55,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
     let maxQueueSize = 50
     let totalEmits = maxQueueSize + 50
     let countingExporter = CountingLogRecordExporter()
-    let processor = BatchLogRecordProcessor(
+    nonisolated(unsafe) let processor = BatchLogRecordProcessor(
       logRecordExporter: countingExporter,
       scheduleDelay: 60,
       maxQueueSize: maxQueueSize,
@@ -78,8 +77,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Overflow emit should not crash or deadlock")
+    waitForConcurrentWork(group, "Overflow emit should not crash or deadlock")
 
     processor.forceFlush()
     XCTAssertGreaterThan(countingExporter.exportedCount, 0, "Some records should be exported")
@@ -92,7 +90,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
 
   func testConcurrentEmitAndForceFlush() {
     let countingExporter = CountingLogRecordExporter()
-    let processor = BatchLogRecordProcessor(
+    nonisolated(unsafe) let processor = BatchLogRecordProcessor(
       logRecordExporter: countingExporter,
       scheduleDelay: 60,
       maxQueueSize: 2048,
@@ -127,8 +125,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
       }
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent emit and flush should not crash or deadlock")
+    waitForConcurrentWork(group, "Concurrent emit and flush should not crash or deadlock")
 
     processor.forceFlush()
     let total = emitters * recordsPerEmitter
@@ -141,7 +138,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
 
   func testConcurrentEmitAndShutdown() {
     let countingExporter = CountingLogRecordExporter()
-    let processor = BatchLogRecordProcessor(
+    nonisolated(unsafe) let processor = BatchLogRecordProcessor(
       logRecordExporter: countingExporter,
       scheduleDelay: 60,
       maxQueueSize: 2048,
@@ -169,8 +166,7 @@ final class BatchLogRecordProcessorConcurrencyTests: XCTestCase {
       group.leave()
     }
 
-    let result = group.wait(timeout: .now() + 10)
-    XCTAssertEqual(result, .success, "Concurrent emit during shutdown should not crash or deadlock")
+    waitForConcurrentWork(group, "Concurrent emit during shutdown should not crash or deadlock")
   }
 }
 
