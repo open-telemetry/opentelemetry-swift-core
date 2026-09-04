@@ -22,7 +22,7 @@ import Foundation
   /// - Note: This restriction means this class is not suitable for dynamic context injection.
   /// If you require dynamic context injection, you will need a custom context manager.
   @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-  public final class TaskLocalContextManager: ContextManager, @unchecked Sendable {
+  public final class TaskLocalContextManager: ContextManager, Sendable {
     package static let instance = TaskLocalContextManager()
 
     @TaskLocal nonisolated(unsafe) static var context: [String: SendableWrapper] = [:]

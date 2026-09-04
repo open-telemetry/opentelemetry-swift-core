@@ -4,6 +4,7 @@
  */
 
 import Foundation
+import OpenTelemetryApi
 
 public final class InMemoryLogRecordExporter: LogRecordExporter {
   private let state = Locked(initialValue: State())

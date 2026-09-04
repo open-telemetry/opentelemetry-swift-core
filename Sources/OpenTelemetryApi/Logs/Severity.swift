@@ -5,7 +5,10 @@
 
 import Foundation
 
-public enum Severity: Int, Comparable, CustomStringConvertible, Codable {
+/// - Note: Must be `Sendable`: stored in `ReadableLogRecord`, which is handed to
+///   exporters on background tasks and therefore crosses concurrency-isolation
+///   boundaries.
+public enum Severity: Int, Comparable, CustomStringConvertible, Codable, Sendable {
   case trace = 1
   case
     trace2,

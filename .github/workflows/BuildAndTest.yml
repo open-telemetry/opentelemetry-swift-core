@@ -62,6 +62,27 @@ jobs:
         chmod +x codecov
         xcrun llvm-cov export -ignore-filename-regex="pb\.swift|grpc\.swift" -format="lcov" .build/debug/opentelemetry-swift-corePackageTests.xctest/Contents/MacOS/opentelemetry-swift-corePackageTests -instr-profile .build/debug/codecov/default.profdata > .build/debug/codecov/coverage_report.lcov
         ./codecov -f .build/debug/codecov/coverage_report.lcov
+  ThreadSanitizer:
+    needs: should-run
+    if: ${{ needs.should-run.outputs.should-run == 'true' }}
+    runs-on: macos-15
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
+      with:
+        xcode-version: 16.4
+    # Runs the test suite compiled with ThreadSanitizer so data races are
+    # detected even when they don't corrupt any asserted state. Performance
+    # tests run their workloads un-measured under TSan (XCTest's measure
+    # instruments crash under it, and TSan skews timings anyway) so the
+    # concurrent workloads stay visible to race detection. Requires the
+    # un-instrumented macOS job too -- TSan changes timing and memory layout,
+    # so both builds must stay green.
+    - name: Test with ThreadSanitizer
+      run: swift test --sanitize=thread
+      env:
+        TSAN_OPTIONS: halt_on_error=1
+
   iOS:
     needs: should-run
     if: ${{ needs.should-run.outputs.should-run == 'true' }}
@@ -173,6 +194,7 @@ jobs:
       - FormattingLint
       - SwiftLint
       - macOS
+      - ThreadSanitizer
       - iOS
       - tvOS
       - watchOS
@@ -186,6 +208,7 @@ jobs:
           if [[ ${{ needs.SwiftLint.result }} == 'failure' || \
           ${{ needs.FormattingLint.result }} == 'failure' || \
           ${{ needs.macOS.result }} == 'failure' || \
+          ${{ needs.ThreadSanitizer.result }} == 'failure' || \
           ${{ needs.iOS.result }} == 'failure' || \
           ${{ needs.tvOS.result }} == 'failure' || \
           ${{ needs.watchOS.result }} == 'failure' || \

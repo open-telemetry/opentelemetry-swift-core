@@ -11,7 +11,7 @@ public enum OpenTelemetryContextKeys: String {
   case baggage
 }
 
-public struct OpenTelemetryContextProvider {
+public struct OpenTelemetryContextProvider: Sendable {
   package var contextManager: ContextManager
 
   /// Returns the Span from the current context

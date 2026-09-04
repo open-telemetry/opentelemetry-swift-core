@@ -118,8 +118,8 @@ public struct OpenTelemetry: Sendable {
 }
 
 @available(macOS 10.15, iOS 13.0, watchOS 6.0, tvOS 13.0, *)
-public struct OpenTelemetryContextProvider: @unchecked Sendable {
-  var contextManager: ContextManager
+public struct OpenTelemetryContextProvider: Sendable {
+  let contextManager: ContextManager
 
   /// Returns the Span from the current context
   public var activeSpan: Span? {

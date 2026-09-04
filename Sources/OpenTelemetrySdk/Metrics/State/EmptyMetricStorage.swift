@@ -13,7 +13,7 @@ public final class EmptyMetricStorage: SynchronousMetricStorageProtocol, @unchec
 
   public static let instance = EmptyMetricStorage()
 
-  public var metricDescriptor: MetricDescriptor = .init(name: "", description: "", unit: "")
+  public let metricDescriptor: MetricDescriptor = .init(name: "", description: "", unit: "")
 
   public func collect(resource: Resource, scope: InstrumentationScopeInfo, startEpochNanos: UInt64, epochNanos: UInt64) -> MetricData {
     MetricData.empty
