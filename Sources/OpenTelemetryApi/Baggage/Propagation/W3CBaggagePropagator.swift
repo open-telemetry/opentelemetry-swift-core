@@ -20,11 +20,34 @@ public struct W3CBaggagePropagator: TextMapBaggagePropagator {
 
   static let headerBaggage = "baggage"
 
+  /// The maximum number of list-members accepted from the header. The value is 64.
+  /// https://www.w3.org/TR/baggage/#limits
+  static let maxListMembers = 64
+  /// The maximum number of bytes read from the header. The value is 8192.
+  static let maxHeaderBytes = 8192
+
   private func isValidKeyValuePair(_ keyValue: String) -> (key: String, value: String)? {
     let parts = keyValue.split(separator: "=", maxSplits: 1)
     guard parts.count == 2 else { return nil }
 
     return (String(parts[0]), String(parts[1]))
+  }
+
+  /// Splits the header into list-members, ignoring everything past maxHeaderBytes.
+  /// The cut is made at the last separator before the limit, so no list-member is kept in part.
+  private static func listMembers(in header: String) -> [String] {
+    let bytes = header.utf8
+    guard bytes.count > maxHeaderBytes else {
+      return header.components(separatedBy: ",")
+    }
+
+    let window = bytes.prefix(maxHeaderBytes + 1)
+    guard let lastSeparator = window.lastIndex(of: UInt8(ascii: ",")),
+          let head = String(bytes: window[..<lastSeparator], encoding: .utf8) else {
+      return []
+    }
+
+    return head.components(separatedBy: ",")
   }
 
   public init() {}
@@ -65,8 +88,12 @@ public struct W3CBaggagePropagator: TextMapBaggagePropagator {
 
     let builder = OpenTelemetry.instance.baggageManager.baggageBuilder()
 
-    let listMembers = baggageHeader.components(separatedBy: ",")
-    for listMember in listMembers {
+    var accepted = 0
+    for listMember in W3CBaggagePropagator.listMembers(in: baggageHeader) {
+      if accepted == W3CBaggagePropagator.maxListMembers {
+        break
+      }
+
       let parts = listMember.split(separator: ";", maxSplits: 1)
       guard !parts.isEmpty else { continue }
 
@@ -82,6 +109,7 @@ public struct W3CBaggagePropagator: TextMapBaggagePropagator {
       builder.put(key: entryKey,
                   value: entryValue,
                   metadata: EntryMetadata(metadata: metadata))
+      accepted += 1
     }
 
     return builder.build()
