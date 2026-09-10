@@ -43,6 +43,13 @@ final class BlockingMetricExporter: MetricExporter, @unchecked Sendable {
     cond.unlock()
   }
 
+  func unblock() {
+    cond.lock()
+    state = .unblocked
+    cond.unlock()
+    cond.broadcast()
+  }
+
   func flush() -> OpenTelemetrySdk.ExportResult {
     .success
   }
