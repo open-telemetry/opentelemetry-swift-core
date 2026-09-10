@@ -16,6 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       with: 
+        persist-credentials: false
         ref: ${{ github.head_ref }}
     - name: update version file
       run: |
@@ -27,20 +28,26 @@ jobs:
        import Foundation
        
        extension Resource {
-         public static let OTEL_SWIFT_SDK_VERSION: String = "${{ inputs.new_version }}"
+         public static let OTEL_SWIFT_SDK_VERSION: String = "${INPUTS_NEW_VERSION}"
        }
        ' > Sources/OpenTelemetrySdk/Version.swift
+      env:
+        INPUTS_NEW_VERSION: ${{ inputs.new_version }}
     - name: update Podspec
       run: | 
-        sed -i -e  's/spec.version = ".*"/spec.version = "${{ inputs.new_version }}"/' OpenTelemetry-Swift-Api.podspec
-        sed -i -e  's/spec.version = ".*"/spec.version = "${{ inputs.new_version }}"/' OpenTelemetry-Swift-Sdk.podspec
-        sed -i -e  's/spec.version = ".*"/spec.version = "${{ inputs.new_version }}"/' OpenTelemetry-Swift-StdoutExporter.podspec
+        sed -i -e  's/spec.version = ".*"/spec.version = "${INPUTS_NEW_VERSION}"/' OpenTelemetry-Swift-Api.podspec
+        sed -i -e  's/spec.version = ".*"/spec.version = "${INPUTS_NEW_VERSION}"/' OpenTelemetry-Swift-Sdk.podspec
+        sed -i -e  's/spec.version = ".*"/spec.version = "${INPUTS_NEW_VERSION}"/' OpenTelemetry-Swift-StdoutExporter.podspec
+      env:
+        INPUTS_NEW_VERSION: ${{ inputs.new_version }}
 
     - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
       id: otelbot-token
       with:
         client-id: ${{ vars.OTELBOT_CLIENT_ID }}
         private-key: ${{ secrets.OTELBOT_PRIVATE_KEY }}
+        permission-contents: write
+        permission-pull-requests: write
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
