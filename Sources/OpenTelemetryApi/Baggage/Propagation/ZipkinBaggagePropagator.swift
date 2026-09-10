@@ -8,6 +8,8 @@ import Foundation
 /**
  * Implementation of the Zipkin propagation protocol and by default it uses `baggage-` prefix. See
  * https://github.com/openzipkin/brave/blob/master/brave/README.md#remote-baggage
+ *
+ * The Zipkin format defines no limits on baggage; the W3C Baggage limits are applied on extraction.
  */
 
 public class ZipkinBaggagePropagator: TextMapBaggagePropagator {
@@ -25,6 +27,7 @@ public class ZipkinBaggagePropagator: TextMapBaggagePropagator {
 
   public func extract(carrier: [String: String], getter: some Getter) -> Baggage? {
     let builder = OpenTelemetry.instance.baggageManager.baggageBuilder()
+    var limits = BaggageExtractLimits()
 
     carrier.forEach {
       if $0.key.hasPrefix(ZipkinBaggagePropagator.baggagePrefix) {
@@ -33,7 +36,8 @@ public class ZipkinBaggagePropagator: TextMapBaggagePropagator {
         }
 
         if let key = EntryKey(name: String($0.key.dropFirst(ZipkinBaggagePropagator.baggagePrefix.count))),
-           let value = EntryValue(string: $0.value) {
+           let value = EntryValue(string: $0.value),
+           limits.accept(key: key, value: value) {
           builder.put(key: key, value: value, metadata: nil)
         }
       }

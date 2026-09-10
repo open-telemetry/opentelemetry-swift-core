@@ -50,4 +50,37 @@ class ZipkinBaggagePropagatorTests: XCTestCase {
     let result = zipkinPropagator.extract(carrier: carrier, getter: getter)!
     XCTAssertTrue(result.getEntries().isEmpty)
   }
+
+  // MARK: - Limits borrowed from W3C Baggage (https://www.w3.org/TR/baggage/#limits)
+
+  func testExtractMaxEntries() {
+    var carrier = [String: String]()
+    for index in 0 ..< 65 {
+      carrier[ZipkinBaggagePropagator.baggagePrefix + "k\(index)"] = "v"
+    }
+
+    let result = zipkinPropagator.extract(carrier: carrier, getter: getter)!
+    XCTAssertEqual(result.getEntries().count, 64)
+  }
+
+  func testExtractExactlyMaxEntries() {
+    var carrier = [String: String]()
+    for index in 0 ..< 64 {
+      carrier[ZipkinBaggagePropagator.baggagePrefix + "k\(index)"] = "v"
+    }
+
+    let result = zipkinPropagator.extract(carrier: carrier, getter: getter)!
+    XCTAssertEqual(result.getEntries().count, 64)
+  }
+
+  func testExtractMaxBytes() {
+    // 32 entries of 260 bytes are 8320 bytes. 31 fit (8060), the 32nd does not.
+    var carrier = [String: String]()
+    for index in 0 ..< 32 {
+      carrier[ZipkinBaggagePropagator.baggagePrefix + String(format: "key%07d", index)] = String(repeating: "v", count: 250)
+    }
+
+    let result = zipkinPropagator.extract(carrier: carrier, getter: getter)!
+    XCTAssertEqual(result.getEntries().count, 31)
+  }
 }
