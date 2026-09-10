@@ -6,7 +6,7 @@
 import Foundation
 
 /// No-op implementation of the Tracer
-public final class DefaultTracer: Tracer, @unchecked Sendable {
+public final class DefaultTracer: Tracer, Sendable {
   public static let instance = DefaultTracer()
 
   public func spanBuilder(spanName: String) -> SpanBuilder {

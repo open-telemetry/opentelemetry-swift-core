@@ -5,7 +5,7 @@
 
 import Foundation
 
-public final class NoopLogRecordExporter: LogRecordExporter, @unchecked Sendable {
+public final class NoopLogRecordExporter: LogRecordExporter, Sendable {
   public static let instance = NoopLogRecordExporter()
 
   public func export(logRecords: [ReadableLogRecord], explicitTimeout: TimeInterval? = nil) -> ExportResult {

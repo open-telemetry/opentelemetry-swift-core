@@ -99,7 +99,10 @@ public class SpanSdk: ReadableSpan, @unchecked Sendable {
   }
 
   /// The end time of the span.
-  public private(set) var endTime: Date?
+  fileprivate var internalEndTime: Date?
+  public var endTime: Date? {
+    lock.withReaderLock { internalEndTime }
+  }
 
   private init(context: SpanContext,
                name: String,
@@ -200,7 +203,7 @@ public class SpanSdk: ReadableSpan, @unchecked Sendable {
                events: lockedAdaptEvents(),
                links: lockedAdaptLinks(),
                status: internalStatus,
-               endTime: endTime ?? clock.now,
+               endTime: internalEndTime ?? clock.now,
                hasRemoteParent: hasRemoteParent,
                hasEnded: internalEnd,
                totalRecordedEvents: totalRecordedEvents,
@@ -323,13 +326,13 @@ public class SpanSdk: ReadableSpan, @unchecked Sendable {
 
       internalEnd = true
       internalIsRecording = false
+      internalEndTime = time
       return false
     }
     if alreadyEnded {
       return
     }
 
-    endTime = time
     OpenTelemetry.instance.contextProvider.removeContextForSpan(self)
     spanProcessor.onEnd(span: self)
   }

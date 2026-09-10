@@ -6,7 +6,7 @@
 import Foundation
 
 /// No-op implementations of BaggageManager.
-public final class DefaultBaggageManager: BaggageManager, @unchecked Sendable {
+public final class DefaultBaggageManager: BaggageManager, Sendable {
   private init() {}
 
   ///  Returns a BaggageManager singleton that is the default implementation for

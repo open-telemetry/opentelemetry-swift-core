@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import OpenTelemetryApi
 import OpenTelemetrySdk
 
 final class LogRecordExporterMock: LogRecordExporter {

@@ -7,7 +7,10 @@ import Foundation
 
 /// The set of canonical status codes. If new codes are added over time they must choose a numerical
 /// value that does not collide with any previously used value.
-public enum Status: Equatable {
+///
+/// - Note: Must be `Sendable`: stored in `SpanData`, which is handed to exporters
+///   on background tasks and therefore crosses concurrency-isolation boundaries.
+public enum Status: Equatable, Sendable {
   /// The operation has been validated by an Application developers or Operator to have completed successfully.
   case ok
   /// The default status.

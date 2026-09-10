@@ -52,11 +52,17 @@ public class TracerProviderSdk: TracerProvider {
       return existingTracer
     }
 
-    let tracer = TracerSdk(sharedState: sharedState, instrumentationScopeInfo: instrumentationScopeInfo)
-    tracerLock.withWriterLock {
+    // Re-check under the writer lock: two threads can both miss on the read
+    // above, and get-or-create must return the same instance for the same
+    // scope rather than letting each racer return its own tracer.
+    return tracerLock.withWriterLock {
+      if let racedTracer = tracerProvider[instrumentationScopeInfo] {
+        return racedTracer
+      }
+      let tracer = TracerSdk(sharedState: sharedState, instrumentationScopeInfo: instrumentationScopeInfo)
       tracerProvider[instrumentationScopeInfo] = tracer
+      return tracer
     }
-    return tracer
   }
 
   /// Returns the active Clock.

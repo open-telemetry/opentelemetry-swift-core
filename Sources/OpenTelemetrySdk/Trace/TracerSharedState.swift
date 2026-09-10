@@ -7,18 +7,59 @@ import Foundation
 import OpenTelemetryApi
 
 /// Represents the shared state/config between all Tracers created by the same TracerProvider.
+///
+/// All mutable state is protected by a read-write lock: configuration is written rarely
+/// (setup, registration) but read on every span start, so concurrent readers must never
+/// observe a partially applied update such as a mid-replacement `activeSpanProcessor`.
 class TracerSharedState {
-  var clock: Clock
-  var idGenerator: IdGenerator
-  var resource: Resource
+  private let lock = ReadWriteLock()
 
-  var activeSpanLimits: SpanLimits
-  var sampler: Sampler
-  var activeSpanProcessor: SpanProcessor
-  var hasBeenShutdown = false
-  var launchEnvironmentContext: SpanContext?
+  private var _clock: Clock
+  private var _idGenerator: IdGenerator
+  private var _resource: Resource
+  private var _activeSpanLimits: SpanLimits
+  private var _sampler: Sampler
+  private var _activeSpanProcessor: SpanProcessor
+  private var _hasBeenShutdown = false
+  private var _registeredSpanProcessors = [SpanProcessor]()
 
-  var registeredSpanProcessors = [SpanProcessor]()
+  let launchEnvironmentContext: SpanContext?
+
+  var clock: Clock {
+    get { lock.withReaderLock { _clock } }
+    set { lock.withWriterLock { _clock = newValue } }
+  }
+
+  var idGenerator: IdGenerator {
+    get { lock.withReaderLock { _idGenerator } }
+    set { lock.withWriterLock { _idGenerator = newValue } }
+  }
+
+  var resource: Resource {
+    get { lock.withReaderLock { _resource } }
+    set { lock.withWriterLock { _resource = newValue } }
+  }
+
+  var activeSpanLimits: SpanLimits {
+    lock.withReaderLock { _activeSpanLimits }
+  }
+
+  var sampler: Sampler {
+    lock.withReaderLock { _sampler }
+  }
+
+  var activeSpanProcessor: SpanProcessor {
+    get { lock.withReaderLock { _activeSpanProcessor } }
+    set { lock.withWriterLock { _activeSpanProcessor = newValue } }
+  }
+
+  var hasBeenShutdown: Bool {
+    lock.withReaderLock { _hasBeenShutdown }
+  }
+
+  var registeredSpanProcessors: [SpanProcessor] {
+    lock.withReaderLock { _registeredSpanProcessors }
+  }
 
   init(clock: Clock,
        idGenerator: IdGenerator,
@@ -26,19 +67,19 @@ class TracerSharedState {
        spanLimits: SpanLimits,
        sampler: Sampler,
        spanProcessors: [SpanProcessor]) {
-    self.clock = clock
-    self.idGenerator = idGenerator
-    self.resource = resource
-    activeSpanLimits = spanLimits
-    self.sampler = sampler
+    _clock = clock
+    _idGenerator = idGenerator
+    _resource = resource
+    _activeSpanLimits = spanLimits
+    _sampler = sampler
     if spanProcessors.count > 1 {
-      activeSpanProcessor = MultiSpanProcessor(spanProcessors: spanProcessors)
-      registeredSpanProcessors = spanProcessors
+      _activeSpanProcessor = MultiSpanProcessor(spanProcessors: spanProcessors)
+      _registeredSpanProcessors = spanProcessors
     } else if spanProcessors.count == 1 {
-      activeSpanProcessor = spanProcessors[0]
-      registeredSpanProcessors = spanProcessors
+      _activeSpanProcessor = spanProcessors[0]
+      _registeredSpanProcessors = spanProcessors
     } else {
-      activeSpanProcessor = NoopSpanProcessor()
+      _activeSpanProcessor = NoopSpanProcessor()
     }
 
     /// Recovers explicit parent context from process environment variables, it allows to automatic
@@ -51,29 +92,36 @@ class TracerSharedState {
   /// Adds a new SpanProcessor
   /// - Parameter spanProcessor:  the new SpanProcessor to be added.
   func addSpanProcessor(_ spanProcessor: SpanProcessor) {
-    registeredSpanProcessors.append(spanProcessor)
-    if registeredSpanProcessors.count > 1 {
-      activeSpanProcessor = MultiSpanProcessor(spanProcessors: registeredSpanProcessors)
-    } else {
-      activeSpanProcessor = registeredSpanProcessors[0]
+    lock.withWriterLock {
+      _registeredSpanProcessors.append(spanProcessor)
+      if _registeredSpanProcessors.count > 1 {
+        _activeSpanProcessor = MultiSpanProcessor(spanProcessors: _registeredSpanProcessors)
+      } else {
+        _activeSpanProcessor = _registeredSpanProcessors[0]
+      }
     }
   }
 
   /// Stops tracing, including shutting down processors and set to true isStopped.
   func stop() {
-    if hasBeenShutdown {
-      return
+    // Claim shutdown under the lock, but call the processor outside it:
+    // shutdown() can block on export and must not stall readers.
+    var processor: SpanProcessor? = lock.withWriterLock {
+      if _hasBeenShutdown {
+        return nil
+      }
+      _hasBeenShutdown = true
+      return _activeSpanProcessor
     }
-    activeSpanProcessor.shutdown()
-    hasBeenShutdown = true
+    processor?.shutdown()
   }
 
   func setActiveSpanLimits(_ activeSpanLimits: SpanLimits) {
-    self.activeSpanLimits = activeSpanLimits
+    lock.withWriterLock { _activeSpanLimits = activeSpanLimits }
   }
 
   func setSampler(_ sampler: Sampler) {
-    self.sampler = sampler
+    lock.withWriterLock { _sampler = sampler }
   }
 
   // Sets the global sampler probability
