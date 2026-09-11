@@ -290,6 +290,47 @@ class W3BaggagePropagatorTest: XCTestCase {
     XCTAssertNil(result.getEntryValue(key: EntryKey(name: "k1")!))
   }
 
+  func testW3CInjectStopsAtMaxListMembers() {
+    var carrier = [String: String]()
+    for index in 0 ..< 65 {
+      builder.put(key: String(format: "k%02d", index), value: "v")
+    }
+
+    propagator.inject(baggage: builder.setNoParent().build(), carrier: &carrier, setter: setter)
+
+    let members = (carrier["baggage"] ?? "").split(separator: ",").map(String.init)
+    XCTAssertEqual(members.count, 64)
+    // Entries are sorted before the limit applies, so the same 64 are kept on every run.
+    XCTAssertEqual(members, (0 ..< 64).map { String(format: "k%02d=v", $0) })
+  }
+
+  func testW3CInjectStaysWithinMaxBytes() {
+    // Values are capped at 255 characters, so each member is 259 bytes and n of them cost
+    // 260n - 1. Thirty-one fit (8059); a thirty-second would be 8319.
+    var carrier = [String: String]()
+    for index in 0 ..< 40 {
+      builder.put(key: String(format: "k%02d", index), value: String(repeating: "v", count: 255))
+    }
+
+    propagator.inject(baggage: builder.setNoParent().build(), carrier: &carrier, setter: setter)
+
+    let header = carrier["baggage"] ?? ""
+    XCTAssertLessThanOrEqual(header.utf8.count, 8192)
+    XCTAssertEqual(header.split(separator: ",").count, 31)
+  }
+
+  func testW3CInjectCountsHeaderBytesNotCharacters() {
+    // Metadata is written through as-is, so a multibyte one is 3 bytes per character.
+    // 3000 characters are 9004 bytes with "k=v;" - over the limit - but only 3004 characters.
+    var carrier = [String: String]()
+    builder.put(key: "a", value: "b")
+    builder.put(key: "k", value: "v", metadata: String(repeating: "\u{20AC}", count: 3000))
+
+    propagator.inject(baggage: builder.setNoParent().build(), carrier: &carrier, setter: setter)
+
+    XCTAssertEqual(carrier["baggage"], "a=b")
+  }
+
   func testW3CNoListMemberFits() {
     let header = "k=v;" + String(repeating: "m", count: 9000)
 
