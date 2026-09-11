@@ -83,4 +83,46 @@ class ZipkinBaggagePropagatorTests: XCTestCase {
     let result = zipkinPropagator.extract(carrier: carrier, getter: getter)!
     XCTAssertEqual(result.getEntries().count, 31)
   }
+
+  func testInjectMaxEntries() {
+    var carrier = [String: String]()
+    let builder = DefaultBaggageBuilder()
+    for index in 0 ..< 65 {
+      builder.put(key: String(format: "k%02d", index), value: "v")
+    }
+
+    zipkinPropagator.inject(baggage: builder.setNoParent().build(), carrier: &carrier, setter: setter)
+
+    XCTAssertEqual(carrier.keys.filter { $0.hasPrefix(ZipkinBaggagePropagator.baggagePrefix) }.count, 64)
+    // Entries are sorted before the limit applies, so the same 64 are kept on every run.
+    XCTAssertNotNil(carrier[ZipkinBaggagePropagator.baggagePrefix + "k63"])
+    XCTAssertNil(carrier[ZipkinBaggagePropagator.baggagePrefix + "k64"])
+  }
+
+  func testInjectMaxBytes() {
+    // 32 entries of 260 bytes are 8320 bytes. 31 fit (8060), the 32nd does not.
+    var carrier = [String: String]()
+    let builder = DefaultBaggageBuilder()
+    for index in 0 ..< 32 {
+      builder.put(key: String(format: "key%07d", index), value: String(repeating: "v", count: 250))
+    }
+
+    zipkinPropagator.inject(baggage: builder.setNoParent().build(), carrier: &carrier, setter: setter)
+
+    XCTAssertEqual(carrier.keys.filter { $0.hasPrefix(ZipkinBaggagePropagator.baggagePrefix) }.count, 31)
+  }
+
+  func testInjectCountsBytesNotCharacters() {
+    // Values are written through as-is, so a multibyte one is 3 bytes per character:
+    // 603 bytes per entry means 13 fit (7839); counting characters would admit all 20.
+    var carrier = [String: String]()
+    let builder = DefaultBaggageBuilder()
+    for index in 0 ..< 20 {
+      builder.put(key: String(format: "k%02d", index), value: String(repeating: "\u{20AC}", count: 200))
+    }
+
+    zipkinPropagator.inject(baggage: builder.setNoParent().build(), carrier: &carrier, setter: setter)
+
+    XCTAssertEqual(carrier.keys.filter { $0.hasPrefix(ZipkinBaggagePropagator.baggagePrefix) }.count, 13)
+  }
 }
