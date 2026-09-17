@@ -11,6 +11,7 @@ public typealias StablePeriodicMetricReaderBuilder = PeriodicMetricReaderBuilder
 public class PeriodicMetricReaderBuilder {
   public private(set) var exporter: MetricExporter
   public private(set) var exporterInterval: TimeInterval = 1.0
+  public private(set) var exportTimeout: TimeInterval = 30.0
 
   public init(exporter: MetricExporter) {
     self.exporter = exporter
@@ -21,8 +22,14 @@ public class PeriodicMetricReaderBuilder {
     return self
   }
 
+  public func setExportTimeout(timeInterval: TimeInterval) -> Self {
+    exportTimeout = timeInterval
+    return self
+  }
+
   public func build() -> PeriodicMetricReaderSdk {
     return PeriodicMetricReaderSdk(exporter: exporter,
-                                         exportInterval: exporterInterval)
+                                         exportInterval: exporterInterval,
+                                         exportTimeout: exportTimeout)
   }
 }
