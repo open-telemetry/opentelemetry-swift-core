@@ -30,17 +30,21 @@ jobs:
         id: parse
         run: |
           set -euo pipefail
-          REF="${{ github.event.pull_request.head.ref }}"
+          REF="${GITHUB_EVENT_PULL_REQUEST_HEAD_REF}"
           if [[ "$REF" =~ ^release/([0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
             echo "version=${BASH_REMATCH[1]}" >> "$GITHUB_OUTPUT"
           else
             echo "Head branch must follow the format: release/x.y.z (got: $REF)"
             exit 1
           fi
+        env:
+          GITHUB_EVENT_PULL_REQUEST_HEAD_REF: ${{ github.event.pull_request.head.ref }}
 
       - name: Checkout merge commit
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
+          # zizmor: ignore[artipacked] Credentials are required by the tag push below.
+          persist-credentials: true
           ref: ${{ github.event.pull_request.merge_commit_sha }}
           fetch-depth: 0
 
@@ -48,13 +52,15 @@ jobs:
         id: check-tag
         run: |
           set -euo pipefail
-          VERSION="${{ steps.parse.outputs.version }}"
+          VERSION="${STEPS_PARSE_OUTPUTS_VERSION}"
           if git ls-remote --exit-code --tags origin "refs/tags/${VERSION}" >/dev/null 2>&1; then
             echo "exists=true" >> "$GITHUB_OUTPUT"
             echo "Tag ${VERSION} already exists on origin"
           else
             echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
+        env:
+          STEPS_PARSE_OUTPUTS_VERSION: ${{ steps.parse.outputs.version }}
 
       - name: Create and push tag
         if: steps.check-tag.outputs.exists != 'true'
@@ -65,11 +71,10 @@ jobs:
 
       - name: Create GitHub Release
         if: steps.check-tag.outputs.exists != 'true'
-        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1.21.0
-        with: 
-          tag: ${{ steps.parse.outputs.version }}
-          prerelease: true
-          generateReleaseNotes: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.parse.outputs.version }}
+        run: gh release create "$VERSION" --prerelease --generate-notes
 
   cocoapods:
     name: Push CocoaPods
@@ -80,4 +85,5 @@ jobs:
     uses: ./.github/workflows/Push-CocoaPods.yml
     with:
       version: ${{ needs.tag.outputs.version }}
-    secrets: inherit
+    secrets:
+      COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
