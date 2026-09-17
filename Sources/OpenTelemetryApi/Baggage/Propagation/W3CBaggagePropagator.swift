@@ -56,8 +56,14 @@ public struct W3CBaggagePropagator: TextMapBaggagePropagator {
 
   public func inject(baggage: Baggage, carrier: inout [String: String], setter: some Setter) {
     var headerParts: [String] = []
+    var headerBytes = 0
 
-    for entry in baggage.getEntries() {
+    // Sorted so that the members kept at capacity are the same on every peer and every run.
+    for entry in baggage.getEntries().sorted() {
+      if headerParts.count == W3CBaggagePropagator.maxListMembers {
+        break
+      }
+
       let key = entry.key.name.trimmingCharacters(in: .whitespaces)
       guard !key.isEmpty else { continue }
 
@@ -71,7 +77,12 @@ public struct W3CBaggagePropagator: TextMapBaggagePropagator {
         part += ";\(metadata)"
       }
 
+      // The separator counts towards the header the limit is set on.
+      let separator = headerParts.isEmpty ? 0 : 1
+      guard headerBytes + separator + part.utf8.count <= W3CBaggagePropagator.maxHeaderBytes else { continue }
+
       headerParts.append(part)
+      headerBytes += separator + part.utf8.count
     }
 
     let headerContent = headerParts.joined(separator: ",")

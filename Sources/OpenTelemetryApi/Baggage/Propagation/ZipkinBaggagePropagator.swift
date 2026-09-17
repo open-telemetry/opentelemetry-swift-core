@@ -9,7 +9,7 @@ import Foundation
  * Implementation of the Zipkin propagation protocol and by default it uses `baggage-` prefix. See
  * https://github.com/openzipkin/brave/blob/master/brave/README.md#remote-baggage
  *
- * The Zipkin format defines no limits on baggage; the W3C Baggage limits are applied on extraction.
+ * The Zipkin format defines no limits on baggage; the W3C Baggage limits are applied to the keys and values on extraction and injection.
  */
 
 public class ZipkinBaggagePropagator: TextMapBaggagePropagator {
@@ -20,14 +20,21 @@ public class ZipkinBaggagePropagator: TextMapBaggagePropagator {
   public init() {}
 
   public func inject(baggage: Baggage, carrier: inout [String: String], setter: some Setter) {
-    baggage.getEntries().forEach {
+    var limits = BaggagePropagationLimits()
+
+    // Sorted so that the entries kept at capacity are the same on every peer and every run.
+    baggage.getEntries().sorted().forEach {
+      guard limits.accept(key: $0.key, value: $0.value) else {
+        return
+      }
+
       setter.set(carrier: &carrier, key: ZipkinBaggagePropagator.baggagePrefix + $0.key.name, value: $0.value.string)
     }
   }
 
   public func extract(carrier: [String: String], getter: some Getter) -> Baggage? {
     let builder = OpenTelemetry.instance.baggageManager.baggageBuilder()
-    var limits = BaggageExtractLimits()
+    var limits = BaggagePropagationLimits()
 
     carrier.forEach {
       if $0.key.hasPrefix(ZipkinBaggagePropagator.baggagePrefix) {
