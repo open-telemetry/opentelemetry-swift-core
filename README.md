@@ -143,6 +143,7 @@ For more information about the maintainer role, see the [community repository](h
 ### Approvers ([@open-telemetry/swift-core-approvers](https://github.com/orgs/open-telemetry/teams/swift-core-approvers))
 
 - [Austin Emmons](https://github.com/atreat), Embrace
+- [Ben Joseph](https://github.com/benjoseph-grafana), Grafana Labs
 - [Vinod Vydier](https://github.com/vvydier), Independent
 
 For more information about the approver role, see the [community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#approver).
