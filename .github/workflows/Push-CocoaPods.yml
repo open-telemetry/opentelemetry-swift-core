@@ -12,6 +12,9 @@ on:
       version:
         required: true
         type: string
+    secrets:
+      COCOAPODS_TRUNK_TOKEN:
+        required: true
 
 permissions:
   contents: read
@@ -27,6 +30,7 @@ jobs:
       - name: Checkout at tag
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
+          persist-credentials: false
           ref: ${{ inputs.version }}
           fetch-depth: 0
 
