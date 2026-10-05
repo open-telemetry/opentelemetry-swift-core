@@ -14,7 +14,8 @@ public protocol SpanException {
 
 extension NSError: SpanException {
   public var type: String {
-    String(code)
+    let error = self as Error
+    return Swift.type(of: error) == NSError.self ? domain : String(reflecting: Swift.type(of: error))
   }
 
   public var message: String? {
