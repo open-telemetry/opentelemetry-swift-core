@@ -9,7 +9,11 @@ import OpenTelemetryApi
 
 final class SpanExceptionTests: XCTestCase {
   func testErrorAsSpanException() {
-    let error = TestError.test
+    enum TestError: Error {
+      case test(code: Int)
+    }
+
+    let error = TestError.test(code: 5)
 
     // `Error` can be converted to `NSError`, which automatically makes the cast to
     // `SpanException` possible since `NSError` conforms to `SpanException`.
@@ -21,16 +25,39 @@ final class SpanExceptionTests: XCTestCase {
   }
 
   func testErrorAsSpanExceptionWithProperBridgeToCustomNSError() {
-    let error = TestCustomNSErrorEnum.test
+    enum TestError: Error, CustomNSError {
+      case test(code: Int)
+
+      var errorCode: Int {
+        switch self {
+        case let .test(code):
+          return code
+        }
+      }
+    }
+
+    let error = TestError.test(code: 5)
 
     let exception = error as SpanException
 
-    XCTAssertEqual(exception.type, "TestCustomNSErrorEnum")
+    XCTAssertEqual(exception.type, "TestError")
     XCTAssertEqual(exception.message, error.localizedDescription)
     XCTAssertNil(exception.stackTrace)
   }
 
   func testCustomNSErrorAsSpanException() throws {
+    struct TestCustomNSError: Error, CustomNSError {
+      let additionalComments: String
+
+      var errorUserInfo: [String: Any] {
+        [NSLocalizedDescriptionKey: "This is a custom NSError: \(additionalComments)"]
+      }
+
+      var errorCode: Int {
+        -123
+      }
+    }
+
     let error = TestCustomNSError(additionalComments: "SpanExceptionTests")
 
     // `Error` can be converted to `NSError`, which automatically makes the cast to
@@ -77,22 +104,4 @@ final class SpanExceptionTests: XCTestCase {
       XCTAssertEqual(exception.stackTrace, nsException.callStackSymbols)
     }
   #endif
-
-  enum TestError: Error {
-    case test
-  }
-
-  enum TestCustomNSErrorEnum: Error, CustomNSError {
-    case test
-
-    var errorCode: Int { 5 }
-  }
-
-  struct TestCustomNSError: Error, CustomNSError {
-    let additionalComments: String
-
-    var errorUserInfo: [String: Any] {
-      [NSLocalizedDescriptionKey: "This is a custom NSError: \(additionalComments)"]
-    }
-  }
 }
