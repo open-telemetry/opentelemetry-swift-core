@@ -15,7 +15,7 @@ final class SpanExceptionTests: XCTestCase {
     // `SpanException` possible since `NSError` conforms to `SpanException`.
     let exception = error as SpanException
 
-    XCTAssertEqual(exception.type, "OpenTelemetryApiTests.SpanExceptionTests.TestError")
+    XCTAssertEqual(exception.type, "TestError")
     XCTAssertEqual(exception.message, error.localizedDescription)
     XCTAssertNil(exception.stackTrace)
   }
@@ -25,7 +25,7 @@ final class SpanExceptionTests: XCTestCase {
 
     let exception = error as SpanException
 
-    XCTAssertEqual(exception.type, "OpenTelemetryApiTests.SpanExceptionTests.TestCustomNSErrorEnum")
+    XCTAssertEqual(exception.type, "TestCustomNSErrorEnum")
     XCTAssertEqual(exception.message, error.localizedDescription)
     XCTAssertNil(exception.stackTrace)
   }
@@ -37,7 +37,7 @@ final class SpanExceptionTests: XCTestCase {
     // `SpanException` possible since `NSError` conforms to `SpanException`.
     let exception = error as SpanException
 
-    XCTAssertEqual(exception.type, "OpenTelemetryApiTests.SpanExceptionTests.TestCustomNSError")
+    XCTAssertEqual(exception.type, "TestCustomNSError")
     XCTAssertEqual(exception.message, error.localizedDescription)
     XCTAssertNil(exception.stackTrace)
 
