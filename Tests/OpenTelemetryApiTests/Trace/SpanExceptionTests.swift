@@ -47,6 +47,22 @@ final class SpanExceptionTests: XCTestCase {
     XCTAssertEqual(exception.message, localizedDescription)
   }
 
+  func testPrivateErrorType() {
+    let exception = PrivateError.test as SpanException
+
+    XCTAssertEqual(exception.type, "OpenTelemetryApiTests.SpanExceptionTests.PrivateError")
+  }
+
+  func testFunctionLocalErrorType() {
+    enum LocalError: Error {
+      case test
+    }
+
+    let exception = LocalError.test as SpanException
+
+    XCTAssertEqual(exception.type, "OpenTelemetryApiTests.SpanExceptionTests.LocalError")
+  }
+
   func testNSError() {
     let nsError = NSError(domain: "Test Domain", code: 1)
     let exception = nsError as SpanException
@@ -77,6 +93,10 @@ final class SpanExceptionTests: XCTestCase {
       XCTAssertEqual(exception.stackTrace, nsException.callStackSymbols)
     }
   #endif
+
+  private enum PrivateError: Error {
+    case test
+  }
 
   enum TestError: Error {
     case test
