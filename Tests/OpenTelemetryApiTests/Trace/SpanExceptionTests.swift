@@ -9,62 +9,35 @@ import OpenTelemetryApi
 
 final class SpanExceptionTests: XCTestCase {
   func testErrorAsSpanException() {
-    enum TestError: Error {
-      case test(code: Int)
-    }
-
-    let error = TestError.test(code: 5)
+    let error = TestError.test
 
     // `Error` can be converted to `NSError`, which automatically makes the cast to
     // `SpanException` possible since `NSError` conforms to `SpanException`.
     let exception = error as SpanException
 
-    XCTAssertEqual(exception.type, "TestError")
+    XCTAssertEqual(exception.type, "OpenTelemetryApiTests.SpanExceptionTests.TestError")
     XCTAssertEqual(exception.message, error.localizedDescription)
     XCTAssertNil(exception.stackTrace)
   }
 
   func testErrorAsSpanExceptionWithProperBridgeToCustomNSError() {
-    enum TestError: Error, CustomNSError {
-      case test(code: Int)
-
-      var errorCode: Int {
-        switch self {
-        case let .test(code):
-          return code
-        }
-      }
-    }
-
-    let error = TestError.test(code: 5)
+    let error = TestCustomNSErrorEnum.test
 
     let exception = error as SpanException
 
-    XCTAssertEqual(exception.type, "TestError")
+    XCTAssertEqual(exception.type, "OpenTelemetryApiTests.SpanExceptionTests.TestCustomNSErrorEnum")
     XCTAssertEqual(exception.message, error.localizedDescription)
     XCTAssertNil(exception.stackTrace)
   }
 
   func testCustomNSErrorAsSpanException() throws {
-    struct TestCustomNSError: Error, CustomNSError {
-      let additionalComments: String
-
-      var errorUserInfo: [String: Any] {
-        [NSLocalizedDescriptionKey: "This is a custom NSError: \(additionalComments)"]
-      }
-
-      var errorCode: Int {
-        -123
-      }
-    }
-
     let error = TestCustomNSError(additionalComments: "SpanExceptionTests")
 
     // `Error` can be converted to `NSError`, which automatically makes the cast to
     // `SpanException` possible since `NSError` conforms to `SpanException`.
     let exception = error as SpanException
 
-    XCTAssertEqual(exception.type, "TestCustomNSError")
+    XCTAssertEqual(exception.type, "OpenTelemetryApiTests.SpanExceptionTests.TestCustomNSError")
     XCTAssertEqual(exception.message, error.localizedDescription)
     XCTAssertNil(exception.stackTrace)
 
@@ -104,4 +77,22 @@ final class SpanExceptionTests: XCTestCase {
       XCTAssertEqual(exception.stackTrace, nsException.callStackSymbols)
     }
   #endif
+
+  enum TestError: Error {
+    case test
+  }
+
+  enum TestCustomNSErrorEnum: Error, CustomNSError {
+    case test
+
+    var errorCode: Int { 5 }
+  }
+
+  struct TestCustomNSError: Error, CustomNSError {
+    let additionalComments: String
+
+    var errorUserInfo: [String: Any] {
+      [NSLocalizedDescriptionKey: "This is a custom NSError: \(additionalComments)"]
+    }
+  }
 }
