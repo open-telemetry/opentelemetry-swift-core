@@ -4,7 +4,7 @@
 > Development of this library is paused. We are integrating it into the [opentelemetry-swift](https://github.com/open-telemetry/opentelemetry-swift) library.
 >
 > - Do all new development in the [opentelemetry-swift](https://github.com/open-telemetry/opentelemetry-swift) project.
-> - We may release future versions of this library, but we do not guarantee them.
+> - We plan to release future versions of this library as a code dump from the main library for existing users.
 >
 > For more information, see [open-telemetry/opentelemetry-swift#1137](https://github.com/open-telemetry/opentelemetry-swift/issues/1137).
 
