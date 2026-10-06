@@ -1,5 +1,13 @@
 # <img src="https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png" alt="OpenTelemetry Icon" width="45" height=""> opentelemetry-swift
 
+> [!IMPORTANT]
+> Development of this library is paused. We are integrating it into the [opentelemetry-swift](https://github.com/open-telemetry/opentelemetry-swift) library.
+>
+> - Do all new development in the [opentelemetry-swift](https://github.com/open-telemetry/opentelemetry-swift) project.
+> - We plan to release future versions of this library as a code dump from the main library for existing users.
+>
+> For more information, see [open-telemetry/opentelemetry-swift#1137](https://github.com/open-telemetry/opentelemetry-swift/issues/1137).
+
 [![CI](https://github.com/open-telemetry/opentelemetry-swift/actions/workflows/BuildAndTest.yml/badge.svg)](https://github.com/open-telemetry/opentelemetry-swift/actions/workflows/BuildAndTest.yml?query=branch%3Amain+)
 [![codecov](https://codecov.io/gh/open-telemetry/opentelemetry-swift/branch/master/graph/badge.svg)](https://codecov.io/gh/open-telemetry/opentelemetry-swift)
 
