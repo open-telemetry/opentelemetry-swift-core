@@ -194,7 +194,7 @@ jobs:
   linux:
     needs: get-release
     runs-on: ubuntu-latest
-    container: swift:6.3.3@sha256:8de8ea332a61e961ead4ef41029c2552b18e1a70dd5942d25ecf7d8de2eec5b5
+    container: swift:6.4.1@sha256:6fbd5978b56a5a9ff05a48f8f678079fc45be496ecda15b4e74e8944fab857be
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
