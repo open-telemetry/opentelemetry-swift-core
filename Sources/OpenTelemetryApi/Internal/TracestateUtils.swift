@@ -15,7 +15,7 @@ enum TraceStateUtils {
   ///   - traceStateString: String with comma separated traceState key value pairs.
   ///   - traceState: Array to set traceState pairs on.
   static func appendTraceState(traceStateString: String, traceState: inout [TraceState.Entry]) -> Bool {
-    guard !traceState.isEmpty else { return false }
+    guard !traceStateString.isEmpty else { return false }
 
     var names = Set<String>()
 

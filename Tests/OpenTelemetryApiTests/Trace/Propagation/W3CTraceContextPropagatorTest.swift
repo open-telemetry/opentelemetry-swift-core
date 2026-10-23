@@ -202,6 +202,40 @@ class W3CTraceContextPropagatorTest: XCTestCase {
 //        XCTAssertNil(httpTraceContext.extract(carrier: invalidHeaders, getter: getter))
 //    }
 
+  func testExtract_InvalidVersionCharacters() {
+    for version in ["zz", "g0", "0g", " 0", "0 ", "é0", "0é"] {
+      let carrier = [W3CTraceContextPropagator.traceparent: version + "-" + traceId_base16 + "-" + spanId_base16 + "-01"]
+      XCTAssertNil(httpTraceContext.extract(carrier: carrier, getter: getter), "Version: \(version)")
+    }
+  }
+
+  func testExtract_ReservedVersion() {
+    let carrier = [W3CTraceContextPropagator.traceparent: "ff-" + traceId_base16 + "-" + spanId_base16 + "-01"]
+    XCTAssertNil(httpTraceContext.extract(carrier: carrier, getter: getter))
+  }
+
+  func testExtract_TraceStateRoundTrip() throws {
+    let carrier = try [W3CTraceContextPropagator.traceparent: XCTUnwrap(traceParentHeaderSampled),
+                       W3CTraceContextPropagator.traceState: traceStateNotDefaultEncoding]
+    let context = try XCTUnwrap(httpTraceContext.extract(carrier: carrier, getter: getter))
+    // SpanContext equality does not compare tracestate, so inspect it explicitly.
+    XCTAssertEqual(context.traceState.entries, traceState_not_default.entries)
+    var output = [String: String]()
+    httpTraceContext.inject(spanContext: context, carrier: &output, setter: setter)
+    XCTAssertEqual(output[W3CTraceContextPropagator.traceState], traceStateNotDefaultEncoding)
+  }
+
+  func testExtract_InvalidTraceStatePreservesParent() throws {
+    for state in ["", "missing-equals", "foo=bar,foo=baz"] {
+      let carrier = try [W3CTraceContextPropagator.traceparent: XCTUnwrap(traceParentHeaderSampled),
+                         W3CTraceContextPropagator.traceState: state]
+      let context = try XCTUnwrap(httpTraceContext.extract(carrier: carrier, getter: getter))
+      XCTAssertEqual(context.traceId, traceId)
+      XCTAssertEqual(context.spanId, spanId)
+      XCTAssertTrue(context.traceState.entries.isEmpty)
+    }
+  }
+
   func testFieldsList() {
     XCTAssertTrue(httpTraceContext.fields.contains(W3CTraceContextPropagator.traceparent))
     XCTAssertTrue(httpTraceContext.fields.contains(W3CTraceContextPropagator.traceparent))

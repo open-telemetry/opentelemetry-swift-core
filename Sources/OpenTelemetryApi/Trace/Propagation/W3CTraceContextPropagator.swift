@@ -92,8 +92,10 @@ public struct W3CTraceContextPropagator: TextMapPropagator {
       return nil
     }
 
-    let version0 = UInt8(String(traceparentArray[0]), radix: 16)!
-    let version1 = UInt8(String(traceparentArray[1]), radix: 16)!
+    guard let version0 = UInt8(String(traceparentArray[0]), radix: 16),
+          let version1 = UInt8(String(traceparentArray[1]), radix: 16) else {
+      return nil
+    }
 
     if version0 == 0xF && version1 == 0xF {
       return nil
