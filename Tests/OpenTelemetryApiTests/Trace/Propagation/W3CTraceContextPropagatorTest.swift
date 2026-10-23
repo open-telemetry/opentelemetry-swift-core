@@ -140,11 +140,12 @@ class W3CTraceContextPropagatorTest: XCTestCase {
     XCTAssertEqual(httpTraceContext.extract(carrier: carrier, getter: getter), SpanContext.createFromRemoteParent(traceId: traceId, spanId: spanId, traceFlags: TraceFlags(), traceState: traceState_default))
   }
 
-  func testExtract_NotSampledContext_TraceStateWithSpaces() {
+  func testExtract_NotSampledContext_TraceStateWithSpaces() throws {
     var carrier = [String: String]()
     carrier[W3CTraceContextPropagator.traceparent] = traceParentHeaderNotSampled
     carrier[W3CTraceContextPropagator.traceState] = "foo=bar   ,    bar=baz"
-    XCTAssertEqual(httpTraceContext.extract(carrier: carrier, getter: getter), SpanContext.createFromRemoteParent(traceId: traceId, spanId: spanId, traceFlags: TraceFlags(), traceState: traceState_not_default))
+    let context = try XCTUnwrap(httpTraceContext.extract(carrier: carrier, getter: getter))
+    XCTAssertEqual(context.traceState.entries, traceState_not_default.entries)
   }
 
   func testExtract_InvalidTraceId() {
@@ -233,6 +234,69 @@ class W3CTraceContextPropagatorTest: XCTestCase {
       XCTAssertEqual(context.traceId, traceId)
       XCTAssertEqual(context.spanId, spanId)
       XCTAssertTrue(context.traceState.entries.isEmpty)
+    }
+  }
+
+  private struct MultiHeaderGetter: Getter {
+    let traceStates: [String]
+
+    func get(carrier: [String: String], key: String) -> [String]? {
+      key == W3CTraceContextPropagator.traceState ? traceStates : carrier[key].map { [$0] }
+    }
+  }
+
+  private func extractWithTraceStates(_ states: [String]) throws -> SpanContext {
+    let carrier = try [W3CTraceContextPropagator.traceparent: XCTUnwrap(traceParentHeaderSampled)]
+    return try XCTUnwrap(httpTraceContext.extract(carrier: carrier, getter: MultiHeaderGetter(traceStates: states)))
+  }
+
+  func testExtract_MultipleTraceStateHeadersPreserveOrder() throws {
+    let context = try extractWithTraceStates(["first=1,second=2", "third=3"])
+    XCTAssertEqual(context.traceState.entries.map { $0.key }, ["first", "second", "third"])
+    var output = [String: String]()
+    httpTraceContext.inject(spanContext: context, carrier: &output, setter: setter)
+    XCTAssertEqual(output[W3CTraceContextPropagator.traceState], "first=1,second=2,third=3")
+  }
+
+  func testExtract_DuplicateTraceStateKeysAcrossHeadersPreserveParent() throws {
+    let context = try extractWithTraceStates(["same=1", "same=2"])
+    XCTAssertEqual(context.traceId, traceId)
+    XCTAssertEqual(context.spanId, spanId)
+    XCTAssertTrue(context.traceState.entries.isEmpty)
+  }
+
+  func testExtract_TraceStateOptionalWhitespaceAndEmptyMembers() throws {
+    for states in [
+      ["foo=bar   ,    bar=baz"],
+      ["\tfoo=bar\t,\tbar=baz\t"],
+      ["", " \t", "foo=bar", "", "bar=baz", ""],
+      [", ,foo=bar,,\t,bar=baz, "]
+    ] {
+      let context = try extractWithTraceStates(states)
+      XCTAssertEqual(context.traceState.entries, traceState_not_default.entries, "Headers: \(states)")
+    }
+  }
+
+  func testExtract_TraceStateDoesNotTrimWhitespaceInsideMembers() throws {
+    for state in ["foo =bar", "foo=ba\tr", "foo=bar\n", "foo=bar\r"] {
+      let context = try extractWithTraceStates([state])
+      XCTAssertTrue(context.traceState.entries.isEmpty, "Header: \(state)")
+      XCTAssertEqual(context.traceId, traceId)
+    }
+    let context = try extractWithTraceStates(["foo=bar baz"])
+    XCTAssertEqual(context.traceState.get(key: "foo"), "bar baz")
+  }
+
+  func testExtract_TraceStateLimitAppliesAcrossHeaders() throws {
+    let members = (0 ..< 33).map { "k\($0)=v" }
+    for states in [
+      [members.prefix(32).joined(separator: ",")],
+      [members.prefix(16).joined(separator: ","), members.dropFirst(16).prefix(16).joined(separator: ",")],
+      [members.joined(separator: ",")],
+      [members.prefix(32).joined(separator: ","), members[32]]
+    ] {
+      let context = try extractWithTraceStates(states)
+      XCTAssertEqual(context.traceState.entries.map { $0.key }, (0 ..< 32).map { "k\($0)" })
     }
   }
 

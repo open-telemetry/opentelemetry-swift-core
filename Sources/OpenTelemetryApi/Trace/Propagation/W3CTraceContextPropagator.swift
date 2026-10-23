@@ -155,7 +155,9 @@ public struct W3CTraceContextPropagator: TextMapPropagator {
 
     var entries = [TraceState.Entry]()
 
-    for traceState in traceStatecollection.reversed() where !TraceStateUtils.appendTraceState(traceStateString: traceState, traceState: &entries) {
+    // Multiple header fields form one ordered list with shared uniqueness and size limits.
+    let combinedTraceState = traceStatecollection.joined(separator: ",")
+    guard TraceStateUtils.appendTraceState(traceStateString: combinedTraceState, traceState: &entries) else {
       return nil
     }
     return TraceState(entries: entries)
