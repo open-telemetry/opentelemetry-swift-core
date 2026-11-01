@@ -161,3 +161,12 @@ For more information about the approver role, see the [community repository](htt
 - [Billy Zhou](https://github.com/williazz), AWS
 
 For more information about the triager role, see the [community repository](https://github.com/open-telemetry/community/blob/main/community-membership.md#triager).
+
+### Emeritus
+
+- [@ArielDemarco](https://github.com/ArielDemarco), Maintainer
+- [Alolita Sharma](https://github.com/alolita), Triager
+- [Vinod Vydier](https://github.com/vvydier), Approver
+
+For more information about the emeritus role, see the
+[community repository](https://github.com/open-telemetry/community/blob/main/guides/contributor/membership.md#emeritus-maintainerapprovertriager).
